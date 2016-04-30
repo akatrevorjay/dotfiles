@@ -1,0 +1,12 @@
+[style]
+based_on_style = google
+column_limit = 120
+dedent_closing_brackets = true
+
+join_multiple_lines = true
+;indent_width = 4
+;spaces_before_comment = 4
+;split_before_logical_operator = true
+
+;  vim: set ts=4 sw=4 tw=120 et ft=dosini :
+

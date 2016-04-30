@@ -1,0 +1,6 @@
+*.pyc
+__pycache__/
+.DS_*
+
+/.pre-commit-config.yaml
+

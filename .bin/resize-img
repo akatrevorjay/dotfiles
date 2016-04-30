@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require 'shellwords'
+
+# Resize files to the specified dimensions
+class Resize
+  def initialize(*args)
+    if args.length < 2
+      puts 'Usage:'
+      puts '$ rewrite /path/to/file.png 120x60'
+      exit 1
+    end
+
+    @resize = args.pop
+    @files = args
+  end
+
+  def run
+    @files.each do |file|
+      file = File.expand_path(file).shellescape
+      basefile = File.basename(file)
+      %x[convert #{file} -resize #{@resize} #{file}]
+      puts "✔ Resized #{basefile} to #{@resize}px"
+    end
+  end
+end
+Resize.new(*ARGV).run

@@ -1,0 +1,29 @@
+tell application "Spotify"
+	set myTrack to name of current track
+	set myArtist to artist of current track
+	set myAlbum to album of current track
+	set tM to round ((duration of current track) / 60) rounding down
+	set tS to (duration of current track) mod 60
+	set myTime to ((tM as text) & "min " & tS as text) & "s"
+	set nM to round (player position / 60) rounding down
+	set nS to round (player position mod 60) rounding down
+	set nowAt to ((nM as text) & "min " & nS as text) & "s"
+	set info to "Current track:"
+	set info to info & "
+ Artist:   " & myArtist
+	set info to info & "
+ Track:    " & myTrack
+	set info to info & "
+ Album:    " & myAlbum
+	set info to info & "
+ Duration: " & myTime & " (" & duration of current track & " seconds)"
+	set info to info & "
+ Now at:   " & nowAt
+	set info to info & "
+ Volume:   " & sound volume
+	if shuffling then set info to info & "
+ Shuffle is on."
+	if repeating then set info to info & "
+ Repeat is on."
+end tell
+return info

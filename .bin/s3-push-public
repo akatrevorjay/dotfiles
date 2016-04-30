@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+require 'shellwords'
+# Push local files an S3 bucket and make them public
+class S3PushPublic
+  def initialize(*args)
+    @bucket = args.shift
+    @files = args
+  end
+
+  def safe_filename(filename)
+    `filename-valid #{filename.shellescape}`.strip
+  end
+
+  def run
+    @files.each do |file|
+      filename = File.expand_path(file)
+      distant_filename = safe_filename(File.basename(filename))
+
+      options = [
+        'aws',
+        's3',
+        'cp',
+        filename.shellescape,
+        "s3://#{@bucket}/#{distant_filename}",
+        '--acl public-read'
+      ]
+      puts "Pushing #{distant_filename}"
+      `#{options.join(' ')}`
+      puts "http://#{@bucket}.s3.amazonaws.com/#{distant_filename}"
+    end
+  end
+end
+S3PushPublic.new(*ARGV).run

@@ -1,0 +1,8 @@
+if [ -z "${TMUX}" ] && which tmux >/dev/null; then
+    TMUX_FIRST_UNATTACHED=$(tmux ls 2>/dev/null | grep -v "(attached)" | cut -d: -f1)
+    if [ -n "${TMUX_FIRST_UNATTACHED}" ]; then
+        exec tmux attach -t ${TMUX_FIRST_UNATTACHED}
+    else
+        exec tmux
+    fi
+fi

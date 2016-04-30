@@ -1,0 +1,6 @@
+[flake8]
+#ignore = E226,E302,E41
+#exclude = tests/*,.svn,CVS,.bzr,.hg,.git,__pycache
+max-line-length = 120
+max-complexity = 10
+
