@@ -1,0 +1,58 @@
+#!/bin/zsh
+
+echo "You must love being broken!" >&2
+
+set -xv
+
+# Let's not do this from any venv/pyenv now
+# This isn't really needed in most cases due to wrapping brew with this,
+# but what if your PATH ordering puts /usr/local/bin before this wrapper bin by accident?
+#export PYENV_VERSION=system-3.5.1:system-2.7.11:system
+export PYENV_VERSION=system
+
+brew update
+brew upgrade
+
+## Experimental docker
+#docker="/usr/local/bin/docker-experimental"
+#curl -SL "https://experimental.docker.com/builds/Darwin/x86_64/docker-latest" \
+#  > "$docker.dl"
+#chmod -v +x "$docker.dl"
+#mv -v "$docker.dl" "$docker"
+
+# Beautiful Neovim
+(
+    #export PYENV_VERSION=neovim-3:neovim-2
+    brew reinstall --HEAD --env=std --with-release neovim
+    brew reinstall --HEAD --env=std rogual/neovim-dot-app/neovim-dot-app
+    #brew reinstall --HEAD --with-release neovim
+    #brew reinstall --HEAD rogual/neovim-dot-app/neovim-dot-app
+)
+
+# xhyve
+#brew reinstall --HEAD xhyve
+# broken only in brew build, not manual.
+#brew reinstall --HEAD docker-machine-driver-xhyve
+
+## dlite
+#brew reinstall --HEAD dlite
+###brew reinstall --HEAD dlite && dlite update -v 3.0.0-beta4
+##cd ~/go/src/github.com/nlf/dlite
+##git pull
+##make
+##mv dlite ~/go/bin/dlite
+## update dhyveos image/ramdisk
+#for ver in 3.0.0{,-beta{5,4}}; do
+#    dlite update -v "$ver" || continue
+#    break
+#done
+## reboot it
+#dlite stop || :
+#dlite start
+
+brew list --versions | sed -ne 's/ HEAD$//p' | egrep -v '^dlite|^neovim|^kakoune|^xhyve$' | xargs --verbose -n1 brew reinstall --HEAD
+
+# Kakoune
+brew reinstall --HEAD https://raw.githubusercontent.com/mawww/kakoune/master/contrib/kakoune.rb
+
+wait

@@ -111,21 +111,17 @@
 
 [core]
 	# Use custom `.gitignore` and `.gitattributes`
-	excludesfile = ~/.gitignore
-	attributesfile = ~/.gitattributes
+	excludesfile = ignore
+	attributesfile = attributes
 
 	# Treat spaces before tabs and all kinds of trailing whitespace as an error
 	# [default] trailing-space: looks for spaces at the end of a line
 	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
 	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
-	# Make `git rebase` safer on OS X
-	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
-	trustctime = false
+[include]
+	path = config.os
 
-	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
-	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
-	precomposeunicode = false
 
 [apply]
 	# Detect whitespace errors when applying a patch
@@ -190,7 +186,7 @@
 	message = Release %tag%
 
 [gitflow "path"]
-	hooks = ~/.git_hooks
+	hooks = hooks
 
 [filter "media"]
 	required = true
@@ -230,9 +226,25 @@
 	name = Trevor Joynson (trevorj)
 	email = github@skywww.net
 	signingkey = 9871F640
-[init]
-	templatedir = /Users/trevorj/.git-template-with-git-hooks
+
 [github]
 	user = akatrevorjay
+
+
+[core]
+	# Make `git rebase` safer on OS X, avoids random failures when revisiond causes
+	# a race in regards to stat.ctime
+	# More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
+	trustctime = false
+	
+	# Prevent showing files whose names contain non-ASCII symbols as unversioned.
+	# http://michael-kuehnel.de/git/2014/11/21/git-mac-osx-and-german-umlaute.html
+	precomposeunicode = false
+
+[init]
+	templatedir = /Users/trevorj/.git-template-with-git-hooks
+
 [credential]
-	helper = osxkeychain
+	# TODO Only on OSX
+	#helper = osxkeychain
+
