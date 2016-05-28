@@ -1,28 +1,50 @@
 #!/bin/zsh
 setopt errexit errreturn
 
-name="${0:t}"
+faded_d="$HOME/.config/faded"
+mkdir -pv "$faded_d"
 
-case "$name" in
+shim_path=${0:h}
+self="${0:t}"
+
+pip_deps=("$self")
+bin="$self"
+
+case "$self" in
 	faded)
-		cd ${0:h}
+		cd "$shim_path"
 
-		for arg in "$@"; do
-			if [[ -e "./$arg" ]]; then
-				echo "Already faded: $arg" >&2
-				# TODO update $arg ?
-				continue
-			fi
+		name="$1"; shift
 
-			echo "Shimming fade: $arg"
-			ln -sv $name $arg
-		done
+		echo "*Shimmer*ing: $shim_path/$self ***> $shim_path/$name"
+		if [[ ! -e "./$name" ]]; then
+			ln -sv $self $name
+		else
+			echo "Not overwriting: $shim_path/$name" >&2
+		fi
+
+		# TODO update ?
+
+		if [[ $# -gt 1 ]]; then
+			echo "Saving config: $faded_d/$name"
+			echo "$@" | tee "$faded_d/$name"
+		elif [[ -e "$faded_d/$name" ]]; then
+			echo "Removing config: $faded_d/$name"
+			cat "$faded_d/$name"
+			rm -fv "$faded_d/$name"
+		fi
 
 		exit
 		;;
 esac
 
-pip_deps=("$name")
-bin="$name"
+args=()
+if [[ -f "$faded_d/$self" ]]; then
+	args+=($(cat "$faded_d/$self"))
+fi
 
-exec /usr/bin/fades ${=${(@)pip_deps/#/-d }} -x "$bin" -- "$@"
+exec fades \
+	${args[@]} \
+	${=${(@)pip_deps/#/-d }} -x "$bin" \
+	-- "$@"
+
