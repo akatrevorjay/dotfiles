@@ -57,6 +57,11 @@ call dein#add('Shougo/deoplete.nvim')
 
 call dein#add('Shougo/unite.vim')
 
+" .vimrc
+call dein#add('tomtom/tlib_vim')
+call dein#add('amiorin/vim-fasd')
+call dein#add('scrooloose/nerdtree')
+
 "" local
 call dein#add($GOPATH.'/src/github.com/junegunn/fzf')
 

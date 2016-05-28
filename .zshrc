@@ -26,11 +26,9 @@ HISTSIZE=100000
 SAVEHIST=100000
 HISTFILE=~/.zsh_history
 
-# Use modern completion system
-autoload -Uz compinit
-#compinit
-
+# completion
 zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' auto-rehash true
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
@@ -118,7 +116,7 @@ if ! zgen saved; then
 	# bulk load
 	# TODO check plugins difference on hook and auto-load
 	plugins=(
-		#zsh-users/zsh-completions
+		zsh-users/zsh-completions
 		zsh-users/zsh-history-substring-search
 		zsh-users/zsh-syntax-highlighting
 		#/path/to/local/plugin
@@ -126,10 +124,10 @@ if ! zgen saved; then
 	echo ${(F)plugins[@]} | zgen loadall
 
 	# completions
-	zgen load zsh-users/zsh-completions src
+	#zgen load zsh-users/zsh-completions src
 
 	# theme
-	zgen oh-my-zsh themes/arrow
+	#zgen oh-my-zsh themes/arrow
 
 	# save all to init script
 	zgen save
