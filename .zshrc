@@ -1,3 +1,4 @@
+#!/bin/zsh
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
@@ -63,11 +64,10 @@ path=(
 	"$HOME/bin"
 	"$HOME/.local/bin"
 
-	"$GOPATH/bin"
-
-	"$HOME/miniconda3/bin"
-
 	"${path[@]}"
+
+	"$GOPATH/bin"
+	"$HOME/miniconda3/bin"
 )
 
 fpath=(
@@ -78,6 +78,18 @@ fpath=(
 	"$HOME/.local/zsh/completions"
 
 	"${fpath[@]}"
+)
+
+manpath=(
+	"$HOME/.local/share/man"
+
+	${manpath[@]}
+)
+
+infopath=(
+	"$HOME/.local/share/info"
+
+	${infopath[@]}
 )
 
 # personal
@@ -92,17 +104,35 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
 # if the init scipt doesn't exist
 if ! zgen saved; then
-  zgen oh-my-zsh
-  #zgen oh-my-zsh plugins/git
+	#zgen prezto
+	echo "Creating a zgen save"
 
-  #zgen prezto
+	# oh-my-shit
+	zgen oh-my-zsh
 
-  zgen load zsh-users/zsh-completions
-  zgen load zsh-users/zsh-history-substring-search
-  zgen load zsh-users/zsh-syntax-highlighting
+	# oh-my-shit plugins
+	#zgen oh-my-zsh plugins/git
+	#zgen oh-my-zsh plugins/sudo
+	#zgen oh-my-zsh plugins/command-not-found
 
-  # generate the init script from plugins above
-  zgen save
+	# bulk load
+	# TODO check plugins difference on hook and auto-load
+	plugins=(
+		#zsh-users/zsh-completions
+		zsh-users/zsh-history-substring-search
+		zsh-users/zsh-syntax-highlighting
+		#/path/to/local/plugin
+	)
+	echo ${(F)plugins[@]} | zgen loadall
+
+	# completions
+	zgen load zsh-users/zsh-completions src
+
+	# theme
+	zgen oh-my-zsh themes/arrow
+
+	# save all to init script
+	zgen save
 fi
 
 # autoloads
@@ -165,3 +195,34 @@ alias lla='ll -A'
 
 # This is annoying to have earlier.
 setopt warncreateglobal
+
+# fzf
+function () {
+	local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
+	manpath+=("$fzf_path/man")
+
+	[[ $- == *i* ]] && source "$fzf_path/shell/completion.zsh" 2>/dev/null
+	source "$fzf_path/shell/key-bindings.zsh"
+}
+
+# linuxbrew (for git builds)
+function () {
+	local brew_path="$HOME/.linuxbrew"
+	path+=("$brew_path"/{,s}bin)
+	manpath+=("$brew_path/share/man")
+	infopath+=("$brew_path/share/info")
+
+	# always compile from source, using distro libc
+	export HOMEBREW_BUILD_FROM_SOURCE=1
+}
+
+# pyenv
+#function () {
+#	path=("$HOME/.pyenv/bin" ${path[@]})
+#	eval "$(pyenv init -)"
+#	eval "$(pyenv virtualenv-init -)"
+#}
+
+# local
+source "$HOME/.zshrc.local"
+

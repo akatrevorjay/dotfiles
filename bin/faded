@@ -1,0 +1,28 @@
+#!/bin/zsh
+setopt errexit errreturn
+
+name="${0:t}"
+
+case "$name" in
+	faded)
+		cd ${0:h}
+
+		for arg in "$@"; do
+			if [[ -e "./$arg" ]]; then
+				echo "Already faded: $arg" >&2
+				# TODO update $arg ?
+				continue
+			fi
+
+			echo "Shimming fade: $arg"
+			ln -sv $name $arg
+		done
+
+		exit
+		;;
+esac
+
+pip_deps=("$name")
+bin="$name"
+
+exec /usr/bin/fades ${=${(@)pip_deps/#/-d }} -x "$bin" -- "$@"
