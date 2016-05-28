@@ -177,6 +177,9 @@ function () {
 	alias o='a -e open_command'
 }
 
+# This is annoying to have earlier.
+setopt warncreateglobal
+
 # aliases
 alias vim='nvim'
 alias v='vim'
@@ -190,9 +193,6 @@ alias la='ls -A'
 alias ll='ls -l'
 alias lg='ls -g'
 alias lla='ll -A'
-
-# This is annoying to have earlier.
-setopt warncreateglobal
 
 # fzf
 function () {
