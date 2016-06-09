@@ -10,7 +10,7 @@ setopt correct correctall
 alias v='vim'
 alias vi='vim'
 
-alias ls='ls -Fuh -B'
+alias ls="${(Q)${$(alias -m ls)#*=}:-ls --colors=auto} -Fuh -B"
 alias l='ls'
 alias la='ls -A'
 alias ll='ls -l'

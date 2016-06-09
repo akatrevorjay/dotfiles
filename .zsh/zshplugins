@@ -1,6 +1,6 @@
 #!/bin/zsh
-zgen oh-my-zsh
-zgen prezto
+#zgen oh-my-zsh
+#zgen prezto
 
 plugins=(
 	akatrevorjay/composure
