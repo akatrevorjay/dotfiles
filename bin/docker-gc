@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+: ${DOCKER_MACHINE_NAME:=dev}
+machine_env="$(docker-machine env "$DOCKER_MACHINE_NAME" | sed -ne 's@^export \(.*\)$@-e \1@p' | xargs echo '')"
+
+set -xv
+docker run -it --rm \
+   $machine_env \
+   -v /var/run/docker.sock:/var/run/docker.sock \
+   -v "$HOME/.docker/machine/machines/$DOCKER_MACHINE_NAME:$HOME/.docker/machine/machines/$DOCKER_MACHINE_NAME" \
+   konstruktoid/docker-garby

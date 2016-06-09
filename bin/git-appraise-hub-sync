@@ -1,0 +1,35 @@
+#!/bin/bash
+set -eo pipefail
+
+repo="$PWD"
+
+if [[ "$__WRAPPED" != "$self" ]]; then
+  export __WRAPPED="$self"
+  exec envchain "$self" "GITHUB_TOKEN" "$0" "$@"
+fi
+
+origin_url="$(git config --get remote.origin.url)"
+
+case "$origin_url" in
+    https://github.com/*)
+        target="${origin_url#https://github.com/}"
+        target="${target%.git}"
+        ;;
+    git@github.com:*)
+        target="${origin_url#*:}"
+        target="${target%.git}"
+        ;;
+    *)
+        echo "Can't find github remote as origin" >&2
+        exit 1
+        ;;
+esac
+
+set -v
+
+git fetch origin '+refs/pull/*:refs/pull/*'
+git appraise pull
+git-pull-request-mirror -target "$target" -local "$repo" -auth-token "$GITHUB_TOKEN"
+git appraise pull
+git appraise push
+

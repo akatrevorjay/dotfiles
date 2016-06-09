@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+emulate -L bash
+
+apt-search ()
+{
+    # Search and highlight keyword  in the restuls
+    export GREP_COLOR='1'
+    # Remove regexp patterns from the keyword to highlight
+    keyword=`echo -n "$1" | sed -e 's/[^[:alnum:]|-]//g'`
+    echo_bold "Highlight keyword: $keyword"
+    aptitude search "$1" --disable-columns | egrep --color "$keyword" 
+
+    # Use the matching results to complete our install command
+    matching=$(aptitude search --disable-columns -F "%p" "$1" | tr '\n' ' ') 
+    count=0
+    for i in $matching ; do
+        count=$((count + 1))
+    done
+    complete -W '$matching' aptinstall
+    echo_bold "(Matching packages: $count)"
+    if ! [ -z $2 ] ; then
+        echo -e "$matching" | egrep --color=always "$keyword"
+    fi
+}
+
