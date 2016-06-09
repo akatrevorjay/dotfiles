@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+with-flock() {
+    local -a args
+    local -A kwargs
+    zparseopts -a args -A kwargs -K -D -- f: 1
+
+    local lockfile
+    #lockfile="${kwargs[-f]:-${kwargs[-1]:+$1.lck}}"
+    if [[ "${+kwargs[-1]}" ]]; then     lockfile="$1.lck"
+    elif [[ "${+kwargs[-f]}" ]]; then   lockfile="${kwargs[-f]}"
+    fi
+
+    [[ -z "$lockfile" ]] \
+        && echo "Usage: with-flock [-1|-l FILE] -- CMD" >&2 && return 1
+
+    (
+    if ! flock -n 8; then
+        echo "Could not get lock: $lock" >&2
+        return 1
+    fi
+
+    "$@"
+    ) 8> "$lockfile"
+}
+

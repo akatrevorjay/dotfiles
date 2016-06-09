@@ -1,0 +1,8 @@
+old-*
+_*
+.zprezto
+.zcompdump*
+plugins
+zgen
+local
+

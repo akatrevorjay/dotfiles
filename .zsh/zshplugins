@@ -1,0 +1,21 @@
+#!/bin/zsh
+zgen oh-my-zsh
+zgen prezto
+
+plugins=(
+	akatrevorjay/composure
+	psprint/zsnapshot
+	mollifier/zload
+	kennethreitz/autoenv
+
+	#akatrevorjay/macosx-shell-scripts
+	#psprint/zsh-cmd-architect
+	#psprint/zsh-editing-workbench
+	#psprint/zsh-navigation-tools
+
+	${(@)plugins}
+
+	zsh-users/zsh-completions
+	zsh-users/zsh-history-substring-search
+	zsh-users/zsh-syntax-highlighting
+)

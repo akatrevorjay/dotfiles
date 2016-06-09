@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+zcompdump-recompile-if-needed() {
+    # zcompile the .zcompdump in the background
+    local zcompdump="${ZSH_CACHE_DIR}/zcompdump"
+    [[ -n "$zcompdump" ]] || return 1
+
+    if [[ -s "$zcompdump" && (! -s "$zcompdump.zwc" || "$zcompdump" -nt "$zcompdump.zwc") ]]; then
+        echo "Compdump \"${(q)zcompdump}\" is out of date; recompiling."
+        (
+        flock -n
+
+        zcompile "$zcompdump"
+        ) 8> "$zcompdump.lck"
+    fi
+}
