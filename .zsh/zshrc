@@ -96,43 +96,7 @@ function () {
 } "$HOME/.local/google-cloud-sdk"
 
 # This is annoying to have earlier.
-setopt warncreateglobal
-
-# aliases
-alias vim='nvim'
-alias v='vim'
-alias vi='vim'
-
-alias grep='grep --color=auto'
-alias -g G='| grep'
-alias ls='ls --color=auto -Fuh -B -G'
-alias l='ls'
-alias la='ls -A'
-alias ll='ls -l'
-alias lg='ls -g'
-alias lla='ll -A'
-
-# fzf
-function () {
-	local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
-	[[ -d "$fzf_path" ]] || return
-	manpath+=("$fzf_path/man")
-
-	[[ $- == *i* ]] && source "$fzf_path/shell/completion.zsh" 2>/dev/null
-	source "$fzf_path/shell/key-bindings.zsh"
-}
-
-# linuxbrew (for git builds)
-function () {
-	local brew_path="$HOME/.linuxbrew"
-	[[ -d "$brew_path" ]] || return
-	path+=("$brew_path"/{,s}bin)
-	manpath+=("$brew_path/share/man")
-	infopath+=("$brew_path/share/info")
-
-	# always compile from source, using distro libc
-	export HOMEBREW_BUILD_FROM_SOURCE=1
-}
+#setopt warncreateglobal
 
 # pyenv
 #function () {

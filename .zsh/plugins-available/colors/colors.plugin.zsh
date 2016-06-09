@@ -1,8 +1,11 @@
 #!/bin/zsh
 
-alias -g grep='grep --color=auto'
-alias -g fgrep='fgrep --color=auto'
-alias -g egrep='egrep --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+alias -g G='| grep'
+
+alias ls='ls --color=auto'
 
 [[ ! ${+commands[colordiff]} ]] \
     || alias diff='colordiff'

@@ -9,6 +9,8 @@
 for prefix in "$@"; do
 	[[ ! -d "$prefix/bin" ]] \
 		|| path=($prefix/bin ${(@)path})
+	[[ ! -d "$prefix/sbin" ]] \
+		|| path=($prefix/sbin ${(@)path})
 	[[ ! -d "$prefix/functions" ]] \
 		|| fpath=($prefix/functions ${(@)fpath})
 	[[ ! -d "$prefix/share/man" ]] \

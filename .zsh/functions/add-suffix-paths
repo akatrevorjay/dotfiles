@@ -2,6 +2,8 @@
 local prefix="$1"
 [[ ! -d "$prefix/bin" ]] \
 	|| path+=($prefix/bin)
+[[ ! -d "$prefix/sbin" ]] \
+	|| path+=($prefix/sbin)
 [[ ! -d "$prefix/functions" ]] \
 	|| fpath+=($prefix/functions)
 [[ ! -d "$prefix/share/man" ]] \
