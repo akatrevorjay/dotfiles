@@ -1,0 +1,171 @@
+#!/bin/zsh
+
+# XDG defults
+: ${XDG_CONFIG_HOME:="$HOME/.config"}
+: ${XDG_CACHE_HOME:="$HOME/.cache"}
+: ${XDG_DATA_HOME:="$HOME/.local/share"}
+: ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+
+# TODO hooks for plugins to register env-time changes.
+
+# zsh
+: ${ZDOTDIR:="$HOME/.zsh"}
+: ${LOCAL_ZDOTDIR:="$HOME/.local/zsh"}
+: ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
+
+[[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
+
+# env
+: ${CURRENT_SHELL:="zsh"}
+# system
+: ${SYSTEM:="${OSTYPE%%[0-9]*}"}
+: ${SYSTEM:="$(uname -s | tr '[:upper:]' '[:lower:]')"}
+: ${SYSTEM:="unknown_system"}
+: ${SHORT_HOSTNAME:=${HOST%%.*}}
+: ${SHORT_HOSTNAME:=unknown}
+
+EDITOR=nvim
+
+case "$TERM" in
+	xterm|screen) TERM=$TERM-256color ;;
+esac
+
+##
+## path
+##
+
+
+path=(
+	# user
+	"$HOME/crypt/bin" "$HOME/.bin" "$HOME/.local/bin"
+	# golang
+	"$HOME/go/bin"
+	# pyenv
+	#"$HOME/.pyenv/shims"
+	# miniconda
+	#"$HOME/miniconda3/bin"
+	# rbenv
+	#"$HOME/.rbenv/shims"
+
+	# standard
+	#"/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/bin" "/sbin"
+   
+	"${path[@]}"
+)
+
+fpath=(
+	"$ZDOTDIR/functions"
+	"$ZDOTDIR/completions"
+
+	"$HOME/.local/zsh/functions"
+	"$HOME/.local/zsh/completions"
+   
+	"${fpath[@]}"
+)
+
+manpath=(
+	"$HOME/.local/share/man"
+
+	${manpath[@]}
+)
+
+infopath=(
+	"$HOME/.local/share/info"
+
+	${infopath[@]}
+)
+
+
+autoload -Uz \
+	fix-path-order fix-user-bin-overlay-in-path \
+	source-with-force \
+	add-prefix-paths add-suffix-paths \
+	call-many
+
+add-prefix-paths $HOME/.local
+
+
+# OS specifics
+case "$SYSTEM" in
+	linux-gnu)
+		path=(
+			# ccache
+			"/usr/lib/ccache"
+
+			$path[@]
+		)
+		fix-path-order
+		;;
+	darwin)
+		add-prefix-path /usr/local
+
+		path=(
+			# Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
+			# gnu by default
+			"/usr/local/libexec/gnubin"
+
+			# ccache
+			"/usr/local/opt/ccache/libexec"
+
+			${path[@]}
+		)
+		fix-path-order
+   
+		function () {
+			for idx in "${fpath[(i)/usr/local/share/zsh/site-functions]}"; do
+				fpath[$idx]=()
+			done
+		}
+
+		function () {
+			# Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
+			# Unfortunately it also reorganizes your PATH according to how it sees fit,
+			# so let's change that to just be a suffix. It gets deduped anyway.
+			if [[ -x /usr/libexec/path_helper ]] && [[ "$OSTYPE" = darwin* ]]; then
+				local out="$(PATH='' /usr/libexec/path_helper -s)"
+				# We only care about the path portion of the declare statement anyway, so snag and split.
+				local out_paths=(${(s.:.)${out#*\"}%\"*})
+				# Append to path
+				path=("${path[@]}" "${out_paths[@]}")
+			fi
+		}
+
+		fpath+=("/usr/local/share/zsh/site-functions")
+		;;
+esac
+
+
+# Dedupe entries
+typeset -U {,f,man,info}path
+
+
+##
+## Devel
+##
+
+# Python
+: ${PYTHONSTARTUP:="$HOME/.pythonrc.py"}
+
+# Go
+export GOPATH="$HOME/go"
+path+=("$GOPATH/bin")
+
+# gcloud sdk
+#export CLOUDSDK_PYTHON="/usr/local/bin/python2"
+
+# GPG 2.1.x SSH support
+# See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
+export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+
+# Default docker machine
+: ${DOCKER_MACHINE_NAME:="dev"}
+
+
+##
+## local
+##
+
+source-with-force "$LOCAL_ZDOTDIR/zshenv"
+
+
+# EOF

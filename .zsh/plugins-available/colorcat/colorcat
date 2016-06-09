@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+# Do a normal cat if we aren't interactive or are say, piping.
+# I can't think of a reason why stdin would be a gotcha off the top of my head,
+# but I'm playing it safe here.
+if tty -s && test -t 0 \
+&& test -t 1
+then
+    local file
+    for file in "$@"; do
+        pygmentize -O style=monokai -f console256 -g "$file"
+    done
+else
+    cat "$@"
+fi
+

@@ -2,9 +2,19 @@ version 6.0
 
 if has('nvim')
 	let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+else
+	set t_Co=256
 endif
-set t_Co=256
 set background=dark
+
+"let &t_SI .= "\<Esc>[2 q"  " solid block in insert mode
+"let &t_EI .= "\<Esc>[2 q"  " solid block in normal mode
+"highlight Cursor guifg=white guibg=black
+"highlight iCursor guifg=white guibg=steelblue
+"set guicursor=n-v-c:block-Cursor
+"set guicursor+=i:ver100-iCursor
+"set guicursor+=n-v-c:blinkon0
+"set guicursor+=i:blinkwait10
 
 "dein Scripts-----------------------------
 if !has('nvim') && &compatible
@@ -39,9 +49,6 @@ call dein#add('junegunn/vim-peekaboo')
 call dein#add('junegunn/goyo.vim', {'on': 'Goyo'})
 call dein#add('junegunn/limelight.vim')
 
-call dein#add('junegunn/vim-github-dashboard')
-
-call dein#add('junegunn/vim-emoji')
 
 "call dein#add('junegunn/vim-easy-align')
 
@@ -53,27 +60,46 @@ call dein#add('junegunn/vim-emoji')
 
 call dein#add('wellle/tmux-complete.vim')
 
+call dein#add($GOPATH.'/src/github.com/junegunn/fzf')
+
 call dein#add('Shougo/deoplete.nvim')
 
 call dein#add('Shougo/unite.vim')
 
-" .vimrc
+call dein#add('majutsushi/tagbar')
+
+call dein#add('mhinz/vim-startify')
+
+call dein#add('Shougo/unite.vim')
+call dein#add('rafi/vim-unite-issue')
+
+call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('vim-ctrlspace/vim-ctrlspace')
+
 call dein#add('tomtom/tlib_vim')
 call dein#add('amiorin/vim-fasd')
 call dein#add('scrooloose/nerdtree')
 
-"" local
-call dein#add($GOPATH.'/src/github.com/junegunn/fzf')
+call dein#add('junegunn/vim-github-dashboard')
+
+call dein#add('junegunn/vim-emoji')
+
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
+
+call dein#add('ryanoasis/vim-devicons')
 
 " Colors
 call dein#add('tomasr/molokai', {'merged': 0})
+call dein#add('NLKNguyen/papercolor-theme', {'merged': 0})
 
 " Required:
 call dein#end()
 
 " Required:
-filetype plugin indent on
-syntax on
+syntax on                   " syntax highlighing
+filetype on                 " try to detect filetypes
+filetype plugin indent on   " enable loading indent file for filetype
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -103,11 +129,15 @@ set autoindent
 set smarttab
 
 " Color scheme
-colorscheme sunburst
+"set termguicolors
+"colorscheme sunburst
+"colorscheme PaperColor
+colorscheme molokai
+let g:airline_theme = 'PaperColor'
+"let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
+let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
+"let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
 
-"" UI (tui)
-set termcap
-set termguicolors
 
 "" UI (gui)
 if has('gui_macvim')
@@ -173,4 +203,3 @@ let g:github_dashboard = { 'username': 'akatrevorjay', 'password': $GITHUB_TOKEN
 " w/deoplete
 let g:tmuxcomplete#trigger = ''
 
-" vim: set ft=vim :

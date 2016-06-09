@@ -7,44 +7,77 @@ mkdir -pv "$faded_d"
 shim_path=${0:h}
 self="${0:t}"
 
-pip_deps=("$self")
-bin="$self"
-
 case "$self" in
 	faded)
+		usage() {
+			echo "Usage:" >&2
+			echo "  Add/update fade shim and config:" >&2
+			echo "    $0 package [-d dependency ..] [-x executable (default: package)]" >&2
+		}
+
+		[ $# -gt 0 ] || set -- -h
+		zparseopts -D -E -- h=help -help=help x:=executable d+:=deps
+
+		if [[ -n "$help" ]]; then
+			usage
+			exit 0
+		fi
+
+		if [[ -n "${executable[2]}" ]]; then
+			shim=${executable[2]}
+		elif [[ -n $1 && $1 != -* ]]; then
+			shim=$1; shift
+			deps+=(-d $shim)
+		elif [[ -n ${deps[2]} ]]; then
+			shim=${deps[2]}
+		fi
+
+		if [[ -z "$shim" ]]; then
+			echo "No packages given" >&2
+			usage
+			exit 1
+		fi
+
+		echo "shim: $shim"
+		echo "deps: $deps"
+
+		set -- "$@" $deps $executable
+
 		cd "$shim_path"
 
-		name="$1"; shift
-
-		echo "*Shimmer*ing: $shim_path/$self ***> $shim_path/$name"
-		if [[ ! -e "./$name" ]]; then
-			ln -sv $self $name
+		echo "*Shimmer*ing: $shim_path/$self ***> $shim_path/$shim"
+		if [[ ! -e "./$shim" ]]; then
+			ln -sv $self $shim
 		else
-			echo "Not overwriting: $shim_path/$name" >&2
+			echo "Not overwriting: $shim_path/$shim" >&2
 		fi
 
 		# TODO update ?
 
-		if [[ $# -gt 1 ]]; then
-			echo "Saving config: $faded_d/$name"
-			echo "$@" | tee "$faded_d/$name"
-		elif [[ -e "$faded_d/$name" ]]; then
-			echo "Removing config: $faded_d/$name"
-			cat "$faded_d/$name"
-			rm -fv "$faded_d/$name"
+		if [[ $# -gt 0 ]]; then
+			echo "Saving config: $faded_d/$shim"
+			echo "$@" | tee "$faded_d/$shim"
+		elif [[ -e "$faded_d/$shim" ]]; then
+			echo "Removing config: $faded_d/$shim"
+			cat "$faded_d/$shim"
+			rm -fv "$faded_d/$shim"
 		fi
 
-		exit
+		echo "Running shim" >&2
+		exec "$shim"
+		;;
+	*)
+		fargs=()
+		if [[ -e "$faded_d/$self" ]]; then
+			fargs+=($(cat "$faded_d/$self"))
+		fi
+
+		# If executable shim was not given, then add one
+		if [[ " $fargs" != *\ -x\ * ]]; then
+			fargs+=(-x $self)
+		fi
+
+		exec fades $fargs -- "$@"
 		;;
 esac
-
-args=()
-if [[ -f "$faded_d/$self" ]]; then
-	args+=($(cat "$faded_d/$self"))
-fi
-
-exec fades \
-	${args[@]} \
-	${=${(@)pip_deps/#/-d }} -x "$bin" \
-	-- "$@"
 
