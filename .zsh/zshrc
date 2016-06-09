@@ -3,18 +3,10 @@
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Unsure
-setopt autoresume autocd autoresume
-setopt longlistjobs
-#setopt histreduceblanks histlexwords
-#setopt globcomplete globsubst globassign
-setopt correct correctall
-#setopt vi
-
 # Def
 setopt extendedglob kshglob
-setopt interactivecomments
 setopt nullglob
+setopt interactivecomments
 
 # zgen
 ZGEN_RESET_ON_CHANGE=(
