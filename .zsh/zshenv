@@ -34,45 +34,46 @@ esac
 ## path
 ##
 
+# Dedupe entries
+typeset -U {,f,man,info}path
 
 path=(
 	# user
-	"$HOME/crypt/bin" "$HOME/.bin" "$HOME/.local/bin"
+	$HOME/crypt/bin $HOME/bin $HOME/.local/bin
+
 	# golang
-	"$HOME/go/bin"
+	#$HOME/go/bin
 	# pyenv
-	#"$HOME/.pyenv/shims"
+	#$HOME/.pyenv/shims
 	# miniconda
-	#"$HOME/miniconda3/bin"
+	#$HOME/miniconda3/bin
 	# rbenv
-	#"$HOME/.rbenv/shims"
+	#$HOME/.rbenv/shims
 
 	# standard
-	#"/usr/local/bin" "/usr/local/sbin" "/usr/bin" "/usr/sbin" "/bin" "/sbin"
+	#/usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
    
-	"${path[@]}"
+	${path[@]}
 )
 
 fpath=(
-	"$ZDOTDIR/functions"
-	"$ZDOTDIR/completions"
+	$ZDOTDIR/functions
+	$ZDOTDIR/completions
 
-	"$HOME/.local/zsh/functions"
-	"$HOME/.local/zsh/completions"
+	$LOCAL_ZDOTDIR/functions
+	$LOCAL_ZDOTDIR/completions
    
-	"${fpath[@]}"
+	${(@)fpath}
 )
 
-manpath=(
-	"$HOME/.local/share/man"
+: ${MANPATH:=$(manpath)}
 
-	${manpath[@]}
+manpath=(
+	${(@)manpath}
 )
 
 infopath=(
-	"$HOME/.local/share/info"
-
-	${infopath[@]}
+	${(@)infopath}
 )
 
 
@@ -92,9 +93,9 @@ case "$SYSTEM" in
 			# ccache
 			"/usr/lib/ccache"
 
-			$path[@]
+			${(@)path}
 		)
-		fix-path-order
+		#fix-path-order
 		;;
 	darwin)
 		add-prefix-path /usr/local
@@ -107,12 +108,12 @@ case "$SYSTEM" in
 			# ccache
 			"/usr/local/opt/ccache/libexec"
 
-			${path[@]}
+			${(@)path}
 		)
 		fix-path-order
    
 		function () {
-			for idx in "${fpath[(i)/usr/local/share/zsh/site-functions]}"; do
+			for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
 				fpath[$idx]=()
 			done
 		}
@@ -121,37 +122,23 @@ case "$SYSTEM" in
 			# Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
 			# Unfortunately it also reorganizes your PATH according to how it sees fit,
 			# so let's change that to just be a suffix. It gets deduped anyway.
-			if [[ -x /usr/libexec/path_helper ]] && [[ "$OSTYPE" = darwin* ]]; then
+			if [[ -x /usr/libexec/path_helper ]] && [[ $OSTYPE = darwin* ]]; then
 				local out="$(PATH='' /usr/libexec/path_helper -s)"
 				# We only care about the path portion of the declare statement anyway, so snag and split.
 				local out_paths=(${(s.:.)${out#*\"}%\"*})
 				# Append to path
-				path=("${path[@]}" "${out_paths[@]}")
+				path+=(${out_paths[@]})
 			fi
 		}
 
-		fpath+=("/usr/local/share/zsh/site-functions")
+		fpath+=(/usr/local/share/zsh/site-functions)
 		;;
 esac
 
 
-# Dedupe entries
-typeset -U {,f,man,info}path
-
-
-##
-## Devel
-##
-
-# Python
-: ${PYTHONSTARTUP:="$HOME/.pythonrc.py"}
-
 # Go
 export GOPATH="$HOME/go"
 path+=("$GOPATH/bin")
-
-# gcloud sdk
-#export CLOUDSDK_PYTHON="/usr/local/bin/python2"
 
 # GPG 2.1.x SSH support
 # See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html

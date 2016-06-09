@@ -1,0 +1,666 @@
+# better help function than zsh's crappy run-help
+local ZSHPAGE=zshall LESSQUERY
+LESS="-RM~gIsw"
+LESS_TERMCAP_mb=$'\E[01;31m'
+LESS_TERMCAP_md=$'\E[01;31m'
+LESS_TERMCAP_me=$'\E[0m'
+LESS_TERMCAP_se=$'\E[0m'
+LESS_TERMCAP_so=$'\E[01;44;33m'
+LESS_TERMCAP_ue=$'\E[0m'
+LESS_TERMCAP_us=$'\E[01;32m'
+
+case "$@" in
+    ""|--help|-h)
+        local cmds='
+RESERVED WORDS
+do done esac then elif else fi for case if while function  repeat  time until  select  coproc nocorrect foreach end ! [[ { } declare export float integer local readonly typeset
+
+BUILTIN COMMANDS
+- . : [ [[ alias autoload bg bindkey break builtin bye cap cd chdir clone command comparguments compcall compctl compdescribe compfiles compgroups compquote comptags comptry compvalues continue declare dirs disable disown echo echotc echoti emulate enable eval exec exit export false fc fg float functions getcap getln getopts hash history integer jobs kill lets limit local log logout noglob popd print printf pushd pushln pwd r read readonly rehash return sched set setcap setopt shift source stat suspend test times trap true ttyctl type typeset ulimit umask unalias unfunction unhash unlimit unset unsetopt vared wait whence where which zcompile zformat zftp zle zmodload zparseopts zprof zpty zregexparse zsocket zstyle ztcp
+        '
+        if whence -p fold >/dev/null; then
+            fold -sw$COLUMNS <<< $cmds
+        else
+            print -- $cmds
+        fi
+        return;;
+    '-- '*)
+        shift
+        LESSQUERY="$@";;
+    loop*|while|do|done|if|then|elif|else|fi|until)
+        LESSQUERY='^COMPLEX COMMANDS$'
+        ZSHPAGE=zshmisc;;
+    for)
+        LESSQUERY='^       for name \.\.\. '
+        ZSHPAGE=zshmisc;;
+    foreach|end)
+        LESSQUERY='^       foreach name \.\.\.'
+        ZSHPAGE=zshmisc;;
+    case|esac)
+        LESSQUERY='^       case word'
+        ZSHPAGE=zshmisc;;
+    coproc)
+        LESSQUERY='coproc'
+        ZSHPAGE=zshmisc;;
+    repeat)
+        LESSQUERY='^       repeat word do'
+        ZSHPAGE=zshmisc;;
+    select)
+        LESSQUERY='^       select name \[ in word'
+        ZSHPAGE=zshmisc;;
+    time)
+        LESSQUERY='^       time \[ pipeline \]'
+        ZSHPAGE=zshmisc;;
+    list|'('*|'{'*|subshell)
+        LESSQUERY='^       time \[ pipeline \]'
+        ZSHPAGE=zshmisc;;
+    '!'|not)
+        LESSQUERY='^       \! exp  true if exp is false\.'
+        ZSHPAGE=zshmisc;;
+    .)
+        LESSQUERY='^       \. file \[ arg \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    :)
+        LESSQUERY='^       : \['
+        ZSHPAGE=zshbuiltins;;
+    alias)
+        LESSQUERY='^       alias \['
+        ZSHPAGE=zshbuiltins;;
+    autoload)
+        LESSQUERY='^       autoload \['
+        ZSHPAGE=zshbuiltins;;
+    *autoload*)
+        LESSQUERY='^AUTOLOADING FUNCTIONS$'
+        ZSHPAGE=zshmisc;;
+    bg)
+        LESSQUERY='^       bg \['
+        ZSHPAGE=zshbuiltins;;
+    bindkey)
+        LESSQUERY='^ZLE BUILTINS$'
+        ZSHPAGE=zshzle;;
+    break)
+        LESSQUERY='^       break \[ n \]'
+        ZSHPAGE=zshbuiltins;;
+    -|exec|command|noglob|nocorrect|builtin|precommand*)
+        LESSQUERY='^PRECOMMAND MODIFIERS$'
+        ZSHPAGE=zshmisc;;
+    bye)
+        LESSQUERY='^       bye    Same as exit\.'
+        ZSHPAGE=zshbuiltins;;
+    cap)
+        LESSQUERY='^The zsh/cap Module$'
+        ZSHPAGE=zshmodules;;
+    cd)
+        LESSQUERY='^       cd \[ -qsLP \] \[ arg \]'
+        ZSHPAGE=zshbuiltins;;
+    chdir)
+        LESSQUERY='^       chdir  Same as cd\.'
+        ZSHPAGE=zshbuiltins;;
+    clone)
+        LESSQUERY='^The zsh/clone Module'
+        ZSHPAGE=zshmodules;;
+    compargu*)
+        LESSQUERY='^       comparguments$'
+        ZSHPAGE=zshmodules;;
+    compcall)
+        LESSQUERY='^       compcall \[ -TD'
+        ZSHPAGE=zshcompwid;;
+    compctl)
+        LESSQUERY='^       compctl \[ -CDT'
+        ZSHPAGE=zshcompctl;;
+    compdes*)
+        LESSQUERY='^       compdescribe$'
+        ZSHPAGE=zshmodules;;
+    compfiles)
+        LESSQUERY='^       compfiles$'
+        ZSHPAGE=zshmodules;;
+    compgroups)
+        LESSQUERY='^       compgroups$'
+        ZSHPAGE=zshmodules;;
+    compquote)
+        LESSQUERY='^       compquote$'
+        ZSHPAGE=zshmodules;;
+    comptags)
+        LESSQUERY='^       comptags$'
+        ZSHPAGE=zshmodules;;
+    comptry)
+        LESSQUERY='^       comptry$'
+        ZSHPAGE=zshmodules;;
+    compvalues)
+        LESSQUERY='^       compvalues$'
+        ZSHPAGE=zshmodules;;
+    continue)
+        LESSQUERY='^       continue \[ n \]'
+        ZSHPAGE=zshbuiltins;;
+    dirs)
+        LESSQUERY='^       dirs \[ -c \]'
+        ZSHPAGE=zshbuiltins;;
+    disable)
+        LESSQUERY='^       disable \[ -afmprs \]'
+        ZSHPAGE=zshbuiltins;;
+    disown)
+        LESSQUERY='^       disown \[ job \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    echo)
+        LESSQUERY='^       echo \[ -neE \]'
+        ZSHPAGE=zshbuiltins;;
+    echotc)
+        LESSQUERY='^The zsh/termcap Module$'
+        ZSHPAGE=zshmodules;;
+    echoti)
+        LESSQUERY='^The zsh/terminfo Module$'
+        ZSHPAGE=zshmodules;;
+    emulate)
+        LESSQUERY='^       emulate \[ -LR \]'
+        ZSHPAGE=zshbuiltins;;
+    enable)
+        LESSQUERY='^       enable \[ -afmprs \]'
+        ZSHPAGE=zshbuiltins;;
+    eval)
+        LESSQUERY='^       eval \[ arg \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    exit)
+        LESSQUERY='^       exit \[ n \]'
+        ZSHPAGE=zshbuiltins;;
+    export)
+        LESSQUERY='^       export \[ name'
+        ZSHPAGE=zshbuiltins;;
+    fc)
+        LESSQUERY='^       fc \[ -e ename \] \[ -LI \]'
+        ZSHPAGE=zshbuiltins;;
+    fg)
+        LESSQUERY='^       fg \[ job \.\.\. \]S'
+        ZSHPAGE=zshbuiltins;;
+    functions)
+        LESSQUERY='^       functions \[ \{\+\|-\}UkmtTuz'
+        ZSHPAGE=zshbuiltins;;
+    getcap)
+        LESSQUERY='^The zsh/cap Module$'
+        ZSHPAGE=zshmodules;;
+    getln)
+        LESSQUERY='^       getln \[ -AclneE \]'
+        ZSHPAGE=zshbuiltins;;
+    getopts)
+        LESSQUERY='^       getopts optstring name'
+        ZSHPAGE=zshbuiltins;;
+    hash)
+        LESSQUERY='^       hash \[ -Ldfmrv \]'
+        ZSHPAGE=zshbuiltins;;
+    history)
+        LESSQUERY='^HISTORY EXPANSION$';;
+    integer)
+        LESSQUERY='^       integer \[ \{\+\|-\}Hghlprtux'
+        ZSHPAGE=zshbuiltins;;
+    jobs)
+        LESSQUERY='^       jobs \[ -dlprs \]'
+        ZSHPAGE=zshbuiltins;;
+    kill)
+        LESSQUERY='^       kill \[ -s signal_name'
+        ZSHPAGE=zshbuiltins;;
+    limit)
+        LESSQUERY='^       limit \[ -hs \]'
+        ZSHPAGE=zshbuiltins;;
+    local)
+        LESSQUERY='^       local \[ \{\+\|-\}AHUahlprtux '
+        ZSHPAGE=zshbuiltins;;
+    log)
+        LESSQUERY='^       log    List all'
+        ZSHPAGE=zshbuiltins;;
+    logout)
+        LESSQUERY='^       logout \[ n \]'
+        ZSHPAGE=zshbuiltins;;
+    popd)
+        LESSQUERY='^       popd \[ -q \]'
+        ZSHPAGE=zshbuiltins;;
+    print)
+        LESSQUERY='^       print \[ -abcDilmnNoOpPrsSz \]'
+        ZSHPAGE=zshbuiltins;;
+    printf)
+        LESSQUERY='^       printf format \[ arg \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    pushd)
+        LESSQUERY='^       pushd \[ -qsLP \]'
+        ZSHPAGE=zshbuiltins;;
+    pushln)
+        LESSQUERY='^       pushln \[ arg \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    pwd)
+        LESSQUERY='^       pwd \[ -rLP \]'
+        ZSHPAGE=zshbuiltins;;
+    r)
+        LESSQUERY='^       r      Same as fc -e -\.'
+        ZSHPAGE=zshbuiltins;;
+    read)
+        LESSQUERY='^       read \[ -rszpqAclneE \]'
+        ZSHPAGE=zshbuiltins;;
+    readonly)
+        LESSQUERY='^       readonly$'
+        ZSHPAGE=zshbuiltins;;
+    rehash)
+        LESSQUERY='^       rehash Same as hash -r\.'
+        ZSHPAGE=zshbuiltins;;
+    return)
+        LESSQUERY='^       return \[ n \]'
+        ZSHPAGE=zshbuiltins;;
+    sched|'sched module')
+        LESSQUERY='^THE ZSH/SCHED MODULE$'
+        ZSHPAGE=zshmodules;;
+    set)
+        LESSQUERY='^       set \[ \{\+\|-\}options'
+        ZSHPAGE=zshbuiltins;;
+    setcap)
+        LESSQUERY='^The zsh/cap Module$'
+        ZSHPAGE=zshmodules;;
+    setopt)
+        LESSQUERY='^       setopt \[ \{\+\|-\}options'
+        ZSHPAGE=zshbuiltins;;
+    shift)
+        LESSQUERY='^       shift \[ -p \]'
+        ZSHPAGE=zshbuiltins;;
+    source)
+        LESSQUERY='^       source file \[ arg'
+        ZSHPAGE=zshbuiltins;;
+    stat|zstat|'stat module')
+        LESSQUERY='^The zsh/stat Module$'
+        ZSHPAGE=zshmodules;;
+    times)
+        LESSQUERY='^       times  Print'
+        ZSHPAGE=zshbuiltins;;
+    test|'[['*|'['*)
+        LESSQUERY='^CONDITIONAL EXPRESSIONS$'
+        ZSHPAGE=zshmisc;;
+    trap)
+        LESSQUERY='^       trap \[ arg \] \[ sig \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    true)
+        LESSQUERY='^       true \[ arg \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    ttyctl)
+        LESSQUERY='^       ttyctl \[ -fu \]'
+        ZSHPAGE=zshbuiltins;;
+    type)
+        LESSQUERY='^       type \[ -wfpamsS \]'
+        ZSHPAGE=zshbuiltins;;
+    typeset|declare)
+        LESSQUERY='^       typeset \[ \{\+\|-\}AHUaghlmprtux \]'
+        ZSHPAGE=zshbuiltins;;
+    ulimit)
+        LESSQUERY='^       ulimit \[ -HSa \] \['
+        ZSHPAGE=zshbuiltins;;
+    umask)
+        LESSQUERY='^       umask \[ -S \] \[ mask \]'
+        ZSHPAGE=zshbuiltins;;
+    unalias)
+        LESSQUERY='^       unalias \[ -ams \]'
+        ZSHPAGE=zshbuiltins;;
+    unfunction)
+        LESSQUERY='^       unfunction$'
+        ZSHPAGE=zshbuiltins;;
+    unhash)
+        LESSQUERY='^       unhash \[ -adfms \]'
+        ZSHPAGE=zshbuiltins;;
+    unset)
+        LESSQUERY='^       unset \[ -fmv \]'
+        ZSHPAGE=zshbuiltins;;
+    unsetopt)
+        LESSQUERY='^       unsetopt \[ \{\+\|-\}options'
+        ZSHPAGE=zshbuiltins;;
+    vared)
+        LESSQUERY='^       vared \[ -Aache \]'
+        ZSHPAGE=zshzle;;
+    wait)
+        LESSQUERY='^       wait \[ job \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    whence)
+        LESSQUERY='^       whence \[ -vcwfpamsS \]'
+        ZSHPAGE=zshbuiltins;;
+    where)
+        LESSQUERY='^       where \[ -wpmsS \]'
+        ZSHPAGE=zshbuiltins;;
+    which)
+        LESSQUERY='^       which \[ -wpamsS \]'
+        ZSHPAGE=zshbuiltins;;
+    zcompile)
+        LESSQUERY='^       zcompile \[ -U \] \[ -z \|'
+        ZSHPAGE=zshbuiltins;;
+    zformat)
+        LESSQUERY='^       zformat -f param format'
+        ZSHPAGE=zshmodules;;
+    zftp|'ftp module')
+        LESSQUERY='^The zsh/zftp Module$'
+        ZSHPAGE=zshmodules;;
+    zle)
+        LESSQUERY='^       zle -l \[ -L \| -a \] \[ string \.\.\. \]'
+        ZSHPAGE=zshzle;;
+    widget)
+        LESSQUERY='^              widget \[ -n num \] \[ -Nw \]'
+        ZSHPAGE=zshzle;;
+    zmodload)
+        LESSQUERY='^       zmodload \[ -dL \] \[ \.\.\. \]'
+        ZSHPAGE=zshbuiltins;;
+    zparseopts)
+        LESSQUERY='^       zparseopts \[ -DKME \]'
+        ZSHPAGE=zshmodules;;
+    zprof|'zprof module')
+        LESSQUERY='^THE ZSH/ZPROF MODULE$'
+        ZSHPAGE=zshmodules;;
+    zpty|'zpty module')
+        LESSQUERY='^THE ZSH/ZPTY MODULE$'
+        ZSHPAGE=zshmodules;;
+    zregexparse)
+        LESSQUERY='^       zregexparse$'
+        ZSHPAGE=zshmodules;;
+    zsocket|(net|socket)' module')
+        LESSQUERY='^THE ZSH/NET/SOCKET MODULE$'
+        ZSHPAGE=zshmodules;;
+    zstyle|'zutil module')
+        LESSQUERY='^The zsh/zutil Module$'
+        ZSHPAGE=zshmodules;;
+    ztcp|'tcp module')
+        LESSQUERY='^THE ZSH/NET/TCP MODULE$'
+        ZSHPAGE=zshmodules;;
+    attr*mod*|zgetattr|zsetattr|zdelattr|zlistattr)
+        LESSQUERY='^THE ZSH/ATTR MODULE$'
+        ZSHPAGE=zshmodules;;
+    complist*mod*)
+        LESSQUERY='^THE ZSH/COMPLIST MODULE'
+        ZSHPAGE=zshmodules;;
+    computil*mod*)
+        LESSQUERY='^THE ZSH/COMPUTIL MODULE'
+        ZSHPAGE=zshmodules;;
+    curses*|zcurses)
+        LESSQUERY='^THE ZSH/CURSES MODULE'
+        ZSHPAGE=zshmodules;;
+    datetime*|strftime)
+        LESSQUERY='^THE ZSH/DATETIME MODULE'
+        ZSHPAGE=zshmodules;;
+    (db|gdbm)*|ztie|zuntie)
+        LESSQUERY='^THE ZSH/DB/GDBM MODULE'
+        ZSHPAGE=zshmodules;;
+    delto*|delete-to-char|zap-to-char)
+        LESSQUERY='^THE ZSH/DELTOCHAR MODULE'
+        ZSHPAGE=zshmodules;;
+    example*)
+        LESSQUERY='^THE ZSH/EXAMPLE MODULE'
+        ZSHPAGE=zshmodules;;
+    files*mod*|chgrp|chown|ln|mkdir|mv|rm|rmdir|sync)
+        LESSQUERY='^THE ZSH/FILES MODULE'
+        ZSHPAGE=zshmodules;;
+    langinfo*)
+        LESSQUERY='^THE ZSH/LANGINFO MODULE'
+        ZSHPAGE=zshmodules;;
+    mapfile*)
+        LESSQUERY='^THE ZSH/MAPFILE MODULE'
+        ZSHPAGE=zshmodules;;
+    mathfunc*mod*)
+        LESSQUERY='^THE ZSH/MATHFUNC MODULE'
+        ZSHPAGE=zshmodules;;
+    param*mod*)
+        LESSQUERY='^THE ZSH/PARAMETER MODULE'
+        ZSHPAGE=zshmodules;;
+    pcre*)
+        LESSQUERY='^THE ZSH/PCRE MODULE'
+        ZSHPAGE=zshmodules;;
+    regex*mod*)
+        LESSQUERY='^THE ZSH/REGEX MODULE'
+        ZSHPAGE=zshmodules;;
+    system*mod*|syserror|sysopen|sysread|sysseek|syswrite|zsystem*)
+        LESSQUERY='^THE ZSH/SYSTEM MODULE'
+        ZSHPAGE=zshmodules;;
+    zselect*)
+        LESSQUERY='^THE ZSH/ZSELECT MODULE'
+        ZSHPAGE=zshmodules;;
+    start*flag*|invok*|initial*)
+        LESSQUERY='^INVOCATION$'
+        ZSHPAGE=zsh;;
+    (start|shut)*file*|*zshenv|*zshrc|*zprofile|*zlogin|*zlogout|*zdotdir*|*ZDOTDIR*)
+        LESSQUERY='^STARTUP/SHUTDOWN FILES$'
+        ZSHPAGE=zsh;;
+    subscript*)
+        LESSQUERY='^   Subscript Flags'
+        ZSHPAGE=zshparam;;
+    simple*|pipe*)
+        LESSQUERY='^SIMPLE COMMANDS & PIPELINES'
+        ZSHPAGE=zshmisc;;
+    function*)
+        LESSQUERY='^       function word'
+        ZSHPAGE=zshmisc;;
+    alt*)
+        LESSQUERY='^ALTERNATE FORMS$'
+        ZSHPAGE=zshmisc;;
+    reserv*)
+        LESSQUERY='^RESERVED WORDS$'
+        ZSHPAGE=zshmisc;;
+    error*)
+        LESSQUERY='^ERRORS$'
+        ZSHPAGE=zshmisc;;
+    alias*)
+        LESSQUERY='^ALIASING$'
+        ZSHPAGE=zshmisc;;
+    quot*)
+        LESSQUERY='^QUOTING$'
+        ZSHPAGE=zshmisc;;
+    redirect*|*'>'*|*'<'*|*'&>'*|*'2>'*|*'>>'*|*'<<'*)
+        LESSQUERY='^REDIRECTION$'
+        ZSHPAGE=zshmisc;;
+    file*desc*)
+        LESSQUERY='^OPENING FILE DESCRIPTORS USING PARAMETERS$'
+        ZSHPAGE=zshmisc;;
+    multios)
+        LESSQUERY='^MULTIOS$'
+        ZSHPAGE=zshmisc;;
+    anon*func*)
+        LESSQUERY='^ANONYMOUS FUNCTIONS$'
+        ZSHPAGE=zshmisc;;
+    hook*)
+        LESSQUERY='^   Hook Functions$'
+        ZSHPAGE=zshmisc;;
+    trap*)
+        LESSQUERY='^   Trap Functions$'
+        ZSHPAGE=zshmisc;;
+    job*)
+        LESSQUERY='^JOBS$'
+        ZSHPAGE=zshmisc;;
+    math*|'(('*|'$(('|let*|arith*)
+        LESSQUERY='^ARITHMETIC EVALUATION$'
+        ZSHPAGE=zshmisc;;
+    prompt|promptinit|prompt*theme*)
+        LESSQUERY='^       prompt \[ -c \| -l \]'
+        ZSHPAGE=zshcontrib;;
+    PS1|prompt*|PROMPT*)
+        LESSQUERY='^SIMPLE PROMPT ESCAPES$'
+        ZSHPAGE=zshmisc;;
+    history*)
+        LESSQUERY='^HISTORY EXPANSION$'
+        ZSHPAGE=zshexpn;;
+    proc*sub*|*'<('*|*')>'*)
+        LESSQUERY='^PROCESS SUBSTITUTION$'
+        ZSHPAGE=zshexpn;;
+    param*flag*)
+        LESSQUERY='^   Parameter Expansion Flags$'
+        ZSHPAGE=zshexpn;;
+    param*rule*|nested*sub*)
+        LESSQUERY='^   Rules$'
+        ZSHPAGE=zshexpn;;
+    param*ex*)
+        LESSQUERY='^   Examples$'
+        ZSHPAGE=zshexpn;;
+    param*|'${')
+        LESSQUERY='^PARAMETER EXPANSION$'
+        ZSHPAGE=zshexpn;;
+    brace*expan*)
+        LESSQUERY='^BRACE EXPANSION$'
+        ZSHPAGE=zshexpn;;
+    filename*expan*)
+        LESSQUERY='^FILENAME EXPANSION$'
+        ZSHPAGE=zshexpn;;
+    expan*|subst*)
+        LESSQUERY='^       zshexpn - zsh expansion and substitution$'
+        ZSHPAGE=zshexpn;;
+    dyn*dir*)
+        LESSQUERY='^   Dynamic named directories$'
+        ZSHPAGE=zshexpn;;
+    static*dir*)
+        LESSQUERY='^   Static named directories$'
+        ZSHPAGE=zshexpn;;
+    approx*match*)
+        LESSQUERY='^   Approximate Matching$'
+        ZSHPAGE=zshexpn;;
+    recurs*glob*)
+        LESSQUERY='^   Recursive Globbing$'
+        ZSHPAGE=zshexpn;;
+    glob*qual*)
+        LESSQUERY='^   Glob Qualifiers$'
+        ZSHPAGE=zshexpn;;
+    glob*flag*)
+        LESSQUERY='^   Globbing Flags$'
+        ZSHPAGE=zshexpn;;
+    glob*)
+        LESSQUERY='^   Glob Operators$'
+        ZSHPAGE=zshexpn;;
+    ksh*glob*)
+        LESSQUERY='^   ksh-like Glob Operators'
+        ZSHPAGE=zshexpn;;
+    array*sub*)
+        LESSQUERY='^   Array Subscripts$'
+        ZSHPAGE=zshparam;;
+    array*)
+        LESSQUERY='^ARRAY PARAMETERS$'
+        ZSHPAGE=zshparam;;
+    positional*)
+        LESSQUERY='^POSITIONAL PARAMETERS$'
+        ZSHPAGE=zshparam;;
+    shell*(param*|var*)|env*)
+        LESSQUERY='^PARAMETERS SET BY THE SHELL$'
+        ZSHPAGE=zshparam;;
+    watchfmt*)
+        LESSQUERY='^       WATCHFMT$'
+        ZSHPAGE=zshparam;;
+    set*|(shell|spec)*op*)
+        LESSQUERY='^SPECIFYING OPTIONS$'
+        ZSHPAGE=zshoptions;;
+    single*opt*|short*flag*|single*letter*)
+        LESSQUERY='^SINGLE LETTER OPTIONS$'
+        ZSHPAGE=zshoptions;;
+    (shell|zsh)*builtin*)
+        LESSQUERY='^SHELL BUILTIN COMMANDS$'
+        ZSHPAGE=zshbuiltins;;
+    key*)
+        LESSQUERY='^KEYMAPS$'
+        ZSHPAGE=zshzle;;
+    widget*)
+        LESSQUERY='^USER-DEFINED WIDGETS$'
+        ZSHPAGE=zshzle;;
+    highlight*)
+        LESSQUERY='^CHARACTER HIGHLIGHTING$'
+        ZSHPAGE=zshzle;;
+    comp*wid*)
+        LESSQUERY='^       zshcompwid - zsh completion widgets'
+        ZSHPAGE=zshcompwid;;
+    complet*param*|*PREFIX*|*CURRENT*|*SUFFIX*)
+        LESSQUERY='^COMPLETION SPECIAL PARAMETERS$'
+        ZSHPAGE=zshcompwid;;
+    compstate)
+        LESSQUERY='^       compstate$'
+        ZSHPAGE=zshcompwid;;
+    compadd)
+        LESSQUERY='^       compadd \[ -akqQfenUlo12C '
+        ZSHPAGE=zshcompwid;;
+    compset)
+        LESSQUERY='^       compset -p number'
+        ZSHPAGE=zshcompwid;;
+    compcall)
+        LESSQUERY='^       compcall \[ -TD'
+        ZSHPAGE=zshcompwid;;
+    *match*)
+        LESSQUERY='^COMPLETION MATCHING CONTROL$'
+        ZSHPAGE=zshcompwid;;
+    *compsys*)
+        LESSQUERY='^       zshcompsys - zsh completion system'
+        ZSHPAGE=zshcompsys;;
+    compdef*)
+        LESSQUERY='^       compdef \[ -ane \]'
+        ZSHPAGE=zshcompsys;;
+    '#'compdef*)
+        LESSQUERY='^       #compdef name'
+        ZSHPAGE=zshcompsys;;
+    *completer*)
+        LESSQUERY='^       completer$'
+        ZSHPAGE=zshcompsys;;
+    *complet*|*'zstyle '*)
+        LESSQUERY='^COMPLETION SYSTEM CONFIGURATION$'
+        ZSHPAGE=zshcompsys;;
+    utility*func*|_argu*|_descr*)
+        LESSQUERY='^UTILITY FUNCTIONS$'
+        ZSHPAGE=zshcompsys;;
+    control*func*|_func*)
+        LESSQUERY='^CONTROL FUNCTIONS$'
+        ZSHPAGE=zshcompsys;;
+    calendar*)
+        LESSQUERY='^       calendar \[ -abdDsv'
+        ZSHPAGE=zshcalsys;;
+    calsys*)
+        LESSQUERY='^       zshcalsys - zsh calendar system'
+        ZSHPAGE=zshcalsys;;
+    tcp*)
+        LESSQUERY='^       zshtcpsys - zsh tcp system'
+        ZSHPAGE=zshtcpsys;;
+    ftp*|zftp*)
+        LESSQUERY='^       zshzftpsys - zftp function front-end'
+        ZSHPAGE=zshzftpsys;;
+    contrib*)
+        LESSQUERY='^       zshcontrib - user contributions to zsh'
+        ZSHPAGE=zshcontrib;;
+    special*func*)
+        LESSQUERY='^SPECIAL FUNCTIONS'
+        ZSHPAGE=zshmisc;;
+    color*comp*)
+        LESSQUERY='^   Colored completion listings'
+        ZSHPAGE=zshmodules;;
+    colors)
+        LESSQUERY='^       colors This  function'
+        ZSHPAGE=zshcontrib;;
+    vcs*|version*control*)
+        LESSQUERY='^GATHERING INFORMATION FROM VERSION CONTROL SYSTEMS$'
+        ZSHPAGE=zshcontrib;;
+    zle*)
+        LESSQUERY='^ZLE FUNCTIONS$'
+        ZSHPAGE=zshzle;;
+    mime*)
+        LESSQUERY='^MIME FUNCTIONS$'
+        ZSHPAGE=zshcontrib;;
+    zcalc*)
+        LESSQUERY='^       zcalc \[ -ef'
+        ZSHPAGE=zshcontrib;;
+    zmathfuncdef)
+        LESSQUERY='^       zmathfuncdef \['
+        ZSHPAGE=zshcontrib;;
+    other*func*)
+        LESSQUERY='^OTHER FUNCTIONS'
+        ZSHPAGE=zshcontrib;;
+    zargs)
+        LESSQUERY='       zargs \[ option'
+        ZSHPAGE=zshcontrib;;
+    tetris*)
+        LESSQUERY='^       tetris Zsh'
+        ZSHPAGE=zshcontrib;;
+    zed)
+        LESSQUERY='^       zed \[ -f'
+        ZSHPAGE=zshcontrib;;
+    zmv|zcp|zln|zkbd)
+        LESSQUERY='^       zmv \[ -finq'
+        ZSHPAGE=zshcontrib;;
+    zstyle+)
+        LESSQUERY='^       zstyle\+ context'
+        ZSHPAGE=zshcontrib;;
+    file*)
+        LESSQUERY='^FILES$'
+        ZSHPAGE=zsh;;
+    except*|throw|catch|always)
+        LESSQUERY='^EXCEPTION HANDLING$'
+        ZSHPAGE=zshcontrib;;
+    *)
+        LESSQUERY="$@";;
+esac
+man -P "less -p'$LESSQUERY'" "$ZSHPAGE"
+

@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+#local -a prefixes=("$@")
+#path=(${^prefixes}/bin "${path[@]}")
+#fpath=(${^prefixes}/functions "${fpath[@]}")
+#manpath=(${^prefixes}/share/man "${manpath[@]}")
+#infopath=(${^prefixes}/share/info "${infopath[@]}")
+
+for prefix in "$@"; do
+	[[ ! -d "$prefix/bin" ]] \
+		|| path=($prefix/bin ${(@)path})
+	[[ ! -d "$prefix/functions" ]] \
+		|| fpath=($prefix/functions ${(@)fpath})
+	[[ ! -d "$prefix/share/man" ]] \
+		|| manpath=($prefix/share/man ${(@)manpath})
+	[[ ! -d "$prefix/share/info" ]] \
+		|| infopath=($prefix/share/info ${(@)infopath})
+done

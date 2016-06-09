@@ -8,6 +8,8 @@ setopt extendedglob kshglob
 setopt nullglob
 setopt interactivecomments
 
+umask 022
+
 # zgen
 ZGEN_RESET_ON_CHANGE=(
 	{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}(.)

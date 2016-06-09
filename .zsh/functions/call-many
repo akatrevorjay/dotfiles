@@ -1,0 +1,7 @@
+#!/bin/zsh
+local func="$1"; shift
+
+local arg
+for arg ("$@"); do
+	$func $=arg
+done

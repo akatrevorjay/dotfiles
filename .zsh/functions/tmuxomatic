@@ -1,0 +1,52 @@
+#!/usr/bin/env zsh
+# Default to TMUX config
+#
+# This might be too clever. But it allows me to have multiple
+# sessions opened and it will use the same windows. This really
+# makes TMUX work like SCREEN.
+#
+#declare > ~/tmuxomatic.env
+#exported ITERM_PROFILE=tmuxomatic
+#exported ITERM_SESSION_ID=w0t1p1:F8F3C409-AA4A-4BAA-B00D-CBF8EAAE0D10
+#exported TERM=xterm-256color
+#exported TERM_PROGRAM=iTerm.app
+#
+set -eo pipefail
+
+# In case PATH is messed.
+hash tmux || source "$HOME/.zshenv"
+
+function tmuxomatic() {
+    local base_session="${1:-${TMUX_SESSION_PREFIX}}"
+    local client_cnt client_id session_name
+
+    if [ -n "$TMUX" ]; then
+        error "Already in a tmux session. Not nesting"
+        return 1
+    fi
+
+    if ! hash tmux 2>/dev/null; then
+        source "$HOME/.zshenv"
+    fi
+
+    # Create a new session if it doesn't exist
+    tmux has-session -t "$base_session" || tmux new-session -d -s "$base_session"
+
+    client_cnt=$(tmux list-clients | wc -l)
+    # Are there any clients connected already?
+    if [ "$client_cnt" -ge 1 ]; then
+        client_id=0
+        session_name="${base_session}-${client_id}"
+        while [ $(tmux has-session -t "$session_name" 2>& /dev/null; echo $?) -ne 1 ]; do
+            client_id=$((client_id+1))
+            session_name="${base_session}-${client_id}"
+        done
+        tmux new-session -d -t "$base_session" -s "$session_name"
+        tmux attach-session -t "$session_name"
+    else
+        tmux attach-session -t "$base_session"
+    fi
+}
+
+tmuxomatic "$@"
+

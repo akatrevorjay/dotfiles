@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+if [ $# -lt 1 ]; then
+  echo "Given a condition and a list of arguments, return the first item that a condition is true for."
+  echo "If condition is blank, it will be set to \'test -e \"\$arg\"\'."
+  echo "Usage: $0 condition [arg] [arg] [arg]"
+  echo "eg: $0 \'test -e\' /test1 /test2 /tmp"
+fi
+
+local predicate="${1:-'-e "$arg"'}"
+shift
+
+case "$predicate" in
+    (-*) predicate="test $predicate" ;;
+esac
+
+eval "test-predicate() { ${(Z+Cn+)predicate}; }"
+
+local arg
+for arg in "$@"; do
+    test-predicate -- "$arg" && echo "$arg" && break
+done

@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+first-in-fpath() {
+    # Stupid simple fpath expansion
+    # TODO There has to be a better way than this to interrogate fpath lookups..
+    local ret=()
+    local arg arg_ret
+    for arg in "$@"; do
+        arg_ret=(${^fpath}/$arg(.[1,1]))
+        if [ "$#arg_ret" -ne 1 ]; then
+            arg_ret=("$arg")
+        fi
+        ret+=("$arg_ret")
+    done
+    echo "${ret[@]}"
+}
+
+glob-in-fpath() {
+    [ $# -gt 0 ] || set -- '*(.)'
+    echo ${^fpath}/${^(q)@}
+}
+

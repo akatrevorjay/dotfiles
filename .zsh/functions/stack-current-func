@@ -1,0 +1,8 @@
+#!/bin/zsh
+# Get current function name from the stack
+autoload -Uz zlog; zlog
+
+local func="$funcstack[2]"
+[[ -n "$func" ]] || error "exit 1"
+echo "$func"
+

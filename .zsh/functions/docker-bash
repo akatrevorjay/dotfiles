@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+function docker-select {
+    # TODO Bring up fzf menu with docker containers, that selects one to use for further functions by default
+    return 1
+}
+
+function docker-exec {
+    docker exec -it "$1" "$@"
+}
+
+function docker-bash {
+    docker exec -it "$1" bash
+}
+
+function docker-sh {
+    docker exec -it "$1" sh
+}
+

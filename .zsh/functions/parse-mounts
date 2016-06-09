@@ -1,0 +1,35 @@
+#!/bin/zsh
+# Parse mounts into "$src $dest $fstype"
+local out="$(mount | sed -e 's/^\(.*\+\) on \([^ ]\+\) (\([^, )]\+\)[, )].*$/\1 \2 \3/g')"
+
+typeset -ga mounts
+typeset -gA mounts_to_source mounts_to_fstype
+
+for line in "${(@f)out}"; do
+    # split by space into an array
+    line=("${(@z)line}")
+    # format: ^(?<source>.*) (?<dest>) (?<fstype>)
+    src="${line[@]:0:-2}" dest="${line[-2]}" fstype="${line[-1]}"
+
+    mounts+=("$dest")
+    mounts_to_source+=("$dest" "$src")
+    mounts_to_fstype+=("$dest" "$fstype")
+done
+
+autoload -Uz mount-crypt mount-match
+
+is-mounted() {
+    local -a args
+    local -A kwargs
+    zparseopts -a args -A kwargs -K -D -- s:t:d:  # O_o
+
+    print -l -r -- "-- args:" "${args[@]}" "-- kwargs:" "${(@kv)kwargs}"
+
+    #for key in "${(@k)kwargs}"; do
+    #    val="${kwargs[$key]}"
+    #    case "$key" in
+    #        -s) sources=("${+mounts_to_source
+    #        -t)
+    #        -d)
+}
+

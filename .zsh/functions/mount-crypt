@@ -1,0 +1,28 @@
+#!/bin/zsh
+
+# If we're only given one argument, it's the destination.
+# Assume source is the same thing with a period in front,
+# ie: "~/crypt" -> "~/.crypt" "~/crypt"
+[[ $# -eq 1 ]] && set -- "${1:h}/.${1:t}" "$@"
+
+local src="$1" dest="$2"
+[[ -z "$1" || -z "$dest" ]] && return 1
+
+autoload -Uz mount-match
+mount-match "$dest" >/dev/null && return 0
+
+echo "Spawning:" "encfs" "$@"
+# TODO use launchctl on osx, systemd on nix
+encfs "$@"
+
+if ! mount-match "$dest"; then
+    echo "Mount failed. Wrong passphrase?" >&2
+    return 1
+fi
+
+if [[ -d "$dest/bin" ]]; then
+    echo "Adding $dest/bin to path"
+    path=("$dest/bin" "${path[@]}")
+fi
+
+

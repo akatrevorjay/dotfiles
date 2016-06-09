@@ -1,0 +1,4 @@
+#!/bin/zsh
+local saved_path=("${path[@]}")
+# Since this is deduped, you end up with a nicely clean path.
+path=("${saved_path[@]:#^$HOME/*}" "${path[@]}")
