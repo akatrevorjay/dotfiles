@@ -1,3 +1,4 @@
+#!/bin/zsh
 
 if [[ "$OSTYPE" = solaris* ]]
 then
@@ -29,7 +30,7 @@ __colored_man() {
 		PAGER="${commands[less]:-$PAGER}" \
 		_NROFF_U=1 \
 		PATH="$HOME/bin:$PATH" \
-		command -p man "$@"
+		\man "$@"
 }
 
 if [[ "$CURRENT_SHELL" == "zsh" ]]; then
@@ -48,22 +49,18 @@ __better_man () {
             help='help'
 			;;
 	esac
-	e "type=$cmdtype help=$help"
 
 	case "$cmdtype" in
 		# built-in
 		builtin:*|reserved:*)
-            debug "builtin"
 			$help "$1" | "${PAGER:-less}"
 			;;
 		# bash: pattern
 		*[[?*]*)
-            debug "bash pattern"
 			$help "$1" | "${PAGER:-less}"
 			;;
 		# something else, presumed to be an external command or options for the man command or a section number
 		*)
-            debug "default"
 			__colored_man "$@"
 			;;
 	esac
