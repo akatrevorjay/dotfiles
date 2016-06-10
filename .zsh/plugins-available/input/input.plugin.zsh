@@ -1,3 +1,4 @@
+#!/bin/zsh
 #
 # Editor and input char assignment
 #

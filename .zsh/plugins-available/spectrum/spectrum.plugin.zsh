@@ -1,3 +1,4 @@
+#!/bin/zsh
 #
 # Provides for easier use of 256 colors and effects.
 #

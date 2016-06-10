@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Set base history settings, ie extended to include timestamps, don't trample
 setopt histignorealldups sharehistory incappendhistorytime extendedhistory
 setopt histreduceblanks histlexwords

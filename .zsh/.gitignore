@@ -2,7 +2,7 @@ old-*
 _*
 .zprezto
 .zcompdump*
-plugins
+plugins/.gitkeep
 zgen
 local
 

@@ -1,3 +1,4 @@
+#!/bin/zsh
 
 : ${NIX_PROFILE:=$HOME/.nix-profile}
 : ${NIX_PROFILE_ENV_FILE:=$NIX_PROFILE/etc/profile.d/nix.sh}

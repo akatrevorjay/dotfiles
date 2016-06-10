@@ -10,6 +10,9 @@ setopt interactivecomments
 
 umask 022
 
+# Why in the world is this enabled by default on Linux? zgen?
+zmodload -u zsh/stat
+
 # zgen
 ZGEN_RESET_ON_CHANGE=(
 	{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}(.)
@@ -53,6 +56,9 @@ if ! zgen saved; then
 	zgen save
 fi
 
+# Why in the world is this enabled by default on Linux? zgen?
+zmodload -u zsh/stat
+
 ##
 ## autoloads
 ##
@@ -80,9 +86,10 @@ autoload -Uz bashcompinit
 bashcompinit
 
 # Set up the prompt
-autoload -Uz promptinit
-promptinit
-prompt walters
+#autoload -Uz promptinit
+#promptinit
+#prompt walters
+source "$ZDOTDIR/themes/airline2.zsh"
 
 # Hub
 [[ ! ${+commands[hub]} ]] || eval "$(hub alias -s)"

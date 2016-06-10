@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Inpired by code found on exit signal hook on the zsh-prompt-powerline project
 # see  https://github.com/Valodim/zsh-prompt-powerline/blob/master/hooks/prompt-exitnames.zsh
 #

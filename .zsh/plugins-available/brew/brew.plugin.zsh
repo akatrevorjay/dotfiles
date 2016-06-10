@@ -1,3 +1,4 @@
+#!/bin/zsh
 case "$SYSTEM" in
 	linux)
 		# linuxbrew (for git builds)

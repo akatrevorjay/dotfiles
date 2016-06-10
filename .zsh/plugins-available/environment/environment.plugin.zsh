@@ -1,3 +1,4 @@
+#!/bin/zsh
 #
 # generic options and environment settings
 #

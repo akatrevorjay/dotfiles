@@ -1,3 +1,4 @@
+#!/bin/zsh
 #alias tmux="TERM=xterm-256color tmux -2 attach || TERM=xterm-256color tmux -2 -f${${(%):-%x}:a:h}/tmux.conf new"
 alias tmux="TERM=xterm-256color tmux -2 attach || TERM=xterm-256color tmux -2 new"
 

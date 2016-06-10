@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Unsure
 setopt autoresume autocd autoresume
 setopt longlistjobs

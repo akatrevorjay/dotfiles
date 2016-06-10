@@ -1,3 +1,4 @@
+#!/bin/zsh
 # fasd
 function () {
 	local fasd_cache="$ZSH_CACHE_DIR/fasd-init-zsh"

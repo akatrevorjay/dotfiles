@@ -1,5 +1,9 @@
+#!/bin/zsh
+: ${FZF_DEFAULT_OPTS:="--tiebreak=begin,index,end,length --ansii -s -e"}
+
 function () {
 	local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
+
 	[[ -d "$fzf_path" ]] || return
 	manpath+=("$fzf_path/man")
 
