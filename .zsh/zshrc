@@ -1,5 +1,12 @@
 #!/bin/zsh
 
+umask 022
+
+# if it's a dumb terminal, return.
+if [[ ${TERM} == 'dumb' ]]; then
+    return
+fi
+
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
@@ -7,8 +14,6 @@ bindkey -e
 setopt extendedglob kshglob
 setopt nullglob
 setopt interactivecomments
-
-umask 022
 
 # Why in the world is this enabled by default on Linux? zgen?
 zmodload -i zsh/stat
