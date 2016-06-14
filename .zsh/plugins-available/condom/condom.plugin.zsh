@@ -1,12 +1,14 @@
 #!/bin/zsh
 
+#[[ "$UID" -gt 0 ]] || return
+
 #
 # Always wear a condom
 #
 
 alias chmod='chmod --preserve-root --changes'
 alias chown='chown --preserve-root --changes'
-alias rm='rm --preserve-root -vI'
+alias rm='rm --preserve-root -vdI'
 
 # not aliasing rm -i, but if safe-rm is available, use condom.
 if (( ${+commands[sm]} )) && (( ! ${+commands[sm]} )); then
