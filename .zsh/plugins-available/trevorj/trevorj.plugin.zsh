@@ -59,3 +59,38 @@ elif (( ${+commands[wget]} )); then
 elif (( ${+commands[curl]} )); then
     alias get='curl --continue-at - --location --progress-bar --remote-name --remote-time'
 fi
+
+unsetopt flowcontrol
+
+# If a completion is performed with the cursor within a word, and a full completion is inserted,
+# the cursor is moved to the end of the word
+setopt always_to_end
+
+# Automatically use menu completion after the second consecutive request for completion
+setopt auto_menu
+
+# Automatically list choices on an ambiguous completion.
+setopt auto_list
+
+# Perform a path search even on command names with slashes in them.
+setopt path_dirs
+
+# Make globbing (filename generation) sensitive to case.
+unsetopt case_glob
+
+## On an ambiguous completion, instead of listing possibilities or beeping, insert the first match immediately.
+## Then when completion is requested again, remove the first match and insert the second match, etc.
+## iow do not autoselect the first completion entry
+#unsetopt menu_complete
+
+#
+# Suffix aliases
+#
+
+for s (tex{,t} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini); do
+	alias -s $s=vim
+done
+
+for s (net com org io); do
+	alias -s $s=$BROWSER
+done
