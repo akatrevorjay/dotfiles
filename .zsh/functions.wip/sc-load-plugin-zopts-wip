@@ -1,0 +1,15 @@
+#!/bin/zsh
+#
+local opts=(light dtrace help)
+local optaliases
+for k in ${(k)opts}; do optaliases+=("$k"=h[$k]=$k; done
+
+#=(l light dtrace help default=help)
+
+local -a light dtrace help
+zparseopts \
+    -light=light \
+    -dtrace=dtrace \
+    O=only -only-theseno_defers \
+    h=help -help=help
+

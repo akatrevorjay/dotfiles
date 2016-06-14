@@ -1,0 +1,28 @@
+
+    local -a args o_set_opts
+    local -A kwargs
+    zparseopts -a args -A kwargs -K -D -- s+:=o_set_opts
+
+    local arg
+    for arg in "${o_set_opts[@]}"; do
+        [[ "$arg" == "-s" ]] && continue
+
+        if [[ "$arg" != *=* ]]; then
+            echo "Bad argument format (should be -s key=value): ${(q)arg}" >&2
+            return 1
+        fi
+
+        local k="${arg#*=}" v="${arg%%=*}"
+        local -i v="${truth_map[$v]}"
+        curv="${+ZPLG_COMMIT_HOOK[(r)$handler]}"
+        case "$v" in
+            toggle)
+                [[ "$v" == "true" ]] \
+                    && want_enabled="false" \
+                    || want_enabled="true"
+                ;;
+            *)
+                print "Unknown option $1" >&2
+                return 1
+                ;;
+        esac

@@ -1,0 +1,20 @@
+
+# TODO If in the cloud, get this from metadata
+: ${HOSTNAME:="${HOST:-"$(hostname -f)"}"}
+
+case "$HOSTNAME" in
+	ec2-*.amazonaws.com)
+		cloud_provider=ec2
+		;;
+esac
+
+function is-ec2-hostname() {
+	[[ "$1" = ec2-*.compute-1.amazonaws.com ]]
+}
+
+function is-ec2-private-hostname() {
+}
+
+if ${+commands
+if is-ec2-instance; then
+

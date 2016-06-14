@@ -1,0 +1,100 @@
+
+# sc init
+emulate -L zsh
+setopt errreturn
+
+setopt extendedglob kshglob nullglob \
+	functionargzero aliases
+#setopt verbose sourcetrace xtrace
+
+: ${SC_HOME:="$ZPLG_HOME"}
+: ${SC_STATE_FILE:="$SC_HOME/state"}
+SC_LOADED=()
+SC_VERSION=0.0.1
+
+# state
+
+-sc-load-snippet() {
+	local arg
+	for arg in "${@:|SC_SNIPPETS}"; do
+		e "Loading snippet:" "$arg"
+		zplugin dstart
+		zplugin snippet "$arg"
+		zplugin dstop
+
+		SC_SNIPPETS=+("$arg")
+		SC_LOADS=+("$arg")
+	done
+}
+
+-sc-load-plugin() {
+	local arg
+	for arg in "${@:|SC_PLUGINS}"; do
+		e "Loading plugin:" "$arg"
+		zplugin load "$arg"
+
+		SC_PLUGINS+=("$arg")
+		SC_LOADS+=("$arg")
+	done
+}
+
+-sc-load() {
+	# Load a list of shell snippets or plugins.
+	# usage: $0 SNIPPET [SNIPPET..]
+	# usage: $0 PLUGIN [PLUGIN..]
+	local arg snippet
+	for arg in "$@"; do
+		# TODO dereference of symlink may be needed for this to work in such cases
+		snippet="$ZPLG_SNIPPETS_DIR/$arg/$arg"
+		if [[ -f "$snippet" ]]; then
+			-sc-load-snippet "$arg"
+		else
+			-sc-load-plugin "$arg"
+		fi
+	done
+}
+
+-sc-save() {
+	local fn="${1:-$SC_STATE_FILE}"
+	local backup_fn="$fn.backup"
+	local partial_fn="$fn.partial"
+
+	if [[ -e "$fn" ]]; then
+		e "Saving a backup copy of \"$fn\" to \"$backup_fn\"."
+		cp -av "$fn" "$backup_fn"
+	fi
+
+	e "Saving state to \"$fn\"."
+	sc show > "$partial_fn"
+	mv -v "$partial_fn" "$fn"
+
+	e "Done."
+}
+
+-sc---version() {
+	echo "$SC_VERSION"
+}
+
+-sc() {
+	local name="${0:t}"
+	local upper_name="${(U)name}"
+	# Default to help
+	[[ $# -gt 0 ]] || set -- help
+	local child="$1"
+	local cmd="${name}-$1"; shift
+
+	for funcname in "-$cmd" "$cmd"; do
+		if ${+functions[$name]}; then
+			zlog debug "multiplex func $child: $cmd" "$@"
+			$name "$@"
+			return
+		fi
+	done
+
+	zlog debug "multiplex autoload $child: $cmd" "$@"
+	autoload -Uz $cmd
+	$cmd "$@"
+}
+
+alias sc=-sc
+

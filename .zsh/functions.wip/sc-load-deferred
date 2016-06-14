@@ -1,0 +1,45 @@
+#!/bin/zsh
+
+sc-defer-load() {
+    local snippets=() plugins=()
+
+    local arg
+    for arg in "$@"; do
+        # TODO dereference of symlink may be needed for this to work in such cases
+        if [[ -f "$ZPLG_HOME/snippets/$arg/$arg" ]]; then
+            snippets+=("$ZPLG_HOME/snippets/$arg/$arg")
+        else
+            plugins+=("$arg")
+        fi
+    done
+
+    sc-load-deferred
+}
+
+sc-load-deferred() {
+    debug "Loading snippets:" "${snippets[@]}"
+    [[ $#snippets -gt 0 ]] || sc-load-snippet "${snippets[@]}"
+    snippets=()
+
+    debug "Loading plugins:" "${plugins[@]}"
+    [[ $#plugins -gt 0 ]] || sc-load-plugin "${plugins[@]}"
+    plugins=()
+}
+
+defer-call() {
+    local deferred=()
+    local function defer-call() {
+        deferred+=("${(qj: :)${(q)@}}")
+    }
+
+    local call
+    for call in $=1; local alias $call="defer ${(Pt)call} $call"
+
+    local call
+    for call in "${deferred[@]}"; eval ${(Q)call}
+}
+
+sc-defer-load2() {
+    defer-call sc-load "$@"
+}
+

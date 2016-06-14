@@ -1,0 +1,41 @@
+
+$name() {
+	# Default to help
+	[[ $# -gt 0 ]] || set -- help
+
+	local cmd="${name}-"
+	local function -sc-add-to-cmd {
+		cmd+='-'${^@}
+	}
+
+	local function -sc-has-cmd {
+		if [[ ${+functions[$1]} || ${+commands[$1]} ]]; then
+			true
+		elif [[ -e "$SC_HOME/functions/$1" ]]; then
+			autoload -Uz $1
+			${funcstack[1]} "$@"
+		else
+		   false
+		fi
+	}
+
+	local arg cont=true cmd="${name}-"
+	for arg in "$@"; do
+		if [[ "$arg" == "--" ]]; then
+		    # This is the end, beautiful friend, the end
+		    break
+		fi
+
+		# Move arg to built command
+		--add-to-cmd "$arg"; shift
+        if -sc-has-cmd $cmd; then
+            $cmd "$@"
+        fi
+
+		[[ "$cont" == "true" ]] || break
+	done
+
+}
+
+"$name" "$@"
+

@@ -1,0 +1,7 @@
+#!/bin/zsh
+emulate -L zsh
+set -eo pipefail
+setopt extendedglob kshglob nullglob
+
+death "TOOD GET FUCKED"
+

@@ -1,0 +1,10 @@
+
+echo sup bro "yesss omg yesss" ; echo noooooo
+ trevorj  ~  a=("echo sup bro \"yesss omg yesss\"" $'\n' "echo noooooo" "#echo sup" "echo
+yesss")
+ trevorj  ~  echo ${(Z+C+)a}
+echo sup bro "yesss omg yesss" ; echo noooooo echo yesss
+ trevorj  ~  echo ${(Z+C+)a}
+echo sup bro "yesss omg yesss" ; echo noooooo echo yesss
+
+#  vim: set ts=4 sw=4 tw=120 et ft=zsh :

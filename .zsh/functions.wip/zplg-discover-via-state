@@ -1,0 +1,8 @@
+
+        if [[ -z "$state" ]]; then
+            mode="snippet"
+        elif [[ "$state" = 1 ]]; then
+            mode="light"
+        elif [[ "$state" = 2 ]]; then
+            mode="load"
+        else

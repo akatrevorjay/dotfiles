@@ -1,0 +1,8 @@
+
+        # If we are not calling ourself
+        elif [[ ${funcstack[2]} != ${funcstack[1]} ]]; then
+            # TODO Could we just always autoload?
+            autoload -Uz $1
+            # Recurse to try again now that we've autoloaded
+            ${funcstack[1]} "$@"
+        fi
