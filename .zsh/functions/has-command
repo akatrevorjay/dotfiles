@@ -1,0 +1,2 @@
+#!/bin/zsh
+return ${+commands[$1]}
