@@ -1,6 +1,16 @@
 #!/bin/zsh
+
+# oh-my-shit
 #zgen oh-my-zsh
 #zgen prezto
+
+# oh-my-shit plugins (try to avoid)
+#zgen oh-my-zsh plugins/git
+#zgen oh-my-zsh plugins/sudo
+#zgen oh-my-zsh plugins/command-not-found
+
+# theme
+#zgen oh-my-zsh themes/arrow
 
 plugins=(
 	akatrevorjay/composure
