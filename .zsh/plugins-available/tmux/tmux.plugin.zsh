@@ -21,7 +21,7 @@ precmd_functions+=( _tmux_autostart )
 
 #_tmux_motd() {
 #    if [[ "$TMUX_MOTD" != false && ! -z "$TMUX" && $(tmux list-windows | wc -l | tr -d ' ') == 1 ]]; then
-#        if [[ "$OSTYPE" == linux* || "$OSTYPE" == freebsd*  ]]; then
+#        if [[ "$OSTYPE" = linux* || "$OSTYPE" == freebsd*  ]]; then
 #            _tmux_monitor
 #            return 0
 #        fi

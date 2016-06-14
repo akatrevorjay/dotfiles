@@ -247,7 +247,7 @@
 # c.InteractiveShell.color_info = True
 
 # Autoindent IPython code entered interactively.
-c.InteractiveShell.autoindent = True
+#c.InteractiveShell.autoindent = True
 
 # Deprecated, use PromptManager.justify
 # c.InteractiveShell.prompts_pad_left = True

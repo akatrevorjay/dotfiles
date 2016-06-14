@@ -11,11 +11,13 @@ setopt interactivecomments
 umask 022
 
 # Why in the world is this enabled by default on Linux? zgen?
-zmodload -u zsh/stat
+zmodload -i zsh/stat
+disable stat
 
 # zgen
 ZGEN_RESET_ON_CHANGE=(
-	{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}(.)
+	#{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}(.)
+	{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}
 )
 source "$HOME/.zgen/zgen.zsh"
 

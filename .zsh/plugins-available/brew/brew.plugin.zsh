@@ -1,6 +1,6 @@
 #!/bin/zsh
 case "$SYSTEM" in
-	linux)
+	linux*)
 		# linuxbrew (for git builds)
 		function () {
 			local brew_path="$HOME/.linuxbrew"

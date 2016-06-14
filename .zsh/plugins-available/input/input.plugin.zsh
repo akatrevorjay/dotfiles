@@ -121,7 +121,7 @@ zle -N zle-line-finish
 
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
-bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
+#bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
 if [[ "$keyinfo[PageUp]" != "" ]]; then
   	bindkey "$keyinfo[PageUp]" up-line-or-history       # [PageUp] - Up a line of history
 fi
@@ -129,18 +129,18 @@ if [[ "$keyinfo[PageDown]" != "" ]]; then
   	bindkey "$keyinfo[PageDown]" down-line-or-history     # [PageDown] - Down a line of history
 fi
 
-# start typing + [Up-Arrow] - fuzzy find history forward
-if [[ "$keyinfo[Up]" != "" ]]; then
-  	autoload -U up-line-or-beginning-search
-  	zle -N up-line-or-beginning-search
-  	bindkey "$keyinfo[Up]" up-line-or-beginning-search
-fi
-# start typing + [Down-Arrow] - fuzzy find history backward
-if [[ "$keyinfo[Down]" != "" ]]; then
-  	autoload -U down-line-or-beginning-search
-  	zle -N down-line-or-beginning-search
-  	bindkey "$keyinfo[Down]" down-line-or-beginning-search
-fi
+## start typing + [Up-Arrow] - fuzzy find history forward
+#if [[ "$keyinfo[Up]" != "" ]]; then
+#  	autoload -U up-line-or-beginning-search
+#  	zle -N up-line-or-beginning-search
+#  	bindkey "$keyinfo[Up]" up-line-or-beginning-search
+#fi
+## start typing + [Down-Arrow] - fuzzy find history backward
+#if [[ "$keyinfo[Down]" != "" ]]; then
+#  	autoload -U down-line-or-beginning-search
+#  	zle -N down-line-or-beginning-search
+#  	bindkey "$keyinfo[Down]" down-line-or-beginning-search
+#fi
 
 # set options
 HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_FOUND='bg=magenta,fg=white,bold'

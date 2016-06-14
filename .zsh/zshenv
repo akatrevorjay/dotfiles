@@ -37,7 +37,9 @@
 : ${SHORT_HOSTNAME:=${HOST%%.*}}
 : ${SHORT_HOSTNAME:=unknown}
 
-EDITOR=nvim
+: ${DE:=generic}
+: ${BROWSER:=google-chrome}
+: ${EDITOR:=nvim}
 
 case "$TERM" in
 	xterm|screen) TERM=$TERM-256color ;;
