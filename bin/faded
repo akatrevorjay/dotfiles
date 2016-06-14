@@ -1,14 +1,16 @@
 #!/bin/zsh
 setopt errexit errreturn
 
-faded_d="$HOME/.config/faded"
-mkdir -pv "$faded_d"
+: ${FADED_DEFAULT_PYTHON:=python}
 
+faded_d="${XDG_CONFIG_HOME:-$HOME/.config}/faded"
 shim_path=${0:h}
 self="${0:t}"
 
 case "$self" in
 	faded)
+		mkdir -pv "$faded_d"
+
 		usage() {
 			echo "Usage:" >&2
 			echo "  Add/update fade shim and config:" >&2
@@ -72,12 +74,18 @@ case "$self" in
 			fargs+=($(cat "$faded_d/$self"))
 		fi
 
-		# If executable shim was not given, then add one
-		if [[ " $fargs" != *\ -x\ * ]]; then
-			fargs+=(-x $self)
-		fi
+		() {
+			zparseopts -D -E -- x:=executable p:=python
+		} ${(@)fargs}
 
-		exec fades $fargs -- "$@"
+		# If executable shim was not given, then add one
+		[[ -n "$executable" ]] || fargs+=(-x $self)
+
+		# Default to python3
+		python=${python[-1]:-$FADED_DEFAULT_PYTHON}
+		[[ "$python" = */* ]] || python="${python:c}"
+
+		exec fades -p ${python} $fargs -- "$@"
 		;;
 esac
 

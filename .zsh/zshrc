@@ -43,10 +43,14 @@ if ! zgen saved; then
 fi
 
 # Set up the prompt
-#autoload -Uz promptinit
-#promptinit
-#prompt walters
-source "$ZDOTDIR/themes/airline2.zsh"
+case "$USERNAME" in
+	root)
+		autoload -Uz promptinit
+		promptinit
+		prompt walters
+		;;
+	*) source "$ZDOTDIR/themes/airline2.zsh" ;;
+esac
 
 # local
 # TODO Move to $XDG local path

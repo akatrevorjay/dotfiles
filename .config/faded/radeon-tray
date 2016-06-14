@@ -1,1 +1,1 @@
---pip-options -e . -x radeon-tray
+--pip-options '-e .' -d radeon-tray

@@ -1,4 +1,4 @@
-# #!/bin/zsh
+#!/bin/zsh
 if has-command hub; then
 	function () {
 		local hub_path=${HUB_PATH:-$GOPATH/src/github.com/github/hub}
