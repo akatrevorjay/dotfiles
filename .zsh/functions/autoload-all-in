@@ -3,5 +3,7 @@ local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
 local p
 setopt LOCAL_OPTIONS EXTENDED_GLOB NULLGLOB
 for p in ${^argv}(/); do
-	autoload -Uz $p/${~function_glob}
+	funcs=($p/${~function_glob})
+	[[ $#funcs -gt 0 ]] || continue
+	autoload -Uz $funcs
 done
