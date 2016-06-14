@@ -36,6 +36,7 @@ if ! zgen saved; then
 	# TODO check plugins difference on hook and auto-load
 
 	# bulk load
+	mkdir -pv $LOCAL_ZDOTDIR/plugins $ZDOTDIR/plugins
 	plugins=(
 		$LOCAL_ZDOTDIR/plugins/*(/)
 		$ZDOTDIR/plugins/*(/)

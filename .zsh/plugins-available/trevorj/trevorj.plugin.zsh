@@ -94,3 +94,4 @@ done
 for s (net com org io); do
 	alias -s $s=$BROWSER
 done
+

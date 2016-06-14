@@ -1,9 +1,0 @@
-#!/bin/zsh
-[[ -n "$DISPLAY" ]] && set -- -g -driver x "$@"
-
-for arg in ${(@)argv}; do
-    [[ "$arg" == "-g" ]] 
-    
-if [[ "$*" = *-g* ]]; then
-[[ "$*" = *-driver* ]] || set -- -driver fb "$@"
-exec links2

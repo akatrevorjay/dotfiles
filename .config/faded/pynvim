@@ -1,1 +1,1 @@
---system-site-packages -d neovim-gui -d pynvim
+--system-site-packages -d neovim-gui -x pynvim
