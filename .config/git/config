@@ -230,6 +230,10 @@
 [github]
 	user = akatrevorjay
 
+[hub]
+	protocol = ssh
+	user = akatrevorjay
+
 
 [core]
 	# Make `git rebase` safer on OS X, avoids random failures when revisiond causes
