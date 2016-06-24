@@ -1,0 +1,17 @@
+# user specific
+[user]
+	name = Trevor Joynson (trevorj)
+	email = github@skywww.net
+	signingkey = 9871F640
+
+[github]
+	user = akatrevorjay
+
+[hub]
+	#protocol = ssh
+	user = akatrevorjay
+
+[commit]
+	# sign all commits (yes torvalds, I know)
+	gpgsign = false
+

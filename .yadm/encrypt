@@ -1,0 +1,5 @@
+.zsh/secrets
+.config/nvim/secrets
+.irssi/config
+.config/hub
+.python_hue

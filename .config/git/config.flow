@@ -1,0 +1,10 @@
+# Git flow (avh) magic default messages and hooks.
+[gitflow "hotfix.finish"]
+	message = Hotfix %tag%
+
+[gitflow "release.finish"]
+	message = Release %tag%
+
+[gitflow "path"]
+	hooks = hooks
+
