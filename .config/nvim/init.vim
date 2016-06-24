@@ -16,97 +16,105 @@ set background=dark
 "set guicursor+=n-v-c:blinkon0
 "set guicursor+=i:blinkwait10
 
-"dein Scripts-----------------------------
 if !has('nvim') && &compatible
 	set nocompatible							 " Be iMproved
 endif
 
+"let g:plug_url_format = 'git@github.com:%s.git'
+
 " If we don't have vim plug installed, install it
-"if empty(glob('~/.vim/autoload/plug.vim'))
-"	silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-"		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"	autocmd VimEnter * PlugInstall | source $MYVIMRC
+if empty(glob('~/.vim/autoload/plug.vim'))
+	silent! curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	autocmd VimEnter * silent! PlugInstall | source $MYVIMRC
+endif
+
+" declare plugins
+"silent! if
+call plug#begin('~/.cache/vim/plugged')
+
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-eunuch'
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-repeat'
+	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-unimpaired'
+
+	Plug 'junegunn/gv.vim', {'on': 'GV'}
+
+	Plug 'junegunn/vim-pseudocl'
+	Plug 'junegunn/vim-oblique'
+
+	Plug 'junegunn/vim-peekaboo'
+
+	Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+	Plug 'junegunn/limelight.vim'
+
+
+	"Plug 'junegunn/vim-easy-align')
+
+	"Plug 'Shougo/neosnippet.vim')
+	"Plug 'Shougo/neosnippet-snippets')
+	"
+	"Plug 'SirVer/ultisnips')
+	"Plug 'honza/vim-snippets')
+
+	Plug 'wellle/tmux-complete.vim'
+
+	Plug $GOPATH.'/src/github.com/junegunn/fzf'
+
+	Plug 'Shougo/deoplete.nvim'
+
+	Plug 'Shougo/unite.vim'
+
+	Plug 'majutsushi/tagbar'
+
+	Plug 'mhinz/vim-startify'
+
+	Plug 'Shougo/unite.vim'
+	Plug 'rafi/vim-unite-issue'
+
+	"Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'vim-ctrlspace/vim-ctrlspace'
+
+	Plug 'tomtom/tlib_vim'
+	Plug 'amiorin/vim-fasd'
+	Plug 'scrooloose/nerdtree'
+
+	Plug 'junegunn/vim-github-dashboard'
+
+	Plug 'junegunn/vim-emoji'
+
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
+
+	Plug 'ryanoasis/vim-devicons'
+
+	"Plug 'ctrlpvim/ctrlp.vim'
+	Plug 'junegunn/vim-easy-align'
+	Plug 'thelocehiliosan/vim-byrne'
+
+	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+
+	" ignore these on older versions of vim
+	if v:version >= 703
+		Plug 'jamessan/vim-gnupg'
+	endif
+	if v:version >= 704
+		Plug 'vim-pandoc/vim-pandoc-syntax'
+	endif
+
+	" Colors
+	Plug 'tomasr/molokai'
+	Plug 'NLKNguyen/papercolor-theme'
+
+  call plug#end()
 "endif
 
-" Required:
-set runtimepath^=$HOME/.cache/nvim/dein/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin(expand('~/.cache/nvim/dein'))
-
-" Let dein manage dein
-" Required:
-call dein#add('Shougo/dein.vim')
-
-call dein#add('tpope/vim-fugitive')
-call dein#add('junegunn/gv.vim', {'on': 'GV'})
-
-call dein#add('junegunn/vim-pseudocl')
-call dein#add('junegunn/vim-oblique')
-
-call dein#add('junegunn/vim-peekaboo')
-
-call dein#add('junegunn/goyo.vim', {'on': 'Goyo'})
-call dein#add('junegunn/limelight.vim')
-
-
-"call dein#add('junegunn/vim-easy-align')
-
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
-"
-"call dein#add('SirVer/ultisnips')
-"call dein#add('honza/vim-snippets')
-
-call dein#add('wellle/tmux-complete.vim')
-
-call dein#add($GOPATH.'/src/github.com/junegunn/fzf')
-
-call dein#add('Shougo/deoplete.nvim')
-
-call dein#add('Shougo/unite.vim')
-
-call dein#add('majutsushi/tagbar')
-
-call dein#add('mhinz/vim-startify')
-
-call dein#add('Shougo/unite.vim')
-call dein#add('rafi/vim-unite-issue')
-
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('vim-ctrlspace/vim-ctrlspace')
-
-call dein#add('tomtom/tlib_vim')
-call dein#add('amiorin/vim-fasd')
-call dein#add('scrooloose/nerdtree')
-
-call dein#add('junegunn/vim-github-dashboard')
-
-call dein#add('junegunn/vim-emoji')
-
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
-
-call dein#add('ryanoasis/vim-devicons')
-
-" Colors
-call dein#add('tomasr/molokai', {'merged': 0})
-call dein#add('NLKNguyen/papercolor-theme', {'merged': 0})
-
-" Required:
-call dein#end()
-
-" Required:
+" Required: (not on neovim however)
 syntax on                   " syntax highlighing
 filetype on                 " try to detect filetypes
 filetype plugin indent on   " enable loading indent file for filetype
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-	call dein#install()
-endif
-
-"End dein Scripts-------------------------
 
 " Text editing
 set backspace=indent,eol,start
@@ -115,7 +123,7 @@ set shiftwidth=4
 set tabstop=4
 
 " Interface
-set guifont=Monoissome:h12
+"set guifont=Monoissome:h12
 set hidden
 set hlsearch
 set nowrap
@@ -132,14 +140,13 @@ set smarttab
 "set termguicolors
 "colorscheme sunburst
 "colorscheme PaperColor
-colorscheme molokai
+silent! colorscheme molokai
 let g:airline_theme = 'PaperColor'
 "let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
 let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
 "let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
 
-
-"" UI (gui)
+" UI (gui)
 if has('gui_macvim')
 	set transparency=10
 endif
@@ -149,6 +156,7 @@ nmap w :w<cr>
 nmap <M-s> :w<cr>
 nmap <M-q> :q!<cr>
 nmap W :wq<cr>
+nmap ; :
 
 vmap [% [%m'gv``
 vmap ]% ]%m'gv``
@@ -173,18 +181,19 @@ set window=55
 " Commands that shell out tend to assume a bourne shell
 set shell=sh
 
-
 "" Limelight
 nmap <Leader>l <Plug>(Limelight)
 xmap <Leader>l <Plug>(Limelight)
 
 "" emoji
-let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
-let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
-let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
-let g:gitgutter_sign_modified_removed = emoji#for('collision')
-"set completefunc=emoji#complete
-" replace :emojiname: with emoji: %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
+if exists('g:loaded_emoji')
+	let g:gitgutter_sign_added = emoji#for('small_blue_diamond')
+	let g:gitgutter_sign_modified = emoji#for('small_orange_diamond')
+	let g:gitgutter_sign_removed = emoji#for('small_red_triangle')
+	let g:gitgutter_sign_modified_removed = emoji#for('collision')
+	"set completefunc=emoji#complete
+	" replace :emojiname: with emoji: %s/:\([^:]\+\):/\=emoji#for(submatch(1), submatch(0))/g
+endif
 
 "" peekaboo
 " Default peekaboo window
