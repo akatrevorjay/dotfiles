@@ -1,4 +1,13 @@
 #!/bin/zsh
+# _____
+# faded -- automate your usage of python fades (automagic virtualenv creation and usage) via shims.
+#
+# Todo:
+# - Integrate into fades, rewrite to python, change config to single file json.
+#
+# ~ trevorj
+# @ https://github.com/akatrevorjay
+#
 setopt errexit errreturn
 
 : ${FADED_DEFAULT_PYTHON:=python}
@@ -67,6 +76,9 @@ case "$self" in
 
 		echo "Running shim" >&2
 		exec "$shim"
+		;;
+	clean)
+		exec fades --clean-unused-venvs=${1:-42}
 		;;
 	*)
 		fargs=()
