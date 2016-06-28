@@ -1,0 +1,10 @@
+#!/bin/zsh
+#
+# Ever pasted "$ somecommand" into the terminal?
+#
+# > $: command not found
+#
+# Begone, silly errors! Lazy copy + paste forever!! ETCETERA!!!1
+#
+echo 'Copy pasta is bad for you son.' >&2
+${=@}
