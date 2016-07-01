@@ -3,8 +3,8 @@ local val="$1"
 local default="$2"
 [[ -n "$val" ]] || val="$default"
 
-case "$val" in
-    false*|0|no*)
+case "${val:l}" in
+    false|f|0|n|no|nope)
         return 1
         ;;
     *)
