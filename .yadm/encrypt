@@ -3,3 +3,10 @@
 .irssi/config
 .config/hub
 .python_hue
+.pypirc
+.yadm/encrypt
+.exercism.json
+.netrc
+.jiracli.json
+.tsmrc
+.NERDTreeBookmarks

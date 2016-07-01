@@ -33,82 +33,82 @@ endif
 "silent! if
 call plug#begin('~/.cache/vim/plugged')
 
-	Plug 'tpope/vim-commentary'
-	Plug 'tpope/vim-eunuch'
-	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-repeat'
-	Plug 'tpope/vim-surround'
-	Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
-	Plug 'junegunn/gv.vim', {'on': 'GV'}
+Plug 'junegunn/gv.vim', {'on': 'GV'}
 
-	Plug 'junegunn/vim-pseudocl'
-	Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
 
-	Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
-	Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
-	Plug 'junegunn/limelight.vim'
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}
+Plug 'junegunn/limelight.vim'
 
 
-	"Plug 'junegunn/vim-easy-align')
+"Plug 'junegunn/vim-easy-align')
 
-	"Plug 'Shougo/neosnippet.vim')
-	"Plug 'Shougo/neosnippet-snippets')
-	"
-	"Plug 'SirVer/ultisnips')
-	"Plug 'honza/vim-snippets')
+"Plug 'Shougo/neosnippet.vim')
+"Plug 'Shougo/neosnippet-snippets')
+"
+"Plug 'SirVer/ultisnips')
+"Plug 'honza/vim-snippets')
 
-	Plug 'wellle/tmux-complete.vim'
+Plug 'wellle/tmux-complete.vim'
 
-	Plug $GOPATH.'/src/github.com/junegunn/fzf'
+Plug $GOPATH.'/src/github.com/junegunn/fzf'
 
-	Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
 
-	Plug 'Shougo/unite.vim'
+Plug 'Shougo/unite.vim'
 
-	Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
-	Plug 'mhinz/vim-startify'
+Plug 'mhinz/vim-startify'
 
-	Plug 'Shougo/unite.vim'
-	Plug 'rafi/vim-unite-issue'
+Plug 'Shougo/unite.vim'
+Plug 'rafi/vim-unite-issue'
 
-	"Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'vim-ctrlspace/vim-ctrlspace'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'vim-ctrlspace/vim-ctrlspace'
 
-	Plug 'tomtom/tlib_vim'
-	Plug 'amiorin/vim-fasd'
-	Plug 'scrooloose/nerdtree'
+Plug 'tomtom/tlib_vim'
+Plug 'amiorin/vim-fasd'
+Plug 'scrooloose/nerdtree'
 
-	Plug 'junegunn/vim-github-dashboard'
+Plug 'junegunn/vim-github-dashboard'
 
-	Plug 'junegunn/vim-emoji'
+Plug 'junegunn/vim-emoji'
 
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-	Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'
 
-	"Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'junegunn/vim-easy-align'
-	Plug 'thelocehiliosan/vim-byrne'
+"Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'thelocehiliosan/vim-byrne'
 
-	Plug 'Shougo/vimproc.vim', { 'do': 'make' }
+Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
-	" ignore these on older versions of vim
-	if v:version >= 703
-		Plug 'jamessan/vim-gnupg'
-	endif
-	if v:version >= 704
-		Plug 'vim-pandoc/vim-pandoc-syntax'
-	endif
+" ignore these on older versions of vim
+if v:version >= 703
+	Plug 'jamessan/vim-gnupg'
+endif
+if v:version >= 704
+	Plug 'vim-pandoc/vim-pandoc-syntax'
+endif
 
-	" Colors
-	Plug 'tomasr/molokai'
-	Plug 'NLKNguyen/papercolor-theme'
+" Colors
+Plug 'tomasr/molokai'
+Plug 'NLKNguyen/papercolor-theme'
 
-  call plug#end()
+call plug#end()
 "endif
 
 " Required: (not on neovim however)
@@ -138,9 +138,9 @@ set smarttab
 
 " Color scheme
 "set termguicolors
-"colorscheme sunburst
+colorscheme sunburst
 "colorscheme PaperColor
-silent! colorscheme molokai
+"silent! colorscheme molokai
 let g:airline_theme = 'PaperColor'
 "let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
 let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
@@ -151,6 +151,9 @@ if has('gui_macvim')
 	set transparency=10
 endif
 
+nmap r q
+unmap q
+nmap q :q<cr>
 nmap Q :q<cr>
 nmap w :w<cr>
 nmap <M-s> :w<cr>
