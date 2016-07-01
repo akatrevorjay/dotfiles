@@ -38,8 +38,8 @@ if ! zgen saved; then
 	# bulk load
 	mkdir -pv $LOCAL_ZDOTDIR/plugins $ZDOTDIR/plugins
 	plugins=(
-		$LOCAL_ZDOTDIR/plugins/*(/)
-		$ZDOTDIR/plugins/*(/)
+		$LOCAL_ZDOTDIR/plugins/*
+		$ZDOTDIR/plugins/*
 	)
 	source-with-force {$LOCAL_ZDOTDIR,$ZDOTDIR}/zshplugins
 	echo ${(F)plugins[@]} | zgen loadall
