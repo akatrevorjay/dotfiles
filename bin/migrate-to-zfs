@@ -1,0 +1,59 @@
+#!/bin/zsh
+set -exv
+
+self_given="$0"
+self="${0:t}"
+
+e() {
+	echo -e "[$self_given]" "$@"
+}
+
+error() {
+	local level="${level:-error}"
+	e "$level:" "$@" >&2
+}
+
+death() {
+	level=death error "$@"
+	exit 1
+}
+
+usage() {
+	echo "Usage: $self_given PATH [DATASET]"
+}
+
+zdataset-exists() {
+	zfs get -H name $1 #>/dev/null 2>&1
+}
+
+zfs-get() {
+	local dataset="$1"; shift
+	zfs list -Ho ${(s:,:)@} $dataset
+}
+
+source_path="$(realpath "$1")"
+dataset="${2:-${source_path#/}}"
+tmp_dataset="${dataset}-${self}"
+rename_path="${source_path}-original-${self}"
+
+e "source_path=$source_path dataset=$dataset tmp_dataset=$tmp_dataset"
+
+[[ $# -gt 0 ]] || usage
+[[ -n "$source_path" && -n "$dataset" ]] || death "Bad arguments:" "source_path='$source_path' dataset='$dataset'"
+[[ -d "$source_path" ]] || death "Given source_path='$source_path' is not a directory"
+
+! zdataset-exists "$dataset" || death "Dataset already exists: $dataset"
+! zdataset-exists "$tmp_dataset" || death "Dataset already exists: $tmp_dataset"
+
+zfs create "$tmp_dataset"
+mountpoint=$(zfs-get "$tmp_dataset" mountpoint)
+
+mounted=$(zfs-get "$tmp_dataset" mounted)
+[[ "$mounted" == "yes" ]] || death "Not mounted: tmp_dataset=$tmp_dataset"
+
+rsync -avhPS "$source_path/" "$mountpoint"
+
+mv -v "$source_path" "$rename_path"
+zfs rename "$tmp_dataset" "$dataset" || death "Could not rename $tmp_dataset to $dataset"
+rm -rf "$rename_path"
+

@@ -1,2 +1,2 @@
 #!/bin/zsh
-alias vim='nvim'
+! (( ${+commands[nvim]} )) || alias vim='nvim'

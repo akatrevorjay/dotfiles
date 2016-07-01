@@ -20,7 +20,7 @@ if !has('nvim') && &compatible
 	set nocompatible							 " Be iMproved
 endif
 
-"let g:plug_url_format = 'git@github.com:%s.git'
+"let g:plug_url_format = '%s'
 
 " If we don't have vim plug installed, install it
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -107,6 +107,11 @@ endif
 " Colors
 Plug 'tomasr/molokai'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'aereal/vim-colors-japanesque'
+Plug 'bounceme/highwayman'
+Plug 'gummesson/stereokai.vim'
+Plug 'tyrannicaltoucan/vim-deep-space'
+Plug 'jethrovt/vim-basal-colorscheme'
 
 call plug#end()
 "endif

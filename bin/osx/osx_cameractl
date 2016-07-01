@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+declare -a arr=(
+  /Library/CoreMediaIO/Plug-Ins/DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  /Library/CoreMediaIO/Plug-Ins/FCP-DAL/AppleCamera.plugin/Contents/MacOS/AppleCamera
+  /System/Library/Frameworks/CoreMediaIO.framework/Versions/Current/Resources/VDC.plugin/Contents/MacOS/VDC)
+
+trigger () {
+  for i in ${arr[@]}; do
+    sudo chmod $1 $i
+  done
+}
+
+case $1 in
+  enable)
+    trigger 755;
+    ;;
+  disable)
+    trigger 000;
+    ;;
+  *)
+    echo "USAGE: $(basename $0) [enable|disable]"
+esac
