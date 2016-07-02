@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-export DEBEMAIL=debian@trevor.joynson.io
-
 # Unsure
 setopt autoresume autocd autoresume
 setopt longlistjobs

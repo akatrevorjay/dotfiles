@@ -21,8 +21,7 @@ disable stat
 
 # zgen
 ZGEN_RESET_ON_CHANGE=(
-	#{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}(.)
-	{$LOCAL_ZDOTDIR,$ZDOTDIR}/zsh{env,rc,plugins}
+	${^ZDOTDIRS}/zsh{env,rc,plugins}(-.)
 )
 source "$HOME/.zgen/zgen.zsh"
 
@@ -31,17 +30,18 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
 # if the init scipt doesn't exist
 if ! zgen saved; then
-	echo "Creating a zgen save"
+	echo "-- Creating a zgen save"
 
 	# TODO check plugins difference on hook and auto-load
 
-	# bulk load
-	mkdir -pv $LOCAL_ZDOTDIR/plugins $ZDOTDIR/plugins
-	plugins=(
-		$LOCAL_ZDOTDIR/plugins/*
-		$ZDOTDIR/plugins/*
+	local plugin_dirs=(
+		${^ZDOTDIRS}/plugins(-/)
 	)
-	source-with-force {$LOCAL_ZDOTDIR,$ZDOTDIR}/zshplugins
+	echo "-- Plugin dirs:" $plugin_dirs
+
+	source-with-force ${^ZDOTDIRS}/zshplugins(-.)
+
+	echo "-- Plugins:" ${plugins#(${~${(j:|:)plugin_dirs}})/}
 	echo ${(F)plugins[@]} | zgen loadall
 
 	# save all to init script

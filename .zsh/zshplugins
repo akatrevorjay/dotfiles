@@ -14,6 +14,7 @@
 
 plugins=(
 	akatrevorjay/composure
+	akatrevorjay/fasd
 	psprint/zsnapshot
 	mollifier/zload
 	kennethreitz/autoenv
@@ -23,7 +24,7 @@ plugins=(
 	#psprint/zsh-editing-workbench
 	#psprint/zsh-navigation-tools
 
-	${(@)plugins}
+	${^plugin_dirs}/*(-/)
 
 	zsh-users/zsh-completions
 	zsh-users/zsh-history-substring-search

@@ -13,7 +13,7 @@
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
-# XDG defults
+# XDG defaults
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 : ${XDG_DATA_HOME:="$HOME/.local/share"}
@@ -25,6 +25,7 @@
 : ${ZDOTDIR:="$HOME/.zsh"}
 : ${LOCAL_ZDOTDIR:="$HOME/.local/zsh"}
 : ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
+ZDOTDIRS=({$LOCAL_ZDOTDIR,$ZDOTDIR}(-/))
 
 [[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
 
@@ -32,8 +33,9 @@
 : ${CURRENT_SHELL:="zsh"}
 # system
 : ${SYSTEM:="${OSTYPE%%[0-9]*}"}
-: ${SYSTEM:="$(uname -s | tr '[:upper:]' '[:lower:]')"}
+: ${SYSTEM:=$(uname -s)}
 : ${SYSTEM:="unknown_system"}
+SYSTEM=${SYSTEM:l}
 : ${SHORT_HOSTNAME:=${HOST%%.*}}
 : ${SHORT_HOSTNAME:=unknown}
 
@@ -72,12 +74,7 @@ path=(
 )
 
 fpath=(
-	$ZDOTDIR/functions
-	$ZDOTDIR/completions
-
-	$LOCAL_ZDOTDIR/functions
-	$LOCAL_ZDOTDIR/completions
-   
+	${^ZDOTDIRS}/{functions,completions}
 	${(@)fpath}
 )
 
@@ -102,8 +99,8 @@ add-prefix-paths $HOME/.local
 
 
 # OS specifics
-case "$SYSTEM" in
-	linux-gnu)
+case "${SYSTEM:l}" in
+	linux*)
 		path=(
 			# ccache
 			"/usr/lib/ccache"
@@ -112,7 +109,7 @@ case "$SYSTEM" in
 		)
 		#fix-path-order
 		;;
-	darwin)
+	darwin*)
 		add-prefix-path /usr/local
 
 		path=(
@@ -137,7 +134,7 @@ case "$SYSTEM" in
 			# Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
 			# Unfortunately it also reorganizes your PATH according to how it sees fit,
 			# so let's change that to just be a suffix. It gets deduped anyway.
-			if [[ -x /usr/libexec/path_helper ]] && [[ $OSTYPE = darwin* ]]; then
+			if [[ -x /usr/libexec/path_helper ]]; then
 				local out="$(PATH='' /usr/libexec/path_helper -s)"
 				# We only care about the path portion of the declare statement anyway, so snag and split.
 				local out_paths=(${(s.:.)${out#*\"}%\"*})
@@ -167,7 +164,6 @@ export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 ## local
 ##
 
-source-with-force "$LOCAL_ZDOTDIR/zshenv"
-
+source-with-force ${^ZDOTDIRS:#$ZDOTDIR}/zshenv(-.)
 
 # EOF

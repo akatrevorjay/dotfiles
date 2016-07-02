@@ -1,8 +1,7 @@
 #!/bin/zsh
-# fasd
 function () {
 	local fasd_cache="$ZSH_CACHE_DIR/fasd-init-zsh"
-	if [ "$(command -v fasd)" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
+	if [ "${commands[fasd]}" -nt "$fasd_cache" -o ! -s "$fasd_cache" ]; then
 		fasd --init \
 		  posix-alias \
 		  zsh-hook \
