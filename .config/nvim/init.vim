@@ -94,8 +94,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'junegunn/vim-easy-align'
 Plug 'thelocehiliosan/vim-byrne'
 
-Plug 'Shougo/vimproc.vim', { 'do': 'make' }
-
 " ignore these on older versions of vim
 if v:version >= 703
 	Plug 'jamessan/vim-gnupg'
@@ -103,6 +101,12 @@ endif
 if v:version >= 704
 	Plug 'vim-pandoc/vim-pandoc-syntax'
 endif
+
+Plug 'tbabej/taskwiki'
+Plug 'powerman/vim-plugin-AnsiEsc'
+Plug 'farseer90718/vim-taskwarrior'
+
+Plug 'vim-scripts/ScrollColors'
 
 " Colors
 Plug 'tomasr/molokai'
@@ -112,6 +116,8 @@ Plug 'bounceme/highwayman'
 Plug 'gummesson/stereokai.vim'
 Plug 'tyrannicaltoucan/vim-deep-space'
 Plug 'jethrovt/vim-basal-colorscheme'
+
+"Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 
 call plug#end()
 "endif
