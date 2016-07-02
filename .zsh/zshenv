@@ -110,7 +110,7 @@ case "${SYSTEM:l}" in
 		#fix-path-order
 		;;
 	darwin*)
-		add-prefix-path /usr/local
+		add-prefix-paths /usr/local
 
 		path=(
 			# Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
