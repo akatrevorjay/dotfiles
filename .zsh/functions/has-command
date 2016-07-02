@@ -1,7 +1,2 @@
 #!/bin/zsh
-local rv=${+commands[$1]}
-if ! (( $rv )); then
-	which $1 >/dev/null 2>&1
-	rv=$?
-fi
-return (( $rv ))
+return (( ${+commands[$1]} )) || (hash -r ; (( ${+commands[$1]} )))
