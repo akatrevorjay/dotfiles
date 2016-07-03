@@ -23,10 +23,9 @@ set background=dark
 
 " declare plugins
 "silent!
-if plug#begin('~/.cache/vim/plugged')
+call plug#begin('~/.cache/vim/plugged')
 call source#any('plugins')
 call plug#end()
-endif
 
 " Required: (not on neovim however)
 syntax on                   " syntax highlighing

@@ -6,7 +6,8 @@ let g:loaded_source = 1
 
 function! source#local(...)
 	for i in a:000
-		execute 'runtime '.i.' local/'.i
+		execute 'runtime '.i
+		execute 'runtime local/'.i
 	endfor
 endfunction
 
