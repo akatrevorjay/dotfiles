@@ -1,0 +1,1 @@
+-d flake8 -d flake8-commas -d flake8-coding -d flake8-builtins -d flake8-respect-noqa -d flake8-isort -d flake8-print -d flake8-mock -d flake8-diff -d flake8-comprehensions -d flake8-junit-report -d flake8-todo -d flake8-debugger -d precog -x flake8
