@@ -1,3 +1,7 @@
+
+" copy paste to system buffer
+set clipboard^=unnamedplus
+
 " z = "X11-Clipboard"
 " x = "X11 Primary Selection"
 " v = "X11 Secondary Selection"

@@ -27,13 +27,17 @@ function! s:smart_help(args)
   endtry
 endfunction
 
+"" Vim
+"" <C-u>: http://d.hatena.ne.jp/e_v_e/20150101/1420067539
+"Gautocmdft vim nnoremap <silent> K :<C-u>SmartHelp<Space><C-r><C-w><CR>
+
 " I really dislike that GitHub only gives you the full URL. Most of the time, in VIM, I don't want that.
 function! SimplifyGitHubURLs()
   "Get current line...
   let curr_line   = getline('.')
 
   "Replace raw ampersands...
-  let replacement = substitute(curr_line,'git@github.com:(.*).git', '\1', 'g')
+  let replacement = substitute(curr_line,'(git@|https?://)github.com[:/](.*)(\.git)?', '\1', 'g')
 
   "Update current line...
   call setline('.', replacement)
@@ -66,10 +70,6 @@ function! CtagsGitRoot()
     call vimproc#system('ctags -R --fields=+l --sort=yes &')
   endif
 endfunction
-
-"" Vim
-"" <C-u>: http://d.hatena.ne.jp/e_v_e/20150101/1420067539
-"Gautocmdft vim nnoremap <silent> K :<C-u>SmartHelp<Space><C-r><C-w><CR>
 
 ""
 "" Syntax

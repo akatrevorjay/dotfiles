@@ -1,0 +1,1 @@
+Plug '~/.local/nvim'

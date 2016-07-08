@@ -1,0 +1,5 @@
+" s:git@github.com:\(.*\).git:'\1':g
+"
+" " We use noautocmd to avoid triggering BufRead on every plugin
+" for name in keys(g:plugs) | silent noautocmd call plug#load(name) | endfor
+

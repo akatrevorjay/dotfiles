@@ -1,0 +1,22 @@
+
+" Make sure PATH is sane.
+if ! exists('s:appended_to_path')
+  let sep = has('win32') || has('win64') ? ';' : ':'
+  let $PATH = join([
+        \ expand('~/.bin'),
+        \ expand('~/.local/bin'),
+        \ expand('~/.pyenv/bin'),
+        \ expand('~/.pyenv/shims'),
+        \ expand('~/go/bin'),
+        \ '/usr/local/bin',
+        \ '/usr/local/sbin',
+        \ '/usr/local/libexec/gnubin',
+        \ '/usr/bin',
+        \ '/usr/sbin',
+        \ '/bin',
+        \ '/sbin',
+        \ $PATH,
+        \], sep)
+  let s:appended_to_path = 1
+endif
+
