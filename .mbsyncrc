@@ -1,0 +1,120 @@
+# -- Globals
+#Sync New Delete Flags
+CopyArrivalDate yes
+
+# Automatically create missing mailboxes, both locally and on the server
+Create Both
+#Expunge Both
+#Remove Both
+#
+# Save the synchronization state files in the relevant directory
+SyncState *
+
+#MaxMessages 1000
+#MaxSize 512k
+ExpireUnread yes
+
+##
+## Accounts
+##
+
+# -- Account: gmail
+IMAPAccount gmail
+# Address to connect to
+Host imap.gmail.com
+User trevorjoynson@gmail.com
+# To store the password in an encrypted file use PassCmd instead of Pass
+PassCmd "gpg2 -q --for-your-eyes-only --no-tty -d ~/.mbsyncpass.gpg"
+#
+# Use SSL
+UseIMAPS yes
+RequireSSL yes
+# The following line should work. If get certificate errors, uncomment the two following lines and read the "Troubleshooting" section.
+#CertificateFile /etc/ssl/certs/ca-certificates.crt
+#CertificateFile ~/.cert/imap.gmail.com.pem
+#CertificateFile ~/.cert/Equifax_Secure_CA.pem
+#PipelineDepth 50
+
+##
+## Gmail
+##
+
+# -- Store: gmail-remote
+IMAPStore gmail-remote
+Account gmail
+
+# -- Store: gmail-local
+MaildirStore gmail-local
+# The trailing "/" is important
+Path ~/.mail/gmail/
+Inbox ~/.mail/gmail/Inbox
+
+#Trash [Gmail]\ Trash
+#TrashNewOnly no
+#TrashRemoteNew no
+
+Channel sync-gmail-inbox
+Master :gmail-remote:"INBOX"
+Slave :gmail-local:Inbox
+
+Channel sync-gmail-sent
+Master :gmail-remote:"[Gmail]/Sent Mail"
+Slave :gmail-local:Sent
+
+Channel sync-gmail-drafts
+Master :gmail-remote:"[Gmail]/Drafts"
+Slave :gmail-local:Drafts
+
+Channel sync-gmail-starred
+Master :gmail-remote:"[Gmail]/Starred"
+Slave :gmail-local:Starred
+
+#Channel sync-gmail-chats
+#Master :gmail-remote:"[Gmail]/Chats"
+#Slave :gmail-local:Chats
+
+Channel sync-gmail-important
+Master :gmail-remote:"[Gmail]/Important"
+Slave :gmail-local:Important
+
+Channel sync-gmail-archive
+Master :gmail-remote:"[Gmail]/All Mail"
+Slave :gmail-local:Archive
+MaxMessages 1000
+
+Channel sync-gmail-trash
+Master :gmail-remote:"[Gmail]/Trash"
+Slave :gmail-local:Trash
+
+Channel sync-gmail-spam
+Master :gmail-remote:"[Gmail]/Spam"
+Slave :gmail-local:Spam
+
+Channel sync-gmail-default
+Master :gmail-remote:
+Slave :gmail-local:
+Patterns * !INBOX "![Gmail]/Sent Mail" "![Gmail]/Drafts" "![Gmail]/Starred" "![Gmail]/Important" "![Gmail]/All Mail" "![Gmail]/Trash" "![Gmail]/Spam"
+
+Group gmail
+Channel sync-gmail-inbox
+Channel sync-gmail-sent
+Channel sync-gmail-drafts
+Channel sync-gmail-starred
+Channel sync-gmail-important
+Channel sync-gmail-default
+Channel sync-gmail-archive
+Channel sync-gmail-trash
+Channel sync-gmail-spam
+
+#Channel gmail-all
+#Master :gmail-remote:
+#Slave :gmail-local:
+## Select some mailboxes to sync
+##Patterns "INBOX"
+## Exclude everything under the internal [Gmail] folder, except the interesting folders
+##Patterns * ![Gmail]*
+##Patterns * ![Gmail]/INBOX !"[Gmail]/Sent Mail" !"[Gmail]/Drafts" !"[Gmail]/Starred" !"[Gmail]/All Mail" !"[Gmail]/Trash" !"[Gmail]/Spam"
+##Patterns * ![Gmail]*
+## Or include everything
+#Patterns * ![Gmail]/Spam
+
