@@ -1,0 +1,47 @@
+dotfiles-vim
+============
+
+Opinionated garbage that you might want to use (at least some of it ;).
+
+I use this daily across Linux and OSX, using NeoVim, MacVim, and your standard vim.
+
+On OSX don't be a shrew and use brew to install it to overwrite your system copy of vi/vim.
+
+Must be 7.4+ ; If you don't have that yet, why even bother with the internet.
+
+* A highly related repo is [1], which contains my shell rcs, meant to be reused in varying architectures, os (Linux/BSD/OSX), shells (Bash4/Zsh), and configuration. Also opinionated garbage.
+
+Features
+--------
+
+- vim-plug for plugin management
+- Syntastic (with extra checkers configured)
+- CtrlP for quick access to files/mru/loclist
+- Fugitive, GitGutter
+- I really only enjoy highly contrasted, colorful, dark themes.
+You'll find a lot of them here.
+
+### Python
+- Syntastic: Flake8 linter
+- Jedi completion and simple refactoring (ie renames)
+- Does NOT use python-mode
+
+#### Refactoring le sigh
+
+Jedi's refactoring support is minimal. It works well for simple renames across your open buffers, but that's all it does... It leaves much to be desired. I'm going to give rope another shot, but this time just for refactoring. It does a pretty good job.
+
+Moving methods and classes between modules and such are what I feel is most missing, and Rope does support such things. Currently I just use PyCharm for all of that.
+
+### Golang
+- vim-go completion, doc viewer needs some tweaks but it works well.
+
+### Bash/Zsh
+- Syntastic: Shellcode linter
+- Minimal tag completion
+
+
+Related
+-------
+
+[1][https://github.com/akatrevorjay/dotfiles-shell.git|dotfiles-shell]
+
