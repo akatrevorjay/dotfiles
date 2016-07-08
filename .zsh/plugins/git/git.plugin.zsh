@@ -197,3 +197,15 @@ alias gwX='git rm -rf'
 
 # Misc
 alias g..='cd $(git-root || print .)'
+
+#!/bin/bash
+alias git-log='git log --decorate --branches --graph'
+
+# $ wow
+# $ such commit
+# $ very push
+alias much=git
+alias such=git
+alias very=git
+alias so=git
+alias wow='git status'

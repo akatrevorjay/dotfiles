@@ -2,7 +2,6 @@
 !/bin/
 !/.*
 /.mozilla
-/.config
 /.cache
 /.local
 /.mail
@@ -18,7 +17,12 @@
 /.sup
 /.thumbnails
 /.npm
+/.fasd
+/.strash
 **/secrets
 **/*secret*
 **/*history*
-**/.zcompdump
+**/*hist*
+**/*viminfo*
+**/*log
+**/*zcompdump*

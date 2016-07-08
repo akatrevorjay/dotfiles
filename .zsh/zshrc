@@ -28,6 +28,8 @@ source "$HOME/.zgen/zgen.zsh"
 # plugin conf
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
+source-with-force ~/.zsh/secrets
+
 # if the init scipt doesn't exist
 if ! zgen saved; then
 	echo "-- Creating a zgen save"
@@ -60,7 +62,7 @@ esac
 
 # local
 # TODO Move to $XDG local path
-source-with-force "$LOCAL_ZDOTDIR/zshrc"
+source-with-force $LOCAL_ZDOTDIR/zshrc
 
 # This is annoying to have earlier.
 #setopt warncreateglobal
