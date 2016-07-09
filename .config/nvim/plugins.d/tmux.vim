@@ -1,3 +1,8 @@
+
+if ! exists($SHELL)
+  finish
+endif
+
 " tmux integration
 Plug 'christoomey/vim-tmux-navigator'
 " Activate autoupdate on exit

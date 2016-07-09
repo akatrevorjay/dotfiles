@@ -1,7 +1,3 @@
-""
-"" Tooling
-""
-
 " Great bindings for switching buffers and more
 Plug 'tpope/vim-unimpaired'
 
@@ -31,7 +27,7 @@ Plug 'tomtom/tlib_vim'
 Plug 'amiorin/vim-fasd'
 
 ""
-"" Notmuch mail
+"" Notmuch: mail
 ""
 Plug 'felipec/notmuch-vim'
 " Notmuch mail address book (abook)

@@ -1,4 +1,8 @@
 
+if ! has('nvim')
+  finish
+endif
+
 " Esc should exit terminal mode to normal mode, as you'd expect.
 tnoremap <Esc> <C-\><C-n>
 
