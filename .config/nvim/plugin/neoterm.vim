@@ -1,4 +1,8 @@
 
+if ! has('nvim')
+  finish
+endif
+
 let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
 let g:neoterm_shell = $SHELL
