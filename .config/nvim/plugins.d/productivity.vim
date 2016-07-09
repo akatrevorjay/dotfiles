@@ -45,6 +45,7 @@ Plug 'guyzmo/notmuch-abook'
 Plug 'farseer90718/vim-taskwarrior'  ", {'on': ['TW', 'TWAdd']}
 
 " Taskwarrior: Better interface
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 Plug 'tbabej/taskwiki'
 
 ""

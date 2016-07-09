@@ -10,7 +10,8 @@
 #
 setopt errexit errreturn
 
-: ${FADED_DEFAULT_PYTHON:=python}
+# Important that this is absolute or virtualenvs will hate you.
+: ${FADED_DEFAULT_PYTHON:=/usr/bin/python3}
 
 faded_d="${XDG_CONFIG_HOME:-$HOME/.config}/faded"
 shim_path=${0:h}

@@ -5,4 +5,4 @@ _*
 plugins/.gitkeep
 zgen
 local
-
+/themes/airline-snapshot*

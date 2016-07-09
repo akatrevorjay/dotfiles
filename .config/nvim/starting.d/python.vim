@@ -6,11 +6,11 @@
 " In order to use any python3 plugins, the *NeoVIM* interpreter must be set to the
 " one it was compiled against. I don't seem to have this issue with python3. Hmm.
 
-let g:python_host_prog = 'python2'
-let g:python3_host_prog = 'python3'
+"let g:python_host_prog = 'python2'
+"let g:python3_host_prog = 'python3'
 
-"let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
-"let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
+let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
+let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
 
 if has('nvim')
   " Skip the check of neovim module

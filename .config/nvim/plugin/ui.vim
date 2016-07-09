@@ -22,8 +22,8 @@ if has('gui_running') || has('nvim')
     set guifont=Fira\ Code\ Retina:h14
     set guifontwide=Fira\ Code\ Retina:h14
   elseif has('gui_gtk2')
-    set guifont=FiraCode-Retina\ 16
-    set guifontwide=FiraCode-Retina\ 16
+    set guifont=Monoid\ 12
+    set guifontwide=Monoid\ 12
   elseif has('gui_photon')
     set guifont=FiraCode-Retina\:s16
     set guifontwide=FiraCode-Retina\:s16

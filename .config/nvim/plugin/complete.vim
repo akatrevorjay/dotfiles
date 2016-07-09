@@ -41,13 +41,14 @@ set completeopt+=noinsert
 " https://github.com/Shougo/deoplete.nvim/blob/master/rplugin/python3/deoplete/deoplete.py
 "set completeopt+=noselect
 
-if exists('g:loaded_deoplete')
+
+"if exists('g:loaded_deoplete')
+if has('nvim')
   " let g:loaded_deoplete_enabled = deoplete#init#is_enabled()
-  " if g:deoplete#enable_at_startup == 1
   "   let g:loaded_deoplete_enabled_auto = 1
   " endif
 
-  "let g:deoplete#enable_at_startup = 1
+  let g:deoplete#enable_at_startup = 1
   " Enable by default for these filetypes
   "Gautocmdft vim,zsh,sh,go,txt,markdown,mkd execute ':DeopleteEnable'
 
