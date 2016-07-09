@@ -31,7 +31,9 @@ Plug 'amiorin/vim-fasd'
 ""
 Plug 'felipec/notmuch-vim'
 " Notmuch mail address book (abook)
-Plug 'guyzmo/notmuch-abook'
+if has('python')
+  Plug 'guyzmo/notmuch-abook'
+endif
 
 ""
 "" Tasks
