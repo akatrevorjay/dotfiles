@@ -11,6 +11,6 @@ then
         pygmentize -O style=monokai -f console256 -g "$file"
     done
 else
-    cat "$@"
+    \cat "$@"
 fi
 
