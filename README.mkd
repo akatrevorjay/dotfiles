@@ -1,7 +1,7 @@
 dotfiles
 ========
 
-Opinionated garbage for my dotfiles setup. Uses [1] to manage them in your home.
+Opinionated garbage for my dotfiles setup. Uses [yadm] to manage them in your home.
 
 Used daily by a few people at this point.
 
@@ -11,7 +11,7 @@ News
 We've been doing a mass non-opinionation as others have started to utilize these as well.
 This is being done on pure best effort, and PRs are welcome for just about anything.
 
-In order to properly separate everything and maintain separate local forks, [1] will most likely need to be extended in order to be able to better manage per-user disparity, especially in regards to gpg encrypted files, which should most likely be stored in a separate repo. This honestly needs some work to begin with (in `yadm`); a blank line for instance counts as a wildcard gone wild.
+In order to properly separate everything and maintain separate local forks, [yadm] will most likely need to be extended in order to be able to better manage per-user disparity, especially in regards to gpg encrypted files, which should most likely be stored in a separate repo. This honestly needs some work to begin with (in `yadm`); a blank line for instance counts as a wildcard gone wild.
 
 Goals
 -----
@@ -26,30 +26,39 @@ Goals
 Features
 --------
 
-* Vigorous Zsh setup [2]
+* Vigorous Zsh setup [dotfiles-zsh]
   * `zgen` for plugins
-* Organized NeoVim/Vim/MacVim configuration [3]
+* Organized NeoVim/Vim/MacVim configuration [dotfiles-vim]
   * `vim-plug` for plugins
-* Tmux (with plugins via `tpm`) [4]
+* Tmux (with plugins via `tpm`) [dotfiles-tmux]
   * `tpm` for plugins
 
 Usage
 -----
 
+Install [yadm]:
+
+```sh
+# Linux
+sudo apt install yadm
+# OSX
+brew install yadm
+```
+
+Clone via [yadm]:
+
 ```sh
 yadm clone git@github.com:akatrevorjay/dotfiles.git
+yadm submodule update --init
 ```
 
 Related
 -------
 
-[1][https://github.com/TheLocehiliosan/yadm|yadm]
-
-[2][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh|zsh]
-
-[3][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|vim]
-
-[4][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux|tmux]
+[yadm]: [https://github.com/TheLocehiliosan/yadm|yadm]
+[dotfiles-zsh]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh|zsh]
+[dotfiles-vim]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|vim]
+[dotfiles-tmux]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux|tmux]
 
 * Old repos that this will be split back into once better support for submodules are built into yadm:
   * [https://github.com/akatrevorjay/dotfiles-shell.git|dotfiles-shell]
