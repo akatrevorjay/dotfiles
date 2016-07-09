@@ -11,15 +11,24 @@ Must be 7.4+ ; If you don't have that yet, why even bother with the internet.
 
 * A highly related repo is [1], which contains my shell rcs, meant to be reused in varying architectures, os (Linux/BSD/OSX), shells (Bash4/Zsh), and configuration. Also opinionated garbage.
 
+Usage
+-----
+
+This is primarily meant to be used as a submodule/subtree/hipster-git-thing in your primary yadm repo.
+
 Features
 --------
 
 - vim-plug for plugin management
 - Syntastic (with extra checkers configured)
-- CtrlP for quick access to files/mru/loclist
+- Ctrl-Space for quick access to bufs/tabs/files
 - Fugitive, GitGutter
-- I really only enjoy highly contrasted, colorful, dark themes.
-You'll find a lot of them here.
+- Deoplete
+- Neoterm
+- tmux integration
+- notmuch mail
+
+I really only enjoy highly contrasted, colorful, dark themes. *You'll find a lot of them here.*
 
 ### Python
 - Syntastic: Flake8 linter
@@ -38,10 +47,4 @@ Moving methods and classes between modules and such are what I feel is most miss
 ### Bash/Zsh
 - Syntastic: Shellcode linter
 - Minimal tag completion
-
-
-Related
--------
-
-[1][https://github.com/akatrevorjay/dotfiles-shell.git|dotfiles-shell]
 
