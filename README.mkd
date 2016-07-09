@@ -1,0 +1,50 @@
+dotfiles
+========
+
+Opinionated garbage for my dotfiles setup. Uses [1] to manage them in your home.
+
+Used daily by a few people at this point.
+
+News
+----
+
+We've been doing a mass non-opinionation as others have started to utilize these as well.
+This is being done on pure best effort, and PRs are welcome for just about anything.
+
+In order to properly separate everything and maintain separate local forks, [1] will most likely need to be extended in order to be able to better manage per-user disparity, especially in regards to gpg encrypted files, which should most likely be stored in a separate repo. This honestly needs some work to begin with (in `yadm`); a blank line for instance counts as a wildcard gone wild.
+
+Goals
+-----
+
+* OSX or Linux.
+* Relatively easy to understand, with bells and whistles galore.
+* Attempts to adhere to XDG spec (for the important tidbits at least).
+* Everything should be a plugin (batteries included, but removable).
+* Obviously opinionated portions should not be enabled by default.
+* Plugins should check for requirements and disable themselves automagically if not available.
+
+Features
+--------
+
+* Vigorous Zsh setup [2]
+  * `zgen` for plugins
+* Organized NeoVim/Vim/MacVim configuration [3]
+  * `vim-plug` for plugins
+* Tmux (with plugins via `tpm`) [4]
+  * `tpm` for plugins
+
+Usage
+-----
+
+```sh
+yadm clone git@github.com:akatrevorjay/dotfiles.git
+```
+
+Related
+-------
+
+[1][https://github.com/TheLocehiliosan/yadm|yadm]
+[2][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/zsh]
+[3][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/nvim]
+[4][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/tmux]
+
