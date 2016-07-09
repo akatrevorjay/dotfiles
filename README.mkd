@@ -43,8 +43,13 @@ yadm clone git@github.com:akatrevorjay/dotfiles.git
 Related
 -------
 
-[1][https://github.com/TheLocehiliosan/yadm|yadm]
-[2][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/zsh]
-[3][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/nvim]
-[4][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|.config/tmux]
+* [1][https://github.com/TheLocehiliosan/yadm|yadm]
+* [2][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh|zsh]
+* [3][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|vim]
+* [4][https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux|tmux]
+
+* Old repos that this will be split back into once better support for submodules are built into yadm:
+  * [https://github.com/akatrevorjay/dotfiles-shell.git|dotfiles-shell]
+  * [https://github.com/akatrevorjay/dotfiles-vim.git|dotfiles-vim]
+  * [https://github.com/akatrevorjay/dotfiles-tmux.git|dotfiles-tmux]
 
