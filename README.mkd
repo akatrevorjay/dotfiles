@@ -52,8 +52,8 @@ yadm clone git@github.com:akatrevorjay/dotfiles.git
 yadm submodule update --init
 ```
 
-Related
--------
+Original repos
+--------------
 
 Old repos that this will be split back into once better support for submodules are built into yadm:
 
@@ -61,8 +61,11 @@ Old repos that this will be split back into once better support for submodules a
   * [https://github.com/akatrevorjay/dotfiles-vim.git|dotfiles-vim]
   * [https://github.com/akatrevorjay/dotfiles-tmux.git|dotfiles-tmux]
 
-[yadm]: [https://github.com/TheLocehiliosan/yadm|yadm]
-[dotfiles-zsh]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh|zsh]
-[dotfiles-vim]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim|vim]
-[dotfiles-tmux]: [https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux|tmux]
+Related
+-------
+
+[yadm]: https://github.com/TheLocehiliosan/yadm
+[dotfiles-zsh]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh
+[dotfiles-vim]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim
+[dotfiles-tmux]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux
 
