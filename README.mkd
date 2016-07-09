@@ -16,9 +16,9 @@ In order to properly separate everything and maintain separate local forks, [yad
 Goals
 -----
 
-* OSX or Linux.
+* [OSX] or [Linux].
 * Relatively easy to understand, with bells and whistles galore.
-* Attempts to adhere to XDG spec (for the important tidbits at least).
+* Attempts to adhere to [XDG] spec (for the important tidbits at least).
 * Everything should be a plugin (batteries included, but removable).
 * Obviously opinionated portions should not be enabled by default.
 * Plugins should check for requirements and disable themselves automagically if not available.
@@ -26,12 +26,15 @@ Goals
 Features
 --------
 
-* Vigorous Zsh setup [dotfiles-zsh]
-  * `zgen` for plugins
-* Organized NeoVim/Vim/MacVim configuration [dotfiles-vim]
-  * `vim-plug` for plugins
-* Tmux (with plugins via `tpm`) [dotfiles-tmux]
-  * `tpm` for plugins
+* Vigorous [Zsh] setup [dotfiles-zsh]
+  * [zgen] for plugins
+  * [airline]/[promptline] based prompt
+  * Prefixes prompt with `$HOSTNAME` if you're in through SSH
+* Organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
+  * [vim-plug] for plugins
+* [tmux] (with plugins via `tpm`) [dotfiles-tmux]
+  * [tpm] for plugins
+  * Starts tmux automagically if you're in through SSH
 
 Usage
 -----
