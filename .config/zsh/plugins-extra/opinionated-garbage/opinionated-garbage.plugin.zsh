@@ -7,7 +7,6 @@ setopt longlistjobs
 #setopt vi
 
 setopt completealiases
-
 setopt correct correctall
 
 # aliases
@@ -19,7 +18,6 @@ alias vi='vim'
 # ls aliases
 #
 
-alias ls="${(Q)${$(alias -m ls)#*=}:-ls --colors=auto} -Fuh -B"
 alias l='ls'
 alias la='ls -A'
 alias lA='ls -a'
@@ -75,7 +73,7 @@ unsetopt case_glob
 # Suffix aliases
 #
 
-for s (tex{,t} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini); do
+for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini); do
 	alias -s $s=vim
 done
 

@@ -2,7 +2,7 @@
 
 [[ -n "$TERMINOLOGY" && -z "$TMUX$SCREEN" ]] || return
 
-alias terminology-ls-orig="command ${(Q)${$(alias -m ls)#*=}:-ls}"
+export TERMINOLOGY_LS_ORIG="command ${(Q)${$(alias -m ls)#*=}:-ls}"
 
 autoload -Uz \
     terminology-ls _terminology-ls \
@@ -11,5 +11,5 @@ autoload -Uz \
 compdef _tyls tyls
 compdef _terminology-ls terminology-ls
 
-alias ls=terminology-ls
+alias ls='terminology-ls'
 compdef _terminology-ls ls

@@ -23,5 +23,6 @@ then
     set -- "${args[@]}"
 fi
 
-(( ${+aliases[terminology-ls-orig]} )) || echo "Missing terminology-ls-orig aliases" >&2
-${=aliases[terminology-ls-orig]:-"command ls"} "$@"
+local orig="$TERMINOLOGY_LS_ORIG"
+[[ -n "$orig" ]] || echo "Missing terminology-ls-orig aliases" >&2
+${=orig:-'command ls'} "$@"
