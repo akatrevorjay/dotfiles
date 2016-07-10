@@ -23,7 +23,7 @@ fi
 
 vim=${commands[nvim]-${commands[vim]}}
 if [[ -n $vim ]]; then
-    $vim -c 'Update && q'
+    $vim -c 'Update'
 fi
 
 tmux=${commands[tmux]}
