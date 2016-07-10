@@ -12,6 +12,6 @@ if (( ${+commands[hub]} )); then
 			echo "Could not find 'hub' completions at _HUB_COMPLETIONS=$_HUB_COMPLETIONS" >&2
 		fi
 	fi
-else
-	echo "Could not find 'hub' command. Not adding aliases." >&2
+#else
+#    echo "Could not find 'hub' command. Not adding aliases." >&2
 fi
