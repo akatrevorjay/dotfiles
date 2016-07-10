@@ -1,18 +1,21 @@
 
 " Unload plugin in runtimepath
 function! s:PlugUnload(name)
-execute 'set rtp-=' . g:plug_home . '/' . a:name . '/'
+  execute 'set rtp-=' . g:plug_home . '/' . a:name . '/'
 endfunction
 
 command! -nargs=* PlugUnload call s:PlugUnload('<args>')
 
-function! s:PlugNewUp()
-execute 'PlugUpgrade'
-	execute 'PlugUpdate'
-	execute 'PlugInstall'
+function! s:Update()
+  execute 'PlugUpgrade | PlugUpdate | PlugInstall'
+  if has('nvim')
+    execute 'UpdateRemotePlugins'
+  endif
+  execute 'q'
+  execute 'q'
 endfunction
 
-command! -nargs=* PlugNewUp call s:PlugNewUp('<args>')
+command! Update call s:Update()
 
 function! s:InstallPlug()
 	" If we don't have vim plug installed, install it

@@ -1,0 +1,48 @@
+#!/bin/zsh
+set -exv
+setopt jobs
+
+cd
+yadm pull
+
+case $OSTYPE in
+    linux*)
+        sudo apt update -qq &
+        ;;
+
+    darwin*)
+        brew update >/dev/null &
+        ;;
+esac
+
+zgen=${commands[zgen]}
+if [[ -n $zgen ]]; then
+    zgen selfupdate
+    zgen update
+fi
+
+vim=${commands[nvim]-${commands[vim]}}
+if [[ -n $vim ]]; then
+    $vim -c 'Update && q'
+fi
+
+tmux=${commands[tmux]}
+if [[ -n $tmux ]]; then
+    :
+fi
+
+wait
+
+case $OSTYPE in
+    linux*)
+        sudo apt full-upgrade -y
+        ;;
+
+    darwin*)
+        brew upgrade
+        ;;
+esac
+
+if [[ -n "$GOPATH" ]]; then
+    go get -u -x -v all
+fi
