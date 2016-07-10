@@ -16,6 +16,21 @@ if [[ -n "$ZSH_CACHE_DIR" ]]; then
 	zstyle ':completion::complete:*' use-cache on
 fi
 
+# adds the arguments from the last command to the autocomplete list
+# I wasn't able to get this to work standalone and still print out both regular
+# completion plus the last args, but this works well enough.
+_complete_plus_last_command_args() {
+    last_command=$history[$[HISTCMD-1]]
+    last_command_array=("${(s/ /)last_command}") 
+    _sep_parts last_command_array
+    _complete 
+}
+
+_force_rehash() {
+  (( CURRENT == 1 )) && rehash
+  return 1  # Because we didn't really complete anything
+}
+
 # auto rehash
 zstyle ':completion:*' rehash true
 
@@ -46,7 +61,21 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:
 # list of completers to use
 #zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
 #zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' completer _list _expand _complete _ignored _match _correct _approximate _prefix
+#zstyle ':completion:*' completer _list _expand _complete _ignored _match _correct _approximate _prefix
+zstyle ':completion:*' completer \
+    _list \
+    _expand \
+    _complete \
+    _ignored \
+    _match \
+    _correct \
+    _approximate \
+    _prefix
+
+#zstyle ':completion:::::' completer \
+#    _force_rehash \
+#    _complete_plus_last_command_args \
+#    _approximate
 
 # directories
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
@@ -134,6 +163,7 @@ zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 #zstyle ':completion:*' match-original both
 #zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
 #zstyle ':completion:*' max-errors 1
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
 #zstyle ':completion:*' menu select=1
 zstyle ':completion:*' preserve-prefix '//[^/]##/'
 zstyle ':completion:*' prompt 'comp errors:%e>'
@@ -174,3 +204,4 @@ zstyle ':compinstall' filename "$ZDOTDIR/compinstallrc"
 ## init
 #autoload -Uz compinit
 #compinit
+

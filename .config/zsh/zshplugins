@@ -12,7 +12,7 @@
 # theme
 #zgen oh-my-zsh themes/arrow
 
-plugins=(
+plugins+=(
 	akatrevorjay/composure
 	akatrevorjay/fasd
 	psprint/zsnapshot
@@ -24,7 +24,7 @@ plugins=(
 	#psprint/zsh-editing-workbench
 	#psprint/zsh-navigation-tools
 
-	${^plugin_dirs}/*(-/)
+	${^ZDOTDIRS}/plugins/*(-/)
 
 	zsh-users/zsh-completions
 	zsh-users/zsh-history-substring-search

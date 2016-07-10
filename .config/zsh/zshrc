@@ -36,8 +36,10 @@ if ! zgen saved; then
 
 	# TODO check plugins difference on hook and auto-load
 
-	local plugin_dirs=(
+    local -a plugins plugin_dirs
+	plugin_dirs=(
 		${^ZDOTDIRS}/plugins(-/)
+		${^ZDOTDIRS}/plugins-extra(-/)
 	)
 	echo "-- Plugin dirs:" $plugin_dirs
 

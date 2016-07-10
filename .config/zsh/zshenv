@@ -25,7 +25,7 @@
 : ${ZDOTDIR:="$HOME/.zsh"}
 : ${LOCAL_ZDOTDIR:="$HOME/.local/zsh"}
 : ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
-ZDOTDIRS=({$LOCAL_ZDOTDIR,$ZDOTDIR}(-/))
+ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/))
 
 [[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
 

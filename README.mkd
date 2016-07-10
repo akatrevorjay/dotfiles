@@ -30,6 +30,7 @@ Features
   * [zgen] for plugins
   * [airline]/[promptline] based prompt
   * Prefixes prompt with `$HOSTNAME` if you're in through SSH
+  * Linux: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
 * Organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
   * [vim-plug] for plugins
 * [tmux] (with plugins via `tpm`) [dotfiles-tmux]
