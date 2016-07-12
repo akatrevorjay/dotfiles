@@ -10,8 +10,14 @@
 #
 setopt errexit errreturn
 
+# Remove any virtualenvs we may be in
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    path=("${path[@]:#^$VIRTUAL_ENV/*}")
+    hash -r
+fi
+
 # Important that this is absolute or virtualenvs will hate you.
-: ${FADED_DEFAULT_PYTHON:=/usr/bin/python3}
+: ${FADED_DEFAULT_PYTHON:=${commands[python3]}}
 
 faded_d="${XDG_CONFIG_HOME:-$HOME/.config}/faded"
 shim_path=${0:h}
