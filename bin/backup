@@ -1,4 +1,5 @@
 #!/bin/sh
+set -xv
 exec borg create \
   -C lz4 \
   -v \
@@ -8,5 +9,5 @@ exec borg create \
   --exclude-caches \
   --keep-tag-files \
   $BORG_REPO::'{hostname}-{user}-{now}' \
-  $HOME
+  ${1:-$HOME}
 
