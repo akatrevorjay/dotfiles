@@ -1,0 +1,12 @@
+#!/bin/sh
+exec borg create \
+  -C lz4 \
+  -v \
+  -s \
+  -p \
+  --exclude-from ~/.config/borg/exclude \
+  --exclude-caches \
+  --keep-tag-files \
+  $BORG_REPO::'{hostname}-{user}-{now}' \
+  $HOME
+
