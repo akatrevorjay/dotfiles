@@ -20,7 +20,7 @@ Plug 'ryanoasis/vim-devicons'
 "Plug 'junegunn/vim-emoji'
 
 " Show CSS colors as what they truely are.
-"Plug 'ap/vim-css-color'
+Plug 'ap/vim-css-color'
 
 "Plug 'thinca/vim-prettyprint'
 
