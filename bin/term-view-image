@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+if [[ -z "$TERMINOLOGY" || -n "$TMUX$SCREEN" ]]; then
+    echo "Not in terminology or inside of tmux/screen, so not showing image, bro." >&2
+    exit 0
+fi
+
+exec tycat "$@"
