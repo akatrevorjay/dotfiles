@@ -1,0 +1,32 @@
+#!/bin/zsh
+set -eo pipefail
+#set -xv
+
+db="$HOME/.mail"
+qry="path:gmail/**"
+last_sync_rev_file="$db/.last_sync_rev"
+pre_vars_file="$db/.notmuch_new_pre_vars"
+
+function death() {
+  echo "=> deathed: $1" >&2
+  exit 1
+}
+
+echo "=> Reading vars from $pre_vars_file"
+[[ -e "$pre_vars_file" ]] || death "File not found: $pre_vars_file"
+source "$pre_vars_file"
+
+# sync tags remote-to-local
+echo "=> Syncing notmuch tags with X-Keywords headers"
+keywsync -m $db -q "$qry" --mtime $pre_mtime -k -f -v \
+    || death "remote-to-local did not complete"
+
+# store revision of last sync (if you have very short sync times, this might
+# work best)
+echo -n "storing current db revision: "
+notmuch_get_revision $db | tee ${last_sync_rev_file} || death "could not get current revision."
+
+# store revision of last sync (using time from before local-to-remote, this
+# wors best with long sync times)
+#echo -n "storing version from before local-to-remote sync: "
+#echo ${pre_rev} | tee ${last_sync_rev_file}
