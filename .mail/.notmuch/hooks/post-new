@@ -14,7 +14,7 @@ function death() {
 
 echo "=> Reading vars from $pre_vars_file"
 [[ -e "$pre_vars_file" ]] || death "File not found: $pre_vars_file"
-source "$pre_vars_file"
+source "$pre_vars_file" || death "Could not source file: $pre_vars_file"
 
 # sync tags remote-to-local
 echo "=> Syncing notmuch tags with X-Keywords headers"
