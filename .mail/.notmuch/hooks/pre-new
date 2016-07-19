@@ -22,8 +22,13 @@ pre_rev=$(notmuch_get_revision $db)
 
 # sync tags local-to-remote
 #    --more-verbose \
-keywsync -m $db -q "$qry AND lastmod:${last_rev}..${pre_rev}" -t -f -v \
-    || death "local-to-remote did not complete."
+full_qry="$qry AND lastmod:${last_rev}"
+if [[ $last_rev -ne $pre_rev ]]; then
+    full_qry+="..${pre_rev}"
+
+    keywsync -m $db -q "$full_qry" -t -f -v \
+        || death "local-to-remote did not complete."
+fi
 
 pre_mtime=$( date +%s )
 
