@@ -32,5 +32,5 @@ Plug 'gummesson/stereokai.vim'
 Plug 'aereal/vim-colors-japanesque'
 Plug 'bounceme/highwayman'
 Plug 'tyrannicaltoucan/vim-deep-space'
-Plug 'jethrovt/vim-basal-colorscheme'
+"Plug 'jethrovt/vim-basal-colorscheme'
 
