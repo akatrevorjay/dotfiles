@@ -1,0 +1,31 @@
+#!/bin/zsh
+
+lp() {
+    local fzf=$(lpass ls -l \
+                | fzf -1 -m -q "$*" \
+                  --header="DATE NAME [id: ID]" \
+                )
+    set -- ${(f)fzf}
+
+    local line date time name id
+    while [[ $# -gt 0 ]]; do
+        line=($=1)
+        shift
+
+        date=${line:0:1}
+        time=${line:1:1}
+        name=${line:2:-2}
+        id=${${line[-1]}%\]}
+        echo "$name | $id | $date $time"
+
+        [[ -n "$id" ]] || continue
+
+        # ^v=password middle_click=username
+        lpass show --username $id | xclip -i -t STRING
+        lpass show --password $id | xclip -i -t STRING -selection clipboard
+
+        [[ $# -eq 0 ]] || (echo "[Press enter to continue]"; read)
+    done
+}
+
+lp "$@"
