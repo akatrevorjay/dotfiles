@@ -15,3 +15,5 @@
 	# sign all commits (yes torvalds, I know)
 	gpgsign = false
 
+[gpg]
+  program = gpg2
