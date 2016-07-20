@@ -1,0 +1,10 @@
+[github]
+	site = https://github.com
+	endpoint = https://api.github.com
+[reflow]
+	git-server = GitHub
+[constants]
+	minimumApprovals = 1
+	approvalRegex = (?i-mx:lgtm|looks good to me|:\\+1:|:thumbsup:|:shipit:)
+[core]
+	editor = 

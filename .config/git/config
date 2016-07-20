@@ -7,9 +7,10 @@
 
 	path = config.secrets
 	path = config.flow
+	path = config.reflow
 	path = config.whitespace
 	path = config.filters
 	path = config.misc
 
+	path = secrets
 	path = config.trevorj
-
