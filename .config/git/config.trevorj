@@ -3,6 +3,7 @@
 	name = Trevor Joynson (trevorj)
 	email = github@skywww.net
   #signingkey = 9871F640
+  signingkey = 2160F8F8
 
 [github]
 	user = akatrevorjay

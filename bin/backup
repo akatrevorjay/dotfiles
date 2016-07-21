@@ -1,5 +1,11 @@
-#!/bin/sh
+#!/bin/zsh
 set -xv
+
+root="${1:-$HOME}"
+name="${${root#/}//\//_}"
+
+[[ $# -eq 0 ]] || shift
+
 exec borg create \
   -C lz4 \
   -v \
@@ -8,6 +14,6 @@ exec borg create \
   --exclude-from ~/.config/borg/exclude \
   --exclude-caches \
   --keep-tag-files \
-  $BORG_REPO::'{hostname}-{user}-{now}' \
-  ${1:-$HOME}
+  $BORG_REPO::"{hostname}-{user}-${name}-{now}" \
+  "$@" "$root"
 

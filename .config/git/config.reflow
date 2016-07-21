@@ -6,5 +6,3 @@
 [constants]
 	minimumApprovals = 1
 	approvalRegex = (?i-mx:lgtm|looks good to me|:\\+1:|:thumbsup:|:shipit:)
-[core]
-	editor = 

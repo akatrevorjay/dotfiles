@@ -1,2 +1,7 @@
 #!/bin/zsh
-! (( ${+commands[nvim]} )) || alias vim='nvim'
+
+alias viki='vim -c VimwikiIndex'
+
+(( ${+commands[nvim]} )) || return
+
+alias vim='nvim'
