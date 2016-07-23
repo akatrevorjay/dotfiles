@@ -1,19 +1,27 @@
 #!/bin/zsh
+set -eo pipefail
 set -xv
 
-root="${1:-$HOME}"
-name="${${root#/}//\//_}"
+[[ -n $1 ]] || set -- "$HOME" "${@:2}"
+root=$1; shift
+name=${${root#/}//\//_}
 
-[[ $# -eq 0 ]] || shift
+cmd=()
+#[[ $UID -eq 0 ]] || cmd+=(sudo -E --)
 
-exec borg create \
-  -C lz4 \
-  -v \
-  -s \
-  -p \
-  --exclude-from ~/.config/borg/exclude \
-  --exclude-caches \
-  --keep-tag-files \
-  $BORG_REPO::"{hostname}-{user}-${name}-{now}" \
-  "$@" "$root"
+cmd+=(
+  borg create
+  #-C lz4
+  #-C zlib,9
+  -C lzma,9
+  -v
+  -s
+  -p
+  --exclude-from $HOME/.config/borg/exclude
+  --exclude-caches
+  --keep-tag-files
+  "$BORG_REPO::{hostname}-{user}-${name}-{now}"
+  "$@" $root
+)
 
+exec $=cmd
