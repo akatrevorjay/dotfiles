@@ -39,9 +39,12 @@ SYSTEM=${SYSTEM:l}
 : ${SHORT_HOSTNAME:=${HOST%%.*}}
 : ${SHORT_HOSTNAME:=unknown}
 
-: ${DE:=generic}
-: ${BROWSER:=google-chrome}
-: ${EDITOR:=nvim}
+#: ${DE:=generic}
+#: ${BROWSER:=google-chrome}
+#: ${EDITOR:=nvim}
+
+: ${CHROMIUM_USER_FLAGS:="--password-store=detect"}
+export CHROMIUM_USER_FLAGS
 
 case "$TERM" in
 	xterm|screen) TERM=$TERM-256color ;;

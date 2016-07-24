@@ -4,6 +4,9 @@ Plug 'edkolev/promptline.vim'
 " Generate tmux status themes from airline
 Plug 'edkolev/tmuxline.vim'
 
+" Prettify tabs in terminal vim
+Plug 'mkitt/tabline.vim'
+
 " Airline
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-airline/vim-airline'
