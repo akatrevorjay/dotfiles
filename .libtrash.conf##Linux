@@ -159,7 +159,7 @@ IGNORE_EXTENSIONS = o;log;aux
 # "normally", i.e., they will be moved to your trash can rather than
 # really destroyed:
   
-IGNORE_HIDDEN = YES
+IGNORE_HIDDEN = NO
 
 
 # This setting defines whether files whose names end in a tilde ('~')
