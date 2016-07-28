@@ -20,3 +20,4 @@ glob-in-fpath() {
     echo ${^fpath}/${^(q)@}
 }
 
+first-in-fpath "$@"

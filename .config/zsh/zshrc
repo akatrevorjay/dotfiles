@@ -19,38 +19,40 @@ setopt interactivecomments
 zmodload -i zsh/stat
 disable stat
 
-# zgen
-ZGEN_RESET_ON_CHANGE=(
-	${^ZDOTDIRS}/zsh{env,rc,plugins}(-.)
-)
-source "$HOME/.zgen/zgen.zsh"
-
-# plugin conf
+# enable all of the highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
+# secrets
 source-with-force ~/.zsh/secrets
 
-# if the init scipt doesn't exist
-if ! zgen saved; then
-	echo "-- Creating a zgen save"
+# zplug
+: ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
+: ${ZPLUG_DIR:=$XDG_CACHE_HOME/zplug/repos/zplug/zplug}
+: ${ZPLUG_REPOS:=$XDG_CACHE_HOME/zplug/repos}
+: ${ZPLUG_CLONE_DEPTH:=1}
 
-	# TODO check plugins difference on hook and auto-load
+if [[ ! -d $ZPLUG_DIR ]]; then
+    echo "- No zplug found in \$path or ZPLUG_HOME=$ZPLUG_HOME" >&2
 
-    local -a plugins plugin_dirs
-	plugin_dirs=(
-		${^ZDOTDIRS}/plugins(-/)
-		${^ZDOTDIRS}/plugins-extra(-/)
-	)
-	echo "-- Plugin dirs:" $plugin_dirs
-
-	source-with-force ${^ZDOTDIRS}/zshplugins(-.)
-
-	echo "-- Plugins:" ${plugins#(${~${(j:|:)plugin_dirs}})/}
-	echo ${(F)plugins[@]} | zgen loadall
-
-	# save all to init script
-	zgen save
+    echo "- Cloning zplug into ZPLUG_HOME=$ZPLUG_HOME" >&2
+    if ! git clone ${ZPLUG_REPO:-https://github.com/akatrevorjay/zplug.git} $ZPLUG_HOME/repos/zplug/zplug; then
+        echo "- Failed." >&2
+        return 1
+    fi
 fi
+source $ZPLUG_DIR/init.zsh || return 1
+
+# TODO check plugins difference on hook and auto-load
+source-with-force ${^ZDOTDIRS}/zshplugins(-.)
+
+if ! zplug check --verbose; then
+	printf "-- Found changes in zshplugins. Install them? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+zplug load --verbose
 
 # Set up the prompt
 case "$USERNAME" in

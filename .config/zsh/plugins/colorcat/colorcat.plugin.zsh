@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-#fpath+=(${0:h}/functions)
+fpath+=(${0:h}/functions)
 
 # Colored up cat!
 autoload -Uz colorcat

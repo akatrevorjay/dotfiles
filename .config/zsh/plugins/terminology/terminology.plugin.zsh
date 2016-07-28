@@ -2,6 +2,8 @@
 
 [[ -n "$TERMINOLOGY" && -z "$TMUX$SCREEN" ]] || return
 
+fpath+=(${0:h}/functions)
+
 export TERMINOLOGY_LS_ORIG="command ${(Q)${$(alias -m ls)#*=}:-ls}"
 
 autoload -Uz \

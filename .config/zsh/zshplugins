@@ -1,32 +1,38 @@
 #!/bin/zsh
 
-# oh-my-shit
-#zgen oh-my-zsh
-#zgen prezto
+zplug "stedolan/jq", \
+    from:gh-r, \
+    as:command, \
+    rename-to:jq, \
+    if:"(( ! $+commands[jq] ))"
 
-# oh-my-shit plugins (try to avoid)
-#zgen oh-my-zsh plugins/git
-#zgen oh-my-zsh plugins/sudo
-#zgen oh-my-zsh plugins/command-not-found
+zplug "junegunn/fzf-bin", \
+    from:gh-r, \
+    as:command, \
+    rename-to:fzf, \
+    use:'*${OSTYPE%-gnu}*amd64*', \
+    if:"(( ! $+commands[fzf] ))"
 
-# theme
-#zgen oh-my-zsh themes/arrow
+zplug "b4b4r07/emoji-cli"
 
-plugins+=(
-	akatrevorjay/composure
-	akatrevorjay/fasd
-	psprint/zsnapshot
-	mollifier/zload
-	kennethreitz/autoenv
+#zplug "zplug/zplug"
 
-	#akatrevorjay/macosx-shell-scripts
-	#psprint/zsh-cmd-architect
-	#psprint/zsh-editing-workbench
-	#psprint/zsh-navigation-tools
+zplug "akatrevorjay/composure"
+zplug "akatrevorjay/fasd"
+zplug "kennethreitz/autoenv"
+zplug "psprint/zsnapshot", lazy:true
+zplug "mollifier/zload", lazy:true
 
-	${^ZDOTDIRS}/plugins/*(-/)
+#zplug "akatrevorjay/macosx-shell-scripts"
+#zplug "psprint/zsh-cmd-architect"
+#zplug "psprint/zsh-editing-workbench"
+#zplug "psprint/zsh-navigation-tools"
 
-	zsh-users/zsh-completions
-	zsh-users/zsh-history-substring-search
-	zsh-users/zsh-syntax-highlighting
-)
+for p in ${^ZDOTDIRS}/plugins/*(-/); do
+    zplug "$p", from:local
+done
+
+zplug "zsh-users/zsh-completions", nice:10
+zplug "zsh-users/zsh-history-substring-search", nice:12
+zplug "zsh-users/zsh-syntax-highlighting", nice:15
+

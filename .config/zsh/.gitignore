@@ -1,5 +1,8 @@
-old-*
+*old*
 _*
+*~
+*.zwc
+.cs_files
 .zprezto
 .zcompdump*
 plugins/.gitkeep

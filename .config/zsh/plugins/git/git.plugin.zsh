@@ -3,20 +3,24 @@
 # Git aliases.
 #
 
-load_funcs() {
-    local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
-    local mod_function
+(( $+commands[git] )) || return 1
 
-    # Add functions dir to fpath
-    fpath=(${0:h}/functions(/FN) ${fpath})
+fpath+=(${0:h}/functions)
 
-    function {
-        setopt LOCAL_OPTIONS EXTENDED_GLOB
-        for mod_function in ${0:h}/functions/${~function_glob}; do
-            autoload -Uz ${mod_function}
-        done
-    }
-}
+#load_funcs() {
+#    local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
+#    local mod_function
+#
+#    # Add functions dir to fpath
+#    fpath=(${0:h}/functions(/FN) ${fpath})
+#
+#    function {
+#        setopt LOCAL_OPTIONS EXTENDED_GLOB
+#        for mod_function in ${0:h}/functions/${~function_glob}; do
+#            autoload -Uz ${mod_function}
+#        done
+#    }
+#}
 
 #load_funcs
 
