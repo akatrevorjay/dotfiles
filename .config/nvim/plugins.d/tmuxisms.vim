@@ -1,5 +1,23 @@
 
 if ! exists($SHELL)
+  if has('nvim')
+    Plug 'hkupty/nvimux'
+    " This are the defaults
+    let g:nvimux_prefix='<C-a>'
+    let g:nvimux_quickterm_provider = 'Ttoggle'
+    let g:nvimux_quickterm_direction = 'botright'
+    let g:nvimux_quickterm_orientation = 'vertical'
+    let g:nvimux_quickterm_size = ''
+    "let g:nvimux_term = ':term<CR>'
+    "let g:nvimux_quickterm_provider = 'Tnew'
+    let g:nvimux_new_term = 'Tnew'
+    let g:nvimux_close_term = 'Tclose'
+
+    let nvimux_open_term_by_default=1
+
+    "let g:nvimux_override_t=":term<CR>"
+  endif
+
   finish
 endif
 

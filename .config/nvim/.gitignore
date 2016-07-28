@@ -1,6 +1,6 @@
 .ropeproject
 .DS_Store
 .*~
-
+*.old
 /disabled/
 
