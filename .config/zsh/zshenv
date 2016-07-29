@@ -13,6 +13,8 @@
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
+[[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
+
 # XDG defaults
 : ${XDG_CONFIG_HOME:="$HOME/.config"}
 : ${XDG_CACHE_HOME:="$HOME/.cache"}

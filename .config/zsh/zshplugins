@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+zplug "zplug/zplug"
+
 zplug "stedolan/jq", \
     from:gh-r, \
     as:command, \
@@ -15,11 +17,64 @@ zplug "junegunn/fzf-bin", \
 
 zplug "b4b4r07/emoji-cli"
 
-#zplug "zplug/zplug"
+#zplug "jreese/zsh-titles"
+#zplug "psprint/zsh-select"
+
+zplug "marzocchi/zsh-notify"
+zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
+zstyle ':notify:*' error-title "wow such #fail"
+zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
+zstyle ':notify:*' success-title "very #success. wow"
+
+#zplug 'joepvd/zsh-hints', use:"zsh-hints"
+
+#zplug "psprint/ztrace"  #, hook-load:"ztstart 10
+
+zplug "mafredri/zsh-async"
+zplug "seletskiy/zsh-fuzzy-search-and-edit", \
+    hook-load:"bindkey '^P' fuzzy-search-and-edit"
+
+#zplug "tymm/zsh-directory-history"
+# Bind up/down arrow keys to navigate through your history
+#bindkey "\e[A" directory-history-search-backward
+#bindkey "\e[B" directory-history-search-forward
+
+zplug "oknowton/zsh-dwim"
+
+zplug "Tarrasch/zsh-functional"
+zplug "Tarrasch/zsh-colors"
+zplug "Tarrasch/zsh-bd"
+
+GENCOMPL_FPATH=$ZDOTDIR/completions
+zplug "RobSis/zsh-completion-generator"
+
+zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+
+zplug "hlissner/zsh-autopair", nice:10
+
+zplug "hchbaw/zce.zsh", use:'*.zsh', \
+    hook-load:"bindkey "^Xz" zce"
+
+#zplug "unixorn/tumult.plugin.zsh", if:"[[ $OSTYPE = darwin* ]]"
+
+zplug 'LockonS/terminal-workload-report'
+
+zplug 'aphelionz/strerror.plugin.zsh'
+
+zplug "hlohm/mfunc"
+
+zplug "uvaes/fzf-marks"
+
+#zplug 'willghatch/zsh-snippets'
+
+# Bind CTRL+k and CTRL+j to substring search
+bindkey '^j' history-substring-search-up
+bindkey '^k' history-substring-search-down
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
 zplug "kennethreitz/autoenv"
+
 zplug "psprint/zsnapshot", lazy:true
 zplug "mollifier/zload", lazy:true
 
@@ -32,7 +87,10 @@ for p in ${^ZDOTDIRS}/plugins/*(-/); do
     zplug "$p", from:local
 done
 
-zplug "zsh-users/zsh-completions", nice:10
-zplug "zsh-users/zsh-history-substring-search", nice:12
-zplug "zsh-users/zsh-syntax-highlighting", nice:15
+#zplug "spwhitt/nix-zsh-completions"
+
+zplug "zsh-users/zsh-completions", nice:5
+
+zplug "zsh-users/zsh-history-substring-search", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", nice:12
 

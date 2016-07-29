@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
     [[ -n "$id" ]] || continue
 
     # ^v=password middle_click=username
-    lpass show --username $id | xclip -i -t STRING
+    #lpass show --username $id | xclip -i -t STRING
     lpass show --password $id | xclip -i -t STRING -selection clipboard
 
     [[ $# -eq 0 ]] || (echo "[Press enter to continue]"; read)

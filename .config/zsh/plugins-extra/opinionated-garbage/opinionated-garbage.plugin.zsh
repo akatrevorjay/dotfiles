@@ -73,11 +73,28 @@ unsetopt case_glob
 # Suffix aliases
 #
 
-for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini); do
-	alias -s $s=vim
+# Mac OS X Everywhere
+if [[ "$OSTYPE" == darwin* ]]; then
+    true;
+elif [[ "$OSTYPE" == cygwin* ]]; then
+  alias open='cygstart'
+else
+  alias open='xdg-open'
+fi
+
+for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini c{,pp} h py pl pm {z,ba,}sh css sass less); do
+	alias -s $s=$EDITOR
 done
 
-for s (net com org io); do
-	alias -s $s=$BROWSER
+for s (net com org io in tv); do
+	alias -s $s=${BROWSER:-google-chrome}
+done
+
+for s (mp4 avi mov mpeg mp3 ogg jpg png gif webp ico pdf epub dvi dmg iso); do
+    alias -s $s=open
+done
+
+for s (gz bz2 lz xz lzma zip tar rar cpio 7z); do
+    alias -s $s=dtrx
 done
 
