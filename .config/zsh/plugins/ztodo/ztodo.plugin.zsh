@@ -1,8 +1,11 @@
 (( $+functions[ztodo] )) || return 1
 
-function ztodo_chpwd() {
-    ztodo
+: ${ZTODO_CHPWD_LIST:=true}
+
+function -ztodo-chpwd() {
+    ztodo || return 0
+    [[ $ZTODO_CHPWD_LIST != 'true' ]] || ztodo list
 }
 
-chpwd_functions+=(ztodo_chpwd)
+chpwd_functions+=(-ztodo-chpwd)
 
