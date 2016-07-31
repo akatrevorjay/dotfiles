@@ -11,15 +11,22 @@ cmd=()
 
 cmd+=(
   borg create
+
+  # rsync.net path to borg 1.x
+  --remote-path /usr/local/bin/borg1/borg1
+
   #-C lz4
   #-C zlib,9
   -C lzma,9
+
   -v
   -s
   -p
+
   --exclude-from $HOME/.config/borg/exclude
   --exclude-caches
   --keep-tag-files
+
   "$BORG_REPO::{hostname}-{user}-${name}-{now}"
   "$@" $root
 )
