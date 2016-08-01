@@ -39,7 +39,6 @@ let &cpo=s:cpo_save
 unlet s:cpo_save
 
 set helplang=en
-set modeline
 "set verbose=2
 "set window=55
 

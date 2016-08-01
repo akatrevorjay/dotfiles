@@ -1,0 +1,7 @@
+[*]
+	cc = /usr/lib/ccache/../../bin
+	c++ = /usr/lib/ccache/../../bin
+	ld = /usr/bin
+	make = /usr/bin
+	cpus = 8
+	ccache = /usr/bin

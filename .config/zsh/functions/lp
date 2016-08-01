@@ -1,7 +1,7 @@
 #!/bin/zsh
 set -eo pipefail
 
-local fzf=$(\lpass ls -l \
+local fzf=$(\lpass ls --sync=no -l \
             | fzf -1 -m -q "$*" \
               --header="DATE NAME [id: ID]" \
             )
@@ -22,7 +22,7 @@ while [[ $# -gt 0 ]]; do
 
     # ^v=password middle_click=username
     #lpass show --username $id | xclip -i -t STRING
-    lpass show --password $id | xclip -i -t STRING -selection clipboard
+    lpass show --sync=no --password $id | xclip -i -t STRING -selection clipboard
 
     [[ $# -eq 0 ]] || (echo "[Press enter to continue]"; read)
 done

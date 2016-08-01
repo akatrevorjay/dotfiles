@@ -48,38 +48,42 @@ SYSTEM=${SYSTEM:l}
 : ${CHROMIUM_USER_FLAGS:="--password-store=detect"}
 export CHROMIUM_USER_FLAGS
 
-case "$TERM" in
-	xterm|screen) TERM=$TERM-256color ;;
-esac
+if [[ $(echotc Co) -ge 256 ]]; then
+    case $TERM in
+	    xterm|screen) TERM=$TERM-256color ;;
+    esac
+fi
 
 ##
 ## path
 ##
 
 # Dedupe entries
-typeset -U {,f,man,info}path
+typeset -U {,f,man,info,cd}path
 
-path=(
+#function prefix-array() {
+#    local name="PREFIX_$1"
+#    typeset -U $name
+#}
+
+prefix_path=(
 	# user
 	$HOME/crypt/bin $HOME/bin $HOME/.local/bin
 
-	# golang
-	#$HOME/go/bin
-	# pyenv
-	#$HOME/.pyenv/shims
-	# miniconda
-	#$HOME/miniconda3/bin
-	# rbenv
-	#$HOME/.rbenv/shims
+	${^ZDOTDIRS}/{bin,sbin}
+)
 
-	# standard
-	#/usr/local/bin /usr/local/sbin /usr/bin /usr/sbin /bin /sbin
-   
+path=(
+    ${prefix_path[@]}
 	${path[@]}
 )
 
-fpath=(
+prefix_fpath=(
 	${^ZDOTDIRS}/{functions,completions}
+)
+
+fpath=(
+    ${(@)prefix_fpath}
 	${(@)fpath}
 )
 
@@ -106,12 +110,17 @@ add-prefix-paths $HOME/.local
 # OS specifics
 case "${SYSTEM:l}" in
 	linux*)
-		path=(
+		prefix_path=(
 			# ccache
+			"/usr/lib/ccontrol"
 			"/usr/lib/ccache"
 
-			${(@)path}
+			${(@)prefix_path}
 		)
+        path=(
+            ${prefix_path[@]}
+	        ${path[@]}
+        )
 		#fix-path-order
 		;;
 	darwin*)
@@ -155,8 +164,11 @@ esac
 
 # Go
 export GOPATH="$HOME/go"
-path+=("$GOPATH/bin")
-
+prefix_path+=("$GOPATH/bin")
+path=(
+    ${prefix_path[@]}
+	${path[@]}
+)
 
 ##
 ## local

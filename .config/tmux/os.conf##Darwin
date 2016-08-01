@@ -1,0 +1,4 @@
+
+# Start tmux on login
+set -g @continuum-boot-options 'iterm'
+

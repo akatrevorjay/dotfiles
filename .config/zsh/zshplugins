@@ -1,6 +1,8 @@
 #!/bin/zsh
 
 zplug "zplug/zplug"
+zplug "willghatch/zsh-hooks"
+zplug "mafredri/zsh-async"
 
 zplug "stedolan/jq", \
     from:gh-r, \
@@ -30,9 +32,8 @@ zstyle ':notify:*' success-title "very #success. wow"
 
 #zplug "psprint/ztrace"  #, hook-load:"ztstart 10
 
-zplug "mafredri/zsh-async"
-zplug "seletskiy/zsh-fuzzy-search-and-edit", \
-    hook-load:"bindkey '^P' fuzzy-search-and-edit"
+#zplug "seletskiy/zsh-fuzzy-search-and-edit", \
+#    hook-load:"bindkey '^P' fuzzy-search-and-edit"
 
 #zplug "tymm/zsh-directory-history"
 # Bind up/down arrow keys to navigate through your history
@@ -65,7 +66,7 @@ zplug "hlohm/mfunc"
 
 zplug "uvaes/fzf-marks"
 
-#zplug 'willghatch/zsh-snippets'
+zplug 'willghatch/zsh-snippets'
 
 # Bind CTRL+k and CTRL+j to substring search
 bindkey '^j' history-substring-search-up

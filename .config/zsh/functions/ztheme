@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+local name
+for name in "$@"; do
+    for fn in ${^ZDOTDIRS}/themes/$name{,.zsh,.sh}(-.); do
+        source $fn
+        return 0
+    done
+done
+return 1
+

@@ -2,5 +2,5 @@
 setopt LOCAL_OPTIONS EXTENDED_GLOB NULLGLOB
 local function_glob='^([_.]*|prompt_*_setup|README*|*.plugin.zsh)(-.N:t)'
 local funcs=(${^argv}/${~function_glob})
-[[ $#funcs -gt 0 ]] || continue
+[[ $#funcs -gt 0 ]] || return 0
 autoload -Uz ${(@)funcs}

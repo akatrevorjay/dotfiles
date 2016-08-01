@@ -3,7 +3,10 @@
 ""
 
 "set termguicolors
+
 set background=dark
+" Always dark bg damnit, stop resetting it on my swan
+Gautocmd ColorScheme * set background=dark
 
 ""
 "" ColorScheme:
@@ -96,8 +99,11 @@ let g:triplejelly_background_color = '000000'
 "Gautocmd highlight Identifier guibg=#121255
 "Gautocmd highlight String guibg=#331133
 
-colorscheme termschool
-let g:airline_theme = 'jellybeans'
+"colorscheme termschool
+"let g:airline_theme = 'jellybeans'
+
+colorscheme hybrid
+let g:airline_theme = 'hybrid'
 
 " This actually messes up numerous schemes.
 let g:colorschemer_auto = 0

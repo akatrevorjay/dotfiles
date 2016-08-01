@@ -82,7 +82,7 @@ else
   alias open='xdg-open'
 fi
 
-for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini c{,pp} h py pl pm {z,ba,}sh css sass less); do
+for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini c{,pp} h pm css sass less); do
 	alias -s $s=$EDITOR
 done
 

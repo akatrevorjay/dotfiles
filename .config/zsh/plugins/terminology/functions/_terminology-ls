@@ -1,0 +1,21 @@
+#compdef terminology-ls
+
+#_ls "$@"
+
+#_tyls "$@"
+
+#_ls "$@"
+
+_alternative 'args:tyls options:_tyls'
+
+#local -a arguments
+#arguments=(
+#    '(-a)-a[List all files]'
+#    '(--medium --small)--medium[medium preview image]'
+#    '(--small --medium)--small[small preview image]'
+
+#    '*:files:_files'
+#)
+#_arguments -s $arguments
+
+_ls "$@"

@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+local fn=$_TERRAFORM_COMP_CACHE
+[[ -n "$fn" ]] || return 1
+
+if [[ ! -e "$fn" ]]; then
+    local url="https://github.com/hashicorp/terraform/raw/master/contrib/zsh-completion/_terraform"
+
+    if [ ${commands[terraform]} -nt $_TERRAFORM_COMP_CACHE -o ! -s $_TERRAFORM_COMP_CACHE ]; then
+        echo "- Downloading new terraform completion"
+        curl -sL "$url" > ${_TERRAFORM_COMP_CACHE}.part || return 1
+        mv ${_TERRAFORM_COMP_CACHE}.part $_TERRAFORM_COMP_CACHE || return 1
+    fi
+fi
+
+functions[_terraform]="$(cat $_TERRAFORM_COMP_CACHE)"
+_terraform "$@"
+

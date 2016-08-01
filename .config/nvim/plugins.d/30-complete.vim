@@ -2,7 +2,7 @@
 Plug $GOPATH.'/src/github.com/junegunn/fzf'
 
 " Python: Jedi
-"Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 
 if has('nvim')
 	Plug 'Shougo/deoplete.nvim'

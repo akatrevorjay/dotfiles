@@ -1,0 +1,11 @@
+#compdef tyls
+
+#local -a arguments
+arguments=(
+    '(-a --all)-a[List all files]'
+    '(--medium --small)--medium[medium preview image]'
+    '(--small --medium)--small[small preview image]'
+
+    '*:files:_files'
+)
+_arguments -s $arguments

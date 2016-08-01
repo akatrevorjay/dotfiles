@@ -3,6 +3,7 @@
 .AppleDouble
 .LSOverride
 .DS_*
+.zsh_local*
 
 # Icon must end with two \r
 Icon

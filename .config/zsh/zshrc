@@ -32,12 +32,29 @@ source-with-force ~/.zsh/secrets
 : ${ZPLUG_REPOS:=$ZPLUG_HOME/repos}
 : ${ZPLUG_CLONE_DEPTH:=1}
 
-# Reset zplugs
-zplugs=()
-
 : ${ZPLUG_DIR:=$ZPLUG_REPOS/zplug/zplug}
 : ${ZPLUG_REPO:=https://github.com/akatrevorjay/zplug.git}
 
+ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.))
+
+# Reset zplugs
+typeset -a zplug_q=()
+typeset -A zplugs=()
+
+# Stub zplug that just queues the commands for later
+function zplugins::zplug::stub {
+    set -- zplug "$@"
+    zplug_q+=("${(q)@}" $'\0')
+}
+
+function zplug() {
+    zplugins::zplug::stub "$@"
+}
+
+# TODO check plugins difference on hook and auto-load
+source-with-force $ZPLUGINS_FILES
+
+# Install zplug if wj don't have it.
 if [[ ! -d $ZPLUG_DIR ]]; then
     echo "- No zplug found in ZPLUG_DIR=$ZPLUG_DIR" >&2
 
@@ -48,37 +65,49 @@ if [[ ! -d $ZPLUG_DIR ]]; then
     fi
 fi
 
-source $ZPLUG_DIR/init.zsh || return 1
-
-function zplug() {
-    # Replace self. Lazy loading.
-    unfunction zplug
-    autoload -Uz zplug
-
-    # TODO check plugins difference on hook and auto-load
-    source-with-force ${^ZDOTDIRS}/zshplugins(-.)
+function zplugins::zplug::apply {
+    # Run through zplug_q
+    local p
+    for p in ${(0)zplug_q}; do
+        set -- ${(Z+Cn+)p}
+        "$@"
+    done
 }
 
-function zplugins-cache-is-clean() {
+function zplugins::zplug::lazy {
+    unfunction zplug
+    source $ZPLUG_DIR/init.zsh
+
+    zplugins::zplug::apply
+
+    zplug "$@"
+}
+
+function zplug() {
+    zplugins::zplug::lazy "$@"
+}
+
+function zplugins::cache::is-clean() {
     if [ ! -f $ZPLUG_CACHE_FILE ]; then
         echo "- Cache file not found: $ZPLUG_CACHE_FILE" >&2
         return 1
     fi
 
     local plugins_file
-    for plugins_file in ${^ZDOTDIRS}/zshplugins(-.); do
-        if [ $plugins_file -nt $ZPLUG_CACHE_FILE ]; then
+    for plugins_file in ${(@)ZPLUGINS_FILES}; do
+        if [ $plugins_file -nt $ZPLUG_CACHE_FILE -o $plugins_file -nt $plugins_file:h ]; then
             echo "- Detected change in $plugins_file" >&2
             return 100
         fi
     done
 }
 
-if zplugins-cache-is-clean; then
+if zplugins::cache::is-clean; then
     echo "- Loading cache"
     source $ZPLUG_CACHE_FILE
 else
-    echo "- Creating cache"
+    echo "- Creating cache (may take a second)"
+    eval 
 
     if ! zplug check --verbose; then
 	    printf "-- Found changes in zshplugins. Install them? [y/N]: "
@@ -91,17 +120,10 @@ else
 fi
 
 # Set up the prompt
-case "$USERNAME" in
-	root)
-		autoload -Uz promptinit
-		promptinit
-		prompt walters
-		;;
-	*) source "$ZDOTDIR/themes/airline2.zsh" ;;
-esac
+autoload -Uz ztheme
+ztheme $ZSH_THEME $USER default
 
 # local
-# TODO Move to $XDG local path
 source-with-force $LOCAL_ZDOTDIR/zshrc
 
 # This is annoying to have earlier.
