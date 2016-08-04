@@ -109,7 +109,7 @@ map <Leader>u :GundoToggle<cr>
 "nnoremap * *:call feedkeys("\<S-n>")<CR>
 
 " Cancel highlight search word
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR>
+"nnoremap <silent> <C-l> :<C-u>nohlsearch<CR>
 
 " When type 'x' key(delete), do not add yank register
 nnoremap x "_x

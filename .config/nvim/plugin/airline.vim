@@ -173,25 +173,43 @@ let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 "let g:airline#extensions#capslock#enabled = 1
 
-let g:airline#extensions#promptline#enabled = 1
-let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
-"let airline#extensions#promptline#color_template = 'visual'
-let airline#extensions#promptline#color_template = 'normal'
-
 let g:airline#extensions#ycm#enabled = 1
 "let g:airline#extensions#ycm#error_symbol = 'E:'
 "let g:airline#extensions#ycm#warning_symbol = 'W:'
 
+let g:airline#extensions#promptline#enabled = 1
+let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
+
+let airline#extensions#promptline#color_template = 'normal'  " (default)
+"let airline#extensions#promptline#color_template = 'insert'
+"let airline#extensions#promptline#color_template = 'visual'
+"let airline#extensions#promptline#color_template = 'replace'
+
 " sections (a, b, c, x, y, z, warn) are optional
 let g:promptline_preset = {
-      \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
-      \'b' : [ promptline#slices#user() ],
-      \'c' : [ promptline#slices#cwd() ],
-      \'x' : [ promptline#slices#jobs() ],
-      \'y' : [ promptline#slices#git_status(), promptline#slices#vcs_branch() ],
-      \'z' : [ promptline#slices#python_virtualenv() ],
-      \'warn' : [ promptline#slices#last_exit_code(), promptline#slices#jobs(), promptline#slices#battery() ],
-      \}
+  \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
+  \'b' : [ promptline#slices#user() ],
+  \'c' : [ promptline#slices#cwd() ],
+  \'x' : [
+    \promptline#slices#git_status(),
+    \promptline#slices#vcs_branch()
+    \],
+  \'y' : [
+    \'$(vi_mode_prompt_info)'
+    \],
+  \'z' : [ promptline#slices#python_virtualenv() ],
+  \'warn' : [
+    \promptline#slices#last_exit_code(),
+    \promptline#slices#jobs(),
+    \promptline#slices#battery({'threshold': 25})
+    \]
+  \}
+  "\'options': {
+  "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
+  "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],
+  "  \'left_only_sections' : [ 'b', 'a', 'c' ]
+  "  \}
+  "\}
 
       "\'y' : [ promptline#slices#vcs_branch() ],
 
@@ -201,34 +219,134 @@ let g:promptline_preset = {
 " more than one slice can be placed in a section, e.g. print both host and user in section 'a':
 "       \'a': [ promptline#slices#host(), promptline#slices#user() ],
 
+"  enable/disable usage of powerline symbols for separators (default on) >
+let g:promptline_powerline_symbols = 0
+
+" default
+  let g:promptline_symbols = {
+      \ 'left'           : '',
+      \ 'right'          : '',
+      \ 'left_alt'       : '>',
+      \ 'right_alt'      : '<',
+      \ 'dir_sep'        : ' / ',
+      \ 'truncation'     : '...',
+      \ 'vcs_branch'     : '',
+      \ 'battery'        : '',
+      \ 'space'          : ' '}
+
+
+"let g:promptline_symbols = {
+"    \ 'left': '',
+"    \ 'left_alt': '',
+"    \ 'right': '',
+"    \ 'right_alt': ''
+"    \ }
+
+let g:promptline_symbols = {
+    \ 'left'       : '',
+    \ 'left_alt'   : '',
+    \ 'right'      : '',
+    \ 'right_alt'  : '',
+    \ 'dir_sep'    : '',
+    \ 'truncation' : ' ',
+    \ 'vcs_branch' : '',
+    \ 'battery'    : ' ',
+    \ 'space'      : ' '}
+
+"                 
+"
+" 
+" 
+" 
+"    o
+" 
+" 
+" 
+" 
+"  
+"                                      
+"                       
+"             
+"         
+" 
+" 
+"
+" 
+"
+" 
+"                                     "       
+"       
+" 
+"    
+"  
+"     
+" 
+" 
+" 
+" 
+" 
+"           
+"    
+" 
+" 
+" 
+" 
+" 
+" 
+" 
+" 
+
+"let g:promptline_symbols = {
+"    \ 'left'       : '',
+"    \ 'left_alt'   : '>',
+"    \ 'dir_sep'    : ' / ',
+"    \ 'truncation' : '...',
+"    \ 'vcs_branch' : '',
+"    \ 'space'      : ' '}
+
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 
-" unicode symbols
+
+""
+"" unicode symbols
+""
+
 "let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
 "let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
+"let g:airline_symbols.crypt = '🔒'
 "let g:airline_symbols.linenr = '␊'
 "let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+"let g:airline_symbols.linenr = '¶'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'ρ'
+"let g:airline_symbols.paste = 'Þ'
+"let g:airline_symbols.paste = '∥'
+"let g:airline_symbols.notexists = '∄'
+"let g:airline_symbols.whitespace = 'Ξ'
 
-" powerline symbols
+""
+"" powerline symbols
+""
+
+"let g:airline_left_sep = '▶'
+let g:airline_left_sep = ''
+"let g:airline_left_sep = ''
+
+"let g:airline_right_sep = '◀'
+let g:airline_right_sep = ''
+"let g:airline_right_sep = ''
+
 "let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 "let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
+"let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+let g:airline_symbols.crypt = ''
 
 """ old vim-powerline symbols
 ""let g:airline_left_sep = '⮀'

@@ -1,7 +1,7 @@
 #!/bin/zsh
 # Set base history settings, ie extended to include timestamps, don't trample
-setopt histignorealldups sharehistory incappendhistorytime extendedhistory
-setopt histreduceblanks histlexwords
+#setopt histignorealldups sharehistory extendedhistory
+#setopt histreduceblanks histlexwords
 
 # Keep many lines of history within the shell and save it to $ZDOTDIR/.zsh_history:
 HISTSIZE=100000

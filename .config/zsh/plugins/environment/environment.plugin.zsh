@@ -30,3 +30,57 @@ setopt multios
 # if all elements exited with zero status.
 setopt pipe_fail
 
+# Auto add chpwds to thj dirstack
+setopt auto_pushd
+
+setopt auto_cd cdable_vars pushd_to_home pushd_minus pushd_ignore_dups
+export DIRSTAC
+
+setopt list_packed list_rows_first list_types
+
+setopt auto_param_slash
+setopt auto_param_keys
+
+setopt no_global_export
+setopt flow_control
+
+setopt path_script
+
+setopt c_bases
+setopt c_precedences
+
+setopt eval_lineno
+setopt multios
+#setopt source_trace
+setopt ksh_option_print
+
+#setopt over_strike
+setopt combining_chars
+setopt traps_async
+
+setopt bang_hist
+setopt extended_history share_history inc_append_history
+setopt hist_fcntl_lock
+#setopt hist_ignore_all_dups
+setopt hist_lex_words
+setopt hist_reduce_blanks
+setopt hist_expire_dups_first hist_save_no_dups hist_find_no_dups
+setopt hist_no_store
+
+setopt extended_glob
+setopt ksh_glob
+
+setopt glob_star_short
+setopt brace_expand
+setopt brace_ccl
+setopt rc_expand_param
+
+#setopt nomatch
+#setopt no_null_glob
+
+setopt mark_dirs
+
+setopt complete_in_word
+
+setopt hash_list_all
+

@@ -26,6 +26,10 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 # secrets
 source-with-force ~/.zsh/secrets
 
+# Set up the prompt
+autoload -Uz ztheme
+ztheme $ZSH_THEME $USER default
+
 # zplug
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
 : ${ZPLUG_CACHE_FILE:=$ZPLUG_HOME/.cache}
@@ -69,8 +73,9 @@ function zplugins::zplug::apply {
     # Run through zplug_q
     local p
     for p in ${(0)zplug_q}; do
-        set -- ${(Z+Cn+)p}
-        "$@"
+        p=(${(Z+Cn+)p})
+
+        ZPLUG_LOADFILE=/dev/null "${(@)p}"
     done
 }
 
@@ -106,8 +111,8 @@ if zplugins::cache::is-clean; then
     echo "- Loading cache"
     source $ZPLUG_CACHE_FILE
 else
+    rm -f $ZPLUG_CACHE_FILE
     echo "- Creating cache (may take a second)"
-    eval 
 
     if ! zplug check --verbose; then
 	    printf "-- Found changes in zshplugins. Install them? [y/N]: "
@@ -118,10 +123,6 @@ else
 
     zplug load --verbose
 fi
-
-# Set up the prompt
-autoload -Uz ztheme
-ztheme $ZSH_THEME $USER default
 
 # local
 source-with-force $LOCAL_ZDOTDIR/zshrc

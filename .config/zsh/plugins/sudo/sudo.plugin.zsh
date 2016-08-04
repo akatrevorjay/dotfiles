@@ -1,4 +1,4 @@
-[[ $UID -ne 0 ]] || return
+[[ $EUID -ne 0 ]] || return
 
 # https://github.com/hcgraf/zsh-sudo/raw/master/sudo.plugin.zsh
 
@@ -11,6 +11,7 @@ sudo-command-line() {
     fi
 }
 zle -N sudo-command-line
+
 # Defined shortcut keys: [Esc] [Esc]
-bindkey "\e\e" sudo-command-line
-bindkey -M vicmd '\e\e' sudo-command-line
+#bindkey "\e\e" sudo-command-line
+#bindkey -M vicmd '\e\e' sudo-command-line
