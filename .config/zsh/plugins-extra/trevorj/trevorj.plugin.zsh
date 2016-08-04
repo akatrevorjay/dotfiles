@@ -13,3 +13,4 @@ export DEBEMAIL=debian@trevor.joynson.io
 alias Grep='grep'
 alias Less='less'
 
+builtin bindkey "^R" fzf-history-widget
