@@ -27,8 +27,7 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 source-with-force ~/.zsh/secrets
 
 # Set up the prompt
-autoload -Uz ztheme
-ztheme $ZSH_THEME $USER default
+autoload -Uz ztheme; ztheme
 
 # zplug
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}

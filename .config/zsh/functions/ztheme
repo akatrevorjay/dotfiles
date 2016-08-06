@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+[ $# -gt 0 ] || set -- $ZSH_THEME $USER default
+
 local name
 for name in "$@"; do
     for fn in ${^ZDOTDIRS}/themes/$name{,.zsh,.sh}(-.); do
