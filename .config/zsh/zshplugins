@@ -4,18 +4,18 @@ zplug "zplug/zplug"
 zplug "willghatch/zsh-hooks"
 zplug "mafredri/zsh-async"
 
-zplug "stedolan/jq", \
-    from:gh-r, \
-    as:command, \
-    rename-to:jq, \
-    if:"(( ! $+commands[jq] ))"
+#zplug "stedolan/jq", \
+#    from:gh-r, \
+#    as:command, \
+#    rename-to:jq, \
+#    if:"(( ! $+commands[jq] ))"
 
-zplug "junegunn/fzf-bin", \
-    from:gh-r, \
-    as:command, \
-    rename-to:fzf, \
-    use:'*${OSTYPE%-gnu}*amd64*', \
-    if:"(( ! $+commands[fzf] ))"
+#zplug "junegunn/fzf-bin", \
+#    from:gh-r, \
+#    as:command, \
+#    rename-to:fzf, \
+#    use:'*${OSTYPE%-gnu}*amd64*', \
+#    if:"(( ! $+commands[fzf] ))"
 
 zplug "b4b4r07/emoji-cli"
 
@@ -26,7 +26,8 @@ zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200
 zstyle ':notify:*' error-title "wow such #fail"
 zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
 zstyle ':notify:*' success-title "very #success. wow"
-zplug "marzocchi/zsh-notify"
+zplug "marzocchi/zsh-notify", \
+    if:"test -n $DISPLAY"
 
 #zplug 'joepvd/zsh-hints', use:"zsh-hints"
 
@@ -40,7 +41,7 @@ zplug "marzocchi/zsh-notify"
 #bindkey "\e[A" directory-history-search-backward
 #bindkey "\e[B" directory-history-search-forward
 
-zplug "oknowton/zsh-dwim"
+#zplug "oknowton/zsh-dwim"
 
 zplug "Tarrasch/zsh-functional"
 zplug "Tarrasch/zsh-colors"
@@ -57,7 +58,7 @@ zplug "hlissner/zsh-autopair", nice:10
 #function zplugins_on_load_zce() {
 #    bindkey '^Xz' zce
 #}
-
+#
 #zplug "hchbaw/zce.zsh", use:'*.zsh', \
 #    hook-load:"zplugins_on_load_zce"
 
