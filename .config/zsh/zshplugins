@@ -54,12 +54,12 @@ zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 
 zplug "hlissner/zsh-autopair", nice:10
 
-function zplugins_on_load_zce() {
-    bindkey '^Xz' zce
-}
+#function zplugins_on_load_zce() {
+#    bindkey '^Xz' zce
+#}
 
-zplug "hchbaw/zce.zsh", use:'*.zsh', \
-    hook-load:"zplugins_on_load_zce"
+#zplug "hchbaw/zce.zsh", use:'*.zsh', \
+#    hook-load:"zplugins_on_load_zce"
 
 #zplug "unixorn/tumult.plugin.zsh", if:"[[ $OSTYPE = darwin* ]]"
 
