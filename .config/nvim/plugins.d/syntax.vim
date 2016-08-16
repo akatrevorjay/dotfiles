@@ -51,6 +51,9 @@ Plug 'cespare/vim-toml'
 " Tmux.conf syntax
 Plug 'tmux-plugins/vim-tmux'
 
+" CSV
+Plug 'chrisbra/csv.vim'
+
 ""
 "" Markdown
 ""
