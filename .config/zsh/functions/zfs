@@ -4,9 +4,9 @@ case "$1" in
     list)
         [[ $# -eq 1 ]] || break
 
-        command $0 "$@" | egrep -v '^dpool/docker'
+        command $0:t "$@" | egrep -v '^dpool/docker'
         exit $?
     ;;
 esac
 
-exec \zfs "$@"
+command $0:t "$@"
