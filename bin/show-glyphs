@@ -1,0 +1,31 @@
+#!/bin/zsh
+setopt cbases
+zmodload zsh/mathfunc
+
+ensure_hex() {
+    for arg in "$@"; do
+       local -i 16 hex=$arg
+       echo $hex
+    done
+}
+
+to_unicode() {
+    for arg in "$@"; do
+        local -i 16 -Z 10 hex_arg=$arg
+        print -- "$hex_arg" "\U${hex_arg#0x}"
+    done
+}
+
+anyseq() {
+    local -i start=$1 finish=$2
+    seq $start $finish
+}
+
+if [[ $# -ge 1 && $# -le 2 ]]; then
+    nums=($(anyseq $1 $2))
+elif [ $# -gt 2 ]; then
+    nums=("$@")
+fi
+
+print -a -C2 -r -- $(to_unicode $nums)
+#print -a -C10 -- $all

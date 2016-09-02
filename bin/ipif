@@ -1,0 +1,8 @@
+#!/bin/zsh
+for inet in 4 6; do
+    (
+        echo "-- IPv$inet:"
+        ip -$inet addr show dev "$@"
+        ip -$inet route show dev "$@"
+    ) | ccze -A
+done
