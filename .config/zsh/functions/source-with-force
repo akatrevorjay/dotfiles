@@ -4,7 +4,6 @@ usage() {
     echo "Usage: $0 [FILES+]" >&2
 }
 
-[ $# -gt 0 ] || set -- --help
 zparseopts -D -- h=help -help=help
 
 if [ -n "$help" ]; then
