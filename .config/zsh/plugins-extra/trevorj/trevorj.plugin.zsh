@@ -15,3 +15,13 @@ alias Less='less'
 
 builtin bindkey "^R" fzf-history-widget
 
+alias -g GV='| grep -v'
+alias -g GIV='| grep -iv'
+alias -g GI='| grep -i'
+
+PROJECT_ROOT=$HOME/git
+CODE_ROOT=$HOME/code
+BUILD_ROOT=$HOME/build
+REPO_ROOTS=($PROJECT_ROOT $CODE_ROOT $BUILD_ROOT)
+
+alias -s git='git-cdclone'

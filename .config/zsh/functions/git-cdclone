@@ -1,0 +1,30 @@
+#!/bin/zsh
+local repo="$1"
+[[ -n $repo ]] || echo "Usage: $0:t [REPO|REPO_BASENAME]"
+
+local -U roots=($PWD $REPO_ROOTS)
+local -U bases=($repo ${repo:t} ${${repo%.git}:t})
+local -U paths=(${^roots}/${^bases})
+
+local p
+
+local base
+for base in $bases; do
+    for p in $(fasd -d $base); do
+        [[ -d $p ]] || continue
+
+        if [[ $p:t == $base:t ]]; then
+            echo "- Found existing clone: $p"
+            cd $p && return
+        fi
+    done
+done
+
+for p in $paths; do
+    [[ -d $p ]] || continue
+
+    echo "- Found existing clone: $p"
+    cd $p && return
+done
+
+git clone $repo
