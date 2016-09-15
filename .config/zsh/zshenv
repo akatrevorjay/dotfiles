@@ -50,7 +50,7 @@ export CHROMIUM_USER_FLAGS
 
 if [[ $(echotc Co) -ge 256 ]]; then
     case $TERM in
-	    xterm|screen) TERM=$TERM-256color ;;
+        xterm|screen) TERM=$TERM-256color ;;
     esac
 fi
 
@@ -67,98 +67,98 @@ typeset -U {,f,man,info,cd}path
 #}
 
 prefix_path=(
-	# user
-	$HOME/crypt/bin $HOME/bin $HOME/.local/bin
+    # user
+    $HOME/crypt/bin $HOME/bin $HOME/.local/bin
 
-	${^ZDOTDIRS}/{bin,sbin}
+    ${^ZDOTDIRS}/{bin,sbin}
 )
 
 path=(
     ${prefix_path[@]}
-	${path[@]}
+    ${path[@]}
 )
 
 prefix_fpath=(
-	${^ZDOTDIRS}/{functions,completions}
+    ${^ZDOTDIRS}/{functions,completions}
 )
 
 fpath=(
     ${(@)prefix_fpath}
-	${(@)fpath}
+    ${(@)fpath}
 )
 
 : ${MANPATH:=$(manpath)}
 
 manpath=(
-	${(@)manpath}
+    ${(@)manpath}
 )
 
 infopath=(
-	${(@)infopath}
+    ${(@)infopath}
 )
 
 
 autoload -Uz \
-	fix-path-order fix-user-bin-overlay-in-path \
-	source-with-force \
-	add-prefix-paths add-suffix-paths \
-	call-many
+    fix-path-order fix-user-bin-overlay-in-path \
+    source-with-force \
+    add-prefix-paths add-suffix-paths \
+    call-many
 
 add-prefix-paths $HOME/.local
 
 
 # OS specifics
 case "${SYSTEM:l}" in
-	linux*)
-		prefix_path=(
-			# ccache
-			"/usr/lib/ccontrol"
-			"/usr/lib/ccache"
+    linux*)
+        prefix_path=(
+            # ccache
+            "/usr/lib/ccontrol"
+            "/usr/lib/ccache"
 
-			${(@)prefix_path}
-		)
+            ${(@)prefix_path}
+        )
         path=(
             ${prefix_path[@]}
-	        ${path[@]}
+            ${path[@]}
         )
-		#fix-path-order
-		;;
-	darwin*)
-		add-prefix-paths /usr/local
+        #fix-path-order
+        ;;
+    darwin*)
+        add-prefix-paths /usr/local
 
-		path=(
-			# Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
-			# gnu by default
-			"/usr/local/libexec/gnubin"
+        path=(
+            # Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
+            # gnu by default
+            "/usr/local/libexec/gnubin"
 
-			# ccache
-			"/usr/local/opt/ccache/libexec"
+            # ccache
+            "/usr/local/opt/ccache/libexec"
 
-			${(@)path}
-		)
-		fix-path-order
-   
-		function () {
-			for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
-				fpath[$idx]=()
-			done
-		}
+            ${(@)path}
+        )
+        fix-path-order
 
-		function () {
-			# Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
-			# Unfortunately it also reorganizes your PATH according to how it sees fit,
-			# so let's change that to just be a suffix. It gets deduped anyway.
-			if [[ -x /usr/libexec/path_helper ]]; then
-				local out="$(PATH='' /usr/libexec/path_helper -s)"
-				# We only care about the path portion of the declare statement anyway, so snag and split.
-				local out_paths=(${(s.:.)${out#*\"}%\"*})
-				# Append to path
-				path+=(${out_paths[@]})
-			fi
-		}
+        function () {
+            for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
+                fpath[$idx]=()
+            done
+        }
 
-		fpath+=(/usr/local/share/zsh/site-functions)
-		;;
+		function () {
+            # Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
+            # Unfortunately it also reorganizes your PATH according to how it sees fit,
+            # so let's change that to just be a suffix. It gets deduped anyway.
+            if [[ -x /usr/libexec/path_helper ]]; then
+                local out="$(PATH='' /usr/libexec/path_helper -s)"
+                # We only care about the path portion of the declare statement anyway, so snag and split.
+                local out_paths=(${(s.:.)${out#*\"}%\"*})
+                # Append to path
+                path+=(${out_paths})
+            fi
+        }
+
+        fpath+=(/usr/local/share/zsh/site-functions)
+        ;;
 esac
 
 
@@ -167,7 +167,7 @@ export GOPATH="$HOME/go"
 prefix_path+=("$GOPATH/bin")
 path=(
     ${prefix_path[@]}
-	${path[@]}
+    ${path[@]}
 )
 
 ##
