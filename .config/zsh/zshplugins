@@ -6,8 +6,11 @@ zplug "mafredri/zsh-async"
 
 zplug "b4b4r07/emoji-cli"
 
-zplug "kennethreitz/autoenv"
+# Was nice but constantly breaks =/
+#zplug "kennethreitz/autoeznv"
+
 #zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
+zplug "Tarrasch/zsh-autoenv"
 
 zplug "Tarrasch/zsh-functional"
 zplug "Tarrasch/zsh-colors"

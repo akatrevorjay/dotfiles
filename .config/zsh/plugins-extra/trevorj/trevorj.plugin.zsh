@@ -25,3 +25,32 @@ BUILD_ROOT=$HOME/build
 REPO_ROOTS=($PROJECT_ROOT $CODE_ROOT $BUILD_ROOT)
 
 alias -s git='git-cdclone'
+
+alias -g L='| less'
+alias -g LR='| less -R'
+
+alias v='vi'
+
+alias -g A='| awk'
+for i in {1..15}; alias -g C${i}="| awk '{print \$${i}}'"
+
+case $OSTYPE:l in
+    linux*)
+        layout() {
+            local layout=${1:-workman}
+
+            case $layout in
+                wm|w) layout=workman ;;
+                u) layout=us ;;
+            esac
+
+            setxkbmap -model apple -layout $layout -option '' -option 'lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle' -v 9
+            xset -r 66
+        }
+
+        for i in us u workman wm w; alias $i="layout $i"
+
+        ;;
+    darwin*)
+        ;;
+esac
