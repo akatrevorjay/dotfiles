@@ -1,4 +1,3 @@
-
 #!/bin/zsh
 autoload -Uz fix-path-order
 fix-path-order "$@"

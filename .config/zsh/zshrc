@@ -45,7 +45,7 @@ typeset -a zplug_q=()
 typeset -A zplugs=()
 
 # Stub zplug that just queues the commands for later
-function zplugins::zplug::stub {
+function zplugins::zplug::stub() {
     set -- zplug "$@"
     zplug_q+=("${(q)@}" $'\0')
 }

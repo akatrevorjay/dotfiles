@@ -1,0 +1,11 @@
+#!/bin/zsh
+set -eo pipefail
+setopt no_function_arg_zero
+
+: ${HOMEBREW_GITHUB_API_TOKEN:=$GITHUB_TOKEN}
+export HOMEBREW_GITHUB_API_TOKEN
+
+# Remove self from path
+path=(${path#$0:a:h})
+
+exec brew "$@"
