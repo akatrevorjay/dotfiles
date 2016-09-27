@@ -54,3 +54,19 @@ case $OSTYPE:l in
     darwin*)
         ;;
 esac
+
+history() {
+    [[ $# -gt 0 ]] || set -- -100
+    fc -l "$@"
+}
+alias h='fc -l -100'
+alias hl='fc -l -L -100'
+
+alias -g F='| fzf'
+alias -g FFLT='F -f'
+alias -g FSEL='F -m'
+alias -g FSEL1='F -1'
+
+alias -g FLT='FFLT'
+alias -g SEL='FSEL'
+

@@ -7,14 +7,20 @@
 #infopath=(${^prefixes}/share/info "${infopath[@]}")
 
 for prefix in "$@"; do
-	[[ ! -d "$prefix/bin" ]] \
-		|| path=($prefix/bin ${(@)path})
-	[[ ! -d "$prefix/sbin" ]] \
-		|| path=($prefix/sbin ${(@)path})
-	[[ ! -d "$prefix/functions" ]] \
-		|| fpath=($prefix/functions ${(@)fpath})
-	[[ ! -d "$prefix/share/man" ]] \
-		|| manpath=($prefix/share/man ${(@)manpath})
-	[[ ! -d "$prefix/share/info" ]] \
-		|| infopath=($prefix/share/info ${(@)infopath})
+	[[ ! -d $prefix/bin ]] || \
+		 path=($prefix/bin ${(@)path})
+	[[ ! -d $prefix/sbin ]] || \
+		 path=($prefix/sbin ${(@)path})
+
+	[[ ! -d $prefix/functions ]] || \
+		 fpath=($prefix/functions ${(@)fpath})
+
+	if [[ -d $prefix/share/man ]]; then
+		manpath=($prefix/share/man ${(@)manpath})
+	elif [[ -d $prefix/man ]]; then
+		manpath=($prefix/man ${(@)manpath})
+	fi
+
+	[[ ! -d $prefix/share/info ]] || \
+		 infopath=($prefix/share/info ${(@)infopath})
 done

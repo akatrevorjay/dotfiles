@@ -1,12 +1,23 @@
 #!/bin/zsh
-: ${FZF_DEFAULT_OPTS:="--tiebreak=begin,index,end,length --ansii -s -e"}
+: ${FZF_ALL_OPTS:="--tiebreak=begin,index --ansii --color=dark --cycle --toggle-sort=ctrl-r"}
 
-function () {
-	local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
+: ${FZF_DEFAULT_OPTS:=$FZF_ALL_OPTS}
 
-	[[ -d "$fzf_path" ]] || return
-	manpath+=("$fzf_path/man")
+: ${FZF_CTRL_R_OPTS:-$FZF_ALL_OPTS}
+: ${FZF_CTRL_T_OPTS:-$FZF_ALL_OPTS}
+: ${FZF_ALT_C_OPTS:-$FZF_ALL_OPTS}
 
-	[[ $- == *i* ]] && source "$fzf_path/shell/completion.zsh" 2>/dev/null
-	source "$fzf_path/shell/key-bindings.zsh"
-}
+local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
+
+[[ -d $fzf_path ]] || return 1
+
+autoload -Uz add-prefix-paths source-with-force
+
+add-prefix-paths $fzf_path
+
+source-with-force $fzf_path/shell/*.zsh
+
+unset fzf_path
+
+#bindkey '\ef' fzf-file-widget
+#bindkey '\e

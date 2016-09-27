@@ -128,3 +128,8 @@ source-with-force $LOCAL_ZDOTDIR/zshrc
 
 # This is annoying to have earlier.
 #setopt warncreateglobal
+
+autoload -Uz fix-{f,}path-order
+fix-path-order
+fix-fpath-order
+

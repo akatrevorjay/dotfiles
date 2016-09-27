@@ -30,7 +30,7 @@ function bindkey() {
     local args=(${@:#^-*})
     if [[ $# -eq 0 || $#args -gt 0 ]]; then
         builtin bindkey "$@"
-        return
+        return $?
     fi
 
     local keys=()
@@ -317,3 +317,5 @@ bindkey '^Xa' all-matches
 zstyle ':completion:all-matches:*' old-matches only
 zstyle ':completion:all-matches::::' completer _all_matches
 
+unfunction bindkey
+ 

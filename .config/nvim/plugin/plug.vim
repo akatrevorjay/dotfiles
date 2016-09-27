@@ -7,15 +7,14 @@ endfunction
 command! -nargs=* PlugUnload call s:PlugUnload('<args>')
 
 function! s:Update()
-  execute 'PlugUpgrade | PlugUpdate | PlugInstall'
+  execute 'PlugUpgrade | PlugInstall | q | PlugUpdate | q'
   if has('nvim')
     execute 'UpdateRemotePlugins'
   endif
-  execute 'q'
-  execute 'q'
 endfunction
 
 command! Update call s:Update()
+command! PlugUpdateAuto call s:Update()
 
 function! s:InstallPlug()
 	" If we don't have vim plug installed, install it
