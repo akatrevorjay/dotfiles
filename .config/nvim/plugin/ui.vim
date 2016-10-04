@@ -16,7 +16,9 @@ if has('gui_running') || has('nvim')
   if has('gui_macvim')
     " YEAH BABY LIGATURE SUPPORT
     set macligatures
+
     set fullscreen
+    set transparency=10
 
     " Oh Fira Code, how I adore you.
     set guifont=Fira\ Code\ Retina:h14
@@ -41,4 +43,144 @@ else
   " Use CSApprox in normal vim to match gui colors approximately
   let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'underline', 'sp' : 'fg' }
 endif
+
+
+""
+"" Colors:
+""
+
+if has('nvim')
+  set termguicolors
+endif
+
+set background=dark
+" Always dark bg damnit, stop resetting it on me swan
+Gautocmd ColorScheme * set background=dark
+
+""
+"" ColorScheme:
+""
+
+" These look much nicer in gui mode. CSApprox definitely helps this out though.
+" With NeoVIM, it's true color in your terminal, so gui colorschemes work just fine.
+"if has('gui_running') || has('nvim')
+"  colorscheme railscasts-trevorj
+"  colorscheme neverland-darker
+"else
+
+"colorscheme elflord
+"colorscheme navajo-night
+"colorscheme camo
+"colorscheme carvedwood
+"colorscheme evening
+"colorscheme fruity
+"colorscheme guardian
+"colorscheme industrial
+"colorscheme ir_black
+"colorscheme bensday
+"colorscheme lucius
+"colorscheme xoria256
+"colorscheme jellybeans
+"colorscheme leo
+"colorscheme earendel
+"colorscheme inkpot
+"colorscheme wombat256
+"colorscheme BusyBee
+"colorscheme darkspectrum
+"colorscheme darkeclipse
+"colorscheme slate
+"colorscheme hemisu
+"colorscheme railscasts-trevorj
+"colorscheme mustang
+
+"colorscheme zenburn
+let g:zenburn_unified_CursorColumn=1
+let g:zenburn_force_dark_Background=1
+let g:zenburn_high_Contrast=1
+
+"colorscheme liquidcarbon
+let g:liquidcarbon_high_contrast = 1
+
+"colorscheme hybrid
+let g:hybrid_use_Xresources = 1
+
+"colorscheme herald_modified
+"
+"colorscheme luna
+
+"colorscheme molokai"
+"colorscheme molokai-nvim-trucolor
+let g:rehash256 = 1  " Alt color scheme under dev that attempts to make molokai 256 as close as possible to dark gui
+
+"colorscheme OceanicNext
+"let g:airline_theme = 'oceanicnext'
+
+"colorscheme argonaut
+"let g:airline_theme = 'kalisi'
+""Gautocmd ColorScheme highlight Comment guibg=#323230 guifg=#9999aa
+""Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#9999aa
+"Gautocmd ColorScheme highlight Comment guibg=#253525 guifg=#00a6ff
+"Gautocmd ColorScheme highlight Identifier guibg=#121255
+"Gautocmd ColorScheme highlight String guibg=#331133
+
+"colorscheme onedark
+let g:onedark_termcolors = 256
+let g:onedark_terminal_italics = 1
+
+"let g:airline_theme = 'serene'
+
+""
+"" So Jelly: "I don't want to be pretty, I just want to be me, zuchini."
+""
+
+"let g:triplejelly_background_color = '000000'
+"let g:triplejelly_background_color_256 = '000000'
+"let g:triplejelly_foreground_color = 'C6CFD2'  " Default
+let g:triplejelly_foreground_color = 'A7B7C7'
+let g:triplejelly_background_color = '000000'
+
+"Gautocmd ColorScheme highlight Comment guibg=#323230 guifg=#9999aa
+"Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#9999aa
+Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#bbbbcc
+Gautocmd ColorScheme highlight Identifier guibg=#121255
+Gautocmd ColorScheme highlight String guibg=#331133
+
+"colorscheme termschool
+"let g:airline_theme = 'jellybeans'
+
+"colorscheme hybrid
+"colorscheme hybrid_material
+let g:airline_theme = 'hybrid'
+
+" This actually messes up numerous schemes.
+let g:colorschemer_auto = 0
+
+"colorscheme sunburst
+
+"colorscheme PaperColor
+"let g:airline_theme = 'PaperColor'
+"let g:PaperColor_Dark_Override = { 'background' : '#1c1c1c', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
+let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#abcdef', 'matchparen' : '#3a3a3a', 'comment' : '#5f875f' }
+"let g:PaperColor_Light_Override = { 'background' : '#abcdef', 'cursorline' : '#dfdfff', 'matchparen' : '#d6d6d6' , 'comment' : '#8e908c' }
+
+"colorscheme hotpot
+"colorscheme holokai
+"colorscheme heroku-terminal
+"colorscheme getafe
+"colorscheme af
+colorscheme znake
+"colorscheme flattr
+"colorscheme hemisu
+"colorscheme elda
+"colorscheme crayon
+"colorscheme colorsbox-stnight
+"colorscheme colorsbox-stbright
+"colorscheme codeblocks_dark
+"colorscheme brookstream
+"colorscheme Brogrammer
+"colorscheme Tomorrow-Night-Bright
+
+
+
+
 

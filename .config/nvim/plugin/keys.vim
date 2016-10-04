@@ -26,15 +26,20 @@ noremap <silent> <C-Up> <C-W>k
 noremap <silent> <C-Left> <C-W>h
 noremap <silent> <C-Right> <C-W>l
 
-" Close with Alt+w
-noremap <silent> <M-w> :bd<CR>
-noremap <silent> <M-W> :bd!<CR>
-
 " Move around windows easier
+noremap <c-h> <c-w>h
 noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
-noremap <c-h> <c-w>h
+
+noremap <c-n> <c-w>h
+noremap <c-e> <c-w>j
+noremap <c-o> <c-w>k
+noremap <c-i> <c-w>l
+
+" Close with Alt+w
+noremap <silent> <M-w> :bd<CR>
+noremap <silent> <M-W> :bd!<CR>
 
 " Make cmdline editing better
 "cmap <tab> <c-n>
@@ -137,15 +142,11 @@ map ZZ :suspend<cr>
 
 " Quit
 map q :q<cr>
-"map <M-q> :q<cr>
-map <c-q> :q<cr>
-map W :wq<cr>
-map Q :q!<cr>
-map ZQ :q!<cr>
-"map QQ :q!<cr>
+map w :w<cr>
+map <m-Q><m-!> :q!<cr>
 "map <c-w> :bd<cr>
-map <m-q> :bd<cr>
-"map <c-Q> :bd!<cr>
+map <m-w> :bd<cr>
+map <m-w><m-!> :bd!<cr>
 
 "" Quickly exit insert mode
 ""imap jj <Esc>
@@ -154,7 +155,11 @@ map <m-q> :bd<cr>
 "" Press i to enter insert mode, and ii to exit.
 "imap ii <Esc>
 """ Pressing Ctrl-L leaves insert mode in evim, so why not in regular vim, too.
-""imap <C-L> <Esc>
+imap <C-L> <Esc>
+imap jk <Esc>
+
+imap <m-[> <Esc>{i
+imap <m-]> <Esc>}i
 
 "" In Mac OS X, mapping <S-space> does not work, but the following
 "" is better (press the "apple" key and the space key).

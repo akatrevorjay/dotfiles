@@ -75,3 +75,19 @@ alias -g FSEL1='F -1'
 alias -g FLT='FFLT'
 alias -g SEL='FSEL'
 
+alias d='docker'
+alias db='d build'
+alias dpl='d pull'
+alias dpu='d push'
+alias dps='d ps'
+alias dr='d run'
+alias de='d exec'
+
+alias dc='docker-compose'
+alias dcb='dc build'
+alias dcp='dc pull'
+alias dcr='dc run'
+alias dce='dc exec'
+
+alias m='make'
+
