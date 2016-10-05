@@ -33,19 +33,11 @@ zplug "mollifier/zload"  # , lazy:true
 #zplug "spwhitt/nix-zsh-completions"
 
 zplug "zsh-users/zsh-completions", nice:8
+zplug "akatrevorjay/nix-zsh-completions", nice:9
 
 zplug "hlissner/zsh-autopair", nice:10
 zplug "zsh-users/zsh-history-substring-search", nice:10
 zplug "zsh-users/zsh-syntax-highlighting", nice:12
 
-for p in ${^ZDOTDIRS}/plugins/*(-/); do
-    first_char=${${p:t}:0:1}
-    if [[ $first_char = [0-9] ]]; then
-        nice=$first_char
-    else
-        nice=5
-    fi
-
-    zplug "$p", from:local, nice:$nice
-done
+zplugins::load-all-in plugins
 

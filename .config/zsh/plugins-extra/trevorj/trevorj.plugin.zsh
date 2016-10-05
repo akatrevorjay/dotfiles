@@ -55,8 +55,17 @@ case $OSTYPE:l in
 
         for i in us u workman wm w; alias $i="layout $i"
 
+        alias sctl='systemctl'
+        alias jf='journalctl -f'
+        alias jxe='journalctl -fxe'
         ;;
     darwin*)
+        alias lctl='launchctl'
+        alias lcload='lctl load'
+        alias lcunload='lctl unload'
+
+        alias -s app='open '
+        alias -s plist='v'
         ;;
 esac
 
@@ -90,4 +99,10 @@ alias dcr='dc run'
 alias dce='dc exec'
 
 alias m='make'
+
+alias cx='chmod +x'
+alias cw='chmod +w'
+alias cr='chmod +cr'
+
+alias S='sudo'
 

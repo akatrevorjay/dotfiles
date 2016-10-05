@@ -12,23 +12,6 @@ set ruler
 "set autoindent
 "set smarttab
 
-nmap r q
-unmap q
-nmap q :q<cr>
-"nmap Q :q<cr>
-nmap w :w<cr>
-
-nmap <M-s> :w<cr>
-nmap <M-q> :q<cr>
-nmap <M-Q> :q!<cr>
-
-nmap W :wq<cr>
-nmap ; :
-
-vmap [% [%m'gv``
-vmap ]% ]%m'gv``
-vmap a% [%v]%
-
 let s:cpo_save=&cpo
 set cpo&vim
 vmap gx <Plug>NetrwBrowseXVis

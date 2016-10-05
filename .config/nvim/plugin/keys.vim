@@ -141,12 +141,11 @@ map ZZ :suspend<cr>
 "nnoremap ZZ    ZQ
 
 " Quit
-map q :q<cr>
-map w :w<cr>
-map <m-Q><m-!> :q!<cr>
+map <silent> q :q<cr>
+map <silent> <m-Q><m-!> :q!<cr>
 "map <c-w> :bd<cr>
-map <m-w> :bd<cr>
-map <m-w><m-!> :bd!<cr>
+map <silent> <m-w> :bd<cr>
+map <silent> <m-w><m-!> :bd!<cr>
 
 "" Quickly exit insert mode
 ""imap jj <Esc>
@@ -156,7 +155,7 @@ map <m-w><m-!> :bd!<cr>
 "imap ii <Esc>
 """ Pressing Ctrl-L leaves insert mode in evim, so why not in regular vim, too.
 imap <C-L> <Esc>
-imap jk <Esc>
+imap <silent> jk <Esc>
 
 imap <m-[> <Esc>{i
 imap <m-]> <Esc>}i
@@ -193,14 +192,6 @@ cnoremap <c-e> <end>
 " Edit macro
 "nnoremap <leader>m  :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
 
-" Quick vimrc edits
-map <Leader>eb :edit ~/.vim/rc/bundles.vim<cr>
-map <Leader>es :edit ~/.vim/rc/startup.vim<cr>
-if has('nvim')
-  map <Leader>neb :edit ~/.vim/rc/bundles.nvim<cr>
-  map <Leader>nes :edit ~/.vim/rc/startup.nvim<cr>
-endif
-
 "let g:tmux_navigator_save_on_switch = 1
 "let g:tmux_navigator_no_mappings = 1
 
@@ -214,4 +205,11 @@ endif
 
 "noremap <F3> :Autoformat<CR>
 ""au BufWrite * :Autoformat
+
+
+nmap ; :
+
+vmap [% [%m'gv``
+vmap ]% ]%m'gv``
+vmap a% [%v]%
 

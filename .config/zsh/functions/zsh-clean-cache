@@ -1,3 +1,2 @@
 #!/bin/zsh
-rm -rvf ~/.cache/zsh/* ~/.zcompdump ~/.config/zsh/.zcompdump
-zgen reset
+\rm -rvf ~/.cache/zsh/* ~/.zcompdump* ~/.config/zsh/.zcompdump*

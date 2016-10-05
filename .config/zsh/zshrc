@@ -54,6 +54,30 @@ function zplug() {
     zplugins::zplug::stub "$@"
 }
 
+function zplugins::load-all-in() {
+    local p
+
+    local paths=()
+    for p in "$@"; do
+        if [[ ${p:0:1} == / ]]; then
+            paths+=($p)
+        else
+            paths+=(${^ZDOTDIRS}/$p)
+        fi
+    done
+
+    for p in ${^paths}/*(-/); do
+        first_char=${${p:t}:0:1}
+        if [[ $first_char = [0-9] ]]; then
+            nice=$first_char
+        else
+            nice=5
+        fi
+
+        zplug "$p", from:local, nice:$nice
+    done
+}
+
 # TODO check plugins difference on hook and auto-load
 source-with-force $ZPLUGINS_FILES
 

@@ -47,6 +47,7 @@ function bindkey() {
 
     for key in $keys; do
         builtin bindkey -M vicmd $key "$@"
+        builtin bindkey -M viins $key "$@"
         #builtin bindkey -M emacs $key "$@"
         builtin bindkey $key "$@"
     done
