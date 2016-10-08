@@ -28,3 +28,5 @@ set helplang=en
 " Commands that shell out tend to assume a bourne shell
 set shell=sh
 
+" Add templates upon new file
+au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl

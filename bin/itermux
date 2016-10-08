@@ -6,5 +6,7 @@ if [[ -z $ITERM_SESSION_ID ]]; then
     exit 1
 fi
 
+[ $# -gt 0 ] || set -- -2 -CC "$@" -L $0:t
+
 export ITERMUX=1
-exec tmux-first-detached "$@"
+exec tmux "$@"

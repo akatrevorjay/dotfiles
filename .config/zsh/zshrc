@@ -138,7 +138,7 @@ else
     echo "- Creating cache (may take a second)"
 
     if ! zplug check --verbose; then
-	    printf "-- Found changes in zshplugins. Install them? [y/N]: "
+	    printf -- "-- Found changes in zshplugins. Install them? [y/N]: "
         if read -q; then
             echo; zplug install
         fi

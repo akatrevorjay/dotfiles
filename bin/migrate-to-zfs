@@ -1,8 +1,10 @@
 #!/bin/zsh
 set -exv
 
-self_given="$0"
-self="${0:t}"
+autoload -Uz zparseopts
+
+self_given=$0
+self=${0:t}
 
 e() {
 	echo -e "[$self_given]" "$@"
@@ -22,17 +24,59 @@ usage() {
 	echo "Usage: $self_given PATH [DATASET]"
 }
 
+zfs-exists zpool-exists() {
+	${0%%-*} get -H name $1 #>/dev/null 2>&1
+}
+
+zfs-list zpool-list () {
+    local cmd=(${(s:-:)0})
+
+    local props=(name)
+	zparseopts -DK p:=props
+
+	$cmd -Ho "${(j:,:)props}" "$@"
+}
+
 zdataset-exists() {
 	zfs get -H name $1 #>/dev/null 2>&1
 }
 
 zfs-get() {
 	local dataset="$1"; shift
-	zfs list -Ho ${(s:,:)@} $dataset
+	zfs-list -d $dataset -- "$@"
 }
 
-source_path="$(realpath "$1")"
-dataset="${2:-${source_path#/}}"
+
+
+find-path() {
+    local path=$1:a
+
+
+    local cur=$path
+    while [[ -n $cur && $cur = /* ]]; do
+        cur=${cur%/*}
+
+        
+    done
+
+    local cur
+    for part in $parts; do
+        cur+="/$part"
+    done
+
+    local parent
+    for parent in ; do
+    done
+}
+
+ZPOOLS=($(zpool-list -p name))
+: ${DEFAULT_ZPOOL:=${ZPOOLS:1}}
+
+source_path=${1:A}
+
+dataset=${2:-${source_path#/}}
+
+
 tmp_dataset="${dataset}-${self}"
 rename_path="${source_path}-original-${self}"
 
