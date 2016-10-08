@@ -1,0 +1,10 @@
+#!/bin/zsh
+set -eo pipefail
+
+if [[ -z $ITERM_SESSION_ID ]]; then
+    echo "You aren't in iTerm, are you?" >&2
+    exit 1
+fi
+
+export ITERMUX=1
+exec tmux-first-detached "$@"
