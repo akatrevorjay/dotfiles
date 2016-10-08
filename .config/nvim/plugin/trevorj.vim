@@ -30,3 +30,15 @@ set shell=sh
 
 " Add templates upon new file
 au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
+
+augroup Shebang
+  autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf8 -*-\<nl>\"|$
+
+  autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf8 -*-\<nl>set -eo pipefail\<nl>\"|$
+  autocmd BufNewFile *.zsh 0put =\"#!/usr/bin/env zsh\<nl># -*- coding: utf8 -*-\<nl>set -eo pipefail\<nl>\"|$
+
+  autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf8 -*-\<nl>\"|$
+
+  autocmd BufNewFile *.tex 0put =\"%&plain\<nl>\"|$
+  autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
+augroup END
