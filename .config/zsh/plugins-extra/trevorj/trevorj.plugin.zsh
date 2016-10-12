@@ -31,6 +31,9 @@ REPO_ROOTS=($PROJECT_ROOT $CODE_ROOT $BUILD_ROOT)
 
 alias -s git='git-cdclone'
 
+alias -g G='| grep'
+alias -g GU='| grep $USER'
+
 alias -g L='| less'
 alias -g LR='| less -R'
 
@@ -60,6 +63,21 @@ case $OSTYPE:l in
         alias jxe='journalctl -fxe'
         ;;
     darwin*)
+        appify() {
+            local fn=${1:?}
+            local name=${2:-${1:t}}
+            local app=$name.app
+            local dest=$app/Contents/MacOS/$name
+
+            if [ -a $app ]; then
+	            echo "Already exists: $a{(qq)pp}" >&2
+	            return 1
+            fi
+
+            mkdir -pv "${dest:h}";
+            ln -svf ${fn:a} $dest
+        }
+        
         alias lctl='launchctl'
         alias lcload='lctl load'
         alias lcunload='lctl unload'
@@ -105,4 +123,52 @@ alias cw='chmod +w'
 alias cr='chmod +cr'
 
 alias S='sudo'
+
+alias k='k -h'
+alias fk='k --no-vcs'
+
+#alias l='ls -lh'
+#alias ll='ls -lhA'
+#alias lsd='ls -ld *(-/DN)'
+#alias lsa='ls -ld .*'
+alias l='k'
+
+alias la='l -A'
+alias ll='l -A'
+alias lla='ll -A'
+alias lsd='ls -d *(-/DN)'
+alias lsa='ls -d .*'
+alias lld='ll -d *(-/DN)'
+alias lla='ll -d .*'
+
+# Note on precommand modifiers
+# builtin			The command word is taken to be the name of a builtin
+#					command, rather than a shell function or external command.
+# command [-pvV]	The command word is an external command and not a shell 
+#					builtin or function
+# nocorrect			No spelling correction made on any word
+# noglob			File name generation is not performed on any of the words
+
+alias n=noglob
+alias nc=nocorrect
+alias ng=noglob
+
+alias du='du -hcs'
+alias df='df -h'
+
+alias rh='rehash'
+
+alias j='jobs -l'
+
+alias bc='bc -q -l'
+
+alias gdb='gdb -q'
+alias tf='tail -f'
+
+alias cp='nocorrect cp -piv'
+alias mkdir='nocorrect mkdir'
+alias mv='nocorrect mv -iv'
+
+alias pu='pushd'
+alias po='popd'
 

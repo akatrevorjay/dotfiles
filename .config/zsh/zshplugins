@@ -22,6 +22,7 @@ zplug 'aphelionz/strerror.plugin.zsh'
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
+zplug "supercrabtree/k"
 
 ##
 ## zconvey
@@ -39,7 +40,7 @@ zstyle ":plugin:zconvey" output_method "feeder"     # To put commands on command
                                                     # feeder doesn't build (unlikely) or when occurring any problems with it
 zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module for obtaining timestamp. "date" – use date command (fork)
 
-zplug "psprint/zconvey"
+#zplug "psprint/zconvey"
 
 zplug "psprint/zsnapshot"  # , lazy:true
 zplug "mollifier/zload"  # , lazy:true

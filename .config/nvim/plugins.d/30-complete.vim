@@ -90,6 +90,9 @@ if has('nvim')
 
   " deoplete-ruby: "ruby" source for Ruby language
   Plug 'fishbullet/deoplete-ruby'
+
+  " Zsh completion
+  Plug 'zchee/deoplete-zsh', {'for': ['zsh']}
 endif
 
 "" Ruby omni completion
@@ -104,7 +107,6 @@ endif
 
 " Zsh completion
 "Plug 'Valodim/vim-zsh-completion', {'for': ['zsh', 'sh']}
-Plug 'zchee/deoplete-zsh', {'for': ['zsh']}
 
 "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete
 

@@ -30,8 +30,9 @@ Plug 'Rip-Rip/clang_complete'
 "Plug 'osyo-manga/vim-monster'
 
 " Javascript
-"Plug 'moll/vim-node'  ", {'for': 'javascript'}
+Plug 'moll/vim-node'  ", {'for': 'javascript'}
 "Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
+Plug 'kchmck/vim-coffee-script'  ", {'for': ['coffee', 'coffeescript']}
 
 "" ZSH "official" vim syntax, definitely more up to date.
 Plug 'chrisbra/vim-zsh'

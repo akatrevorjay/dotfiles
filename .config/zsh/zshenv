@@ -130,6 +130,7 @@ case "${SYSTEM:l}" in
             # Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
             # gnu by default
             "/usr/local/libexec/gnubin"
+            "/usr/local/opt/coreutils/libexec/gnubin"
 
             # ccache
             "/usr/local/opt/ccache/libexec"
@@ -137,6 +138,14 @@ case "${SYSTEM:l}" in
             ${(@)path}
         )
         fix-path-order
+
+        manpath=(
+            "/usr/local/man"
+
+            "/usr/local/opt/coreutils/libexec/gnuman"
+
+            ${(@)manpath}
+        )
 
         function () {
             for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
