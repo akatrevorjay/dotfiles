@@ -1,1 +1,1 @@
-../vimode.py
+../weechat-vimode/vimode.py

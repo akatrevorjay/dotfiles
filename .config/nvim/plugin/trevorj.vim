@@ -42,3 +42,6 @@ augroup Shebang
   autocmd BufNewFile *.tex 0put =\"%&plain\<nl>\"|$
   autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
 augroup END
+
+let g:rustfmt_autosave = 1
+let g:racer_experimental_completer = 1

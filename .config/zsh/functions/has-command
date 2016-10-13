@@ -1,2 +1,5 @@
 #!/bin/zsh
-return (( ${+commands[$1]} )) || (hash -r ; (( ${+commands[$1]} )))
+if (( ! ${+commands[$1]} )); then
+    hash -r
+    return (( ${+commands[$1]} ))
+fi

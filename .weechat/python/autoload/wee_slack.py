@@ -1,1 +1,1 @@
-../wee_slack.py
+../wee-slack/wee_slack.py

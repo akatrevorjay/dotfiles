@@ -1,1 +1,1 @@
-../weechat_otr.py
+../weechat-otr/weechat_otr.py

@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# Prompting Options
-setopt \
-    prompt_cr \
-    prompt_subst
-
 
 # Color module, should give us access to associative array of colors:
 # ${color[red]}
@@ -61,9 +56,8 @@ colors;
 #
 
 # Understood by BSD ls
-CLICOLOR=''
-#LSCOLORS='exfxcxdxbxGxDxabagacad'
-LSCOLORS="gxfxcxdxbxegedabagacad"
+LSCOLORS='exfxcxdxbxGxDxabagacad'
+#LSCOLORS="gxfxcxdxbxegedabagacad"
 
 LS_OPTIONS_ALL=(-Fuhs -ctr --color=auto --group-directories-first)
 LS_OPTIONS_GNU=(${(@)LS_OPTIONS_ALL})
@@ -73,7 +67,12 @@ if (( ${+commands[dircolors]} )); then
     # GNU
 
     local file="$HOME/.dircolors"
-    eval "$(test -r "$file" && dircolors -b "$file" || dircolors -b)"
+
+    local cmd
+    for cmd in {g,}dircolors; do
+        eval "$($cmd -b "$file" || $cmd -b)"
+        break
+    done
 else
     # BSD
 
@@ -87,8 +86,6 @@ else
 
     # Understood by GNU ls and used for completion
     LS_COLORS="no=00:fi=00:di=00;36:ln=00;35:pi=47;33:so=00;35:bd=47;33;00:cd=47;33;00:or=47;31;00:ex=00;32:${IMG_COLORS}:${SOUND_COLORS}:${MOVIE_COLORS}:${ARCHIVE_COLORS}:${EXE_COLORS}:${CODE_COLORS}";
-
-    alias ls='ls -G -Fuh -GOsBo'
 fi
 
 # Set ls colors to completion engine
@@ -129,4 +126,12 @@ alias egrep='egrep --color=auto'
 # diff
 [[ ! ${+commands[colordiff]} ]] \
     || alias diff='colordiff'
+
+# make
+[[ ! ${+commands[colormake]} ]] \
+    || alias make='colormake'
+
+# tail
+[[ ! ${+commands[colortail]} ]] \
+    || alias tail='colortail'
 

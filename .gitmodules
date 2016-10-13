@@ -1,0 +1,9 @@
+[submodule ".weechat/python/weechat-vimode"]
+	path = .weechat/python/weechat-vimode
+	url = git@github.com:GermainZ/weechat-vimode.git
+[submodule ".weechat/python/wee-slack"]
+	path = .weechat/python/wee-slack
+	url = git@github.com:rawdigits/wee-slack.git
+[submodule ".weechat/python/weechat-otr"]
+	path = .weechat/python/weechat-otr
+	url = git@github.com:mmb/weechat-otr.git
