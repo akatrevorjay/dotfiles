@@ -1,0 +1,3 @@
+#!/bin/zsh
+# Since this is deduped, you end up with a nicely clean path.
+fpath=(${fpath:#^$HOME/*} ${fpath#^/usr/*} $fpath)
