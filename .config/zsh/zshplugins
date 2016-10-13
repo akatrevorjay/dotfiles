@@ -22,7 +22,21 @@ zplug 'aphelionz/strerror.plugin.zsh'
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
-zplug "supercrabtree/k"
+zplug "akatrevorjay/k"
+
+zplug "psprint/zsnapshot"  # , lazy:true
+zplug "mollifier/zload"  # , lazy:true
+
+#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+#[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
+#zplug "RobSis/zsh-completion-generator"
+
+zplug "zsh-users/zsh-completions", nice:8
+zplug "akatrevorjay/nix-zsh-completions", nice:9
+
+zplug "hlissner/zsh-autopair", nice:10
+zplug "zsh-users/zsh-history-substring-search", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", nice:12
 
 ##
 ## zconvey
@@ -42,19 +56,5 @@ zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module fo
 
 #zplug "psprint/zconvey"
 
-zplug "psprint/zsnapshot"  # , lazy:true
-zplug "mollifier/zload"  # , lazy:true
-
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
-#zplug "RobSis/zsh-completion-generator"
-
-zplug "zsh-users/zsh-completions", nice:8
-zplug "akatrevorjay/nix-zsh-completions", nice:9
-
-zplug "hlissner/zsh-autopair", nice:10
-zplug "zsh-users/zsh-history-substring-search", nice:10
-zplug "zsh-users/zsh-syntax-highlighting", nice:12
-
+## F
 zplugins::load-all-in plugins
-

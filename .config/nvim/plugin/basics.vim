@@ -158,7 +158,7 @@ set confirm
 set errorbells
 
 set matchpairs=(:),{:},[:],<:>,*:*,\":\",\':\',\|:\|,\^:\$
-set nrformats=bin,octal,hex
+"set nrformats=bin,octal,hex
 
 "set selection=inclusive
 "set selectmode=mouse
@@ -177,18 +177,18 @@ else
   set clipboard=unnamed
 endif
 
-"" Spelling highlights. Use underline in term to prevent cursorline highlights
-"" from interfering
-"if !has("gui_running")
-"  hi clear SpellBad
-"  hi SpellBad cterm=underline ctermfg=red
-"  hi clear SpellCap
-"  hi SpellCap cterm=underline ctermfg=blue
-"  hi clear SpellLocal
-"  hi SpellLocal cterm=underline ctermfg=blue
-"  hi clear SpellRare
-"  hi SpellRare cterm=underline ctermfg=blue
-"endif
+" Spelling highlights. Use underline in term to prevent cursorline highlights
+" from interfering
+if has("spell")
+  hi clear SpellBad
+  hi SpellBad cterm=underline ctermfg=red
+  hi clear SpellCap
+  hi SpellCap cterm=underline ctermfg=blue
+  hi clear SpellLocal
+  hi SpellLocal cterm=underline ctermfg=blue
+  hi clear SpellRare
+  hi SpellRare cterm=underline ctermfg=blue
+endif
 
 " Use a low updatetime. This is used by CursorHold
 "set updatetime=2000
