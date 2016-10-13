@@ -49,7 +49,8 @@ endif
 "" Colors:
 ""
 
-if has('nvim')
+" Terminology doesn't support true color
+if has('nvim') && !exists('$TERMINOLOGY')
   set termguicolors
 endif
 
@@ -165,10 +166,10 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 
 "colorscheme hotpot
 "colorscheme holokai
-"colorscheme heroku-terminal
+colorscheme heroku-terminal
 "colorscheme getafe
 "colorscheme af
-colorscheme znake
+"colorscheme znake
 "colorscheme flattr
 "colorscheme hemisu
 "colorscheme elda

@@ -1,4 +1,6 @@
 .DS_Store
 /plugins/
 /resurrect/
+/themes/airline-snapshot.conf
 /theme-airline-snapshot.conf
+/local.conf
