@@ -50,7 +50,7 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && !exists('$TERMINOLOGY')
+if has('nvim') && !empty($TERMINOLOGY)
   set termguicolors
 endif
 

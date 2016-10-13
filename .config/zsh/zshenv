@@ -68,7 +68,13 @@ typeset -U {,f,man,info,cd}path
 
 prefix_path=(
     # user
-    $HOME/crypt/bin $HOME/bin $HOME/.local/bin
+    $HOME/crypt/bin
+
+    $HOME/bin
+
+    $HOME/.local/{bin,sbin}
+
+    $HOME/.cargo/bin
 
     ${^ZDOTDIRS}/{bin,sbin}
 )
@@ -99,7 +105,7 @@ infopath=(
 
 
 autoload -Uz \
-    fix-path-order fix-user-bin-overlay-in-path \
+    fix-path-order fix-fpath-order fix-user-bin-overlay-in-path \
     source-with-force \
     add-prefix-paths add-suffix-paths \
     call-many
@@ -121,7 +127,6 @@ case "${SYSTEM:l}" in
             ${prefix_path[@]}
             ${path[@]}
         )
-        #fix-path-order
         ;;
     darwin*)
         add-prefix-paths /usr/local
@@ -137,7 +142,6 @@ case "${SYSTEM:l}" in
 
             ${(@)path}
         )
-        fix-path-order
 
         manpath=(
             "/usr/local/man"
@@ -153,7 +157,7 @@ case "${SYSTEM:l}" in
             done
         }
 
-		function () {
+        function () {
             # Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
             # Unfortunately it also reorganizes your PATH according to how it sees fit,
             # so let's change that to just be a suffix. It gets deduped anyway.
@@ -170,7 +174,6 @@ case "${SYSTEM:l}" in
         ;;
 esac
 
-
 # Go
 export GOPATH="$HOME/go"
 prefix_path+=("$GOPATH/bin")
@@ -178,6 +181,10 @@ path=(
     ${prefix_path[@]}
     ${path[@]}
 )
+
+# Fix common order mishaps across OSes
+fix-path-order
+fix-fpath-order
 
 ##
 ## local

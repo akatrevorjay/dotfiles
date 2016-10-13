@@ -77,7 +77,7 @@ case $OSTYPE:l in
             mkdir -pv "${dest:h}";
             ln -svf ${fn:a} $dest
         }
-        
+
         alias lctl='launchctl'
         alias lcload='lctl load'
         alias lcunload='lctl unload'
@@ -131,20 +131,28 @@ alias fk='k --no-vcs'
 #alias ll='ls -lhA'
 #alias lsd='ls -ld *(-/DN)'
 #alias lsa='ls -ld .*'
-alias l='k'
 
-alias la='l -A'
-alias ll='l -A'
-alias lla='ll -A'
+if [[ ${+commands[exa]} ]]; then
+    alias l='exa --group-directories-first -G'
+    alias ll='l -lh@ --git'
+else
+    alias l='ls'
+    alias ll='l -l'
+fi
+
+alias k='ll'
+alias la='l -a'
+alias lla='ll -a'
+
 alias lsd='ls -d *(-/DN)'
-alias lsa='ls -d .*'
+alias lsf='ls -d .*'
 alias lld='ll -d *(-/DN)'
-alias lla='ll -d .*'
+alias llf='ll -d .*'
 
 # Note on precommand modifiers
 # builtin			The command word is taken to be the name of a builtin
 #					command, rather than a shell function or external command.
-# command [-pvV]	The command word is an external command and not a shell 
+# command [-pvV]	The command word is an external command and not a shell
 #					builtin or function
 # nocorrect			No spelling correction made on any word
 # noglob			File name generation is not performed on any of the words

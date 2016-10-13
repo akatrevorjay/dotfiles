@@ -1,10 +1,10 @@
 #!/bin/zsh
 
 zplug "zplug/zplug"
-zplug "willghatch/zsh-hooks"
-zplug "mafredri/zsh-async"
+#zplug "willghatch/zsh-hooks"
+#zplug "mafredri/zsh-async"
 
-zplug "b4b4r07/emoji-cli"
+#zplug "b4b4r07/emoji-cli"
 
 # Was nice but constantly breaks =/
 #zplug "kennethreitz/autoeznv"
@@ -16,34 +16,33 @@ zplug "b4b4r07/emoji-cli"
 #zplug "Tarrasch/zsh-colors"
 #zplug "Tarrasch/zsh-bd"
 
-zplug 'LockonS/terminal-workload-report'
+#zplug 'LockonS/terminal-workload-report'
 
 #zplug 'aphelionz/strerror.plugin.zsh'
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
-zplug "akatrevorjay/k"
 
-zplug "psprint/zsnapshot"  # , lazy:true
-zplug "mollifier/zload"  # , lazy:true
+zplug "psprint/zsnapshot", lazy:true
+zplug "mollifier/zload", lazy:true
 
 
-##
-## zconvey
-##
-
-zstyle ":plugin:zconvey" check_interval "2"         # How often to check if there are new commands (in seconds)
-zstyle ":plugin:zconvey" expire_seconds "22"        # If shell is busy for 22 seconds, the received command will expire and not run
-zstyle ":plugin:zconvey" greeting "logo"            # Display logo at Zsh start ("text" – display text, "none" – no greeting)
-zstyle ":plugin:zconvey" ask "0"                    # zc won't ask for missing data ("1" has the same effect as always using -a option)
-zstyle ":plugin:zconvey" ls_after_rename "0"        # Don't execute zc-ls after doing rename (with zc-rename or zc-take)
-zstyle ":plugin:zconvey" use_zsystem_flock "1"      # Should use faster zsystem's flock when it's possible?
-                                                    # (default true on Zsh >= 5.3, will revert to mixed zsystem/flock on older Zshells)
-zstyle ":plugin:zconvey" output_method "feeder"     # To put commands on command line, Zconvey can use small program "feeder". Or "zsh"
-                                                    # method, which currently doesn't automatically run the command – to use when e.g.
-                                                    # feeder doesn't build (unlikely) or when occurring any problems with it
-zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module for obtaining timestamp. "date" – use date command (fork)
-
+###
+### zconvey
+###
+#
+#zstyle ":plugin:zconvey" check_interval "2"         # How often to check if there are new commands (in seconds)
+#zstyle ":plugin:zconvey" expire_seconds "22"        # If shell is busy for 22 seconds, the received command will expire and not run
+#zstyle ":plugin:zconvey" greeting "logo"            # Display logo at Zsh start ("text" – display text, "none" – no greeting)
+#zstyle ":plugin:zconvey" ask "0"                    # zc won't ask for missing data ("1" has the same effect as always using -a option)
+#zstyle ":plugin:zconvey" ls_after_rename "0"        # Don't execute zc-ls after doing rename (with zc-rename or zc-take)
+#zstyle ":plugin:zconvey" use_zsystem_flock "1"      # Should use faster zsystem's flock when it's possible?
+#                                                    # (default true on Zsh >= 5.3, will revert to mixed zsystem/flock on older Zshells)
+#zstyle ":plugin:zconvey" output_method "feeder"     # To put commands on command line, Zconvey can use small program "feeder". Or "zsh"
+#                                                    # method, which currently doesn't automatically run the command – to use when e.g.
+#                                                    # feeder doesn't build (unlikely) or when occurring any problems with it
+#zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module for obtaining timestamp. "date" – use date command (fork)
+#
 #zplug "psprint/zconvey"
 
 

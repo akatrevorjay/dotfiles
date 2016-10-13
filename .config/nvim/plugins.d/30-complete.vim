@@ -28,10 +28,10 @@ if has('nvim')
   Plug 'Shougo/vimshell.vim'
 
   "" neco-ghc: "ghc" source for Haskell
-  "Plug 'eagletmt/neco-ghc'
+  Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
 
   "" vim-racer: "racer" source for Rust
-  "Plug 'racer-rust/vim-racer'
+  Plug 'racer-rust/vim-racer', {'for': ['rust']}
 
   "" UltiSnips source: "ultisnips" source for UltiSnips
   "Plug 'SirVer/ultisnips'

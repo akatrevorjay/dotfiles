@@ -1,2 +1,4 @@
 #!/bin/zsh
-\rm -rvf ~/.cache/zsh/* ~/.zcompdump* ~/.config/zsh/.zcompdump*
+\rm -rvf ~/.cache/zsh/{,.}* ~/.zcompdump* ${^ZDOTDIRS}/.zcompdump*
+rehash
+zplug clear
