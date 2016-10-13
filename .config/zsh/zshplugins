@@ -10,15 +10,15 @@ zplug "b4b4r07/emoji-cli"
 #zplug "kennethreitz/autoeznv"
 
 #zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
-zplug "Tarrasch/zsh-autoenv"
+#zplug "Tarrasch/zsh-autoenv"
 
-zplug "Tarrasch/zsh-functional"
-zplug "Tarrasch/zsh-colors"
-zplug "Tarrasch/zsh-bd"
+#zplug "Tarrasch/zsh-functional"
+#zplug "Tarrasch/zsh-colors"
+#zplug "Tarrasch/zsh-bd"
 
 zplug 'LockonS/terminal-workload-report'
 
-zplug 'aphelionz/strerror.plugin.zsh'
+#zplug 'aphelionz/strerror.plugin.zsh'
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
@@ -27,16 +27,6 @@ zplug "akatrevorjay/k"
 zplug "psprint/zsnapshot"  # , lazy:true
 zplug "mollifier/zload"  # , lazy:true
 
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
-#zplug "RobSis/zsh-completion-generator"
-
-zplug "zsh-users/zsh-completions", nice:8
-zplug "akatrevorjay/nix-zsh-completions", nice:9
-
-zplug "hlissner/zsh-autopair", nice:10
-zplug "zsh-users/zsh-history-substring-search", nice:10
-zplug "zsh-users/zsh-syntax-highlighting", nice:12
 
 ##
 ## zconvey
@@ -56,5 +46,18 @@ zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module fo
 
 #zplug "psprint/zconvey"
 
-## F
+
+#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+#[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
+#zplug "RobSis/zsh-completion-generator"
+
+zplug "zsh-users/zsh-completions", nice:8
+zplug "akatrevorjay/nix-zsh-completions", nice:9
+
+zplug "hlissner/zsh-autopair", nice:10
+zplug "zsh-users/zsh-history-substring-search", nice:10
+zplug "zsh-users/zsh-syntax-highlighting", nice:12
+
+
+# Finally
 zplugins::load-all-in plugins

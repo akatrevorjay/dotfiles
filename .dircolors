@@ -909,19 +909,19 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 # unsorted {{{1
 #
 #   Portable Object Translation for GNU Gettext
-.pot                  38;5;7
+.pot                  38;5;8
 #   CAD files for printed circuit boards
 .pcb                  38;5;7
 #   groff (rendering app for texinfo)
-.mm                   38;5;7
+.mm                   38;5;9
 #   perldoc
-.pod                  38;5;7
+.pod                  38;5;10
 #   GIMP brush
-.gbr                  38;5;7
+.gbr                  38;5;10
 # printer spool file
-.spl                  38;5;7
+.spl                  38;5;12
 #   GIMP project file
-.scm                  38;5;7
+.scm                  38;5;11
 # RStudio project file
 .Rproj                38;5;11
 #   Nokia Symbian OS files
@@ -944,9 +944,9 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 .pi                   38;5;7
 .plt                  38;5;7
 .pm                   38;5;7
-.rb                   38;5;7
+.rb                   38;5;5
 .rdf                  38;5;7
-.rst                  38;5;7
+.rst                  38;5;6
 .ru                   38;5;7
 .sch                  38;5;7
 .sty                  38;5;7
@@ -956,8 +956,8 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 .tfm                  38;5;7
 .tfnt                 38;5;7
 .tg                   38;5;7
-.vcard                38;5;7
-.vcf                  38;5;7
+.vcard                38;5;4
+.vcf                  38;5;4
 .xln                  38;5;7
 # }}}
 # termcap {{{1
