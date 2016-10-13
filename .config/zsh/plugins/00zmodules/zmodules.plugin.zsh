@@ -25,7 +25,6 @@
         zsh/regex \
         zsh/rlimits \
         zsh/sched \
-        zsh/stat \
         zsh/system \
         zsh/zftp \
         #zsh/zprof \
@@ -36,3 +35,4 @@
     zmodload "${zmodules[@]}"
 }
 
+zmodload -F zsh/stat b:zstat
