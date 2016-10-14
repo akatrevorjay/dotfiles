@@ -14,6 +14,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'css', 'xml', 'xls', 'markdown
 
 " Better json
 Plug 'elzr/vim-json'
+Plug 'google/vim-jsonnet'
 
 " AWS CloudFormation
 Plug 'm-kat/aws-vim'

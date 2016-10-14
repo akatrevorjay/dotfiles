@@ -180,3 +180,7 @@ alias mv='nocorrect mv -iv'
 alias pu='pushd'
 alias po='popd'
 
+if [[ ${+commands[git-tip]} ]]; then
+    git-tip || :
+fi
+
