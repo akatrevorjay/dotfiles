@@ -70,6 +70,7 @@ if (( ${+commands[dircolors]} )); then
 
     local cmd
     for cmd in {g,}dircolors; do
+        (( ${+commands[$cmd]} )) || continue
         eval "$($cmd -b "$file" || $cmd -b)"
         break
     done
