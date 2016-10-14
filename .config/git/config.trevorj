@@ -18,3 +18,7 @@
 
 [gpg]
   program = gpg2
+
+#[init]
+#  templatedir = template
+

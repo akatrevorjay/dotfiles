@@ -103,11 +103,9 @@ case $OSTYPE:l in
         ;;
     *bsd*|darwin*|*)
         if [[ ${+commands[gls]} ]]; then
-            alias ls='gls $LS_OPTIONS_GNU'
-        elif ls --version > /dev/null; then
-            alias ls='ls $LS_OPTIONS_GNU'
+            alias ls="gls $LS_OPTIONS_GNU"
         else
-            alias ls='ls $LS_OPTIONS_BSD'
+            alias ls="ls $LS_OPTIONS_BSD"
         fi
         ;;
 esac
