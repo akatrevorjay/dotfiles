@@ -32,7 +32,7 @@ fi
 wait
 
 if [[ -n "$GOPATH" ]]; then
-    go get -u -x -v all
+    go get -u -v all
 fi
 
 case $OSTYPE:l in
@@ -41,7 +41,7 @@ case $OSTYPE:l in
         ;;
 
     darwin*)
-        brew upgrade
+        brew upgrade || :
 
         # reinstall all HEAD versions
         brew list --versions | grep HEAD | awk '{ print $1 }' | xargs -t -- brew reinstall --HEAD
