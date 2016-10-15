@@ -20,6 +20,8 @@
 /.fasd
 /.strash
 
+.DS_*
+
 *.log
 *.swp
 *.swo

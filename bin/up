@@ -1,8 +1,6 @@
 #!/bin/zsh
 set -exv
-setopt jobs
 
-cd
 yadm pull
 
 case $OSTYPE:l in
@@ -12,6 +10,18 @@ case $OSTYPE:l in
 
     darwin*)
         brew update >/dev/null &
+        ;;
+esac
+
+wait
+
+case $OSTYPE:l in
+    linux*)
+        sudo apt full-upgrade -y
+        ;;
+
+    darwin*)
+        brew upgrade --fetch-HEAD || :
         ;;
 esac
 
@@ -29,22 +39,7 @@ fi
 #    :
 #fi
 
-wait
-
 if [[ -n "$GOPATH" ]]; then
-    go get -u -v all
+    go get -u -v all || :
 fi
-
-case $OSTYPE:l in
-    linux*)
-        sudo apt full-upgrade -y
-        ;;
-
-    darwin*)
-        brew upgrade || :
-
-        # reinstall all HEAD versions
-        brew list --versions | grep HEAD | awk '{ print $1 }' | xargs -t -- brew reinstall --HEAD
-        ;;
-esac
 
