@@ -27,10 +27,14 @@
 
 # Common aliases
 [alias]
+	c = checkout
 	co = checkout
 	st = status
+	b = branch
 	br = branch
+
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
 	type = cat-file -t
 	dump = cat-file -p
 	wu = log --stat origin..@{0}
@@ -48,7 +52,7 @@
 	resync = !legit resync
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	short = log --pretty=oneline -n 20 --graph --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
@@ -63,7 +67,8 @@
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
-	c = clone --recursive
+	clone = clone --recursive
+	cl = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -106,6 +111,7 @@
 
 	# List contributors with number of commits
 	contributors = shortlog --summary --numbered
+	scores = shortlog --summary --numbered
 
 	# Merge GitHub pull request on top of the `master` branch
 	mpr = "!f() { \

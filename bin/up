@@ -5,7 +5,7 @@ setopt jobs
 cd
 yadm pull
 
-case $OSTYPE in
+case $OSTYPE:l in
     linux*)
         sudo apt update -qq &
         ;;
@@ -15,34 +15,36 @@ case $OSTYPE in
         ;;
 esac
 
-zgen=${commands[zgen]}
-if [[ -n $zgen ]]; then
-    zgen selfupdate
-    zgen update
-fi
+#if [[ ${+functions[zplug]} ]]; then
+#    zplug update
+#    zsh-clean-cache
+#fi
 
 vim=${commands[nvim]-${commands[vim]}}
 if [[ -n $vim ]]; then
     $vim -c 'Update'
 fi
 
-tmux=${commands[tmux]}
-if [[ -n $tmux ]]; then
-    :
-fi
+#if [[ ${+commands[tmux]} ]]; then
+#    :
+#fi
 
 wait
 
-case $OSTYPE in
+if [[ -n "$GOPATH" ]]; then
+    go get -u -x -v all
+fi
+
+case $OSTYPE:l in
     linux*)
         sudo apt full-upgrade -y
         ;;
 
     darwin*)
         brew upgrade
+
+        # reinstall all HEAD versions
+        brew list --versions | grep HEAD | awk '{ print $1 }' | xargs -t -- brew reinstall --HEAD
         ;;
 esac
 
-if [[ -n "$GOPATH" ]]; then
-    go get -u -x -v all
-fi

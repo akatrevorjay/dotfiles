@@ -16,10 +16,6 @@ setopt extendedglob kshglob
 setopt nullglob
 setopt interactivecomments
 
-# Why in the world is this enabled by default on Linux? zgen?
-zmodload -i zsh/stat
-disable stat
-
 # enable all of the highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
 
@@ -81,7 +77,7 @@ function zplugins::load-all-in() {
 # TODO check plugins difference on hook and auto-load
 source-with-force $ZPLUGINS_FILES
 
-# Install zplug if wj don't have it.
+# Install zplug if we don't have it.
 if [[ ! -d $ZPLUG_DIR ]]; then
     echo "- No zplug found in ZPLUG_DIR=$ZPLUG_DIR" >&2
 
