@@ -99,10 +99,14 @@ Plug 'google/vim-codefmt'
 "Plug 'janko-m/vim-test'
 
 "" Syntastic: automagic syntax checks
-Plug 'scrooloose/syntastic'
-Plug 'myint/syntastic-extras'
-" viml linting
-Plug 'todesking/vint-syntastic'
+"Plug 'scrooloose/syntastic'
+"Plug 'myint/syntastic-extras'
+"" viml linting
+"Plug 'todesking/vint-syntastic'
+
+" ALE: Async Lint Engine
+Plug 'w0rp/ale'
+
 
 ""
 "" Language: Python

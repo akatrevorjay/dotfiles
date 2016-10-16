@@ -9,8 +9,8 @@
 "let g:python_host_prog = 'python2'
 "let g:python3_host_prog = 'python3'
 
-let g:python_host_prog = expand('~/.virtualenvs/neovim2/bin/python')
-let g:python3_host_prog = expand('~/.virtualenvs/neovim3/bin/python')
+let g:python_host_prog = expand('~/.virtualenvs/neovim/bin/python2')
+let g:python3_host_prog = expand('~/.virtualenvs/neovim/bin/python3')
 
 if has('nvim')
   " Skip the check of neovim module
