@@ -27,29 +27,25 @@
 
 # Common aliases
 [alias]
-	c = checkout
+	cl = clone
 	co = checkout
 	st = status
-	b = branch
 	br = branch
 
+	c = checkout
+	b = branch
+
+	# Clone a repository including all submodules
+	clone = clone --recursive
+  log = log --decorate --branches --graph
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
-	type = cat-file -t
-	dump = cat-file -p
+
 	wu = log --stat origin..@{0}
 	upbase = rebase '@{u}'
 
-	# legit aliases
-	branches = !legit branches
-	graft = !legit graft
-	harvest = !legit harvest
-	publish = !legit publish
-	unpublish = !legit unpublish
-	sprout = !legit sprout
-	sync = !legit sync
-	switch = !legit switch
-	resync = !legit resync
+	type = cat-file -t
+	dump = cat-file -p
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	short = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -65,10 +61,6 @@
 
 	# Pull in remote changes for the current repository and all its submodules
 	p = !"git pull; git submodule foreach git pull origin master"
-
-	# Clone a repository including all submodules
-	clone = clone --recursive
-	cl = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -124,4 +116,15 @@
 		git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
 		fi \
 		}; f"
+
+	# legit aliases
+	branches = !legit branches
+	graft = !legit graft
+	harvest = !legit harvest
+	publish = !legit publish
+	unpublish = !legit unpublish
+	sprout = !legit sprout
+	sync = !legit sync
+	switch = !legit switch
+	resync = !legit resync
 
