@@ -61,7 +61,7 @@ alias hl='fc -l -L -100'
 #					builtin or function
 # nocorrect			No spelling correction made on any word
 # noglob			File name generation is not performed on any of the words
-alias n=noglob
+alias ng=noglob
 alias nc=nocorrect
 alias ng=noglob
 
@@ -74,7 +74,7 @@ alias fk='k --no-vcs'
 #alias lsd='ls -ld *(-/DN)'
 #alias lsa='ls -ld .*'
 
-if [[ ${+commands[exa]} ]]; then
+if (( ${+commands[exa]} )); then
     alias l='exa --group-directories-first -G'
     alias ll='l -lh@ --git'
 else
@@ -179,7 +179,7 @@ case $OSTYPE:l in
         ;;
 esac
 
-if [[ ${+commands[git-tip]} ]]; then
+if (( ${+commands[git-tip]} )); then
     git-tip || :
 fi
 

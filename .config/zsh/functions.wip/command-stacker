@@ -9,7 +9,7 @@ $name() {
 	}
 
 	local function -sc-has-cmd {
-		if [[ ${+functions[$1]} || ${+commands[$1]} ]]; then
+		if [[ (( ${+functions[$1]} )) || (( ${+commands[$1]} )) ]]; then
 			true
 		elif [[ -e "$SC_HOME/functions/$1" ]]; then
 			autoload -Uz $1

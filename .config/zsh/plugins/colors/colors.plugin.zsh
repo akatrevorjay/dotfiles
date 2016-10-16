@@ -102,7 +102,7 @@ case $OSTYPE:l in
         alias ls='ls $LS_OPTIONS_GNU'
         ;;
     *bsd*|darwin*|*)
-        if [[ ${+commands[gls]} ]]; then
+        if (( ${+commands[gls]} )); then
             alias ls="gls $LS_OPTIONS_GNU"
         else
             alias ls="ls $LS_OPTIONS_BSD"
@@ -123,14 +123,14 @@ alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 
 # diff
-[[ ! ${+commands[colordiff]} ]] \
+(( ! ${+commands[colordiff]} )) \
     || alias diff='colordiff'
 
 # make
-[[ ! ${+commands[colormake]} ]] \
+(( ! ${+commands[colormake]} )) \
     || alias make='colormake'
 
 # tail
-[[ ! ${+commands[colortail]} ]] \
+(( ! ${+commands[colortail]} )) \
     || alias tail='colortail'
 

@@ -179,4 +179,3 @@ zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
 ## init
 #autoload -Uz compinit
 #compinit
-
