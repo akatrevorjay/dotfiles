@@ -1,15 +1,13 @@
 #!/bin/zsh
 
 # Unsure
-setopt autoresume autocd autoresume
+setopt autoresume autocd autoresume autopushd
+setopt bgnice checkjobs nocorrectall cdablevars
 setopt longlistjobs
 #setopt globcomplete globsubst globassign
-setopt vi
-
 setopt completealiases
-setopt correct correctall
-
-setopt bgnice checkjobs multibyte promptvars promptsubst magicequalsubst warncreateglobal promptbang nocorrectall debugbeforecmd autopushd cdablevars longlistjobs extendedhistory sharehistory
+setopt correct
+setopt vi
 
 # aliases
 alias v='vim'
@@ -28,7 +26,7 @@ alias lg='ls -g'
 alias lla='ll -A'
 alias llA='ls -la'
 
-alias l='ls -lAh'         # all files, 
+alias l='ls -lAh'         # all files,
 alias lm="l | ${PAGER}"   # all files, use pager
 alias lr='ll -R'          # recursive
 alias lx='ll -XB'         # sort by extension (GNU only)

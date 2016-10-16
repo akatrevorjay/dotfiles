@@ -25,7 +25,7 @@ zstyle ':compinstall' filename "$ZDOTDIR/compinstallrc"
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' auto-rehash true
 
-#zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' extra-verbose yes
@@ -34,14 +34,14 @@ zstyle ':completion:*' file-sort modification
 zstyle ':completion:*' ignore-parents pwd
 zstyle ':completion:*' special-dirs true
 
-#zstyle ':completion:*' expand prefix suffix
+zstyle ':completion:*' expand prefix suffix
 #zstyle ':completion:*' match-original both
 #zstyle ':completion:*' preserve-prefix '//[^/]##/'
 #zstyle ':completion:*' max-errors 1
 
 # menu if nb items > 2
-#zstyle ':completion:*' menu select=2
-zstyle ':completion:*' menu select=1
+zstyle ':completion:*' menu select=2
+#zstyle ':completion:*' menu select=1
 #zstyle ':completion:*' menu select=long
 
 # disable named-directories autocompletion
@@ -73,13 +73,12 @@ zstyle ':completion:*' completer \
 
 #zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 #zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 ## ignore case
 #zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 
-#zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
-#zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 ##
 ## Wider scope completion conf
@@ -156,6 +155,15 @@ zstyle ':completion:*:kill:*' command 'ps -o pid,%cpu,tty,cputime,cmd'
 #zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
+# defs
+#zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' format ' %F{yellow}-- completing: %d --%f'
+zstyle ':completion:*' auto-description ' %F{blue}-- %d --%f'
+
+zstyle ':completion:*' prompt 'comp errors:%e>'
+zstyle ':completion:*' list-prompt '%SAt %p (%l) %M matches: Hit TAB for more, or the character to insert%s'
+zstyle ':completion:*' select-prompt '%SScrolling active: current selection at %p (%l)%s'
+
 #zstyle ':completion:*:*:*:*:*' menu select
 zstyle ':completion:*:matches' group 'yes'
 zstyle ':completion:*:options' description 'yes'
@@ -166,16 +174,6 @@ zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
 zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
 zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
 zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
-
-# defs
-#zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*' format ' %F{yellow}-- completing: %d --%f'
-#zstyle ':completion:*' auto-description 'specify: %d'
-
-zstyle ':completion:*' prompt 'comp errors:%e>'
-zstyle ':completion:*' list-prompt %SAt %p \(%l\): Hit TAB for more, or the character to insert%s
-zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p \(%l\)%s
 
 
 ## init

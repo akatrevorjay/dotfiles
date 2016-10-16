@@ -37,4 +37,4 @@ zplug "zsh-users/zsh-history-substring-search", nice:10
 zplug "zsh-users/zsh-syntax-highlighting", nice:12
 
 # Finally
-zplugins::load-all-in plugins
+zplugins.load-all-in plugins

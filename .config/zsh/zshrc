@@ -41,16 +41,16 @@ typeset -a zplug_q=()
 typeset -A zplugs=()
 
 # Stub zplug that just queues the commands for later
-function zplugins::zplug::stub() {
+function zplugins.zplug.stub() {
     set -- zplug "$@"
     zplug_q+=("${(q)@}" $'\0')
 }
 
 function zplug() {
-    zplugins::zplug::stub "$@"
+    zplugins.zplug.stub "$@"
 }
 
-function zplugins::load-all-in() {
+function zplugins.load-all-in() {
     local p
 
     local paths=()
@@ -62,10 +62,11 @@ function zplugins::load-all-in() {
         fi
     done
 
+    local nice
     for p in ${^paths}/*(-/); do
-        first_char=${${p:t}:0:1}
-        if [[ $first_char = [0-9] ]]; then
-            nice=$first_char
+        nice=${${p:t}%%[^0-9]*}
+        if [[ -n $nice ]]; then
+            nice=$nice
         else
             nice=5
         fi
@@ -88,7 +89,7 @@ if [[ ! -d $ZPLUG_DIR ]]; then
     fi
 fi
 
-function zplugins::zplug::apply {
+function zplugins.zplug.apply {
     # Run through zplug_q
     local p
     for p in ${(0)zplug_q}; do
@@ -98,20 +99,20 @@ function zplugins::zplug::apply {
     done
 }
 
-function zplugins::zplug::lazy {
+function zplugins.zplug.lazy {
     unfunction zplug
     source $ZPLUG_DIR/init.zsh
 
-    zplugins::zplug::apply
+    zplugins.zplug.apply
 
     zplug "$@"
 }
 
 function zplug() {
-    zplugins::zplug::lazy "$@"
+    zplugins.zplug.lazy "$@"
 }
 
-function zplugins::cache::is-clean() {
+function zplugins.cache.is-clean() {
     if [ ! -f $ZPLUG_CACHE_FILE ]; then
         echo "- Cache file not found: $ZPLUG_CACHE_FILE" >&2
         return 1
@@ -126,7 +127,7 @@ function zplugins::cache::is-clean() {
     done
 }
 
-if zplugins::cache::is-clean; then
+if zplugins.cache.is-clean; then
     echo "- Loading cache"
     source $ZPLUG_CACHE_FILE
 else
