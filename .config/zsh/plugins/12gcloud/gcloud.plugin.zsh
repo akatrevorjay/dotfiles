@@ -9,7 +9,7 @@ fi
 
 if [[ ${+commands[kubectl]} ]]; then
     : ${_KUBECTL_INIT_CACHE:=${ZSH_CACHE_DIR:-${ZDOTDIR:-$HOME}}/.kubectl-init.zsh}
-    if [ ${commands[kubectl]} -nt $_KUBECTL_INIT_CACHE -o ! -s $_KUBECTL_INIT_CACHE ]; then
+    if [[ ! -s $_KUBECTL_INIT_CACHE || ${commands[kubectl]} -nt $_KUBECTL_INIT_CACHE ]]; then
         kubectl completion zsh \
           >| $_KUBECTL_INIT_CACHE
     fi
