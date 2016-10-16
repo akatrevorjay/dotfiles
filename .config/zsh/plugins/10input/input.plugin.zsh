@@ -90,23 +90,23 @@ key_info=(
 
 # Bind the keys
 
-if [[ -n "${key_info[Home]}" ]]; then
-    bindkey "${key_info[Home]}" beginning-of-line
+if [[ -n ${key_info[Home]} ]]; then
+    bindkey ${key_info[Home]} beginning-of-line
 fi
 
-if [[ -n "${key_info[End]}" ]]; then
-    bindkey "${key_info[End]}" end-of-line
+if [[ -n ${key_info[End]} ]]; then
+    bindkey ${key_info[End]} end-of-line
 fi
 
-if [[ -n "${key_info[Insert]}" ]]; then
-    bindkey "${key_info[Insert]}" overwrite-mode
+if [[ -n ${key_info[Insert]} ]]; then
+    bindkey ${key_info[Insert]} overwrite-mode
 fi
 
-bindkey "${key_info[Delete]}" delete-char
-bindkey "${key_info[Backspace]}" backward-delete-char
+bindkey ${key_info[Delete]} delete-char
+bindkey ${key_info[Backspace]} backward-delete-char
 
-bindkey "${key_info[Left]}" backward-char
-bindkey "${key_info[Right]}" forward-char
+bindkey ${key_info[Left]} backward-char
+bindkey ${key_info[Right]} forward-char
 
 # Expandpace.
 #bindkey ' ' magic-space
@@ -115,25 +115,25 @@ bindkey "${key_info[Right]}" forward-char
 bindkey "${key_info[Control]}L" clear-screen
 
 # Bind Shift + Tab to go to the previous menu item.
-if [[ -n "${key_info[BackTab]}" ]]; then
-    bindkey "${key_info[BackTab]}" reverse-menu-complete
+if [[ -n ${key_info[BackTab]} ]]; then
+    bindkey ${key_info[BackTab]} reverse-menu-complete
 fi
 
-# Make sure that the terminal is in application mode when zle is active, since
-# only then values from $terminfo are valid
-# Put into application mode and validate ${terminfo}
-zle-line-init() {
-    if (( ${+terminfo[smkx]} )); then
-        echoti smkx
-    fi
-}
-zle-line-finish() {
-    if (( ${+terminfo[rmkx]} )); then
-        echoti rmkx
-    fi
-}
-zle -N zle-line-init
-zle -N zle-line-finish
+## Make sure that the terminal is in application mode when zle is active, since
+## only then values from $terminfo are valid
+## Put into application mode and validate ${terminfo}
+#zle-line-init() {
+#    if (( ${+terminfo[smkx]} )); then
+#        echoti smkx
+#    fi
+#}
+#zle-line-finish() {
+#    if (( ${+terminfo[rmkx]} )); then
+#        echoti rmkx
+#    fi
+#}
+#zle -N zle-line-init
+#zle -N zle-line-finish
 
 # Updates editor information when the keymap changes.
 function zle-keymap-select() {
@@ -141,12 +141,12 @@ function zle-keymap-select() {
   zle -R
 }
 
-# Ensure that the prompt is redrawn when the terminal size changes.
-TRAPWINCH() {
-  zle && { zle reset-prompt; zle -R }
-}
-
 zle -N zle-keymap-select
+
+## Ensure that the prompt is redrawn when the terminal size changes.
+#TRAPWINCH() {
+#  zle && { zle reset-prompt; zle -R }
+#}
 
 autoload -Uz edit-command-line
 zle -N edit-command-line
@@ -160,8 +160,7 @@ zle -N edit-command-line
 bindkey -v
 
 # allow v to edit the command line (standard behaviour)
-#bindkey -M vicmd 'v' edit-command-line
-bindkey -M vicmd '^F' edit-command-line
+bindkey '^F' edit-command-line
 
 # allow ctrl-p, ctrl-n for navigate history (standard behaviour)
 bindkey '^P' up-history
@@ -176,53 +175,58 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 
-# if mode indicator wasn't setup by theme, define default
-if [[ "$MODE_INDICATOR" == "" ]]; then
-  MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
+if [[ ${#fg} -eq 0 ]]; then
+    autoload -Uz colors
+    colors
 fi
 
+# if mode indicator wasn't setup by theme, define default
+: ${MODE_INDICATOR:="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"}
+
 function vi_mode_prompt_info() {
-  echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
+    echo "${${KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
 }
 
 ## define right prompt, if it wasn't defined by a theme
-#if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
+#if [[ -z "${RPS1}${RPROMPT}" ]]; then
 #  RPS1='$(vi_mode_prompt_info)'
 #fi
+
+#function zle-line-init zle-keymap-select {
+#    #RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+#    RPS1=$(vi_mode_prompt_info)
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
+
 
 ##
 ## end vi
 ##
 
 
-
-
-
-
-
-
-
 bindkey '\ew' kill-region                             # [Esc-w] - Kill from the cursor to the mark
 bindkey -s '\el' 'ls\n'                               # [Esc-l] - run command: ls
 #bindkey '^r' history-incremental-search-backward      # [Ctrl-r] - Search backward incrementally for a specified string. The string may begin with ^ to anchor the search to the beginning of the line.
-if [[ $keyinfo[PageUp] != "" ]]; then
-  	bindkey $keyinfo[PageUp] up-line-or-history       # [PageUp] - Up a line of history
-fi
-if [[ $keyinfo[PageDown] != "" ]]; then
-  	bindkey $keyinfo[PageDown] down-line-or-history     # [PageDown] - Down a line of history
-fi
+#if [[ -n $key_info[PageUp] ]]; then
+#      bindkey $key_info[PageUp] up-line-or-history       # [PageUp] - Up a line of history
+#fi
+#if [[ -n $key_info[PageDown] ]]; then
+#      bindkey $key_info[PageDown] down-line-or-history     # [PageDown] - Down a line of history
+#fi
 
 ## start typing + [Up-Arrow] - fuzzy find history forward
-#if [[ $keyinfo[Up] != "" ]]; then
+#if [[ -n $key_info[Up] ]]; then
 #  	autoload -U up-line-or-beginning-search
 #  	zle -N up-line-or-beginning-search
-#  	bindkey $keyinfo[Up] up-line-or-beginning-search
+#  	bindkey $key_info[Up] up-line-or-beginning-search
 #fi
 ## start typing + [Down-Arrow] - fuzzy find history backward
-#if [[ $keyinfo[Down] != "" ]]; then
+#if [[ -n $key_info[Down] ]]; then
 #  	autoload -U down-line-or-beginning-search
 #  	zle -N down-line-or-beginning-search
-#  	bindkey $keyinfo[Down] down-line-or-beginning-search
+#  	bindkey $key_info[Down] down-line-or-beginning-search
 #fi
 
 # set options
@@ -231,8 +235,8 @@ HISTORY_SUBSTRING_SEARCH_HIGHLIGHT_NOT_FOUND='bg=red,fg=white,bold'
 HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
 
 ## bind UP and DOWN arrow keys
-#bindkey $keyinfo[Up] history-substring-search-up
-#bindkey $keyinfo[Down] history-substring-search-down
+#bindkey $key_info[Up] history-substring-search-up
+#bindkey $key_info[Down] history-substring-search-down
 #
 ## bind UP and DOWN arrow keys (compatibility fallback
 ## for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
@@ -247,11 +251,14 @@ HISTORY_SUBSTRING_SEARCH_GLOBBING_FLAGS='i'
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
 
-if [[ $keyinfo[Home] != "" ]]; then
-  	bindkey $keyinfo[Home] beginning-of-line      # [Home] - Go to beginning of line
+#bindkey "\033[1~" beginning-of-line
+#bindkey "\033[4~" end-of-line
+
+if [[ -n $key_info[Home] ]]; then
+  	bindkey $key_info[Home] beginning-of-line      # [Home] - Go to beginning of line
 fi
-if [[ $keyinfo[End] != "" ]]; then
-  	bindkey $keyinfo[End]  end-of-line            # [End] - Go to end of line
+if [[ -n $key_info[End] ]]; then
+  	bindkey $key_info[End]  end-of-line            # [End] - Go to end of line
 fi
 
 bindkey ' ' magic-space                               # [Space] - do history expansion
@@ -262,16 +269,16 @@ bindkey '^[[1;5D' backward-word                       # [Ctrl-LeftArrow] - move 
 #bindkey ControlLeft backward-word
 #bindkey ControlRight forward-word
 
-#bindkey $keyinfo[ControlRight] forward-word                         [Ctrl-RightArrow] - move forward one word
-#bindkey $keyinfo[ControlLeft] backward-word                        [Ctrl-LeftArrow] - move backward one word
+#bindkey $key_info[ControlRight] forward-word                         [Ctrl-RightArrow] - move forward one word
+#bindkey $key_info[ControlLeft] backward-word                        [Ctrl-LeftArrow] - move backward one word
 
-if [[ $keyinfo[BackTab] != "" ]]; then
-  	bindkey $keyinfo[BackTab] reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
+if [[ -n $key_info[BackTab] ]]; then
+  	bindkey $key_info[BackTab] reverse-menu-complete   # [Shift-Tab] - move through the completion menu backwards
 fi
 
 bindkey '^?' backward-delete-char                     # [Backspace] - delete backward
-if [[ $keyinfo[Delete] != "" ]]; then
-  	bindkey $keyinfo[Delete] delete-char            # [Delete] - delete forward
+if [[ -n $key_info[Delete] ]]; then
+  	bindkey $key_info[Delete] delete-char            # [Delete] - delete forward
 else
   	bindkey "^[[3~" delete-char
   	bindkey "^[3;5~" delete-char

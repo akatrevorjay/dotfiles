@@ -34,7 +34,7 @@ setopt pipe_fail
 setopt auto_pushd
 
 setopt auto_cd cdable_vars pushd_to_home pushd_minus pushd_ignore_dups
-export DIRSTAC
+#export DIRSTAC
 
 setopt list_packed list_rows_first list_types
 
