@@ -68,13 +68,7 @@ typeset -U {,f,man,info,cd}path
 
 prefix_path=(
     # user
-    $HOME/crypt/bin
-
-    $HOME/bin
-
-    $HOME/.local/{bin,sbin}
-
-    $HOME/.cargo/bin
+    $HOME/{crypt,,.local,.cargo}/{bin/sbin}
 
     ${^ZDOTDIRS}/{bin,sbin}
 )

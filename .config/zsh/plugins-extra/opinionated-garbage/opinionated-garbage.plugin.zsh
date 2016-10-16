@@ -4,10 +4,12 @@
 setopt autoresume autocd autoresume
 setopt longlistjobs
 #setopt globcomplete globsubst globassign
-#setopt vi
+setopt vi
 
 setopt completealiases
 setopt correct correctall
+
+setopt bgnice checkjobs multibyte promptvars promptsubst magicequalsubst warncreateglobal promptbang nocorrectall debugbeforecmd autopushd cdablevars longlistjobs extendedhistory sharehistory
 
 # aliases
 alias v='vim'
@@ -46,7 +48,7 @@ alias duh='du -kh'
 alias df=dfh
 alias du=duh
 
-unsetopt flowcontrol
+#unsetopt flowcontrol
 
 # If a completion is performed with the cursor within a word, and a full completion is inserted,
 # the cursor is moved to the end of the word
@@ -69,10 +71,6 @@ unsetopt case_glob
 ## iow do not autoselect the first completion entry
 #unsetopt menu_complete
 
-#
-# Suffix aliases
-#
-
 # Mac OS X Everywhere
 if [[ "$OSTYPE" == darwin* ]]; then
     true;
@@ -81,6 +79,10 @@ elif [[ "$OSTYPE" == cygwin* ]]; then
 else
   alias open='xdg-open'
 fi
+
+#
+# Suffix aliases
+#
 
 for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{x,}htm{,l} sls zone {x,}htm{,l} cfg conf rc ini c{,pp} h pm css sass less); do
 	alias -s $s=$EDITOR

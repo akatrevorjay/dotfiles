@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+first-command() {
+    local arg
+    for arg in "$@"; do
+        if (( ${+commands[$arg]} )); then
+            echo $arg ${commands[$arg]}
+            return
+        fi
+    done
+    return 1
+}
+
+glob-command() {
+    [ $# -gt 0 ] || set -- '*(.)'
+    echo ${^path}/${^(q)@}
+}
+
+first-command "$@"

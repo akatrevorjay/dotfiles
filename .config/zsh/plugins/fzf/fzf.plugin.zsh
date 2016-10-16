@@ -15,6 +15,9 @@ autoload -Uz add-prefix-paths source-with-force
 
 add-prefix-paths $fzf_path
 
+# quiet down +warn_create_global
+local binding fzf_default_completion
+
 source-with-force $fzf_path/shell/*.zsh
 
 unset fzf_path

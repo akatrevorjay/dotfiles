@@ -39,6 +39,7 @@ _git_log_brief_format='%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(
 
 # Git
 alias g='git'
+alias gi='git'
 
 # Branch (b)
 alias gb='git branch'
@@ -78,14 +79,14 @@ alias gCO='gCo $(gCl)'
 alias gCt='git checkout --theirs --'
 alias gCT='gCt $(gCl)'
 
-# Data (d)
-alias gd='git ls-files'
-alias gdc='git ls-files --cached'
-alias gdx='git ls-files --deleted'
-alias gdm='git ls-files --modified'
-alias gdu='git ls-files --other --exclude-standard'
-alias gdk='git ls-files --killed'
-alias gdi='git status --porcelain --short --ignored | sed -n "s/^!! //p"'
+# Data (D)
+alias gD='git ls-files'
+alias gDc='git ls-files --cached'
+alias gDx='git ls-files --deleted'
+alias gDm='git ls-files --modified'
+alias gDu='git ls-files --other --exclude-standard'
+alias gDk='git ls-files --killed'
+alias gDi='git status --porcelain --short --ignored | sed -n "s/^!! //p"'
 
 # Fetch (f)
 alias gf='git fetch'
@@ -102,9 +103,13 @@ alias ggL='git grep --files-without-matches'
 alias ggv='git grep --invert-match'
 alias ggw='git grep --word-regexp'
 
+alias ga='git add'
+alias gap='git add --patch'
+alias gau='git add --update'
+
 # Index (i)
 alias gia='git add'
-alias giA='git add --patch'
+alias gip='git add --patch'
 alias giu='git add --update'
 alias gid='git diff --no-ext-diff --cached'
 alias giD='git diff --no-ext-diff --cached --word-diff'
@@ -136,26 +141,26 @@ alias gpf='git push --force'
 alias gpa='git push --all'
 alias gpA='git push --all && git push --tags'
 alias gpt='git push --tags'
-alias gpc='git push --set-upstream origin "$(git-branch-current 2> /dev/null)"'
-alias gpp='git pull origin "$(git-branch-current 2> /dev/null)" && git push origin "$(git-branch-current 2> /dev/null)"'
+alias gpc='git push --set-upstream origin "$(git-branch-current)"'
+alias gpp='git pull origin "$(git-branch-current)" && git push origin "$(git-branch-current)"'
 
-# Rebase (r)
-alias gr='git rebase'
-alias gra='git rebase --abort'
-alias grr='git rebase --continue'
-alias gri='git rebase --interactive'
-alias grs='git rebase --skip'
+# Rebase (R)
+alias gR='git rebase'
+alias gRa='git rebase --abort'
+alias gRc='git rebase --continue'
+alias gRi='git rebase --interactive'
+alias gRs='git rebase --skip'
 
-# Remote (R)
-alias gR='git remote'
-alias gRl='git remote --verbose'
-alias gRa='git remote add'
-alias gRx='git remote rm'
-alias gRm='git remote rename'
-alias gRu='git remote update'
-alias gRp='git remote prune'
-alias gRs='git remote show'
-alias gRb='git-hub-browse'
+# Remote (r)
+alias gr='git remote'
+alias grl='git remote --verbose'
+alias gra='git remote add'
+alias grx='git remote rm'
+alias grm='git remote rename'
+alias gru='git remote update'
+alias grp='git remote prune'
+alias grs='git remote show'
+alias grb='git-hub-browse'
 
 # Stash (s)
 alias gs='git stash'
@@ -202,9 +207,6 @@ alias gwX='git rm -rf'
 # Misc
 alias g..='cd $(git-root || print .)'
 
-#!/bin/bash
-alias git-log='git log --decorate --branches --graph'
-
 # $ wow
 # $ such commit
 # $ very push
@@ -212,4 +214,5 @@ alias much=git
 alias such=git
 alias very=git
 alias so=git
-alias wow='git status'
+alias wow='git st'
+

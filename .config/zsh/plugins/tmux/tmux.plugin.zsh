@@ -6,10 +6,10 @@
 has-pymux() { (( $+commands[pymux] )); }
 has-tmux() { (( $+commands[tmux] )); }
 
-if has-pymux; then
-    alias mux=pymux
-elif has-tmux; then
+if has-tmux; then
     alias mux=tmux
+elif has-pymux; then
+    alias mux=pymux
 else
     return 1
 fi

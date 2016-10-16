@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Maybe
-setopt completeinword
+setopt completeinword completealiases nolistbeep
 
 zmodload -i zsh/complist
 
@@ -9,59 +9,54 @@ zmodload -i zsh/complist
 #
 
 # prep cache dir
-if [[ -n "$ZSH_CACHE_DIR" ]]; then
-    mkdir -pv "$ZSH_CACHE_DIR"
-    # completion caching, use rehash to clear
-    zstyle ':completion::complete:*' cache-path $ZSH_CACHE_DIR
-	zstyle ':completion::complete:*' use-cache on
+if [[ -n $ZSH_CACHE_DIR ]]; then
+    mkdir -pv $ZSH_CACHE_DIR
 fi
 
-# adds the arguments from the last command to the autocomplete list
-# I wasn't able to get this to work standalone and still print out both regular
-# completion plus the last args, but this works well enough.
-_complete_plus_last_command_args() {
-    last_command=$history[$[HISTCMD-1]]
-    last_command_array=("${(s/ /)last_command}") 
-    _sep_parts last_command_array
-    _complete 
-}
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
 
-_force_rehash() {
-  (( CURRENT == 1 )) && rehash
-  return 1  # Because we didn't really complete anything
-}
+zstyle ':compinstall' filename "$ZDOTDIR/compinstallrc"
+
+## should this be in keybindings?
+#bindkey -M menuselect '^o' accept-and-infer-next-history
 
 # auto rehash
 zstyle ':completion:*' rehash true
+zstyle ':completion:*' auto-rehash true
 
-# group matches and describe.
-#zstyle ':completion:*:*:*:*:*' menu select
-zstyle ':completion:*:matches' group 'yes'
-zstyle ':completion:*:options' description 'yes'
-zstyle ':completion:*:options' auto-description '%F{blue}%d%f'
-zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
-zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
-#zstyle ':completion:*:descriptions' format $'\e[00;34m%d'
-#zstyle ':completion:*:messages' format $'\e[00;31m%d'
-zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
-#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+#zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' extra-verbose yes
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' file-sort modification
+zstyle ':completion:*' ignore-parents pwd
+zstyle ':completion:*' special-dirs true
 
-# defs
-#zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
-zstyle ':completion:*' format ' %F{yellow}-- completing: %d --%f'
-#zstyle ':completion:*' group-name ''
-#zstyle ':completion:*' verbose yes
-#zstyle ':completion:*' extra-verbose yes
+#zstyle ':completion:*' expand prefix suffix
+#zstyle ':completion:*' match-original both
+#zstyle ':completion:*' preserve-prefix '//[^/]##/'
+#zstyle ':completion:*' max-errors 1
 
-# matchers
-zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+# menu if nb items > 2
+#zstyle ':completion:*' menu select=2
+zstyle ':completion:*' menu select=1
+#zstyle ':completion:*' menu select=long
+
+# disable named-directories autocompletion
+#zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+#zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'expand'
+
+# Adjust approx limits based upon size
+zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
+
+
+##
+## Completers
+##
 
 # list of completers to use
-#zstyle ':completion:*::::' completer _expand _complete _ignored _approximate
-#zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-#zstyle ':completion:*' completer _list _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' completer \
     _list \
     _expand \
@@ -72,38 +67,29 @@ zstyle ':completion:*' completer \
     _approximate \
     _prefix
 
-#zstyle ':completion:::::' completer \
-#    _force_rehash \
-#    _complete_plus_last_command_args \
-#    _approximate
+##
+## matchers
+##
 
-# directories
-zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-# disable named-directories autocompletion
-zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
-zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
-zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'expand'
-zstyle ':completion:*' squeeze-slashes true
+#zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+#zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
+
+## ignore case
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+#zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
+#zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+##
+## Wider scope completion conf
+##
 
 # ignore useless commands and functions
 zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
 
 # completion sorting
-zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
-
-# Man
-zstyle ':completion:*:manuals' separate-sections true
-zstyle ':completion:*:manuals.(^1*)' insert-sections true
-
-# history
-zstyle ':completion:*:history-words' stop yes
-zstyle ':completion:*:history-words' remove-all-dups yes
-zstyle ':completion:*:history-words' list true
-zstyle ':completion:*:history-words' menu yes
-
-# ignore multiple entries.
-zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
-zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+#zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
 
 # smart editor completion
 zstyle ':completion:*:(nano|vim|nvim|vi|emacs|e):*' ignored-patterns '*.(wav|mp3|flac|ogg|mp4|avi|mkv|webm|iso|dmg|so|o|a|bin|exe|dll|pcap|7z|zip|tar|gz|bz2|rar|deb|pkg|gzip|pdf|mobi|epub|png|jpeg|jpg|gif)'
@@ -122,10 +108,32 @@ zstyle ':completion:*:*:*:users' ignored-patterns \
 # ... unless we really want to.
 zstyle '*' single-ignored show
 
+##
+## Narrow scope completion conf
+##
+
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+
+# Man
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+
+## history
+#zstyle ':completion:*:history-words' stop yes
+#zstyle ':completion:*:history-words' remove-all-dups yes
+#zstyle ':completion:*:history-words' list true
+#zstyle ':completion:*:history-words' menu yes
+
+# ignore multiple entries.
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -o pid,%cpu,tty,cputime,cmd'
+
 #zstyle ':completion:*:processes' command 'ps -au$USER'
 #zstyle ':completion:*:*:kill:*' menu yes select
 #zstyle ':completion:*:kill:*' force-list always
-#zstyle ':completion:*:*:kill:*:processes' list-colors "=(#b) #([0-9]#)*=29=34"
 #zstyle ':completion:*:*:killall:*' menu yes select
 #zstyle ':completion:*:killall:*' force-list always
 
@@ -141,65 +149,34 @@ zstyle '*' single-ignored show
 #compdef _gnu_generic gcc
 #compdef _gnu_generic gdb
 
-## should this be in keybindings?
-#bindkey -M menuselect '^o' accept-and-infer-next-history
-# The following lines were added by compinstall
+##
+## Formatting
+##
 
-#zstyle ':completion:*' auto-description 'specify: %d'
-##zstyle ':completion:*' completer _list _oldlist _expand _complete _ignored _match _correct _approximate _prefix
-#zstyle ':completion:*' completer _list _expand _complete _ignored _match _correct _approximate _prefix
-zstyle ':completion:*' expand prefix suffix
-zstyle ':completion:*' file-sort modification
-#zstyle ':completion:*' format '-- completing: %d'
-#zstyle ':completion:*' group-name ''
-zstyle ':completion:*' ignore-parents pwd
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-## ignore case
-##zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-## menu if nb items > 2
-##zstyle ':completion:*' menu select=2
-
-#zstyle ':completion:*' match-original both
-#zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
-#zstyle ':completion:*' max-errors 1
-zstyle -e ':completion:*:approximate:*' max-errors 'reply=( $(( ($#PREFIX + $#SUFFIX) / 3 )) )'
-#zstyle ':completion:*' menu select=1
-zstyle ':completion:*' preserve-prefix '//[^/]##/'
-zstyle ':completion:*' prompt 'comp errors:%e>'
-#zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
-zstyle ':completion:*' special-dirs true
-zstyle ':completion:*' use-compctl true
-#zstyle :compinstall filename "$0"
-
-
-# completion
-#zstyle ':completion:*' auto-description 'specify: %d'
-zstyle ':completion:*' auto-rehash true
-zstyle ':completion:*' completer _expand _complete _correct _approximate
-#zstyle ':completion:*' format 'Completing %d'
-#zstyle ':completion:*' format "You don't remember the following %d:"
-zstyle ':completion:*' group-name ''
-zstyle ':completion:*' menu select=2
 #zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
-#zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+#zstyle ':completion:*:*:*:*:*' menu select
+zstyle ':completion:*:matches' group 'yes'
+zstyle ':completion:*:options' description 'yes'
+
+# group matches and describe.
+zstyle ':completion:*:options' auto-description '%F{blue}%d%f'
+zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+#zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+
+# defs
+#zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+zstyle ':completion:*' format ' %F{yellow}-- completing: %d --%f'
+#zstyle ':completion:*' auto-description 'specify: %d'
+
+zstyle ':completion:*' prompt 'comp errors:%e>'
 zstyle ':completion:*' list-prompt %SAt %p \(%l\): Hit TAB for more, or the character to insert%s
-#zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
-zstyle ':completion:*' matcher-list '' '+m:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+m:{[:lower:]}={[:upper:]} r:|[._-]=* r:|=*' '+r:|[._-/]=** r:|=** l:|=*'
-zstyle ':completion:*' menu select=long
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p \(%l\)%s
-#zstyle ':completion:*' use-compctl false
-zstyle ':completion:*' verbose true
-zstyle ':completion:*' extra-verbose true
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -o pid,%cpu,tty,cputime,cmd'
-
-zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path $ZSH_CACHE_DIR
-
-zstyle ':compinstall' filename "$ZDOTDIR/compinstallrc"
 
 ## init
 #autoload -Uz compinit

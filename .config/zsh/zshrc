@@ -29,10 +29,10 @@ autoload -Uz ztheme; ztheme
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
 : ${ZPLUG_CACHE_FILE:=$ZPLUG_HOME/.cache}
 : ${ZPLUG_REPOS:=$ZPLUG_HOME/repos}
-: ${ZPLUG_CLONE_DEPTH:=1}
+zstyle :zplug:tag depth 1
 
 : ${ZPLUG_DIR:=$ZPLUG_REPOS/zplug/zplug}
-: ${ZPLUG_REPO:=https://github.com/akatrevorjay/zplug.git}
+: ${ZPLUG_REPO:=https://github.com/zplug/zplug.git}
 
 ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.))
 
