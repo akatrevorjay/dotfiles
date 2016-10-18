@@ -1,1 +1,10 @@
 /sec.conf
+/logs/
+/otr/
+/xfer/
+
+*fifo*
+*.log
+*.dat
+*.cache
+*.csv

@@ -8,4 +8,4 @@ export HOMEBREW_GITHUB_API_TOKEN
 # Remove self from path
 path=(${path#$0:a:h})
 
-exec brew "$@"
+exec /usr/local/bin/brew "$@"

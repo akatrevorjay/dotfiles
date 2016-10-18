@@ -1,1 +1,0 @@
-../queryman.py

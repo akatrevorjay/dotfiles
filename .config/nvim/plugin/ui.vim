@@ -16,13 +16,15 @@ if has('gui_running') || has('nvim')
   if has('gui_macvim')
     " YEAH BABY LIGATURE SUPPORT
     set macligatures
+    set macthinstrokes
+    set macmeta
 
-    set fullscreen
-    set transparency=10
+    "set fullscreen
+    "set transparency=10
 
     " Oh Fira Code, how I adore you.
-    set guifont=Fira\ Code\ Retina:h14
-    set guifontwide=Fira\ Code\ Retina:h14
+    set guifont=Monoid\ Nerd\ Font\ Complete Retina:h14
+    set guifontwide=Monoid\ Nerd\ Font\ Complete Retina:h14
   elseif has('gui_gtk2')
     set guifont=Monoid\ 12
     set guifontwide=Monoid\ 12
