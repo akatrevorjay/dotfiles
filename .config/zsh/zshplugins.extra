@@ -1,0 +1,53 @@
+
+#zplug "stedolan/jq", \
+#    from:gh-r, \
+#    as:command, \
+#    rename-to:jq, \
+#    if:"(( ! $+commands[jq] ))"
+
+#zplug "junegunn/fzf-bin", \
+#    from:gh-r, \
+#    as:command, \
+#    rename-to:fzf, \
+#    use:'*${OSTYPE%-gnu}*amd64*', \
+#    if:"(( ! $+commands[fzf] ))"
+
+
+#zplug 'joepvd/zsh-hints', use:"zsh-hints"
+
+#zplug "psprint/ztrace"  #, hook-load:"ztstart 10
+
+#zplug "seletskiy/zsh-fuzzy-search-and-edit", \
+#    hook-load:"bindkey '^P' fuzzy-search-and-edit"
+
+#zplug "tymm/zsh-directory-history"
+# Bind up/down arrow keys to navigate through your history
+#bindkey "\e[A" directory-history-search-backward
+#bindkey "\e[B" directory-history-search-forward
+
+#zplug "oknowton/zsh-dwim"
+
+
+#zplug "jreese/zsh-titles"
+#zplug "psprint/zsh-select"
+
+
+#function zplugins_on_load_zce() {
+#    bindkey '^Xz' zce
+#}
+#
+#zplug "hchbaw/zce.zsh", use:'*.zsh', \
+#    hook-load:"zplugins_on_load_zce"
+
+#zplug "unixorn/tumult.plugin.zsh", if:"[[ $OSTYPE = darwin* ]]"
+
+#zplug "hlohm/mfunc"
+#zplug "uvaes/fzf-marks"
+#zplug 'willghatch/zsh-snippets'
+
+
+#zplug "akatrevorjay/macosx-shell-scripts"
+#zplug "psprint/zsh-cmd-architect"
+#zplug "psprint/zsh-editing-workbench"
+#zplug "psprint/zsh-navigation-tools"
+

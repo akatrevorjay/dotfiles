@@ -1,6 +1,11 @@
 #!/bin/zsh
 
-zplug "zplug/zplug"
+zplug "zplug/zplug", lazy:true
+
+# Finally
+zplugins.load-all-in plugins
+
+zplug "zsh-users/zsh-history-substring-search"
 
 zplug "akatrevorjay/composure"
 zplug "akatrevorjay/fasd"
@@ -8,8 +13,8 @@ zplug "akatrevorjay/fasd"
 zplug "psprint/zsnapshot", lazy:true
 zplug "mollifier/zload", lazy:true
 
-#zplug "willghatch/zsh-hooks"
-#zplug "mafredri/zsh-async"
+zplug "willghatch/zsh-hooks"
+zplug "mafredri/zsh-async"
 
 # Was nice but constantly breaks =/
 zplug "kennethreitz/autoenv"
@@ -17,24 +22,21 @@ zplug "kennethreitz/autoenv"
 #zplug "MichaelAquilina/zsh-autoswitch-virtualenv"
 #zplug "Tarrasch/zsh-autoenv"
 
-#zplug "Tarrasch/zsh-functional"
-#zplug "Tarrasch/zsh-colors"
-#zplug "Tarrasch/zsh-bd"
+zplug "Tarrasch/zsh-functional"
+zplug "Tarrasch/zsh-colors"
+zplug "Tarrasch/zsh-bd"
 
-#zplug "b4b4r07/emoji-cli"
-#zplug 'LockonS/terminal-workload-report'
-#zplug 'aphelionz/strerror.plugin.zsh'
+zplug "b4b4r07/emoji-cli"
+zplug 'LockonS/terminal-workload-report'
+zplug 'aphelionz/strerror.plugin.zsh'
 
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
-#zplug "RobSis/zsh-completion-generator"
+GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+[ -d $GENCOMPL_FPATH ] || mkdir -pv $GENCOMPL_FPATH
+zplug "RobSis/zsh-completion-generator"
 
-zplug "zsh-users/zsh-completions", nice:8
-zplug "akatrevorjay/nix-zsh-completions", nice:9
+zplug "zsh-users/zsh-completions"
+zplug "akatrevorjay/nix-zsh-completions"
 
-zplug "hlissner/zsh-autopair", nice:10
-zplug "zsh-users/zsh-history-substring-search", nice:10
-zplug "zsh-users/zsh-syntax-highlighting", nice:12
+zplug "hlissner/zsh-autopair"
+zplug "zsh-users/zsh-syntax-highlighting", nice:15
 
-# Finally
-zplugins.load-all-in plugins

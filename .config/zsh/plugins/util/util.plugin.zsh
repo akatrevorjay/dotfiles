@@ -1,8 +1,8 @@
 # Functions for use with the e glob flag
 
-in() { [[ -e $1/$REPLY ]] }
+is-in() { [[ -e $1/$REPLY ]] }
 
-empty() { a=( $REPLY/*(N[1]) ); (( ! $#a )) }
+is-empty() { local a=( $REPLY/*(N[1]) ); (( ! $#a )) }
 
 fattr() {
   local val=${${${(s.=.)$(getfattr -n user.$1 $REPLY 2>/dev/null)}[2]%\"}#\"}

@@ -12,7 +12,7 @@ if [[ -e $GCLOUD_SDK_ROOT ]]; then
         egrep -v 'compinit' $GCLOUD_SDK_ROOT/completion.zsh.inc \
           >| $_GCLOUD_SDK_COMP_CACHE
     fi
-    source $_GCLOUD_SDK_COMP_CACHE
+    #source $_GCLOUD_SDK_COMP_CACHE
 fi
 
 if (( ${+commands[kubectl]} )); then
@@ -22,6 +22,6 @@ if (( ${+commands[kubectl]} )); then
           | egrep -v 'compinit' \
           >| $_KUBECTL_INIT_CACHE
     fi
-    source $_KUBECTL_INIT_CACHE
+    #source $_KUBECTL_INIT_CACHE
 fi
 

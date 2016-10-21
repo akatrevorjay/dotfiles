@@ -1,0 +1,112 @@
+#!/bin/zsh
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Def
+setopt extendedglob kshglob
+setopt nullglob
+setopt interactivecomments
+
+# let's be a bit more restrictive by default.
+umask 022
+
+# zplug
+source "$HOME/.zplug/init.zsh"
+
+# plugin conf
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
+
+# oh-my-shit plugins (try to avoid)
+#zplug oh-my-zsh plugins/git
+#zplug oh-my-zsh plugins/sudo
+#zplug oh-my-zsh plugins/command-not-found
+
+# TODO check plugins difference on hook and auto-load
+
+# bulk load
+plugins=(
+	$LOCAL_ZDOTDIR/plugins/*(/)
+	$ZDOTDIR/plugins/*(/)
+)
+source-with-force {$LOCAL_ZDOTDIR,$ZDOTDIR}/zshplugins
+
+for p in ${(@)plugins}; do
+	if [[ ${p[1]} == "/" ]]; then
+		zplug "$p", from:local
+	else
+		zplug "$p"
+	fi
+done
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+# Why in the world is this enabled by default on Linux? zplug?
+zmodload -u zsh/stat
+
+##
+## autoloads
+##
+
+function autoload-all-in() {
+	local function_glob='^([_.]*|prompt_*_setup|README*)(-.N:t)'
+	local p
+	setopt LOCAL_OPTIONS EXTENDED_GLOB NULLGLOB
+	for p in ${^argv}(/); do
+		autoload -Uz $p/${~function_glob}
+	done
+}
+
+autoload-all-in {$LOCAL_ZDOTDIR,$ZDOTDIR}/functions
+
+autoload -Uz before after throw catch relative cdr sticky-note surround zcalc{,-auto-insert} which-command zcompdump zargs zed zed-set-file-name zfanon zfautocheck zfcd zfcd_match zfcget xtermctl
+autoload -Uz allopt age checkmail chpwd_recent_{add,dirs,filehandler} calendar{,_{add,edit,lockfiles,parse,read,scandate,show,showdate,sort}}
+
+autoload -Uz run-help{,-{git,ip,openssl,p4,sudo,svk,svn}}
+
+autoload -Uz backward-kill-word-match backward-word-match bracketed-paste-url-magic capitalize-word-match copy-earlier-word quote-and-complete-word read-from-minibuffer regexp-replace replace-argument replace-string replace-string-again select-bracketed select-quoted select-word-style send-invisible smart-insert-last-word split-shell-arguments
+
+# bash comp
+autoload -Uz bashcompinit
+bashcompinit
+
+# Set up the prompt
+#autoload -Uz promptinit
+#promptinit
+#prompt walters
+source "$ZDOTDIR/themes/airline2.zsh"
+
+# Hub
+[[ ! ${+commands[hub]} ]] || eval "$(hub alias -s)"
+
+# Google Cloud SDK
+function () {
+	local app_path="$1"
+	[[ -d "$app_path" ]] || return
+	source "$app_path/path.zsh.inc"
+	source "$app_path/completion.zsh.inc"
+} "$HOME/.local/google-cloud-sdk"
+
+# This is annoying to have earlier.
+#setopt warncreateglobal
+
+# pyenv
+#function () {
+#	path=("$HOME/.pyenv/bin" ${path[@]})
+#	eval "$(pyenv init -)"
+#	eval "$(pyenv virtualenv-init -)"
+#}
+
+# local
+# TODO Move to $XDG local path
+source-with-force "$LOCAL_ZDOTDIR/zshrc"
+

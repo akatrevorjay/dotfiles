@@ -3,7 +3,7 @@
 Plug 'rhysd/committia.vim'
 
 " Allows for python rst docstring support
-"Plug 'Rykka/riv.vim'
+Plug 'Rykka/riv.vim'
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['sh', 'zsh', 'bats']}
@@ -32,7 +32,7 @@ Plug 'Rip-Rip/clang_complete'
 
 " Javascript
 Plug 'moll/vim-node'  ", {'for': 'javascript'}
-"Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
+Plug 'ternjs/tern_for_vim'  ", {'for': 'javascript'})
 Plug 'kchmck/vim-coffee-script'  ", {'for': ['coffee', 'coffeescript']}
 
 "" ZSH "official" vim syntax, definitely more up to date.
@@ -96,16 +96,16 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'google/vim-codefmt'
 
 " Generic test runner
-"Plug 'janko-m/vim-test'
+Plug 'janko-m/vim-test'
 
-"" Syntastic: automagic syntax checks
-"Plug 'scrooloose/syntastic'
-"Plug 'myint/syntastic-extras'
-"" viml linting
-"Plug 'todesking/vint-syntastic'
+" Syntastic: automagic syntax checks
+Plug 'scrooloose/syntastic'
+Plug 'myint/syntastic-extras'
+" viml linting
+Plug 'todesking/vint-syntastic'
 
 " ALE: Async Lint Engine
-Plug 'w0rp/ale'
+"Plug 'w0rp/ale'
 
 
 ""
@@ -113,28 +113,28 @@ Plug 'w0rp/ale'
 ""
 
 " Better indenting
-"Plug 'hynek/vim-python-pep8-indent'
-"Plug 'michaeljsmith/vim-indent-object'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'michaeljsmith/vim-indent-object'
 
 " Better folding for python
-"Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold'
 
-"" Better formatter (yapf > autopep8)
-"Plug 'pignacio/vim-yapf-format'
-""
-"" The style used to format the buffer is checking the following in order:
-"" - b:yapf_format_style variable.
-"" - Local .yapf.style for the file's project (or current directory for unsaved files).
-"" - g:yapf_format_style variable.
-"" - pep8
-""
-""let g:yapf_format_yapf_location = '/path/to/f'
-"let g:yapf_format_style = 'google'
-"" Mappings
-"map <C-o> :YapfFullFormat<CR>
-"imap <C-o> <ESC>:YapfFormat<CR>i
-"vmap <C-o> :YapfFormat<CR>
+" Better formatter (yapf > autopep8)
+Plug 'pignacio/vim-yapf-format'
+"
+" The style used to format the buffer is checking the following in order:
+" - b:yapf_format_style variable.
+" - Local .yapf.style for the file's project (or current directory for unsaved files).
+" - g:yapf_format_style variable.
+" - pep8
+"
+"let g:yapf_format_yapf_location = '/path/to/f'
+let g:yapf_format_style = 'google'
+" Mappings
+map <C-o> :YapfFullFormat<CR>
+imap <C-o> <ESC>:YapfFormat<CR>i
+vmap <C-o> :YapfFormat<CR>
 
 " Run pytest, integrate a bit
-"Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}
+Plug 'alfredodeza/pytest.vim'  ", {'on': 'Pytest'}
 

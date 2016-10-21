@@ -1,1 +1,1 @@
-airline-grey.sh
+airline-snapshot.sh

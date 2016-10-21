@@ -52,7 +52,7 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && !empty($TERMINOLOGY)
+if has('nvim') && empty($TERMINOLOGY)
   set termguicolors
 endif
 
@@ -153,7 +153,8 @@ Gautocmd ColorScheme highlight String guibg=#331133
 
 "colorscheme hybrid
 "colorscheme hybrid_material
-let g:airline_theme = 'hybrid'
+"let g:airline_theme = 'hybrid'
+let g:airline_theme = 'raven'
 
 " This actually messes up numerous schemes.
 let g:colorschemer_auto = 0

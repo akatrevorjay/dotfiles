@@ -1,6 +1,12 @@
 #!/bin/zsh
 
-export DEBEMAIL=debian@trevor.joynson.io
+export \
+    GPGKEY="C9871F640"
+export \
+    DEBEMAIL="debian@trevor.joynson.io" \
+    DEBFULLNAME="Trevor Joynson (Debian)"
+export \
+    DEBSIGN_KEYID="$GPGKEY"
 
 PROJECT_ROOT=$HOME/git
 CODE_ROOT=$HOME/code
@@ -76,7 +82,7 @@ alias fk='k --no-vcs'
 
 if (( ${+commands[exa]} )); then
     alias l='exa --group-directories-first -G'
-    alias ll='l -lh@ --git'
+    alias ll='l -lh --git'
 else
     alias l='ls'
     alias ll='l -l'

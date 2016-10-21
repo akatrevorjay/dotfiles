@@ -4,7 +4,7 @@ setopt histignorealldups hist_ignore_space hist_append sharehistory extendedhist
 setopt histreduceblanks histlexwords inc_append_history_time
 
 # Keep many lines of history within the shell and save it to $ZDOTDIR/.zsh_history:
-HISTSIZE=100000
-SAVEHIST=100000
+HISTSIZE=75000
+SAVEHIST=$HISTSIZE
 HISTFILE=$LOCAL_ZDOTDIR/history/history.$SHORT_HOSTNAME
 mkdir -pv ${HISTFILE:h}

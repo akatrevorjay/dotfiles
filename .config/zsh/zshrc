@@ -17,7 +17,7 @@ setopt nullglob
 setopt interactivecomments
 
 # enable all of the highlighters
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root line)
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 
 # secrets
 source-with-force ~/.zsh/secrets

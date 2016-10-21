@@ -5,6 +5,8 @@ alias viki='vim -c VimwikiIndex'
 (( ${+commands[nvim]} )) || return
 
 alias vim='nvim'
+alias nv='nvim'
+alias n='nvim'
 
 if (( ${+commands[gnvim]} )) || (( ${+aliases[gnvim]} )); then
     :

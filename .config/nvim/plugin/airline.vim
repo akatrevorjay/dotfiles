@@ -10,13 +10,6 @@ let g:airline_detect_crypt = 1
 let g:airline_detect_iminsert = 1
 let g:airline_detect_paste = 1
 
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#default#section_use_groupitems = 1
-let g:airline#extensions#tagbar#enabled = 1
-
 let airline#extensions#default#section_use_groupitems = 1
 
 " Patch airline theme before apply
@@ -78,8 +71,24 @@ let g:airline_mode_map = {
 "      \ }
 
 
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#csv#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+"let g:airline#extensions#capslock#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#promptline#enabled = 1
 "" enable/disable fugitive/lawrencium integration >
 let g:airline#extensions#branch#enabled = 1
+
+let g:airline#extensions#default#section_use_groupitems = 1
+
 "" change the text for when no branch is detected >
 "let g:airline#extensions#branch#empty_message = ''
 "" define the order in which the branches of different vcs systems will be
@@ -106,7 +115,6 @@ let g:airline#extensions#branch#format = 2
 "endfunction
 
 " Optional extensions
-let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#exclude_preview = 1
 
@@ -138,6 +146,7 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#buffer_nr_show = 0
 
+let g:airline#extensions#tabline#show_splits = 1
 
 " * configure the formatting of filenames (see |filename-modifiers|). >
 let g:airline#extensions#tabline#fnamemod = ':p:.'
@@ -151,7 +160,6 @@ let g:CtrlSpaceStatuslineFunction = 'airline#extensions#ctrlspace#statusline()'
 ""
 "" tmuxline
 ""
-let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#tmuxline#snapshot_file = expand('~/.tmux/themes/airline-snapshot.conf')
 
 "let airline#extensions#tmuxline#color_template = 'normal' (default)
@@ -160,24 +168,12 @@ let g:airline#extensions#tmuxline#snapshot_file = expand('~/.tmux/themes/airline
 "let airline#extensions#tmuxline#color_template = 'replace'
 
 " TODO Are these automatically enabled or not?
-let g:airline#extensions#hunks#enabled = 1
 let g:airline#extensions#hunks#non_zero_only = 1
 let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 
-let g:airline#extensions#whitespace#enabled = 1
-let g:airline#extensions#tagbar#enabled = 1
-let g:airline#extensions#csv#enabled = 1
-let g:airline#extensions#bufferline#enabled = 1
-let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#eclim#enabled = 1
-let g:airline#extensions#virtualenv#enabled = 1
-"let g:airline#extensions#capslock#enabled = 1
-
-let g:airline#extensions#ycm#enabled = 1
 "let g:airline#extensions#ycm#error_symbol = 'E:'
 "let g:airline#extensions#ycm#warning_symbol = 'W:'
 
-let g:airline#extensions#promptline#enabled = 1
 let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
 
 let airline#extensions#promptline#color_template = 'normal'  " (default)
@@ -192,10 +188,9 @@ let g:promptline_preset = {
   \'c' : [ promptline#slices#cwd() ],
   \'x' : [
     \promptline#slices#git_status(),
-    \promptline#slices#vcs_branch()
     \],
   \'y' : [
-    \'$(vi_mode_prompt_info)'
+    \promptline#slices#vcs_branch(),
     \],
   \'z' : [ promptline#slices#python_virtualenv() ],
   \'warn' : [
@@ -211,7 +206,7 @@ let g:promptline_preset = {
   "  \}
   "\}
 
-      "\'y' : [ promptline#slices#vcs_branch() ],
+    "\'$(vi_mode_prompt_info)'
 
 " any command can be used in a slice, for example to print the output of whoami in section 'b':
 "       \'b' : [ '$(whoami)'],
@@ -220,7 +215,7 @@ let g:promptline_preset = {
 "       \'a': [ promptline#slices#host(), promptline#slices#user() ],
 
 "  enable/disable usage of powerline symbols for separators (default on) >
-let g:promptline_powerline_symbols = 0
+let g:promptline_powerline_symbols = 1
 
 " default
   let g:promptline_symbols = {
