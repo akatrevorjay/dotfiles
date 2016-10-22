@@ -43,6 +43,7 @@ Plug 'ingydotnet/yaml-vim'  ", {'for': 'yaml'}
 
 " Salt
 Plug 'saltstack/salt-vim'  ", { 'for': 'sls' }
+Plug 'rodjek/vim-puppet'  ", {'for': 'puppet'}
 
 " Jinja2
 Plug 'Glench/Vim-Jinja2-Syntax'
@@ -66,7 +67,7 @@ Plug 'chrisbra/csv.vim'
 " Markdown with live preview
 "Plug 'junegunn/vim-xmark', {'do': 'make', 'for': 'markdown'}
 
-Plug 'tpope/vim-markdown'
+"Plug 'tpope/vim-markdown'
 
 ""
 "" Vetting:
@@ -106,7 +107,6 @@ Plug 'todesking/vint-syntastic'
 
 " ALE: Async Lint Engine
 "Plug 'w0rp/ale'
-
 
 ""
 "" Language: Python
