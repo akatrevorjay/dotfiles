@@ -81,8 +81,12 @@ alias fk='k --no-vcs'
 #alias lsa='ls -ld .*'
 
 if (( ${+commands[exa]} )); then
-    alias l='exa --group-directories-first -G'
-    alias ll='l -lh --git'
+    alias exa='exa --group-directories-first'
+    #alias l='exa -G'
+    alias k='exa'
+    alias g='exa -G'
+    alias ll='exa -lh@ --git'
+    alias l='ll'
 else
     alias l='ls'
     alias ll='l -l'
@@ -111,7 +115,6 @@ alias dcb='dc build'
 alias dcp='dc pull'
 alias dcr='dc run'
 alias dce='dc exec'
-
 
 alias m='make'
 
@@ -159,6 +162,8 @@ case $OSTYPE:l in
         alias sctl='systemctl'
         alias jf='journalctl -f'
         alias jxe='journalctl -fxe'
+
+        alias pstree='pstree -ahglnpsSuU'
         ;;
     darwin*)
         appify() {

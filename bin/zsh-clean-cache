@@ -1,0 +1,9 @@
+#!/bin/zsh
+set -eo pipe_fail -o null_glob
+set -xv
+
+local compdirs=($ZDOTDIRS $HOME ~/.cache/zplug)
+compdirs=($compdirs(-/))
+
+\rm -rvf ~/.cache/zsh ${^compdirs}/{{.,}*zcompdump*,.cache}(.)
+

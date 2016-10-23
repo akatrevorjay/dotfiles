@@ -32,45 +32,53 @@ ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 [[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
 
 # env
-: ${CURRENT_SHELL:="zsh"}
-# system
-: ${SYSTEM:="${OSTYPE%%[0-9]*}"}
-: ${SYSTEM:=$(uname -s)}
-: ${SYSTEM:="unknown_system"}
-SYSTEM=${SYSTEM:l}
 : ${SHORT_HOSTNAME:=${HOST%%.*}}
 : ${SHORT_HOSTNAME:=unknown}
 
 #: ${DE:=generic}
 #: ${BROWSER:=google-chrome}
-#: ${EDITOR:=nvim}
+: ${EDITOR:=nvim}
 
 : ${CHROMIUM_USER_FLAGS:="--password-store=detect"}
 export CHROMIUM_USER_FLAGS
 
-if [[ $(echotc Co) -ge 256 ]]; then
-    case $TERM in
-        xterm|screen) TERM=$TERM-256color ;;
-    esac
-fi
+case $TERM:l in
+    xterm|screen)
+        if [[ $(echotc Co) -ge 256 ]]; then
+            TERM=$TERM-256color
+        fi
+        ;;
+esac
 
 ##
 ## path
 ##
 
-# Dedupe entries
-typeset -U {,f,man,info,cd}path
+autoload -Uz \
+    fix-path-order fix-fpath-order \
+    add-prefix-paths add-suffix-paths \
+    source-with-force \
+    call-many
+
+: ${MANPATH:=$(manpath)}
 
 #function prefix-array() {
 #    local name="PREFIX_$1"
 #    typeset -U $name
 #}
 
+# Dedupe entries
+typeset -U {,f,man,info,cd}path
+
 prefix_path=(
     # user
-    $HOME/{crypt,,.local,.cargo}/{bin,sbin}
+    $HOME{,/{crypt,,.local,.cargo}}/{bin,sbin}
 
     ${^ZDOTDIRS}/{bin,sbin}
+)
+
+prefix_fpath=(
+    ${^ZDOTDIRS}/{functions,completions}
 )
 
 path=(
@@ -78,61 +86,46 @@ path=(
     ${path[@]}
 )
 
-prefix_fpath=(
-    ${^ZDOTDIRS}/{functions,completions}
-)
-
 fpath=(
     ${(@)prefix_fpath}
     ${(@)fpath}
 )
 
-: ${MANPATH:=$(manpath)}
+#manpath=(
+#    ${(@)manpath}
+#)
 
-manpath=(
-    ${(@)manpath}
-)
-
-infopath=(
-    ${(@)infopath}
-)
-
-
-autoload -Uz \
-    fix-path-order fix-fpath-order fix-user-bin-overlay-in-path \
-    source-with-force \
-    add-prefix-paths add-suffix-paths \
-    call-many
-
-add-prefix-paths $HOME/.local
+#infopath=(
+#    ${(@)infopath}
+#)
 
 
 # OS specifics
-case "${SYSTEM:l}" in
+case "${OSTYPE:l}" in
     linux*)
-        prefix_path=(
+        add-prefix-paths $HOME/.linuxbrew
+
+        prefix_path+=(
             # ccache
             "/usr/lib/ccontrol"
             "/usr/lib/ccache"
-
-            ${(@)prefix_path}
-        )
-        path=(
-            ${prefix_path[@]}
-            ${path[@]}
         )
         ;;
     darwin*)
         add-prefix-paths /usr/local
 
+        prefix_path+=(
+            # ccache
+            "/usr/local/opt/ccache/libexec"
+        )
+
         path=(
             # Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
             # gnu by default
+            ${(@)path#/usr/local*}
+
             "/usr/local/libexec/gnubin"
             "/usr/local/opt/coreutils/libexec/gnubin"
-
-            # ccache
-            "/usr/local/opt/ccache/libexec"
 
             ${(@)path}
         )
@@ -160,21 +153,20 @@ case "${SYSTEM:l}" in
                 # We only care about the path portion of the declare statement anyway, so snag and split.
                 local out_paths=(${(s.:.)${out#*\"}%\"*})
                 # Append to path
-                path+=(${out_paths})
+                path+=(${(@)out_paths})
             fi
         }
 
-        fpath+=(/usr/local/share/zsh/site-functions)
+        fpath+=("/usr/local/share/zsh/site-functions")
         ;;
 esac
 
+
 # Go
 export GOPATH="$HOME/go"
-prefix_path+=("$GOPATH/bin")
-path=(
-    ${prefix_path[@]}
-    ${path[@]}
-)
+add-prefix-paths $GOPATH
+
+add-prefix-paths $HOME/.local $HOME $HOME/crypt
 
 # Fix common order mishaps across OSes
 fix-path-order
