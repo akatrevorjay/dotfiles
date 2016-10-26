@@ -35,7 +35,7 @@ GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
 zplug "RobSis/zsh-completion-generator"
 
 zplug "zsh-users/zsh-completions"
-zplug "akatrevorjay/nix-zsh-completions"
+#zplug "akatrevorjay/nix-zsh-completions"
 
 zplug "hlissner/zsh-autopair"
 zplug "zsh-users/zsh-syntax-highlighting", nice:15

@@ -5,24 +5,11 @@
 # but I'm playing it safe here.
 if tty -s && test -t 0 \
 && test -t 1 \
-&& [[ -n $TERMINOLOGY && -n $DISPLAY && -z "$TMUX$SCREEN" ]]
+&& [[ -n $TERMINOLOGY && -n $DISPLAY && -z "$TMUX$SCREEN$PYMUX" ]]
 then
-    local -a args
-    args=("$@")
-    zparseopts -D -- a=all -medium=medium -small=small
-
-    if [[ $* != -* ]]; then
-        args=()
-        [[ -z $all ]] || args+=(-a)
-        [[ -z $medium ]] || args+=(-m)
-        [[ -z $small ]] || args+=(-s)
-        tyls $=args "$@"
-        return
-    fi
-
-    set -- "${args[@]}"
+    tyls "$@"
+else
+    #local orig=$TERMINOLOGY_LS_ORIG
+    #[[ -n "$orig" ]] || echo "Missing terminology-ls-orig aliases" >&2
+    ${=TERMINOLOGY_LS_ORIG:-'command ls'} "$@"
 fi
-
-local orig="$TERMINOLOGY_LS_ORIG"
-[[ -n "$orig" ]] || echo "Missing terminology-ls-orig aliases" >&2
-${=orig:-'command ls'} "$@"

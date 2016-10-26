@@ -25,9 +25,11 @@ source-with-force ~/.zsh/secrets
 # Set up the prompt
 autoload -Uz ztheme; ztheme
 
-# zplug
+: ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
+mkdir -pv $ZSH_CACHE_DIR
+
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
-: ${ZPLUG_CACHE_FILE:=$ZPLUG_HOME/.cache}
+: ${ZPLUG_CACHE_FILE:=$ZSH_CACHE_DIR/.zplug-cache.zsh}
 : ${ZPLUG_REPOS:=$ZPLUG_HOME/repos}
 zstyle :zplug:tag depth 1
 

@@ -6,6 +6,13 @@ setopt no_function_arg_zero
 export HOMEBREW_GITHUB_API_TOKEN
 
 # Remove self from path
-path=(${path#$0:a:h})
+path=(${path##${0:a:h}*})
 
-exec /usr/local/bin/brew "$@"
+case $OSTYPE:l in
+    linux*)
+        exec brew "$@"
+        ;;
+    darwin*)
+        exec /usr/local/bin/brew "$@"
+        ;;
+esac

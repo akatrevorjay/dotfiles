@@ -45,8 +45,8 @@ LINK                  target
 MULTIHARDLINK         38;5;222;1
 # "NORMAL don't reset the bold attribute -
 # https://github.com/trapd00r/LS_COLORS/issues/11
-#NORMAL                38;5;254
-NORMAL                0
+NORMAL                38;5;254
+#NORMAL                0
 ORPHAN                48;5;196;38;5;232;1
 OTHER_WRITABLE        38;5;220;1
 SETGID                48;5;3;38;5;0
@@ -121,18 +121,18 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 #   Powerpoint show with enabled macros
 .pptsm                38;5;166;4
 # spreadsheet {{{3
-.csv                  38;5;78
+.csv                  38;5;2008
 #   Open document spreadsheet
 .ods                  38;5;112
-.xla                  38;5;76
+.xla                  38;5;2006
 #   Excel spreadsheet
 .xls                  38;5;112
 .xlsx                 38;5;112
 #   Excel spreadsheet with macros
 .xlsxm                38;5;112;4
 #   Excel module
-.xltm                 38;5;73;4
-.xltx                 38;5;73
+.xltm                 38;5;2003;4
+.xltx                 38;5;2003
 # }}}
 # }}}
 # configs {{{2
@@ -911,7 +911,7 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 #   Portable Object Translation for GNU Gettext
 .pot                  38;5;8
 #   CAD files for printed circuit boards
-.pcb                  38;5;7
+.pcb                  38;5;200
 #   groff (rendering app for texinfo)
 .mm                   38;5;9
 #   perldoc
@@ -925,40 +925,40 @@ STICKY_OTHER_WRITABLE 48;5;235;38;5;139;3
 # RStudio project file
 .Rproj                38;5;11
 #   Nokia Symbian OS files
-.sis                  38;5;7
+.sis                  38;5;200
 
-.1p                   38;5;7
-.3p                   38;5;7
-.cnc                  38;5;7
-.def                  38;5;7
-.ex                   38;5;7
-.example              38;5;7
-.feature              38;5;7
-.ger                  38;5;7
-.map                  38;5;7
-.mf                   38;5;7
-.mfasl                38;5;7
-.mi                   38;5;7
-.mtx                  38;5;7
-.pc                   38;5;7
-.pi                   38;5;7
-.plt                  38;5;7
-.pm                   38;5;7
-.rb                   38;5;5
-.rdf                  38;5;7
-.rst                  38;5;6
-.ru                   38;5;7
-.sch                  38;5;7
-.sty                  38;5;7
-.sug                  38;5;7
-.t                    38;5;7
-.tdy                  38;5;7
-.tfm                  38;5;7
-.tfnt                 38;5;7
-.tg                   38;5;7
+.1p                   38;5;200
+.3p                   38;5;200
+.cnc                  38;5;200
+.def                  38;5;200
+.ex                   38;5;200
+.example              38;5;200
+.feature              38;5;200
+.ger                  38;5;200
+.map                  38;5;200
+.mf                   38;5;200
+.mfasl                38;5;200
+.mi                   38;5;200
+.mtx                  38;5;200
+.pc                   38;5;200
+.pi                   38;5;200
+.plt                  38;5;200
+.pm                   38;5;200
+.rb                   32;31;10
+.rdf                  34;6;7
+.rst                  37;4;7
+.ru                   38;5;200
+.sch                  38;5;200
+.sty                  38;5;200
+.sug                  38;5;200
+.t                    38;5;200
+.tdy                  38;5;200
+.tfm                  38;5;200
+.tfnt                 38;5;200
+.tg                   38;5;200
 .vcard                38;5;4
 .vcf                  38;5;4
-.xln                  38;5;7
+.xln                  38;5;200
 # }}}
 # termcap {{{1
 TERM ansi

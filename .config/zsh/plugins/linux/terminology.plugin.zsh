@@ -1,6 +1,7 @@
 #!/bin/zsh
 
-[[ -n "$TERMINOLOGY" && -z "$TMUX$SCREEN" ]] || return
+[[ -n $TERMINOLOGY ]] || return 1
+[[ -z "$PYMUX$TMUX$SCREEN" ]] || return 1
 
 fpath+=(${0:h}/functions)
 
@@ -14,4 +15,4 @@ compdef _tyls tyls
 compdef _terminology-ls terminology-ls
 
 alias ls='terminology-ls'
-compdef _terminology-ls ls
+#compdef _terminology-ls ls

@@ -3,8 +3,8 @@
 
 # Color module, should give us access to associative array of colors:
 # ${color[red]}
-autoload colors;
-colors;
+#autoload colors;
+#colors
 
 
 # -----------------------------------------------------------------------------
@@ -56,7 +56,7 @@ colors;
 #
 
 # Understood by BSD ls
-LSCOLORS='exfxcxdxbxGxDxabagacad'
+#LSCOLORS='exfxcxdxbxGxDxabagacad'
 #LSCOLORS="gxfxcxdxbxegedabagacad"
 
 LS_OPTIONS_ALL=(-Fuhs -ctr --color=auto --group-directories-first)
@@ -65,15 +65,7 @@ LS_OPTIONS_BSD=(${(@)LS_OPTIONS_ALL} -G);
 
 if (( ${+commands[dircolors]} )); then
     # GNU
-
-    local file="$HOME/.dircolors"
-
-    local cmd
-    for cmd in {g,}dircolors; do
-        (( ${+commands[$cmd]} )) || continue
-        eval "$($cmd -b "$file" || $cmd -b)"
-        break
-    done
+    eval "$(dircolors -b $HOME/.dircolors)"
 else
     # BSD
 
@@ -91,15 +83,16 @@ fi
 
 # Set ls colors to completion engine
 # ZLS_COLORS is overwritten by the list-colors style
-ZLS_COLORS=${LS_COLORS}
+#ZLS_COLORS=${LS_COLORS}
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Need to export all these guys 
-export LS_COLORS LSCOLORS ZLS_COLORS
+#export LS_COLORS LSCOLORS ZLS_COLORS
 
 # Find the best ls and set the options
 case $OSTYPE:l in
     linux)
-        alias ls='ls $LS_OPTIONS_GNU'
+        alias ls="ls $LS_OPTIONS_GNU"
         ;;
     *bsd*|darwin*|*)
         if (( ${+commands[gls]} )); then
@@ -110,14 +103,14 @@ case $OSTYPE:l in
         ;;
 esac
 
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 #
 # grep
 #
 
-export GREP_COLOR='37;45'             #BSD
-export GREP_COLORS="mt=${GREP_COLOR}" #GNU
+#export GREP_COLOR='37;45'             #BSD
+#export GREP_COLORS="mt=${GREP_COLOR}" #GNU
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
