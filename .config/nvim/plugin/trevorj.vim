@@ -45,3 +45,9 @@ augroup END
 
 let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+

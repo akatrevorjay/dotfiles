@@ -3,11 +3,11 @@
 if exists('g:loaded_ultisnips')
   " Trigger configuration. Do not use <tab> if you use
   " https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger='<tab>'
-  let g:UltiSnipsJumpForwardTrigger='<c-b>'
-  let g:UltiSnipsJumpBackwardTrigger='<c-z>'
-  let g:UltiSnipsJumpForwardTrigger='<tab>'
-  let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+  "let g:UltiSnipsExpandTrigger='<tab>'
+  "let g:UltiSnipsJumpForwardTrigger='<c-b>'
+  "let g:UltiSnipsJumpBackwardTrigger='<c-z>'
+  "let g:UltiSnipsJumpForwardTrigger='<tab>'
+  "let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 
   " If you want :UltiSnipsEdit to split your window.
   "let g:UltiSnipsEditSplit="vertical"
@@ -15,6 +15,11 @@ if exists('g:loaded_ultisnips')
   " Python docstring style
   "let g:ultisnips_python_style = 'sphinx'
   let g:ultisnips_python_style = 'google'
+
+  let g:UltiSnipsExpandTrigger="<c-j>"
+  let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  let g:UltiSnipsListSnippets="<c-u>"
 endif
 " }}}
 
@@ -50,11 +55,6 @@ if exists('g:loaded_neosnippet')
 
   "imap <expr><TAB> <SID>neosnippet_complete()
   inoremap <expr><TAB> <SID>neosnippet_complete()
-
-  " For conceal markers.
-  if has('conceal')
-    set conceallevel=2 concealcursor=niv
-  endif
 
   let g:neosnippet#enable_conceal_markers = 1
   let g:neosnippet#expand_word_boundary = 1

@@ -1,1 +1,2 @@
--d pygments -x pygmentize
+-d pygments -d pygments-openssl -d pygments-github-lexers -d pygments-markdown-lexer -d pygments-pprint-sql -d
+pygments-monokai-hcb -d pygments-ldif -d pygments-rspec -d pygments-json -x pygmentize

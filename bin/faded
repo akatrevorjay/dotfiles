@@ -89,6 +89,7 @@ case "$self" in
 		;;
 	*)
 		fargs=()
+		(( ${RANDOM:0:2} % 10 )) || fargs+=(--check-updates)
 		if [[ -e "$faded_d/$self" ]]; then
 			fargs+=($(cat "$faded_d/$self"))
 		fi
