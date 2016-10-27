@@ -208,27 +208,22 @@ endif
 
 " Spacing: tabstops/indents {{{
 " Number of spaces used for autoindent (local to buffer)
-set shiftwidth=2
-" Tab width
-set tabstop=2
-set softtabstop=2
-set showtabline=2
 
-" Indent/outdent to nearest tabstops
-"set shiftround
+set autoindent " always set autoindenting on"
+set smartindent " use smart indent if there is no indent file"
+set tabstop=4 " <tab> inserts 4 spaces"
+set softtabstop=4 " <BS> over an autoindent deletes 4 spaces."
+set smarttab " Handle tabs more intelligently"
+set expandtab " Use spaces, not tabs, for autoindent/tab key."
+set shiftwidth=4 " an indent level is 4 spaces wide."
+set shiftround " rounds indent to a multiple of shiftwidth"
+set showtabline=4
 
-" Spaces instead of tabs
-set expandtab
-
-" Always set auto indenting on
-set autoindent
 "" Only set indent when no other was loaded.
 "if !exists("b:did_indent")
 "  " Clever autoindenting (Means?)
 "  set smartindent
 "endif
-" Clever autoindenting (Means?)
-set smartindent
 
 " copy whitespace for indenting from previous line
 set copyindent
@@ -236,8 +231,8 @@ set copyindent
 " Last line should be EoL
 set endofline
 
-"" Fixes missing EoL at end of file (default_
-"set fixeol
+"" Fixes missing EoL at end of file (default)
+set fixeol
 
 set fileignorecase
 set wildignorecase
