@@ -134,3 +134,4 @@
 	conflicts = diff --name-only --diff-filter=U --relative
 	edit-conflicts = "!$EDITOR $(git conflicts)"
 	add-conflicts = "!git add $(git conflicts)"
+
