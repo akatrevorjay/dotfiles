@@ -37,7 +37,8 @@
 
 	# Clone a repository including all submodules
 	clone = clone --recursive
-  log = log --decorate --branches --graph
+	ll = log --decorate --branches --graph
+	log = log --decorate --graph
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
 
@@ -128,3 +129,8 @@
 	switch = !legit switch
 	resync = !legit resync
 
+	root = rev-parse --show-toplevel
+
+	conflicts = diff --name-only --diff-filter=U --relative
+	edit-conflicts = "!$EDITOR $(git conflicts)"
+	add-conflicts = "!git add $(git conflicts)"
