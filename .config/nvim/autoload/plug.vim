@@ -203,7 +203,9 @@ function! plug#end()
   endif
   let lod = { 'ft': {}, 'map': {}, 'cmd': {} }
 
-  filetype off
+  if exists('g:did_load_filetypes')
+    filetype off
+  endif
   for name in g:plugs_order
     if !has_key(g:plugs, name)
       continue
@@ -399,7 +401,7 @@ function! s:reorg_rtp()
 
   let s:middle = get(s:, 'middle', &rtp)
   let rtps     = map(s:loaded_names(), 's:rtp(g:plugs[v:val])')
-  let afters   = filter(map(copy(rtps), 'globpath(v:val, "after")'), 'isdirectory(v:val)')
+  let afters   = filter(map(copy(rtps), 'globpath(v:val, "after")'), '!empty(v:val)')
   let rtp      = join(map(rtps, 'escape(v:val, ",")'), ',')
                  \ . ','.s:middle.','
                  \ . join(map(afters, 'escape(v:val, ",")'), ',')
@@ -574,8 +576,7 @@ function! s:infer_properties(name, repo)
       let fmt = get(g:, 'plug_url_format', 'https://git::@github.com/%s.git')
       let uri = printf(fmt, repo)
     endif
-    let dir = s:dirpath( fnamemodify(join([g:plug_home, a:name], '/'), ':p') )
-    return { 'dir': dir, 'uri': uri }
+    return { 'dir': s:dirpath(g:plug_home.'/'.a:name), 'uri': uri }
   endif
 endfunction
 
