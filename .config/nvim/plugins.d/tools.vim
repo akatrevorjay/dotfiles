@@ -7,7 +7,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'  ", {'on': 'Gundo' }
 
 " Fuzzy File Finder:
-"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 Plug $GOPATH.'/src/github.com/junegunn/fzf'
 
 " File Tree:

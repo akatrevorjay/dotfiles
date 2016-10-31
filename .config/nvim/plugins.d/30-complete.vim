@@ -1,23 +1,9 @@
 if has('nvim')
     Plug 'Shougo/deoplete.nvim'
-
-    Plug 'Shougo/neopairs.vim'
-    Plug 'Shougo/echodoc.vim'
-    Plug 'Shougo/context_filetype.vim'
-
-    " neosnippet: "neosnippet" source
-    "Plug 'Shougo/neosnippet.vim'
-    "Plug 'Shougo/neosnippet-snippets'
-
-    " neoinclude: "include" and "file/include" sources
-    Plug 'Shougo/neoinclude.vim'
 else
     "" Simple, no frills, vimscript-only tab completion
     "Plug 'ajh17/VimCompletesMe'
     "Gautocmdft python,vim,sh let b:vcm_tab_complete = "tags"
-
-    " Complete along all tmux panes
-    "Plug 'wellle/tmux-complete.vim'
 
     "" GitHub completions
     "Plug 'rhysd/github-complete.vim', {'for': 'gitcommit'}
@@ -36,3 +22,14 @@ else
     "    endif
     "endfunction
 endif
+
+Plug 'Shougo/neopairs.vim'
+Plug 'Shougo/echodoc.vim'
+Plug 'Shougo/context_filetype.vim'
+
+"" neosnippet: "neosnippet" source
+"Plug 'Shougo/neosnippet.vim'
+"Plug 'Shougo/neosnippet-snippets'
+
+" neoinclude: "include" and "file/include" sources
+Plug 'Shougo/neoinclude.vim'

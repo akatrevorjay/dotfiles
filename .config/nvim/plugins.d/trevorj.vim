@@ -101,7 +101,7 @@ if has('nvim')
     "Plug 'bfredl/nvim-ipy'
     "Plug 'tek/proteome.nvim'
     "Plug 'hkupty/iron.nvim'
-    Plug 'benekastah/neomake'
+    "Plug 'benekastah/neomake'
 
     "Plug 'arakashic/chromatica.nvim'
     ""let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
@@ -124,7 +124,8 @@ if has('nvim')
     "    \ }
 endif
 
-Plug 'tpope/vim-dotenv'
-Plug 'tpope/vim-rsi'
-Plug 'tpope/git-bump'
-Plug 'tpope/vim-projectionist'
+"Plug 'tpope/vim-dotenv'
+"Plug 'tpope/vim-rsi'
+"Plug 'tpope/git-bump'
+"Plug 'tpope/vim-projectionist'
+
