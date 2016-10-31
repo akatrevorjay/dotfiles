@@ -145,7 +145,7 @@ set breakindent
 set showfulltag
 
 " Highlight spelling mistakes
-"set spell
+set spell
 set spelllang=en_us
 
 " file that "zg" adds good words to
@@ -165,6 +165,9 @@ set matchpairs=(:),{:},[:],<:>,*:*,\":\",\':\',\|:\|,\^:\$
 
 set textwidth=120
 "set wrapmargin=2
+
+" Allow cursor to traverse lines
+set whichwrap=b,s,<,>,[,]
 
 "set formatoptions=jcroql
 "set formatoptions=tcroqwan2jl

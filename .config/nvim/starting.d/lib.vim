@@ -10,6 +10,14 @@ augroup END
 command! -nargs=* Gautocmd   autocmd GlobalAutoCmd <args>
 command! -nargs=* Gautocmdft autocmd GlobalAutoCmd FileType <args>
 
+" Plug 'benekastah/neomake', Cond(has('nvim'))
+" With other options
+" Plug 'benekastah/neomake', Cond(has('nvim'), { 'on': 'Neomake' })
+function! Cond(cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
+
 " Smart help window
 " https://github.com/rhysd/dotfiles/blob/master/nvimrc#L380-L405
 command! -nargs=* -complete=help SmartHelp call <SID>smart_help(<q-args>)
@@ -48,7 +56,7 @@ command! SimplifyGitHubURLs call SimplifyGitHubURLs()
 command! -nargs=0 -bang -complete=command FormatJSON %!python -m json.tool
 
 " Clear message logs
-command! MessageClear for n in range(200) | echom "" | endfor
+command! ClearMessages for n in range(200) | echom "" | endfor
 
 " Binary edit mode
 " need open nvim with `-b` flag

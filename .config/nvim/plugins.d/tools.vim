@@ -7,7 +7,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'sjl/gundo.vim'  ", {'on': 'Gundo' }
 
 " Fuzzy File Finder:
-Plug 'junegunn/fzf.vim'
+"Plug 'junegunn/fzf.vim'
+Plug $GOPATH.'/src/github.com/junegunn/fzf'
 
 " File Tree:
 " turned off autoloading as other plugins interface with it
@@ -17,4 +18,22 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Tagbar: ctags, syntax, etc
 Plug 'majutsushi/tagbar'
+
+"Plug 'vim-scripts/taglist.vim'
+
+if has('nvim')
+  " NeoTerm: nice wrapper around :term
+  Plug 'kassio/neoterm'
+else
+  Plug 'wincent/terminus'
+endif
+
+" Continuously updated session files
+Plug 'tpope/vim-obsession'
+
+" used for repeating operator actions via "."
+Plug 'tpope/vim-repeat'
+
+" Faster folding
+Plug 'Konfekt/FastFold'
 

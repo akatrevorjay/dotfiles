@@ -1,0 +1,23 @@
+#!/bin/zsh
+#
+# Output a cursor randomly on term. Stupid, lol.
+#
+
+place-mouse-cursor() {
+	local ncols=$(tput cols)
+	local nlines=$(tput lines)
+
+	local col=$(( $RANDOM % $ncols ))
+	local line=$(( $RANDOM % $nlines ))
+	place
+
+	tput sc
+	tput cup $line $col
+	tput rev
+	echo -e "${reset_color}${bold_color}${fg[white]}${reset_color}"
+	tput sgr0
+	tput rc
+}
+
+place-mouse-cursor "$@"
+

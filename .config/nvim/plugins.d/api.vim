@@ -1,1 +1,0 @@
-Plug 'nicwest/vim-http'

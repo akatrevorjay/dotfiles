@@ -1,7 +1,15 @@
 
-Plug 'flazz/vim-colorschemes'
+if ! has('gui_running') && ! has('nvim')
+  " Approximately converts gui only colorschemes to console
+  Plug 'godlygeek/csapprox'
+endif
 
-Plug expand('~/.vim/bundles/colors')
+"Plug 'vim-scripts/ScrollColors'
+
+""""""""" colors """""""""""
+
+"Plug expand('~/.vim/bundles/colors')
+Plug 'flazz/vim-colorschemes'
 
 "Plug 'vim-scripts/tropikos'
 "Plug 'w0ng/vim-hybrid'
@@ -22,15 +30,15 @@ Plug expand('~/.vim/bundles/colors')
 "Plug 'jordwalke/flatlandia'
 "Plug 'joshdick/onedark.vim'
 "Plug 'joshdick/airline-onedark.vim'
-""Plug 'sbdchd/airline-steve'
+"Plug 'sbdchd/airline-steve'
 "Plug 'whatyouhide/vim-gotham'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'marcopaganini/termschool-vim-theme'
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'marcopaganini/termschool-vim-theme'
 "Plug 'OndrejSlamecka/dracula-theme-vim'
-Plug 'tomasr/molokai'
-Plug 'gummesson/stereokai.vim'
-Plug 'aereal/vim-colors-japanesque'
-Plug 'bounceme/highwayman'
-Plug 'tyrannicaltoucan/vim-deep-space'
+"Plug 'tomasr/molokai
+"Plug 'gummesson/stereokai.vim'
+"Plug 'aereal/vim-colors-japanesque'
+"Plug 'bounceme/highwayman'
+"Plug 'tyrannicaltoucan/vim-deep-space'
 "Plug 'jethrovt/vim-basal-colorscheme'
 

@@ -1,1 +1,0 @@
-Plug 'adamlowe/vim-slurper'
