@@ -1,4 +1,4 @@
-version 8.0
+version 6.0
 
 " Debian: Use provided config if available.
 runtime! debian.vim
