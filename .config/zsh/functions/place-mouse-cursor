@@ -3,21 +3,21 @@
 # Output a cursor randomly on term. Stupid, lol.
 #
 
-place-mouse-cursor() {
-	local ncols=$(tput cols)
-	local nlines=$(tput lines)
+if [[ -z $reset_color ]]; then
+    autoload -Uz colors
+    colors
+fi
 
-	local col=$(( $RANDOM % $ncols ))
-	local line=$(( $RANDOM % $nlines ))
-	place
+local ncols=$(tput cols)
+local nlines=$(tput lines)
 
-	tput sc
-	tput cup $line $col
-	tput rev
-	echo -e "${reset_color}${bold_color}${fg[white]}${reset_color}"
-	tput sgr0
-	tput rc
-}
+local col=$(( $RANDOM % $ncols ))
+local line=$(( $RANDOM % $nlines ))
 
-place-mouse-cursor "$@"
+tput sc
+tput cup $line $col
+tput rev
+echo -e "${reset_color}${bold_color}${fg[white]}${reset_color}"
+tput sgr0
+tput rc
 
