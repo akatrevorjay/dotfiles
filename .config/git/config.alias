@@ -135,3 +135,5 @@
 	edit-conflicts = "!$EDITOR $(git conflicts)"
 	add-conflicts = "!git add $(git conflicts)"
 
+	merge-to = "!f() { git push $(git rev-parse --show-toplevel) $(git rev-parse --abbrev-ref HEAD):${1:?No dest branch given}; }; f"
+
