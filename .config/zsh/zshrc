@@ -122,7 +122,7 @@ function zplugins.cache.is-clean() {
 
     local plugins_file
     for plugins_file in ${(@)ZPLUGINS_FILES}; do
-        if [ $plugins_file -nt $ZPLUG_CACHE_FILE -o $plugins_file -nt $plugins_file:h ]; then
+        if [ $plugins_file -nt $ZPLUG_CACHE_FILE ] || [ $plugins_file -nt $plugins_file:h:A ]; then
             echo "- Detected change in $plugins_file" >&2
             return 100
         fi
