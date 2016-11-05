@@ -1,5 +1,9 @@
 " Yeeaaaah baby
-Guifont Input\ Mono:h18
+
+let g:is_gui = 1
+
+Guifont Input\ Mono:8
+
 "colors darkblue
-colors inkpot
+"colors inkpot
 

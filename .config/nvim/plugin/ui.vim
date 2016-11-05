@@ -52,13 +52,13 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && empty($TERMINOLOGY)
-  set termguicolors
+if has('nvim') && empty($TERMINOLOGY) && empty('g:is_gui')
+    set termguicolors
 endif
 
 set background=dark
 " Always dark bg damnit, stop resetting it on me swan
-Gautocmd ColorScheme * set background=dark
+"Gautocmd ColorScheme * set background=dark
 
 ""
 "" ColorScheme:
@@ -113,7 +113,7 @@ let g:hybrid_use_Xresources = 1
 
 "colorscheme molokai"
 "colorscheme molokai-nvim-trucolor
-let g:rehash256 = 1  " Alt color scheme under dev that attempts to make molokai 256 as close as possible to dark gui
+"let g:rehash256 = 1  " Alt color scheme under dev that attempts to make molokai 256 as close as possible to dark gui
 
 "colorscheme OceanicNext
 "let g:airline_theme = 'oceanicnext'
@@ -142,11 +142,11 @@ let g:onedark_terminal_italics = 1
 let g:triplejelly_foreground_color = 'A7B7C7'
 let g:triplejelly_background_color = '000000'
 
-"Gautocmd ColorScheme highlight Comment guibg=#323230 guifg=#9999aa
-"Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#9999aa
-Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#bbbbcc
-Gautocmd ColorScheme highlight Identifier guibg=#121255
-Gautocmd ColorScheme highlight String guibg=#331133
+""Gautocmd ColorScheme highlight Comment guibg=#323230 guifg=#9999aa
+""Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#9999aa
+"Gautocmd ColorScheme highlight Comment guibg=#252525 guifg=#bbbbcc
+"Gautocmd ColorScheme highlight Identifier guibg=#121255
+"Gautocmd ColorScheme highlight String guibg=#331133
 
 "colorscheme termschool
 "let g:airline_theme = 'jellybeans'
