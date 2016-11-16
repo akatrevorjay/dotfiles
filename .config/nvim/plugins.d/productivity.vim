@@ -38,8 +38,8 @@ Plug 'mhinz/vim-startify'
 Plug 'farseer90718/vim-taskwarrior', {'on': ['TW', 'TWAdd']}
 
 " Taskwarrior: Better interface
-Plug 'vimwiki/vimwiki', {'on': 'Vimwiki'}
-Plug 'tbabej/taskwiki', {'on': 'TaskWiki'}
+Plug 'vimwiki/vimwiki'
+Plug 'tbabej/taskwiki'
 
 " Outlines (uses utl)
 "Plug 'vim-voom/VOoM'
@@ -65,3 +65,6 @@ Plug 'tbabej/taskwiki', {'on': 'TaskWiki'}
 "let b:posero_fake_type = '\v(.*)'
 
 "Plug 'sotte/presenting.vim'
+
+Plug 'cohama/lexima.vim'
+

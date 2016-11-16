@@ -37,6 +37,6 @@ Plug 'ntpeters/vim-airline-colornum'
 " Awesome font icon toolkit for cui and gui including filetypes
 Plug 'ryanoasis/vim-devicons'
 
-Plug 'junegunn/vim-emoji'
+"Plug 'junegunn/vim-emoji'
 
 "Plug 'thinca/vim-prettyprint'

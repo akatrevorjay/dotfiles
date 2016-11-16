@@ -28,6 +28,9 @@ else
   Plug 'wincent/terminus'
 endif
 
+" dark powered shell for Neovim
+Plug 'Shougo/deol.nvim'
+
 " Continuously updated session files
 Plug 'tpope/vim-obsession'
 

@@ -52,17 +52,16 @@ if has('nvim')
   " Enable by default for these filetypes
   "Gautocmdft vim,zsh,sh,go,txt,markdown,mkd execute ':DeopleteEnable'
 
+  "let g:deoplete#tag#cache_limit_size = 
+
   "" Allow <CR> to select
   "inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
-
-  "" tmux-complete
-  " w/deoplete
-  let g:tmuxcomplete#trigger = ''
 
   let g:deoplete#auto_completion_start_length = 1
   "let g:deoplete#file#enable_buffer_path = 1
   "let g:deoplete#enable_refresh_always = 1
   let g:deoplete#auto_complete_delay = 100
+  let g:deoplete#file#enable_buffer_path = 1
 
   " Use smartcase.
   let g:deoplete#enable_smart_case = 1
@@ -71,7 +70,11 @@ if has('nvim')
   "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
   "call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
   " Use auto delimiter feature
-  "call deoplete#custom#set('_', 'converters', ['converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren'])
+  call deoplete#custom#set('_', 'converters', [
+    \ 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu',
+    \ 'converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren',
+    \ 'converter_remove_paren', 'converter_truncate_abbr',
+    \ ])
 
   "call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
   " Change the source rank
@@ -113,6 +116,50 @@ if has('nvim')
   "let g:loaded_deoplete_enabled = 0
   "let g:loaded_deoplete_enabled_auto = 0
 
+  let g:deoplete#sources={}
+  let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+  let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
+  let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+  let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+  let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+
+  " Auto close preview window post completion
+  autocmd CompleteDone * pclose!
+
+  let g:deoplete#ignore_sources = {}
+  let g:deoplete#ignore_sources._ = ['buffer']
+
+  " Insert <TAB> or select next match
+  inoremap <silent> <expr> <Tab> utils#tabComplete()
+
+  " Manually trigger tag autocomplete
+  inoremap <silent> <expr> <C-]> utils#manualTagComplete()
+
+  " <C-h>, <BS>: close popup and delete previous char
+  inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+  inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+
+  "let g:deoplete#omni#functions = {}
+  "let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
+  "let g:deoplete#omni#functions.javascript = [
+  "    \ 'tern#Complete',
+  "    \ 'jspc#omni'
+  "    \]
+
+  "let g:deoplete#omni#input_patterns = {}
+  "let g:deoplete#omni#input_patterns.ruby =
+  "  \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
+  "let g:deoplete#omni#input_patterns.java = '[^. *\t]\.\w*'
+  "let g:deoplete#omni#input_patterns.php =
+  "  \ '\w+|[^. \t]->\w*|\w+::\w*'
+
+  " Snippets rank
+  call deoplete#custom#set('ultisnips', 'rank', 1000)
+
+  "" tmux-complete
+  " w/deoplete
+  let g:tmuxcomplete#trigger = ''
+
   "" Completion: Jedi
 
   let g:deoplete#sources#jedi#show_docstring = 1
@@ -120,7 +167,7 @@ if has('nvim')
   "let g:deoplete#sources#jedi#short_types = 1
   let g:deoplete#sources#jedi#enable_cache = 1
 
-  "let g:jedi#show_call_signatures = 2 " show in cmdline
+  let g:jedi#show_call_signatures = 1 " show in cmdline
   "let g:jedi#show_call_signatures_delay = 250 " ms (500)
 
   "if exists('g:loaded_deoplete_enabled') && g:loaded_deoplete_enabled == 1
@@ -144,6 +191,9 @@ if has('nvim')
     "   \ '\%([^. \t]\.\|^\s*@\|^\s*from\s.\+import \|^\s*from \|^\s*import \)\w*'
   endif
 
+  " Remove jedi doc buffer automagically
+  autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
+
   " Clang:
   " TODO is this right?
   if exists('g:loaded_clang')
@@ -154,6 +204,15 @@ if has('nvim')
     let g:clang_make_default_keymappings = 0
     "let g:clang_use_library = 1
   endif
+
+  " Tern/js
+  " Use deoplete.
+  let g:tern_request_timeout = 1
+  let g:tern_show_signature_in_pum = '1'
+  " Use tern_for_vim.
+  let g:tern#command = ["tern"]
+  let g:tern#arguments = ["--persistent"]
+
 else
   "let g:tmuxcomplete#trigger = 'completefunc'
   "let g:tmuxcomplete#trigger = 'omnifunc'

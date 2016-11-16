@@ -22,6 +22,12 @@ export EDITOR
 
 alias v='vi'
 
+# Disable control flow (<C-s> / <C-q>)
+stty stop '' -ixoff -ixon
+
+## Don't raise errors when regex nomatch fires
+#unsetopt nomatch
+
 # GPG 2.1.x SSH support
 # See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 #export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"

@@ -20,8 +20,8 @@ if empty($TMUX)
     "let g:nvimux_override_t=":term<CR>"
   endif
 else
-  " tmux-complete: "tmuxcomplete" source for tmux panes
-  "Plug 'wellle/tmux-complete.vim'
+  " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
+  Plug 'wellle/tmux-complete.vim'
 
   " tmux integration
   Plug 'christoomey/vim-tmux-navigator'
