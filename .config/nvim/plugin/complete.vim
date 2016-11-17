@@ -130,13 +130,13 @@ if has('nvim')
   let g:deoplete#ignore_sources._ = ['buffer']
 
   " Insert <TAB> or select next match
-  inoremap <silent> <expr> <Tab> utils#tabComplete()
+  "inoremap <silent> <expr> <Tab> utils#tabComplete()
 
   " Manually trigger tag autocomplete
-  inoremap <silent> <expr> <C-]> utils#manualTagComplete()
+  "inoremap <silent> <expr> <C-]> utils#manualTagComplete()
 
   " <C-h>, <BS>: close popup and delete previous char
-  inoremap <expr><C-h> deolete#mappings#smart_close_popup()."\<C-h>"
+  inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
   inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
   "let g:deoplete#omni#functions = {}
