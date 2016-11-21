@@ -1,0 +1,35 @@
+
+# Tons of things break with gdk atm
+#GDK_BACKEND=wayland
+
+# Sigh, this one too.
+#QT_QPA_PLATFORM=wayland-egl
+
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
+
+# or say wayland_shm
+ECORE_EVAS_ENGINE=wayland_egl
+ELM_ENGINE=wayland
+
+export GDK_BACKEND QT_QPA_PLATFORM CLUTTER_BACKEND SDL_VIDEODRIVER ECORE_EVAS_ENGINE ELM_ENGINE
+
+SWAY_CURSOR_THEME=Obsidian
+SWAY_CURSOR_SIZE=48
+
+export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
+
+XKB_DEFAULT_RULES=evdev
+XKB_DEFAULT_MODEL=apple
+XKB_DEFAULT_LAYOUT=workman
+#XKB_DEFAULT_OPTIONS='lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle'
+
+export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTIONS
+
+
+# https://wiki.archlinux.org/index.php/ATI#Dynamic_power_management
+#export LIBVA_DRIVER_NAME=vdpau
+#export VDPAU_DRIVER=r600
+
+
+# vim: set ts=4 sw=4 tw=120 et ft=sh :

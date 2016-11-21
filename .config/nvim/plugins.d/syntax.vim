@@ -193,6 +193,8 @@ Plug 'mattn/emmet-vim'
 "Plug 'plasticboy/vim-markdown'
 ""Plug 'tpope/vim-markdown'
 
+Plug 'aouelete/sway-vim-syntax'
+
 ""
 "" Language: Python
 ""

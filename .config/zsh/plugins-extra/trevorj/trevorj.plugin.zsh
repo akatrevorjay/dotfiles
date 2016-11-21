@@ -86,17 +86,17 @@ alias fk='k --no-vcs'
 #alias lsd='ls -ld *(-/DN)'
 #alias lsa='ls -ld .*'
 
-if (( ${+commands[exa]} )); then
-    alias exa='exa --group-directories-first'
-    #alias l='exa -G'
-    alias k='exa'
-    alias g='exa -G'
-    alias ll='exa -lh@ --git'
-    alias l='ll'
-else
+#if (( ${+commands[exa]} )); then
+#    alias exa='exa --group-directories-first'
+#    #alias l='exa -G'
+#    alias k='exa'
+#    alias g='exa -G'
+#    alias ll='exa -lh@ --git'
+#    alias l='ll'
+#else
     alias l='ls'
     alias ll='l -l'
-fi
+#fi
 
 alias k='ll'
 alias la='l -a'

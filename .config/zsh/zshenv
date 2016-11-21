@@ -161,6 +161,7 @@ case "${OSTYPE:l}" in
         ;;
 esac
 
+path=(${(@)prefix_path} ${(@)path})
 
 # Go
 : ${GOPATH:="$HOME/go"}
