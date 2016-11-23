@@ -97,6 +97,12 @@ if has('nvim')
   "let g:deoplete#sources#python = ['buffer', 'jedi', 'neosnippets']
   "let g:deoplete#sources#vim = ['necovim', 'neco', 'vim', 'neosnippets']
 
+  "let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+  "let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
+  "let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
+  "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+  "let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
+
   "" Sources
   "let g:deoplete#sources#go = 'vim-go'
   let g:deoplete#sources#go#package_dot = 1
@@ -116,18 +122,11 @@ if has('nvim')
   "let g:loaded_deoplete_enabled = 0
   "let g:loaded_deoplete_enabled_auto = 0
 
-  let g:deoplete#sources={}
-  let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
-  let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
-  let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
-  let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-  let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
-
   " Auto close preview window post completion
-  autocmd CompleteDone * pclose!
+  "autocmd CompleteDone * pclose!
 
-  let g:deoplete#ignore_sources = {}
-  let g:deoplete#ignore_sources._ = ['buffer']
+  "let g:deoplete#ignore_sources = {}
+  "let g:deoplete#ignore_sources._ = ['buffer']
 
   " Insert <TAB> or select next match
   "inoremap <silent> <expr> <Tab> utils#tabComplete()
@@ -167,7 +166,7 @@ if has('nvim')
   "let g:deoplete#sources#jedi#short_types = 1
   let g:deoplete#sources#jedi#enable_cache = 1
 
-  let g:jedi#show_call_signatures = 1 " show in cmdline
+  "let g:jedi#show_call_signatures = 1 " show in cmdline
   "let g:jedi#show_call_signatures_delay = 250 " ms (500)
 
   "if exists('g:loaded_deoplete_enabled') && g:loaded_deoplete_enabled == 1
@@ -177,8 +176,8 @@ if has('nvim')
     "Gautocmdft python setlocal omnifunc=jedi#completions
     let g:jedi#auto_initialization = 1
     let g:jedi#auto_vim_configuration = 0
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#popup_select_first = 0
+    "let g:jedi#popup_on_dot = 0
+    "let g:jedi#popup_select_first = 0
     let g:jedi#completions_enabled = 0
     "let g:jedi#force_py_version = 3
     "let g:jedi#smart_auto_mappings = 0
@@ -192,7 +191,7 @@ if has('nvim')
   endif
 
   " Remove jedi doc buffer automagically
-  autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
+  "autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
 
   " Clang:
   " TODO is this right?

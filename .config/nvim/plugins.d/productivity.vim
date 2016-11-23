@@ -66,5 +66,5 @@ Plug 'tbabej/taskwiki'
 
 "Plug 'sotte/presenting.vim'
 
-Plug 'cohama/lexima.vim'
+"Plug 'cohama/lexima.vim'
 

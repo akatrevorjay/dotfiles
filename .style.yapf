@@ -1,9 +1,13 @@
 [style]
 based_on_style = google
-column_limit = 120
 dedent_closing_brackets = true
 
-join_multiple_lines = true
+# Disqus is 100 fod now
+#column_limit = 120
+column_limit = 100
+
+;join_multiple_lines = true
+;
 ;indent_width = 4
 ;spaces_before_comment = 4
 ;split_before_logical_operator = true

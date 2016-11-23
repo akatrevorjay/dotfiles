@@ -201,6 +201,7 @@ Plug 'aouelete/sway-vim-syntax'
 
 " Jedi:
 Plug 'davidhalter/jedi-vim'
+Plug 'python-rope/ropevim'
 
 "" Indenting:
 "Plug 'hynek/vim-python-pep8-indent'
@@ -270,7 +271,7 @@ if has('nvim')
     "Plug 'racer-rust/vim-racer', {'for': ['rust']}
 
     " deoplete-github: "github" source for "gitcommit" filetype
-    Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
+    "Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
 
     " deoplete-clang: "clang" source for C/C++
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}

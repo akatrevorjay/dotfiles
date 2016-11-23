@@ -40,3 +40,5 @@ Plug 'tpope/vim-repeat'
 " Faster folding
 Plug 'Konfekt/FastFold'
 
+Plug 'junegunn/vim-emoji'
+

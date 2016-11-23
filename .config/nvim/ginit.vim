@@ -2,8 +2,11 @@
 
 let g:is_gui = 1
 
-Guifont Input\ Mono:8
+"GuiFont Input\ Mono\ Compressed:h10
+"GuiFont Sudo:h10
+GuiFont Monoid:h8
 
 "colors darkblue
 "colors inkpot
+colors holokai
 

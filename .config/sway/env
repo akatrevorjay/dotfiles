@@ -5,12 +5,12 @@
 # Sigh, this one too.
 #QT_QPA_PLATFORM=wayland-egl
 
-CLUTTER_BACKEND=wayland
-SDL_VIDEODRIVER=wayland
+#CLUTTER_BACKEND=wayland
+#SDL_VIDEODRIVER=wayland
 
 # or say wayland_shm
 ECORE_EVAS_ENGINE=wayland_egl
-ELM_ENGINE=wayland
+#ELM_ENGINE=wayland
 
 export GDK_BACKEND QT_QPA_PLATFORM CLUTTER_BACKEND SDL_VIDEODRIVER ECORE_EVAS_ENGINE ELM_ENGINE
 
