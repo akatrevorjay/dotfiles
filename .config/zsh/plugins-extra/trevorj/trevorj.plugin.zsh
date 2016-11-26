@@ -169,7 +169,10 @@ case $OSTYPE:l in
         alias jf='journalctl -f'
         alias jxe='journalctl -fxe'
 
-        alias pstree='pstree -ahglnpsSuU'
+        alias dmesg='dmesg -e -x -d -T'
+        alias dmesgf='dmesg -w'
+
+        alias pstree='pstree -ahglnpsSuU | less -RFX'
         ;;
     darwin*)
         appify() {

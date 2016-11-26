@@ -1,12 +1,1 @@
-# Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-
-# You may want this:
-#
-include ~/.config/sway/conf.d/*.conf
-include ~/.config/sway/conf.`hostname`.d/*.conf
-
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
+config.i3

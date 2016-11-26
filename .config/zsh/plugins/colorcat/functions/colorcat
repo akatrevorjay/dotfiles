@@ -8,6 +8,7 @@ if tty -s && test -t 0 \
 then
     local file
     for file in "$@"; do
+        [ $# -eq 1 ] || echo "[${0:t}] $file" >&2
         pygmentize -O style=monokai -f console256 -g "$file"
     done
 else

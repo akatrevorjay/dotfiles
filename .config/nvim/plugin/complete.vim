@@ -42,8 +42,8 @@ set completeopt+=noinsert
 "set completeopt+=noselect
 
 
-"if exists('g:loaded_deoplete')
-if has('nvim')
+if exists('g:loaded_deoplete')
+"if has('nvim')
   " let g:loaded_deoplete_enabled = deoplete#init#is_enabled()
   "   let g:loaded_deoplete_enabled_auto = 1
   " endif
