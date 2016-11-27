@@ -54,12 +54,12 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY)
+if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
   set termguicolors
 endif
 
+" Always dark bg damnit, stop resetting it on me swan
 set background=dark
-"" Always dark bg damnit, stop resetting it on me swan
 "Gautocmd ColorScheme * set background=dark
 
 ""
@@ -115,7 +115,7 @@ let g:hybrid_use_Xresources = 1
 
 "colorscheme molokai"
 "colorscheme molokai-nvim-trucolor
-let g:rehash256 = 1  " Alt color scheme under dev that attempts to make molokai 256 as close as possible to dark gui
+"let g:rehash256 = 1  " Alt color scheme under dev that attempts to make molokai 256 as close as possible to dark gui
 
 "colorscheme OceanicNext
 "let g:airline_theme = 'oceanicnext'

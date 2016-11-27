@@ -161,10 +161,17 @@ case "${OSTYPE:l}" in
         ;;
 esac
 
+path=(${(@)prefix_path} ${(@)path})
 
 # Go
-export GOPATH="$HOME/go"
+: ${GOPATH:="$HOME/go"}
+export GOPATH
 add-prefix-paths $GOPATH
+
+# Dart
+: ${DART_HOME:=/usr/lib/dart}
+export DART_HOME
+add-prefix-paths $DART_HOME
 
 add-prefix-paths $HOME/.local $HOME $HOME/crypt
 

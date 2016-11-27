@@ -70,7 +70,6 @@ let g:airline_mode_map = {
 "      \ 't'  : 'term',
 "      \ }
 
-
 let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1

@@ -22,6 +22,12 @@ export EDITOR
 
 alias v='vi'
 
+# Disable control flow (<C-s> / <C-q>)
+stty stop '' -ixoff -ixon
+
+## Don't raise errors when regex nomatch fires
+#unsetopt nomatch
+
 # GPG 2.1.x SSH support
 # See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
 #export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
@@ -80,17 +86,17 @@ alias fk='k --no-vcs'
 #alias lsd='ls -ld *(-/DN)'
 #alias lsa='ls -ld .*'
 
-if (( ${+commands[exa]} )); then
-    alias exa='exa --group-directories-first'
-    #alias l='exa -G'
-    alias k='exa'
-    alias g='exa -G'
-    alias ll='exa -lh@ --git'
-    alias l='ll'
-else
+#if (( ${+commands[exa]} )); then
+#    alias exa='exa --group-directories-first'
+#    #alias l='exa -G'
+#    alias k='exa'
+#    alias g='exa -G'
+#    alias ll='exa -lh@ --git'
+#    alias l='ll'
+#else
     alias l='ls'
     alias ll='l -l'
-fi
+#fi
 
 alias k='ll'
 alias la='l -a'
@@ -163,7 +169,10 @@ case $OSTYPE:l in
         alias jf='journalctl -f'
         alias jxe='journalctl -fxe'
 
-        alias pstree='pstree -ahglnpsSuU'
+        alias dmesg='dmesg -e -x -d -T'
+        alias dmesgf='dmesg -w'
+
+        alias pstree='pstree -ahglnpsSuU | less -RFX'
         ;;
     darwin*)
         appify() {

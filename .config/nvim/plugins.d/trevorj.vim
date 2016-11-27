@@ -24,8 +24,8 @@
 " Superb motion controls
 Plug 'easymotion/vim-easymotion'
 
-"Plug 'junegunn/vim-pseudocl'
-"Plug 'junegunn/vim-oblique'
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
 
 " Find-N-Replace
 "Plug 'junegunn/vim-fnr'
@@ -38,6 +38,15 @@ Plug 'easymotion/vim-easymotion'
 " Make f usable and more powerful
 ", {'on': '<Plug>'}
 Plug 'rhysd/clever-f.vim'
+
+" multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+function g:Multiple_cursors_before()
+	let g:deoplete#disable_auto_complete = 1
+endfunction
+function g:Multiple_cursors_after()
+	let g:deoplete#disable_auto_complete = 0
+endfunction
 
 "" RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -60,43 +69,6 @@ Plug 'tpope/vim-abolish'
 
 "Plug 'eugen0329/vim-esearch'
 
-"let g:esearch = {
-"  \ 'adapter':    'ag',
-"  \ 'backend':    has('nvim') && 'nvim' || 'vimproc',
-"  \ 'out':        'win',
-"  \ 'batch_size': 1000,
-"  \ 'use':        ['visual', 'hlsearch', 'last'],
-"  \}
-
-"" Start esearch prompt autofilled with one of g:esearch.use initial patterns
-"call esearch#map('<leader>ff', 'esearch')
-"" Start esearch autofilled with a word under the cursor
-"call esearch#map('<leader>fw', 'esearch-word-under-cursor')
-
-"call esearch#out#win#map('t',       'tab')
-"call esearch#out#win#map('i',       'split')
-"call esearch#out#win#map('s',       'vsplit')
-"call esearch#out#win#map('<Enter>', 'open')
-"call esearch#out#win#map('o',       'open')
-
-""    Open silently (keep focus on the results window)
-"call esearch#out#win#map('T', 'tab-silent')
-"call esearch#out#win#map('I', 'split-silent')
-"call esearch#out#win#map('S', 'vsplit-silent')
-
-""    Move cursor with snapping
-"call esearch#out#win#map('<C-n>', 'next')
-"call esearch#out#win#map('<C-j>', 'next-file')
-"call esearch#out#win#map('<C-p>', 'prev')
-"call esearch#out#win#map('<C-k>', 'prev-file')
-
-"call esearch#cmdline#map('<C-o><C-r>', 'toggle-regex')
-"call esearch#cmdline#map('<C-o><C-s>', 'toggle-case')
-"call esearch#cmdline#map('<C-o><C-w>', 'toggle-word')
-"call esearch#cmdline#map('<C-o><C-h>', 'cmdline-help')
-
-"hi ESearchMatch ctermfg=black ctermbg=white guifg=#000000 guibg=#E6E6FA
-
 if has('nvim')
     "Plug 'bfredl/nvim-ipy'
     "Plug 'tek/proteome.nvim'
@@ -114,7 +86,6 @@ if has('nvim')
     "    UpdateRemotePlugins
     "  endif
     "endfunction
-
 endif
 
 Plug 'mhinz/vim-grepper'
@@ -135,7 +106,7 @@ Plug 'vim-scripts/searchfold.vim'
 Plug 'vim-scripts/grep.vim'
 "Plug 'vim-scripts/Mark--Karkat'
 Plug 'vim-scripts/a.vim'
-Plug 'vim-scripts/netrw.vim'
+"Plug 'vim-scripts/netrw.vim'
 Plug 'vim-scripts/SearchComplete'
 
 Plug 'vim-scripts/xoria256.vim'
@@ -144,3 +115,10 @@ Plug 'pi314/pi314.asciiart.vim'
 Plug 'quafzi/vim-flow-diagram'
 Plug 'xavierchow/vim-sequence-diagram'
 
+Plug 'mhinz/vim-grepper'
+" Mimic :grep and make ag the default tool.
+let g:grepper = {
+    \ 'tools': ['ag', 'git', 'grep'],
+    \ 'open':  0,
+    \ 'jump':  1,
+    \ }

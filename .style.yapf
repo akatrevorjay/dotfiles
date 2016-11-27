@@ -1,12 +1,55 @@
 [style]
+
 based_on_style = google
-column_limit = 120
+
+;column_limit = 120
+; Disqus is 100 so deal with it OOL
+column_limit = 100
+
+; Align closing bracket with visual indentation.
+align_closing_bracket_with_visual_indent = false
+
+; Put closing brackets on a separate line, dedented, if the bracketed
+; expression can't fit in a single line. Applies to all kinds of brackets,
+; including function definitions and calls. For example:
+;
+;   config = {
+;       'key1': 'value1',
+;       'key2': 'value2',
+;   }        # <--- this bracket is dedented and on a separate line
+;
+;   time_series = self.remote_client.query_entity_counters(
+;       entity='dev3246.region1',
+;       key='dns.query_latency_tcp',
+;       transform=Transformation.AVERAGE(window=timedelta(seconds=60)),
+;       start_ts=now()-timedelta(days=3),
+;       end_ts=now(),
+;   )        # <--- this bracket is dedented and on a separate line
 dedent_closing_brackets = true
 
-join_multiple_lines = true
-;indent_width = 4
-;spaces_before_comment = 4
-;split_before_logical_operator = true
+; Indent the dictionary value if it cannot fit on the same line as the
+; dictionary key. For example:
+;
+;   config = {
+;       'key1':
+;           'value1',
+;       'key2': value1 +
+;               value2,
+;   }
+indent_dictionary_value = true
+
+; Insert a blank line before a 'def' or 'class' immediately nested
+; within another 'def' or 'class'. For example:
+;
+;   class Foo:
+;                      # <------ this blank line
+;     def method():
+;       ...
+blank_line_before_nested_class_or_def = true
+
+; Join short lines into one line. E.g., single line 'if' statements.
+;join_multiple_lines = true
+join_multiple_lines = false
 
 ;  vim: set ts=4 sw=4 tw=120 et ft=dosini :
 

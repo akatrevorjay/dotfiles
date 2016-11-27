@@ -40,6 +40,8 @@ fi
 
 if [[ -f Makefile ]]; then
     verbose-call colormake $make_flags
+elif [[ -f makefile ]]; then
+    verbose-call colormake -f makefile $make_flags
 fi
 
 echo

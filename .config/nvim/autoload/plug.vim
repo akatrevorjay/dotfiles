@@ -225,6 +225,7 @@ function! plug#end()
           endif
           call add(s:triggers[name].map, cmd)
         elseif cmd =~# '^[A-Z]'
+          let cmd = substitute(cmd, '!*$', '', '')
           if exists(':'.cmd) != 2
             call s:assoc(lod.cmd, cmd, name)
           endif
@@ -251,7 +252,7 @@ function! plug#end()
 
   for [cmd, names] in items(lod.cmd)
     execute printf(
-    \ 'command! -nargs=* -range -bang %s call s:lod_cmd(%s, "<bang>", <line1>, <line2>, <q-args>, %s)',
+    \ 'command! -nargs=* -range -bang -complete=file %s call s:lod_cmd(%s, "<bang>", <line1>, <line2>, <q-args>, %s)',
     \ cmd, string(cmd), string(names))
   endfor
 

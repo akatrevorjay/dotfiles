@@ -50,31 +50,31 @@ zfs-get() {
 
 find-path() {
     local path=$1:a
-
-
-    local cur=$path
-    while [[ -n $cur && $cur = /* ]]; do
-        cur=${cur%/*}
-
-        
-    done
+    local parts=(${(s:/:)path})
 
     local cur
-    for part in $parts; do
-        cur+="/$part"
-    done
-
-    local parent
-    for parent in ; do
-    done
+    local -i idx=0
+    for p in $#parts; do
+        (( idx++ ))
+        cur=${(j:/:)parts:1:$idx}
+        zfs_mountpoint=$(zfs-get mountpoint)
 }
 
 ZPOOLS=($(zpool-list -p name))
 : ${DEFAULT_ZPOOL:=${ZPOOLS:1}}
 
-source_path=${1:A}
+declare -A zd_to_mountpoint=(
+    $(zfs-list -p name,mountpoint)
+)
 
-dataset=${2:-${source_path#/}}
+source_path=${1:A}; shift
+requested_dest_dataset=$1
+shift 2
+
+if [[ -n $2 ]]; then
+try_datasets=(
+    ${2:-${source_path#/}}
+)
 
 
 tmp_dataset="${dataset}-${self}"

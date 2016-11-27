@@ -8,6 +8,10 @@
 "" Bash
 "au BufRead,BufNewFile *.sh set filetype=sh
 
+" DKMS
+au BufRead,BufNewFile *.dkms set filetype=sh
+au BufRead,BufNewFile dkms.conf set filetype=sh
+
 "" Readmes
 "au BufRead,BufNewFile readme* set filetype=markdown
 "au BufRead,BufNewFile install* set filetype=markdown

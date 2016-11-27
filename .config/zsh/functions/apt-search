@@ -8,7 +8,7 @@ apt-search ()
     export GREP_COLOR='1'
     # Remove regexp patterns from the keyword to highlight
     keyword=`echo -n "$1" | sed -e 's/[^[:alnum:]|-]//g'`
-    echo_bold "Highlight keyword: $keyword"
+    echo "Highlight keyword: $keyword"
     aptitude search "$1" --disable-columns | egrep --color "$keyword" 
 
     # Use the matching results to complete our install command
@@ -18,7 +18,7 @@ apt-search ()
         count=$((count + 1))
     done
     complete -W '$matching' aptinstall
-    echo_bold "(Matching packages: $count)"
+    echo "(Matching packages: $count)"
     if ! [ -z $2 ] ; then
         echo -e "$matching" | egrep --color=always "$keyword"
     fi

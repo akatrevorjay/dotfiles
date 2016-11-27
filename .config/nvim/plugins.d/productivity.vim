@@ -34,12 +34,15 @@ Plug 'mhinz/vim-startify'
 "" Tasks
 ""
 
-Plug 'vimwiki/vimwiki', {'on': 'Vimwiki'}
+Plug 'vimwiki/vimwiki'
 
 " Taskwarrior: Fucking sick ftw
 if executable('task')
     Plug 'farseer90718/vim-taskwarrior'
     " Better interface
+    Plug 'tbabej/taskwiki'
+
+    " Taskwarrior: Better interface
     Plug 'tbabej/taskwiki'
 endif
 
@@ -67,3 +70,6 @@ endif
 "let b:posero_fake_type = '\v(.*)'
 
 "Plug 'sotte/presenting.vim'
+
+"Plug 'cohama/lexima.vim'
+
