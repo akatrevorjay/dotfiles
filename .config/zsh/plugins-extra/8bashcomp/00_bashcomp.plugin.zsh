@@ -1,0 +1,2 @@
+autoload -Uz bashcompinit
+bashcompinit
