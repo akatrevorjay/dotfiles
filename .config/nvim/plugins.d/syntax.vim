@@ -102,7 +102,7 @@ let g:polyglot_disabled = [
     \ ]
 
 " GPG
-Plug 'jamessan/vim-gnupg', {'for': ['gpg']}
+Plug 'jamessan/vim-gnupg'  ", {'for': ['gpg']}
 
 " Show CSS colors as what they truely are.
 Plug 'ap/vim-css-color'
@@ -111,7 +111,7 @@ Plug 'ap/vim-css-color'
 Plug 'Rykka/riv.vim' ", {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
 
 "" BATS test runner and syntax
-Plug 'markcornick/vim-bats', {'for': ['bats']}
+Plug 'markcornick/vim-bats'  ", {'for': ['bats']}
 
 " Better json
 "Plug 'elzr/vim-json'
@@ -122,7 +122,7 @@ Plug 'google/vim-jsonnet'
 "Plug 'm-kat/aws-vim'
 
 " Go
-Plug 'fatih/vim-go', {'for': ['go']}
+Plug 'fatih/vim-go'  ", {'for': ['go']}
 
 "" Clang
 "Plug 'Rip-Rip/clang_complete'
@@ -133,15 +133,15 @@ Plug 'fatih/vim-go', {'for': ['go']}
 
 "" Javascript
 "Plug 'moll/vim-node'  "
-Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
+Plug 'ternjs/tern_for_vim'  ", {'for': ['json', 'javascript']}
 "Plug 'kchmck/vim-coffee-script, {'for': ['coffee']}
-Plug 'dart-lang/dart-vim-plugin', {'for': ['dart']}
+Plug 'dart-lang/dart-vim-plugin'  ", {'for': ['dart']}
 " syntax
-"Plug 'othree/yajs.vim', {'for': ['json', 'javascript']}
-"Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
+"Plug 'othree/yajs.vim'  ", {'for': ['json', 'javascript']}
+"Plug 'othree/es.next.syntax.vim'  ", {'for': ['json', 'javascript']}
 " JavaScript Parameter Complete(JSPC): cemp for func params, such as event names, crypto algorithms, and common locales
-"Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
-"Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
+"Plug 'othree/jspc.vim'  ", {'for': ['json', 'javascript']}
+"Plug 'othree/javascript-libraries-syntax.vim'  ", {'for': ['json', 'javascript']}
 
 autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
 autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 0
@@ -152,39 +152,39 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 "Plug 'othree/svg-properties-syntax.vim'
 "Plug 'othree/html5.vim'
 "" Update the bult-in CSS complete function to latest CSS standard.
-"Plug 'othree/csscomplete.vim', {'for': ['css']}
+"Plug 'othree/csscomplete.vim'  ", {'for': ['css']}
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 " Yet Another Typescript Syntax
-Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
+Plug 'HerringtonDarkholme/yats.vim'  ", {'for': ['typescript']}
 
 " Hex
 Plug 'Shougo/vinarise.vim'
 
 " ZSH "official" vim syntax, definitely more up to date.
-Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
+Plug 'chrisbra/vim-zsh'  ", {'for': ['zsh', 'sh']}
 
 " VimL color improvements
-Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
+Plug 'trapd00r/vim-after-syntax-vim'  ", {'for': 'vim'}
 "Plug 'tpope/vim-scriptease'
 
 " Salt
-Plug 'saltstack/salt-vim', {'for': ['sls']}
+Plug 'saltstack/salt-vim'  ", {'for': ['sls']}
 
 " Jinja2
-Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
+Plug 'Glench/Vim-Jinja2-Syntax'  ", {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
 
 " Ello poppet
 "Plug 'rodjek/vim-puppet'
 
 " TOML
-"Plug 'cespare/vim-toml', {'for': 'toml'}
+"Plug 'cespare/vim-toml'  ", {'for': 'toml'}
 
 " Tmux.conf syntax
-"Plug 'tmux-plugins/vim-tmux', {'for': 'tmux'}
+"Plug 'tmux-plugins/vim-tmux'  ", {'for': 'tmux'}
 
 " CSV
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
+Plug 'chrisbra/csv.vim'  ", {'for': 'csv'}
 
 " Webdev syntax/helpers
 Plug 'mattn/emmet-vim'
@@ -199,12 +199,12 @@ Plug 'aouelete/sway-vim-syntax'
 "" Language: Python
 ""
 
-Plug 'hdima/python-syntax', {'for': ['python']}
-"Plug 'okcompute/vim-python-motions', {'for': ['python']}
+Plug 'hdima/python-syntax'  ", {'for': ['python']}
+"Plug 'okcompute/vim-python-motions'  ", {'for': ['python']}
 
 " Jedi:
-Plug 'davidhalter/jedi-vim', {'for': ['python']}
-"Plug 'python-rope/ropevim', {'for': ['python']}
+Plug 'davidhalter/jedi-vim'  ", {'for': ['python']}
+"Plug 'python-rope/ropevim'  ", {'for': ['python']}
 
 "" Indenting:
 "Plug 'hynek/vim-python-pep8-indent'
@@ -214,7 +214,7 @@ Plug 'davidhalter/jedi-vim', {'for': ['python']}
 "Plug 'tmhedberg/SimpylFold'
 
 " Testing:
-Plug 'alfredodeza/pytest.vim', {'for': ['python']}
+Plug 'alfredodeza/pytest.vim'  ", {'for': ['python']}
 
 " Formatting: Better formatter (yapf > autopep8)
 "
@@ -250,57 +250,57 @@ Plug 'alfredodeza/pytest.vim', {'for': ['python']}
 
 if has('nvim')
     " deoplete-jedi: "jedi" source for Python
-    Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    Plug 'zchee/deoplete-jedi'  ", {'for': ['python']}
 
     " Zsh completion
-    Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
+    Plug 'zchee/deoplete-zsh'  ", {'for': ['zsh', 'sh']}
 
     " deoplete-go: "go" source for Go
-    Plug 'zchee/deoplete-go', {'for': ['go']}
+    Plug 'zchee/deoplete-go'  ", {'for': ['go']}
 
     " deoplete-ruby: "ruby" source for Ruby language
-    Plug 'fishbullet/deoplete-ruby', {'for': ['ruby']}
+    "Plug 'fishbullet/deoplete-ruby'  ", {'for': ['ruby']}
 
     " neco-syntax: "syntax" source
-    Plug 'Shougo/neco-syntax', {'for': ['vim']}
+    Plug 'Shougo/neco-syntax'  ", {'for': ['vim']}
 
     " vimshell: "vimshell" source for vimshell
     Plug 'Shougo/vimshell.vim'
 
     " neco-ghc: "ghc" source for Haskell
-    Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
+    "Plug 'eagletmt/neco-ghc'  ", {'for': ['haskell']}
 
     " vim-racer: "racer" source for Rust
-    Plug 'racer-rust/vim-racer', {'for': ['rust']}
+    "Plug 'racer-rust/vim-racer'  ", {'for': ['rust']}
 
     " deoplete-github: "github" source for "gitcommit" filetype
-    "Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
+    "Plug 'SevereOverfl0w/deoplete-github'  ", {'for': ['gitcommit']}
 
     " deoplete-clang: "clang" source for C/C++
-    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+    Plug 'zchee/deoplete-clang'  ", {'for': ['c', 'cpp', 'objc', 'objcpp']}
 "
     " deoplete-d: "d" source for D language
-    Plug 'landaire/deoplete-d', {'for': ['d']}
+    "Plug 'landaire/deoplete-d'  ", {'for': ['d']}
 
     "" deoplete-rtags: "rtags" source for "c", "cpp", "objc" and "objcpp" filetypes
     "Plug 'LuXuryPro/deoplete-rtags'
 
     " elixir.nvim: "elixir" source for Elixir
     "Plug 'awetzel/elixir.nvim'
-    Plug 'slashmili/alchemist.vim', {'for': ['elixir']}
+    "Plug 'slashmili/alchemist.vim'  ", {'for': ['elixir']}
 
     "" deoplete-ternjs: "ternjs" source for JavaScript
-    "Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json']}
+    "Plug 'carlitux/deoplete-ternjs'  ", {'for': ['javascript', 'json']}
 
     "" deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
-    Plug 'steelsojka/deoplete-flow', {'for': ['flow']}
+    "Plug 'steelsojka/deoplete-flow'  ", {'for': ['flow']}
 
     "" deoplete-typescript: "typescript" source for typescript
-    Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
-    let g:deoplete#sources#tss#javascript_support = 1
+    "Plug 'mhartington/deoplete-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
+    "let g:deoplete#sources#tss#javascript_support = 1
 
     " Dart
-    Plug 'villainy/deoplete-dart', { 'for': 'dart' }
+    "Plug 'villainy/deoplete-dart', { 'for': 'dart' }
 
     "" perlomni.vim: "perlomni" source for Perl
     "Plug 'c9s/perlomni.vim'
@@ -317,7 +317,7 @@ if has('nvim')
     " webcomplete.vim: "webcomplete" source for browser opened pages
     "Plug 'thalesmello/webcomplete.vim'
 
-    Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
+    Plug 'zchee/deoplete-docker' ", {'for': ['dockerfile']}
 else
     "Plug 'Valodim/vim-zsh-completion'
     "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete

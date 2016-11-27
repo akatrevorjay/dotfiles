@@ -2,12 +2,11 @@
 
 # Unsure
 setopt autoresume autocd autoresume autopushd
-setopt bgnice checkjobs nocorrectall cdablevars
+setopt bgnice checkjobs nocorrectall
 setopt longlistjobs
 #setopt globcomplete globsubst globassign
 setopt completealiases
 setopt correct
-setopt vi
 
 # aliases
 alias v='vim'

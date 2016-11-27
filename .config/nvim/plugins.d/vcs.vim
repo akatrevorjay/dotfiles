@@ -12,9 +12,6 @@ Plug 'gregsexton/gitv'
 Plug 'rhysd/committia.vim'
 
 
-" Jira: HOT github and jira issue management
-Plug 'rafi/vim-unite-issue'
-
 " Pivotal:
 "Plug 'adamlowe/vim-slurper'
 

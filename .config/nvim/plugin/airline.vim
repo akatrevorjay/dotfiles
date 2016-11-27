@@ -193,11 +193,12 @@ let g:promptline_preset = {
     \],
   \'z' : [ promptline#slices#python_virtualenv() ],
   \'warn' : [
-    \promptline#slices#last_exit_code(),
+    \'$(nice_exit_code)',
     \promptline#slices#jobs(),
     \promptline#slices#battery({'threshold': 25})
     \]
   \}
+  "\promptline#slices#last_exit_code(),
   "\'options': {
   "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
   "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],

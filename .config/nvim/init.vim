@@ -1,7 +1,7 @@
-version 6.0
+"version 6.0
 
 " Debian: Use provided config if available.
-runtime! debian.vim
+"runtime! debian.vim
 
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
@@ -21,7 +21,6 @@ call source#any('early')
 " plug away
 call plug#begin('~/.cache/vim/plugged')
 call source#any('plugins')
-Plug (g:is_nvim) ? '~/.local/nvim' : '~/.local/vim'
 call plug#end()
 
 " Required: (not on neovim however)

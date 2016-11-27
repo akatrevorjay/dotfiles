@@ -22,7 +22,7 @@
 "Plug 'tpope/vim-eunuch'
 
 " Superb motion controls
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
@@ -49,8 +49,8 @@ Plug 'rhysd/clever-f.vim'
 "endfunction
 
 "" RainbowParantheses
-Plug 'junegunn/rainbow_parentheses.vim'
-Gautocmdft lisp,clojure,scheme RainbowParentheses
+"Plug 'junegunn/rainbow_parentheses.vim'
+"Gautocmdft lisp,clojure,scheme :RainbowParentheses
 
 "Plug 'vim-scripts/restore_view.vim'
 
@@ -103,3 +103,4 @@ let g:grepper = {
 
 "Plug 'FooSoft/vim-argwrap'
 
+Plug 'Zuckonit/vim-airline-tomato'

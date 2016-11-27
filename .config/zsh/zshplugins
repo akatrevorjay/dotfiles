@@ -10,9 +10,9 @@ zplug "akatrevorjay/fasd"
 
 zplug "willghatch/zsh-hooks"
 #zplug "mafredri/zsh-async"
-zplug "kennethreitz/autoenv"
+#zplug "kennethreitz/autoenv"
 
-zplug "akatrevorjay/composure", lazy:true
+zplug "akatrevorjay/composure"
 zplug "psprint/zsnapshot", lazy:true
 zplug "mollifier/zload", lazy:true
 zplug "Tarrasch/zsh-functional", lazy:true
@@ -22,8 +22,8 @@ zplug "Tarrasch/zsh-functional", lazy:true
 #zplug 'LockonS/terminal-workload-report', lazy:true
 #zplug 'aphelionz/strerror.plugin.zsh', lazy:true
 zplug "molovo/revolver", lazy:true
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#zplug "RobSis/zsh-completion-generator"
+GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+zplug "RobSis/zsh-completion-generator"
 
 zplug "zsh-users/zsh-completions"
 zplug "akatrevorjay/nix-zsh-completions"
