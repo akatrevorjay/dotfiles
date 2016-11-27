@@ -38,7 +38,7 @@ Plug 'chrisbra/vim-zsh'
 
 " VimL color improvements
 Plug 'trapd00r/vim-after-syntax-vim'
-"Plug 'tpope/vim-scriptease'
+Plug 'tpope/vim-scriptease'
 
 " Salt
 Plug 'saltstack/salt-vim'
@@ -159,8 +159,8 @@ if has('nvim')
     "" elixir.nvim: "elixir" source for Elixir
     "Plug 'awetzel/elixir.nvim'
 
-    "" deoplete-ternjs: "ternjs" source for JavaScript
-    "Plug 'carlitux/deoplete-ternjs'
+    " deoplete-ternjs: "ternjs" source for JavaScript
+    Plug 'carlitux/deoplete-ternjs'
 
     "" deoplete-flow: "flow" source for JavaScript
     "Plug 'steelsojka/deoplete-flow'

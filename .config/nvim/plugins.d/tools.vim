@@ -4,7 +4,7 @@ Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdcommenter'
 
 " Gundo: Undo browser
-Plug 'sjl/gundo.vim'  ", {'on': 'Gundo' }
+Plug 'sjl/gundo.vim'
 
 " Fuzzy File Finder:
 Plug 'junegunn/fzf.vim'
@@ -19,7 +19,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 " Tagbar: ctags, syntax, etc
 Plug 'majutsushi/tagbar'
 
-"Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/taglist.vim'
 
 if has('nvim')
   " NeoTerm: nice wrapper around :term
