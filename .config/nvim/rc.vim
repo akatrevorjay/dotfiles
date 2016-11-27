@@ -21,7 +21,6 @@ call source#any('early')
 " plug away
 call plug#begin('~/.cache/vim/plugged')
 call source#any('plugins')
-Plug (g:is_nvim) ? '~/.local/nvim' : '~/.local/vim'
 call plug#end()
 
 " Required: (not on neovim however)
