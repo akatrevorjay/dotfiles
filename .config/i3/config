@@ -45,7 +45,7 @@ bar {
 
     #status_command i3blocks
     #status_command i3status
-    status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
+    status_command ~/bin/i3status -c ~/.config/i3/bars/top.py
 
     tray_output primary
 
@@ -333,10 +333,10 @@ bindsym $mod+i exec ibus-toggle
 
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
-#exec ~/bin/winit
+exec ~/bin/winit
 #exec winit
 
-exec xsettingsd
+#exec xsettingsd
 #exec gnome-settings-daemon
 #exec kdeinit5
 #exec slack

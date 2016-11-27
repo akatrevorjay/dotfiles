@@ -3,8 +3,8 @@
 based_on_style = google
 
 ;column_limit = 120
-; Disqus is 100 so deal with it OOL
-column_limit = 100
+; Disqus is 130
+column_limit = 130
 
 ; Align closing bracket with visual indentation.
 align_closing_bracket_with_visual_indent = false

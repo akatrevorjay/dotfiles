@@ -22,7 +22,7 @@
 "Plug 'tpope/vim-eunuch'
 
 " Superb motion controls
-"Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
@@ -39,14 +39,14 @@ Plug 'junegunn/vim-oblique'
 ", {'on': '<Plug>'}
 Plug 'rhysd/clever-f.vim'
 
-" multiple cursors
-Plug 'terryma/vim-multiple-cursors'
-function g:Multiple_cursors_before()
-	let g:deoplete#disable_auto_complete = 1
-endfunction
-function g:Multiple_cursors_after()
-	let g:deoplete#disable_auto_complete = 0
-endfunction
+"" multiple cursors
+"Plug 'terryma/vim-multiple-cursors'
+"function g:Multiple_cursors_before()
+"    let g:deoplete#disable_auto_complete = 1
+"endfunction
+"function g:Multiple_cursors_after()
+"    let g:deoplete#disable_auto_complete = 0
+"endfunction
 
 "" RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
@@ -100,3 +100,6 @@ let g:grepper = {
     \ 'open':  0,
     \ 'jump':  1,
     \ }
+
+"Plug 'FooSoft/vim-argwrap'
+

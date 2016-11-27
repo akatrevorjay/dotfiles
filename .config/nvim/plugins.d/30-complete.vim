@@ -1,5 +1,5 @@
 if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'Shougo/deoplete.nvim'  ", { 'do': ':UpdateRemotePlugins' }
 else
     "" Simple, no frills, vimscript-only tab completion
     "Plug 'ajh17/VimCompletesMe'
@@ -23,9 +23,3 @@ else
     "endfunction
 endif
 
-Plug 'Shougo/neopairs.vim'
-Plug 'Shougo/echodoc.vim'
-Plug 'Shougo/context_filetype.vim'
-
-" neoinclude: "include" and "file/include" sources
-Plug 'Shougo/neoinclude.vim'

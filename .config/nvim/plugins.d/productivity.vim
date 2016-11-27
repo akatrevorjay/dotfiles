@@ -35,7 +35,7 @@ Plug 'mhinz/vim-startify'
 ""
 
 " Taskwarrior: Fucking sick ftw
-Plug 'farseer90718/vim-taskwarrior', {'on': ['TW', 'TWAdd']}
+Plug 'farseer90718/vim-taskwarrior'
 
 " Taskwarrior: Better interface
 Plug 'vimwiki/vimwiki'

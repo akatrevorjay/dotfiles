@@ -23,5 +23,10 @@ tnoremap <C-Right> <C-\><C-n><C-w>l
 "nnoremap <C-l> <C-w>l
 
 " Automatically switch to terminal mode
-Gautocmd BufEnter term://* startinsert
+"Gautocmd BufEnter term://* startinsert
+Gautocmd BufWinEnter,WinEnter term://* startinsert
+Gautocmd BufLeave term://* stopinsert
+
+tnoremap <Space><Space> <C-\><C-n><C-w><C-p>
+tnoremap <Esc><Esc> <C-\><C-n>:q<CR>
 

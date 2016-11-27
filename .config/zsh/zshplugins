@@ -21,7 +21,7 @@ zplug "Tarrasch/zsh-functional", lazy:true
 #zplug "b4b4r07/emoji-cli", lazy:true
 #zplug 'LockonS/terminal-workload-report', lazy:true
 #zplug 'aphelionz/strerror.plugin.zsh', lazy:true
-
+zplug "molovo/revolver", lazy:true
 #GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
 #zplug "RobSis/zsh-completion-generator"
 

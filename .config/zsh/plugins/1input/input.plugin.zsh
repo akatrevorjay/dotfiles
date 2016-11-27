@@ -157,7 +157,7 @@ zle -N zle-keymap-select
 #autoload -Uz edit-command-line
 #zle -N edit-command-line
 
-#bindkey -e                                            # Use emacs key bindings
+bindkey -e                                            # Use emacs key bindings
 
 ##
 ## vi mode

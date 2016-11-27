@@ -3,44 +3,44 @@
 let g:webdevicons_enable = 1
 let g:WebDevIconsOS = g:OS
 
-" loading the plugin 
+" loading the plugin
 let g:webdevicons_enable = 1
 
-" adding the flags to NERDTree 
+" adding the flags to NERDTree
 let g:webdevicons_enable_nerdtree = 1
 
-" adding the custom source to unite 
+" adding the custom source to unite
 let g:webdevicons_enable_unite = 1
 
-" adding the column to vimfiler 
+" adding the column to vimfiler
 let g:webdevicons_enable_vimfiler = 1
 
-" adding to vim-airline's tabline 
+" adding to vim-airline's tabline
 let g:webdevicons_enable_airline_tabline = 1
 
-" adding to vim-airline's statusline 
+" adding to vim-airline's statusline
 let g:webdevicons_enable_airline_statusline = 1
 
-" ctrlp MRU file mode glyphs 
+" ctrlp MRU file mode glyphs
 let g:webdevicons_enable_ctrlp = 1
 
-" adding to flagship's statusline 
+" adding to flagship's statusline
 let g:webdevicons_enable_flagship_statusline = 1
 
 " turn on/off file node glyph decorations (not particularly useful)
 let g:WebDevIconsUnicodeDecorateFileNodes = 1
 
-" use double-width(1) or single-width(0) glyphs 
+" use double-width(1) or single-width(0) glyphs
 " only manipulates padding, has no effect on terminal or set(guifont) font
-let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
+"let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
-" whether or not to show the nerdtree brackets around flags 
+" whether or not to show the nerdtree brackets around flags
 let g:webdevicons_conceal_nerdtree_brackets = 1
 
 " the amount of space to use after the glyph character (default ' ')
-let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+"let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 
-" Force extra padding in NERDTree so that the filetype icons line up vertically 
+" Force extra padding in NERDTree so that the filetype icons line up vertically
 let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 
 
@@ -68,9 +68,9 @@ let g:DevIconsEnableFoldersOpenClose = 1
 let g:DevIconsEnableFolderPatternMatching = 1
 
 "" enable file extension pattern matching glyphs on folder/directory (disabled by default with 0)
-"let g:DevIconsEnableFolderExtensionPatternMatching = 0
+let g:DevIconsEnableFolderExtensionPatternMatching = 1
 
-" enable custom folder/directory glyph exact matching 
+" enable custom folder/directory glyph exact matching
 " (enabled by default when g:WebDevIconsUnicodeDecorateFolderNodes is set to 1)
 let WebDevIconsUnicodeDecorateFolderNodesExactMatches = 1
 

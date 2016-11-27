@@ -20,6 +20,7 @@
 : ${XDG_CACHE_HOME:="$HOME/.cache"}
 : ${XDG_DATA_HOME:="$HOME/.local/share"}
 : ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+declare -xm 'XDG_*'
 
 # TODO hooks for plugins to register env-time changes.
 
@@ -28,6 +29,7 @@
 : ${LOCAL_ZDOTDIR:="$HOME/.local/zsh"}
 : ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
 ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
+declare -x 'ZDOTDIR'
 
 [[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
 
@@ -38,9 +40,6 @@ ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 #: ${DE:=generic}
 #: ${BROWSER:=google-chrome}
 : ${EDITOR:=nvim}
-
-: ${CHROMIUM_USER_FLAGS:="--password-store=detect"}
-export CHROMIUM_USER_FLAGS
 
 case $TERM:l in
     xterm|screen)
@@ -99,6 +98,7 @@ fpath=(
 #    ${(@)infopath}
 #)
 
+declare -xm '*path'
 
 # OS specifics
 case "${OSTYPE:l}" in
