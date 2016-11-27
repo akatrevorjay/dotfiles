@@ -6,13 +6,15 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if 0 | endif
 
+let g:is_initvim = 1
+"source ~/.config/nvim/rc.vim
+
 if has('vim_starting')
     let g:OS=substitute(system('uname -s'),"\n","","")
     let g:is_macvim_gui = has('gui_macvim') && has('gui_running')
     let g:is_win = has('win32') || has('win64')
     let g:is_nvim = has('nvim') && exists('*jobwait') && !g:is_win
     let g:is_vim8 = has('patch-8.0.0039') && exists('*job_start')
-
     call source#any('starting')
 endif
 

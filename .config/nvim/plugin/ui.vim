@@ -23,8 +23,10 @@ if has('gui_running') || has('nvim')
     "set transparency=10
 
     " Oh Fira Code, how I adore you.
-    set guifont=Monoid\ Nerd\ Font\ Complete Retina:h14
-    set guifontwide=Monoid\ Nerd\ Font\ Complete Retina:h14
+    set guifont=Input\ Mono\ Narrow:h11
+    set guifontwide=Input\ Mono\ Narrow:h11
+  elseif exists('neovim_dot_app')
+    "Guifont Input\ Mono\ Narrow:h11
   elseif has('gui_gtk2')
     set guifont=Monoid\ 12
     set guifontwide=Monoid\ 12
@@ -52,12 +54,12 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && empty($TERMINOLOGY) && empty('g:is_gui')
-    set termguicolors
+if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
+  set termguicolors
 endif
 
-set background=dark
 " Always dark bg damnit, stop resetting it on me swan
+set background=dark
 "Gautocmd ColorScheme * set background=dark
 
 ""
@@ -154,7 +156,8 @@ let g:triplejelly_background_color = '000000'
 "colorscheme hybrid
 "colorscheme hybrid_material
 "let g:airline_theme = 'hybrid'
-let g:airline_theme = 'raven'
+"let g:airline_theme = 'raven'
+let g:airline_theme = 'serene'
 
 " This actually messes up numerous schemes.
 let g:colorschemer_auto = 0
@@ -169,7 +172,6 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 
 "colorscheme hotpot
 "colorscheme holokai
-colorscheme heroku-terminal
 "colorscheme getafe
 "colorscheme af
 "colorscheme znake
@@ -184,7 +186,10 @@ colorscheme heroku-terminal
 "colorscheme Brogrammer
 "colorscheme Tomorrow-Night-Bright
 
-
-
-
+if has('gui_running') || exists('neovim_dot_app')
+    colorscheme argonaut
+else
+    "colorscheme heroku-terminal
+    colorscheme harlequin
+endif
 

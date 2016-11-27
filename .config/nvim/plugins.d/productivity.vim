@@ -34,12 +34,17 @@ Plug 'mhinz/vim-startify'
 "" Tasks
 ""
 
-" Taskwarrior: Fucking sick ftw
-Plug 'farseer90718/vim-taskwarrior'
-
-" Taskwarrior: Better interface
 Plug 'vimwiki/vimwiki'
-Plug 'tbabej/taskwiki'
+
+" Taskwarrior: Fucking sick ftw
+if executable('task')
+    Plug 'farseer90718/vim-taskwarrior'
+    " Better interface
+    Plug 'tbabej/taskwiki'
+
+    " Taskwarrior: Better interface
+    Plug 'tbabej/taskwiki'
+endif
 
 " Outlines (uses utl)
 "Plug 'vim-voom/VOoM'
