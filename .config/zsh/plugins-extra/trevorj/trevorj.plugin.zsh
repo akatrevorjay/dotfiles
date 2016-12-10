@@ -1,12 +1,13 @@
 #!/bin/zsh
 
 export \
-    GPGKEY="C9871F640"
+	GPGKEY="C9871F640"
 export \
-    DEBEMAIL="debian@trevor.joynson.io" \
-    DEBFULLNAME="Trevor Joynson (Debian)"
+	DEBEMAIL="debian@trevor.joynson.io" \
+	DEBFULLNAME="Trevor Joynson (Debian)"
 export \
-    DEBSIGN_KEYID="$GPGKEY"
+	DEBSIGN_KEYID="$GPGKEY"
+	DEB_BUILD_OPTIONS="parallel=9"
 
 PROJECT_ROOT=$HOME/git
 CODE_ROOT=$HOME/code
@@ -60,8 +61,8 @@ alias -g L='| less'
 alias -g LR='| less -R'
 
 #history() {
-#    [[ $# -gt 0 ]] || set -- -100
-#    fc -l "$@"
+#	 [[ $# -gt 0 ]] || set -- -100
+#	 fc -l "$@"
 #}
 alias h='fc -l -100'
 alias hl='fc -l -L -100'
@@ -87,15 +88,15 @@ alias fk='k --no-vcs'
 #alias lsa='ls -ld .*'
 
 #if (( ${+commands[exa]} )); then
-#    alias exa='exa --group-directories-first'
-#    #alias l='exa -G'
-#    alias k='exa'
-#    alias g='exa -G'
-#    alias ll='exa -lh@ --git'
-#    alias l='ll'
+#	 alias exa='exa --group-directories-first'
+#	 #alias l='exa -G'
+#	 alias k='exa'
+#	 alias g='exa -G'
+#	 alias ll='exa -lh@ --git'
+#	 alias l='ll'
 #else
-    alias l='ls'
-    alias ll='l -l'
+	alias l='ls'
+	alias ll='l -l'
 #fi
 
 alias k='ll'
@@ -150,56 +151,56 @@ alias pu='pushd'
 alias po='popd'
 
 case $OSTYPE:l in
-    linux*)
-        layout() {
-            local layout=${1:-workman}
+	linux*)
+		layout() {
+			local layout=${1:-workman}
 
-            case $layout in
-                wm|w) layout=workman ;;
-                u) layout=us ;;
-            esac
+			case $layout in
+				wm|w) layout=workman ;;
+				u) layout=us ;;
+			esac
 
-            setxkbmap -model apple -layout $layout -option '' -option 'lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle' -v 9
-            xset -r 66
-        }
+			setxkbmap -model apple -layout $layout -option '' -option 'lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle' -v 9
+			xset -r 66
+		}
 
-        for i in us u workman wm w; alias $i="layout $i"
+		for i in us u workman wm w; alias $i="layout $i"
 
-        alias sctl='systemctl'
-        alias jf='journalctl -f'
-        alias jxe='journalctl -fxe'
+		alias sctl='systemctl'
+		alias jf='journalctl -f'
+		alias jxe='journalctl -fxe'
 
-        alias dmesg='dmesg -e -x -d -T'
-        alias dmesgf='dmesg -w'
+		alias dmesg='dmesg -e -x -d -T'
+		alias dmesgf='dmesg -w'
 
-        alias pstree='pstree -ahglnpsSuU | less -RFX'
-        ;;
-    darwin*)
-        appify() {
-            local fn=${1:?}
-            local name=${2:-${1:t}}
-            local app=$name.app
-            local dest=$app/Contents/MacOS/$name
+		alias pstree='pstree -ahglnpsSuU | less -RFX'
+		;;
+	darwin*)
+		appify() {
+			local fn=${1:?}
+			local name=${2:-${1:t}}
+			local app=$name.app
+			local dest=$app/Contents/MacOS/$name
 
-            if [ -a $app ]; then
-	            echo "Already exists: $a{(qq)pp}" >&2
-	            return 1
-            fi
+			if [ -a $app ]; then
+				echo "Already exists: $a{(qq)pp}" >&2
+				return 1
+			fi
 
-            mkdir -pv "${dest:h}";
-            ln -svf ${fn:a} $dest
-        }
+			mkdir -pv "${dest:h}";
+			ln -svf ${fn:a} $dest
+		}
 
-        alias lctl='launchctl'
-        alias lcload='lctl load'
-        alias lcunload='lctl unload'
+		alias lctl='launchctl'
+		alias lcload='lctl load'
+		alias lcunload='lctl unload'
 
-        alias -s app='open '
-        alias -s plist='v'
-        ;;
+		alias -s app='open '
+		alias -s plist='v'
+		;;
 esac
 
 if (( ${+commands[git-tip]} )); then
-    git-tip || :
+	git-tip || :
 fi
 

@@ -123,6 +123,6 @@ let g:grepper = {
     \ 'jump':  1,
     \ }
 
-"Plug 'FooSoft/vim-argwrap'
+Plug 'FooSoft/vim-argwrap'
 
 Plug 'Zuckonit/vim-airline-tomato'

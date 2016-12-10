@@ -1,5 +1,7 @@
 " Airline:
 
+let g:airline#util#async = 1
+
 let g:airline_powerline_fonts = 1
 
 " enable iminsert detection
@@ -193,12 +195,11 @@ let g:promptline_preset = {
     \],
   \'z' : [ promptline#slices#python_virtualenv() ],
   \'warn' : [
-    \'$(nice_exit_code)',
+    \promptline#slices#last_exit_code(),
     \promptline#slices#jobs(),
     \promptline#slices#battery({'threshold': 25})
     \]
   \}
-  "\promptline#slices#last_exit_code(),
   "\'options': {
   "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
   "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],

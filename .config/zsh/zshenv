@@ -30,6 +30,7 @@ declare -xm 'XDG_*'
 : ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
 ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 declare -x 'ZDOTDIR'
+declare -xm 'ZSH_*'
 
 [[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
 

@@ -11,11 +11,6 @@ fi
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Def
-setopt extendedglob kshglob
-setopt nullglob
-setopt interactivecomments
-
 # enable all of the highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 
@@ -65,7 +60,7 @@ function zplugins.load-all-in() {
     done
 
     local nice
-    for p in ${^paths}/*(-/); do
+    for p in ${^paths}/*(-/N); do
         nice=${${p:t}%%[^0-9]*}
         if [[ -n $nice ]]; then
             nice=$nice

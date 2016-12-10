@@ -6,6 +6,7 @@ endif
 let g:neoterm_position = 'horizontal'
 let g:neoterm_automap_keys = ',tt'
 let g:neoterm_shell = $SHELL
+let g:neoterm_autoinsert = 1
 
 nnoremap <silent> <f10> :TREPLSendFile<cr>
 nnoremap <silent> <f9> :TREPLSend<cr>

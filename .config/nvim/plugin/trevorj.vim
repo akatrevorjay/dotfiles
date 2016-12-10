@@ -84,3 +84,14 @@ let g:CtrlSpaceFileEngine = "auto"
 "    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 "endif
 
+function! s:RemoveLastPathComponent()
+  let l:cmdlineBeforeCursor = strpart(getcmdline(), 0, getcmdpos() - 1)
+  let l:cmdlineAfterCursor = strpart(getcmdline(), getcmdpos() - 1)
+
+  let l:cmdlineRoot = fnamemodify(cmdlineBeforeCursor, ':r')
+  let l:result = (l:cmdlineBeforeCursor ==# l:cmdlineRoot ? substitute(l:cmdlineBeforeCursor, '\%(\\ \|[\\/]\@!\f\)\+[\\/]\=$\|.$', '', '') : l:cmdlineRoot)
+  call setcmdpos(strlen(l:result) + 1)
+  return l:result . l:cmdlineAfterCursor
+endfunction
+cnoremap <C-BS> <C-\>e(<SID>RemoveLastPathComponent())<CR>
+

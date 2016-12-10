@@ -1,80 +1,54 @@
 #!/bin/zsh
-set -exv
+set -eo pipefail
+set -xv
 
-autoload -Uz zparseopts
+source $0:h/zfs-lib.zsh
 
 self_given=$0
 self=${0:t}
 
 e() {
-	echo -e "[$self_given]" "$@"
+    echo -e "[$self_given]" "$@"
 }
 
 error() {
-	local level="${level:-error}"
-	e "$level:" "$@" >&2
+    local level="${level:-error}"
+    e "$level:" "$@" >&2
 }
 
 death() {
-	level=death error "$@"
-	exit 1
+    level=death error "$@"
+    exit 1
 }
 
 usage() {
-	echo "Usage: $self_given PATH [DATASET]"
+    echo "Usage: $self_given PATH [DATASET]"
 }
-
-zfs-exists zpool-exists() {
-	${0%%-*} get -H name $1 #>/dev/null 2>&1
-}
-
-zfs-list zpool-list () {
-    local cmd=(${(s:-:)0})
-
-    local props=(name)
-	zparseopts -DK p:=props
-
-	$cmd -Ho "${(j:,:)props}" "$@"
-}
-
-zdataset-exists() {
-	zfs get -H name $1 #>/dev/null 2>&1
-}
-
-zfs-get() {
-	local dataset="$1"; shift
-	zfs-list -d $dataset -- "$@"
-}
-
-
 
 find-path() {
     local path=$1:a
-    local parts=(${(s:/:)path})
+
+    local cur=$path
+    while [[ -n $cur && $cur = /* ]]; do
+        cur=${cur%/*}
+    done
 
     local cur
-    local -i idx=0
-    for p in $#parts; do
-        (( idx++ ))
-        cur=${(j:/:)parts:1:$idx}
-        zfs_mountpoint=$(zfs-get mountpoint)
+    for part in $parts; do
+        cur+="/$part"
+    done
+
+    local parent
+    for parent in ; do
+    done
 }
 
 ZPOOLS=($(zpool-list -p name))
 : ${DEFAULT_ZPOOL:=${ZPOOLS:1}}
 
-declare -A zd_to_mountpoint=(
-    $(zfs-list -p name,mountpoint)
-)
+source_path=${1:A}
 
-source_path=${1:A}; shift
-requested_dest_dataset=$1
-shift 2
-
-if [[ -n $2 ]]; then
-try_datasets=(
-    ${2:-${source_path#/}}
-)
+dataset=${2:-${source_path#/}}
 
 
 tmp_dataset="${dataset}-${self}"

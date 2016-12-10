@@ -40,6 +40,7 @@ program's arguements
 
     %trepan --highlight -- pygmentize -f terminal /tmp/script.py
 """
+'''
 from __future__ import print_function
 
 import IPython
@@ -121,3 +122,4 @@ def load_ipython_extension(ip):
 if __name__ == '__main__':
     ip = get_ipython()  # NOQA
     load_ipython_extension(ip)
+'''
