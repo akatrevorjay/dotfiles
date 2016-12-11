@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+_yadm() {
+    autoload -Uz _git
+    _git "$@"
+}
+
+_yadm "$@"

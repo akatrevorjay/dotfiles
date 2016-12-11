@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-[[ $OSTYPE:l = darwin* ]] || return 1
+[[ $OSTYPE:l = darwin* ]] || return 0
 
 # quick look
 alias ql='qlmanage -p 2>/dev/null'

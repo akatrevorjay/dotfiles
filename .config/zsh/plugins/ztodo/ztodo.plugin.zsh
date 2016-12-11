@@ -1,4 +1,4 @@
-(( $+functions[ztodo] )) || return 1
+(( $+functions[ztodo] )) || return 0
 
 : ${ZTODO_CHPWD_LIST:=true}
 

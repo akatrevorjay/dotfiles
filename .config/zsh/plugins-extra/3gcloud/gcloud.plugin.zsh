@@ -1,6 +1,7 @@
 #!/bin/zsh
 # Google Cloud SDK
 : ${GCLOUD_SDK_ROOT:="$HOME/.local/google-cloud-sdk"}
+export GCLOUD_SDK_ROOT
 
 # This has to be the last one unless we hack it as Google calls odd shit in here..
 if [[ -e $GCLOUD_SDK_ROOT ]]; then

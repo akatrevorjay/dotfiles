@@ -1,6 +1,6 @@
 
 (( ! ${+commands[nfasd]} && ! ${+commands[register-python-argcomplete-menu]} )) \
-    || return 1
+    || return 0
 
 eval "$(register-python-argcomplete-menu nfasd)"
 
