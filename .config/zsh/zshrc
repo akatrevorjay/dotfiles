@@ -58,9 +58,9 @@ function zplugins.load-all-in() {
 	local paths=()
 	for p in "$@"; do
 		if [[ ${p:0:1} == / ]]; then
-			paths+=($p)
+			paths+=($p(-/N))
 		else
-			paths+=(${^ZDOTDIRS}/$p)
+			paths+=(${^ZDOTDIRS}/$p(-/N))
 		fi
 	done
 
@@ -105,7 +105,7 @@ function zplugins.zplug.apply {
 
 function zplugins.zplug.lazy {
 	unfunction zplug
-	source $ZPLUG_HOME/init.zsh
+	source $ZPLUG_REPOS/zplug/zplug/init.zsh
 
 	zplugins.zplug.apply
 
