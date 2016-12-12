@@ -117,19 +117,15 @@ function zplug() {
 }
 
 function max() {
-	local ret v
-	for v in $argv; do
-		[[ $v -lt $ret ]] || ret=$v
-	done
-	echo $ret
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[-1]}
 }
 
 function min() {
-	local ret v
-	for v in $argv; do
-		[[ $v -gt $ret ]] || ret=$v
-	done
-	echo $ret
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[1]}
 }
 
 function zplugins.cache.is-clean() {
@@ -152,7 +148,6 @@ function zplugins.cache.is-clean() {
 }
 
 if zplugins.cache.is-clean; then
-	echo "- Loading cache"
 	zplug load
 else
 	echo "- Creating cache (may take a second)"
