@@ -16,23 +16,23 @@
 [[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
 
 # XDG defaults
-: ${XDG_CONFIG_HOME:="$HOME/.config"}
-: ${XDG_CACHE_HOME:="$HOME/.cache"}
-: ${XDG_DATA_HOME:="$HOME/.local/share"}
-: ${XDG_RUNTIME_DIR:="$HOME/.tmp"}
+: ${XDG_CONFIG_HOME:=$HOME/.config}
+: ${XDG_CACHE_HOME:=$HOME/.cache}
+: ${XDG_DATA_HOME:=$HOME/.local/share}
+: ${XDG_RUNTIME_DIR:=$HOME/.tmp}
 declare -xm 'XDG_*'
 
 # TODO hooks for plugins to register env-time changes.
 
 # zsh
-: ${ZDOTDIR:="$HOME/.zsh"}
-: ${LOCAL_ZDOTDIR:="$HOME/.local/zsh"}
-: ${ZSH_CACHE_DIR:="$XDG_CACHE_HOME/zsh"}
+: ${ZDOTDIR:=$HOME/.zsh}
+: ${LOCAL_ZDOTDIR:=$HOME/.local/zsh}
+: ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
 ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 declare -x 'ZDOTDIR'
 declare -xm 'ZSH_*'
 
-[[ -d "$ZDOTDIR" ]] || echo "Error: ZDOTDIR=${(q)ZDOTDIR} does not exist." >&2
+[[ -d $ZDOTDIR ]] || echo Error: ZDOTDIR=${(q)ZDOTDIR} does not exist. >&2
 
 # env
 : ${SHORT_HOSTNAME:=${HOST%%.*}}
@@ -43,11 +43,11 @@ declare -xm 'ZSH_*'
 : ${EDITOR:=nvim}
 
 case $TERM:l in
-    xterm|screen)
-        if [[ $(echotc Co) -ge 256 ]]; then
-            TERM=$TERM-256color
-        fi
-        ;;
+	xterm|screen)
+		if [[ $(echotc Co) -ge 256 ]]; then
+			TERM=$TERM-256color
+		fi
+		;;
 esac
 
 ##
@@ -55,117 +55,117 @@ esac
 ##
 
 autoload -Uz \
-    fix-path-order fix-fpath-order \
-    add-prefix-paths add-suffix-paths \
-    source-with-force \
-    call-many
+	fix-path-order fix-fpath-order \
+	add-prefix-paths add-suffix-paths \
+	source-with-force \
+	call-many
 
 : ${MANPATH:=$(manpath)}
 
 #function prefix-array() {
-#    local name="PREFIX_$1"
-#    typeset -U $name
+#	 local name=PREFIX_$1
+#	 typeset -U $name
 #}
 
 # Dedupe entries
 typeset -U {,f,man,info,cd}path
 
 prefix_path=(
-    # user
-    $HOME{,/{crypt,,.local,.cargo}}/{bin,sbin}
+	# user
+	$HOME{,/{crypt,,.local,.cargo}}/{bin,sbin}
 
-    ${^ZDOTDIRS}/{bin,sbin}
+	${^ZDOTDIRS}/{bin,sbin}
 )
 
 prefix_fpath=(
-    ${^ZDOTDIRS}/{functions,completions}
+	${^ZDOTDIRS}/{functions,completions}
 )
 
 path=(
-    ${prefix_path[@]}
-    ${path[@]}
+	${prefix_path[@]}
+	${path[@]}
 )
 
 fpath=(
-    ${(@)prefix_fpath}
-    ${(@)fpath}
+	${(@)prefix_fpath}
+	${(@)fpath}
 )
 
 #manpath=(
-#    ${(@)manpath}
+#	 ${(@)manpath}
 #)
 
 #infopath=(
-#    ${(@)infopath}
+#	 ${(@)infopath}
 #)
 
 declare -xm '*path'
 
 # OS specifics
-case "${OSTYPE:l}" in
-    linux*)
-        add-prefix-paths $HOME/.linuxbrew
+case ${OSTYPE:l} in
+	linux*)
+		add-prefix-paths $HOME/.linuxbrew
 
-        prefix_path+=(
-            # ccache
-            "/usr/lib/ccontrol"
-            "/usr/lib/ccache"
-        )
-        ;;
-    darwin*)
-        add-prefix-paths /usr/local
+		prefix_path+=(
+			# ccache
+			/usr/lib/ccontrol
+			/usr/lib/ccache
+		)
+		;;
+	darwin*)
+		add-prefix-paths /usr/local
 
-        prefix_path+=(
-            # ccache
-            "/usr/local/opt/ccache/libexec"
-        )
+		prefix_path+=(
+			# ccache
+			/usr/local/opt/ccache/libexec
+		)
 
-        path=(
-            # Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
-            # gnu by default
-            ${(@)path#/usr/local*}
+		path=(
+			# Make sure gnubin is before usr/local. For most things, that is. OSX is hilarious!
+			# gnu by default
+			${(@)path#/usr/local*}
 
-            "/usr/local/libexec/gnubin"
-            "/usr/local/opt/coreutils/libexec/gnubin"
+			/usr/local/libexec/gnubin
+			/usr/local/opt/coreutils/libexec/gnubin
 
-            ${(@)path}
-        )
+			${(@)path}
+		)
 
-        manpath=(
-            "/usr/local/man"
+		manpath=(
+			/usr/local/man
 
-            "/usr/local/opt/coreutils/libexec/gnuman"
+			/usr/local/opt/coreutils/libexec/gnuman
 
-            ${(@)manpath}
-        )
+			${(@)manpath}
+		)
 
-        function () {
-            for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
-                fpath[$idx]=()
-            done
-        }
+		function () {
+			for idx in ${fpath[(i)/usr/local/share/zsh/site-functions]}; do
+				fpath[$idx]=()
+			done
+		}
 
-        function () {
-            # Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
-            # Unfortunately it also reorganizes your PATH according to how it sees fit,
-            # so let's change that to just be a suffix. It gets deduped anyway.
-            if [[ -x /usr/libexec/path_helper ]]; then
-                local out="$(PATH='' /usr/libexec/path_helper -s)"
-                # We only care about the path portion of the declare statement anyway, so snag and split.
-                local out_paths=(${(s.:.)${out#*\"}%\"*})
-                # Append to path
-                path+=(${(@)out_paths})
-            fi
-        }
+		function () {
+			# Mac OS X uses path_helper to preload PATH from "/etc/paths.d".
+			# Unfortunately it also reorganizes your PATH according to how it sees fit,
+			# so let's change that to just be a suffix. It gets deduped anyway.
+			if [[ -x /usr/libexec/path_helper ]]; then
+				local out="$(PATH='' /usr/libexec/path_helper -s)"
+				# We only care about the path portion of the declare statement anyway, so snag and split.
+				local out_paths=(${(s.:.)${out#*\"}%\"*})
+				# Append to path
+				path+=(${(@)out_paths})
+			fi
+		}
 
-        fpath+=("/usr/local/share/zsh/site-functions")
-        ;;
+		fpath+=(/usr/local/share/zsh/site-functions)
+		;;
 esac
 
 path=(${(@)prefix_path} ${(@)path})
 
 # Go
-: ${GOPATH:="$HOME/go"}
+: ${GOPATH:=$HOME/go}
 export GOPATH
 add-prefix-paths $GOPATH
 

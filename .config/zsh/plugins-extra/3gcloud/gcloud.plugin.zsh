@@ -5,24 +5,30 @@ export GCLOUD_SDK_ROOT
 
 # This has to be the last one unless we hack it as Google calls odd shit in here..
 if [[ -e $GCLOUD_SDK_ROOT ]]; then
-    source $GCLOUD_SDK_ROOT/path.zsh.inc
+	source $GCLOUD_SDK_ROOT/path.zsh.inc
 
-    # This has to be the last one unless we hack it as Google calls odd shit in here..
-    : ${_GCLOUD_SDK_COMP_CACHE:=${ZSH_CACHE_DIR:-${ZDOTDIR:-$HOME}}/.gcloud-sdk-init.zsh}
-    if [[ ! -s $_GCLOUD_SDK_COMP_CACHE || ${commands[gcloud-sdk]} -nt $_GCLOUD_SDK_COMP_CACHE ]]; then
-        egrep -v 'compinit' $GCLOUD_SDK_ROOT/completion.zsh.inc \
-          >| $_GCLOUD_SDK_COMP_CACHE
-    fi
-    source $_GCLOUD_SDK_COMP_CACHE
+	() {
+		local cache=$(zcachefile gcloud)
+
+		# This has to be the last one unless we hack it as Google calls odd shit in here..
+		if [[ ! -s $cache || ${commands[gcloud-sdk]} -nt $cache ]]; then
+			egrep -v 'compinit' $GCLOUD_SDK_ROOT/completion.zsh.inc \
+			>| $cache
+		fi
+		source $cache
+	}
 fi
 
 if (( ${+commands[kubectl]} )); then
-    : ${_KUBECTL_INIT_CACHE:=${ZSH_CACHE_DIR:-${ZDOTDIR:-$HOME}}/.kubectl-init.zsh}
-    if [[ ! -s $_KUBECTL_INIT_CACHE || ${commands[kubectl]} -nt $_KUBECTL_INIT_CACHE ]]; then
-        kubectl completion zsh \
-          | egrep -v 'compinit' \
-          >| $_KUBECTL_INIT_CACHE
-    fi
-    source $_KUBECTL_INIT_CACHE
+	() {
+		local cache=$(zcachefile kubectl)
+
+		if [[ ! -s $cache || ${commands[kubectl]} -nt $cache ]]; then
+			kubectl completion zsh \
+			| egrep -v 'compinit' \
+			>| $cache
+		fi
+		source $cache
+	}
 fi
 

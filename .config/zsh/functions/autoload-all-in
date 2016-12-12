@@ -1,5 +1,5 @@
 #!/bin/zsh
-setopt LOCAL_OPTIONS EXTENDED_GLOB NULLGLOB
+setopt LOCAL_OPTIONS EXTENDED_GLOB NULLGLOB ERR_RETURN PIPEFAIL
 local function_glob='^([_.]*|prompt_*_setup|README*|*.plugin.zsh)(-.N:t)'
 local funcs=(${^argv}/${~function_glob})
 [[ $#funcs -gt 0 ]] || return 0

@@ -20,8 +20,12 @@ source-with-force ~/.zsh/secrets
 # Set up the prompt
 autoload -Uz ztheme; ztheme
 
-: ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
-mkdir -pv $ZSH_CACHE_DIR
+if [[ -z $ZSH_CACHE_DIR ]]; then
+	echo "- ZSH_CACHE_DIR is not set?" >&2
+	return 1
+elif [[ ! -e $ZSH_CACHE_DIR ]]; then
+	mkdir -pv $ZSH_CACHE_DIR
+fi
 
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
 : ${ZPLUG_CACHE_DIR:=$ZPLUG_HOME/.cache}

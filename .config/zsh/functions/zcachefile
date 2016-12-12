@@ -1,0 +1,12 @@
+#!/bin/zsh
+setopt LOCAL_OPTIONS ERR_RETURN PIPEFAIL
+
+if [[ $# -lt 1 ]]; then
+	echo "Usage: $0 NAME" >&2
+	return 1
+fi
+
+local name=$1
+local root=${ZSH_CACHE_DIR:?}
+
+echo "$root/$name"
