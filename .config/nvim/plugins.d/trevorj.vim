@@ -101,15 +101,15 @@ let g:grepper = {
 "Plug 'tpope/git-bump'
 "Plug 'tpope/vim-projectionist'
 
-Plug 'vim-scripts/autoproto.vim'
-Plug 'vim-scripts/searchfold.vim'
-Plug 'vim-scripts/grep.vim'
+"Plug 'vim-scripts/autoproto.vim'
+"Plug 'vim-scripts/searchfold.vim'
+"Plug 'vim-scripts/grep.vim'
 "Plug 'vim-scripts/Mark--Karkat'
-Plug 'vim-scripts/a.vim'
+"Plug 'vim-scripts/a.vim'
 "Plug 'vim-scripts/netrw.vim'
-Plug 'vim-scripts/SearchComplete'
+"Plug 'vim-scripts/SearchComplete'
 
-Plug 'vim-scripts/xoria256.vim'
+"Plug 'vim-scripts/xoria256.vim'
 
 Plug 'pi314/pi314.asciiart.vim'
 Plug 'quafzi/vim-flow-diagram'
@@ -125,4 +125,4 @@ let g:grepper = {
 
 Plug 'FooSoft/vim-argwrap'
 
-Plug 'Zuckonit/vim-airline-tomato'
+"Plug 'Zuckonit/vim-airline-tomato'
