@@ -22,7 +22,7 @@
 "Plug 'tpope/vim-eunuch'
 
 " Superb motion controls
-Plug 'easymotion/vim-easymotion'
+"Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
@@ -111,18 +111,10 @@ let g:grepper = {
 
 "Plug 'vim-scripts/xoria256.vim'
 
-Plug 'pi314/pi314.asciiart.vim'
-Plug 'quafzi/vim-flow-diagram'
-Plug 'xavierchow/vim-sequence-diagram'
+"Plug 'pi314/pi314.asciiart.vim'
+"Plug 'quafzi/vim-flow-diagram'
+"Plug 'xavierchow/vim-sequence-diagram'
 
-Plug 'mhinz/vim-grepper'
-" Mimic :grep and make ag the default tool.
-let g:grepper = {
-    \ 'tools': ['ag', 'git', 'grep'],
-    \ 'open':  0,
-    \ 'jump':  1,
-    \ }
-
-Plug 'FooSoft/vim-argwrap'
+"Plug 'FooSoft/vim-argwrap'
 
 "Plug 'Zuckonit/vim-airline-tomato'

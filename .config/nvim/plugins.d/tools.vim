@@ -17,7 +17,7 @@ Plug $GOPATH.'/src/github.com/junegunn/fzf'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Tagbar: ctags, syntax, etc
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 
 Plug 'vim-scripts/taglist.vim'
 
