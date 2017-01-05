@@ -17,8 +17,11 @@ Plug 'powerman/vim-plugin-AnsiEsc'
 " Ultimate Text Linker
 Plug 'vim-scripts/utl.vim'
 
+" Easy user operators
+Plug 'kana/vim-operator-user'
+
 " Tagbar: ctags, syntax, etc
-Plug 'majutsushi/tagbar'
+"Plug 'majutsushi/tagbar'
 
 "Plug 'vim-scripts/taglist.vim'
 

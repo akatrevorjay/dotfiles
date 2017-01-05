@@ -6,7 +6,5 @@ sudo killall gnome-session gdm gdm3 || :
 
 source ~/.config/sway/env
 
-exec >"$HOME/sway.log" 2>&1
-
-dbus-launch --exit-with-session sway -d -V
-
+exec dbus-launch --exit-with-session sway -d -V
+#>"$HOME/sway.log" 2>&1

@@ -3,20 +3,22 @@
 
 from i3pystatus import Status
 import logging
-import os
-import sys
-import getpass
+# import os
+# import sys
+# import getpass
 import keyring
 
 
 log = logging.getLogger(__name__)
 
-status = Status(logfile=os.path.expanduser('~/i3pystatus-top.log'))
-
-status.register(
-    "uname",
-    format='%s@{nodename}' % getpass.getuser(),
+status = Status(
+    # logfile=os.path.expanduser('~/i3pystatus-top.log'),
 )
+
+# status.register(
+#     "uname",
+#     format='%s@{nodename}' % getpass.getuser(),
+# )
 
 # Displays clock like this:
 # Tue 30 Jul 11:59:46 PM KW31
@@ -27,9 +29,9 @@ status.register(
 )
 
 
-status.register(
-    "scratchpad",
-)
+# status.register(
+#     "scratchpad",
+# )
 
 # Shows the average load of the last minute and the last 5 minutes
 # (the default value for format is used)
@@ -38,14 +40,14 @@ status.register(
     format='{avg1} {avg5} {avg15} {tasks}t',
 )
 
-status.register(
-    "mem_bar",
-)
+# status.register(
+#     "mem_bar",
+# )
 
-status.register(
-    "swap",
-    hide_if_empty=True,
-)
+# status.register(
+#     "swap",
+#     hide_if_empty=True,
+# )
 
 # Shows your CPU temperature, if you have a Intel CPU
 status.register(
@@ -77,27 +79,27 @@ status.register(
     },
 )
 
-status.register('openfiles')
+# status.register('openfiles')
 
-status.register('online')
+# status.register('online')
 
-status.register(
-    "ping",
-    host="8.8.8.8",
-)
+# status.register(
+#     "ping",
+#     host="8.8.8.8",
+# )
 
-status.register(
-    'openvpn',
-    format='ovpn {status}{vpn_name}',
-    vpn_name='disqus',
-)
+# status.register(
+#     'openvpn',
+#     format='ovpn {status}{vpn_name}',
+#     vpn_name='disqus',
+# )
 
-# Displays whether a DHCP client is running
-status.register(
-    "runwatch",
-    name="DHCP",
-    path="/var/run/dhclient*.pid",
-)
+# # Displays whether a DHCP client is running
+# status.register(
+#     "runwatch",
+#     name="DHCP",
+#     path="/var/run/dhclient*.pid",
+# )
 
 # Shows the address and up/down state of eth0. If it is up the address is shown in
 # green (the default value of color_up) and the CIDR-address is shown
@@ -112,12 +114,12 @@ status.register(
 #     format_up="{v4cidr}",
 # )
 
-# Note: requires both netifaces and basiciw (for essid and quality)
-status.register(
-    "network",
-    interface="wlp4s0",
-    format_up="{essid}/{freq}",
-)
+# # Note: requires both netifaces and basiciw (for essid and quality)
+# status.register(
+#     "network",
+#     interface="wlp4s0",
+#     format_up="{essid}/{freq}",
+# )
 
 # Shows disk usage of /
 # Format:
@@ -134,32 +136,32 @@ status.register(
     format="dpool {avail}g",
 )
 
-status.register(
-    "github",
-    format='{status}[ ({unread_count})][ {update_error}]',
-    access_token=keyring.get_password('https://api.github.com/?ro', ''),
-    notify_status=True,
-    notify_unread=True,
-    hints={'markup': 'pango'},
-    update_error='<span color="#af0000">!</span>',
-    refresh_icon='<span color="#ff5f00">⟳</span>',
-    status={
-        'good': '✓',
-        'minor': '!',
-        'major': '!!',
-    },
-    colors={
-        'good': '#008700',
-        'minor': '#d7ff00',
-        'major': '#af0000',
-    },
-)
+# status.register(
+#     "github",
+#     format='{status}[ ({unread_count})][ {update_error}]',
+#     access_token=keyring.get_password('https://api.github.com/?ro', ''),
+#     notify_status=True,
+#     notify_unread=True,
+#     hints={'markup': 'pango'},
+#     update_error='<span color="#af0000">!</span>',
+#     refresh_icon='<span color="#ff5f00">⟳</span>',
+#     status={
+#         'good': '✓',
+#         'minor': '!',
+#         'major': '!!',
+#     },
+#     colors={
+#         'good': '#008700',
+#         'minor': '#d7ff00',
+#         'major': '#af0000',
+#     },
+# )
 
-# Note: requires libpulseaudio from PyPI
-status.register(
-    "pulseaudio",
-    format="🎵 {muted} {db}db {volume_bar}",
-)
+# # Note: requires libpulseaudio from PyPI
+# status.register(
+#     "pulseaudio",
+#     format="🎵 {muted} {db}db {volume_bar}",
+# )
 
 # # Shows mpd status
 # # Format:
@@ -173,26 +175,26 @@ status.register(
 #     },
 # )
 
-status.register(
-    "now_playing",
-    format="🎵  {title} - {artist} {song_elapsed}/{song_length} {status}",
-    status={
-        "pause": ":pause:",
-        "play": ":play:",
-        "stop": ":stop:",
-    },
-)
+# status.register(
+#     "now_playing",
+#     format="🎵  {title} - {artist} {song_elapsed}/{song_length} {status}",
+#     status={
+#         "pause": ":pause:",
+#         "play": ":play:",
+#         "stop": ":stop:",
+#     },
+# )
 
-# updates
-from i3pystatus.updates import aptget
-status.register(
-    "updates",
-    # format="Updates: {count}",
-    # format_no_updates="No updates",
-    backends=[
-        aptget.AptGet(),
-    ]
-)
+# # updates
+# from i3pystatus.updates import aptget
+# status.register(
+#     "updates",
+#     # format="Updates: {count}",
+#     # format_no_updates="No updates",
+#     backends=[
+#         aptget.AptGet(),
+#     ]
+# )
 
 # xkblayout
 status.register(
@@ -201,33 +203,33 @@ status.register(
 )
 
 
-from i3pystatus.mail import thunderbird
-status.register("mail",
-    backends=[
-        thunderbird.Thunderbird(account="trevorjoyson@gmail.com"),
-        thunderbird.Thunderbird(account="trevor@disqus.com"),
-        thunderbird.Thunderbird(account="local"),
-    ],
-    format="P {unread}",
-    log_level=20,
-    hide_if_null=False,
-)
+# from i3pystatus.mail import thunderbird
+# status.register("mail",
+#     backends=[
+#         thunderbird.Thunderbird(account="trevorjoyson@gmail.com"),
+#         thunderbird.Thunderbird(account="trevor@disqus.com"),
+#         thunderbird.Thunderbird(account="local"),
+#     ],
+#     format="P {unread}",
+#     log_level=20,
+#     hide_if_null=False,
+# )
 
-from i3pystatus.weather import wunderground
+# from i3pystatus.weather import wunderground
 
-status.register(
-    'weather',
-    interval=900,
-    colorize=True,
-    hints=dict(markup='pango'),
-    format='{condition} {current_temp}{temp_unit}[ {icon}][ Hi: {high_temp}][ Lo: {low_temp}][ {update_error}]',
-    backend=wunderground.Wunderground(
-        location_code='autoip',
-        units='imperial',
-        forecast=True,
-        api_key=keyring.get_password('api.wunderground', getpass.getuser()),
-    ),
-)
+# status.register(
+#     'weather',
+#     interval=900,
+#     colorize=True,
+#     hints=dict(markup='pango'),
+#     format='{condition} {current_temp}{temp_unit}[ {icon}][ Hi: {high_temp}][ Lo: {low_temp}][ {update_error}]',
+#     backend=wunderground.Wunderground(
+#         location_code='autoip',
+#         units='imperial',
+#         forecast=True,
+#         api_key=keyring.get_password('api.wunderground', getpass.getuser()),
+#     ),
+# )
 
 status.register(
     "taskwarrior",
@@ -240,24 +242,24 @@ status.register(
     hints=dict(markup='pango'),
 )
 
-status.register(
-    "pomodoro",
-    sound=os.path.expanduser('~/Media/break.wav'),
-)
+# status.register(
+#     "pomodoro",
+#     sound=os.path.expanduser('~/Media/break.wav'),
+# )
 
-status.register(
-    "syncthing",
-    hints=dict(markup='pango'),
-    # status=dict(
-    #     UP='😹',
-    #     DOWN='😠',
-    # ),
-)
+# status.register(
+#     "syncthing",
+#     hints=dict(markup='pango'),
+#     # status=dict(
+#     #     UP='😹',
+#     #     DOWN='😠',
+#     # ),
+# )
 
-status.register(
-    "window_title",
-    format='{title} class={class_name}',
-)
+# status.register(
+#     "window_title",
+#     format='{title} class={class_name}',
+# )
 
 # Finally
 status.run()

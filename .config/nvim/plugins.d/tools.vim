@@ -16,11 +16,6 @@ Plug $GOPATH.'/src/github.com/junegunn/fzf'
 "Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
 
-" Tagbar: ctags, syntax, etc
-"Plug 'majutsushi/tagbar'
-
-Plug 'vim-scripts/taglist.vim'
-
 if has('nvim')
   " NeoTerm: nice wrapper around :term
   Plug 'kassio/neoterm'

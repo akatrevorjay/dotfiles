@@ -24,7 +24,7 @@ export EDITOR
 alias v='vi'
 
 # Disable control flow (<C-s> / <C-q>)
-stty stop '' -ixoff -ixon
+#stty stop '' -ixoff -ixon
 
 ## Don't raise errors when regex nomatch fires
 #unsetopt nomatch

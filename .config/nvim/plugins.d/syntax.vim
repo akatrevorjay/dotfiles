@@ -99,6 +99,7 @@ let g:polyglot_disabled = [
     \ 'typescript',
     \ 'dart',
     \ 'css',
+    \ 'nim',
     \ ]
 
 " GPG
@@ -158,6 +159,10 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 " Yet Another Typescript Syntax
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 
+" nim
+"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
+Plug 'zah/nim.vim', {'for': ['nim']}
+
 " Hex
 Plug 'Shougo/vinarise.vim'
 
@@ -193,7 +198,7 @@ Plug 'mattn/emmet-vim'
 "Plug 'plasticboy/vim-markdown'
 ""Plug 'tpope/vim-markdown'
 
-Plug 'aouelete/sway-vim-syntax'
+Plug 'aouelete/sway-vim-syntax', {'for': ['sway']}
 
 ""
 "" Language: Python

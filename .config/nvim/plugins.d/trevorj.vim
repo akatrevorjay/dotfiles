@@ -48,9 +48,9 @@ Plug 'rhysd/clever-f.vim'
 "    let g:deoplete#disable_auto_complete = 0
 "endfunction
 
-"" RainbowParantheses
-"Plug 'junegunn/rainbow_parentheses.vim'
-"Gautocmdft lisp,clojure,scheme :RainbowParentheses
+" RainbowParantheses
+Plug 'junegunn/rainbow_parentheses.vim'
+Gautocmdft lisp,clojure,scheme :RainbowParentheses
 
 "Plug 'vim-scripts/restore_view.vim'
 
@@ -72,20 +72,39 @@ Plug 'tpope/vim-abolish'
 if has('nvim')
     "Plug 'bfredl/nvim-ipy'
     "Plug 'tek/proteome.nvim'
-    "Plug 'hkupty/iron.nvim'
-    "Plug 'benekastah/neomake'
 
+    " Interactive ft-aware REPL
+    Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+
+    Plug 'benekastah/neomake', { 'do': ':UpdateRemotePlugins' }
+    "" Run Neomake on every write
+    "autocmd! BufWritePost * Neomake
+
+    " Argumentative aids with manipulating and moving between function arguments.
+    Plug 'PeterRincker/vim-argumentative'
+    "nmap [; <Plug>Argumentative_Prev
+    "nmap ]; <Plug>Argumentative_Next
+    "xmap [; <Plug>Argumentative_XPrev
+    "xmap ]; <Plug>Argumentative_XNext
+    "nmap <; <Plug>Argumentative_MoveLeft
+    "nmap >; <Plug>Argumentative_MoveRight
+    "xmap i; <Plug>Argumentative_InnerTextObject
+    "xmap a; <Plug>Argumentative_OuterTextObject
+    "omap i; <Plug>Argumentative_OpPendingInnerTextObject
+    "omap a; <Plug>Argumentative_OpPendingOuterTextObject
+
+    function! BuildComposer(info)
+        if a:info.status != 'unchanged' || a:info.force
+            !cargo build --release
+            exec ':UpdateRemotePlugins'
+        endif
+    endfunction
+    Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+
+    "" libclang syntax hightlighting (tagless and fast)
     "Plug 'arakashic/chromatica.nvim'
     ""let g:chromatica#libclang_path='/usr/local/opt/llvm/lib'
     "let g:chromatica#responsive_mode=1
-
-    "Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
-    "function! BuildComposer(info)
-    "  if a:info.status != 'unchanged' || a:info.force
-    "    !cargo build --release
-    "    UpdateRemotePlugins
-    "  endif
-    "endfunction
 endif
 
 Plug 'mhinz/vim-grepper'
