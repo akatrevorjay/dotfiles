@@ -43,11 +43,11 @@ set $fgu #aaaaaa90
 bar {
     id bar0
 
+    tray_output primary
+
     #status_command i3blocks
     #status_command i3status
     status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
-
-    tray_output primary
 
     position top
     #position bottom
