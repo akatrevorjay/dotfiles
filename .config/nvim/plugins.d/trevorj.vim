@@ -137,3 +137,6 @@ let g:grepper = {
 "Plug 'FooSoft/vim-argwrap'
 
 "Plug 'Zuckonit/vim-airline-tomato'
+
+Plug 'Rykka/doctest.vim'
+

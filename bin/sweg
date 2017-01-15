@@ -1,0 +1,10 @@
+#!/bin/zsh
+set -eo pipefail
+
+sudo systemctl stop gdm3 || :
+sudo killall gnome-session gdm gdm3 || :
+
+source ~/.config/sway/env
+
+exec dbus-launch --exit-with-session sway -d -V
+#>"$HOME/sway.log" 2>&1

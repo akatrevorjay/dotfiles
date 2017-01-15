@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+name=$PWD:t
+
+case $name in
+	build)
+		name=$PWD:h:t
+		;;
+esac
+
+cmd=(
+	sudo checkinstall
+	--pkgname=$name
+	--gzman=yes
+	--exclude=/home
+	-y
+	#--backup=no
+)
+
+exec $cmd

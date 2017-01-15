@@ -52,7 +52,7 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " For conceal markers.
 set conceallevel=1
-set concealcursor=inc
+set concealcursor=nc
 
 let g:indentLine_setConceal = 0
 "let g:indentLine_char = 'c'
