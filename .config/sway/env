@@ -1,12 +1,12 @@
 
 # Tons of things break with gdk atm
-#GDK_BACKEND=wayland
+GDK_BACKEND=wayland
 
 # Sigh, this one too.
-#QT_QPA_PLATFORM=wayland-egl
+QT_QPA_PLATFORM=wayland-egl
 
-#CLUTTER_BACKEND=wayland
-#SDL_VIDEODRIVER=wayland
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
 
 # or say wayland_shm
 ECORE_EVAS_ENGINE=wayland_egl

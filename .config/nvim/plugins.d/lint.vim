@@ -19,3 +19,5 @@ Plug 'Chiel92/vim-autoformat'
 " Google code formatting
 Plug 'google/vim-codefmt'
 
+" Google code coverage viewing
+Plug 'google/vim-coverage'

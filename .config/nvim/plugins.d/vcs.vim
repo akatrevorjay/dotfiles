@@ -17,6 +17,7 @@ Plug 'rhysd/committia.vim'
 
 " Appraise:
 Plug 'google/vim-codereview'
+"Plug 'mattn/vim-git-appraise'
 
 " Nice export of highlighted code for copy/paste
 "Plug 'google/vim-syncopate'

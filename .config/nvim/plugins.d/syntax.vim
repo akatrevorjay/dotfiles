@@ -109,7 +109,7 @@ Plug 'jamessan/vim-gnupg', {'for': ['gpg']}
 Plug 'ap/vim-css-color'
 
 " Allows for python rst docstring support
-Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
+"Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['bats']}

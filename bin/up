@@ -39,7 +39,7 @@ fi
 #    :
 #fi
 
-if [[ -n "$GOPATH" ]]; then
-    go get -u -v all || :
-fi
+#if [[ -n "$GOPATH" ]]; then
+#    go get -u -v all || :
+#fi
 
