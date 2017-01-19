@@ -3,16 +3,15 @@
 
 fpath+=(${0:h}/functions)
 
-: ${_TERRAFORM_COMP_CACHE:=${ZSH_CACHE_DIR:-${ZDOTDIR:-$HOME}}/.terraform-init.zsh}
+function zplugins.terraform.update-completion() {
+	local url="https://github.com/hashicorp/terraform/raw/master/contrib/zsh-completion/_terraform"
+	local cache=$(zcachefile terraform)
 
-function () {
-    local url="https://github.com/hashicorp/terraform/raw/master/contrib/zsh-completion/_terraform"
-
-    if [ ${commands[terraform]} -nt $_TERRAFORM_COMP_CACHE -o ! -s $_TERRAFORM_COMP_CACHE ]; then
-        echo "- Downloading new terraform completion"
-        curl -sL "$url" > ${_TERRAFORM_COMP_CACHE}.part
-        mv ${_TERRAFORM_COMP_CACHE}.part $_TERRAFORM_COMP_CACHE
-    fi
+	if [ ${commands[terraform]} -nt $cache -o ! -s $cache ]; then
+		echo "- Downloading new terraform completion" >&2
+		curl -sSLFo $cache.part "$url" \
+			&& mv $cache.part $cache
+	fi
 }
 
 autoload -Uz _terraform

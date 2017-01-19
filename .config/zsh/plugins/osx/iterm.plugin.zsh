@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-[[ $OSTYPE:l = darwin* ]] || return 1
+[[ $OSTYPE:l = darwin* ]] || return 0
 
 # quiet down +warn_create_global
 export ITERM2_PRECMD_PS1

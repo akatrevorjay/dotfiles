@@ -8,16 +8,6 @@ if [[ ${TERM} == 'dumb' ]]; then
     return 1
 fi
 
-### Load zkbd file if one exists
-#f="~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
-#if [[ -e "$f" ]]; then
-#    source "$f" 2>&1 >/dev/null
-#    #[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
-#    #[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
-#    # etc.
-#fi
-#unset f
-
 ##
 ## Enable meta/alt keys
 ##
@@ -88,7 +78,23 @@ key_info=(
 	'BackTab'      "${terminfo[kcbt]}"
 )
 
-# Bind the keys
+## Load zkbd file if one exists
+f="~/.zkbd/$TERM-${${DISPLAY:t}:-$VENDOR-$OSTYPE}"
+if [[ -e "$f" ]]; then
+    source "$f" 2>&1 >/dev/null
+    #[[ -n ${key[Left]} ]] && bindkey "${key[Left]}" backward-char
+    #[[ -n ${key[Right]} ]] && bindkey "${key[Right]}" forward-char
+    # etc.
+fi
+unset f
+
+function zplugins::input::has-key() {
+    return [[ -n ${key_info[$1]} ]]
+}
+
+##
+## Bind the keys
+##
 
 if [[ -n ${key_info[Home]} ]]; then
     bindkey ${key_info[Home]} beginning-of-line
@@ -151,7 +157,7 @@ zle -N zle-keymap-select
 #autoload -Uz edit-command-line
 #zle -N edit-command-line
 
-#bindkey -e                                            # Use emacs key bindings
+bindkey -e                                            # Use emacs key bindings
 
 ##
 ## vi mode

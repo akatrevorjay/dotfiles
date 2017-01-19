@@ -32,11 +32,6 @@ noremap <c-j> <c-w>j
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
 
-noremap <c-n> <c-w>h
-noremap <c-e> <c-w>j
-noremap <c-o> <c-w>k
-noremap <c-i> <c-w>l
-
 " Close with Alt+w
 noremap <silent> <M-w> :bd<CR>
 noremap <silent> <M-W> :bd!<CR>

@@ -4,17 +4,12 @@ umask 022
 
 # if it's a dumb terminal, return.
 if [[ ${TERM} == 'dumb' ]]; then
-    return
+	return
 fi
 [[ $- =~ i ]] || return
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
-
-# Def
-setopt extendedglob kshglob
-setopt nullglob
-setopt interactivecomments
 
 # enable all of the highlighters
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
@@ -25,18 +20,23 @@ source-with-force ~/.zsh/secrets
 # Set up the prompt
 autoload -Uz ztheme; ztheme
 
-: ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
-mkdir -pv $ZSH_CACHE_DIR
+if [[ -z $ZSH_CACHE_DIR ]]; then
+	echo "- ZSH_CACHE_DIR is not set?" >&2
+	return 1
+elif [[ ! -e $ZSH_CACHE_DIR ]]; then
+	mkdir -pv $ZSH_CACHE_DIR
+fi
 
 : ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
-: ${ZPLUG_CACHE_FILE:=$ZSH_CACHE_DIR/.zplug-cache.zsh}
+: ${ZPLUG_CACHE_DIR:=$ZPLUG_HOME/.cache}
 : ${ZPLUG_REPOS:=$ZPLUG_HOME/repos}
 zstyle :zplug:tag depth 1
 
 : ${ZPLUG_DIR:=$ZPLUG_REPOS/zplug/zplug}
 : ${ZPLUG_REPO:=https://github.com/zplug/zplug.git}
 
-ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.))
+ZPLUGINS_CHECK=($ZPLUG_CACHE_DIR(-/N))
+ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
 
 # Reset zplugs
 typeset -a zplug_q=()
@@ -44,37 +44,37 @@ typeset -A zplugs=()
 
 # Stub zplug that just queues the commands for later
 function zplugins.zplug.stub() {
-    set -- zplug "$@"
-    zplug_q+=("${(q)@}" $'\0')
+	set -- zplug "$@"
+	zplug_q+=("${(q)@}" $'\0')
 }
 
 function zplug() {
-    zplugins.zplug.stub "$@"
+	zplugins.zplug.stub "$@"
 }
 
 function zplugins.load-all-in() {
-    local p
+	local p
 
-    local paths=()
-    for p in "$@"; do
-        if [[ ${p:0:1} == / ]]; then
-            paths+=($p)
-        else
-            paths+=(${^ZDOTDIRS}/$p)
-        fi
-    done
+	local paths=()
+	for p in "$@"; do
+		if [[ ${p:0:1} == / ]]; then
+			paths+=($p(-/N))
+		else
+			paths+=(${^ZDOTDIRS}/$p(-/N))
+		fi
+	done
 
-    local nice
-    for p in ${^paths}/*(-/); do
-        nice=${${p:t}%%[^0-9]*}
-        if [[ -n $nice ]]; then
-            nice=$nice
-        else
-            nice=5
-        fi
+	local defer
+	for p in ${^paths}/*(-/N); do
+		defer=${${p:t}%%[^0-9]*}
+		if [[ -n $defer ]]; then
+			defer=$defer
+		else
+			defer=0
+		fi
 
-        zplug "$p", from:local, nice:$nice
-    done
+		zplug "$p", from:local, defer:$defer
+	done
 }
 
 # TODO check plugins difference on hook and auto-load
@@ -82,68 +82,85 @@ source-with-force $ZPLUGINS_FILES
 
 # Install zplug if we don't have it.
 if [[ ! -d $ZPLUG_DIR ]]; then
-    echo "- No zplug found in ZPLUG_DIR=$ZPLUG_DIR" >&2
+	echo "- No zplug found in ZPLUG_DIR=$ZPLUG_DIR" >&2
 
-    echo "- Cloning zplug into ZPLUG_DIR=$ZPLUG_DIR" >&2
-    if ! git clone $ZPLUG_REPO $ZPLUG_DIR; then
-        echo "- Failed." >&2
-        return 1
-    fi
+	echo "- Cloning zplug into ZPLUG_DIR=$ZPLUG_DIR" >&2
+	if ! git clone $ZPLUG_REPO $ZPLUG_DIR; then
+		echo "- Failed." >&2
+		return 1
+	fi
 fi
 
 function zplugins.zplug.apply {
-    # Run through zplug_q
-    local p
-    for p in ${(0)zplug_q}; do
-        p=(${(Z+Cn+)p})
+	# Run through zplug_q
+	#local ZPLUG_LOADFILE=/dev/null
 
-        ZPLUG_LOADFILE=/dev/null "${(@)p}"
-    done
+	local p
+	for p in ${(0)zplug_q}; do
+		p=(${(Z+Cn+)p})
+
+		"${(@)p}"
+	done
 }
 
 function zplugins.zplug.lazy {
-    unfunction zplug
-    source $ZPLUG_DIR/init.zsh
+	unfunction zplug
+	source $ZPLUG_REPOS/zplug/zplug/init.zsh
 
-    zplugins.zplug.apply
+	zplugins.zplug.apply
 
-    zplug "$@"
+	zplug "$@"
 }
 
 function zplug() {
-    zplugins.zplug.lazy "$@"
+	zplugins.zplug.lazy "$@"
+}
+
+function max() {
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[-1]}
+}
+
+function min() {
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[1]}
 }
 
 function zplugins.cache.is-clean() {
-    if [ ! -f $ZPLUG_CACHE_FILE ]; then
-        echo "- Cache file not found: $ZPLUG_CACHE_FILE" >&2
-        return 1
-    fi
+	if [ ! -d $ZPLUG_CACHE_DIR ]; then
+		echo "- Cache dir not found: $ZPLUG_CACHE_DIR" >&2
+		return 1
+	fi
 
-    local plugins_file
-    for plugins_file in ${(@)ZPLUGINS_FILES}; do
-        if [ $plugins_file -nt $ZPLUG_CACHE_FILE ] || [ $plugins_file -nt $plugins_file:h:A ]; then
-            echo "- Detected change in $plugins_file" >&2
-            return 100
-        fi
-    done
+	if [[ ${#ZPLUGINS_FILES} -eq 0 ]] || [[ ${#ZPLUGINS_CHECK} -eq 0 ]]; then
+		echo "- No files found to check cache mtimes: ($ZPLUGINS_CHECK) ($ZPLUGINS_FILES)" >&2
+		return 2
+	fi
+
+	local files_mtime=$(max $(zstat -N +mtime $ZPLUGINS_FILES))
+	local check_mtime=$(max $(zstat -N +mtime $ZPLUGINS_CHECK))
+	if [[ $files_mtime -gt $check_mtime ]]; then
+		echo "- Detected change in plugins: $files_mtime $check_mtime" >&2
+		return 100
+	fi
 }
 
 if zplugins.cache.is-clean; then
-    echo "- Loading cache"
-    source $ZPLUG_CACHE_FILE
+	zplug load
 else
-    rm -f $ZPLUG_CACHE_FILE
-    echo "- Creating cache (may take a second)"
+	echo "- Creating cache (may take a second)"
+	zplug clear
 
-    if ! zplug check --verbose; then
-	    printf -- "-- Found changes in zshplugins. Install them? [y/N]: "
-        if read -q; then
-            echo; zplug install
-        fi
-    fi
+	if ! zplug check --verbose; then
+		printf -- "-- Found changes in zshplugins. Install them? [y/N]: "
+		if read -q; then
+			echo; zplug install
+		fi
+	fi
 
-    zplug load --verbose
+	zplug load --verbose
 fi
 
 # local

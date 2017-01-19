@@ -12,14 +12,12 @@ Plug 'gregsexton/gitv'
 Plug 'rhysd/committia.vim'
 
 
-" Jira: HOT github and jira issue management
-Plug 'rafi/vim-unite-issue'
-
 " Pivotal:
 "Plug 'adamlowe/vim-slurper'
 
 " Appraise:
 Plug 'google/vim-codereview'
+"Plug 'mattn/vim-git-appraise'
 
 " Nice export of highlighted code for copy/paste
 "Plug 'google/vim-syncopate'

@@ -1,0 +1,166 @@
+#!/bin/zsh
+#setopt verbose xtrace
+
+local display_prefixes=(XWAYLAND eDP DP DisplayPort HDMI)
+
+cmdline=$(cat /proc/cmdline)
+
+xrandr=$(xrandr)
+xrandr=(${(f)xrandr})
+
+typeset -U displays=()
+typeset -A d_mode d_connected
+d_primary=""
+
+function parse_displays() {
+	displays=()
+	d_mode=()
+	d_connected=()
+	d_primary=""
+
+	local line
+	for line in $xrandr; do
+		local parts=($=line)
+
+		local is_display=false
+		local prefix=''
+		for prefix in $display_prefixes; do
+			[[ ${parts[1]} == ${prefix}* ]] || continue
+			is_display=true
+			break
+		done
+		[[ $is_display == true ]] || continue
+
+		local name=${parts[1]}
+
+		local part=""
+		for part in $parts; do
+			case $part in
+				primary) d_primary=$name ;;
+				*x*+*+*) d_mode[$name]=$part ;;
+				*connected) d_connected[$name]=$part ;;
+			esac
+		done
+		displays+=($name)
+	done
+}
+
+function is_connected() {
+	local name=$1
+	[[ ${d_connected[$name]} == connected ]]
+}
+
+function is_display() {
+	local name=$1
+	[[ -n ${d_mode[$name]} ]]
+}
+
+function match_mode() {
+	local needle=$1
+	local name=""
+	for name in $displays; do
+		[[ $d_mode[$name] = *$needle* ]] || continue
+		echo $name
+		return 0
+	done
+	return 1
+}
+
+function match_name() {
+	local needle=$1
+	local name=""
+	for name in $displays; do
+		[[ $name = *$needle* ]] || continue
+		echo $name
+		return 0
+	done
+	return 1
+}
+
+parse_displays
+
+for disp in $displays; do
+	echo "- $disp:"
+	echo "  mode:" $d_mode[$disp]
+	echo "  connected:" $d_connected[$disp]
+done
+
+args=()
+
+edp_display=$(match_name eDP)
+texas_display=$(match_mode 3440x1440)
+fourk_display=$(match_mode 3840x2160)
+
+if [[ -n $edp_display ]]; then
+	edp=(--output $edp_display)
+	edp+=(
+		--mode 2880x1800
+		--scale 0.6x0.6
+		#--scale 1x1
+		--rotate normal
+		#--right-of DisplayPort-1
+		#--gamma 1.6:1.6:1.6
+	)
+fi
+
+if [[ -n $texas_display ]]; then
+	edp+=(--right-of $texas_display)
+
+	texas=(
+		--output $texas_display 
+		--mode 3440x1440
+		--refresh 100.00
+		#--refresh 94.99
+		#--refresh 59.97
+		--rotate normal
+		--pos 0x0
+		--scale 1x1
+		#--gamma 1.6:1.6:1.6
+		#--gamma 0.8:0.8:0.8
+
+		#--set output_csc ycbr709
+		#--set coherent 0
+		#--set dither on
+	)
+
+	args+=(
+		$texas
+		--primary
+
+		$edp
+		#--off
+	)
+elif [[ -n $fourk_display ]]; then
+	edp+=(--right-of $fourk_display)
+
+	fourk=(
+		--output $fourk_display
+		--mode 3840x2160
+		#--right-of DisplayPort-0
+		#--gamma 1.6:1.6:1.6
+		#--gamma 0.8:0.8:0.8
+		#--gamma 1.0:1.0:1.0
+	)
+
+	args+=(
+		$fourk
+		--primary
+
+		$edp
+		#--off
+	)
+else
+	args+=(
+		$edp
+	)
+fi
+
+if is_connected XWAYLAND0; then
+	return 0
+fi
+
+() {
+	set -xv
+	xrandr "${(@)args}"
+}
+

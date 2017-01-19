@@ -5,49 +5,80 @@ set -eo pipefail
 autoload -Uz colors
 colors
 
-hipshit() {
-    local SYM=${SYM:-' '}
-    echo -ne " ${bold_color}${fg[white]}${SYM}${reset_color}" >&2
-    [[ $# -eq 0 ]] || echo " $@" >&2
+usage() {
+	echo "Usage:" >&2
+	echo "	$0		Compile (autotools/make/cmake)" >&2
+	echo "	$0 -i	Compile + dirtyinstall (the fourth prayer)" >&2
 }
 
-hipshit "${bold_color}${fg[blue]}Performing ritual of the three prayers${reset_color}"
-echo
+hipshit() {
+	local SYM=${SYM:-' '}
+	echo -ne " ${bold_color}${fg[white]}${SYM}${reset_color}" >&2
+	[[ $# -eq 0 ]] || echo " $@" >&2
+}
 
 verbose-call() {
-    local SYM=${SYM:-'$'}
-    hipshit "${bold_color}$*${reset_color}"
-    SYM=${SEP:-'---'} hipshit ""
-    echo -e " ${SEP}"
+	local SYM=${SYM:-'$'}
+	hipshit "${bold_color}$*${reset_color}"
+	SYM=${SEP:-'---'} hipshit ""
+	echo -e " ${SEP}"
 
-    "$@"
-    echo
+	"$@"
+	echo
 }
 
-if [[ -f autogen.sh ]]; then
-    [[ -f configure ]] || verbose-call ./autogen.sh $autogen_flags
-fi
+compile() {
+	if [[ -f autogen.sh ]]; then
+		if [[ -f configure ]]; then
+			verbose-call autoreconf -i
+		else
+			verbose-call ./autogen.sh
+		fi
+	fi
 
-if [[ -f configure ]]; then
-    [[ -f Makefile ]] || verbose-call ./configure $configure_flags
-fi
+	if [[ -f configure ]]; then
+		[[ -f Makefile ]] || verbose-call ./configure
+	fi
 
-if [[ -f CMakeLists.txt ]]; then
-    verbose-call mkdir -pv build
-    verbose-call cd build
-    verbose-call cmake ..
-fi
+	if [[ -f CMakeLists.txt ]]; then
+		verbose-call mkdir -pv build
+		verbose-call cd build
+		verbose-call cmake ..
+	fi
 
-if [[ -f Makefile ]]; then
-    verbose-call colormake $make_flags
-fi
+	if [[ -f Makefile ]]; then
+		verbose-call colormake
+	elif [[ -f makefile ]]; then
+		verbose-call colormake -f makefile
+	fi
+}
 
-echo
-SYM=' ' hipshit "${fg[blue]}You dirty hacker." \
-        "${fg[green]}Look at this mess." \
-        "${reset_color}Fuck it, ${bold_color}checkinstall${reset_color} >& ${bold_color}${fg[red]}/dev/hell${reset_color}"
+main() {
+	zparseopts -D -- h=o_help -o_help=o_help i=o_install
 
-# troll toll
-autoload -Uz place-mouse-cursor
-place-mouse-cursor
+	if [ -n "$o_help" ]; then
+		usage
+		return
+	fi
+
+	hipshit "${bold_color}${fg[blue]}Performing ritual of the three prayers${reset_color}"
+	echo
+
+	compile
+
+	if [ $o_install -eq 0 ]; then
+		msg=("${reset_color}Fuck it, ${bold_color}dirtyinstall${reset_color} >& ${bold_color}${fg[red]}/dev/hell${reset_color}")
+	else
+		msg=("${reset_color}Don't worry brother, already ${bold_color}dirtyinstall${reset_color}'d for you.${reset_color}")
+
+		verbose-call dirtyinstall
+	fi
+
+	echo
+	SYM=' ' hipshit "${fg[blue]}You dirty hacker." \
+		"${fg[green]}Look at this mess." \
+		"$msg"
+}
+
+main "$@"
 

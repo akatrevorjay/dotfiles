@@ -5,5 +5,5 @@ set -xv
 local compdirs=($ZDOTDIRS $HOME ~/.cache/zplug)
 compdirs=($compdirs(-/))
 
-\rm -rvf ~/.cache/zsh ${^compdirs}/{{.,}*zcompdump*,.cache}(.)
+\rm -rvf ~/.cache/zplug/.cache ~/.cache/zsh ${^compdirs}/{{.,}*zcompdump*,.cache}(.)
 

@@ -20,7 +20,7 @@ zmodload -i zsh/complist
 zstyle ':completion:*' rehash true
 zstyle ':completion:*' auto-rehash true
 
-zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' use-compctl true
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' verbose yes
 zstyle ':completion:*' extra-verbose yes

@@ -1,137 +1,167 @@
 # URL shorthands and replacements
 [url "git@github.com:"]
-	insteadOf = "gh:"
-	insteadOf = "github:"
-	insteadOf = "hub:"
-	pushInsteadOf = "gh:"
-	pushInsteadOf = "github:"
-	pushInsteadOf = "hub:"
+    insteadOf = "gh:"
+    insteadOf = "github:"
+    insteadOf = "hub:"
+    pushInsteadOf = "gh:"
+    pushInsteadOf = "github:"
+    pushInsteadOf = "hub:"
 
-	# enforce url
-	#insteadOf = "git://github.com/"
-	#insteadOf = "https://github.com/"
-	#pushInsteadOf = "git://github.com/"
-	#pushInsteadOf = "https://github.com/"
+    # enforce url
+    #insteadOf = "git://github.com/"
+    #insteadOf = "https://github.com/"
+    #pushInsteadOf = "git://github.com/"
+    #pushInsteadOf = "https://github.com/"
 
 [url "git@gist.github.com:"]
-	insteadOf = "gst:"
-	insteadOf = "gist:"
-	pushInsteadOf = "gist:"
-	pushInsteadOf = "git://gist.github.com/"
+    insteadOf = "gst:"
+    insteadOf = "gist:"
+    pushInsteadOf = "gist:"
+    pushInsteadOf = "git://gist.github.com/"
 
-	# enforce url
-	#insteadOf = "git://gist.github.com/"
-	#insteadOf = "https://gist.github.com/"
-	#pushInsteadOf = "git://gist.github.com/"
-	#pushInsteadOf = "https://gist.github.com/"
+    # enforce url
+    #insteadOf = "git://gist.github.com/"
+    #insteadOf = "https://gist.github.com/"
+    #pushInsteadOf = "git://gist.github.com/"
+    #pushInsteadOf = "https://gist.github.com/"
 
 # Common aliases
 [alias]
-	cl = clone
-	co = checkout
-	st = status
-	br = branch
+    aa = add --all
+    cl = clone
+    co = checkout
+    st = status -sb
+    br = branch
+    ci = commit --verbose
+    di = diff
+    ds = diff --staged
+    dt = difftool --no-prompt
 
-	c = checkout
-	b = branch
+    co = checkout
 
-	# Clone a repository including all submodules
-	clone = clone --recursive
-	ll = log --decorate --branches --graph
-	log = log --decorate --graph
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
+    pl = pull
 
-	wu = log --stat origin..@{0}
-	upbase = rebase '@{u}'
+    ps = push
+    pom = push origin master
+    pod = push origin develop
 
-	type = cat-file -t
-	dump = cat-file -p
+    rb = rebase -i HEAD~10
 
-	# View abbreviated SHA, description, and history graph of the latest 20 commits
-	short = log --pretty=oneline -n 20 --graph --abbrev-commit
+    lo = log --oneline -n 15
+    lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
+    ls = log --stat -n 5
+    lol = log --oneline --graph --all --decorate
+    g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
+    g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
 
-	# View the current working tree status using the short format
-	s = status -s
+    wc = whatchanged -p --abbrev-commit --pretty=medium
 
-	# Show the diff between the latest commit and the current state
-	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+    c = checkout
+    b = branch
 
-	# `git di $number` shows the diff between the state `$number` revisions ago and the current state
-	di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+    # Clone a repository including all submodules
+    clone = clone --recursive
+    ll = log --decorate --branches --graph
+    log = log --decorate --graph
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
 
-	# Pull in remote changes for the current repository and all its submodules
-	p = !"git pull; git submodule foreach git pull origin master"
+    wu = log --stat origin..@{0}
+    upbase = rebase '@{u}'
 
-	# Commit all changes
-	ca = !git add -A && git commit -av
+    type = cat-file -t
+    dump = cat-file -p
 
-	# Switch to a branch, creating it if necessary
-	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+    short = log --pretty=oneline -n 20 --graph --abbrev-commit
 
-	# Show verbose output about tags, branches or remotes
-	tags = tag -l
-	branches = branch -a
-	remotes = remote -v
+    # View the current working tree status using the short format
+    s = status -s
 
-	# Amend the currently staged files to the latest commit
-	amend = commit --amend --reuse-message=HEAD
+    # Show the diff between the latest commit and the current state
+    d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
 
-	# Credit an author on the latest commit
-	credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
+    # `git di $number` shows the diff between the state `$number` revisions ago and the current state
+    di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
 
-	# Interactive rebase with the given number of latest commits
-	reb = "!r() { git rebase -i HEAD~$1; }; r"
+    # Pull in remote changes for the current repository and all its submodules
+    p = !"git pull; git submodule foreach git pull origin master"
 
-	# Remove the old tag with this name and tag the latest commit with it.
-	retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
+    # Commit all changes
+    ca = !git add -A && git commit -av
 
-	# Find branches containing commit
-	fb = "!f() { git branch -a --contains $1; }; f"
+    # Switch to a branch, creating it if necessary
+    go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
-	# Find tags containing commit
-	ft = "!f() { git describe --always --contains $1; }; f"
+    # Show verbose output about tags, branches or remotes
+    tags = tag -l
+    branches = branch -a
+    remotes = remote -v
 
-	# Find commits by source code
-	fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+    # Amend the currently staged files to the latest commit
+    amend = commit --amend --reuse-message=HEAD --verbose
 
-	# Find commits by commit message
-	fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+    # Credit an author on the latest commit
+    credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
-	# Remove branches that have already been merged with master
-	# a.k.a. ‘delete merged’
-	dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+    # Interactive rebase with the given number of latest commits
+    reb = "!r() { git rebase -i HEAD~$1; }; r"
 
-	# List contributors with number of commits
-	contributors = shortlog --summary --numbered
-	scores = shortlog --summary --numbered
+    # Remove the old tag with this name and tag the latest commit with it.
+    retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
-	# Merge GitHub pull request on top of the `master` branch
-	mpr = "!f() { \
-		if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
-		git fetch origin refs/pull/$1/head:pr/$1 && \
-		git rebase master pr/$1 && \
-		git checkout master && \
-		git merge pr/$1 && \
-		git branch -D pr/$1 && \
-		git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-		fi \
-		}; f"
+    # Find branches containing commit
+    fb = "!f() { git branch -a --contains $1; }; f"
 
-	# legit aliases
-	branches = !legit branches
-	graft = !legit graft
-	harvest = !legit harvest
-	publish = !legit publish
-	unpublish = !legit unpublish
-	sprout = !legit sprout
-	sync = !legit sync
-	switch = !legit switch
-	resync = !legit resync
+    # Find tags containing commit
+    ft = "!f() { git describe --always --contains $1; }; f"
 
-	root = rev-parse --show-toplevel
+    # Find commits by source code
+    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 
-	conflicts = diff --name-only --diff-filter=U --relative
-	edit-conflicts = "!$EDITOR $(git conflicts)"
-	add-conflicts = "!git add $(git conflicts)"
+    # Find commits by commit message
+    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+
+    # Remove branches that have already been merged with master
+    # a.k.a. ‘delete merged’
+    dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
+
+    # List contributors with number of commits
+    contributors = shortlog --summary --numbered
+    scores = shortlog --summary --numbered
+
+    # Merge GitHub pull request on top of the `master` branch
+    mpr = "!f() { \
+        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+        git fetch origin refs/pull/$1/head:pr/$1 && \
+        git rebase master pr/$1 && \
+        git checkout master && \
+        git merge pr/$1 && \
+        git branch -D pr/$1 && \
+        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+        fi \
+        }; f"
+
+    # legit aliases
+    branches = !legit branches
+    graft = !legit graft
+    harvest = !legit harvest
+    publish = !legit publish
+    unpublish = !legit unpublish
+    sprout = !legit sprout
+    sync = !legit sync
+    switch = !legit switch
+    resync = !legit resync
+
+    root = rev-parse --show-toplevel
+
+    conflicts = diff --name-only --diff-filter=U --relative
+    edit-conflicts = "!$EDITOR $(git conflicts)"
+    add-conflicts = "!git add $(git conflicts)"
+
+    merge-to = "!f() { git push $(git rev-parse --show-toplevel) $(git rev-parse --abbrev-ref HEAD):${1:?No dest branch given}; }; f"
+
+    modified = ls-files -m
+    edit-modified = "!$EDITOR $(git modified)"
+    unstage = reset HEAD --
 

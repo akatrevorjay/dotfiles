@@ -1,7 +1,23 @@
 #!/bin/zsh
-# Set base history settings, ie extended to include timestamps, don't trample
-setopt histignorealldups hist_ignore_space hist_append sharehistory extendedhistory
-setopt histreduceblanks histlexwords inc_append_history_time
+
+setopt hist_fcntl_lock
+setopt extended_history
+setopt bang_hist
+
+# Whenever the user enters a line with history expansion, don't execute the line directly; instead, perform history expansion and reload the line into the editing buffer.
+setopt hist_verify
+
+# This option both imports new commands from the history file, and also causes your typed commands to be appended to the history file (the latter is like specifying INC_APPEND_HISTORY,
+# which should be turned off if this option is in effect).  The history lines are also output with timestamps ala EXTENDED_HISTORY (which makes it easier to find the spot where we left
+# off reading the file after it gets re-written).
+setopt share_history
+
+#setopt hist_ignore_all_dups
+setopt hist_lex_words
+setopt hist_reduce_blanks
+setopt hist_ignore_space
+setopt hist_expire_dups_first hist_save_no_dups hist_find_no_dups
+
 
 # Keep many lines of history within the shell and save it to $ZDOTDIR/.zsh_history:
 HISTSIZE=75000

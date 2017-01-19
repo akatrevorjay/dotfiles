@@ -34,12 +34,17 @@ Plug 'mhinz/vim-startify'
 "" Tasks
 ""
 
-" Taskwarrior: Fucking sick ftw
-Plug 'farseer90718/vim-taskwarrior', {'on': ['TW', 'TWAdd']}
+Plug 'vimwiki/vimwiki'
 
-" Taskwarrior: Better interface
-Plug 'vimwiki/vimwiki', {'on': 'Vimwiki'}
-Plug 'tbabej/taskwiki', {'on': 'TaskWiki'}
+" Taskwarrior: Fucking sick ftw
+if executable('task')
+    Plug 'farseer90718/vim-taskwarrior'
+    " Better interface
+    Plug 'tbabej/taskwiki'
+
+    " Taskwarrior: Better interface
+    Plug 'tbabej/taskwiki'
+endif
 
 " Outlines (uses utl)
 "Plug 'vim-voom/VOoM'
@@ -65,3 +70,6 @@ Plug 'tbabej/taskwiki', {'on': 'TaskWiki'}
 "let b:posero_fake_type = '\v(.*)'
 
 "Plug 'sotte/presenting.vim'
+
+"Plug 'cohama/lexima.vim'
+

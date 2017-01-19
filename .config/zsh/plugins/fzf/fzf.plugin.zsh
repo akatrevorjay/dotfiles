@@ -23,4 +23,4 @@ source-with-force $fzf_path/shell/*.zsh
 unset fzf_path
 
 #bindkey '\ef' fzf-file-widget
-#bindkey '\e
+

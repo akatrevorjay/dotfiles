@@ -4,7 +4,7 @@
 
 local name
 for name in "$@"; do
-    for fn in ${^ZDOTDIRS}/themes/$name{,.zsh,.sh}(-.); do
+    for fn in ${^ZDOTDIRS}/themes/$name{,.zsh,.sh}(-.N); do
         source $fn
         return 0
     done

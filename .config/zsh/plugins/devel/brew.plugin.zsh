@@ -1,5 +1,5 @@
 #!/bin/zsh
-case "$SYSTEM" in
+case $OSTYPE:l in
 	linux*)
 		# linuxbrew (for git builds)
 		function () {

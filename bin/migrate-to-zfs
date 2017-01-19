@@ -1,62 +1,36 @@
 #!/bin/zsh
-set -exv
+set -eo pipefail
+set -xv
 
-autoload -Uz zparseopts
+source $0:h/zfs-lib.zsh
 
 self_given=$0
 self=${0:t}
 
 e() {
-	echo -e "[$self_given]" "$@"
+    echo -e "[$self_given]" "$@"
 }
 
 error() {
-	local level="${level:-error}"
-	e "$level:" "$@" >&2
+    local level="${level:-error}"
+    e "$level:" "$@" >&2
 }
 
 death() {
-	level=death error "$@"
-	exit 1
+    level=death error "$@"
+    exit 1
 }
 
 usage() {
-	echo "Usage: $self_given PATH [DATASET]"
+    echo "Usage: $self_given PATH [DATASET]"
 }
-
-zfs-exists zpool-exists() {
-	${0%%-*} get -H name $1 #>/dev/null 2>&1
-}
-
-zfs-list zpool-list () {
-    local cmd=(${(s:-:)0})
-
-    local props=(name)
-	zparseopts -DK p:=props
-
-	$cmd -Ho "${(j:,:)props}" "$@"
-}
-
-zdataset-exists() {
-	zfs get -H name $1 #>/dev/null 2>&1
-}
-
-zfs-get() {
-	local dataset="$1"; shift
-	zfs-list -d $dataset -- "$@"
-}
-
-
 
 find-path() {
     local path=$1:a
 
-
     local cur=$path
     while [[ -n $cur && $cur = /* ]]; do
         cur=${cur%/*}
-
-        
     done
 
     local cur

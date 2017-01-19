@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+case $1 in
+	sudo)
+		echo "You got your argument order all goofed up you dumb dummy. lmftfy." >&2
+		exec sudo stdbuf -oL "${@:2}"
+		;;
+esac
+
+exec stdbuf -oL "$@"

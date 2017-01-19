@@ -1,3 +1,5 @@
 #!/bin/zsh
 # Since this is deduped, you end up with a nicely clean path.
 path=(${path:#^$HOME/*} $path)
+# Remove extraneous slashes
+path=(${path//\/\//\/})

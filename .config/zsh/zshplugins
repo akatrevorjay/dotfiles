@@ -10,9 +10,9 @@ zplug "akatrevorjay/fasd"
 
 zplug "willghatch/zsh-hooks"
 #zplug "mafredri/zsh-async"
-zplug "kennethreitz/autoenv"
+#zplug "kennethreitz/autoenv"
 
-zplug "akatrevorjay/composure", lazy:true
+zplug "akatrevorjay/composure"
 zplug "psprint/zsnapshot", lazy:true
 zplug "mollifier/zload", lazy:true
 zplug "Tarrasch/zsh-functional", lazy:true
@@ -21,13 +21,13 @@ zplug "Tarrasch/zsh-functional", lazy:true
 #zplug "b4b4r07/emoji-cli", lazy:true
 #zplug 'LockonS/terminal-workload-report', lazy:true
 #zplug 'aphelionz/strerror.plugin.zsh', lazy:true
-
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#zplug "RobSis/zsh-completion-generator"
+zplug "molovo/revolver", lazy:true
+GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+zplug "RobSis/zsh-completion-generator"
 
 zplug "zsh-users/zsh-completions"
 zplug "akatrevorjay/nix-zsh-completions"
 
 zplug "hlissner/zsh-autopair"
-zplug "zsh-users/zsh-syntax-highlighting", nice:15
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
 

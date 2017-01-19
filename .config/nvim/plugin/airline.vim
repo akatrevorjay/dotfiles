@@ -1,5 +1,7 @@
 " Airline:
 
+let g:airline#util#async = 1
+
 let g:airline_powerline_fonts = 1
 
 " enable iminsert detection
@@ -70,22 +72,21 @@ let g:airline_mode_map = {
 "      \ 't'  : 'term',
 "      \ }
 
-
-"let g:airline#extensions#tmuxline#enabled = 1
-"let g:airline#extensions#syntastic#enabled = 1
-"let g:airline#extensions#whitespace#enabled = 1
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tagbar#enabled = 1
-"let g:airline#extensions#hunks#enabled = 1
-"let g:airline#extensions#csv#enabled = 1
-"let g:airline#extensions#bufferline#enabled = 1
-""let g:airline#extensions#eclim#enabled = 1
-"let g:airline#extensions#virtualenv#enabled = 1
-""let g:airline#extensions#capslock#enabled = 1
-"let g:airline#extensions#ycm#enabled = 1
-"let g:airline#extensions#promptline#enabled = 1
-""" enable/disable fugitive/lawrencium integration >
-"let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tmuxline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline#extensions#whitespace#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#hunks#enabled = 1
+let g:airline#extensions#csv#enabled = 1
+let g:airline#extensions#bufferline#enabled = 1
+"let g:airline#extensions#eclim#enabled = 1
+let g:airline#extensions#virtualenv#enabled = 1
+"let g:airline#extensions#capslock#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#promptline#enabled = 1
+"" enable/disable fugitive/lawrencium integration >
+let g:airline#extensions#branch#enabled = 1
 
 let g:airline#extensions#default#section_use_groupitems = 1
 
