@@ -60,13 +60,18 @@ e "source_path=$source_path dataset=$dataset tmp_dataset=$tmp_dataset"
 [[ -n "$source_path" && -n "$dataset" ]] || death "Bad arguments:" "source_path='$source_path' dataset='$dataset'"
 [[ -d "$source_path" ]] || death "Given source_path='$source_path' is not a directory"
 
-! zdataset-exists "$dataset" || death "Dataset already exists: $dataset"
-! zdataset-exists "$tmp_dataset" || death "Dataset already exists: $tmp_dataset"
+! zfs-exists "$dataset" || death "Dataset already exists: $dataset"
+
+if zfs-exists "$tmp_dataset"; then
+	error "Dataset already exists: $tmp_dataset"
+	zfs destroy -r $tmp_dataset
+fi
 
 zfs create "$tmp_dataset"
-mountpoint=$(zfs-get "$tmp_dataset" mountpoint)
+sleep 1
 
-mounted=$(zfs-get "$tmp_dataset" mounted)
+mountpoint=$(zfs-list -p mountpoint "$tmp_dataset")
+mounted=$(zfs-list -p mounted  "$tmp_dataset")
 [[ "$mounted" == "yes" ]] || death "Not mounted: tmp_dataset=$tmp_dataset"
 
 rsync -avhPS "$source_path/" "$mountpoint"
