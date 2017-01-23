@@ -1,3 +1,11 @@
+# Phone related carp
 - /Mako/**
 - /Titanium*Backup/**
+
+# Too beeg
 - /Google\ Photos/**
+
+# Crypt
+- /crypt/**
+- /Sync/crypt/**
+

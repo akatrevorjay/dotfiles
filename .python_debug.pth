@@ -1,0 +1,5 @@
+try: import __builtin__ as _; except ImportError: import builtins as _; _.B = lambda i=__import__: i('pdb').Pdb().set_trace(i('sys')._getframe().f_back)
+try: import __builtin__ as _; except ImportError: import builtins as _; _.PM = lambda: __import__('pdb').pm()
+try: import __builtin__ as _; except ImportError: import builtins as _; _.print_stack = __import__('traceback').print_stack
+try: import __builtin__ as _; except ImportError: import builtins as _; _.pprint = __import__('pprint').pprint
+try: import __builtin__ as _; except ImportError: import builtins as _; _.pp = __import__('pprint').pprint
