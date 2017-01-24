@@ -31,3 +31,8 @@ zplug "akatrevorjay/nix-zsh-completions"
 zplug "hlissner/zsh-autopair"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
+# Supports oh-my-zsh plugins and the like
+for p in lib/completion plugins/{ubuntu,emoji,httpie}; do
+	zplug "$p", from:oh-my-zsh
+done
+
