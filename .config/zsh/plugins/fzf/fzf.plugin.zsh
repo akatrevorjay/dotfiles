@@ -1,11 +1,11 @@
 #!/bin/zsh
-: ${FZF_ALL_OPTS:="--tiebreak=begin,index --ansii --color=dark --cycle --toggle-sort=ctrl-r"}
+#: ${FZF_ALL_OPTS:="--tiebreak=begin,index --color=dark --cycle --toggle-sort=ctrl-r"}
 
-: ${FZF_DEFAULT_OPTS:=$FZF_ALL_OPTS}
+#: ${FZF_DEFAULT_OPTS:=$FZF_ALL_OPTS}
 
-: ${FZF_CTRL_R_OPTS:-$FZF_ALL_OPTS}
-: ${FZF_CTRL_T_OPTS:-$FZF_ALL_OPTS}
-: ${FZF_ALT_C_OPTS:-$FZF_ALL_OPTS}
+#: ${FZF_CTRL_R_OPTS:-$FZF_ALL_OPTS}
+#: ${FZF_CTRL_T_OPTS:-$FZF_ALL_OPTS}
+#: ${FZF_ALT_C_OPTS:-$FZF_ALL_OPTS}
 
 local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
 

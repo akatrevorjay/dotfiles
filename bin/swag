@@ -4,7 +4,7 @@ set -eo pipefail
 source ~/.config/sway/env
 
 cmd=(
-	#dbus-launch --exit-with-session
+	dbus-launch --exit-with-session
 	sway
 	#-d
 	#-V

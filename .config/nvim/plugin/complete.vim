@@ -111,6 +111,14 @@ if has('nvim')
     "let g:deoplete#sources#go = 'vim-go'
     let g:deoplete#sources#go#package_dot = 1
 
+    " clang
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0.0'
+    let g:deoplete#sources#clang#std#c = 'c11'
+    let g:deoplete#sources#clang#std#cpp = 'c++1z'
+    let g:deoplete#sources#clang#sort_algo = 'priority'
+    let g:deoplete#sources#clang#clang_complete_database = '.'
+
     " Keys
 
     "" <C-h>, <BS>: close popup and delete backword char.
