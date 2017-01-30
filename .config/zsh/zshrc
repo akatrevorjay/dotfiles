@@ -75,20 +75,12 @@ function zplugins.load-all-in() {
 ## Collect plugins
 ##
 
-# Stub antibody that just queues the commands for later
-function antibody() {
-	zplugins.load "$@"
-}
-
 # Checks newest mtime to see if cache needs to be regenerated.
 ZPLUGINS_CHECK=($ZSH_CACHE_DIR/zplugins.bundle(-.N))
 # Plugin sources
 ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
 # Collect plugin list
 source-with-force $ZPLUGINS_FILES
-
-# Remove stub
-unfunction antibody
 
 ##
 ## Now we can apply them as necessary upon first call transparently.
@@ -98,7 +90,7 @@ unfunction antibody
 function zplugins.antibody.init-hooks() {
 	if ! (( ${+commands[antibody]} )); then
 		echo "- Antibody not found in path. Cannot/will not continue. Deal with it." >&2
-		echo "  >> go get -u -x -v github.com/getantibody/antibody" >&2
+		echo "  >> go get -u -x -v github.com/akatrevorjay/antibody" >&2
 		return 1
 	fi
 
@@ -106,7 +98,7 @@ function zplugins.antibody.init-hooks() {
 }
 
 function zplugins.lazy.bundle() {
-	command antibody bundle "${(0)ZPLUGINS_Q}"
+	antibody bundle "${(0)ZPLUGINS_Q}"
 }
 
 function zplugins.lazy.apply() {
@@ -194,3 +186,6 @@ autoload -Uz fix-{f,}path-order
 fix-path-order
 fix-fpath-order
 
+
+# ZSH Higher Order Functions
+. $HOME/.zsh/functional/functional.plugin.zsh
