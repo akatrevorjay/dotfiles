@@ -37,22 +37,14 @@ fi
 # Reset zplug queue
 typeset -a ZPLUGINS_Q=()
 
-# Stub antibody that just queues the commands for later
-function zplugins.antibody.stub.queue() {
+function zplugins.load() {
+	set -- $1
 	ZPLUGINS_Q+=(${(q)argv} $'\0')
-}
-
-function antibody() {
-	zplugins.antibody.stub.queue "$@"
 }
 
 ##
 ## Zplugins loader API
 ##
-
-function zplugins.load() {
-	antibody "$@"
-}
 
 function zplugins.load-all-in() {
 	local p
@@ -83,6 +75,11 @@ function zplugins.load-all-in() {
 ## Collect plugins
 ##
 
+# Stub antibody that just queues the commands for later
+function antibody() {
+	zplugins.load "$@"
+}
+
 # Checks newest mtime to see if cache needs to be regenerated.
 ZPLUGINS_CHECK=($ZSH_CACHE_DIR/zplugins.bundle(-.N))
 # Plugin sources
@@ -90,52 +87,47 @@ ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
 # Collect plugin list
 source-with-force $ZPLUGINS_FILES
 
+# Remove stub
+unfunction antibody
+
 ##
 ## Now we can apply them as necessary upon first call transparently.
 ## Avoids races and dependency woes since now we can order accordingly.
 ##
 
-function zplugins.antibody.init() {
+function zplugins.antibody.init-hooks() {
 	if ! (( ${+commands[antibody]} )); then
 		echo "- Antibody not found in path. Cannot/will not continue. Deal with it." >&2
 		echo "  >> go get -u -x -v github.com/getantibody/antibody" >&2
 		return 1
 	fi
 
-	source <(antibody init)
+	source <(command antibody init)
+}
+
+function zplugins.lazy.bundle() {
+	command antibody bundle "${(0)ZPLUGINS_Q}"
 }
 
 function zplugins.lazy.apply() {
-	#local o_defer=() o_from=()
-	#zparseopts -D -K -defer:=o_defer -from:=o_from
-
-	#local p; for p in ${(0)ZPLUGINS}; do
-	#    p=(${(Z+Cn+)p})
-	#    "${(@)p}"
-	#done
-
-	command antibody bundle \
-		"${(0)ZPLUGINS_Q}" \
+	source <(
+		zplugins.lazy.bundle \
 		| tee $ZSH_CACHE_DIR/zplugins.bundle
-
-	#ZPLUGINS_Q=()
-
-	source $ZSH_CACHE_DIR/zplugins.bundle
+	)
 }
 
-function zplugins.antibody.stub.apply {
-	unfunction antibody
+#function zplugins.antibody.stub.apply {
+#    unfunction antibody
+#    zplugins.lazy.apply
 
-	zplugins.lazy.apply
+#    #zplugins.antibody.init
 
-	#zplugins.antibody.init
+#    ! (( $# )) || antibody "$@"
+#}
 
-	! (( $# )) || antibody "$@"
-}
-
-function antibody() {
-	zplugins.antibody.stub.apply "$@"
-}
+#function antibody() {
+#    zplugins.antibody.stub.apply "$@"
+#}
 
 ##
 ## Cache validation
