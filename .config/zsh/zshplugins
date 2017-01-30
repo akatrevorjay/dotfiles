@@ -1,38 +1,37 @@
 #!/bin/zsh
 
-zplug "zplug/zplug", lazy:true
-
 # Finally
 zplugins.load-all-in plugins
 
-zplug "zsh-users/zsh-history-substring-search"
-zplug "akatrevorjay/fasd"
+zplugins.load "zsh-users/zsh-history-substring-search"
+zplugins.load "akatrevorjay/fasd"
 
-zplug "willghatch/zsh-hooks"
-#zplug "mafredri/zsh-async"
-#zplug "kennethreitz/autoenv"
+zplugins.load "willghatch/zsh-hooks"
+zplugins.load "mafredri/zsh-async"
+zplugins.load "kennethreitz/autoenv"
 
-zplug "akatrevorjay/composure"
-zplug "psprint/zsnapshot", lazy:true
-zplug "mollifier/zload", lazy:true
-zplug "Tarrasch/zsh-functional", lazy:true
-#zplug "Tarrasch/zsh-bd", lazy:true
-#zplug "Tarrasch/zsh-colors", lazy:true
-#zplug "b4b4r07/emoji-cli", lazy:true
-#zplug 'LockonS/terminal-workload-report', lazy:true
-#zplug 'aphelionz/strerror.plugin.zsh', lazy:true
-zplug "molovo/revolver", lazy:true
+zplugins.load "akatrevorjay/composure"
+zplugins.load "psprint/zsnapshot"
+zplugins.load "mollifier/zload"
+zplugins.load "Tarrasch/zsh-functional"
+#zplugins.load "Tarrasch/zsh-bd" --lazy true
+#zplugins.load "Tarrasch/zsh-colors" --lazy true
+#zplugins.load "b4b4r07/emoji-cli" --lazy true
+#zplugins.load 'LockonS/terminal-workload-report' --lazy true
+zplugins.load 'aphelionz/strerror.plugin.zsh'
+zplugins.load "molovo/revolver"
 GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-zplug "RobSis/zsh-completion-generator"
+zplugins.load "RobSis/zsh-completion-generator"
+zplugins.load "jamesob/desk" --dir "shell_plugins/zsh"
 
-zplug "zsh-users/zsh-completions"
-zplug "akatrevorjay/nix-zsh-completions"
+zplugins.load "zsh-users/zsh-completions"
+zplugins.load "akatrevorjay/nix-zsh-completions"
 
-zplug "hlissner/zsh-autopair"
-zplug "zsh-users/zsh-syntax-highlighting", defer:2
+zplugins.load "hlissner/zsh-autopair"
+zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
 
-# Supports oh-my-zsh plugins and the like
-for p in lib/completion plugins/{ubuntu,emoji,httpie}; do
-	zplug "$p", from:oh-my-zsh
-done
+## Supports oh-my-zsh plugins and the like
+#for p in lib/completion plugins/{ubuntu,emoji,httpie}; do
+#    zplugins.load "$p", from:oh-my-zsh, defer:1
+#done
 

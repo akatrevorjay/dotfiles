@@ -24,32 +24,34 @@ if [[ -z $ZSH_CACHE_DIR ]]; then
 	echo "- ZSH_CACHE_DIR is not set?" >&2
 	return 1
 elif [[ ! -e $ZSH_CACHE_DIR ]]; then
+	echo "- Creating ZSH_CACHE_DIR=\"$ZSH_CACHE_DIR\"" >&2
 	mkdir -pv $ZSH_CACHE_DIR
 fi
 
-: ${ZPLUG_HOME:=$XDG_CACHE_HOME/zplug}
-: ${ZPLUG_CACHE_DIR:=$ZPLUG_HOME/.cache}
-: ${ZPLUG_REPOS:=$ZPLUG_HOME/repos}
-zstyle :zplug:tag depth 1
+##
+## Queue loads via mocking them.
+## We'll run them once we have the full list if necessary.
+## Avoids races and dependency woes since now we can order accordingly.
+##
 
-: ${ZPLUG_DIR:=$ZPLUG_REPOS/zplug/zplug}
-: ${ZPLUG_REPO:=https://github.com/zplug/zplug.git}
+# Reset zplug queue
+typeset -a ZPLUGINS_Q=()
 
-ZPLUGINS_CHECK=($ZPLUG_CACHE_DIR(-/N))
-ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
-
-# Reset zplugs
-typeset -a zplug_q=()
-typeset -A zplugs=()
-
-# Stub zplug that just queues the commands for later
-function zplugins.zplug.stub() {
-	set -- zplug "$@"
-	zplug_q+=("${(q)@}" $'\0')
+# Stub antibody that just queues the commands for later
+function zplugins.antibody.stub.queue() {
+	ZPLUGINS_Q+=(${(q)argv} $'\0')
 }
 
-function zplug() {
-	zplugins.zplug.stub "$@"
+function antibody() {
+	zplugins.antibody.stub.queue "$@"
+}
+
+##
+## Zplugins loader API
+##
+
+function zplugins.load() {
+	antibody "$@"
 }
 
 function zplugins.load-all-in() {
@@ -73,48 +75,71 @@ function zplugins.load-all-in() {
 			defer=0
 		fi
 
-		zplug "$p", from:local, defer:$defer
+		zplugins.load $p --from local --defer $defer
 	done
 }
 
-# TODO check plugins difference on hook and auto-load
+##
+## Collect plugins
+##
+
+# Checks newest mtime to see if cache needs to be regenerated.
+ZPLUGINS_CHECK=($ZSH_CACHE_DIR/zplugins.bundle(-.N))
+# Plugin sources
+ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
+# Collect plugin list
 source-with-force $ZPLUGINS_FILES
 
-# Install zplug if we don't have it.
-if [[ ! -d $ZPLUG_DIR ]]; then
-	echo "- No zplug found in ZPLUG_DIR=$ZPLUG_DIR" >&2
+##
+## Now we can apply them as necessary upon first call transparently.
+## Avoids races and dependency woes since now we can order accordingly.
+##
 
-	echo "- Cloning zplug into ZPLUG_DIR=$ZPLUG_DIR" >&2
-	if ! git clone $ZPLUG_REPO $ZPLUG_DIR; then
-		echo "- Failed." >&2
+function zplugins.antibody.init() {
+	if ! (( ${+commands[antibody]} )); then
+		echo "- Antibody not found in path. Cannot/will not continue. Deal with it." >&2
+		echo "  >> go get -u -x -v github.com/getantibody/antibody" >&2
 		return 1
 	fi
-fi
 
-function zplugins.zplug.apply {
-	# Run through zplug_q
-	#local ZPLUG_LOADFILE=/dev/null
-
-	local p
-	for p in ${(0)zplug_q}; do
-		p=(${(Z+Cn+)p})
-
-		"${(@)p}"
-	done
+	source <(antibody init)
 }
 
-function zplugins.zplug.lazy {
-	unfunction zplug
-	source $ZPLUG_REPOS/zplug/zplug/init.zsh
+function zplugins.lazy.apply() {
+	#local o_defer=() o_from=()
+	#zparseopts -D -K -defer:=o_defer -from:=o_from
 
-	zplugins.zplug.apply
+	#local p; for p in ${(0)ZPLUGINS}; do
+	#    p=(${(Z+Cn+)p})
+	#    "${(@)p}"
+	#done
 
-	zplug "$@"
+	command antibody bundle \
+		"${(0)ZPLUGINS_Q}" \
+		| tee $ZSH_CACHE_DIR/zplugins.bundle
+
+	#ZPLUGINS_Q=()
+
+	source $ZSH_CACHE_DIR/zplugins.bundle
 }
 
-function zplug() {
-	zplugins.zplug.lazy "$@"
+function zplugins.antibody.stub.apply {
+	unfunction antibody
+
+	zplugins.lazy.apply
+
+	#zplugins.antibody.init
+
+	! (( $# )) || antibody "$@"
 }
+
+function antibody() {
+	zplugins.antibody.stub.apply "$@"
+}
+
+##
+## Cache validation
+##
 
 function max() {
 	local sorted=(${(n)argv})
@@ -127,6 +152,8 @@ function min() {
 	[[ $#sorted -eq 0 ]] \
 		|| echo ${sorted[1]}
 }
+
+zmodload -F zsh/stat b:zstat
 
 function zplugins.cache.is-clean() {
 	if [ ! -d $ZPLUG_CACHE_DIR ]; then
@@ -147,21 +174,23 @@ function zplugins.cache.is-clean() {
 	fi
 }
 
-if zplugins.cache.is-clean; then
-	zplug load
-else
-	echo "- Creating cache (may take a second)"
-	zplug clear
+##
+## Check cache
+##
 
-	if ! zplug check --verbose; then
-		printf -- "-- Found changes in zshplugins. Install them? [y/N]: "
-		if read -q; then
-			echo; zplug install
-		fi
-	fi
+#if zplugins.cache.is-clean; then
+#    source-with-force $ZPLUGINS_CACHE
+#else
+#    echo "- Creating cache (may take a second)"
+#    antibody <(
+#    zplugins.lazy.apply
+#fi
 
-	zplug load --verbose
-fi
+zplugins.lazy.apply
+
+##
+## Real mode
+##
 
 # local
 source-with-force $LOCAL_ZDOTDIR/zshrc

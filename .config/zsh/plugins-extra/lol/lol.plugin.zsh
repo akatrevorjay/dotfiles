@@ -11,7 +11,7 @@ alias :3='echo'
 alias visible='echo'
 alias invisible='cat'
 alias moar='more'
-alias tldr='less'
+#alias tldr='less'
 alias alwayz='tail -f'
 
 alias icanhas='mkdir'

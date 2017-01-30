@@ -1,6 +1,5 @@
 
 Plug 'tpope/vim-fugitive'
-cabbrev git Git
 
 " Three way merging
 Plug 'idanarye/vim-merginal'

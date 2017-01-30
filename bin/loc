@@ -1,0 +1,57 @@
+#!/bin/zsh
+setopt pipe_fail err_return err_exit
+
+function empty() {
+	return $#
+}
+
+ret=()
+
+function zslice() {
+	local args=("${(@s.:.)1}"); shift
+	local start=${args[1]:-1} stop=${args[2]:-$#} stride=${args[3]:-1}
+
+	ret=()
+	for (( local i=${opts[start]}; i < ${opts[stop]}; i+=${opts[stride]} )) ; do
+		ret+=("${argv[$i]}")
+	done
+}
+
+local o_path=()
+zparseopts -D -K p:=o_path -path=o_path
+
+args=("${(@)argv}")
+
+if ! empty $o_path; then
+	# Notice we start at `1` here.
+	zslice '1::2' "${(@)o_path}"
+	args=("${(@)args:^ret}")
+fi
+
+local cmd=(
+    locate
+    -A  # AND
+    -0  # null-char delim
+    "${(@)args}"
+)
+
+local fzf=(
+	fzf
+	--header="$cmd"
+	--height '50%'
+	--inline-info
+	--tabstop=4
+	--read0  # null-char delim
+
+	--preview="file {}"
+	--preview-window=down:1
+
+	#--preview="head {}"
+	#--preview-window-up:30%
+)
+
+if tty -s && test -t 0 && test -t 1; then
+    $cmd | $fzf
+else
+    $cmd
+fi

@@ -4,7 +4,7 @@
     # Life goals
     local zmodules=(
 		#zsh/attr
-		zsh/db/gdbm
+		#zsh/db/gdbm
 		#zsh/files
 		zsh/zprof
         zsh/cap
@@ -36,5 +36,3 @@
 
     zmodload "${zmodules[@]}"
 }
-
-zmodload -F zsh/stat b:zstat

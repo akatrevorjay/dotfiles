@@ -1,0 +1,1 @@
+--system-site-packages -d ipython[notebook] -d ptpdb -d ptpython -x ptipython

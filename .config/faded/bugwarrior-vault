@@ -1,0 +1,1 @@
+-p python2 --system-site-packages -d bugwarrior -x bugwarrior-vault

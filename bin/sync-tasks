@@ -1,0 +1,8 @@
+#!/bin/zsh
+set -eo pipefail
+
+source ~/.zsh/secrets
+
+bugwarrior-pull
+task sync
+

@@ -178,6 +178,7 @@ add-prefix-paths $DART_HOME
 : ${NIM_HOME:=$HOME/build/Nim}
 export NIM_HOME
 add-prefix-paths $NIM_HOME
+add-prefix-paths $HOME/.nimble
 
 add-prefix-paths $HOME/.local $HOME $HOME/crypt
 

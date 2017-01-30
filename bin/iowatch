@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec sudo watch -d -c -n 1 'S_COLORS=always iostat -j ID -xdc 5 2 | sed -e "0,/^avg-cpu/ d; 4,/^avg-cpu/ {//!d}"'

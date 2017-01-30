@@ -38,8 +38,8 @@
 # intercepted and the "deleted" files will be stored in your trash can:
 
 INTERCEPT_UNLINK = YES
- 
- 
+
+
 # This setting controls the interception of calls to rename(). If it is
 # set to NO, the "real" rename() (the one found in GNU libc) will be
 # used and data might be lost; if it set to YES, calls to rename() will
@@ -53,7 +53,7 @@ INTERCEPT_RENAME = YES
 # set to NO, the "real" fopen() (the one found in GNU libc) will be
 # used and data might be lost; if it set to YES, calls to fopen() will be
 # intercepted and any truncated files will be stored in your trash can:
-  
+
 INTERCEPT_FOPEN = YES
 
 
@@ -62,7 +62,7 @@ INTERCEPT_FOPEN = YES
 # used and data might be lost; if it set to YES, calls to freopen() will
 # be intercepted and any truncated files will be stored in your trash
 # can:
-  
+
 INTERCEPT_FREOPEN = YES
 
 
@@ -77,7 +77,7 @@ INTERCEPT_OPEN = YES
 # This setting sets the default name of the directory in the user's home
 # directory in which "deleted" files will be stored. It mustn't contain
 # any slashes:
-  
+
 TRASH_CAN = Trash
 
 
@@ -94,7 +94,7 @@ TRASH_CAN = Trash
 # (to use the "real" GNU libc function, without the protection of
 # libtrash) or PROTECT (to return an error code without invoking the
 # appropriate function, making sure that even if an error occurs, that
-# file won't be lost): 
+# file won't be lost):
 
 IN_CASE_OF_FAILURE = PROTECT
 
@@ -103,8 +103,8 @@ IN_CASE_OF_FAILURE = PROTECT
 # the environmental variable TRASH_OFF is set), the user gets warned
 # about that fact whenever one of the overriden functions is invoked.
 # Set to either YES or NO:
-  
-SHOULD_WARN = NO
+
+SHOULD_WARN = YES
 
 
 # This setting defines what we will do if asked to destroy a file under
@@ -129,7 +129,7 @@ SHOULD_WARN = NO
 # unlink()ed the files under TRASH_CAN and then proceeded to the others,
 # you would just lose the files you had originally stored under
 # TRASH_CAN itself). In other words, you probably want to set it to YES,
-# and just set it to NO in the environment when you need to forcefully 
+# and just set it to NO in the environment when you need to forcefully
 # remove files under your TRASH_CAN:
 
 PROTECT_TRASH = YES
@@ -140,15 +140,15 @@ PROTECT_TRASH = YES
 # matching file names won't be copied into your trash can before being
 # destroyed. To disable this feature, leave t. Note: You must NOT
 # precede each extension with a dot; e.g., to ignore C source and header
-# files, this setting should be set to 
+# files, this setting should be set to
 #
 # c;h
 #
-# NOT 
+# NOT
 #
 # .c;.h
 
-IGNORE_EXTENSIONS = o;log;aux
+IGNORE_EXTENSIONS = o;log;aux;pyc;pyo;tmp
 
 
 # This setting defines whether hidden files (or files under a hidden
@@ -158,7 +158,7 @@ IGNORE_EXTENSIONS = o;log;aux
 # permanent destruction. Choosing NO causes them to be handled
 # "normally", i.e., they will be moved to your trash can rather than
 # really destroyed:
-  
+
 IGNORE_HIDDEN = NO
 
 
@@ -168,7 +168,7 @@ IGNORE_HIDDEN = NO
 # tells libtrash to "ignore" such files, i.e., to allow their permanent
 # destruction. Choosing NO causes them to be handled "normally", i.e.,
 # they will be moved to your trash can rather than really destroyed:
-  
+
 IGNORE_EDITOR_BACKUP = YES
 
 
@@ -193,7 +193,7 @@ IGNORE_EDITOR_TEMPORARY = YES
 # defaults in important aspects. If you consider this additional
 # protection useful, set this setting to YES; otherwise, choose NO (your
 # libtrash configuration file will, in this case, be handled according
-# to the other rules): 
+# to the other rules):
 
 LIBTRASH_CONFIG_FILE_UNREMOVABLE = YES
 
@@ -223,14 +223,14 @@ LIBTRASH_CONFIG_FILE_UNREMOVABLE = YES
 # it won't be copied to her TRASH_CAN. If GLOBAL_PROTECTION hadn't been
 # set, exactly the same thing would have happened: this request would
 # have been ignored. Summary: UNREMOVABLE_DIRS takes precedence over
-# GLOBAL_PROTECTION. 
+# GLOBAL_PROTECTION.
 #
 # 2- Files under TEMPORARY_DIRS are always ignored: e.g., requests to
 # unlink() files under these dirs are passed on to glibc's unlink()
 # independently of the value of GLOBAL_PROTECTION. It doesn't make any
 # sense to allow storing back-up copies of temporary files; besides,
 # this would make your TRASH_CAN unbrowsable due to the quantity of
-# litter (pun intended). 
+# litter (pun intended).
 #
 # 3- If you set GLOBAL_PROTECTION to YES, and then proceed to delete a
 # file on a partition or file system different from the one on which
@@ -258,9 +258,9 @@ TRASH_SYSTEM_ROOT = SYSTEM_ROOT
 # ever be destroyed by the user running a program under libtrash. They
 # won't be transferred to the user's TRASH_CAN: these requests are
 # simply ignored and an error code is returned after each call to the
-# "wrapped" functions. 
+# "wrapped" functions.
 #
-# NOTES: 
+# NOTES:
 #
 # 1- Each user can choose her own list of "untouchable" dirs.
 #
@@ -290,14 +290,14 @@ UNREMOVABLE_DIRS =/bin;/boot;/boot-partitions;/dev;/etc;/home/l;/lib;/lib64;/opt
 # perform changes in one of the UNREMOVABLE_DIRS or to permanently
 # remove files from my trash can. For that reason, you can now easily
 # remove the directory(ies) you are updating from UNREMOVABLE_DIRS
-# without completely disabling libtrash. 
+# without completely disabling libtrash.
 #
 # Notes:
 #
 # 1- Since this variable lists exceptions to UNREMOVABLE_DIRS, it is
 # empty by default and can't be set in the personal configuration file:
 # it is meant to be used only at the command line (e.g.,
-# "UNCOVER_DIRS=/usr/ rm /usr/foo"). 
+# "UNCOVER_DIRS=/usr/ rm /usr/foo").
 #
 # 2- You can set UNCOVER_DIRS to one or more subdirectories of a (higher
 # level) directory listed in UNREMOVABLE_DIRS. This means that if you
@@ -312,7 +312,7 @@ UNREMOVABLE_DIRS =/bin;/boot;/boot-partitions;/dev;/etc;/home/l;/lib;/lib64;/opt
 # your trash can.
 #
 # 4- AGAIN: (i) Leave UNCOVER_DIRS empty in this file. (ii) Don't set
-# UNCOVER_DIRS in your personal configuration file. ==> (iii) Use it 
+# UNCOVER_DIRS in your personal configuration file. ==> (iii) Use it
 # only as an environmental variable.
 
 UNCOVER_DIRS =
@@ -326,11 +326,11 @@ UNCOVER_DIRS =
 
 TEMPORARY_DIRS = /run;/tmp;/var
 
-# This setting defines a list of directories inside each user's home 
+# This setting defines a list of directories inside each user's home
 # directory under which temporary files are created. We always destroy
-# files under any of these directories. This must be a semi-colon 
+# files under any of these directories. This must be a semi-colon
 # separated list of directory names *relative to the users' home dirs*,
-# and with no leading or trailing slashes. Leave this setting empty 
+# and with no leading or trailing slashes. Leave this setting empty
 # (i.e., enter a newline after the equal sign) if you don't need/want
 # this exception.
 #
@@ -343,7 +343,7 @@ TEMPORARY_DIRS = /run;/tmp;/var
 # be useful if some program creates temporary files in /{$HOME}/temp
 # whenever it is run.
 
-USER_TEMPORARY_DIRS =
+USER_TEMPORARY_DIRS = ,cache
 
 
 # This setting sets a list of directories under which files are really
@@ -358,7 +358,7 @@ USER_TEMPORARY_DIRS =
 # separated list of directories which are used as mount points for
 # removable media in your system. If you wish to have that extra level
 # of protection enabled, just leave this variable unset (i.e., enter a
-# newline after the equal sign) - and don't forget to enable 
+# newline after the equal sign) - and don't forget to enable
 # GLOBAL_PROTECTION, of course):
 
 # NOTE: This variable is ignored if global_protection is disabled.
@@ -376,10 +376,10 @@ REMOVABLE_MEDIA_MOUNT_POINTS = /key;/media;/mnt
 # can also use this variable to make libtrash work from /etc/ld.so.preload
 # without interfering with your boot/shutdown procedure.
 #
-# Notes: 
-# 
+# Notes:
+#
 # 1) Use a semi-colon separated list, no white-space between items.
-# 
+#
 # 2) Not only files with a path listed in EXCEPTIONS lose their
 # protection; any file with a path *starting* with one of the paths
 # listed here loses its protection (eg, both /usr/abcd and /usr/abc/d
@@ -398,7 +398,7 @@ EXCEPTIONS = /etc/mtab;/etc/resolv.conf;/etc/adjtime;/etc/upsstatus;/etc/dhcpc
 # (This is due to the fact that the C compiler interprets the backslash as
 # an escape character.)
 #
- 
+
 IGNORE_RE =
 
-# End of configuration. 
+# End of configuration.

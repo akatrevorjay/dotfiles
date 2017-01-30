@@ -1,0 +1,6 @@
+#!/bin/zsh
+set -eo pipefail
+
+while :; do
+    i3pystatus "$@" >/dev/null 2>&1 && break || sleep 30
+done

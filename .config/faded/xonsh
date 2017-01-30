@@ -1,1 +1,1 @@
--p python3 -d PLY -d prompt-toolkit -d pygments -d xonsh
+-p python3 -d PLY -d prompt-toolkit -d pygments -d xonsh -d xonsh-apt-tabcomplete -d xonsh-autoxsh -d xonsh-docker-tabcomplete -d xonsh-scrapy-tabcomplete -d xonsh-vox-tabcomplete -d xonda -d xontrib-avox -d xontrib-z -d xontrib-powerline -d xontrib-prompt-vi-mode -d exofrills

@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec sudo watch -d -c -n 1 'zpool iostat -v 5 2 | sed -e "0,/-\{30\}/ d; 4,/-\{30\}/ d" | ccze -A'

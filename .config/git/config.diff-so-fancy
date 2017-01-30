@@ -4,6 +4,7 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 	oldNormal = red bold
+
 [pager]
 	show = diff-so-fancy | less --tabs=4 -RFX
 	diff = diff-so-fancy | less --tabs=4 -RFX

@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+setopt err_exit err_return pipe_fail
+setopt verbose xtrace
+setopt extended_glob null_glob
+
+match_dev=(ata-SDLF1CRM)
+dev_backup=dpool-ssd.sgdisk.bin
+
+function e() { echo "[$0]" "$@" >&2; }
+
+devs=(/dev/disk/by-id/$match_dev^*-part*)
+
+for d in $devs; do
+	e "Restoring partition table backup=\"$dev_backup\" to \"$d\""
+	sgdisk -l $dev_backup $d
+	e "Randomizing GUIDs on \"$d\""
+	sgdisk -G $d
+done
+

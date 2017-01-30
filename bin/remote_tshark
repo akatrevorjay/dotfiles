@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+rm pcap.cap
+mkfifo pcap.cap
+
+wireshark -k -i <(cat pcap.cap) &
+
+host=$1; shift
+
+cmd=(
+	sudo
+	dumpcap
+	-P
+	-w -
+	-f "$*"
+)
+
+ssh $host -C "$cmd" > pcap.cap

@@ -1,12 +1,22 @@
 autoload -U +X bashcompinit
 bashcompinit
 
+bash-source() {
+  alias shopt=':'
+  alias _expand=_bash_expand
+  alias _complete=_bash_comp
+  emulate -L sh
+  setopt kshglob noshglob braceexpand
+
+  source "$@"
+}
+
 # bashcomp emulation doesn't include f:_init_completion .
 # This is a very minimal version of that function.
-function _init_completion() {
-    COMPREPLY=()
-    _get_comp_words_by_ref "$@" cur prev words cword
-}
+#function _init_completion() {
+#    COMPREPLY=()
+#    _get_comp_words_by_ref "$@" cur prev words cword
+#}
 
 ## zshall(1): _bash_completions:
 #

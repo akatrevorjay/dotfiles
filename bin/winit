@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+#xrandr-auto || :
+
+(
+	#xsettingsd &
+	gnome-settings-daemon &
+	/usr/lib/gcr/gcr-prompter &
+	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+	#xdg-autostart &
+) &
+

@@ -160,8 +160,8 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 
 " nim
-"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
-Plug 'zah/nim.vim', {'for': ['nim']}
+Plug 'baabelfish/nvim-nim', {'for': ['nim']}
+"Plug 'zah/nim.vim', {'for': ['nim']}
 
 " Hex
 Plug 'Shougo/vinarise.vim'

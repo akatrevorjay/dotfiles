@@ -23,7 +23,7 @@
 #   - :meth:`init_code`
 
 # List of files to run at IPython startup.
-# c.InteractiveShellApp.exec_files = traitlets.Undefined
+# c.InteractiveShellApp.exec_files = ['~/.ipythonrc.py']
 
 # Run the file referenced by the PYTHONSTARTUP environment variable at IPython
 # startup.
@@ -50,14 +50,25 @@
 # c.InteractiveShellApp.gui = None
 
 # A list of dotted module names of IPython extensions to load.
-# c.InteractiveShellApp.extensions = traitlets.Undefined
+exts = [
+    'import_wrapper',
+    'print_future',
+]
+
+if sys.version_info > (3,):
+    exts.extend([
+        # asyncio
+        'yf',
+    ])
+
+c.InteractiveShellApp.extensions.extensions.extend(exts)
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.InteractiveShellApp.matplotlib = None
 
 # Should variables loaded at startup (by startup files, exec_lines, etc.) be
 # hidden from tools like %who?
-# c.InteractiveShellApp.hide_initial_ns = True
+c.InteractiveShellApp.hide_initial_ns = True
 
 # Execute the given command string.
 # c.InteractiveShellApp.code_to_run = ''
@@ -93,8 +104,11 @@
 # The Logging format template
 # c.Application.log_format = '[%(name)s]%(highlevel)s %(message)s'
 
+c.Application.log_format = \
+    '[%(name)s/%(processName)s-%(threadName)s]: '
+
 # Set the log level by value or name.
-# c.Application.log_level = 30
+c.Application.log_level = 10  # DEBUG
 
 #------------------------------------------------------------------------------
 # BaseIPythonApplication configuration
@@ -303,13 +317,13 @@
 # c.TerminalInteractiveShell.screen_length = 0
 
 # auto editing of files with syntax errors.
-# c.TerminalInteractiveShell.autoedit_syntax = False
+c.TerminalInteractiveShell.autoedit_syntax = True
 
 # Set the editor used by IPython (default to $EDITOR/vi/notepad).
 # c.TerminalInteractiveShell.editor = 'vi'
 
 # Enable auto setting the terminal title.
-# c.TerminalInteractiveShell.term_title = False
+c.TerminalInteractiveShell.term_title = True
 
 # Set to confirm when you try to exit IPython with an EOF (Control-D in Unix,
 # Control-Z/Enter in Windows). By typing 'exit' or 'quit', you can force a
@@ -317,7 +331,7 @@
 # c.TerminalInteractiveShell.confirm_exit = True
 
 # The shell program to be used for paging.
-# c.TerminalInteractiveShell.pager = 'less'
+c.TerminalInteractiveShell.pager = 'less -RWX'
 
 #------------------------------------------------------------------------------
 # PromptManager configuration
@@ -366,7 +380,7 @@
 # set enabled=False to disable the SQLite history, in which case there will be
 # no stored history, no SQLite connection, and no background saving thread.
 # This may be necessary in some threaded environments where IPython is embedded.
-# c.HistoryAccessor.enabled = True
+c.HistoryAccessor.enabled = True
 
 # Path to file to use for SQLite history database.
 #
@@ -388,11 +402,11 @@
 # A class to organize all history-related functionality in one place.
 
 # Should the history database include output? (default: no)
-# c.HistoryManager.db_log_output = False
+c.HistoryManager.db_log_output = True
 
 # Write to database every x commands (higher values save disk access & power).
 # Values of 1 or less effectively disable caching.
-# c.HistoryManager.db_cache_size = 0
+c.HistoryManager.db_cache_size = 1
 
 #------------------------------------------------------------------------------
 # LoggingConfigurable configuration
@@ -452,7 +466,7 @@
 # c.BaseFormatter.singleton_printers = traitlets.Undefined
 
 #
-# c.BaseFormatter.enabled = True
+c.BaseFormatter.enabled = True
 
 #
 # c.BaseFormatter.type_printers = traitlets.Undefined
@@ -484,7 +498,7 @@
 #                 p.end_group(7, '])')
 
 #
-#c.PlainTextFormatter.pprint = True
+c.PlainTextFormatter.pprint = True
 
 #
 # c.PlainTextFormatter.float_precision = ''
@@ -493,12 +507,12 @@
 # c.PlainTextFormatter.max_width = 79
 
 #
-#c.PlainTextFormatter.verbose = True
+c.PlainTextFormatter.verbose = True
 
 # Truncate large collections (lists, dicts, tuples, sets) to this size.
 #
 # Set to 0 to disable truncation.
-# c.PlainTextFormatter.max_seq_length = 1000
+c.PlainTextFormatter.max_seq_length = 1000
 
 #
 # c.PlainTextFormatter.newline = '\n'
@@ -543,7 +557,8 @@ c.IPCompleter.merge_completions = True
 # When True: only those names in obj.__all__ will be included.
 #
 # When False [default]: the __all__ attribute is ignored
-# c.IPCompleter.limit_to__all__ = False
+c.IPCompleter.limit_to__all__ = False
+c.IPCompleter.limit_to__all__ = True
 
 #------------------------------------------------------------------------------
 # Magics configuration
@@ -588,7 +603,7 @@ c.IPCompleter.merge_completions = True
 #
 # If you want to add script magics that aren't on your path, specify them in
 # script_paths
-# c.ScriptMagics.script_magics = traitlets.Undefined
+c.ScriptMagics.script_magics = ['yapf', 'autopep8', 'mypy', 'flake8', 'pylint']
 
 #------------------------------------------------------------------------------
 # StoreMagics configuration
@@ -600,4 +615,4 @@ c.IPCompleter.merge_completions = True
 
 # If True, any %store-d variables will be automatically restored when IPython
 # starts.
-#c.StoreMagics.autorestore = True
+c.StoreMagics.autorestore = True

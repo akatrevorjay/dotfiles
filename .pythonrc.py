@@ -1,4 +1,18 @@
 
+import logging
+
+logging.basicConfig(level=logging.DEBUG)
+
+log = logging.getLogger(__file__)
+
+
+import sys
+
+
+# if sys.executable:
+
+log.error('m=%s f=%s', __name__, __file__)
+
 """
 History
 """
@@ -14,18 +28,22 @@ if os.path.exists(history):
     try:
         readline.read_history_file(history)
     except IOError:
-        print("Failed to read %r: %s" % (history, e))
+        log.exception("Failed to read %r: %s" % history)
 
 readline.set_history_length(1024 * 9)
 
 
 def write_history(history):
+
     def wrapped():
         import readline
         readline.write_history_file(history)
+
     return wrapped
 
+
 atexit.register(write_history(history))
+
 
 """
 Jedi autocompletion
@@ -39,14 +57,13 @@ try:
 except ImportError:
     # Fallback to the stdlib readline completer if it is installed.
     # Taken from http://docs.python.org/2/library/rlcompleter.html
-    print("Jedi is not installed, falling back to readline")
+    log.error("Jedi is not installed, falling back to readline")
     try:
         import readline
         import rlcompleter
         readline.parse_and_bind("tab: complete")
     except ImportError:
-        print("Readline is not installed either. No tab completion is enabled.")
-
+        log.error("Readline is not installed either. No tab completion is enabled.")
 """
 Utils
 """
@@ -57,4 +74,6 @@ Utils
 try:
     from see import see
 except ImportError:
-    print("See not installed.")
+    log.error("See not installed (or not importable).")
+
+from pprint import pprint as pp
