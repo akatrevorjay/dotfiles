@@ -102,9 +102,12 @@ function zplugins.lazy.bundle() {
 }
 
 function zplugins.lazy.apply() {
+	#source <(
+	#    zplugins.lazy.bundle \
+	#    | tee $ZSH_CACHE_DIR/zplugins.bundle
+	#)
 	source <(
-		zplugins.lazy.bundle \
-		| tee $ZSH_CACHE_DIR/zplugins.bundle
+		zplugins.lazy.bundle
 	)
 }
 
