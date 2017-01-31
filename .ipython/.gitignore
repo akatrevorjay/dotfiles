@@ -1,0 +1,8 @@
+*.pyc
+__pycache__
+
+/profile_*/history*
+/profile_*/db/
+/profile_*/pid/
+/profile_*/log/
+/profile_*/security/

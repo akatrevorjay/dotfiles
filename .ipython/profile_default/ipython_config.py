@@ -1,5 +1,9 @@
 # Configuration file for ipython.
 
+import sys
+import os
+import warnings
+
 #------------------------------------------------------------------------------
 # Configurable configuration
 #------------------------------------------------------------------------------
@@ -23,11 +27,11 @@
 #   - :meth:`init_code`
 
 # List of files to run at IPython startup.
-# c.InteractiveShellApp.exec_files = ['~/.ipythonrc.py']
+c.InteractiveShellApp.exec_files = ['~/.ipythonrc.py']
 
 # Run the file referenced by the PYTHONSTARTUP environment variable at IPython
 # startup.
-# c.InteractiveShellApp.exec_PYTHONSTARTUP = True
+c.InteractiveShellApp.exec_PYTHONSTARTUP = True
 
 # dotted module name of an IPython extension to load.
 # c.InteractiveShellApp.extra_extension = ''
@@ -52,16 +56,16 @@
 # A list of dotted module names of IPython extensions to load.
 exts = [
     'import_wrapper',
-    'print_future',
 ]
 
-if sys.version_info > (3,):
+if not sys.version_info < (3, ):
     exts.extend([
         # asyncio
+        'print_future',
         'yf',
     ])
 
-c.InteractiveShellApp.extensions.extensions.extend(exts)
+c.InteractiveShellApp.extensions = exts
 
 # Configure matplotlib for interactive use with the default matplotlib backend.
 # c.InteractiveShellApp.matplotlib = None
@@ -81,6 +85,7 @@ c.InteractiveShellApp.hide_initial_ns = True
 
 # Reraise exceptions encountered loading IPython extensions?
 # c.InteractiveShellApp.reraise_ipython_extension_failures = False
+# c.InteractiveShellApp.reraise_ipython_extension_failures = True
 
 #------------------------------------------------------------------------------
 # SingletonConfigurable configuration
@@ -557,8 +562,8 @@ c.IPCompleter.merge_completions = True
 # When True: only those names in obj.__all__ will be included.
 #
 # When False [default]: the __all__ attribute is ignored
-c.IPCompleter.limit_to__all__ = False
-c.IPCompleter.limit_to__all__ = True
+# c.IPCompleter.limit_to__all__ = False
+# c.IPCompleter.limit_to__all__ = True
 
 #------------------------------------------------------------------------------
 # Magics configuration
