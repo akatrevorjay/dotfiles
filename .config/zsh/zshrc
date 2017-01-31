@@ -8,23 +8,73 @@ if [[ ${TERM} == 'dumb' ]]; then
 fi
 [[ $- =~ i ]] || return
 
+if [[ -z $ZSH_CACHE_DIR ]]; then
+	echo "- ZSH_CACHE_DIR is not set?" >&2
+	return 1
+elif [[ ! -e $ZSH_CACHE_DIR ]]; then
+	echo "- Creating ZSH_CACHE_DIR=\"$ZSH_CACHE_DIR\"" >&2
+	mkdir -pv $ZSH_CACHE_DIR
+fi
+
 ##
-## Queue loads via mocking them.
-## We'll run them once we have the full list if necessary.
-## Avoids races and dependency woes since now we can order accordingly.
+## Vars
 ##
 
-# Reset zplug queue
+# enable all of the highlighters
+typeset -Ua ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+
+##
+## Zplugins API
+##
+
+# list and queue
+typeset -a ZPLUGINS=()
 typeset -a ZPLUGINS_Q=()
 
-function zplugins.load() {
-	set -- $1
-	ZPLUGINS_Q+=(${(q)argv} $'\0')
+function zplugins.init() {
+	if ! (( ${+commands[antibody]} )); then
+		echo "- Antibody not found in path. Cannot/will not continue. Deal with it." >&2
+		echo "  >> go get -u -x -v github.com/akatrevorjay/antibody" >&2
+		return 1
+	fi
+
+	source <(command antibody init)
 }
 
-##
-## Zplugins loader API
-##
+function zplugins.is-initialized() {
+	(( ${+functions[antibody]} ))
+}
+
+# Queue loads until they are applied.
+# We'll run them once we have the full list if necessary.
+# Avoids races and dependency woes since now we can order accordingly.
+
+function zplugins.q.add() {
+	ZPLUGINS_Q+=(${(q)argv}$'\0')
+}
+
+function zplugins.q.dry-run() {
+	command antibody bundle "${(0)ZPLUGINS_Q}"
+}
+
+function zplugins.q.apply() {
+	zplugins.is-initialized || zplugins.init
+
+	antibody bundle "${(0)ZPLUGINS_Q}"
+
+	ZPLUGINS+=("${(@)ZPLUGINS_Q}")
+	ZPLUGINS_Q=()
+}
+
+function zplugins.q.show() {
+	command antibody bundle "${(0)ZPLUGINS}"
+}
+
+function zplugins.load() {
+	zplugins.q.add "$@"
+
+	! zplugins.is-initialized || zplugins.q.apply
+}
 
 function zplugins.load-all-in() {
 	local p
@@ -47,26 +97,10 @@ function zplugins.load-all-in() {
 			defer=0
 		fi
 
-		zplugins.load $p --from local --defer $defer
+		# I have not patched antibody to support these as of yet.
+		#zplugins.load $p --from local --defer $defer
+		zplugins.load $p
 	done
-}
-
-function zplugins.antibody.init() {
-	if ! (( ${+commands[antibody]} )); then
-		echo "- Antibody not found in path. Cannot/will not continue. Deal with it." >&2
-		echo "  >> go get -u -x -v github.com/akatrevorjay/antibody" >&2
-		return 1
-	fi
-
-	source <(command antibody init)
-}
-
-function zplugins.lazy.show() {
-	command antibody bundle "${(0)ZPLUGINS_Q}"
-}
-
-function zplugins.lazy.apply() {
-	antibody bundle "${(0)ZPLUGINS_Q}"
 }
 
 ##
@@ -76,45 +110,25 @@ function zplugins.lazy.apply() {
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-if [[ -z $ZSH_CACHE_DIR ]]; then
-	echo "- ZSH_CACHE_DIR is not set?" >&2
-	return 1
-elif [[ ! -e $ZSH_CACHE_DIR ]]; then
-	echo "- Creating ZSH_CACHE_DIR=\"$ZSH_CACHE_DIR\"" >&2
-	mkdir -pv $ZSH_CACHE_DIR
-fi
-
-# enable all of the highlighters
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
-
-# secrets
-source-with-force ~/.zsh/secrets
-
-# Set up the prompt
-autoload -Uz ztheme; ztheme
-
-# Plugin sources
-ZPLUGINS_FILES=(${^ZDOTDIRS}/zshplugins(-.N))
+# Secrets
+source-with-force ${^ZDOTDIRS}/secrets(-.N)
 
 # Collect plugin list
-source-with-force $ZPLUGINS_FILES
+source-with-force ${^ZDOTDIRS}/zshplugins(-.N)
+
+# Local
+source-with-force $LOCAL_ZDOTDIR/zshrc
 
 # Now we can apply them as necessary upon first call transparently.
 # Avoids races and dependency woes since now we can order accordingly.
-zplugins.antibody.init
-zplugins.lazy.apply
-
-##
-## Real mode
-##
-
-# local
-source-with-force $LOCAL_ZDOTDIR/zshrc
-
-# This is annoying to have earlier.
-#setopt warncreateglobal
+zplugins.q.apply
 
 autoload -Uz fix-{f,}path-order
 fix-path-order
 fix-fpath-order
 
+# Set up the prompt
+autoload -Uz ztheme; ztheme
+
+# This is annoying to have earlier.
+#setopt warncreateglobal
