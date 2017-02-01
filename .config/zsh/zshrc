@@ -34,7 +34,7 @@ typeset -a ZPLUGINS_Q=()
 function zplugins.init() {
 	if ! (( ${+commands[antibody]} )) && (( ${+commands[go]} )); then
 		echo "- Antibody not found in path. Attempting install.." >&2
-		go install -u -x -v github.com/akatrevorjay/antibody
+		go get -u -x -v github.com/akatrevorjay/antibody
 	fi
 
 	if ! (( ${+commands[antibody]} )); then
