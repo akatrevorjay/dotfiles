@@ -50,6 +50,18 @@ case $TERM:l in
 		;;
 esac
 
+# Go
+: ${GOPATH:=$HOME/go}
+export GOPATH
+
+# Nim(rod)
+: ${NIM_HOME:=$HOME/build/Nim}
+export NIM_HOME
+
+# Dart
+: ${DART_HOME:=/usr/lib/dart}
+export DART_HOME
+
 ##
 ## path
 ##
@@ -72,9 +84,19 @@ typeset -U {,f,man,info,cd}path
 
 prefix_path=(
 	# user
-	$HOME{,/{crypt,,.local,.cargo}}/{bin,sbin}
+	$HOME{,/crypt}/bin
+	${^ZDOTDIRS}/bin
 
-	${^ZDOTDIRS}/{bin,sbin}
+	$GOPATH/bin
+
+	$NIM_HOME/bin
+	$HOME/.nimble/bin
+
+	$HOME/.cargo/bin
+
+	$HOME/.gem/ruby/*/bin(N-/)
+
+	$DART_HOME/bin
 )
 
 prefix_fpath=(
@@ -104,12 +126,13 @@ declare -xm '*path'
 # OS specifics
 case ${OSTYPE:l} in
 	linux*)
-		add-prefix-paths $HOME/.linuxbrew
+		#add-prefix-paths $HOME/.linuxbrew
+		add-prefix-paths $HOME/.local
 
 		prefix_path+=(
 			# ccache
 			/usr/lib/ccontrol
-			/usr/lib/ccache
+			#/usr/lib/ccache
 		)
 		;;
 	darwin*)
@@ -163,24 +186,6 @@ case ${OSTYPE:l} in
 esac
 
 path=(${(@)prefix_path} ${(@)path})
-
-# Go
-: ${GOPATH:=$HOME/go}
-export GOPATH
-add-prefix-paths $GOPATH
-
-# Dart
-: ${DART_HOME:=/usr/lib/dart}
-export DART_HOME
-add-prefix-paths $DART_HOME
-
-# Nim(rod)
-: ${NIM_HOME:=$HOME/build/Nim}
-export NIM_HOME
-add-prefix-paths $NIM_HOME
-add-prefix-paths $HOME/.nimble
-
-add-prefix-paths $HOME/.local $HOME $HOME/crypt
 
 # Fix common order mishaps across OSes
 fix-path-order
