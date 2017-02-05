@@ -157,10 +157,10 @@ let g:triplejelly_background_color = '000000'
 "colorscheme hybrid_material
 "let g:airline_theme = 'hybrid'
 "let g:airline_theme = 'raven'
-let g:airline_theme = 'serene'
+"let g:airline_theme = 'serene'
 
 " This actually messes up numerous schemes.
-let g:colorschemer_auto = 0
+"let g:colorschemer_auto = 0
 
 "colorscheme sunburst
 
@@ -186,10 +186,16 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 "colorscheme Brogrammer
 "colorscheme Tomorrow-Night-Bright
 
-if has('gui_running') || exists('neovim_dot_app')
-    colorscheme argonaut
-else
-    "colorscheme heroku-terminal
-    colorscheme harlequin
-endif
+"if has('gui_running') || exists('neovim_dot_app')
+"    colorscheme argonaut
+"else
+"    "colorscheme heroku-terminal
+"    colorscheme harlequin
+"endif
 
+"colorscheme argonaut
+
+let g:deepspace_italics = 1
+let g:badwolf_css_props_highlight = 1
+colorscheme badwolf
+let g:airline_theme = 'deep_space'

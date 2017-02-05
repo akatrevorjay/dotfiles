@@ -1,12 +1,22 @@
 #!/bin/zsh
 
-#xrandr-auto || :
+xrandr-auto || :
+#wm || :
 
 (
 	#xsettingsd &
 	gnome-settings-daemon &
+
 	/usr/lib/gcr/gcr-prompter &
 	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+	usbguard-applet-qt &
+	compton &
+	ckb --background &
+	gpomme &
+	parcellite &
+	pasystray &
+	winswitch_applet &
 
 	#xdg-autostart &
 ) &

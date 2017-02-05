@@ -1,3 +1,4 @@
+#output * bg ~/Pictures/Wallpapers/bg.jpg fill
 
 ### Variables
 #
@@ -16,22 +17,30 @@ set $menu dmenu_run
 
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
-#for_window [class"nautilus"] border none
+#for_window [class="nautilus"] border none
 
-#for_window [class"terminix"] border none
+for_window [class="terminix"] border none
 
-#for_window [class"google-chrome"] border none
-#for_window [class"google-chrome-unstable"] border none
+for_window [class="google-chrome"] border none
+for_window [class="google-chrome-unstable"] border none
+for_window [class="vivaldi"] border none
+for_window [class="vivaldi-snapshot"] border none
 
-#for_window [class="panel"] border none floating enable sticky enable
-#for_window [class="trayer"] border none floating enable sticky enable
-#for_window [class="stalonetray"] border none floating enable sticky enable
+for_window [class="Uzbl-core"] focus child, layout stacking, focus
+#for_window [class="Uzbl-core"] focus child, layout tabbed, focus
+
+for_window [class="(?i)mplayer"] floating enable
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+
+for_window [title="Preferences$"] floating enable
+
+for_window [class="panel"] border none floating enable sticky enable
+for_window [class="trayer"] border none floating enable sticky enable
+for_window [class="stalonetray"] border none floating enable sticky enable
 
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
-
-
-
-
 
 #
 # Status Bar:
@@ -44,36 +53,6 @@ set $bgu #22222290
 set $fg  #ffffffdd
 set $fgu #aaaaaa90
 
-bar {
-    id bar0
-
-    tray_output primary
-
-    #status_command i3blocks
-    #status_command i3status
-    status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
-
-    position top
-    #position bottom
-
-    #pango_markup enabled
-    #wrap_scroll yes
-
-
-    font pango:Input Sans Compressed 16
-    #font pango:Sudo 16
-    #separator_symbol |
-
-    colors {
-        background #000000dd
-        statusline #aaaaaaff
-        separator #0000aaff
-        #active_workspace #323232dd #323232dd #5c5c5cff
-        #urgent_workspace #323232ff #dd0000dd #000000ff
-        #inactive_workspace #323232dd #323232dd #5c5c5cdd
-    }
-}
-
 #                       border  background  text    indicator   child
 client.unfocused        $bgu    $bgu        $fgu      $bgu        $bgu
 client.focused_inactive $bgu    $bgu        $fgu      $bgu        $bgu
@@ -84,7 +63,7 @@ client.focused          $bg    $bgu        $fg       $bg        $bg
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
 #font pango:Input Sans Compressed 10
-font pango:Sudo 12
+font pango:Sudo 16
 
 #
 # Basics:
@@ -97,7 +76,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 with mod+shift+e
-bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exit i3?' 0 0 && i3-msg exit"
+bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exit i3?' 0 0 && swaymsg exit"
 
 # start a terminal
 bindsym $mod+Return exec $term
@@ -125,10 +104,12 @@ bindsym $mod+b border toggle
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
+#floating_modifier $mod normal
 floating_modifier $mod
 
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 #
 # Screen context:
@@ -163,6 +144,7 @@ bindsym $mod+Mod1+Right workspace next_on_output
 
 # Swap focus between the tiling area and the floating area
 bindsym $mod+space focus mode_toggle
+#bindsym $mod+Shift+f focus mode_toggle
 
 # move focus to the parent container
 bindsym $mod+a focus parent
@@ -224,17 +206,6 @@ bindsym $mod+Shift+t move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+t scratchpad show
-
-
-# Sway has a "scratchpad", which is a bag of holding for windows.
-# You can send windows there and get them back later.
-
-# Move the currently focused window to the scratchpad
-bindsym $mod+Shift+minus move scratchpad
-
-# Show the next scratchpad window or hide the focused scratchpad window.
-# If there are multiple scratchpad windows, this command cycles through them.
-bindsym $mod+minus scratchpad show
 
 #
 # Resizing containers:
@@ -302,10 +273,10 @@ bindsym $mod+Shift+p exec srht -p
 #bindsym $mod+Print exec sleep 0.1 && srht
 
 # dmenu for arbituary programs
-bindsym $mod+x exec $menu
-bindsym $mod+Shift+x exec dmenu_run -p "Run:" -l 10
+bindsym $mod+x exec --no-startup-id $menu
+bindsym $mod+Shift+x exec --no-startup-id dmenu_run -p "Run:" -l 10
 bindsym $mod+d exec j4-dmenu-desktop
-bindsym $mod+Shift+d exec dmenu | xargs i3-msg
+bindsym $mod+Shift+d exec --no-startup-id dmenu | xargs swaymsg
 
 # passwords
 bindsym $mod+p exec pass-dmenu
@@ -346,13 +317,14 @@ bindsym $mod+i exec ibus-toggle
 #       middle_emulation enabled
 #   }
 #
-# You can get the names of your inputs by running: i3-msg -t get_inputs
+# You can get the names of your inputs by running: swaymsg -t get_inputs
 # The escape symbol "\" has to be removed.
 # Read `man 5 i3-input` for more information about this section.
 
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
-exec ~/bin/winit
+exec --no-startup-id ~/bin/winit
+
 #exec winit
 
 #exec xsettingsd
@@ -361,8 +333,49 @@ exec ~/bin/winit
 #exec slack
 #exec google-chrome
 
+
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+
+#bar {
+#    position top
+#    colors {
+#        statusline #ffffff
+#        background #323232
+#        inactive_workspace #32323200 #32323200 #5c5c5c
+#    }
+#}
+
+bar {
+    #id bar0
+
+    status_command i3blocks
+    #status_command i3status
+    #status_command ~/bin/i3status -c ~/.config/i3/bars/top.py
+    #status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
+
+    tray_output primary
+
+    position top
+    #position bottom
+
+    #pango_markup enabled
+    #wrap_scroll yes
+
+    #fint pango:Input Sans Compressed 10
+    font pango:Sudo 12
+    #separator_symbol |
+
+    colors {
+        background #000000dd
+        statusline #aaaaaaff
+        separator #0000aaff
+        #active_workspace #323232dd #323232dd #5c5c5cff
+        #urgent_workspace #323232ff #dd0000dd #000000ff
+        #inactive_workspace #323232dd #323232dd #5c5c5cdd
+    }
+}
+
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
-
-
-include /usr/local/etc/sway/config.d/*
-

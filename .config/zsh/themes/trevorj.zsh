@@ -1,1 +1,1 @@
-airline-dark.zsh
+airline-snapshot.zsh

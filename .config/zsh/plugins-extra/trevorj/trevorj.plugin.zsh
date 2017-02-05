@@ -152,20 +152,6 @@ alias po='popd'
 
 case $OSTYPE:l in
 	linux*)
-		layout() {
-			local layout=${1:-workman}
-
-			case $layout in
-				wm|w) layout=workman ;;
-				u) layout=us ;;
-			esac
-
-			setxkbmap -model apple -layout $layout -option '' -option 'lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle' -v 9
-			xset -r 66
-		}
-
-		for i in us u workman wm w; alias $i="layout $i"
-
 		alias sctl='systemctl'
 		alias jf='journalctl -f'
 		alias jxe='journalctl -fxe'
