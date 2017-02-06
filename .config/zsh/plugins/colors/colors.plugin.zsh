@@ -109,11 +109,19 @@ esac
 # grep
 #
 
+# ignore VCS folders (if the necessary grep flags are available)
+: ${VCS_FOLDERS:="{.bzr,CVS,.git,.hg,.svn}"}
+: ${GREP_OPTIONS:=" --color=auto --exclude-dir=$VCS_FOLDERS"}
+
 #export GREP_COLOR='37;45'             #BSD
 #export GREP_COLORS="mt=${GREP_COLOR}" #GNU
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+alias grep="grep $GREP_OPTIONS"
+alias fgrep="fgrep $GREP_OPTIONS"
+alias egrep="egrep $GREP_OPTIONS"
+
+# clean up
+unset GREP_OPTIONS
+unset VCS_FOLDERS
 
 # diff
 (( ! ${+commands[colordiff]} )) \

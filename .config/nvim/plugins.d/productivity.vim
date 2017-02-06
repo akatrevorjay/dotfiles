@@ -16,7 +16,9 @@ Plug 'tpope/vim-speeddating'
 "let g:wakatime_PythonBinary = '/usr/bin/python'
 
 " Vim Space Controller
-Plug 'vim-ctrlspace/vim-ctrlspace'
+if ! exists('g:vimpager.enabled')
+    Plug 'vim-ctrlspace/vim-ctrlspace'
+endif
 
 " Nice start screen
 Plug 'mhinz/vim-startify'

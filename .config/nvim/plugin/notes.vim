@@ -1,4 +1,1 @@
-" Notes: {{{
-let g:notes_directories = ['~/Notes']
-" }}}
-
+../plugin-available/notes.vim

@@ -111,7 +111,7 @@ Plug 'mhinz/vim-grepper'
 " Mimic :grep and make ag the default tool.
 let g:grepper = {
     \ 'tools': ['ag', 'git', 'grep'],
-    \ 'open':  0,
+    \ 'open':  1,
     \ 'jump':  1,
     \ }
 

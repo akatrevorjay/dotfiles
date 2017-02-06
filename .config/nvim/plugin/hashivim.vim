@@ -1,1 +1,1 @@
-"let g:terraform_fmt_on_save=1
+../plugin-available/hashivim.vim

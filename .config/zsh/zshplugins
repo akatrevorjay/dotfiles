@@ -18,7 +18,6 @@ zplugins.load "Tarrasch/zsh-functional"
 #zplugins.load "Tarrasch/zsh-colors" --lazy true
 #zplugins.load "b4b4r07/emoji-cli" --lazy true
 #zplugins.load 'LockonS/terminal-workload-report' --lazy true
-zplugins.load 'aphelionz/strerror.plugin.zsh'
 zplugins.load "molovo/revolver"
 GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
 zplugins.load "RobSis/zsh-completion-generator"
@@ -29,9 +28,3 @@ zplugins.load "akatrevorjay/nix-zsh-completions"
 
 zplugins.load "hlissner/zsh-autopair"
 zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
-
-## Supports oh-my-zsh plugins and the like
-#for p in lib/completion plugins/{ubuntu,emoji,httpie}; do
-#    zplugins.load "$p", from:oh-my-zsh, defer:1
-#done
-

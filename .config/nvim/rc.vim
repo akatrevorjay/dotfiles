@@ -20,7 +20,13 @@ call source#any('early')
 
 " plug away
 call plug#begin('~/.cache/vim/plugged')
-call source#any('plugins')
+
+if exists('g:vimpager.enabled')
+    call source#any('vimpager.plugins')
+else
+    call source#any('plugins')
+endif
+
 call plug#end()
 
 " Required: (not on neovim however)
