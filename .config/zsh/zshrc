@@ -76,7 +76,13 @@ function zplugins.q.show() {
 }
 
 function zplugins.load() {
-	zplugins.q.add "$@"
+	local p="$1"
+
+	local defer=${${${p:t}%%[^0-9]*}:-0}
+
+	# I have not patched antibody to support these as of yet.
+	#zplugins.q.add $p --from local --defer $defer
+	zplugins.q.add "$p"
 
 	! zplugins.is-initialized || zplugins.q.apply
 }
@@ -84,24 +90,22 @@ function zplugins.load() {
 function zplugins.load-all-in() {
 	local p
 
-	local paths=()
+	local plugins=()
 	for p in "$@"; do
 		if [[ ${p:0:1} == / ]]; then
-			paths+=($p(-/N))
+			plugins+=($p(-/N))
 		else
-			paths+=(${^ZDOTDIRS}/$p(-/N))
+			plugins+=(${^ZDOTDIRS}/$p(-/N))
 		fi
 	done
 
-	local plugins=($paths ${^paths}/*(-/N))
+	plugins+=(${^plugins}/*(-/N))
 
-	local defer
+	#plugins=(${^plugins}/*.plugin.zsh(NY1))
+	#plugins=(${plugins%/*.plugin.zsh})
+
 	for p in "${plugins[@]}"; do
-		defer=${${${p:t}%%[^0-9]*}:-0}
-
-		# I have not patched antibody to support these as of yet.
-		#zplugins.load $p --from local --defer $defer
-		zplugins.load $p
+		zplugins.load "$p"
 	done
 }
 
