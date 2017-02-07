@@ -189,4 +189,3 @@ esac
 if (( ${+commands[git-tip]} )); then
 	git-tip || :
 fi
-

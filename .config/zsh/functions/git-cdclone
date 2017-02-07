@@ -1,6 +1,10 @@
 #!/bin/zsh
-local repo="$1"
-[[ -n $repo ]] || echo "Usage: $0:t [REPO|REPO_BASENAME]"
+
+autoload -Uz githubize
+
+local repo=$(githubize "$1")
+
+[[ -n $repo ]] || echo "Usage: ${0:t} [REPO|REPO_BASENAME]"
 
 local -U roots=($PWD $REPO_ROOTS)
 local -U bases=($repo ${repo:t} ${${repo%.git}:t})

@@ -93,14 +93,11 @@ function zplugins.load-all-in() {
 		fi
 	done
 
+	local plugins=($paths ${^paths}/*(-/N))
+
 	local defer
-	for p in ${^paths}/*(-/N); do
-		defer=${${p:t}%%[^0-9]*}
-		if [[ -n $defer ]]; then
-			defer=$defer
-		else
-			defer=0
-		fi
+	for p in "${plugins[@]}"; do
+		defer=${${${p:t}%%[^0-9]*}:-0}
 
 		# I have not patched antibody to support these as of yet.
 		#zplugins.load $p --from local --defer $defer

@@ -26,5 +26,7 @@ zplugins.load "jamesob/desk" --dir "shell_plugins/zsh"
 zplugins.load "zsh-users/zsh-completions"
 zplugins.load "akatrevorjay/nix-zsh-completions"
 
+zplugins.load-all-in compinit
+
 zplugins.load "hlissner/zsh-autopair"
 zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2

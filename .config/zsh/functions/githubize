@@ -1,0 +1,26 @@
+#!/bin/zsh
+
+function githubize() {
+	emulate -L zsh
+	setopt err_return
+
+	local hub_prefix=${GITHUB_REPO_PREFIX:-"https://github.com/"}
+	local hub_username=${GITHUB_USERNAME}
+
+	local r ret=()
+	for r in "$@"; do
+		if [[ $r -pcre-match ^([^/]+)$ ]] && [[ -n $hub_username ]]; then
+			r="$hub_username/$r"
+		fi
+
+		if [[ $r -pcre-match ^([^/]+)/([^/]+)$ ]]; then
+			r="$hub_prefix$r"
+		fi
+
+		ret+=("$r")
+	done
+
+	echo "${ret[@]}"
+}
+
+githubize "$@"
