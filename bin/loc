@@ -86,11 +86,11 @@ main() {
 
 		--bind 'ctrl-e:execute:$EDITOR {}'
 		--bind 'ctrl-p:execute:$PAGER {}'
-		--bind 'ctrl-h:execute:hexdump -C {}; read -k1'
-		--bind 'ctrl-b:execute:binwalk {}; read -k1'
-		--bind 'ctrl-u:execute:du -hsc {}; read -k1'
-		--bind 'ctrl-s:execute:sha1sum {}; read -k1'
-		--bind 'ctrl-m:execute:md5sum {}; read -k1'
+		--bind 'ctrl-h:execute:hexdump -C {}; read'
+		--bind 'ctrl-b:execute:binwalk {}; read'
+		--bind 'ctrl-u:execute:du -hsc {}; read'
+		--bind 'ctrl-s:execute:sha1sum {}; read'
+		--bind 'ctrl-m:execute:md5sum {}; read'
 	)
 
 	empty $o_height || fzf+=(--height ${o_height[-1]})

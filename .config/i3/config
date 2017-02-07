@@ -81,7 +81,7 @@ bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exi
 # start a terminal
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec terminix --quake
-bindsym $mod+Shift+Grave exec terminology
+bindsym $mod+grave exec terminology
 
 #
 # Window context
@@ -236,8 +236,8 @@ bindsym $mod+r mode "resize"
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
-bindsym $mod+Shift+backslash split h
-bindsym $mod+minus split v
+bindsym $mod+Control+backslash split h
+bindsym $mod+Control+minus split v
 
 #
 # vim-style window splits and resizing after hitting mod+w
