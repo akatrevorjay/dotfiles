@@ -70,8 +70,9 @@ Plug 'tpope/vim-abolish'
 "Plug 'eugen0329/vim-esearch'
 
 if has('nvim')
-    "Plug 'bfredl/nvim-ipy'
-    "Plug 'tek/proteome.nvim'
+    "Plug 'bfredl/nvim-ipy', { 'do': ':UpdateRemotePlugins' }
+
+    "Plug 'tek/proteome.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " Interactive ft-aware REPL
     Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }

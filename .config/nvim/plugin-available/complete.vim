@@ -73,7 +73,8 @@ if has('nvim')
     "    \ 'tern#Complete',
     "    \ 'jspc#omni'
     "    \]
-
+    "let g:deoplete#omni#functions.nim = 'omni#nim'
+"
     "let g:deoplete#omni#input_patterns = {}
     "let g:deoplete#omni#input_patterns.ruby =
     "  \ ['[^. *\t]\.\w*', '[a-zA-Z_]\w*::']
@@ -112,12 +113,12 @@ if has('nvim')
     let g:deoplete#sources#go#package_dot = 1
 
     " clang
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0.0'
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/3.8.1'
     let g:deoplete#sources#clang#std#c = 'c11'
     let g:deoplete#sources#clang#std#cpp = 'c++1z'
     let g:deoplete#sources#clang#sort_algo = 'priority'
-    let g:deoplete#sources#clang#clang_complete_database = '.'
+    "let g:deoplete#sources#clang#clang_complete_database = '.'
 
     " Keys
 

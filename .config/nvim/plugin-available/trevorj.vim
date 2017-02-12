@@ -46,7 +46,8 @@ set shell=sh
 let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
-"set emoji
+set emoji
+set lazyredraw
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
 

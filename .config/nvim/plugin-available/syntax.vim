@@ -26,3 +26,4 @@ Gautocmdft python let b:argwrap_tail_comma = 1
 
 let g:python_highlight_all = 1
 
+"Gautocmdft config exec ':AnsiEsc'

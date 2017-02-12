@@ -11,14 +11,16 @@ xrandr-auto || :
 	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 	usbguard-applet-qt &
-	ckb --background &
-	pasystray &
-	gpomme &
+
 	compton &
+	#pasystray &
+	gpomme &
 
 	parcellite &
-	winswitch_applet &
-	idle variety &
+	#winswitch_applet &
+	variety &
+
+	ckb --background &
 
 	#xdg-autostart &
 ) &

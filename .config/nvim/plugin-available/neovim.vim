@@ -27,6 +27,6 @@ tnoremap <C-Right> <C-\><C-n><C-w>l
 Gautocmd BufWinEnter,WinEnter term://* startinsert
 Gautocmd BufLeave term://* stopinsert
 
-tnoremap <Space><Space> <C-\><C-n><C-w><C-p>
-tnoremap <Esc><Esc> <C-\><C-n>:q<CR>
+"tnoremap <Space><Space> <C-\><C-n><C-w><C-p>
+"tnoremap <Esc><Esc> <C-\><C-n>:q<CR>
 

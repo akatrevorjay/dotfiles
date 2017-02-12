@@ -160,8 +160,9 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 
 " nim
-Plug 'baabelfish/nvim-nim', {'for': ['nim']}
+"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
 "Plug 'zah/nim.vim', {'for': ['nim']}
+Plug 'baabelfish/nvim-nim'
 
 " Hex
 Plug 'Shougo/vinarise.vim'
@@ -324,7 +325,13 @@ if has('nvim')
 
     Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
 else
-    function! BuildYCM(info)
+
+    "Plug 'Valodim/vim-zsh-completion'
+    "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete
+endif
+
+
+function! BuildYCM(info)
     " info is a dictionary with 3 fields
     " - name:   name of the plugin
     " - status: 'installed', 'updated', or 'unchanged'
@@ -332,10 +339,6 @@ else
     if a:info.status == 'installed' || a:info.force
         !./install.py
     endif
-    endfunction
+endfunction
 
-    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM') }
-
-    "Plug 'Valodim/vim-zsh-completion'
-    "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete
-endif
+Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }

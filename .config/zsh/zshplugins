@@ -8,7 +8,6 @@ zplugins.load "akatrevorjay/fasd"
 
 zplugins.load "willghatch/zsh-hooks"
 zplugins.load "mafredri/zsh-async"
-#zplugins.load "kennethreitz/autoenv"
 
 zplugins.load "akatrevorjay/composure"
 zplugins.load "psprint/zsnapshot"
@@ -26,7 +25,10 @@ zplugins.load "jamesob/desk" --dir "shell_plugins/zsh"
 zplugins.load "zsh-users/zsh-completions"
 zplugins.load "akatrevorjay/nix-zsh-completions"
 
-zplugins.load-all-in compinit
+#zplugins.load 'thewtex/tmux-mem-cpu-load' --post-update 'make'
+zplugins.load "uvaes/fzf-marks"
+
+zplugins.load-all-in zplugins-compinit
 
 zplugins.load "hlissner/zsh-autopair"
 zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2

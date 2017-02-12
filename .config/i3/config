@@ -10,7 +10,9 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term terminix
+set $term alacritty
+set $term2 terminix
+set $term3 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
@@ -81,7 +83,8 @@ bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exi
 # start a terminal
 bindsym $mod+Return exec $term
 bindsym $mod+Shift+Return exec terminix --quake
-bindsym $mod+grave exec terminology
+bindsym $mod+grave exec $term2
+bindsym $mod+Shift+grave exec $term3
 
 #
 # Window context

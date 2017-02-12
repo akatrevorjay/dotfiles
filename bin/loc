@@ -84,13 +84,13 @@ main() {
 			p {} | head -n 100
 			'
 
-		--bind 'ctrl-e:execute:$EDITOR {}'
+		--bind 'ctrl-x:execute:$EDITOR {}'
 		--bind 'ctrl-p:execute:$PAGER {}'
 		--bind 'ctrl-h:execute:hexdump -C {}; read'
 		--bind 'ctrl-b:execute:binwalk {}; read'
 		--bind 'ctrl-u:execute:du -hsc {}; read'
-		--bind 'ctrl-s:execute:sha1sum {}; read'
-		--bind 'ctrl-m:execute:md5sum {}; read'
+		--bind 'ctrl-t:execute:sha1sum {}; read'
+		--bind 'ctrl-g:execute:md5sum {}; read'
 	)
 
 	empty $o_height || fzf+=(--height ${o_height[-1]})
