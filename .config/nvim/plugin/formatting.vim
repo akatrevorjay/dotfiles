@@ -1,1 +1,1 @@
-../plugin-available/formatting.vim
+let g:autoformat_remove_trailing_spaces = 1

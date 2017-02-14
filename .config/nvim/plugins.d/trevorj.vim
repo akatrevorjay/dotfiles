@@ -100,7 +100,7 @@ if has('nvim')
             exec ':UpdateRemotePlugins'
         endif
     endfunction
-    Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer') }
+    Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'on': 'MarkdownComposer' }
 
     "" libclang syntax hightlighting (tagless and fast)
     "Plug 'arakashic/chromatica.nvim'
@@ -139,5 +139,5 @@ let g:grepper = {
 
 "Plug 'Zuckonit/vim-airline-tomato'
 
-Plug 'Rykka/doctest.vim'
+Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'mkd', 'md', 'python'] }
 

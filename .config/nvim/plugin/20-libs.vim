@@ -1,1 +1,3 @@
-../plugin-available/20-libs.vim
+" Enable glaive
+call glaive#Install()
+

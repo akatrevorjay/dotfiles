@@ -1,0 +1,8 @@
+" perm very magic mode
+" http://vim.wikia.com/wiki/Simplifying_regular_expressions_using_magic_and_no-magic
+nnoremap / /\v
+vnoremap / /\v
+cnoremap %s/ %smagic/
+cnoremap \>s/ \>smagic/
+nnoremap :g/ :g/\v
+nnoremap :g// :g//

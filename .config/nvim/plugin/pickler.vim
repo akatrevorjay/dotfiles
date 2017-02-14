@@ -1,1 +1,0 @@
-../plugin-available/pickler.vim

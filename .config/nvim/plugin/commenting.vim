@@ -1,1 +1,6 @@
-../plugin-available/commenting.vim
+" NERDCommenter: {{{
+let g:NERDCustomDelimiters = {
+      \ 'yaml': { 'left': '#'},
+      \}
+" }}}
+

@@ -1,1 +1,2 @@
-../plugin-available/limelight.vim
+nmap <Leader>l <Plug>(Limelight)
+xmap <Leader>l <Plug>(Limelight)

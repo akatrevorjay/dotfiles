@@ -3,43 +3,48 @@ set -exv
 
 yadm pull
 
-case $OSTYPE:l in
-    linux*)
-        sudo apt update -qq &
-        ;;
+if [[ ${+functions[antibody]} ]]; then
+	command antibody update &
+elif [[ ${+functions[zplug]} ]]; then
+	zplug update
+fi
 
-    darwin*)
-        brew update >/dev/null &
-        ;;
+vim=${commands[nvim]-${commands[vim]}}
+if [[ -n $vim ]]; then
+	update-neovim-venv &
+fi
+
+case $OSTYPE:l in
+	linux*)
+		sudo apt update -qq &
+		;;
+
+	darwin*)
+		brew update >/dev/null &
+		;;
 esac
 
 wait
 
 case $OSTYPE:l in
-    linux*)
-        sudo apt full-upgrade -y
-        ;;
+	linux*)
+		sudo apt full-upgrade -y
+		;;
 
-    darwin*)
-        brew upgrade --fetch-HEAD || :
-        ;;
+	darwin*)
+		brew upgrade --fetch-HEAD || :
+		;;
 esac
 
-#if [[ ${+functions[zplug]} ]]; then
-#    zplug update
-#    zsh-clean-cache
-#fi
-
-vim=${commands[nvim]-${commands[vim]}}
 if [[ -n $vim ]]; then
-    $vim -c 'Update'
+	$vim -c 'Update'
 fi
 
 #if [[ ${+commands[tmux]} ]]; then
-#    :
+#	 :
 #fi
 
 #if [[ -n "$GOPATH" ]]; then
-#    go get -u -v all || :
+#	 go get -u -v all || :
 #fi
 

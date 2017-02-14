@@ -109,6 +109,7 @@ Plug 'jamessan/vim-gnupg', {'for': ['gpg']}
 Plug 'ap/vim-css-color'
 
 " Allows for python rst docstring support
+" A bit problematic as it's slow as balls
 "Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
 
 "" BATS test runner and syntax
@@ -123,7 +124,12 @@ Plug 'google/vim-jsonnet'
 "Plug 'm-kat/aws-vim'
 
 " Go
-Plug 'fatih/vim-go', {'for': ['go']}
+if has('nvim')
+    " Replacement for nvim
+    Plug 'zchee/nvim-go', { 'for': ['go'], 'do': 'make'}
+else
+    Plug 'fatih/vim-go', {'for': ['go']}
+endif
 
 "" Clang
 "Plug 'Rip-Rip/clang_complete'
@@ -160,9 +166,8 @@ autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
 Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
 
 " nim
-"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
+Plug 'baabelfish/nvim-nim', {'for': ['nim']}
 "Plug 'zah/nim.vim', {'for': ['nim']}
-Plug 'baabelfish/nvim-nim'
 
 " Hex
 Plug 'Shougo/vinarise.vim'
@@ -171,7 +176,7 @@ Plug 'Shougo/vinarise.vim'
 Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
 
 " VimL color improvements
-Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
+"Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
 "Plug 'tpope/vim-scriptease'
 
 " Salt
@@ -258,6 +263,9 @@ if has('nvim')
     " deoplete-jedi: "jedi" source for Python
     Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
+    " deoplete-docker
+    Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
+
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
 
@@ -321,9 +329,7 @@ if has('nvim')
     "Plug 'vhakulinen/neovim-intellij-complete-deoplete'
 
     " webcomplete.vim: "webcomplete" source for browser opened pages
-    Plug 'thalesmello/webcomplete.vim'
-
-    Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
+    "Plug 'thalesmello/webcomplete.vim'
 else
 
     "Plug 'Valodim/vim-zsh-completion'
