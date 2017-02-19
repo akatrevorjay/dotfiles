@@ -41,6 +41,8 @@ declare -xm 'ZSH_*'
 #: ${DE:=generic}
 #: ${BROWSER:=google-chrome}
 : ${EDITOR:=nvim}
+: ${PAGER:=less -RWX}
+declare -xm DE BROWSER EDITOR PAGER
 
 case $TERM:l in
 	xterm|screen)

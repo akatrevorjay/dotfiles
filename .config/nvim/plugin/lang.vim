@@ -43,13 +43,6 @@ let g:formatters_python = ['yapf']
 
 "let g:cpsm_highlight_mode = 'detailed' " none, basic, detailed
 
-" clang-format
-" Ref: http://algo13.net/clang/clang-format-style-oputions.html
-" FIXME: Optios not works?
-let g:clang_format#code_style = 'google'
-let g:clang_format#detect_style_file = 1
-let g:clang_format#auto_format = 1
-
 " C: {{{
 let c_gnu = 1
 let c_comment_strings = 1
@@ -71,6 +64,15 @@ let c_curly_error = 1
 
 " Work around highlighting errors when scrolling backwards
 "let c_minlines = 100
+
+" clang-format:
+" Ref: http://algo13.net/clang/clang-format-style-oputions.html
+" FIXME: Optios not works?
+let g:clang_format#code_style = 'google'
+let g:clang_format#detect_style_file = 1
+let g:clang_format#auto_format = 1
+
+Gautocmdft c,cpp setlocal tabstop=2 softtabstop=2 shiftwidth=2
 " }}}
 
 " Haskell: {{{
@@ -84,7 +86,7 @@ let hs_highlight_more_types = 1
 let g:sql_type_default = 'postgresql'
 
 " Shell:
-Gautocmdft zsh,sh setlocal tabstop=4 softtabstop=4 shiftwidth=4
+Gautocmdft zsh,sh setlocal tabstop=4 softtabstop=4 shiftwidth=4 noexpandtab
 let g:sh_fold_enabled= 4   "  (enable if/do/for folding)
 
 " Bash:

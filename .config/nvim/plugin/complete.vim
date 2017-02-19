@@ -122,7 +122,7 @@ if has('nvim')
     "let g:deoplete#sources#clang#std#c = 'c11'
     "let g:deoplete#sources#clang#std#cpp = 'c++1z'
     "let g:deoplete#sources#clang#sort_algo = 'priority'
-    "let g:deoplete#sources#clang#clang_complete_database = '.'
+    let g:deoplete#sources#clang#clang_complete_database = '.'
 
     " Keys
 

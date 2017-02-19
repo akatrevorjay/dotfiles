@@ -5,5 +5,6 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit'
       \ }
 
-nnoremap <silent><c-p> :FZF<cr>
+nnoremap <silent><c-p> :GFiles<cr>
+nnoremap <silent><c-e> :FZF<cr>
 

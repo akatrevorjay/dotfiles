@@ -67,13 +67,11 @@ alias df=dfh
 alias du=duh
 
 # Mac OS X Everywhere
-if [[ "$OSTYPE" == darwin* ]]; then
-    true;
-elif [[ "$OSTYPE" == cygwin* ]]; then
-  alias open='cygstart'
-else
-  alias open='xdg-open'
-fi
+case $OSTYPE:l in
+	darwin*) ;;
+	cygwin*) alias open='cygstart' ;;
+	*)       alias open='xdg-open' ;;
+esac
 
 #
 # Suffix aliases
@@ -84,14 +82,14 @@ for s (t{ex{,t},xt} txt log m{,k}d xml json yaml rst jinja{,2} template tmpl dj{
 done
 
 for s (net com org io in tv); do
-	alias -s $s=${BROWSER:-google-chrome}
+	alias -s $s=${BROWSER:-open}
 done
 
 for s (mp4 avi mov mpeg mp3 ogg jpg png gif webp ico pdf epub dvi dmg iso); do
     alias -s $s=open
 done
 
-for s (gz bz2 lz xz lzma zip tar rar cpio 7z); do
+for s (gz bz2 lz xz lzma zip tar rar cpio 7z zip); do
     alias -s $s=dtrx
 done
 

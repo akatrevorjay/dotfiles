@@ -1,1 +1,7 @@
-faded
+#!/bin/zsh
+set -eo pipefail
+
+: ${NEOVIM_VENV:=$WORKON_HOME/neovim}
+[[ -d $NEOVIM_VENV ]] || update-neovim-venv
+
+exec $NEOVIM_VENV/bin/pynvim -f 'PragmataPro Nerd Font' '10' "$@"

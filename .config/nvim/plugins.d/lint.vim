@@ -1,11 +1,11 @@
-" Syntastic: automagic syntax checks
-Plug 'scrooloose/syntastic'
-Plug 'myint/syntastic-extras'
-" viml linting
-Plug 'todesking/vint-syntastic'
+"" Syntastic: automagic syntax checks
+"Plug 'scrooloose/syntastic'
+"Plug 'myint/syntastic-extras'
+"" viml linting
+"Plug 'todesking/vint-syntastic'
 
 " ALE: Async Lint Engine
-"Plug 'w0rp/ale'
+Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
 
 " GitGutter: Show git status in the gutter
 Plug 'airblade/vim-gitgutter'

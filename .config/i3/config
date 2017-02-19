@@ -10,9 +10,9 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
-set $term2 terminix
-set $term3 terminololgy
+set $term terminix
+set $term2 terminololgy
+set $term3 alacritty
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
@@ -65,7 +65,7 @@ client.focused          $bg    $bgu        $fg       $bg        $bg
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
 #font pango:Input Sans Compressed 10
-font pango:Sudo 16
+font pango:monospace 16
 
 #
 # Basics:
@@ -368,7 +368,7 @@ bar {
     #wrap_scroll yes
 
     #fint pango:Input Sans Compressed 10
-    font pango:Sudo 12
+    font pango:monospace 12
     #separator_symbol |
 
     colors {

@@ -5,47 +5,40 @@
 ""
 
 if has('gui_running') || has('nvim')
-  set guioptions=acMh
-  set mousefocus " focus follows mouse in gvim
+    set guioptions=acMh
+    set mousefocus " focus follows mouse in gvim
 
-  ""
-  "" Font: GUI font selection is different per OS, this is highly annoying.
-  "" TODO Function to set this that pays attention to OS, just give it a name and a size, done.
-  ""
+    ""
+    "" Font: GUI font selection is different per OS, this is highly annoying.
+    "" TODO Function to set this that pays attention to OS, just give it a name and a size, done.
+    ""
 
-  if has('gui_macvim')
-    " YEAH BABY LIGATURE SUPPORT
-    set macligatures
-    set macthinstrokes
-    set macmeta
+    if has('nvim')
+        if exists('neovim_dot_app')
+            "Guifont PragmataPro\ Nerd\ Font:h11
+        endif
+    else
+        set guifont=PragmataPro\ Nerd\ Font\ 12
+        set guifontwide=PragmataPro\ Nerd\ Font\ 12
 
-    "set fullscreen
-    "set transparency=10
+        if has('gui_macvim')
+            " YEAH BABY LIGATURE SUPPORT
+            set macligatures
+            set macthinstrokes
+            set macmeta
 
-    " Oh Fira Code, how I adore you.
-    set guifont=Input\ Mono\ Narrow:h11
-    set guifontwide=Input\ Mono\ Narrow:h11
-  elseif exists('neovim_dot_app')
-    "Guifont Input\ Mono\ Narrow:h11
-  elseif has('gui_gtk2')
-    set guifont=Monoid\ 12
-    set guifontwide=Monoid\ 12
-  elseif has('gui_photon')
-    set guifont=FiraCode-Retina\:s16
-    set guifontwide=FiraCode-Retina\:s16
-  elseif has('gui_kde')
-    set guifont=Menlo\ for\ Powerline/12/-1/5/50/0/0/0/1/0
-  elseif has('x12')  " Should this be x11?
-    set guifont=-*-courier-medium-r-normal-*-*-180-*-*-m-*-*
-  endif
+            "set fullscreen
+            "set transparency=10
+        endif
+    endif
 else
-  " 256 color mode for term
-  set t_Co=256
-  " Shit color mode for shit term
-  "set t_Co=88
+    " 256 color mode for term
+    set t_Co=256
+    " Shit color mode for shit term
+    "set t_Co=88
 
-  " Use CSApprox in normal vim to match gui colors approximately
-  let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'underline', 'sp' : 'fg' }
+    " Use CSApprox in normal vim to match gui colors approximately
+    let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'underline', 'sp' : 'fg' }
 endif
 
 
@@ -55,7 +48,7 @@ endif
 
 " Terminology doesn't support true color
 if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
-  set termguicolors
+    set termguicolors
 endif
 
 " Always dark bg damnit, stop resetting it on me swan
@@ -140,7 +133,7 @@ let g:onedark_terminal_italics = 1
 
 "let g:triplejelly_background_color = '000000'
 "let g:triplejelly_background_color_256 = '000000'
-"let g:triplejelly_foreground_color = 'C6CFD2'  " Default
+"let g:triplejelly_foreground_color = 'C6CFD2'    " Default
 let g:triplejelly_foreground_color = 'A7B7C7'
 let g:triplejelly_background_color = '000000'
 
@@ -187,10 +180,10 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 "colorscheme Tomorrow-Night-Bright
 
 "if has('gui_running') || exists('neovim_dot_app')
-"    colorscheme argonaut
+"     colorscheme argonaut
 "else
-"    "colorscheme heroku-terminal
-"    colorscheme harlequin
+"     "colorscheme heroku-terminal
+"     colorscheme harlequin
 "endif
 
 "colorscheme argonaut
