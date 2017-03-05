@@ -1,0 +1,49 @@
+#!/bin/zsh
+
+setopt err_exit err_return pipe_fail
+setopt extended_glob null_glob
+
+zfs-exists zpool-exists() {
+    ${0%%-*} get -H name $1 #>/dev/null 2>&1
+}
+
+zfs-list zpool-list () {
+    local cmd=(${(s:-:)0})
+
+    local -U props=()
+    zparseopts -D -K -E 'p+:=props'
+    props=(${(s:,:)props#-p})
+    props=($=props)
+
+    $cmd -o "${(j:,:)props}" "$@"
+}
+
+case $0:t in
+    zfs-list|zls) cmd=zfs-list ;;
+    zpool-list|zpls) cmd=zpool-list ;;
+    *)
+        echo "I don't know how to $0:t for you." >&2
+        exit 1
+        ;;
+esac
+
+always_props=(
+  name
+  logicalused
+  used
+  avail
+  refer
+  mountpoint
+  compress
+  compressratio
+  usedbychildren
+  usedbydataset
+  usedbyrefreservation
+  usedbysnapshots
+  recordsize
+)
+
+! (( $#always_props )) || set -- -p "${(j:,:)always_props}" "$@"
+
+$cmd "$@"
+
