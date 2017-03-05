@@ -1,0 +1,35 @@
+#!/bin/zsh
+set -eo pipefail
+
+: ${NEOVIM_VENV:=~/.virtualenvs/neovim}
+
+path=(
+	$NEOVIM_VENV/bin
+	$path
+)
+
+if [[ ! -d $NEOVIM_VENV ]]; then
+	echo "Creating neovim venv: $NEOVIM_VENV"
+	virtualenv -p $(which python3) --system-site-packages $NEOVIM_VENV
+
+	echo "Setting up alt python2 in venv"
+	pip install -U virtualenv-multiver
+	virtualenv-multiver $NEOVIM_VENV 2.7
+
+	echo "Enabling global site packages"
+	rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
+fi
+
+for cmd in {python,pip}{,2,3}; do
+	[[ ${commands[$cmd]} != $NEOVIM_VENV/* ]] || continue
+	echo "Command \"$cmd\" not found in $NEOVIM_VENV" >&2
+	exit 1
+done
+
+function pip() {
+	for pip in pip{2,3}; do
+		command $pip "$@"
+	done
+}
+
+pip install -U neovim jedi rope ropevim neovim-gui
