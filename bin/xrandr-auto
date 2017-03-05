@@ -1,6 +1,5 @@
 #!/bin/zsh
 #setopt verbose xtrace
-
 local display_prefixes=(XWAYLAND eDP DP DisplayPort HDMI)
 
 cmdline=$(cat /proc/cmdline)
@@ -90,6 +89,7 @@ args=()
 edp_display=$(match_name eDP)
 texas_display=$(match_mode 3440x1440)
 fourk_display=$(match_mode 3840x2160)
+tbolt_display=$(match_mode 2560x1440)
 
 if [[ -n $edp_display ]]; then
 	edp=(--output $edp_display)
@@ -155,12 +155,30 @@ else
 	)
 fi
 
+if [[ -n $tbolt_display ]]; then
+	#edp+=(--right-of $tbolt_display)
+
+	tbolt=(
+		--output $tbolt_display
+		--mode 2560x1440
+		--rotate left
+		#--right-of DisplayPort-0
+		#--gamma 1.6:1.6:1.6
+		#--gamma 0.8:0.8:0.8
+		#--gamma 1.0:1.0:1.0
+	)
+
+	args+=(
+		$tbolt
+	)
+fi
+
 if is_connected XWAYLAND0; then
-	return 0
+	dry=echo
 fi
 
 () {
 	set -xv
-	xrandr "${(@)args}"
+	$=dry xrandr "${(@)args}"
 }
 

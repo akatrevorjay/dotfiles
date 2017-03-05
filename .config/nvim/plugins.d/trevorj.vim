@@ -30,9 +30,9 @@ Plug 'junegunn/vim-oblique'
 " Find-N-Replace
 "Plug 'junegunn/vim-fnr'
 
-"Plug 'junegunn/vim-peekaboo'
+Plug 'junegunn/vim-peekaboo'
 
-"Plug 'junegunn/vim-easy-align'
+Plug 'junegunn/vim-easy-align'
 "Plug 'thelocehiliosan/vim-byrne'
 
 " Make f usable and more powerful
