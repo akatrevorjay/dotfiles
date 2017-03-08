@@ -1,0 +1,28 @@
+#!/bin/zsh
+set -eo pipefail
+
+killall xcape || :
+
+##
+## Caps lock to Control + Escape
+##
+
+#spare_modifier="ISO_Level5_Shift"
+spare_modifier="Hyper_L"
+
+# Map caps lock to mod
+xmodmap -e "keycode 66 = $spare_modifier"
+
+# Remove mod effect of spare_modifier
+# hyper_l is mod4 by default
+xmodmap -e "remove mod4 = $spare_modifier"
+#xmodmap -e "remove mod5 = $spare_modifier"
+
+# Add control
+xmodmap -e "add Control = $spare_modifier"
+
+xmodmap -e "keycode any = Escape"
+xcape -e "$spare_modifier=Escape"
+
+#xcape -d -e 'Shift_L=Escape;Control_L=Control_L|O' &
+

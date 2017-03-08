@@ -4,23 +4,23 @@
 #wm || :
 
 (
+	tkbd &
+	ckb --background &
+	#compton &
+
 	#xsettingsd &
 	gnome-settings-daemon &
 
 	/usr/lib/gcr/gcr-prompter &
 	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
+	nm-applet &
 	usbguard-applet-qt &
-
-	#compton &
 	#pasystray &
-	gpomme &
-
+	#gpomme &
 	parcellite &
 	#winswitch_applet &
-	variety &
-
-	ckb --background &
+	idle variety &
 
 	#xdg-autostart &
 ) &
