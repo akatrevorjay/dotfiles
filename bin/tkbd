@@ -1,28 +1,48 @@
 #!/bin/zsh
 set -eo pipefail
 
-killall xcape || :
+xcapes=(
+	#"Control_L="
+	#"Alt_L=Delete"
+	"Super_L=Delete"
+
+	#"Control_R="
+	#"Shift_R=Return"
+	#"Super_R=space"
+
+	#"Shift_R=Space"
+	"Shift_L=BackSpace"
+	#"Control_L=Control_L|O"
+)
 
 ##
-## Caps lock to Control + Escape
+## Caps lock to mod4 + Escape
 ##
 
-#spare_modifier="ISO_Level5_Shift"
-spare_modifier="Hyper_L"
-
-# Map caps lock to mod
-xmodmap -e "keycode 66 = $spare_modifier"
-
-# Remove mod effect of spare_modifier
-# hyper_l is mod4 by default
-xmodmap -e "remove mod4 = $spare_modifier"
-#xmodmap -e "remove mod5 = $spare_modifier"
-
-# Add control
-xmodmap -e "add Control = $spare_modifier"
-
+spare_mod0="Hyper_L"
+xmodmap -e "keycode 66 = $spare_mod0"
 xmodmap -e "keycode any = Escape"
-xcape -e "$spare_modifier=Escape"
+xcapes+=("$spare_mod0=Escape")
 
-#xcape -d -e 'Shift_L=Escape;Control_L=Control_L|O' &
+##
+## Tab to Control + Tab
+##
+
+spare_mod1="Hyper_R"
+xmodmap -e "keycode 23 = $spare_mod1"
+# Remove mod effect of spare_mod1
+# hyper_l is mod4 by default
+xmodmap -e "remove mod4 = $spare_mod1"
+# Add control
+xmodmap -e "add Control = $spare_mod1"
+xmodmap -e "keycode any = Tab"
+xcapes+=("$spare_mod1=Tab")
+
+##
+## xcape
+##
+
+killall xcape || :
+set -xv
+xcape -e "${(j.;.)xcapes}"
 
