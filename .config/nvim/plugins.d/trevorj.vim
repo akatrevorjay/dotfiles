@@ -66,6 +66,8 @@ Gautocmdft lisp,clojure,scheme :RainbowParentheses
 
 " Abolish: Helpers for searching, substituting, and abbreviating multiple variants at once through {} expansion
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 
 "Plug 'eugen0329/vim-esearch'
 

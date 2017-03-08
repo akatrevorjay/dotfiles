@@ -65,7 +65,7 @@ client.focused          $bg    $bgu        $fg       $bg        $bg
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
 #font pango:Input Sans Compressed 10
-font pango:monospace 16
+font pango:PragmataPro Nerd Font 10
 
 #
 # Basics:
@@ -368,7 +368,7 @@ bar {
     #wrap_scroll yes
 
     #fint pango:Input Sans Compressed 10
-    font pango:monospace 12
+    #font pango:PragmataPro Nerd Font 12
     #separator_symbol |
 
     colors {

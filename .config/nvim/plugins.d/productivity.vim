@@ -41,8 +41,6 @@ Plug 'vimwiki/vimwiki'
 " Taskwarrior: Fucking sick ftw
 if executable('task')
     Plug 'farseer90718/vim-taskwarrior'
-    " Better interface
-    Plug 'tbabej/taskwiki'
 
     " Taskwarrior: Better interface
     Plug 'tbabej/taskwiki'

@@ -6,6 +6,7 @@
 
 " ALE: Async Lint Engine
 Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
+let g:ale_emit_conflict_warnings = 0
 
 " GitGutter: Show git status in the gutter
 Plug 'airblade/vim-gitgutter'
