@@ -1,7 +1,10 @@
 #!/bin/zsh
 set -eo pipefail
 
-gpg=gpg
+# Remove self from path
+path=(${path##${0:a:h}*})
+
+gpg=/usr/bin/gpg
 ! (( ${+commands[gpg2]} )) || gpg=gpg2
 
 exec $gpg "$@"
