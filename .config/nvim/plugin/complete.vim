@@ -272,9 +272,6 @@ else
     let g:ycm_always_populate_location_list = 0
     let g:ycm_disable_for_files_larger_than_kb = 1000
 
-    " Semantic uses this python for compl
-    let g:ycm_python_binary_path = expand('~/.virtualenvs/neovim/bin/python')
-
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
     let g:ycm_seed_identifiers_with_syntax = 1
@@ -282,20 +279,20 @@ else
     let g:ycm_complete_in_comments = 1
     let g:ycm_goto_buffer_command = 'horizontal-split'
 
-    let g:ycm_semantic_triggers =  {
-          \   'python': ['.', ',', '(', ')'],
-          \   'c' : ['->', '.'],
-          \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-          \             're!\[.*\]\s'],
-          \   'ocaml' : ['.', '#'],
-          \   'cpp,objcpp' : ['->', '.', '::'],
-          \   'perl' : ['->'],
-          \   'php' : ['->', '::'],
-          \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
-          \   'ruby' : ['.', '::'],
-          \   'lua' : ['.', ':'],
-          \   'erlang' : [':'],
-          \ }
+    "let g:ycm_semantic_triggers =  {
+    "      \   'python': ['.', ',', '(', ')'],
+    "      \   'c' : ['->', '.'],
+    "      \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+    "      \             're!\[.*\]\s'],
+    "      \   'ocaml' : ['.', '#'],
+    "      \   'cpp,objcpp' : ['->', '.', '::'],
+    "      \   'perl' : ['->'],
+    "      \   'php' : ['->', '::'],
+    "      \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
+    "      \   'ruby' : ['.', '::'],
+    "      \   'lua' : ['.', ':'],
+    "      \   'erlang' : [':'],
+    "      \ }
 
     "YCM comes with support for UltiSnips (snippet suggestions in the popup menu),
     "but you'll have to change the UltiSnips mappings. See ':h UltiSnips-triggers'
@@ -314,7 +311,7 @@ else
     Gautocmdft css setlocal omnifunc=csscomplete#CompleteCSS
     Gautocmdft html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
     Gautocmdft xml setlocal omnifunc=xmlcomplete#CompleteTags
-    Gautocmdft javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    "Gautocmdft javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
     " TODO default to syntaxcomplete#Complete
     "set completefunc=syntaxcomplete#Complete

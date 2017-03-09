@@ -1,2 +1,7 @@
-#!/bin/sh
-exec gpg2 "$@"
+#!/bin/zsh
+set -eo pipefail
+
+gpg=gpg
+! (( ${+commands[gpg2]} )) || gpg=gpg2
+
+exec $gpg "$@"

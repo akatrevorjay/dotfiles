@@ -18,8 +18,8 @@ if has('gui_running') || has('nvim')
             "Guifont PragmataPro\ Nerd\ Font:h11
         endif
     else
-        set guifont=PragmataPro\ Nerd\ Font\ 12
-        set guifontwide=PragmataPro\ Nerd\ Font\ 12
+        set guifont=PragmataPro\ Nerd\ Font\ 10
+        set guifontwide=PragmataPro\ Nerd\ Font\ 10
 
         if has('gui_macvim')
             " YEAH BABY LIGATURE SUPPORT

@@ -18,7 +18,7 @@ if has('nvim')
   "let g:python_host_skip_check = 1
 else
   let g:ycm_python_binary_path = g:python3_host_prog
-  let g:ycm_server_python_interpreter = g:python3_host_prog
+  let g:ycm_server_python_interpreter = g:python_host_prog
 
   " ycmd
   let g:ycm_path_to_python_interpreter = g:python3_host_prog
