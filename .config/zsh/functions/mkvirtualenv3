@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+mkvirtualenv3() {
+	mkvirtualenv -p ${commands[python3]} "$@"
+}
+
+mkvirtualenv3 "$@"

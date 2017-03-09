@@ -1,0 +1,24 @@
+#!/bin/zsh
+setopt LOCAL_OPTIONS ERR_RETURN PIPEFAIL
+
+local -A opts=()
+local o_check=()
+zparseopts -D -K -A opts 'n:' 'c+:=o_check' 'x:'
+o_check=${o_check:1}q
+print -l -r -- ${(kv)opts} $o_check
+return 1
+
+#local cache=$(zcachefile $name)
+#: ${cache:?No zcachefile for $name?}
+
+#local name=$1; shift 1
+
+#local cached_cmd=()
+#for arg in $argv; do
+#    if [[ $arg == '--' ]]; then
+#        shift $count
+
+#: ${name:?Missing name argument}
+#: ${cmd:?Missing cmd argument}
+
+#local -U check_files=($@ $cmd)

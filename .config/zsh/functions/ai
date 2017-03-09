@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+local cmd=(
+    apt install "$@"
+)
+
+case $UID in
+    0   # Already root, no need to elevate.
+        ;;
+    *)  # Not root; elevate.
+        cmd=(sudo $cmd)
+        ;;
+esac
+
+$cmd

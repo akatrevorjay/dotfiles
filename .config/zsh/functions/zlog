@@ -1,0 +1,91 @@
+#!/bin/zsh
+setopt multifuncdef
+
+typeset -A ZLOG_LEVELS=(
+    all 0
+    debug 10
+    e 20 info 20
+    warn 30 warning 30
+    error 50 err 50
+    death 90
+    quiet 100 none 100
+)
+
+#ZLOG_LEVELS+=(${ZLOG_LEVELS:^ZLOG_LEVELS})
+: ${ZLOG_LEVEL:=$ZLOG_LEVELS[all]}
+
+typeset -A ZLOG_COLORS=(
+    default 'grey'
+    debug   'grey'
+    info    'blue'
+    warning 'yellow'
+    error   'red'
+    death   'red'
+)
+
+typeset -A ZLOG_FDS=(
+    default 1
+    warning 2
+    error   2
+    death   2
+)
+
+function zlog::level() {
+    if [[ $# -eq 0 ]]; then
+        echo -n "zlog level: " >&2
+        echo $ZLOG_LEVEL
+        return
+    fi
+
+    local level=${ZLOG_LEVELS[${1:l}]}
+    [[ -n $level ]] || return 1
+    ZLOG_LEVEL=$level
+}
+
+function zlog::format::color() {
+    case "$level" in
+        debug)
+            color="grey"
+            ;;
+        info)
+            color="blue"
+            ;;
+        warning)
+            color="yellow"
+            ;;
+        error|death)
+            color="red"
+            fd=2
+            ;;
+    esac
+
+    local uno=${fg[$color]}${bg[default]}
+    local dos=${fg[default]}${bg[$color]}
+    local res=$reset_color
+
+    echo "${dos}${0}[${uno}$$${dos}]${res}" "$*" "${dos}#$level${res}"
+}
+
+
+function zlog::death zlog::warn zlog::warning zlog::info zlog::error zlog::debug() {
+    typeset -p > /tmp/omg
+    local rv=$?
+    local level=${0#zlog::}
+    integer level_int=${ZLOG_LEVELS[$level]}
+
+    local fd=1
+    case "$level" in
+        warning|error|death)
+            fd=2
+            ;;
+    esac
+
+    zlog::format::color "$@" >&$fd
+    [[ $level != death ]] || exit $rv
+}
+
+zlog::debug::call()       {
+    zlog debug 'call:' "$@"
+    "$@"
+}
+

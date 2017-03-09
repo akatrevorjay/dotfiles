@@ -1,0 +1,4 @@
+#!/bin/zsh
+echo "TODO" >&2
+return 1
+#if [[ ! ${precmd_functions[(r)__promptline]} == __promptline ]]; then

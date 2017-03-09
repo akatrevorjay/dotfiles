@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+source-bash() {
+    emulate -L bash
+    source "$@"
+}
+
+source-bash "$@"
