@@ -1,0 +1,15 @@
+#!/bin/zsh
+set -eo pipefail
+
+mounts=(sys proc dev run tmp var/tmp)
+
+case $EUID in
+	0) ;;
+	*) sudo=sudo ;;
+esac
+
+for i in $mounts; do
+	[[ -d $i ]] || continue
+	$sudo mount --rbind /$i $i
+done
+
