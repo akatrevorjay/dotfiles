@@ -6,7 +6,7 @@
 (
 	tkbd &
 	ckb --background &
-	#compton &
+	compton &
 
 	#xsettingsd &
 	gnome-settings-daemon &

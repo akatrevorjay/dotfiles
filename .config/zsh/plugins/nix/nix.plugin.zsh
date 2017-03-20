@@ -12,8 +12,8 @@ function nix.load() {
     # quiet down +warn_create_global
     export NIX_LINK
 
-	source $NIX_PROFILE_ENV_FILE
-	[ $# -eq 0 ] || ${(@q)argv}
+    source $NIX_PROFILE_ENV_FILE
+    [ $# -eq 0 ] || ${(@q)argv}
 }
 
 autoload -Uz bool-is-true

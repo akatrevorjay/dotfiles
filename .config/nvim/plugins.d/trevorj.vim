@@ -143,3 +143,4 @@ let g:grepper = {
 
 Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'mkd', 'md', 'python'] }
 
+"Plug 'sunaku/vim-shortcut'

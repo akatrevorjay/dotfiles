@@ -86,7 +86,7 @@ done
 
 args=()
 
-edp_display=$(match_name eDP)
+edp_display=$(match_name 2880x1800)
 texas_display=$(match_mode 3440x1440)
 fourk_display=$(match_mode 3840x2160)
 tbolt_display=$(match_mode 2560x1440)
