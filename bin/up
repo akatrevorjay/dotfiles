@@ -28,7 +28,7 @@ wait
 
 case $OSTYPE:l in
 	linux*)
-		sudo apt full-upgrade -y
+		sudo apt upgrade -y
 		;;
 
 	darwin*)
