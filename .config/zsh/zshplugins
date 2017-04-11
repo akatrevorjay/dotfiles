@@ -31,4 +31,5 @@ zplugins.load "akatrevorjay/nix-zsh-completions"
 zplugins.load-all-in zplugins-compinit
 
 zplugins.load "hlissner/zsh-autopair"
-zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
+#zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
+zplugins.load "zdharma/fast-syntax-highlighting"
