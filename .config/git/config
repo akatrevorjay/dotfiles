@@ -5,7 +5,7 @@
 	;path = config.diff-so-fancy
 	path = config.color
 
-	path = config.unleakify
+	;path = config.unleakify
 	path = config.flow
 	path = config.reflow
 	path = config.whitespace

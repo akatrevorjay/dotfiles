@@ -4,7 +4,7 @@
 #wm || :
 
 function gnome-settings-daemon {
-	if [[ ${+commands[gnome-settings-daemon]} ]]; then
+	if (( ${+commands[gnome-settings-daemon]} )); then
 		command gnome-settings-daemon
 	else
 		for i in /usr/lib/gnome-settings-daemon/gsd*; do
