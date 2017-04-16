@@ -191,5 +191,14 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 let g:deepspace_italics = 1
 let g:badwolf_css_props_highlight = 1
 "colorscheme badwolf
-colorscheme base
-let g:airline_theme = 'deep_space'
+"colorscheme base
+"let g:airline_theme = 'deep_space'
+
+"colorscheme codedark
+let g:airline_theme = 'badcat'
+colorscheme badcat
+
+"let ayucolor="dark"
+"colorscheme ayu
+
+"colorscheme magellan
