@@ -334,17 +334,17 @@ else
 
     "Plug 'Valodim/vim-zsh-completion'
     "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete
+
+    function! BuildYCM(info)
+        " info is a dictionary with 3 fields
+        " - name:   name of the plugin
+        " - status: 'installed', 'updated', or 'unchanged'
+        " - force:  set on PlugInstall! or PlugUpdate!
+        if a:info.status == 'installed' || a:info.force
+            !./install.py --clang-completer --system-libclang --gocode-completer --racer-completer --system-boost --tern-completer
+        endif
+    endfunction
+
+    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
 endif
 
-
-function! BuildYCM(info)
-    " info is a dictionary with 3 fields
-    " - name:   name of the plugin
-    " - status: 'installed', 'updated', or 'unchanged'
-    " - force:  set on PlugInstall! or PlugUpdate!
-    if a:info.status == 'installed' || a:info.force
-        !./install.py --clang-completer --system-libclang --gocode-completer --racer-completer --system-boost --tern-completer
-    endif
-endfunction
-
-Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
