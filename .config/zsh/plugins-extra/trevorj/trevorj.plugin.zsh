@@ -159,7 +159,7 @@ case $OSTYPE:l in
 		alias dmesg='dmesg -e -x -d -T'
 		alias dmesgf='dmesg -w'
 
-		alias pstree='pstree -ahglnpsSuU | less -RFX'
+		alias pstree='pstree -ahglnpsSuU'
 		;;
 	darwin*)
 		appify() {
