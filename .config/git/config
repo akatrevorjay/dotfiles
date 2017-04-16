@@ -5,7 +5,7 @@
 	;path = config.diff-so-fancy
 	path = config.color
 
-	path = config.secrets
+	path = config.unleakify
 	path = config.flow
 	path = config.reflow
 	path = config.whitespace
@@ -14,3 +14,5 @@
 
 	path = secrets
 	path = config.trevorj
+
+# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

@@ -1,10 +1,11 @@
-[filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+;[filter "media"]
+;    required = true
+;    clean = git media clean %f
+;    smudge = git media smudge %f
 
-[filter "lfs"]
-	clean = git-lfs clean %f
-	smudge = git-lfs smudge %f
-	required = true
+;[filter "lfs"]
+;    clean = git-lfs clean %f
+;    smudge = git-lfs smudge %f
+;    required = true
 
+# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

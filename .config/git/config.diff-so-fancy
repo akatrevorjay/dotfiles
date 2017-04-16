@@ -8,3 +8,5 @@
 [pager]
 	show = diff-so-fancy | less --tabs=4 -RFX
 	diff = diff-so-fancy | less --tabs=4 -RFX
+
+# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

@@ -8,3 +8,4 @@
 	# Detect whitespace errors when applying a patch
 	whitespace = fix
 
+# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

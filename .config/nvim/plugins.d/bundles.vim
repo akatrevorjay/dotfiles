@@ -1,0 +1,1 @@
+"Plug '~/.vim/bundles/erics'
