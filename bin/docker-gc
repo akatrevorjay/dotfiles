@@ -1,11 +1,39 @@
-#!/usr/bin/env bash
-
-: ${DOCKER_MACHINE_NAME:=dev}
-machine_env="$(docker-machine env "$DOCKER_MACHINE_NAME" | sed -ne 's@^export \(.*\)$@-e \1@p' | xargs echo '')"
-
+#!/bin/zsh
+set -eo pipefail
 set -xv
-docker run -it --rm \
-   $machine_env \
-   -v /var/run/docker.sock:/var/run/docker.sock \
-   -v "$HOME/.docker/machine/machines/$DOCKER_MACHINE_NAME:$HOME/.docker/machine/machines/$DOCKER_MACHINE_NAME" \
-   konstruktoid/docker-garby
+
+#: ${dockerPrune:=no}
+: ${excludeImages:=$HOME/.config/docker-gc.exclude}
+: ${maxSecondsOld:=86400}
+: ${networkPrune:=yes}
+: ${pullExcluded:=yes}
+
+cmd=(
+   docker run -it --rm
+   --read-only --tmpfs /tmp:rw,nosuid,nodev
+   -v /var/run/docker.sock:/var/run/docker.sock
+)
+
+if [[ -e $excludeImages ]]; then
+   dst="/exclude"
+   cmd+=(
+      -e excludeImages=$dst
+      -v $excludeImages:$dst:ro
+      )
+fi
+
+vars=(
+   dockerPrune
+   maxSecondsOld
+   networkPrune
+   pullExcluded
+)
+
+for k in $vars; do
+   v=${(P)k}
+   cmd+=(-e "$k=$v")
+done
+
+cmd+=(konstruktoid/docker-garby)
+
+"${cmd[@]}"
