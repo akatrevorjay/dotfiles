@@ -3,6 +3,16 @@
 #xrandr-auto || :
 #wm || :
 
+function gnome-settings-daemon {
+	if [[ ${+commands[gnome-settings-daemon]} ]]; then
+		command gnome-settings-daemon
+	else
+		for i in /usr/lib/gnome-settings-daemon/gsd*; do
+			$i &
+		done
+	fi
+}
+
 (
 	tkbd &
 	ckb --background &
@@ -11,8 +21,8 @@
 	#xsettingsd &
 	gnome-settings-daemon &
 
-	/usr/lib/gcr/gcr-prompter &
-	/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+	#/usr/lib/gcr/gcr-prompter &
+	#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 
 	nm-applet &
 	usbguard-applet-qt &
