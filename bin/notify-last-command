@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# Minimal duration of last commands to notify it.
+export NOTIFY_MIN_SECONDS=${NOTIFY_MIN_SECONDS-10}
+
+
+function _guess_window_title() {
+    fqdn=$(hostname --fqdn)
+    if [ -n "${BYOBU_BACKEND-}" ] && [ -n "${TMUX-}" ] ; then
+        if (echo -e '8.0 NEWER'; cat /etc/debian_version) | sort -V | head -1 | grep -q NEWER ; then
+            # Let byobu update pane title
+            echo "$fqdn ($$)";
+        else
+            # This is the default byobu title, recomputed
+            ip=$(ip addr show dev eth0 | grep -oP '(?<=inet )(.*)(?=/)')
+            echo "${LOGNAME}@$fqdn ($ip) - byobu"
+        fi
+    else
+        # Put this in ~/.config/byobu/.tmux.conf:
+        #
+        #     set -g set-titles on
+        #     set -g set-titles-string '#(hostname --fqdn) (#{pane_pid})'
+        echo "bash $fqdn ($$)"
+    fi
+}
+
+function _reset_title() {
+    echo -ne "\033]2;${NOTIFY_TITLE}\007"
+}
+
+function _notify_last_command() {
+    last_entry=($@)
+
+    # Wait this seconds so that Window manager can update the title. This way,
+    # we avoid to consider current window as unfocused.
+    sleep ${WAIT_TITLE-0}
+
+    # If not desktop, use client.
+    if [ -z "${DESKTOP_SESSION-}" ] ; then
+        notify=notify-client
+    elif notify-is-focused; then
+        # bash is focused. skip.
+        return
+    else
+        notify=notify-send
+    fi
+
+    last_start=${last_entry[2]}
+    if [ $last_start -le ${_NOTIFY_LAST_TIME-0} ] ; then
+        return
+    fi
+
+    now=$(date +%s)
+    elapsed_seconds=$((now - last_start))
+
+    if [ $elapsed_seconds -lt ${NOTIFY_MIN_SECONDS} ] ; then
+        return
+    fi
+
+    last_exit_code=${last_entry[0]}
+    last_command=${last_entry[@]:3}
+
+    args="--app-name $(basename $SHELL)"
+    if [ ${last_exit_code} -eq 0 ] ; then
+        $notify $args --icon utilites-terminal --hint int:transient:1 \
+                "Command exited on ${NOTIFY_TITLE}" "$last_command" &>/dev/null
+    else
+        $notify $args --icon gtk-dialog-error --urgency=critical \
+                "Command failed on ${NOTIFY_TITLE}" "$last_command" &>/dev/null
+    fi
+}
+
+function notify_last_command() {
+    last_exit_status=$1
+    last_entry=($(HISTTIMEFORMAT="%s " history 1))
+
+    # Skip if history is empty
+    if [ "${#last_entry[@]}" -eq 0 ] ; then
+        return
+    fi
+
+    export NOTIFY_TITLE=$(_guess_window_title)
+    WAIT_TITLE=0
+    # Loose list of command known to change window title. This can trigger a
+    # bug in terminator where window title is updated from a background
+    # tab. But most of the time, you are detaching a session, so you are
+    # focusing this shell.
+    if expr match "${last_entry[2]}" "\(byobu\|screen\|ssh\|tmux\)" &>/dev/null; then
+        _reset_title
+        WAIT_TITLE=1
+    fi
+
+    # Run in background
+    (WAIT_TITLE=$WAIT_TITLE _notify_last_command $last_exit_status ${last_entry[*]} &)
+
+    export _NOTIFY_LAST_TIME=$(date +%s)
+}
+
+if [[ ${BASH_SOURCE[0]} = $0 ]]; then
+    set -eux
+    _notify_last_command $@
+else
+    # sourced in .bashrc, bootstrap.
+    # Ignore previous history.
+    export _NOTIFY_LAST_TIME=$(date +%s)
+    export NOTIFY_TITLE=$(_guess_window_title)
+    _reset_title
+fi

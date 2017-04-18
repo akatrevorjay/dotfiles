@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+
+import asyncio
+from distutils.spawn import find_executable
+import os
+import logging
+import json
+
+logger = logging.getLogger('notify-proxy')
+
+notify_send_path = find_executable('notify-send')
+
+
+@asyncio.coroutine
+def is_focused(window_title):
+    environ = dict(os.environ, NOTIFY_TITLE=window_title)
+    child = yield from asyncio.create_subprocess_exec(
+        'notify-is-focused',
+        stdout=asyncio.subprocess.PIPE,
+        env=environ,
+    )
+
+    stdout, _ = yield from child.communicate()
+    return child.returncode == 0
+
+
+@asyncio.coroutine
+def notify_send(
+    summary, app_name=None, body=None, urgency='normal', icon=None, window_title=None, expire_time=None, hint=None, **kwargs
+):
+
+    if window_title:
+        logger.debug("Checking focused window is %s", window_title)
+        is_window_focused = yield from is_focused(window_title)
+        if is_window_focused:
+            return logger.info("Inhibited for focused window for %s.", summary)
+
+    args = [notify_send_path]
+    if app_name:
+        args.extend(['--app-name', app_name])
+    if expire_time:
+        args.extend(['--expire-time', str(expire_time)])
+    if icon:
+        args.extend(['--icon', icon])
+    if urgency:
+        args.extend(['--urgency', urgency])
+    if hint:
+        if not isinstance(hint, list):
+            hint = [hint]
+        for item in hint:
+            args.extend(['--hint', item])
+
+    args.append(summary)
+    if body:
+        args.append(body)
+
+    logger.debug("%r", ' '.join(args))
+    child = yield from asyncio.create_subprocess_exec(*args)
+    yield from child.communicate()
+    logger.info("Notification sent: %r", summary)
+
+
+class NotifyProtocol(asyncio.Protocol):
+
+    def data_received(self, payload):
+        logger.debug("<<< %r", payload)
+        try:
+            data = json.loads(payload.decode('utf-8'))
+        except Exception as e:
+            logger.warn("Failed to parse payload:\n%s", e)
+            return
+
+        asyncio.async(notify_send(**data))
+
+
+DEBUG = os.environ.get('DEBUG')
+logging.basicConfig(
+    level=logging.DEBUG if DEBUG else logging.INFO,
+    format='%(message)s',
+)
+logger.info("Starting notify-proxy")
+
+loop = asyncio.get_event_loop()
+addr = os.environ.get('PROXY_ADDR', '127.0.0.1')
+port = int(os.environ.get('PROXY_PORT', '1216'))
+server = loop.run_until_complete(loop.create_server(
+    NotifyProtocol,
+    addr,
+    port,
+    reuse_address=True,
+    reuse_port=True,
+))
+
+logger.info("Listening on %s:%d", addr, port)
+
+if DEBUG:
+    data = json.loads(DEBUG)
+    logger.debug("Testing %r", data)
+    loop.run_until_complete(asyncio.async(notify_send(**data)))
+else:
+    try:
+        loop.run_forever()
+    except KeyboardInterrupt:
+        logger.info('Done')
+
+server.close()
+loop.run_until_complete(server.wait_closed())
+loop.close()
