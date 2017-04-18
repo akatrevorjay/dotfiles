@@ -73,3 +73,5 @@ endif
 
 "Plug 'cohama/lexima.vim'
 
+Plug 'hakimel/reveal.js'
+

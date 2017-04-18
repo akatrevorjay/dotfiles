@@ -5,33 +5,40 @@
 
 function gnome-settings-daemon {
 	if (( ${+commands[gnome-settings-daemon]} )); then
-		command gnome-settings-daemon
+		command gnome-settings-daemon &
 	else
 		for i in /usr/lib/gnome-settings-daemon/gsd*; do
+			killall -u $USER ${i:?}
 			$i &
 		done
 	fi
 }
 
-(
-	tkbd &
-	ckb --background &
-	compton &
+tkbd &
+ckb --background &
+compton &
 
-	#xsettingsd &
-	gnome-settings-daemon &
+#xsettingsd &
+gnome-settings-daemon
 
-	#/usr/lib/gcr/gcr-prompter &
-	#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+gnome-keyring-daemon &
+seahorse-daemon &
 
-	nm-applet &
-	usbguard-applet-qt &
-	#pasystray &
-	#gpomme &
-	parcellite &
-	#winswitch_applet &
-	idle variety &
+/usr/lib/gcr/gcr-prompter &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 
-	#xdg-autostart &
-) &
+sleep 1
 
+nm-applet &
+usbguard-applet-qt &
+#pasystray &
+#gpomme &
+parcellite &
+#winswitch_applet &
+idle variety &
+notify-proxy &
+
+#xdg-autostart &
+
+wait

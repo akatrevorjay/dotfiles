@@ -19,17 +19,20 @@ SWAY_CURSOR_SIZE=48
 
 export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
 
-XKB_DEFAULT_RULES=evdev
-XKB_DEFAULT_MODEL=apple
-XKB_DEFAULT_LAYOUT=workman
+#XKB_DEFAULT_RULES=evdev
+#XKB_DEFAULT_MODEL=apple
+XKB_DEFAULT_MODEL=pc101
+XKB_DEFAULT_LAYOUT=us
+XKB_DEFAULT_VARIANT=workman
 #XKB_DEFAULT_OPTIONS='lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle'
+XKB_DEFAULT_OPTIONS='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,grp_led:caps,compose:menu,terminate:ctrl_alt_bksp'
 
-export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTIONS
+export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTIONS XKB_DEFAULT_VARIANT
 
 
 # https://wiki.archlinux.org/index.php/ATI#Dynamic_power_management
-export LIBVA_DRIVER_NAME=vdpau
-export VDPAU_DRIVER=r600
+#export LIBVA_DRIVER_NAME=vdpau
+#export VDPAU_DRIVER=r600
 
 
 # vim: set ts=4 sw=4 tw=120 et ft=sh :

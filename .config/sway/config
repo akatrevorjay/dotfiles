@@ -10,24 +10,26 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term terminix
+set $term tilix
+set $term2 terminololgy
+set $term3 alacritty
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
+#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 #for_window [class="nautilus"] border none
 
-for_window [class="terminix"] border none
+for_window [class="tilix"] border none
 
 for_window [class="google-chrome"] border none
 for_window [class="google-chrome-unstable"] border none
 for_window [class="vivaldi"] border none
 for_window [class="vivaldi-snapshot"] border none
 
-for_window [class="Uzbl-core"] focus child, layout stacking, focus
-#for_window [class="Uzbl-core"] focus child, layout tabbed, focus
+#for_window [class="Uzbl-core"] focus child, layout stacking, focus
+##for_window [class="Uzbl-core"] focus child, layout tabbed, focus
 
 for_window [class="(?i)mplayer"] floating enable
 
@@ -36,16 +38,30 @@ for_window [window_role="task_dialog"] floating enable
 
 for_window [title="Preferences$"] floating enable
 
-for_window [class="panel"] border none floating enable sticky enable
-for_window [class="trayer"] border none floating enable sticky enable
-for_window [class="stalonetray"] border none floating enable sticky enable
+#for_window [class="panel"] border none floating enable sticky enable
+#for_window [class="trayer"] border none floating enable sticky enable
+for_window [class="stalonetray"] border none floating enable sticky enable resize set 100 24
+#for_window [class="tint2"] border none floating enable sticky enable
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
+#default_border pixel 1
+default_border normal
+#default_floating_border none
+default_floating_border pixel 1
+floating_minimum_size 10 x 10
+
+output DP-1 res 3440x1400 scale 1 pos 0,0
+output DP-2 disable
+output eDP-1 res 2880x1800 scale 2 pos 3440,0
+
+#output DP-2 res 2560x1440 scale 1 pos 3440,0
+#output eDP-1 res 2880x1800 scale 2 pos 6000,0
+
+#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 #
 # Status Bar:
 #
-# Read `man 5 i3-bar` for more information about this section.
+# Read `man 5 sway-bar` for more information about this section.
 
 # Status bar uses custom script
 set $bg  #323232dd
@@ -60,10 +76,10 @@ client.focused          $bg    $bgu        $fg       $bg        $bg
 
 #new_window normal 4
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
+#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 #font pango:Input Sans Compressed 10
-font pango:Sudo 16
+font pango:PragmataPro Nerd Font 10
 
 #
 # Basics:
@@ -72,16 +88,17 @@ font pango:Sudo 16
 # reload the configuration file
 bindsym $mod+Shift+c reload
 
-# restart i3 inplace with mod+shift+r
+# restart sway inplace with mod+shift+r
 bindsym $mod+Shift+r restart
 
-# exit i3 with mod+shift+e
-bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exit i3?' 0 0 && swaymsg exit"
+# exit sway with mod+shift+e
+bindsym $mod+Shift+e exit
 
 # start a terminal
 bindsym $mod+Return exec $term
-bindsym $mod+Shift+Return exec terminix --quake
-bindsym $mod+Shift+Grave exec terminology
+bindsym $mod+Shift+Return exec tilix --quake
+bindsym $mod+grave exec $term2
+bindsym $mod+Shift+grave exec $term3
 
 #
 # Window context
@@ -99,12 +116,15 @@ bindsym $mod+f fullscreen
 # Cycle through border styles with mod+b
 bindsym $mod+b border toggle
 
+bindsym $mod+Shift+b border none
+
 # Drag floating windows by holding down $mod and left mouse button.
 # Resize them with right mouse button + $mod.
 # Despite the name, also works for non-floating windows.
 # Change normal to inverse to use left mouse button for resizing and right
 # mouse button for dragging.
-floating_modifier $mod normal
+#floating_modifier $mod normal
+floating_modifier $mod
 
 # Toggle the current focus between tiling and floating mode
 bindsym $mod+Shift+space floating toggle
@@ -197,7 +217,7 @@ bindsym $mod+Shift+Tab exec aworkspace move
 # Scratchpad:
 #
 
-# i3 has a "scratchpad", which is a bag of holding for windows.
+# sway has a "scratchpad", which is a bag of holding for windows.
 # You can send windows there and get them back later.
 
 # Move the currently focused window to the scratchpad
@@ -235,8 +255,8 @@ bindsym $mod+r mode "resize"
 # You can "split" the current object of your focus with
 # $mod+b or $mod+v, for horizontal and vertical splits
 # respectively.
-bindsym $mod+Shift+backslash split h
-bindsym $mod+minus split v
+bindsym $mod+Control+backslash split h
+bindsym $mod+Control+minus split v
 
 #
 # vim-style window splits and resizing after hitting mod+w
@@ -268,7 +288,7 @@ bindsym $mod+Shift+o exec nautilus
 bindsym $mod+Shift+p exec srht -p
 
 # Screenshots
-#bindsym Print exec i3grab ~/Pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
+#bindsym Print exec swaygrab ~/Pictures/screenshots/$(date +"%Y-%m-%d_%H:%M:%S.png")
 #bindsym $mod+Print exec sleep 0.1 && srht
 
 # dmenu for arbituary programs
@@ -296,14 +316,14 @@ bindsym XF86AudioPrev exec stewdio dmenu-search
 bindsym $mod+XF86AudioPlay exec stewdio qfav
 bindsym $mod+XF86AudioNext exec stewdio dmenu-queue
 
-# i3-lock on mod+pause
-bindsym XF86Sleep exec i3lock -i `wallpaper` -s stretch
-bindsym $mod+XF86Sleep exec i3lock -c 00000000
+# sway-lock on mod+pause
+bindsym XF86Sleep exec swaylock -i `wallpaper` -s stretch
+bindsym $mod+XF86Sleep exec swaylock -c 00000000
 bindsym $mod+Pause exec lock-system
 
 bindsym $mod+i exec ibus-toggle
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
+#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 ### Input configuration
 #
@@ -318,9 +338,9 @@ bindsym $mod+i exec ibus-toggle
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # The escape symbol "\" has to be removed.
-# Read `man 5 i3-input` for more information about this section.
+# Read `man 5 sway-input` for more information about this section.
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
+#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 exec --no-startup-id ~/bin/winit
 
@@ -350,10 +370,11 @@ exec --no-startup-id ~/bin/winit
 bar {
     #id bar0
 
-    #status_command i3blocks
-    #status_command i3status
-    #status_command ~/bin/i3status -c ~/.config/i3/bars/top.py
-    #status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
+    status_command i3blocks
+    #swaybar_command ~/bin/bar
+    #status_command swaystatus
+    #status_command ~/bin/swaystatus -c ~/.config/sway/bars/top.py
+    #status_command ~/.local/bin/swaypystatus -c ~/.config/sway/bars/top.py
 
     tray_output primary
 
@@ -364,7 +385,7 @@ bar {
     #wrap_scroll yes
 
     #fint pango:Input Sans Compressed 10
-    font pango:Sudo 12
+    #font pango:PragmataPro Nerd Font 12
     #separator_symbol |
 
     colors {
@@ -376,5 +397,8 @@ bar {
         #inactive_workspace #323232dd #323232dd #5c5c5cdd
     }
 }
+
+include /usr/local/etc/sway/config.d/*
+include /usr/local/etc/sway/security.d/*
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
