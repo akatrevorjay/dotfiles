@@ -3,7 +3,7 @@
 	c++ = /usr/lib/ccache/../../bin
 	ld = /usr/bin
 	make = /usr/bin
-	cpus = 8
+	cpus = 4
 	ccache = /usr/bin
 # Comment this back in for debugging
 #       verbose
@@ -12,7 +12,7 @@
 #	   distcc-hosts = snab swarm1 swarm3 swarm4 swarm5 fandango2 mingo
 #	   distc++-hosts = snab mingo
 	   # make check should not generally be run in parallel
-	   no-parallel = check
+	   no-parallel = check docs doc tests test
 
 # Wesnoth doesn't compile with g++ 4.0
 #[*wesnoth*]

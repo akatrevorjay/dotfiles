@@ -351,34 +351,36 @@ exec --no-startup-id ~/bin/winit
 #    }
 #}
 
-bar {
-    #id bar0
+#bar {
+#    #id bar0
 
-    status_command i3blocks
-    #status_command i3status
-    #status_command ~/bin/i3status -c ~/.config/i3/bars/top.py
-    #status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
+#    #i3bar_command ~/bin/bar
 
-    tray_output primary
+#    status_command i3blocks
+#    #status_command i3status
+#    #status_command ~/bin/i3status -c ~/.config/i3/bars/top.py
+#    #status_command ~/.local/bin/i3pystatus -c ~/.config/i3/bars/top.py
 
-    position top
-    #position bottom
+#    tray_output primary
 
-    #pango_markup enabled
-    #wrap_scroll yes
+#    position top
+#    #position bottom
 
-    #fint pango:Input Sans Compressed 10
-    #font pango:PragmataPro Nerd Font 12
-    #separator_symbol |
+#    #pango_markup enabled
+#    #wrap_scroll yes
 
-    colors {
-        background #000000dd
-        statusline #aaaaaaff
-        separator #0000aaff
-        #active_workspace #323232dd #323232dd #5c5c5cff
-        #urgent_workspace #323232ff #dd0000dd #000000ff
-        #inactive_workspace #323232dd #323232dd #5c5c5cdd
-    }
-}
+#    #fint pango:Input Sans Compressed 10
+#    #font pango:PragmataPro Nerd Font 12
+#    #separator_symbol |
+
+#    colors {
+#        background #000000dd
+#        statusline #aaaaaaff
+#        separator #0000aaff
+#        #active_workspace #323232dd #323232dd #5c5c5cff
+#        #urgent_workspace #323232ff #dd0000dd #000000ff
+#        #inactive_workspace #323232dd #323232dd #5c5c5cdd
+#    }
+#}
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
