@@ -75,3 +75,5 @@ endif
 
 Plug 'hakimel/reveal.js'
 
+" chdir to project/vcs root on open
+Plug 'airblade/vim-rooter'

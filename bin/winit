@@ -30,6 +30,10 @@ seahorse-daemon &
 
 sleep 1
 
+tint2 &
+
+sleep 1
+
 nm-applet &
 usbguard-applet-qt &
 #pasystray &
