@@ -16,10 +16,16 @@
 [[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
 
 # XDG defaults
+if (( ${+commands[xdg-user-dirs-update]} )); then
+	xdg-user-dirs-update
+	source ${XDG_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}}/user-dirs.dirs
+fi
+
 : ${XDG_CONFIG_HOME:=$HOME/.config}
 : ${XDG_CACHE_HOME:=$HOME/.cache}
 : ${XDG_DATA_HOME:=$HOME/.local/share}
-: ${XDG_RUNTIME_DIR:=$HOME/.tmp}
+: ${XDG_RUNTIME_HOME:=$HOME/.tmp}
+
 declare -xm 'XDG_*'
 
 # TODO hooks for plugins to register env-time changes.

@@ -36,12 +36,12 @@ sleep 1
 
 nm-applet &
 usbguard-applet-qt &
-#pasystray &
+pasystray &
+idle variety &
+notify-proxy &
 #gpomme &
 parcellite &
 #winswitch_applet &
-idle variety &
-notify-proxy &
 
 #xdg-autostart &
 
