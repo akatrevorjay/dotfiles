@@ -85,7 +85,7 @@ c.InteractiveShellApp.hide_initial_ns = True
 
 # Reraise exceptions encountered loading IPython extensions?
 # c.InteractiveShellApp.reraise_ipython_extension_failures = False
-# c.InteractiveShellApp.reraise_ipython_extension_failures = True
+c.InteractiveShellApp.reraise_ipython_extension_failures = True
 
 #------------------------------------------------------------------------------
 # SingletonConfigurable configuration
@@ -214,7 +214,7 @@ c.Application.log_level = 10  # DEBUG
 # c.InteractiveShell.logappend = ''
 
 # Set the color scheme (NoColor, Linux, or LightBG).
-# c.InteractiveShell.colors = 'LightBG'
+c.InteractiveShell.colors = 'Linux'
 
 #
 # c.InteractiveShell.readline_use = True
@@ -227,7 +227,7 @@ c.Application.log_level = 10  # DEBUG
 
 # If True, anything that would be passed to the pager will be displayed as
 # regular output instead.
-# c.InteractiveShell.display_page = False
+c.InteractiveShell.display_page = True
 
 #
 # c.InteractiveShell.wildcards_case_sensitive = True
@@ -247,7 +247,7 @@ c.Application.log_level = 10  # DEBUG
 # c.InteractiveShell.automagic = True
 
 # Save multi-line entries as one entry in readline history
-# c.InteractiveShell.multiline_history = True
+c.InteractiveShell.multiline_history = True
 
 # Make IPython automatically call any callable object even if you didn't type
 # explicit parentheses. For example, 'str 43' becomes 'str(43)' automatically.
@@ -263,7 +263,7 @@ c.Application.log_level = 10  # DEBUG
 # Use colors for displaying information about objects. Because this information
 # is passed through a pager (like 'less'), and some pagers get confused with
 # color codes, this capability can be turned off.
-# c.InteractiveShell.color_info = True
+c.InteractiveShell.color_info = True
 
 # Autoindent IPython code entered interactively.
 #c.InteractiveShell.autoindent = True
@@ -278,7 +278,7 @@ c.Application.log_level = 10  # DEBUG
 # c.InteractiveShell.object_info_string_level = 0
 
 # Show rewritten input, e.g. for autocall.
-# c.InteractiveShell.show_rewritten_input = True
+c.InteractiveShell.show_rewritten_input = True
 
 #
 # c.InteractiveShell.ipython_dir = ''
@@ -357,7 +357,7 @@ c.TerminalInteractiveShell.pager = 'less -RWX'
 # c.PromptManager.in_template = 'In [\\#]: '
 
 #
-# c.PromptManager.color_scheme = 'Linux'
+c.PromptManager.color_scheme = 'Linux'
 
 #------------------------------------------------------------------------------
 # HistoryAccessorBase configuration
@@ -547,7 +547,7 @@ c.Completer.greedy = True
 # When 1: all 'magic' names (``__foo__``) will be excluded.
 #
 # When 0: nothing will be excluded.
-c.IPCompleter.omit__names = 0
+c.IPCompleter.omit__names = 1
 
 # Whether to merge completion results into a single list
 #
