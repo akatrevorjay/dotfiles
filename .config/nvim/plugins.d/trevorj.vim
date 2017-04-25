@@ -144,3 +144,11 @@ let g:grepper = {
 Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'mkd', 'md', 'python'] }
 
 "Plug 'sunaku/vim-shortcut'
+
+Plug 'KabbAmine/zeavim.vim', {'on': [
+			\	'Zeavim', 'Docset',
+			\	'<Plug>Zeavim',
+			\	'<Plug>ZVVisSelection',
+			\	'<Plug>ZVKeyDocset',
+			\	'<Plug>ZVMotion'
+			\ ]}

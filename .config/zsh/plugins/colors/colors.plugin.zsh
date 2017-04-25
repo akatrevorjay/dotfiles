@@ -59,9 +59,9 @@
 #LSCOLORS='exfxcxdxbxGxDxabagacad'
 #LSCOLORS="gxfxcxdxbxegedabagacad"
 
-LS_OPTIONS_ALL=(-Fuhs -ctr --color=auto --group-directories-first)
+LS_OPTIONS_ALL=(-Fu -hks -c --color=auto --group-directories-first)
 LS_OPTIONS_GNU=(${(@)LS_OPTIONS_ALL})
-LS_OPTIONS_BSD=(${(@)LS_OPTIONS_ALL} -G);
+LS_OPTIONS_BSD=(${(@)LS_OPTIONS_ALL});
 
 if (( ${+commands[dircolors]} )); then
     # GNU

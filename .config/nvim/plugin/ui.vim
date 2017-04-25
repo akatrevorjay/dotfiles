@@ -47,7 +47,8 @@ endif
 ""
 
 " Terminology doesn't support true color
-if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
+"if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
+if has('nvim') && empty($TERMINOLOGY) && !exists('g:is_gui')
     set termguicolors
 endif
 
@@ -190,13 +191,15 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 
 let g:deepspace_italics = 1
 let g:badwolf_css_props_highlight = 1
+let g:badwolf_darkgutter = 1
+let g:badwolf_tabline = 0
 "colorscheme badwolf
 "colorscheme base
 "let g:airline_theme = 'deep_space'
 
 "colorscheme codedark
 let g:airline_theme = 'badcat'
-colorscheme badcat
+colorscheme badcat2
 
 "let ayucolor="dark"
 "colorscheme ayu

@@ -31,9 +31,10 @@ vars=(
 
 for k in $vars; do
    v=${(P)k}
+   [[ -n $v ]] || continue
    cmd+=(-e "$k=$v")
 done
 
 cmd+=(konstruktoid/docker-garby)
 
-"${cmd[@]}"
+"${cmd[@]}" "$@"

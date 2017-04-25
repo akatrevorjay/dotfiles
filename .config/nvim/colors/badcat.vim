@@ -17,7 +17,7 @@ set background=dark
 let g:colors_name = 'badcat'
 " }}}
 " HIGHLIGHTING FUNCTION ------------------------------------------------------{{{
-if has('gui_running')
+if has('gui_running') || has('nvim')
     let s:hi_args = ['guifg', 'guibg', 'gui', 'guisp']
 else
     let s:hi_args = ['ctermfg', 'ctermbg', 'cterm']
@@ -34,11 +34,13 @@ function! s:HL(group, ...)
 endfunc
 " }}}
 " COLOR PALETTE ------------------------------------------------------------{{{
-if has('gui_running')
-  let s:darkgray  = '#121212'
+if has('gui_running') || has('nvim')
+  "let s:darkgray  = '#121212'
+  let s:darkgray  = '#080808'
   let s:lightgray = '#6c6c6c'
   let s:gray      = '#262626'
-  let s:black     = '#080808'
+  "let s:black     = '#080808'
+  let s:black     = '#000000'
   let s:white     = '#e4e4e4'
   let s:red       = '#ff5f5f'
   let s:green     = '#afd787'
@@ -84,7 +86,7 @@ call s:HL('Search'       , s:pink       , s:black)
 " }}}
 " BASE SYNTAX ---------------------------------------------------------------{{{
 call s:HL('Normal'    , s:white      , s:darkgray)
-call s:HL('Comment'   , s:lightgray)
+call s:HL('Comment'   , s:lightgray, 'italic')
 call s:HL('String'    , s:yellow)
 call s:HL('Boolean'   , s:pink)
 call s:HL('Delimiter' , s:purple)

@@ -41,7 +41,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
-let colors_name = "badwolf"
+let g:colors_name = "badwolf"
 
 if !exists("g:badwolf_html_link_underline") " {{{
     let g:badwolf_html_link_underline = 1
@@ -89,6 +89,12 @@ let s:bwc.taffy = ['ff2c4b', 196]
 let s:bwc.saltwatertaffy = ['8cffba', 121]
 
 " The star of the show comes straight from Made of Code.
+"
+" You should almost never use this.  It should be used for things that denote
+" 'where the user is', which basically consists of:
+"
+" * The cursor
+" * A REPL prompt
 let s:bwc.tardis = ['0a9dff', 39]
 
 " This one's from Mustang, not Florida!
@@ -150,13 +156,15 @@ endfunction
 
 if exists('g:badwolf_darkgutter') && g:badwolf_darkgutter
     let s:gutter = 'blackestgravel'
+    "let s:gutter = 'coal'
 else
     let s:gutter = 'blackgravel'
 endif
 
 if exists('g:badwolf_tabline')
     if g:badwolf_tabline == 0
-        let s:tabline = 'blackestgravel'
+        "let s:tabline = 'blackestgravel'
+        let s:tabline = 'coal'
     elseif  g:badwolf_tabline == 1
         let s:tabline = 'blackgravel'
     elseif  g:badwolf_tabline == 2
@@ -170,6 +178,24 @@ else
     let s:tabline = 'blackgravel'
 endif
 
+function! Badwolf_toggle_italics()
+    if g:badwolf_italics == 1
+        call s:HL('Comment', 'gravel', '', 'none')
+        call s:HL('markdownItalic', 'snow', '', 'none')
+        let g:badwolf_italics = 0
+    else
+        call s:HL('Comment', 'gravel', '', 'italic')
+        call s:HL('markdownItalic', 'snow', '', 'italic')
+        let g:badwolf_italics = 1
+    end
+endfunction
+command! BWToggleItalics :call Badwolf_toggle_italics()
+let g:badwolf_italics = 0
+call Badwolf_toggle_italics()
+
+hi IndentGuides                  guibg=#373737
+hi WildMenu        guifg=#66D9EF guibg=#000000
+
 " }}}
 
 " Actual colorscheme ----------------------------------------------------------
@@ -177,7 +203,8 @@ endif
 
 " General/UI {{{
 
-call s:HL('Normal', 'plain', 'blackgravel')
+"call s:HL('Normal', 'plain', 'blackgravel')
+call s:HL('Normal', 'plain', 'coal')
 
 call s:HL('Folded', 'mediumgravel', 'bg', 'none')
 
@@ -244,7 +271,7 @@ call s:HL('iCursor', 'coal', 'tardis', 'none')
 call s:HL('Special', 'plain')
 
 " Comments are slightly brighter than folds, to make 'headers' easier to see.
-call s:HL('Comment',        'gravel')
+"call s:HL('Comment',        'gravel')
 call s:HL('Todo',           'snow', 'bg', 'bold')
 call s:HL('SpecialComment', 'snow', 'bg', 'bold')
 
@@ -443,14 +470,21 @@ call s:HL('clojureParen0', 'lightgravel', '', 'none')
 call s:HL('clojureAnonArg', 'snow', '', 'bold')
 
 " }}}
+" Common Lisp {{{
+
+call s:HL('lispFunc',           'lime', '', 'none')
+call s:HL('lispVar',            'orange', '', 'bold')
+call s:HL('lispEscapeSpecial',  'orange', '', 'none')
+
+" }}}
 " CSS {{{
 
 if g:badwolf_css_props_highlight
-    call s:HL('cssColorProp', 'dirtyblonde', '', 'none')
-    call s:HL('cssBoxProp', 'dirtyblonde', '', 'none')
-    call s:HL('cssTextProp', 'dirtyblonde', '', 'none')
-    call s:HL('cssRenderProp', 'dirtyblonde', '', 'none')
-    call s:HL('cssGeneratedContentProp', 'dirtyblonde', '', 'none')
+    call s:HL('cssColorProp', 'taffy', '', 'none')
+    call s:HL('cssBoxProp', 'taffy', '', 'none')
+    call s:HL('cssTextProp', 'taffy', '', 'none')
+    call s:HL('cssRenderProp', 'taffy', '', 'none')
+    call s:HL('cssGeneratedContentProp', 'taffy', '', 'none')
 else
     call s:HL('cssColorProp', 'fg', '', 'none')
     call s:HL('cssBoxProp', 'fg', '', 'none')
@@ -556,6 +590,13 @@ call s:HL('lessVariable', 'lime', '', 'none')
 
 call s:HL('lispyscriptDefMacro', 'lime', '', '')
 call s:HL('lispyscriptRepeat', 'dress', '', 'none')
+
+" }}}
+" REPLs {{{
+" This isn't a specific plugin, but just useful highlight classes for anything
+" that might want to use them.
+
+call s:HL('replPrompt', 'tardis', '', 'bold')
 
 " }}}
 " Mail {{{
