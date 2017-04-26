@@ -3,11 +3,17 @@ set -exv
 
 yadm pull
 
-if [[ ${+functions[antibody]} ]]; then
+(( ! ${+commands[antibody]} ]] )) || \
 	command antibody update &
-elif [[ ${+functions[zplug]} ]]; then
-	zplug update
-fi
+
+(( ! ${+commands[rustup]} ]] )) || \
+	rustup update &
+
+(( ! ${+commands[nix-channel]} ]] )) || \
+	nix-channel --update && nix-env -u &
+
+(( ! ${+commands[flatpak]} )) || \
+	flatpak update &
 
 vim=${commands[nvim]-${commands[vim]}}
 if [[ -n $vim ]]; then

@@ -20,3 +20,6 @@ autoload -Uz bool-is-true
 if bool-is-true $NIX_AUTOLOAD; then
     nix.load
 fi
+
+# Add in completions
+fpath+=($NIX_PROFILE/share/zsh/site-functions)
