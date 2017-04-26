@@ -370,4 +370,4 @@ colors:
   cursor: {cursor: '0xE9B96E', text: '0x204A87'}
   normal: {black: '0x000000', blue: '0x7D8FA4', cyan: '0x85A7A5', green: '0x87B379',
     magenta: '0xA47996', red: '0xB04B57', white: '0xB3B8C3', yellow: '0xE5C179'}
-  primary: {background: '0x111318', foreground: '0xB3B8C3'}
+  primary: {background: '0x000000', foreground: '0xB3B8C3'}
