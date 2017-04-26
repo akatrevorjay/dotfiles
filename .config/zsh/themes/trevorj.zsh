@@ -1,1 +1,1 @@
-airline-snapshot.zsh
+airline-green.zsh

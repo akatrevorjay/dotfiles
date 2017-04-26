@@ -1,1 +1,1 @@
-airline2.zsh
+airline-dark.zsh
