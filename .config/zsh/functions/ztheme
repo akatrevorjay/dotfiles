@@ -4,7 +4,11 @@
 
 local name
 for name in "$@"; do
-    for fn in ${^ZDOTDIRS}/themes/$name{,.zsh,.sh}(-.N); do
+    names=()
+    [[ -z $SSH_CONNECTION ]] || names+=($name-remote)
+    names+=($name)
+
+    for fn in ${^ZDOTDIRS}/themes/${^names}{,.zsh,.sh}(-.N); do
         source $fn
         return 0
     done
