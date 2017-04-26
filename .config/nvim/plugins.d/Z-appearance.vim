@@ -4,7 +4,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'edkolev/promptline.vim' ", {'on': ['Promptline', 'PromptlineSnapshot']}
 
 " Generate tmux status themes from airline
-Plug 'edkolev/tmuxline.vim' ", {'on': ['Tmuxline', 'TmuxlineSnapshot']}
+Plug 'edkolev/tmuxline.vim', {'on': ['Tmuxline', 'TmuxlineSnapshot']}
 
 " Prettify tabs in terminal vim
 Plug 'mkitt/tabline.vim'
