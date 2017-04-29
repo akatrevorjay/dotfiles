@@ -42,6 +42,7 @@ notify-proxy &
 #gpomme &
 parcellite &
 #winswitch_applet &
+yubioath-desktop &
 
 #xdg-autostart &
 

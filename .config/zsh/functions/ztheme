@@ -2,16 +2,13 @@
 
 [ $# -gt 0 ] || set -- $ZSH_THEME $USER default
 
-local name
-for name in "$@"; do
-    names=()
-    [[ -z $SSH_CONNECTION ]] || names+=($name-remote)
-    names+=($name)
+local names=("$@")
+[[ -z $SSH_CONNECTION ]] || names+=(${^names}-ssh $names ssh)
+[[ -z $TMUX ]] || names=(${^names}-tmux $names tmux)
 
-    for fn in ${^ZDOTDIRS}/themes/${^names}{,.zsh,.sh}(-.N); do
-        source $fn
-        return 0
-    done
+for fn in ${^ZDOTDIRS}/themes/${^names}{,.zsh,.sh}(-.N); do
+    source $fn
+    return
 done
-return 1
 
+return 1
