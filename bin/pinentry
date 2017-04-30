@@ -59,5 +59,5 @@ case $OSTYPE:l in
 esac
 
 echo "[$0:a] Could not find pinentry binary" >&2
-exit 1
+exit 127
 
