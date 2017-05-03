@@ -26,7 +26,7 @@ seahorse-daemon &
 
 /usr/lib/gcr/gcr-prompter &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
+#/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 
 sleep 1
 
