@@ -12,6 +12,7 @@ cmd=(
    docker run -it --rm
    --read-only --tmpfs /tmp:rw,nosuid,nodev
    -v /var/run/docker.sock:/var/run/docker.sock
+   --userns host
 )
 
 if [[ -e $excludeImages ]]; then
