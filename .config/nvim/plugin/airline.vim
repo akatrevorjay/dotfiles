@@ -72,7 +72,7 @@ let g:airline_mode_map = {
 "      \ 't'  : 'term',
 "      \ }
 
-let g:airline#extensions#tmuxline#enabled = 1
+"let g:airline#extensions#tmuxline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline#extensions#whitespace#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -161,7 +161,7 @@ let g:CtrlSpaceStatuslineFunction = 'airline#extensions#ctrlspace#statusline()'
 ""
 "" tmuxline
 ""
-let g:airline#extensions#tmuxline#snapshot_file = expand('~/.tmux/themes/airline-snapshot.conf')
+"let g:airline#extensions#tmuxline#snapshot_file = expand('~/.tmux/themes/airline-snapshot.conf')
 
 "let airline#extensions#tmuxline#color_template = 'normal' (default)
 "let airline#extensions#tmuxline#color_template = 'insert'
@@ -175,31 +175,31 @@ let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 "let g:airline#extensions#ycm#error_symbol = 'E:'
 "let g:airline#extensions#ycm#warning_symbol = 'W:'
 
-let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
+"let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
 
 let airline#extensions#promptline#color_template = 'normal'  " (default)
 "let airline#extensions#promptline#color_template = 'insert'
 "let airline#extensions#promptline#color_template = 'visual'
 "let airline#extensions#promptline#color_template = 'replace'
 
-" sections (a, b, c, x, y, z, warn) are optional
-let g:promptline_preset = {
-  \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
-  \'b' : [ promptline#slices#user() ],
-  \'c' : [ promptline#slices#cwd() ],
-  \'x' : [
-    \promptline#slices#git_status(),
-    \],
-  \'y' : [
-    \promptline#slices#vcs_branch(),
-    \],
-  \'z' : [ promptline#slices#python_virtualenv() ],
-  \'warn' : [
-    \promptline#slices#last_exit_code(),
-    \promptline#slices#jobs(),
-    \promptline#slices#battery({'threshold': 25})
-    \]
-  \}
+"" sections (a, b, c, x, y, z, warn) are optional
+"let g:promptline_preset = {
+"  \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
+"  \'b' : [ promptline#slices#user() ],
+"  \'c' : [ promptline#slices#cwd() ],
+"  \'x' : [
+"    \promptline#slices#git_status(),
+"    \],
+"  \'y' : [
+"    \promptline#slices#vcs_branch(),
+"    \],
+"  \'z' : [ promptline#slices#python_virtualenv() ],
+"  \'warn' : [
+"    \promptline#slices#last_exit_code(),
+"    \promptline#slices#jobs(),
+"    \promptline#slices#battery({'threshold': 25})
+"    \]
+"  \}
   "\'options': {
   "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
   "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],

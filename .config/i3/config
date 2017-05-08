@@ -78,7 +78,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 with mod+shift+e
-bindsym $mod+Shift+e exec bash -c "gdialog --yesno 'Are you sure you want to exit i3?' 0 0 && swaymsg exit"
+bindsym $mod+Shift+e exec i3-msg exit
 
 # start a terminal
 bindsym $mod+Return exec $term
