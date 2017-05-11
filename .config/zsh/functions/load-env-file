@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+load-env-file() {
+    local file=${1:-".env"}
+
+    local contents=$(sed -e '/^\s*#/d' .env)
+    contents=(${(f)contents})
+
+    local i
+    for i in $contents; do
+        k=${i%%=*}; v=${i#*=}
+        export $i
+    done
+}
+
+load-env-file "$@"
