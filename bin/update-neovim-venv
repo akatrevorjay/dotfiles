@@ -32,4 +32,8 @@ function pip() {
 	done
 }
 
-pip install -U neovim jedi rope ropevim neovim-gui
+pip install -U neovim \
+	neovim-gui \
+	jedi \
+	rope ropevim \
+	mistune psutil setproctitle

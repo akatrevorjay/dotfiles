@@ -1,7 +1,10 @@
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if has('nvim')
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
-" Unite fod nvim (async)
-Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins'}
+  " Unite fod nvim (async)
+  Plug 'Shougo/denite.nvim', {'do': ':UpdateRemotePlugins'}
+endif
+
 Plug 'Shougo/unite.vim'
 
 Plug 'Shougo/unite-outline'

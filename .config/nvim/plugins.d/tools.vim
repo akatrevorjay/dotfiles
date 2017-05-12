@@ -1,4 +1,3 @@
-
 " Commenting:
 Plug 'tpope/vim-commentary'
 Plug 'scrooloose/nerdcommenter'
@@ -21,25 +20,4 @@ let g:fzf_mru_ignore_patterns = '\.pyc\|fugitive\|\.git/\|\_^/tmp/' " default va
 ", { 'on':  'NERDTreeToggle' }
 "Plug 'scrooloose/nerdtree'
 "Plug 'Xuyuanp/nerdtree-git-plugin'
-
-if has('nvim')
-  " NeoTerm: nice wrapper around :term
-  Plug 'kassio/neoterm'
-else
-  Plug 'wincent/terminus'
-endif
-
-" dark powered shell for Neovim
-Plug 'Shougo/deol.nvim'
-
-" Continuously updated session files
-Plug 'tpope/vim-obsession'
-
-" used for repeating operator actions via "."
-Plug 'tpope/vim-repeat'
-
-" Faster folding
-Plug 'Konfekt/FastFold'
-
-Plug 'junegunn/vim-emoji'
 

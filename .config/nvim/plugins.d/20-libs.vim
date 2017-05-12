@@ -26,7 +26,7 @@ Plug 'kana/vim-operator-user'
 "Plug 'vim-scripts/taglist.vim'
 
 " Continuously updated session files
-"Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-obsession'
 
 " used for repeating operator actions via "."
 Plug 'tpope/vim-repeat'
@@ -39,9 +39,10 @@ Plug 'junegunn/vim-emoji'
 if has('nvim')
   " NeoTerm: nice wrapper around :term
   Plug 'kassio/neoterm'
+
+  " dark powered shell for Neovim
+  Plug 'Shougo/deol.nvim', {'do': ':UpdateRemotePlugins'}
 else
   Plug 'wincent/terminus'
 endif
 
-" dark powered shell for Neovim
-Plug 'Shougo/deol.nvim'

@@ -17,7 +17,7 @@ set background=dark
 let g:colors_name = 'badcat'
 " }}}
 " HIGHLIGHTING FUNCTION ------------------------------------------------------{{{
-if has('gui_running') || has('nvim')
+if has('gui_running') || (has('termguicolors') && &termguicolors)
     let s:hi_args = ['guifg', 'guibg', 'gui', 'guisp']
 else
     let s:hi_args = ['ctermfg', 'ctermbg', 'cterm']
@@ -34,7 +34,7 @@ function! s:HL(group, ...)
 endfunc
 " }}}
 " COLOR PALETTE ------------------------------------------------------------{{{
-if has('gui_running') || has('nvim')
+if has('gui_running') || (has('termguicolors') && &termguicolors)
   "let s:darkgray  = '#121212'
   let s:darkgray  = '#080808'
   let s:lightgray = '#6c6c6c'

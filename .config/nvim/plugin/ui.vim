@@ -14,12 +14,12 @@ if has('gui_running') || has('nvim')
     ""
 
     if has('nvim')
-        if exists('neovim_dot_app')
-            "Guifont PragmataPro\ Nerd\ Font:h11
-        endif
+        "if exists('neovim_dot_app')
+        "    Guifont PragmataPro\ Nerd\ Font:h11
+        "endif
     else
-        set guifont=PragmataPro\ Nerd\ Font\ 10
-        set guifontwide=PragmataPro\ Nerd\ Font\ 10
+        set guifont=PragmataPro\ Nerd\ Font\ 12
+        set guifontwide=&guifont
 
         if has('gui_macvim')
             " YEAH BABY LIGATURE SUPPORT
@@ -34,23 +34,20 @@ if has('gui_running') || has('nvim')
 else
     " 256 color mode for term
     set t_Co=256
+
     " Shit color mode for shit term
     "set t_Co=88
 
     " Use CSApprox in normal vim to match gui colors approximately
-    let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'underline', 'sp' : 'fg' }
+    if exists('g:loaded_csapprox')
+        let g:CSApprox_attr_map = { 'bold' : 'bold', 'italic' : 'underline', 'sp' : 'fg' }
+    endif
 endif
 
 
 ""
 "" Colors:
 ""
-
-" Terminology doesn't support true color
-"if has('nvim') && empty('neovim_dot_app') && empty($TERMINOLOGY) && empty(g:is_gui)
-if has('nvim') && empty($TERMINOLOGY) && !exists('g:is_gui')
-    set termguicolors
-endif
 
 " Always dark bg damnit, stop resetting it on me swan
 set background=dark
@@ -194,12 +191,12 @@ let g:badwolf_css_props_highlight = 1
 let g:badwolf_darkgutter = 1
 let g:badwolf_tabline = 0
 "colorscheme badwolf
-"colorscheme base
-"let g:airline_theme = 'deep_space'
+colorscheme base
+let g:airline_theme = 'deep_space'
 
 "colorscheme codedark
-let g:airline_theme = 'badcat'
-colorscheme badcat2
+"let g:airline_theme = 'badcat'
+"colorscheme badcat2
 
 "let ayucolor="dark"
 "colorscheme ayu

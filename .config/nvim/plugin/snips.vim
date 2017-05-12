@@ -16,10 +16,17 @@ if exists('g:loaded_ultisnips')
   "let g:ultisnips_python_style = 'sphinx'
   let g:ultisnips_python_style = 'google'
 
-  let g:UltiSnipsExpandTrigger="<c-j>"
+  if exists('g:loaded_cm')
+    let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+    inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+  else
+    let g:UltiSnipsExpandTrigger="<c-j>"
+  endif
+
   let g:UltiSnipsJumpForwardTrigger="<c-j>"
   let g:UltiSnipsJumpBackwardTrigger="<c-k>"
   let g:UltiSnipsListSnippets="<c-u>"
+
 endif
 " }}}
 

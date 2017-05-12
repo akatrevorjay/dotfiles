@@ -144,17 +144,17 @@ Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
 "Plug 'kchmck/vim-coffee-script, {'for': ['coffee']}
 Plug 'dart-lang/dart-vim-plugin', {'for': ['dart']}
 " syntax
-"Plug 'othree/yajs.vim', {'for': ['json', 'javascript']}
+"Plug 'othree/yajs.vim', {for': ['json', 'javascript']}
 "Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
 " JavaScript Parameter Complete(JSPC): cemp for func params, such as event names, crypto algorithms, and common locales
 "Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
 "Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
 
-autocmd BufReadPre *.js let b:javascript_lib_use_jquery = 1
-autocmd BufReadPre *.js let b:javascript_lib_use_underscore = 0
-autocmd BufReadPre *.js let b:javascript_lib_use_backbone = 0
-autocmd BufReadPre *.js let b:javascript_lib_use_prelude = 0
-autocmd BufReadPre *.js let b:javascript_lib_use_angularjs = 1
+Gautocmdft javascript let b:javascript_lib_use_jquery = 1
+Gautocmdft javascript let b:javascript_lib_use_underscore = 0
+Gautocmdft javascript let b:javascript_lib_use_backbone = 0
+Gautocmdft javascript let b:javascript_lib_use_prelude = 0
+Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 
 "Plug 'othree/svg-properties-syntax.vim'
 "Plug 'othree/html5.vim'
@@ -288,19 +288,19 @@ if has('nvim')
     Plug 'racer-rust/vim-racer', {'for': ['rust']}
 
     " deoplete-github: "github" source for "gitcommit" filetype
-    Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
+    "Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
 
     " deoplete-clang: "clang" source for C/C++
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 "
-    " deoplete-d: "d" source for D language
-    "Plug 'landaire/deoplete-d', {'for': ['d']}
-
     "" deoplete-rtags: "rtags" source for "c", "cpp", "objc" and "objcpp" filetypes
     "Plug 'LuXuryPro/deoplete-rtags'
 
+    " deoplete-d: "d" source for D language
+    "Plug 'landaire/deoplete-d', {'for': ['d']}
+
     " elixir.nvim: "elixir" source for Elixir
-    "Plug 'awetzel/elixir.nvim'
+    "Plug 'awetzel/elixir.nvim', {'for': ['elixir']}
     Plug 'slashmili/alchemist.vim', {'for': ['elixir']}
 
     "" deoplete-ternjs: "ternjs" source for JavaScript
@@ -330,21 +330,32 @@ if has('nvim')
 
     " webcomplete.vim: "webcomplete" source for browser opened pages
     "Plug 'thalesmello/webcomplete.vim'
-else
 
+else
+    Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
+    let g:loaded_ncm = 1
+
+    " Requires vim8 with has('python') or has('python3')
+    " Requires the installation of msgpack-python. (pip install msgpack-python)
+    if !has('nvim')
+        Plug 'roxma/vim-hug-neovim-rpc'
+    endif
+
+"else
     "Plug 'Valodim/vim-zsh-completion'
     "Gautocmdft zsh,sh let b:completefunc=zsh_completion#Complete
 
-    function! BuildYCM(info)
-        " info is a dictionary with 3 fields
-        " - name:   name of the plugin
-        " - status: 'installed', 'updated', or 'unchanged'
-        " - force:  set on PlugInstall! or PlugUpdate!
-        if a:info.status == 'installed' || a:info.force
-            !./install.py --clang-completer --system-libclang --gocode-completer --racer-completer --system-boost --tern-completer
-        endif
-    endfunction
+    "function! BuildYCM(info)
+    "    " info is a dictionary with 3 fields
+    "    " - name:   name of the plugin
+    "    " - status: 'installed', 'updated', or 'unchanged'
+    "    " - force:  set on PlugInstall! or PlugUpdate!
+    "    if a:info.status == 'installed' || a:info.force
+    "        !./install.py --clang-completer --system-libclang --gocode-completer --racer-completer --system-boost --tern-completer
+    "    endif
+    "endfunction
 
-    Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
+    "Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
 endif
+
 

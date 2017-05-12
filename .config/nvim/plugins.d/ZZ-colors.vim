@@ -1,8 +1,9 @@
 
-if ! has('gui_running') && ! has('nvim')
-  " Approximately converts gui only colorschemes to console
-  Plug 'godlygeek/csapprox'
-endif
+" No longer needed as of vim8 with termguicolors
+"if ! has('gui_running') && ! has('nvim')
+"  " Approximately converts gui only colorschemes to console
+"  Plug 'godlygeek/csapprox'
+"endif
 
 "Plug 'vim-scripts/ScrollColors'
 

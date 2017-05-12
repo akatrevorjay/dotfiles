@@ -305,7 +305,11 @@ set diffopt=filler,icase,iwhite,context:3,vertical
 set switchbuf=split
 
 " Number of insert completion lines to show
-set pumheight=15
+set pumheight=30
+
+" don't give |ins-completion-menu| messages.  For example,
+" '-- XXX completion (YYY)', 'match 1 of 2', 'The only match',
+set shortmess+=c
 
 set shortmess+=Ics
 "set cmdheight=2

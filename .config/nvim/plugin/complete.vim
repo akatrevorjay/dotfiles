@@ -28,10 +28,12 @@ set completeopt+=noinsert
 " https://github.com/Shougo/deoplete.nvim/blob/master/rplugin/python3/deoplete/deoplete.py
 "set completeopt+=noselect
 
-if has('nvim')
-    " Line-wise completion via fzf
+" Line-wise completion via fzf
+if exists('g:loaded_fzf')
     imap <silent><C-x><C-l> <plug>(fzf-complete-line)
+endif
 
+if exists('g:loaded_deoplete')
     " Enable by default for these filetypes
     "Gautocmdft vim,zsh,sh,go,txt,markdown,mkd execute ':DeopleteEnable'
     " All
@@ -210,53 +212,29 @@ if has('nvim')
     " Use tern_for_vim.
     let g:tern#command = ["tern"]
     let g:tern#arguments = ["--persistent"]
-else
-    "let g:tmuxcomplete#trigger = 'completefunc'
-    "let g:tmuxcomplete#trigger = 'omnifunc'
 
-    " Python: Jedi {{{
-    let g:jedi#auto_initialization = 1
-    let g:jedi#use_tabs_not_buffers = 1
-    let g:jedi#use_splits_not_buffers = 'left'
-    let g:jedi#use_splits_not_buffers = 1
-    let g:jedi#popup_on_dot = 1
-    let g:jedi#popup_select_first = 0
-    " Jedi displays function call signatures in insert mode in real-time, highlighting the current argument.
-    " The call signatures can be displayed as a pop-up in the buffer (set to 1, the default), which has the
-    " advantage of being easier to refer to, or in Vim's command line aligned with the function call (set to 2),
-    " which can improve the integrity of Vim's undo history.
-    let g:jedi#max_doc_height = 30
-    let g:jedi#auto_close_doc = 0
-    "let g:jedi#squelch_py_warning = 1
-    let g:jedi#goto_definitions_command = '<leader>gg'
+elseif exists('g:loaded_ncm')
+  " When the <Enter> key is pressed while the popup menu is visible, it only hides the menu. Use this mapping to hide the menu and also start a new line.
+  inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 
-    "let g:jedi#show_call_signatures = 1
-    let g:jedi#show_call_signatures = 2 " show in cmdline
-    let g:jedi#show_call_signatures_delay = 250 " ms (500)
+  " Use tab to select the popup menu:
+  "inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+  "inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-    " Default mappings:
-    "let g:jedi#goto_command = "<leader>d"
-    "let g:jedi#goto_assignments_command = "<leader>g"
-    "let g:jedi#documentation_command = "K"
-    "let g:jedi#usages_command = "<leader>n"
-    "let g:jedi#completions_command = "<C-Space>"
-    "let g:jedi#rename_command = "<leader>r"
+  " css completion via `csscomplete#CompleteCSS`
+  " The `'cm_refresh_patterns'` is PCRE.
+  " Be careful with `'scoping': 1` here, not all sources, especially omnifunc,
+  " can handle this feature properly.
+  au User CmSetup call cm#register_source({'name' : 'cm-css',
+		  \ 'priority': 9, 
+		  \ 'scoping': 1,
+		  \ 'scopes': ['css','scss'],
+		  \ 'abbreviation': 'css',
+		  \ 'cm_refresh_patterns':[':\s+\w*$'],
+		  \ 'cm_refresh': {'omnifunc': 'csscomplete#CompleteCSS'},
+		  \ })
 
-    "inoremap <F2> <ESC>K!i
-
-    " Reload Jedi when pyenv changes
-    if exists('g:loaded_jedi') && jedi#init_python()
-      function! s:jedi_auto_force_py_version() abort
-        let major_version = pyenv#python#get_internal_major_version()
-        call jedi#force_py_version(major_version)
-      endfunction
-      augroup vim-pyenv-custom-augroup
-        autocmd! *
-        autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
-        autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
-      augroup END
-    endif
-    " }}}
+elseif exists('g:loaded_ycm')
 
     " Python: YCM {{{
     " Extra baby
@@ -321,5 +299,54 @@ else
     " TODO default to syntaxcomplete#Complete
     "set completefunc=syntaxcomplete#Complete
     "set omnifunc=syntaxcomplete#Complete
+endif
+
+if !exists('g:loaded_deoplete')
+    "let g:tmuxcomplete#trigger = 'completefunc'
+    "let g:tmuxcomplete#trigger = 'omnifunc'
+
+    " Python: Jedi {{{
+    let g:jedi#auto_initialization = 1
+    let g:jedi#use_tabs_not_buffers = 1
+    let g:jedi#use_splits_not_buffers = 'left'
+    let g:jedi#use_splits_not_buffers = 1
+    let g:jedi#popup_on_dot = 1
+    let g:jedi#popup_select_first = 0
+    " Jedi displays function call signatures in insert mode in real-time, highlighting the current argument.
+    " The call signatures can be displayed as a pop-up in the buffer (set to 1, the default), which has the
+    " advantage of being easier to refer to, or in Vim's command line aligned with the function call (set to 2),
+    " which can improve the integrity of Vim's undo history.
+    let g:jedi#max_doc_height = 30
+    let g:jedi#auto_close_doc = 0
+    "let g:jedi#squelch_py_warning = 1
+    let g:jedi#goto_definitions_command = '<leader>gg'
+
+    "let g:jedi#show_call_signatures = 1
+    let g:jedi#show_call_signatures = 2 " show in cmdline
+    let g:jedi#show_call_signatures_delay = 250 " ms (500)
+
+    " Default mappings:
+    "let g:jedi#goto_command = "<leader>d"
+    "let g:jedi#goto_assignments_command = "<leader>g"
+    "let g:jedi#documentation_command = "K"
+    "let g:jedi#usages_command = "<leader>n"
+    "let g:jedi#completions_command = "<C-Space>"
+    "let g:jedi#rename_command = "<leader>r"
+
+    "inoremap <F2> <ESC>K!i
+
+    " Reload Jedi when pyenv changes
+    if exists('g:loaded_jedi') && jedi#init_python()
+      function! s:jedi_auto_force_py_version() abort
+        let major_version = pyenv#python#get_internal_major_version()
+        call jedi#force_py_version(major_version)
+      endfunction
+      augroup vim-pyenv-custom-augroup
+        autocmd! *
+        autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+        autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+      augroup END
+  endif
+    " }}}
 endif
 
