@@ -76,8 +76,8 @@ if has('nvim')
 
     "Plug 'tek/proteome.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    " Interactive ft-aware REPL
-    Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+    "" Interactive ft-aware REPL
+    "Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 
     Plug 'benekastah/neomake', { 'do': ':UpdateRemotePlugins' }
     "" Run Neomake on every write
@@ -96,13 +96,13 @@ if has('nvim')
     "omap i; <Plug>Argumentative_OpPendingInnerTextObject
     "omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
-    function! BuildComposer(info)
-        if a:info.status != 'unchanged' || a:info.force
-            !cargo build --release
-            exec ':UpdateRemotePlugins'
-        endif
-    endfunction
-    Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'on': 'MarkdownComposer' }
+    "function! BuildComposer(info)
+    "    if a:info.status != 'unchanged' || a:info.force
+    "        !cargo build --release
+    "        exec ':UpdateRemotePlugins'
+    "    endif
+    "endfunction
+    "Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'on': 'MarkdownComposer' }
 
     "" libclang syntax hightlighting (tagless and fast)
     "Plug 'arakashic/chromatica.nvim'

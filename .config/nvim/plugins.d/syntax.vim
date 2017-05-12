@@ -260,6 +260,8 @@ Plug 'hashivim/vim-vagrant', {'for': ['vagrantfile']}
 ""
 
 if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+
     " deoplete-jedi: "jedi" source for Python
     Plug 'zchee/deoplete-jedi', {'for': ['python']}
 

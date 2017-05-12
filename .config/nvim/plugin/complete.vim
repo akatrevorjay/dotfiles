@@ -33,7 +33,8 @@ if exists('g:loaded_fzf')
     imap <silent><C-x><C-l> <plug>(fzf-complete-line)
 endif
 
-if exists('g:loaded_deoplete')
+"if exists('g:loaded_deoplete')
+if has('nvim')
     " Enable by default for these filetypes
     "Gautocmdft vim,zsh,sh,go,txt,markdown,mkd execute ':DeopleteEnable'
     " All
