@@ -45,7 +45,7 @@ if has('nvim')
     "" Allow <CR> to select
     "inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
 
-    let g:deoplete#auto_completion_start_length = 1
+    let g:deoplete#auto_complete_start_length = 1
     "let g:deoplete#file#enable_buffer_path = 1
     "let g:deoplete#enable_refresh_always = 1
     let g:deoplete#auto_complete_delay = 100
@@ -112,10 +112,21 @@ if has('nvim')
     "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
     "let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
+    let g:deoplete#max_menu_width = 80
     let g:deoplete#sources#use_cache = 1
 
     "let g:deoplete#sources#go = 'vim-go'
     let g:deoplete#sources#go#package_dot = 1
+    let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
+    let g:deoplete#sources#go#pointer = 1
+    let g:deoplete#sources#go#cgo = 1
+    let g:deoplete#sources#go#cgo#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
+    let g:deoplete#sources#go#auto_goos = 1
+    let g:deoplete#sources#go#json_directory = expand('~/.cache/deoplete/go/$GOOS_$GOARCH')
+
+    if !empty('$GOPATH')
+      let g:deoplete#sources#go#gocode_binary = expand($GOPATH.'/bin/gocode')
+    endif
 
     " clang
     "let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
@@ -152,8 +163,8 @@ if has('nvim')
     "inoremap <silent> <expr> <C-]> utils#manualTagComplete()
 
     " <C-h>, <BS>: close popup and delete previous char
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
+    "inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    "inoremap <expr><BS> deoplete#mappings#smart_close_popup()."\<C-h>"
 
     "" tmux-complete
     " w/deoplete
