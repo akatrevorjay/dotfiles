@@ -1,0 +1,98 @@
+#!/bin/bash
+##
+## nmconnect.sh
+## -- questionably sane wrapper around nmcli for quick connection list/connect
+## ~trevorj 043011
+##
+
+##
+## helper funcs
+##
+function e              { echo "$@"; }
+function debug          { [[ -n "$DEBUG" ]] && e "$@"; }
+function error		{ e "$@" >&2; }
+function death		{ error "$@"; exit 1; }
+##
+function nullout        { "$@" >/dev/null; }
+function nullouterr     { "$@" >&/dev/null; }
+function prefixout      { "${@:2}" |& sed -e "s/^/$1/"; }
+##
+function varopt         { for i in "${@:2}"; do eval $i=\"\${!i$1}\"; done; }
+
+## Get opts
+while getopts "d(debug)t(trace)n(noop)" opt; do case "$opt" in
+        d)      DEBUG=0 ;;
+        t)      shopt -s extdebug; set -xv ;;
+esac; done; shift $((OPTIND-1)); OPTIND=1
+
+## Read in any non-opt search params
+declare -l restrict
+for i in "$@"; do
+	## If search param is not in k=v form, then mark it as search=v
+	[[ "$i" == *=* ]] || i="search=$i"
+
+	restrict+="$i "
+done
+
+## Can be symlinked to names for ease
+self="`basename $0`"
+## Name fixups
+case "$self" in
+	wired|ethernet|lan)	self="802-3-ethernet" ;;
+	wireless|wlan)		self="802-11-wireless" ;;
+esac
+## type
+[[ "$self" =~ vpn|802-3-ethernet|802-11-wireless ]] \
+  && restrict="type=$self $restrict"
+
+## Hack off the space at the end
+restrict=${restrict:0:-1}
+
+## Fields to grab from nmcli
+grab_fields="name type uuid"
+## Fields (variables) to display when listing
+display_fields="$grab_fields"
+## Fields (variables) to search through when a simple search parameter is given (not k=v)
+search_fields="$grab_fields id"
+
+##
+## Show search params, Run nmcli to dish us the full list, parse with read
+##
+e [${restrict:-'*'}]
+id=-1; counter=-1; while IFS=: read -s $grab_fields; do
+	## id = connection id
+	let id+=1;
+
+	cont=1; for i in $restrict; do
+		declare -l ks v k kv
+		ks=${i%%=*}; v=${i#$ks=}
+		[[ "$ks" = "search" ]] && ks="$search_fields"
+
+		cont=0; for k in $ks; do
+			kv="${!k}"
+			[[ "$kv" == *$v* ]] && cont=1
+		done
+		[[ "$cont" = 1 ]] || break
+	done
+	[[ "$cont" = 1 ]] || continue
+
+	## counter = displayed connection counter
+	let counter+=1
+
+	## Display connection
+	d=; for i in ${display_fields#name}; do
+		eval d+=\"$i=\\\"\$$i\\\", \"
+	done
+	e "$id. \"$name\" (${d:0:-2})"
+
+	## Set connect vars if we're the only result
+	[[ "$counter" -eq 0 ]] && for i in name uuid id; do eval nmcli_connect_$i=\"\${!i}\"; done
+done < <(nmcli -f "${grab_fields// /,}" -m tabular -t con list)
+
+if [[ -n "$nmcli_connect_name" && "$counter" -eq 0 ]]; then
+	declare -l ans
+	read -p "--> Start connection to: \"$nmcli_connect_name\"? [Y/n]" ans
+	[[ -z "$ans" || "$ans" =~ ^[y]$ ]] \
+	  && prefixout '[nmcli] ' nmcli con up uuid "$nmcli_connect_uuid"
+fi
+
