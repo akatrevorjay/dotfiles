@@ -87,7 +87,7 @@ id=-1; counter=-1; while IFS=: read -s $grab_fields; do
 
 	## Set connect vars if we're the only result
 	[[ "$counter" -eq 0 ]] && for i in name uuid id; do eval nmcli_connect_$i=\"\${!i}\"; done
-done < <(nmcli -f "${grab_fields// /,}" -m tabular -t con list)
+done < <(nmcli -f "${grab_fields// /,}" -m tabular -t con show)
 
 if [[ -n "$nmcli_connect_name" && "$counter" -eq 0 ]]; then
 	declare -l ans
