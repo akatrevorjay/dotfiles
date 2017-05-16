@@ -43,6 +43,7 @@ notify-proxy &
 parcellite &
 #winswitch_applet &
 yubioath-gui &
+indicator-kdeconnect &
 
 #xdg-autostart &
 

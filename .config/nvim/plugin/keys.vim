@@ -201,10 +201,11 @@ cnoremap <c-e> <end>
 "noremap <F3> :Autoformat<CR>
 ""au BufWrite * :Autoformat
 
-
 nmap ; :
 
 vmap [% [%m'gv``
 vmap ]% ]%m'gv``
 vmap a% [%v]%
 
+" Pastes then visually selects and reindents
+nnoremap <leader>p p`[v`]=
