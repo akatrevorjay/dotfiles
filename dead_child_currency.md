@@ -1,4 +1,4 @@
-# Dead children currency - 80,000 Hours
+# Dead children currency
 
 I think dead children should be used as a unit of currency. I know this sounds controversial, but hear me out.
 
