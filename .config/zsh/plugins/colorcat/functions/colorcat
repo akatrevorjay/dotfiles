@@ -8,8 +8,21 @@ if tty -s && test -t 0 \
 then
     local file
     for file in "$@"; do
-        [ $# -eq 1 ] || echo "[${0:t}] $file" >&2
-        pygmentize -O style=monokai -f console256 -g "$file"
+        local filter=()
+        case $file in
+            *.gz)   filter=(zcat) ;;
+            *.bz2)  filter=(bzcat) ;;
+        esac
+
+        local cmd=(pygmentize -O style=monokai -f terminal16m -g)
+
+        [ $# -eq 1 ] || echo "[${0:t}] $file ${filter:+filter=$filter }" >&2
+
+        if [[ $#filter -gt 0 ]]; then
+            $filter $file | $cmd
+        else
+            $cmd $file
+        fi
     done
 else
     \cat "$@"
