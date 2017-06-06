@@ -189,11 +189,18 @@ case ${OSTYPE:l} in
 			fi
 		}
 
-		fpath+=(/usr/local/share/zsh/site-functions)
 		;;
 esac
 
 path=(${(@)prefix_path} ${(@)path})
+
+fpath+=(
+	/usr/local/share/zsh/vendor-completions
+	/usr/local/share/zsh/site-functions
+
+	/usr/share/zsh/vendor-completions
+	/usr/share/zsh/site-functions
+)
 
 # Fix common order mishaps across OSes
 fix-path-order

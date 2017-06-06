@@ -1,12 +1,44 @@
 #!/bin/zsh
-local prefix="$1"
-[[ ! -d "$prefix/bin" ]] \
-	|| path+=($prefix/bin)
-[[ ! -d "$prefix/sbin" ]] \
-	|| path+=($prefix/sbin)
-[[ ! -d "$prefix/functions" ]] \
-	|| fpath+=($prefix/functions)
-[[ ! -d "$prefix/share/man" ]] \
-	|| manpath+=($prefix/share/man)
-[[ ! -d "$prefix/share/info" ]] \
-	|| infopath+=($prefix/share/info)
+
+function add-suffix-paths {
+	local path_dirs=(
+		bin
+		sbin
+	)
+	local completions_dirs=(
+		completions
+		#zsh/completions
+
+		etc/zsh/completions
+
+		share/zsh/vendor-functions
+		# Lots of packages seem to still use this vs vendor-functions
+		share/zsh/site-functions
+	)
+	local fpath_dirs=(
+		functions
+		#zsh/functions
+
+		#etc/zsh/functions
+	)
+
+	local manpath_dirs=(
+		share/man
+		man
+	)
+
+	local infopath_dirs=(
+		share/info
+	)
+
+	local prefixes=(${(@)argv:a})
+
+	# suffix
+	path+=(${^prefixes}/${^path_dirs}(-/N))
+	fpath+=(${^prefixes}/${^completions_dirs}(-/N))
+	fpath+=(${^prefixes}/${^fpath_dirs}(-/N))
+	manpath+=(${^prefixes}/${^manpath_dirs}(-/N))
+	infopath+=(${^prefixes}/${^infopath_dirs}(-/N))
+}
+
+add-suffix-paths "$@"

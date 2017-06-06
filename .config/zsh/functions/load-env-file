@@ -3,7 +3,7 @@
 load-env-file() {
     local file=${1:-".env"}
 
-    local contents=$(sed -e '/^\s*#/d' .env)
+    local contents=$(sed -e '/^\s*#/d' $file)
     contents=(${(f)contents})
 
     local i

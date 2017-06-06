@@ -11,6 +11,7 @@ alias arco='arc cover'
 alias arci='arc commit'
 
 alias ard='arc diff'
+#alias ard='arc diff --nounit --nolint --excuse b0rk --ignore-existing'
 alias ardnu='arc diff --nounit'
 alias ardnupc='arc diff --nounit --plan-changes'
 alias ardpc='arc diff --plan-changes'
