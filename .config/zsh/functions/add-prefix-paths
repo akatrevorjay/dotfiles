@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-function add-prefix-paths {
+function add-prefix-paths add-suffix-paths {
 	local path_dirs=(
 		bin
 		sbin
@@ -33,12 +33,22 @@ function add-prefix-paths {
 
 	local prefixes=(${(@)argv:a})
 
-	# prefix
-	path=(${(@)path} ${^prefixes}/${^path_dirs}(-/N))
-	fpath=(${(@)fpath} ${^prefixes}/${^completions_dirs}(-/N))
-	fpath=(${(@)fpath} ${^prefixes}/${^fpath_dirs}(-/N))
-	manpath=(${(@)manpath} ${^prefixes}/${^manpath_dirs}(-/N))
-	infopath=(${(@)infopath} ${^prefixes}/${^infopath_dirs}(-/N))
+	case $0 in
+		add-prefix-paths)
+			path=(${(@)path} ${^prefixes}/${^path_dirs}(-/N))
+			fpath=(${(@)fpath} ${^prefixes}/${^completions_dirs}(-/N))
+			fpath=(${(@)fpath} ${^prefixes}/${^fpath_dirs}(-/N))
+			manpath=(${(@)manpath} ${^prefixes}/${^manpath_dirs}(-/N))
+			infopath=(${(@)infopath} ${^prefixes}/${^infopath_dirs}(-/N))
+			;;
+		add-suffix-paths)
+			path+=(${^prefixes}/${^path_dirs}(-/N))
+			fpath+=(${^prefixes}/${^completions_dirs}(-/N))
+			fpath+=(${^prefixes}/${^fpath_dirs}(-/N))
+			manpath+=(${^prefixes}/${^manpath_dirs}(-/N))
+			infopath+=(${^prefixes}/${^infopath_dirs}(-/N))
+			;;
+	esac
 }
 
-add-prefix-paths "$@"
+$0 "$@"
