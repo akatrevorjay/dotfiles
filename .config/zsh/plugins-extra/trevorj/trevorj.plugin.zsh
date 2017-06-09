@@ -119,6 +119,8 @@ alias dkpu='docker push'
 alias dkps='docker ps'
 alias dkr='docker run -it'
 alias dke='docker exec -it'
+alias dkl='docker logs -f'
+alias dkL='docker logs'
 
 # Yeah, fuck the arbitrary precision calculator
 alias dc='docker-compose'

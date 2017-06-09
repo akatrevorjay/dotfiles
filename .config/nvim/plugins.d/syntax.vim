@@ -163,7 +163,7 @@ Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 " Yet Another Typescript Syntax
-Plug 'HerringtonDarkholme/yats.vim', {'for': ['typescript']}
+Plug 'HerringtonDarkholme/yats.vim'  ", {'for': ['typescript']}
 
 " nim
 Plug 'baabelfish/nvim-nim', {'for': ['nim']}
@@ -312,8 +312,14 @@ if has('nvim')
     Plug 'steelsojka/deoplete-flow', {'for': ['flow']}
 
     "" deoplete-typescript: "typescript" source for typescript
-    Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
-    let g:deoplete#sources#tss#javascript_support = 1
+    "Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
+    "let g:deoplete#sources#tss#javascript_support = 1
+
+    Plug 'mhartington/nvim-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
+    let g:nvim_typescript#javascript_support = 1  " 0
+    let g:nvim_typescript#max_completion_detail = 50  " 25
+    let g:nvim_typescript#type_info_on_hold = 1  " 0
+    let g:nvim_typescript#signature_complete = 1  " 0
 
     " Dart
     Plug 'villainy/deoplete-dart', { 'for': 'dart' }
