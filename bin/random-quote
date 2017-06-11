@@ -1,0 +1,27 @@
+#!/bin/zsh
+set -eo pipefail
+
+quotes_fn="$HOME/.config/variety/favorite_quotes.txt"
+
+quotes=$(< $quotes_fn)
+quotes=(${(s:%:)quotes})
+
+print-quote() {
+	local qidx=$1
+
+	local quote=$quotes[$qidx]
+
+	# trim newlines
+	quote=(${=quote})
+	quote="$quote"
+
+	# split
+	local author=${quote##* -- }
+	quote=${quote% -- *}
+
+	echo $quote
+	echo -- $author
+}
+
+randidx=$(( $RANDOM % ${#quotes} ))
+print-quote $randidx

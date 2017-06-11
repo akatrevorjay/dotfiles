@@ -203,4 +203,10 @@ esac
 
 if (( ${+commands[git-tip]} )); then
 	git-tip || :
+	echo
+fi
+
+if (( ${+commands[random-quote]} )); then
+	random-quote || :
+	echo
 fi
