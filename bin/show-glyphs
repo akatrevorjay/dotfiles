@@ -21,11 +21,12 @@ anyseq() {
     seq $start $finish
 }
 
+[ $# -gt 0 ] || set -- 0xE000 0xFFFF
+
 if [[ $# -ge 1 && $# -le 2 ]]; then
     nums=($(anyseq $1 $2))
 elif [ $# -gt 2 ]; then
     nums=("$@")
 fi
 
-print -a -C2 -r -- $(to_unicode $nums)
-#print -a -C10 -- $all
+print -a -l -r -C16 -- $(to_unicode $nums)
