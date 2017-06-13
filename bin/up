@@ -9,6 +9,7 @@ yadm pull
 (( ! ${+commands[rustup]} ]] )) || \
 	rustup update &
 
+path+=($HOME/.nix-profile/bin)
 (( ! ${+commands[nix-channel]} ]] )) || \
 	nix-channel --update && nix-env -u &
 

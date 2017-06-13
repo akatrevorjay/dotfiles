@@ -206,6 +206,8 @@ Plug 'mattn/emmet-vim'
 
 Plug 'aouelete/sway-vim-syntax', {'for': ['sway']}
 
+Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml']}
+
 ""
 "" Language: Python
 ""

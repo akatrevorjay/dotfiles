@@ -47,7 +47,7 @@ let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
 set emoji
-set lazyredraw
+"set lazyredraw
 
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
@@ -73,13 +73,17 @@ let g:indentLine_color_gui = '#A4E57E'
 map <silent><C-Space> :CtrlSpace<CR>
 
 let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
-let g:CtrlSpaceSetDefaultMapping = 1
+let g:CtrlSpaceSetDefaultMapping = 0
+" Fuck emacs
+nnoremap <C-space> :CtrlSpace a<CR>
 let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
 let g:CtrlSpaceSaveWorkspaceOnExit = 1
 let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 let g:CtrlSpaceIgnoredFiles = '\v((tmp|temp)[\/]|\.pyc$|\.pyo$|\.git$|__pycache__[\/])'
 let g:CtrlSpaceFileEngine = "auto"
+
+nnoremap <leader>b :Buffers<CR>
 
 if executable("ag")
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
