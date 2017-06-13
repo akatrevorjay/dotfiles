@@ -7,3 +7,6 @@
 [submodule ".weechat/python/weechat-otr"]
 	path = .weechat/python/weechat-otr
 	url = git@github.com:mmb/weechat-otr.git
+[submodule ".weechat/lua/matrix"]
+	path = .weechat/lua/matrix
+	url = https://github.com/akatrevorjay/weechat-matrix-protocol-script.git
