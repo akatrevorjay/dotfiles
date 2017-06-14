@@ -49,12 +49,13 @@ default_border normal
 default_floating_border pixel 1
 floating_minimum_size 10 x 10
 
-output DP-1 res 3440x1400 scale 1 pos 0,0
-output DP-2 disable
-output eDP-1 res 2880x1800 scale 2 pos 3440,0
+#output DP-1 res 3440x1400 scale 1 pos 0,0
+#output DP-2 disable
+#output eDP-1 res 2880x1800 scale 2 pos 3440,0
 
-#output DP-2 res 2560x1440 scale 1 pos 3440,0
-#output eDP-1 res 2880x1800 scale 2 pos 6000,0
+output DP-1 res 3840x2160 scale 2 pos 0,0
+output DP-2 res 2560x1440 scale 1 pos 3840,0
+output eDP-1 res 2880x1800 scale 2 pos 6400,0
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
