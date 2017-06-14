@@ -1,6 +1,8 @@
 #!/bin/zsh
 setopt multifuncdef
 
+autoload -Uz colors; colors
+
 typeset -A ZLOG_LEVELS=(
     all 0
     debug 10

@@ -47,6 +47,10 @@ if [[ -n $vim ]]; then
 	$vim -c 'Update'
 fi
 
+if (( ${+commands[gcloud]} )); then
+	gcloud components update
+fi
+
 #if [[ ${+commands[tmux]} ]]; then
 #	 :
 #fi
