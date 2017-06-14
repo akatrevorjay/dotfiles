@@ -47,6 +47,7 @@
 
     rb = rebase -i HEAD~10
 
+    log = log --follow
     lo = log --oneline -n 15
     lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
     ls = log --stat -n 5

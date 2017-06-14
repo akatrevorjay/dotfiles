@@ -1,26 +1,54 @@
 #!/bin/zsh
 
-#local -a prefixes=("$@")
-#path=(${^prefixes}/bin "${path[@]}")
-#fpath=(${^prefixes}/functions "${fpath[@]}")
-#manpath=(${^prefixes}/share/man "${manpath[@]}")
-#infopath=(${^prefixes}/share/info "${infopath[@]}")
+function add-prefix-paths add-suffix-paths {
+	local path_dirs=(
+		bin
+		sbin
+	)
+	local completions_dirs=(
+		completions
+		#zsh/completions
 
-for prefix in "$@"; do
-	[[ ! -d $prefix/bin ]] || \
-		 path=($prefix/bin ${(@)path})
-	[[ ! -d $prefix/sbin ]] || \
-		 path=($prefix/sbin ${(@)path})
+		etc/zsh/completions
 
-	[[ ! -d $prefix/functions ]] || \
-		 fpath=($prefix/functions ${(@)fpath})
+		share/zsh/vendor-functions
+		# Lots of packages seem to still use this vs vendor-functions
+		share/zsh/site-functions
+	)
+	local fpath_dirs=(
+		functions
+		#zsh/functions
 
-	if [[ -d $prefix/share/man ]]; then
-		manpath=($prefix/share/man ${(@)manpath})
-	elif [[ -d $prefix/man ]]; then
-		manpath=($prefix/man ${(@)manpath})
-	fi
+		#etc/zsh/functions
+	)
 
-	[[ ! -d $prefix/share/info ]] || \
-		 infopath=($prefix/share/info ${(@)infopath})
-done
+	local manpath_dirs=(
+		share/man
+		man
+	)
+
+	local infopath_dirs=(
+		share/info
+	)
+
+	local prefixes=(${(@)argv:a})
+
+	case $0 in
+		add-prefix-paths)
+			path=(${(@)path} ${^prefixes}/${^path_dirs}(-/N))
+			fpath=(${(@)fpath} ${^prefixes}/${^completions_dirs}(-/N))
+			fpath=(${(@)fpath} ${^prefixes}/${^fpath_dirs}(-/N))
+			manpath=(${(@)manpath} ${^prefixes}/${^manpath_dirs}(-/N))
+			infopath=(${(@)infopath} ${^prefixes}/${^infopath_dirs}(-/N))
+			;;
+		add-suffix-paths)
+			path+=(${^prefixes}/${^path_dirs}(-/N))
+			fpath+=(${^prefixes}/${^completions_dirs}(-/N))
+			fpath+=(${^prefixes}/${^fpath_dirs}(-/N))
+			manpath+=(${^prefixes}/${^manpath_dirs}(-/N))
+			infopath+=(${^prefixes}/${^infopath_dirs}(-/N))
+			;;
+	esac
+}
+
+$0 "$@"

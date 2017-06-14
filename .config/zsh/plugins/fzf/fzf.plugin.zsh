@@ -269,8 +269,14 @@ fs() {
     fzf --query="$1" --select-1 --exit-0) &&
   tmux switch-client -t "$session"
 }
+
 # ftpane - switch pane (@george-b)
 ftpane() {
+  if [[ -z $TMUX ]]; then
+    echo "Not in tmux?" >&2
+    return 1
+  fi
+
   local panes current_window current_pane target target_window target_pane
   panes=$(tmux list-panes -s -F '#I:#P - #{pane_current_path} #{pane_current_command}')
   current_pane=$(tmux display-message -p '#I:#P')
@@ -290,7 +296,6 @@ ftpane() {
 }
 
 # In tmux.conf
-# bind-key 0 run "tmux split-window -l 12 'bash -ci ftpane'"
 
 
 # v - open files in ~/.viminfo
@@ -322,7 +327,7 @@ c() {
 
   # Copy History DB to circumvent the lock
   # - See http://stackoverflow.com/questions/8936878 for the file path
-  cp -f ~/Library/Application\ Support/Google/Chrome/Default/History /tmp/h
+  cp -f ~/.config/google-chrome-unstable/Default/History /tmp/h
 
   sqlite3 -separator $sep /tmp/h \
     "select substr(title, 1, $cols), url

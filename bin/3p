@@ -27,23 +27,83 @@ verbose-call() {
 	echo
 }
 
+function max() {
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[-1]}
+}
+
+function min() {
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[1]}
+}
+
+zmodload -F zsh/stat b:zstat
+
+function is-newer-than() {
+	local left=() right=()
+
+	local arg sidx=0
+	for arg in $argv; do
+		case $sidx in
+			0)
+				if [[ $arg == '--' ]]; then
+					sidx+=1
+					continue
+				fi
+
+				left+=($arg) ;;
+			1)
+				right+=($arg) ;;
+		esac
+	done
+
+	left=(${^left}(-.N))
+	right=(${^right}(-.N))
+
+	if [[ ${#left} -eq 0 ]] || [[ ${#right} -eq 0 ]]; then
+		return 1
+	fi
+
+	local left_mtime=$(max $(zstat -N +mtime $left))
+	local right_mtime=$(max $(zstat -N +mtime $right))
+	if [[ $left_mtime -gt $right_mtime ]]; then
+		return 100
+	fi
+}
+
 compile() {
 	if [[ -f autogen.sh ]]; then
-		if [[ -f configure ]]; then
-			verbose-call autoreconf -i
-		else
+		if ! is-newer-than configure -- autogen.sh; then
 			verbose-call ./autogen.sh
 		fi
+
+		#if [[ -f configure ]]; then
+		#    verbose-call autoreconf -i
+		#else
+		#    verbose-call ./autogen.sh
+		#fi
 	fi
 
 	if [[ -f configure ]]; then
-		[[ -f Makefile ]] || verbose-call ./configure
+		if ! is-newer-than Makefile -- configure autogen.sh; then
+			verbose-call ./configure
+		fi
 	fi
 
 	if [[ -f CMakeLists.txt ]]; then
-		verbose-call mkdir -pv build
-		verbose-call cd build
-		verbose-call cmake ..
+		#if ! is-newer-than build/Makefile build/CMakeCache.txt -- CMakeLists.txt; then
+		if ! is-newer-than build/Makefile build/CMakeCache.txt -- **/CMakeLists.txt; then
+			verbose-call mkdir -pv build
+			verbose-call cd build
+			verbose-call cmake ..
+		fi
+	fi
+
+	if [[ -f Cargo.toml ]]; then
+		verbose-call cargo install
+		verbose-call cargo build --release -vv
 	fi
 
 	if [[ -f Makefile ]]; then

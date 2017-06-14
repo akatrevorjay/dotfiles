@@ -29,7 +29,7 @@ set -v
 
 git fetch origin '+refs/pull/*:refs/pull/*'
 git appraise pull
-git-appraise-github-pull-request-mirror -target "$target" -local "$repo" -auth-token "$GITHUB_TOKEN"
+git-pull-request-mirror -target "$target" -local "$repo" -auth-token "$GITHUB_TOKEN"
 git appraise pull
 #git appraise push
 

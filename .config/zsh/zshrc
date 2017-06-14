@@ -47,7 +47,7 @@ function zplugins.init() {
 }
 
 function zplugins.is-initialized() {
-	(( ${+functions[antibody]} ))
+	[ -z $ZPLUGINS_IS_APPLYING ] && (( ${+functions[antibody]} ))
 }
 
 # Queue loads until they are applied.
@@ -65,6 +65,7 @@ function zplugins.q.dry-run() {
 function zplugins.q.apply() {
 	zplugins.is-initialized || zplugins.init
 
+	local ZPLUGINS_IS_APPLYING=1
 	antibody bundle "${(0)ZPLUGINS_Q}"
 
 	ZPLUGINS+=("${(@)ZPLUGINS_Q}")

@@ -1,4 +1,1 @@
-#!/bin/zsh
-local sorted=(${(n)argv})
-	[[ $#sorted -eq 0 ]] \
-		|| echo ${sorted[-1]}
+min

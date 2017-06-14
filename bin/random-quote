@@ -1,0 +1,30 @@
+#!/bin/zsh
+set -eo pipefail
+
+autoload -Uz colors
+colors
+
+quotes_fn="$HOME/.config/variety/favorite_quotes.txt"
+
+quotes=$(< $quotes_fn)
+quotes=(${(s:%:)quotes})
+
+print-quote() {
+	local qidx=$1
+
+	local quote=$quotes[$qidx]
+
+	# trim newlines
+	quote=(${=quote})
+	quote="$quote"
+
+	# split
+	local author=${quote##* -- }
+	quote=${quote% -- *}
+
+	echo -e "${bold_color}${fg[white]}$quote${reset_color}"
+	echo -e "${bold_color}${fg[gray]}-- $author${reset_color}"
+}
+
+randidx=$(( $RANDOM % ${#quotes} ))
+print-quote $randidx

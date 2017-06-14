@@ -1,0 +1,2 @@
+#!/bin/sh
+exec git-pull-request-mirror "$@"

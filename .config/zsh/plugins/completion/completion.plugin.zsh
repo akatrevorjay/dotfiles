@@ -1,6 +1,6 @@
 #!/bin/zsh
 # Maybe
-setopt completeinword completealiases nolistbeep
+setopt completeinword nocompletealiases nolistbeep
 
 zmodload -i zsh/complist
 

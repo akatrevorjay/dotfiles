@@ -112,19 +112,31 @@ alias lld='ll -d *(-/DN)'
 alias llf='ll -d .*'
 
 
-alias dock='docker'
-alias dockb='docker build'
-alias dockpl='docker pull'
-alias dockpu='docker push'
-alias dockps='docker ps'
-alias dockr='docker run -it'
-alias docke='docker exec -it'
+alias dk='docker'
+alias dkb='docker build'
+alias dkpl='docker pull'
+alias dkpu='docker push'
+alias dkps='docker ps'
+alias dkr='docker run -it'
+alias dke='docker exec -it'
+alias dkl='docker logs -f'
+alias dkL='docker logs'
 
+# Yeah, fuck the arbitrary precision calculator
 alias dc='docker-compose'
-alias dcb='dc build'
-alias dcp='dc pull'
-alias dcr='dc run'
-alias dce='dc exec'
+alias dco='docker-compose'
+alias dcb='docker-compose build'
+alias dcp='docker-compose pull'
+alias dcr='docker-compose run'
+alias dcR='docker-compose run --service-ports'
+alias dce='docker-compose exec'
+alias dcps='docker-compose ps'
+alias dcup='docker-compose up'
+alias dcbup='docker-compose up --build --pull'
+alias dcdn='docker-compose down'
+alias dcrm='docker-compose rm'
+alias dcl='docker-compose logs -f'
+alias dcL='docker-compose logs'
 
 alias m='make'
 
@@ -191,4 +203,10 @@ esac
 
 if (( ${+commands[git-tip]} )); then
 	git-tip || :
+	echo
+fi
+
+if (( ${+commands[random-quote]} )); then
+	random-quote || :
+	echo
 fi

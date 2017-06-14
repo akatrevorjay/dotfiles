@@ -1,12 +1,1 @@
-#!/bin/zsh
-local prefix="$1"
-[[ ! -d "$prefix/bin" ]] \
-	|| path+=($prefix/bin)
-[[ ! -d "$prefix/sbin" ]] \
-	|| path+=($prefix/sbin)
-[[ ! -d "$prefix/functions" ]] \
-	|| fpath+=($prefix/functions)
-[[ ! -d "$prefix/share/man" ]] \
-	|| manpath+=($prefix/share/man)
-[[ ! -d "$prefix/share/info" ]] \
-	|| infopath+=($prefix/share/info)
+add-prefix-paths

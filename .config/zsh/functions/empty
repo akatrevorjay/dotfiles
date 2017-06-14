@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+empty() {
+	return $#
+}
+
+empty "$@"

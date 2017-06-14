@@ -1,0 +1,4 @@
+#!/bin/zsh
+local name=${0:t}
+name=${name#slack-}
+exec google-chrome --app=https://$name.slack.com

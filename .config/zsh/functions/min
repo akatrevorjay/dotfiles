@@ -1,4 +1,15 @@
 #!/bin/zsh
-local sorted=(${(n)argv})
+
+function max() {
+	local sorted=(${(n)argv})
+	[[ $#sorted -eq 0 ]] \
+		|| echo ${sorted[-1]}
+}
+
+function min() {
+	local sorted=(${(n)argv})
 	[[ $#sorted -eq 0 ]] \
 		|| echo ${sorted[1]}
+}
+
+"$0" "$@"

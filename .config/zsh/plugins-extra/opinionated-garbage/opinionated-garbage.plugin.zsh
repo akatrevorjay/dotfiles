@@ -4,7 +4,6 @@ setopt nocorrectall
 setopt correct
 
 #setopt globcomplete globsubst globassign
-setopt completealiases
 
 #unsetopt flowcontrol
 
