@@ -206,3 +206,5 @@ if (( ${+commands[random-quote]} )); then
 	random-quote || :
 	echo
 fi
+
+gpg-ssh-agent
