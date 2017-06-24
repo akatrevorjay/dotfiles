@@ -14,6 +14,8 @@ function gnome-settings-daemon {
 	fi
 }
 
+inputplug -d -0 -c $HOME/.config/inputplug/hook &
+
 tkbd &
 ckb --background &
 compton &

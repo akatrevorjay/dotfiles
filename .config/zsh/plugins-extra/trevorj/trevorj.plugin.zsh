@@ -14,7 +14,7 @@ CODE_ROOT=$HOME/code
 BUILD_ROOT=$HOME/build
 REPO_ROOTS=($PROJECTS_ROOT $CODE_ROOT $BUILD_ROOT)
 
-setopt monitor check_jobs hup  # posix_jobs
+setopt check_jobs hup  # posix_jobs
 setopt auto_resume multios
 
 alias -s git='git-cdclone'

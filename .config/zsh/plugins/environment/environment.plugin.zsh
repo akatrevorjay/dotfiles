@@ -1,5 +1,11 @@
 #!/bin/zsh
 
+# if it's a dumb terminal, return.
+if [[ ${TERM} == 'dumb' ]]; then
+	return
+fi
+[[ $- =~ i ]] || return
+
 # Treat single word simple commands without redirection as candidates for resumption of an existing job.
 setopt auto_resume
 
@@ -10,7 +16,7 @@ setopt long_list_jobs
 setopt interactive_comments
 
 # Job control, uh yeah
-setopt monitor
+setopt monitor 2>/dev/null || :
 #setopt posixjobs
 
 # Report the status of background jobs immediately, rather than waiting until just before printing a prompt.
