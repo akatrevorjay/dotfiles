@@ -4,7 +4,9 @@
 #export GPG_TTY=$(tty)
 
 ## Refresh gpg-agent tty in case user switches into an X session
-gpg-connect-agent updatestartuptty /bye >/dev/null
+if (( ${+commands[gpg-connect-agent]} )); then
+    gpg-connect-agent updatestartuptty /bye >/dev/null
+fi
 
 gpg-ssh-agent() {
     if ! (( ${+commands[gpgconf]} )); then
