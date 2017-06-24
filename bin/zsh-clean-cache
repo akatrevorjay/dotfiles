@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 set -eo pipe_fail -o null_glob
 set -xv
 

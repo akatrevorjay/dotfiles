@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 if [[ -z "$TERMINOLOGY" || -n "$TMUX$SCREEN" ]]; then
     echo "Not in terminology or inside of tmux/screen, so not showing image, bro." >&2

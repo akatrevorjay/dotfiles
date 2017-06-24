@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 set -eo pipefail
 
 : ${NEOVIM_VENV:=~/.virtualenvs/neovim}
