@@ -207,6 +207,4 @@ if (( ${+commands[random-quote]} )); then
 	echo
 fi
 
-if (( ${+commands[gpg-ssh-agent]} )); then
-	gpg-ssh-agent
-fi
+gpg-ssh-agent
