@@ -1,1 +1,111 @@
-faded
+#!/usr/bin/env zsh
+# _____
+# faded -- automate your usage of python fades (automagic virtualenv creation and usage) via shims.
+#
+# Todo:
+# - Integrate into fades, rewrite to python, change config to single file json.
+#
+# ~ trevorj
+# @ https://github.com/akatrevorjay
+#
+setopt errexit errreturn
+
+# Remove any virtualenvs we may be in
+if [[ -n "$VIRTUAL_ENV" ]]; then
+    path=("${path[@]:#^$VIRTUAL_ENV/*}")
+    hash -r
+fi
+
+# Important that this is absolute or virtualenvs will hate you.
+: ${FADED_DEFAULT_PYTHON:=${commands[python3]}}
+
+faded_d="${XDG_CONFIG_HOME:-$HOME/.config}/faded"
+shim_path=${0:h}
+self="${0:t}"
+
+case "$self" in
+	faded)
+		mkdir -pv "$faded_d"
+
+		usage() {
+			echo "Usage:" >&2
+			echo "  Add/update fade shim and config:" >&2
+			echo "    $0 package [-d dependency ..] [-x executable (default: package)]" >&2
+		}
+
+		[ $# -gt 0 ] || set -- -h
+		zparseopts -D -E -- h=help -help=help x:=executable d+:=deps
+
+		if [[ -n "$help" ]]; then
+			usage
+			exit 0
+		fi
+
+		if [[ -n "${executable[2]}" ]]; then
+			shim=${executable[2]}
+		elif [[ -n $1 && $1 != -* ]]; then
+			shim=$1; shift
+			deps+=(-d $shim)
+		elif [[ -n ${deps[2]} ]]; then
+			shim=${deps[2]}
+		fi
+
+		if [[ -z "$shim" ]]; then
+			echo "No packages given" >&2
+			usage
+			exit 1
+		fi
+
+		echo "shim: $shim"
+		echo "deps: $deps"
+
+		set -- "$@" $deps $executable
+
+		cd "$shim_path"
+
+		echo "*Shimmer*ing: $shim_path/$self ***> $shim_path/$shim"
+		if [[ ! -e "./$shim" ]]; then
+			ln -sv $self $shim
+		else
+			echo "Not overwriting: $shim_path/$shim" >&2
+		fi
+
+		# TODO update ?
+
+		if [[ $# -gt 0 ]]; then
+			echo "Saving config: $faded_d/$shim"
+			echo "$@" | tee "$faded_d/$shim"
+		elif [[ -e "$faded_d/$shim" ]]; then
+			echo "Removing config: $faded_d/$shim"
+			cat "$faded_d/$shim"
+			rm -fv "$faded_d/$shim"
+		fi
+
+		echo "Running shim" >&2
+		exec "$shim"
+		;;
+	clean)
+		exec fades --clean-unused-venvs=${1:-42}
+		;;
+	*)
+		fargs=()
+		(( ${RANDOM:0:2} % 50 )) || fargs+=(--check-updates)
+		if [[ -e "$faded_d/$self" ]]; then
+			fargs+=($(cat "$faded_d/$self"))
+		fi
+
+		() {
+			zparseopts -D -E -- x:=executable p:=python
+		} ${(@)fargs}
+
+		# If executable shim was not given, then add one
+		[[ -n "$executable" ]] || fargs+=(-x $self)
+
+		# Default to python3
+		python=${python[-1]:-$FADED_DEFAULT_PYTHON}
+		[[ "$python" = */* ]] || python="${python:c}"
+
+		exec fades -p ${python} $fargs -- "$@"
+		;;
+esac
+

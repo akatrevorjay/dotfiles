@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # git-fshow - git commit browser
 #
 # https://gist.github.com/akatrevorjay/9fc061e8371529c4007689a696d33c62
