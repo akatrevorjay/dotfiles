@@ -191,8 +191,9 @@ let g:badwolf_css_props_highlight = 1
 let g:badwolf_darkgutter = 1
 let g:badwolf_tabline = 0
 "colorscheme badwolf
-colorscheme base
+"colorscheme base
 let g:airline_theme = 'deep_space'
+colorscheme hilal
 
 "colorscheme codedark
 "let g:airline_theme = 'badcat'

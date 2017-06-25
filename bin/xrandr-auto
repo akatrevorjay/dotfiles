@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 #setopt verbose xtrace
 local display_prefixes=(XWAYLAND eDP DP DisplayPort HDMI)
 

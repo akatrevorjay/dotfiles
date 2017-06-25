@@ -12,7 +12,9 @@ function nix.load() {
     # quiet down +warn_create_global
     export NIX_LINK
 
-    source $NIX_PROFILE_ENV_FILE
+    [[ ! -e $NIX_PROFILE_ENV_FILE ]] \
+        || source $NIX_PROFILE_ENV_FILE
+
     [ $# -eq 0 ] || ${(@q)argv}
 }
 

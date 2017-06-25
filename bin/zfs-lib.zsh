@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 zfs-exists zpool-exists() {
 	${0%%-*} get -H name $1 #>/dev/null 2>&1

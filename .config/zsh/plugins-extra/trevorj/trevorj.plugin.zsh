@@ -14,7 +14,7 @@ CODE_ROOT=$HOME/code
 BUILD_ROOT=$HOME/build
 REPO_ROOTS=($PROJECTS_ROOT $CODE_ROOT $BUILD_ROOT)
 
-setopt monitor check_jobs hup  # posix_jobs
+setopt check_jobs hup  # posix_jobs
 setopt auto_resume multios
 
 alias -s git='git-cdclone'
@@ -31,10 +31,6 @@ alias v='vi'
 
 ## Don't raise errors when regex nomatch fires
 #unsetopt nomatch
-
-# GPG 2.1.x SSH support
-# See : http://incenp.org/notes/2015/gnupg-for-ssh-authentication.html
-#export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 
 # Default docker machine
 #: ${DOCKER_MACHINE_NAME:="dev"}
@@ -210,3 +206,5 @@ if (( ${+commands[random-quote]} )); then
 	random-quote || :
 	echo
 fi
+
+gpg-ssh-agent

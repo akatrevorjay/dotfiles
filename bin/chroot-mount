@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 set -eo pipefail
 
 mounts=(sys proc dev run tmp var/tmp)

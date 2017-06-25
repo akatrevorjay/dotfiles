@@ -1,2 +1,2 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 exec nice -n19 ionice -c3 "$@"

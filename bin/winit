@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 #xrandr-auto || :
 #wm || :
@@ -13,6 +13,8 @@ function gnome-settings-daemon {
 		done
 	fi
 }
+
+inputplug -d -0 -c $HOME/.config/inputplug/hook &
 
 tkbd &
 ckb --background &

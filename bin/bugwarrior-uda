@@ -1,1 +1,10 @@
-../.virtualenvs/task/bin/bugwarrior-uda
+#!/home/trevorj/.virtualenvs/task/bin/python3
+# EASY-INSTALL-ENTRY-SCRIPT: 'bugwarrior','console_scripts','bugwarrior-uda'
+__requires__ = 'bugwarrior'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('bugwarrior', 'console_scripts', 'bugwarrior-uda')()
+    )

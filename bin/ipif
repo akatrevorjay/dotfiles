@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 for inet in 4 6; do
     (
         echo "-- IPv$inet:"

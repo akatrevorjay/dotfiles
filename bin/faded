@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # _____
 # faded -- automate your usage of python fades (automagic virtualenv creation and usage) via shims.
 #

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 setopt err_exit err_return pipe_fail
 setopt verbose xtrace

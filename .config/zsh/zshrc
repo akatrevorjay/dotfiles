@@ -47,7 +47,7 @@ function zplugins.init() {
 }
 
 function zplugins.is-initialized() {
-	[ -z $ZPLUGINS_IS_APPLYING ] && (( ${+functions[antibody]} ))
+	[[ -z $ZPLUGINS_IS_APPLYING ]] && (( ${+functions[antibody]} ))
 }
 
 # Queue loads until they are applied.

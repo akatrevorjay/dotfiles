@@ -80,7 +80,9 @@ autoload -Uz \
 	source-with-force \
 	call-many
 
-: ${MANPATH:=$(manpath)}
+if [[ -z $manpath ]] && (( ${+commands[manpath]} )); then
+	MANPATH=$(manpath)
+fi
 
 #function prefix-array() {
 #	 local name=PREFIX_$1
