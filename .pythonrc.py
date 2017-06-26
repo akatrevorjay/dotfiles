@@ -77,3 +77,16 @@ if __name__ == '__main__':
         from see import see
     except ImportError:
         log.warn("See not importable: pip install see")
+
+    import collections
+    import functools
+    import operator
+
+    class multidict(collections.OrderedDict):
+        _unique = 0
+
+        def __setitem__(self, key, val):
+            if isinstance(val, dict) and key in self:
+                self._unique += 1
+                key += str(self._unique)
+            dict.__setitem__(self, key, val)

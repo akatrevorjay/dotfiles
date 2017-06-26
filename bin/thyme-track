@@ -1,0 +1,44 @@
+#!/bin/zsh
+
+setopt functionargzero
+
+: ${thyme_datadir:=$HOME/.config/thyme}
+mkdir -pv $thyme_datadir
+
+: ${thyme_json:=${thyme_datadir:?}/db.json}
+
+thyme-track() {
+	thyme track -o ${thyme_json:?} \
+		"$@"
+}
+
+thyme-gen-report() {
+	$0-inner() {
+		local what=$1; shift
+		local fn=${thyme_datadir:?}/report-$what.html
+		thyme show -i ${thyme_json:?} \
+			-w $what \
+			"$@" \
+			> $fn.new
+		mv -f $fn.new $fn
+		echo "Saved $what report to $fn"
+	}
+
+	$0-inner stats
+	$0-inner list
+}
+
+thyme-open-report() {
+	local what=${1:-stats}
+	local fn=${thyme_datadir:?}/report-$what.html
+
+	if [[ ! -e $fn ]]; then
+		echo "Report ($what) file does not exist: $fn" >&2
+		return 404
+	fi
+
+	echo "Opening report $fn"
+	xdg-open $fn
+}
+
+$0:t "$@"
