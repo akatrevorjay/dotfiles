@@ -29,6 +29,8 @@ thyme-gen-report() {
 }
 
 thyme-open-report() {
+	thyme-gen-report
+
 	local what=${1:-stats}
 	local fn=${thyme_datadir:?}/report-$what.html
 
