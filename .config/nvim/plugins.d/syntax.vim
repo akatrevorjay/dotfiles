@@ -341,6 +341,7 @@ if has('nvim')
     " webcomplete.vim: "webcomplete" source for browser opened pages
     "Plug 'thalesmello/webcomplete.vim'
 
+    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1

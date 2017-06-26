@@ -12,7 +12,9 @@ thyme-track() {
 		"$@"
 }
 
-thyme-gen-report() {
+thyme-gen-reports() {
+	local whats=(${=${1:-stats}})
+
 	$0-inner() {
 		local what=$1; shift
 		local fn=${thyme_datadir:?}/report-$what.html
@@ -24,8 +26,10 @@ thyme-gen-report() {
 		echo "Saved $what report to $fn"
 	}
 
-	$0-inner stats
-	$0-inner list
+	local what
+	for what in $whats; do
+		$0-inner $what
+	done
 }
 
 thyme-open-report() {
