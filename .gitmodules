@@ -7,6 +7,6 @@
 [submodule ".weechat/python/weechat-otr"]
 	path = .weechat/python/weechat-otr
 	url = git@github.com:mmb/weechat-otr.git
-[submodule "/home/trevorj/.config/zsh/plugins-extra/dasht/src"]
-	path = /home/trevorj/.config/zsh/plugins-extra/dasht/src
+[submodule ".config/zsh/plugins-extra/dasht/src"]
+	path = .config/zsh/plugins-extra/dasht/src
 	url = git@github.com:sunaku/dasht.git
