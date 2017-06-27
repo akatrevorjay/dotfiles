@@ -81,7 +81,7 @@ logging.basicConfig(
 logger.info("Starting notify-proxy")
 
 loop = asyncio.get_event_loop()
-addr = os.environ.get('PROXY_ADDR', '127.0.0.1')
+addr = os.environ.get('PROXY_ADDR', '0.0.0.0')
 port = int(os.environ.get('PROXY_PORT', '1216'))
 server = loop.run_until_complete(loop.create_server(
     NotifyProtocol,

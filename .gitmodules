@@ -11,5 +11,5 @@
 	path = .weechat/lua/matrix
 	url = https://github.com/akatrevorjay/weechat-matrix-protocol-script.git
 [submodule ".config/zsh/plugins-extra/dasht/src"]
-	path = /home/trevorj/.config/zsh/plugins-extra/dasht/src
-	url = git@github.com:sunaku/dasht.git
+	path = .config/zsh/plugins-extra/dasht/src
+	url = https://github.com/sunaku/dasht.git
