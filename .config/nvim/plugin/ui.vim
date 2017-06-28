@@ -192,8 +192,8 @@ let g:badwolf_darkgutter = 1
 let g:badwolf_tabline = 0
 "colorscheme badwolf
 "colorscheme base
-let g:airline_theme = 'deep_space'
-colorscheme hilal
+"let g:airline_theme = 'deep_space'
+"colorscheme hilal
 
 "colorscheme codedark
 "let g:airline_theme = 'badcat'
@@ -203,3 +203,8 @@ colorscheme hilal
 "colorscheme ayu
 
 "colorscheme magellan
+
+let g:airline_theme = 'kolor'
+let g:moonflySpellReversed = 1
+colorscheme moonfly
+

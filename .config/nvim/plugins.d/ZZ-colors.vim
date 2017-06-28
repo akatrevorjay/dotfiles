@@ -42,5 +42,6 @@
 "Plug 'flazz/vim-colorschemes'
 
 "Plug expand('~/.vim/bundles/colors')
-Plug expand('~/.vim/bundles/colors-trevorj')
-Plug expand('~/.vim/bundles/colors-extra')
+"Plug expand('~/.vim/bundles/colors-trevorj')
+"Plug expand('~/.vim/bundles/colors-extra')
+Plug 'dylanaraps/wal.vim'

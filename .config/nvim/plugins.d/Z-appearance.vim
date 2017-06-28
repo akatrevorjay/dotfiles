@@ -1,10 +1,10 @@
 Plug 'Yggdroot/indentLine'
 
 " Generate shell prompts from airline
-"Plug 'edkolev/promptline.vim' ", {'on': ['Promptline', 'PromptlineSnapshot']}
+Plug 'edkolev/promptline.vim' ", {'on': ['EnablePromptLine']}
 
 " Generate tmux status themes from airline
-"Plug 'edkolev/tmuxline.vim', {'on': ['Tmuxline', 'TmuxlineSnapshot']}
+Plug 'edkolev/tmuxline.vim' ", {'on': ['EnableTmuxline']}
 
 " Prettify tabs in terminal vim
 Plug 'mkitt/tabline.vim'

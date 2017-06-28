@@ -30,7 +30,7 @@ seahorse-daemon &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 
-sleep 1
+#sleep 1
 
 tint2 &
 
@@ -39,13 +39,17 @@ sleep 1
 nm-applet &
 usbguard-applet-qt &
 pasystray &
-idle variety &
-notify-proxy &
+variety &
 #gpomme &
 parcellite &
 #winswitch_applet &
-yubioath-gui &
 indicator-kdeconnect &
+yubioath-gui &
+
+notify-proxy &
+
+(( ! ${+commands[wal]} )) \
+  || wal -i $(< $HOME/.cache/wal/wal)
 
 #xdg-autostart &
 
