@@ -1,0 +1,21 @@
+#!/bin/zsh
+set -eo pipefail
+setopt null_glob
+
+zeroed_pages_k=$(grep KsmZeroPages /proc/meminfo | sed -e 's@^.*: *\([0-9]\+\) kB$@\1@')
+
+for fn (/sys/kernel/mm/{uksm,ksm}/pages_sharing(.)); do
+	pages_sharing_b=$(( $(</sys/kernel/mm/uksm/pages_sharing) * $(getconf PAGESIZE) ))
+	break
+done
+
+zeroed_pages_m=$(( ${zeroed_pages_k:-0} / 1024 ))
+pages_sharing_m=$(( ${pages_sharing_b:-0} / 1024 / 1024  ))
+
+total_m=$(( $pages_sharing_m + $zeroed_pages_m ))
+
+cat <<EOF
+Pages shared: $pages_sharing_m Mi
+Zeroed pages: $zeroed_pages_m Mi
+Total: $total_m Mi
+EOF
