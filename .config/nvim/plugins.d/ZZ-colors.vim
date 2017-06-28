@@ -44,4 +44,6 @@
 "Plug expand('~/.vim/bundles/colors')
 "Plug expand('~/.vim/bundles/colors-trevorj')
 "Plug expand('~/.vim/bundles/colors-extra')
-Plug 'dylanaraps/wal.vim'
+
+" Broken af
+"Plug 'dylanaraps/wal.vim'
