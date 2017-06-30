@@ -9,31 +9,81 @@ path=(
 )
 
 if [[ ! -d $NEOVIM_VENV ]]; then
-	echo "Creating neovim venv: $NEOVIM_VENV"
-	virtualenv -p $(which python3) --system-site-packages $NEOVIM_VENV
+	echo "-- Creating neovim venv: $NEOVIM_VENV"
 
-	echo "Setting up alt python2 in venv"
+	hash -r
+	pythons=(${commands[(I)python[2-3].[0-9]]})
+
+	# default to the highest python baby
+	def_py=${pythons[-1]}
+	#pythons[-1]=()
+
+	virtualenv \
+		-p $def_py \
+		--system-site-packages \
+		$NEOVIM_VENV
+
+	echo "-- Installing virtualenv-multiver in venv"
 	pip install -U virtualenv-multiver
-	virtualenv-multiver $NEOVIM_VENV 2.7
 
-	echo "Enabling global site packages"
+	for py in $pythons; do
+		ver=${py#python}
+		ver_major=${ver:0:1}
+		echo "-- Setting up alt python=$py ver=$ver ver_major=$ver_major in venv"
+
+		# Hack because virtualenv-multiver is not good at it's job
+		rm -fv $NEOVIM_VENV/bin/{python,python${ver:0:1},python$ver}
+
+		virtualenv-multiver $NEOVIM_VENV $ver
+	done
+
+	echo "-- Enabling global site packages"
 	rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
 fi
 
-for cmd in {python,pip}{,2,3}; do
+hash -r
+pythons=(${commands[(I)python[2-3].[0-9]]})
+python_vers=(${pythons#python})
+pips=(pip${^python_vers})
+
+echo "-- pythons=$pythons"
+echo "-- python_vers=$python_vers"
+echo "-- pips=$pips"
+
+for cmd in $pythons $pips; do
 	[[ ${commands[$cmd]} != $NEOVIM_VENV/* ]] || continue
-	echo "Command \"$cmd\" not found in $NEOVIM_VENV" >&2
+	echo "-- Command \"$cmd\" not found in $NEOVIM_VENV" >&2
 	exit 1
 done
 
 function pip() {
-	for pip in pip{2,3}; do
-		command $pip "$@"
+	local pip
+	for pip in $pips; do
+		command $pip "$@" &
 	done
+	wait
 }
 
 pip install -U neovim \
 	neovim-gui \
 	jedi \
 	rope ropevim \
-	mistune psutil setproctitle
+	mistune psutil setproctitle \
+	greenlet gevent
+
+# fuck you ipython/pip, what the fuck is this shit?
+() {
+	echo "-- Installing ipython according to pyver"
+
+	local pip
+	for pip in $pips; do
+		pkg='ipython[notebook]'
+		case $pip in
+			pip2*) pkg="$pkg<6" ;;
+		esac
+
+		cmd=($pip install -U $pkg)
+		echo "-- $cmd"
+		command $cmd
+	done
+}

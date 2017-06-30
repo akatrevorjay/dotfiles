@@ -107,3 +107,22 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+let g:markdown_fenced_languages = [
+  \ 'python',
+  \ 'py=python',
+  \ 'javascript',
+  \ 'js=javascript',
+  \ 'go',
+  \ 'jinja2',
+  \ 'html',
+  \ 'vim',
+  \ 'viml=vim',
+  \ 'ruby',
+  \ 'erb=eruby',
+  \ 'sh',
+  \ 'bash=sh',
+  \ 'zsh',
+  \ 'rst',
+  \ 'sql',
+  \ ]
+

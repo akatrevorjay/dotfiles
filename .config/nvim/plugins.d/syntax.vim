@@ -97,6 +97,7 @@ let g:polyglot_disabled = [
     \ 'go',
     \ 'javascript',
     \ 'typescript',
+    \ 'markdown',
     \ 'dart',
     \ 'css',
     \ 'nim',
@@ -110,7 +111,7 @@ Plug 'ap/vim-css-color'
 
 " Allows for python rst docstring support
 " A bit problematic as it's slow as balls
-"Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
+Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['bats']}
@@ -202,7 +203,7 @@ Plug 'mattn/emmet-vim'
 "autocmd BufNewFile,BufRead *.md setf markdown
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
-""Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-markdown', {'for': ['markdown']}
 
 Plug 'aouelete/sway-vim-syntax', {'for': ['sway']}
 

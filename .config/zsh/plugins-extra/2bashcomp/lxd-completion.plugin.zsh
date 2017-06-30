@@ -1,8 +1,3 @@
-#autoload -Uz compinit
-#autoload -Uz bashcompinit
-
-#bashcompinit
-
 _lxd_complete()
 {
     _lxd_names()
@@ -250,4 +245,3 @@ _lxd_complete()
 }
 
 complete -o default -F _lxd_complete lxc
-#bashcompinit

@@ -45,7 +45,7 @@ declare -xm 'ZSH_*'
 : ${SHORT_HOSTNAME:=unknown}
 
 #: ${DE:=generic}
-#: ${BROWSER:=google-chrome}
+: ${BROWSER:=google-chrome}
 : ${EDITOR:=nvim}
 : ${PAGER:=less -RWX}
 declare -xm DE BROWSER EDITOR PAGER
