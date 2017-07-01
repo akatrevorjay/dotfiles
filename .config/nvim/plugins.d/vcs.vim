@@ -1,5 +1,6 @@
 
 Plug 'tpope/vim-fugitive'
+Plug 'jreybert/vimagit'
 
 " Three way merging
 Plug 'idanarye/vim-merginal'

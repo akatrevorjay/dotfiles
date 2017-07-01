@@ -17,7 +17,10 @@ let g:vimfiler_as_default_explorer = 1
 Plug 'rafi/vim-unite-issue'
 
 Plug 'Shougo/vimproc', { 'do' : 'make' }
-Plug 'Shougo/neopairs.vim'
+
+"Plug 'Shougo/neopairs.vim'
+Plug 'jiangmiao/auto-pairs'
+
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/context_filetype.vim'
 Plug 'Shougo/neossh.vim'

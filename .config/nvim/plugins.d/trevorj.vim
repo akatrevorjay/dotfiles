@@ -22,7 +22,7 @@
 "Plug 'tpope/vim-eunuch'
 
 " Superb motion controls
-"Plug 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
@@ -85,16 +85,16 @@ if has('nvim')
 
     " Argumentative aids with manipulating and moving between function arguments.
     Plug 'PeterRincker/vim-argumentative'
-    "nmap [; <Plug>Argumentative_Prev
-    "nmap ]; <Plug>Argumentative_Next
-    "xmap [; <Plug>Argumentative_XPrev
-    "xmap ]; <Plug>Argumentative_XNext
-    "nmap <; <Plug>Argumentative_MoveLeft
-    "nmap >; <Plug>Argumentative_MoveRight
-    "xmap i; <Plug>Argumentative_InnerTextObject
-    "xmap a; <Plug>Argumentative_OuterTextObject
-    "omap i; <Plug>Argumentative_OpPendingInnerTextObject
-    "omap a; <Plug>Argumentative_OpPendingOuterTextObject
+    nmap [; <Plug>Argumentative_Prev
+    nmap ]; <Plug>Argumentative_Next
+    xmap [; <Plug>Argumentative_XPrev
+    xmap ]; <Plug>Argumentative_XNext
+    nmap <; <Plug>Argumentative_MoveLeft
+    nmap >; <Plug>Argumentative_MoveRight
+    xmap i; <Plug>Argumentative_InnerTextObject
+    xmap a; <Plug>Argumentative_OuterTextObject
+    omap i; <Plug>Argumentative_OpPendingInnerTextObject
+    omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
     "function! BuildComposer(info)
     "    if a:info.status != 'unchanged' || a:info.force
@@ -113,7 +113,7 @@ endif
 Plug 'mhinz/vim-grepper'
 " Mimic :grep and make ag the default tool.
 let g:grepper = {
-    \ 'tools': ['ag', 'git', 'grep'],
+    \ 'tools': ['rg', 'ag', 'pt', 'git', 'grep'],
     \ 'open':  1,
     \ 'jump':  1,
     \ }
@@ -131,13 +131,11 @@ let g:grepper = {
 "Plug 'vim-scripts/netrw.vim'
 "Plug 'vim-scripts/SearchComplete'
 
-"Plug 'vim-scripts/xoria256.vim'
-
 "Plug 'pi314/pi314.asciiart.vim'
 "Plug 'quafzi/vim-flow-diagram'
 "Plug 'xavierchow/vim-sequence-diagram'
 
-"Plug 'FooSoft/vim-argwrap'
+Plug 'FooSoft/vim-argwrap'
 
 "Plug 'Zuckonit/vim-airline-tomato'
 

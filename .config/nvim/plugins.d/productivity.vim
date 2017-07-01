@@ -23,6 +23,12 @@ endif
 " Nice start screen
 Plug 'mhinz/vim-startify'
 
+" Tabular helps line up text easily
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}
+
+let g:mta_filetypes = {'html': 1, 'xhtml': 1, 'xml': 1, 'jinja2': 1, 'gohtmltmpl': 1}
+Plug 'valloric/matchtagalways', {'for': keys(g:mta_filetypes)}
+
 ""
 "" Notmuch: mail
 ""
@@ -73,7 +79,7 @@ endif
 
 "Plug 'cohama/lexima.vim'
 
-Plug 'hakimel/reveal.js'
+"Plug 'hakimel/reveal.js'
 
 " chdir to project/vcs root on open
 Plug 'airblade/vim-rooter'

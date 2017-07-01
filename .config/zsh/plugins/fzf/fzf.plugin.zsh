@@ -1,4 +1,8 @@
 #!/bin/zsh
+
+# Setting ag as the default source for fzf
+: ${FZF_DEFAULT_COMMAND:='pt -g ""'}
+
 #: ${FZF_ALL_OPTS:="--tiebreak=begin,index --color=dark --cycle --toggle-sort=ctrl-r"}
 : ${FZF_ALL_OPTS:="--color=dark --toggle-sort=ctrl-r --ansi"}
 

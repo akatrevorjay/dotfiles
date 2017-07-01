@@ -23,6 +23,7 @@ set $menu dmenu_run
 
 for_window [class="tilix"] border none
 for_window [class="Alacritty"] border none
+for_window [class="cancer"] border none
 
 for_window [class="google-chrome"] border none
 for_window [class="google-chrome-unstable"] border none

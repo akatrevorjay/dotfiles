@@ -12,8 +12,8 @@ env:
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.#TERM: xterm-256color
   #TERM: alacritty
-  TERM: alacritty-256color
   #TERM: xterm-256color
+  TERM: alacritty-256color
   MUX_AUTOSTART: true
 
 # Window dimensions in character columns and lines
@@ -73,9 +73,9 @@ font:
   ## Glyph offset determines the locations of the glyphs within their cells with
   ## the default being at the bottom. Increase the x offset to move the glyph to
   ## the right, increase the y offset to move the glyph upward.
-  #glyph_offset:
-  #  x: 0.0
-  #  y: 0.0
+  glyph_offset:
+    x: 0.0
+    y: 0.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -387,9 +387,7 @@ hide_cursor_when_typing: true
 #    - --login
 
 colors:
-  bright: {black: '0x000000', blue: '0x7D8FA4', cyan: '0x85A7A5', green: '0x87B379',
-    magenta: '0xA47996', red: '0xB04B57', white: '0xFFFFFF', yellow: '0xE5C179'}
+  bright: {black: '0x000000', blue: '0x7D8FA4', cyan: '0x85A7A5', green: '0x87B379', magenta: '0xA47996', red: '0xB04B57', white: '0xFFFFFF', yellow: '0xE5C179'}
   cursor: {cursor: '0xE9B96E', text: '0x204A87'}
-  normal: {black: '0x000000', blue: '0x7D8FA4', cyan: '0x85A7A5', green: '0x87B379',
-    magenta: '0xA47996', red: '0xB04B57', white: '0xB3B8C3', yellow: '0xE5C179'}
+  normal: {black: '0x000000', blue: '0x7D8FA4', cyan: '0x85A7A5', green: '0x87B379', magenta: '0xA47996', red: '0xB04B57', white: '0xB3B8C3', yellow: '0xE5C179'}
   primary: {background: '0x000000', foreground: '0xB3B8C3'}

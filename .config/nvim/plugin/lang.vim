@@ -1,4 +1,9 @@
 
+" HTML: {{{
+let g:mta_use_matchparen_group = 1
+
+" }}}
+
 " Language: Go {{{
 let g:go_highlight_error = 1
 let g:go_highlight_functions = 1
@@ -32,6 +37,7 @@ let python_highlight_all = 1
 
 let g:formatdef_yapf = '"yapf -".(g:DoesRangeEqualBuffer(a:firstline, a:lastline) ? " --lines ".a:firstline."-".a:lastline : "")." ".(&textwidth ? "--style {COLUMN_LIMIT: ".&textwidth."}" : "")'
 let g:formatters_python = ['yapf']
+
 " }}}
 " Rope: {{{
 "map <leader>j :RopeGotoDefinition<CR>

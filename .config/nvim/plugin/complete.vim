@@ -9,13 +9,15 @@ set wildmenu
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*,__pycache__,sdist,bdist,dist,build,*.egg-info
 set wildoptions=tagfile
-"
 
 " Code complete
 "inoremap <Nul> <C-x><C-o>
 
 "set complete=.,t
 set completeopt=menuone,longest,preview,noinsert,noselect
+
+" Close preview window post comp
+"autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 "" From github: zchee/deoplete-go
 " neocomplete like

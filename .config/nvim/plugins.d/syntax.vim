@@ -96,22 +96,25 @@ let g:polyglot_disabled = [
     \ 'python',
     \ 'go',
     \ 'javascript',
-    \ 'typescript',
     \ 'markdown',
-    \ 'dart',
     \ 'css',
-    \ 'nim',
+    \ 'rust',
     \ ]
+    "\ 'nim',
+    "\ 'dart',
+    "\ 'typescript',
+
+"Plug 'spacewander/openresty-vim', {'for': ['nginx']}
 
 " GPG
-Plug 'jamessan/vim-gnupg', {'for': ['gpg']}
+Plug 'jamessan/vim-gnupg'
 
 " Show CSS colors as what they truely are.
 Plug 'ap/vim-css-color'
 
 " Allows for python rst docstring support
 " A bit problematic as it's slow as balls
-Plug 'Rykka/riv.vim', {'for': ['markdown', 'mkd', 'md', 'python', 'rst']}
+Plug 'Rykka/riv.vim'  ", {'for': ['markdown', 'python', 'rst']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': ['bats']}
@@ -120,7 +123,6 @@ Plug 'markcornick/vim-bats', {'for': ['bats']}
 "Plug 'elzr/vim-json'
 " JSONnet
 Plug 'google/vim-jsonnet'
-
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
@@ -140,22 +142,22 @@ endif
 "Plug 'osyo-manga/vim-monster'
 
 "" Javascript
-"Plug 'moll/vim-node'  "
-Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
-"Plug 'kchmck/vim-coffee-script, {'for': ['coffee']}
-Plug 'dart-lang/dart-vim-plugin', {'for': ['dart']}
-" syntax
-"Plug 'othree/yajs.vim', {for': ['json', 'javascript']}
-"Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
-" JavaScript Parameter Complete(JSPC): cemp for func params, such as event names, crypto algorithms, and common locales
-"Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
-"Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
+""Plug 'moll/vim-node'  "
+"Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
+""Plug 'kchmck/vim-coffee-script, {'for': ['coffee']}
+"Plug 'dart-lang/dart-vim-plugin', {'for': ['dart']}
+"" syntax
+""Plug 'othree/yajs.vim', {for': ['json', 'javascript']}
+""Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
+"" JavaScript Parameter Complete(JSPC): cemp for func params, such as event names, crypto algorithms, and common locales
+""Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
+""Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
 
-Gautocmdft javascript let b:javascript_lib_use_jquery = 1
-Gautocmdft javascript let b:javascript_lib_use_underscore = 0
-Gautocmdft javascript let b:javascript_lib_use_backbone = 0
-Gautocmdft javascript let b:javascript_lib_use_prelude = 0
-Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
+"Gautocmdft javascript let b:javascript_lib_use_jquery = 1
+"Gautocmdft javascript let b:javascript_lib_use_underscore = 0
+"Gautocmdft javascript let b:javascript_lib_use_backbone = 0
+"Gautocmdft javascript let b:javascript_lib_use_prelude = 0
+"Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 
 "Plug 'othree/svg-properties-syntax.vim'
 "Plug 'othree/html5.vim'
@@ -163,15 +165,15 @@ Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 "Plug 'othree/csscomplete.vim', {'for': ['css']}
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
-" Yet Another Typescript Syntax
-Plug 'HerringtonDarkholme/yats.vim'  ", {'for': ['typescript']}
+"" Yet Another Typescript Syntax
+"Plug 'HerringtonDarkholme/yats.vim'  ", {'for': ['typescript']}
 
-" nim
-Plug 'baabelfish/nvim-nim', {'for': ['nim']}
-"Plug 'zah/nim.vim', {'for': ['nim']}
+"" nim
+"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
+""Plug 'zah/nim.vim', {'for': ['nim']}
 
 " Hex
-Plug 'Shougo/vinarise.vim'
+Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd']}
 
 " ZSH "official" vim syntax, definitely more up to date.
 Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
@@ -184,7 +186,7 @@ Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
 Plug 'saltstack/salt-vim', {'for': ['sls']}
 
 " Jinja2
-Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
+Plug 'Glench/Vim-Jinja2-Syntax'  ", {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
 
 " Ello poppet
 "Plug 'rodjek/vim-puppet'
@@ -213,19 +215,20 @@ Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml']}
 "" Language: Python
 ""
 
-Plug 'hdima/python-syntax', {'for': ['python']}
-Plug 'okcompute/vim-python-motions', {'for': ['python']}
+"Plug 'hdima/python-syntax', {'for': ['python']}
+"Plug 'okcompute/vim-python-motions', {'for': ['python']}
 
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': ['python']}
-Plug 'python-rope/ropevim', {'for': ['python']}
+"Plug 'python-rope/ropevim', {'for': ['python']}
 
 "" Indenting:
 "Plug 'hynek/vim-python-pep8-indent'
 "Plug 'michaeljsmith/vim-indent-object'
 
 "" Folding:
-"Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+let g:SimpylFold_docstring_preview = 1
 
 " Testing:
 Plug 'alfredodeza/pytest.vim', {'for': ['python']}
@@ -277,8 +280,8 @@ if has('nvim')
     " deoplete-go: "go" source for Go
     Plug 'zchee/deoplete-go', {'for': ['go']}
 
-    " deoplete-ruby: "ruby" source for Ruby language
-    Plug 'fishbullet/deoplete-ruby', {'for': ['ruby']}
+    "" deoplete-ruby: "ruby" source for Ruby language
+    "Plug 'fishbullet/deoplete-ruby', {'for': ['ruby']}
 
     " neco-syntax: "syntax" source
     Plug 'Shougo/neco-syntax', {'for': ['vim']}
@@ -286,8 +289,8 @@ if has('nvim')
     " vimshell: "vimshell" source for vimshell
     Plug 'Shougo/vimshell.vim'
 
-    " neco-ghc: "ghc" source for Haskell
-    Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
+    "" neco-ghc: "ghc" source for Haskell
+    "Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
 
     " vim-racer: "racer" source for Rust
     Plug 'racer-rust/vim-racer', {'for': ['rust']}
@@ -304,31 +307,31 @@ if has('nvim')
     " deoplete-d: "d" source for D language
     "Plug 'landaire/deoplete-d', {'for': ['d']}
 
-    " elixir.nvim: "elixir" source for Elixir
-    "Plug 'awetzel/elixir.nvim', {'for': ['elixir']}
-    Plug 'slashmili/alchemist.vim', {'for': ['elixir']}
+    "" elixir.nvim: "elixir" source for Elixir
+    ""Plug 'awetzel/elixir.nvim', {'for': ['elixir']}
+    "Plug 'slashmili/alchemist.vim', {'for': ['elixir']}
 
     "" deoplete-ternjs: "ternjs" source for JavaScript
     "Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json']}
 
-    "" deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
-    Plug 'steelsojka/deoplete-flow', {'for': ['flow']}
+    """ deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
+    "Plug 'steelsojka/deoplete-flow', {'for': ['flow']}
 
-    "" deoplete-typescript: "typescript" source for typescript
-    "Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
-    "let g:deoplete#sources#tss#javascript_support = 1
+    """ deoplete-typescript: "typescript" source for typescript
+    ""Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
+    ""let g:deoplete#sources#tss#javascript_support = 1
 
-    Plug 'mhartington/nvim-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
-    let g:nvim_typescript#javascript_support = 1  " 0
-    let g:nvim_typescript#max_completion_detail = 50  " 25
-    let g:nvim_typescript#type_info_on_hold = 1  " 0
-    let g:nvim_typescript#signature_complete = 1  " 0
+    "Plug 'mhartington/nvim-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
+    "let g:nvim_typescript#javascript_support = 1  " 0
+    "let g:nvim_typescript#max_completion_detail = 50  " 25
+    "let g:nvim_typescript#type_info_on_hold = 1  " 0
+    "let g:nvim_typescript#signature_complete = 1  " 0
 
-    " Dart
-    Plug 'villainy/deoplete-dart', { 'for': 'dart' }
+    "" Dart
+    "Plug 'villainy/deoplete-dart', { 'for': 'dart' }
 
-    "" perlomni.vim: "perlomni" source for Perl
-    Plug 'c9s/perlomni.vim', {'for': ['perl']}
+    """ perlomni.vim: "perlomni" source for Perl
+    "Plug 'c9s/perlomni.vim', {'for': ['perl']}
 
     "" deoplete-swift: "swift" source for Swift
     "Plug 'landaire/deoplete-swift'
@@ -347,11 +350,20 @@ else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1
 
-    " Requires vim8 with has('python') or has('python3')
-    " Requires the installation of msgpack-python. (pip install msgpack-python)
-    if !has('nvim')
-        Plug 'roxma/vim-hug-neovim-rpc'
-    endif
+    " (optional) javascript completion
+    Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
+
+    " (optional) language server protocol framework
+    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+    " rust
+    Plug 'rust-lang/rust.vim'
+    Plug 'racer-rust/vim-racer'
+    Plug 'roxma/nvim-cm-racer'
+
+    " (optional) php completion via LanguageClient-neovim
+    "Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+    "autocmd FileType php LanguageClientStart
 
 "else
     "Plug 'Valodim/vim-zsh-completion'
@@ -370,4 +382,8 @@ else
     "Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
 endif
 
+Plug 'tenfyzhong/CompleteParameter.vim'
+
+let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 

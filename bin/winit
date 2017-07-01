@@ -44,9 +44,11 @@ variety &
 parcellite &
 #winswitch_applet &
 indicator-kdeconnect &
+notify-proxy &
+
 yubioath-gui &
 easystroke &
-notify-proxy &
+kupfer &
 
 (( ! ${+commands[wal]} )) \
   || wal -i $(< $HOME/.cache/wal/wal)

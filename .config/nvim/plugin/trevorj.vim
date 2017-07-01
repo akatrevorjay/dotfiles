@@ -8,10 +8,6 @@
 "set guifont=Monoissome:h12
 set ruler
 
-"set colorcolumn=120
-"set autoindent
-"set smarttab
-
 "let s:cpo_save=&cpo
 "set cpo&vim
 "vmap gx <Plug>NetrwBrowseXVis
@@ -27,6 +23,9 @@ set helplang=en
 
 " Commands that shell out tend to assume a bourne shell
 set shell=sh
+
+set emoji
+"set lazyredraw redrawtime=100
 
 " Add templates upon new file
 "au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
@@ -46,9 +45,6 @@ set shell=sh
 let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
 
-set emoji
-set lazyredraw redrawtime=100
-
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
 " For conceal markers.
@@ -61,14 +57,14 @@ let g:indentLine_setConceal = 0
 " disable by default
 "let g:indentLine_enabled = 0
 
-" tty
-let g:indentLine_color_term = 239
-" gui
-let g:indentLine_color_gui = '#A4E57E'
-" none X terminal
-"let g:indentLine_color_tty_light = 7 " (default: 4)
-"let g:indentLine_color_dark = 1 " (default: 2)
-"let g:indentLine_setColors = 0
+"" tty
+"let g:indentLine_color_term = 239
+"" gui
+"let g:indentLine_color_gui = '#A4E57E'
+"" none X terminal
+""let g:indentLine_color_tty_light = 7 " (default: 4)
+""let g:indentLine_color_dark = 1 " (default: 2)
+""let g:indentLine_setColors = 0
 
 map <silent><C-Space> :CtrlSpace<CR>
 
@@ -112,6 +108,7 @@ let g:markdown_fenced_languages = [
   \ 'py=python',
   \ 'javascript',
   \ 'js=javascript',
+  \ 'json',
   \ 'go',
   \ 'jinja2',
   \ 'html',
