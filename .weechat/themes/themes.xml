@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<themes>
+  <theme id="15">
+    <updated>2013-11-09 18:22:48</updated>
+    <added>2011-09-27 18:12:57</added>
+    <name>flashcode.theme</name>
+    <author>FlashCode</author>
+    <md5sum>eb8e28615a768231a8ea32a9c270caca</md5sum>
+    <version>0.4.3</version>
+    <mail>flashcode [at] flashtux [dot] org</mail>
+    <desc></desc>
+    <url>http://weechat.org/files/themes/flashcode.theme</url>
+  </theme>
+  <theme id="16">
+    <updated>2013-11-09 18:15:36</updated>
+    <added>2011-09-27 18:48:08</added>
+    <name>fbesser.theme</name>
+    <author>F. Besser</author>
+    <md5sum>8e77c57c0c59d8c2af95b4683cc5863b</md5sum>
+    <version>0.4.3</version>
+    <mail>fbesser [at] gmail [dot] com</mail>
+    <desc></desc>
+    <url>http://weechat.org/files/themes/fbesser.theme</url>
+  </theme>
+  <theme id="17">
+    <updated>2013-11-09 18:07:32</updated>
+    <added>2011-09-27 18:48:24</added>
+    <name>deltafire.theme</name>
+    <author>Deltafire</author>
+    <md5sum>9b9d3c0a6a0deb7d667938f408d750b3</md5sum>
+    <version>0.4.3</version>
+    <mail>weechat [at] chrisoneill [dot] co [dot] uk</mail>
+    <desc>My current theme4</desc>
+    <url>http://weechat.org/files/themes/deltafire.theme</url>
+  </theme>
+  <theme id="18">
+    <updated>2013-11-09 18:21:03</updated>
+    <added>2011-09-27 18:51:49</added>
+    <name>nesthib.theme</name>
+    <author>nesthib</author>
+    <md5sum>f15ec68c82bbdcd577db4b45e82a19a2</md5sum>
+    <version>0.4.3</version>
+    <mail>nesthib [at] gmail [dot] com</mail>
+    <desc></desc>
+    <url>http://weechat.org/files/themes/nesthib.theme</url>
+  </theme>
+  <theme id="19">
+    <updated>2013-11-09 18:22:38</updated>
+    <added>2011-09-27 18:55:39</added>
+    <name>nils_2.theme</name>
+    <author>nils_2</author>
+    <md5sum>5a82e6ebd008fe9fe43aaa922cf6dc3e</md5sum>
+    <version>0.4.3</version>
+    <mail>weechatter [at] arcor [dot] de</mail>
+    <desc></desc>
+    <url>http://weechat.org/files/themes/nils_2.theme</url>
+  </theme>
+  <theme id="20">
+    <updated>2013-11-09 18:18:42</updated>
+    <added>2011-09-27 19:00:37</added>
+    <name>fixato.theme</name>
+    <author>FiXato</author>
+    <md5sum>ef56759964bce54ef9df65b767258506</md5sum>
+    <version>0.4.3</version>
+    <mail>FiXato [at] gmail [dot] com</mail>
+    <desc>FiXato's usual theme</desc>
+    <url>http://weechat.org/files/themes/fixato.theme</url>
+  </theme>
+  <theme id="21">
+    <updated>2014-01-19 23:44:35</updated>
+    <added>2014-01-19 23:44:35</added>
+    <name>doebi.theme</name>
+    <author>doebi</author>
+    <md5sum>96c9404e3526040da9084232c4ff648c</md5sum>
+    <version>0.4.2</version>
+    <mail>christoph [at] doeberl [dot] at</mail>
+    <desc>Theme with monokai inspired colors.</desc>
+    <url>http://weechat.org/files/themes/doebi.theme</url>
+  </theme>
+  <theme id="22">
+    <updated>2016-01-14 17:49:11</updated>
+    <added>2016-01-14 17:49:11</added>
+    <name>crym.theme</name>
+    <author>Crym</author>
+    <md5sum>d593f7480f026f8e924b69917292a8c0</md5sum>
+    <version>1.4</version>
+    <mail>abberg87 [at] gmail [dot] com</mail>
+    <desc></desc>
+    <url>http://weechat.org/files/themes/crym.theme</url>
+  </theme>
+</themes>

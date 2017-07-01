@@ -1,12 +1,15 @@
 [submodule ".weechat/python/weechat-vimode"]
 	path = .weechat/python/weechat-vimode
-	url = git@github.com:GermainZ/weechat-vimode.git
+	url = https://github.com/GermainZ/weechat-vimode.git
 [submodule ".weechat/python/wee-slack"]
 	path = .weechat/python/wee-slack
-	url = git@github.com:rawdigits/wee-slack.git
+	url = https://github.com/rawdigits/wee-slack.git
 [submodule ".weechat/python/weechat-otr"]
 	path = .weechat/python/weechat-otr
-	url = git@github.com:mmb/weechat-otr.git
-[submodule ".config/zsh/plugins-extra/dasht/src"]
+	url = https://github.com/mmb/weechat-otr.git
+[submodule ".weechat/lua/matrix"]
+	path = .weechat/lua/matrix
+	url = https://github.com/akatrevorjay/weechat-matrix-protocol-script.git
+[submodule ".config/zsh/plugins-wip/dasht/src"]
 	path = .config/zsh/plugins-wip/dasht/src
-	url = git@github.com:sunaku/dasht.git
+	url = https://github.com/sunaku/dasht.git
