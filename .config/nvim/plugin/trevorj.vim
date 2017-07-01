@@ -126,3 +126,5 @@ let g:markdown_fenced_languages = [
   \ 'sql',
   \ ]
 
+"let g:tmuxline_theme = 'airline_visual'
+

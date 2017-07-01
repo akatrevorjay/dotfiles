@@ -205,6 +205,7 @@ let g:badwolf_tabline = 0
 "colorscheme magellan
 
 let g:airline_theme = 'kolor'
+let g:tmuxline_theme = 'airline_visual'
 let g:moonflySpellReversed = 1
 colorscheme moonfly
 
