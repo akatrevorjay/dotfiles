@@ -72,6 +72,8 @@ pips install -U neovim \
 
 pip2 install -U neovim-gui
 
+pip3 install -U -e git+https://github.com/palantir/python-language-server#egg=pyls
+
 # fuck you ipython/pip, what the fuck is this shit?
 () {
 	echo "-- Installing ipython according to pyver"
