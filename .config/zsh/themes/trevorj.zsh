@@ -1,1 +1,1 @@
-airline-green.zsh
+airline-orage.zsh

@@ -64,7 +64,7 @@ parser.add_argument(
     '-s',
     '--server',
     metavar='ADDR:PORT',
-    default='127.0.0.1:1216',
+    default='nsfdeux:1216',
     help="Host to send notification to.",
 )
 parser.add_argument(
