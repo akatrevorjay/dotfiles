@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 #xrandr-auto || :
+xrandr-auto2 || :
 #wm || :
 
 function gnome-settings-daemon {
@@ -15,9 +16,11 @@ function gnome-settings-daemon {
 }
 
 inputplug -d -0 -c $HOME/.config/inputplug/hook &
+imwheel -b '4 5 6 7' -k -p -r -d &
 
 tkbd &
 ckb --background &
+
 compton &
 
 #xsettingsd &
@@ -39,19 +42,22 @@ sleep 1
 nm-applet &
 usbguard-applet-qt &
 pasystray &
-variety &
 #gpomme &
 parcellite &
 #winswitch_applet &
 indicator-kdeconnect &
 notify-proxy &
 
-yubioath-gui &
-easystroke &
-kupfer &
+#fcitx-autostart &
+#/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately &
 
-(( ! ${+commands[wal]} )) \
-  || wal -i $(< $HOME/.cache/wal/wal)
+yubioath gui -t &
+#easystroke &
+#kupfer &
+
+variety &
+#(( ! ${+commands[wal]} )) \
+#  || wal -i $(< $HOME/.cache/wal/wal)
 
 #xdg-autostart &
 

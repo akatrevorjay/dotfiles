@@ -25,7 +25,6 @@ set helplang=en
 set shell=sh
 
 set emoji
-"set lazyredraw redrawtime=100
 
 " Add templates upon new file
 "au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
@@ -104,20 +103,15 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 let g:markdown_fenced_languages = [
-  \ 'python',
-  \ 'py=python',
-  \ 'javascript',
-  \ 'js=javascript',
+  \ 'python', 'py=python',
+  \ 'javascript', 'js=javascript',
   \ 'json',
-  \ 'go',
+  \ 'go', 'golang=go',
   \ 'jinja2',
-  \ 'html',
-  \ 'vim',
-  \ 'viml=vim',
-  \ 'ruby',
-  \ 'erb=eruby',
-  \ 'sh',
-  \ 'bash=sh',
+  \ 'html', 'xhtml',
+  \ 'vim', 'viml=vim',
+  \ 'ruby', 'erb=eruby',
+  \ 'sh', 'bash=sh', 'shell=sh',
   \ 'zsh',
   \ 'rst',
   \ 'sql',
@@ -125,3 +119,13 @@ let g:markdown_fenced_languages = [
 
 "let g:tmuxline_theme = 'airline_visual'
 
+set lazyredraw redrawtime=1000
+
+"" Fucking nvim redraw bugs: https://github.com/neovim/neovim/issues/4884
+"function! s:redraw() abort
+"  redraw
+"  echomsg 'redrawing'
+"endfunction
+
+"autocmd! FocusLost * call timer_start(5000, function('s:redraw'))
+"

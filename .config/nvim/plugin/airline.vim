@@ -182,72 +182,91 @@ let airline#extensions#promptline#color_template = 'normal'  " (default)
 "let airline#extensions#promptline#color_template = 'visual'
 "let airline#extensions#promptline#color_template = 'replace'
 
-"" sections (a, b, c, x, y, z, warn) are optional
-"let g:promptline_preset = {
-"  \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
-"  \'b' : [ promptline#slices#user() ],
-"  \'c' : [ promptline#slices#cwd() ],
-"  \'x' : [
-"    \promptline#slices#git_status(),
-"    \],
-"  \'y' : [
-"    \promptline#slices#vcs_branch(),
-"    \],
-"  \'z' : [ promptline#slices#python_virtualenv() ],
-"  \'warn' : [
-"    \promptline#slices#last_exit_code(),
-"    \promptline#slices#jobs(),
-"    \promptline#slices#battery({'threshold': 25})
-"    \]
-"  \}
-  "\'options': {
-  "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
-  "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],
-  "  \'left_only_sections' : [ 'b', 'a', 'c' ]
-  "  \}
-  "\}
 
-    "\'$(vi_mode_prompt_info)'
 
+" available slices:
+"
+" promptline#slices#cwd() - current dir, truncated to 3 dirs. To configure: promptline#slices#cwd({ 'dir_limit': 4 })
+" promptline#slices#vcs_branch() - branch name only. By default, only git branch is enabled. Use promptline#slices#vcs_branch({ 'hg': 1, 'svn': 1, 'fossil': 1}) to enable check for svn, mercurial and fossil branches. Note that always checking if inside a branch slows down the prompt
+" promptline#slices#last_exit_code() - display exit code of last command if not zero
+" promptline#slices#jobs() - display number of shell jobs if more than zero
+" promptline#slices#battery() - display battery percentage (on OSX and linux) only if below 10%. Configure the threshold with promptline#slices#battery({ 'threshold': 25 })
+" promptline#slices#host() - current hostname.  To hide the hostname unless connected via SSH, use promptline#slices#host({ 'only_if_ssh': 1 })
+" promptline#slices#user()
+" promptline#slices#python_virtualenv() - display which virtual env is active (empty is none)
+" promptline#slices#git_status() - count of commits ahead/behind upstream, count of modified/added/unmerged files, symbol for clean branch and symbol for existing untraced files
+" promptline#slices#conda_env() - display which conda env is active (empty is none)
+"
 " any command can be used in a slice, for example to print the output of whoami in section 'b':
 "       \'b' : [ '$(whoami)'],
 "
 " more than one slice can be placed in a section, e.g. print both host and user in section 'a':
 "       \'a': [ promptline#slices#host(), promptline#slices#user() ],
 
+"" defaultish: sections (a, b, c, x, y, z, warn) are optional
+"let g:promptline_preset = {
+"        \'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
+"        \'b' : [ promptline#slices#user() ],
+"        \'c' : [ promptline#slices#cwd() ],
+"        \'y' : [ promptline#slices#vcs_branch() ],
+"        \'warn' : [ promptline#slices#last_exit_code() ]}
+
+" sections (a, b, c, x, y, z, warn) are optional
+let g:promptline_preset = {
+  \ 'a' : [ promptline#slices#host({'only_if_ssh': 1}) ],
+  \ 'b' : [ promptline#slices#user() ],
+  \ 'c' : [ promptline#slices#cwd() ],
+  \ 'x' : [
+    \ promptline#slices#git_status(),
+    \ ],
+  \ 'y' : [
+    \ promptline#slices#vcs_branch(),
+    \ ],
+  \ 'z' : [ promptline#slices#python_virtualenv() ],
+  \ 'warn' : [
+    \ promptline#slices#last_exit_code(),
+    \ promptline#slices#jobs(),
+    \ promptline#slices#battery({'threshold': 25}),
+    \ ],
+  \ }
+
+"  "\'options': {
+"  "  \'left_sections' : [ 'a', 'b', 'c', 'd', 'e' ],
+"  "  \'right_sections' : [ 'w', 'x', 'y', 'z', 'warn' ],
+"  "  \'left_only_sections' : [ 'b', 'a', 'c' ]
+"  "  \}
+"  "\}
+"    "\'$(vi_mode_prompt_info)'
+
+
 "  enable/disable usage of powerline symbols for separators (default on) >
 let g:promptline_powerline_symbols = 1
 
-" default
-  let g:promptline_symbols = {
-      \ 'left'           : '',
-      \ 'right'          : '',
-      \ 'left_alt'       : '>',
-      \ 'right_alt'      : '<',
-      \ 'dir_sep'        : ' / ',
-      \ 'truncation'     : '...',
-      \ 'vcs_branch'     : '',
-      \ 'battery'        : '',
-      \ 'space'          : ' '}
+let s:simple_symbols = {
+    \ 'left'           : '',
+    \ 'right'          : '',
+    \ 'left_alt'       : '|',
+    \ 'right_alt'      : '|',
+    \ 'dir_sep'        : ' / ',
+    \ 'truncation'     : '...',
+    \ 'vcs_branch'     : '',
+    \ 'battery'        : '',
+    \ 'space'          : ' '}
 
+let g:powerline_symbols = extend(copy(s:simple_symbols), {
+    \ 'left'           : '',
+    \ 'right'          : '',
+    \ 'left_alt'       : '',
+    \ 'right_alt'      : '',
+    \ 'dir_sep'        : '  ',
+    \ 'truncation'     : '⋯',
+    \ 'vcs_branch'     : ' ',
+    \ 'battery'        : '',
+    \ })
 
-"let g:promptline_symbols = {
-"    \ 'left': '',
-"    \ 'left_alt': '',
-"    \ 'right': '',
-"    \ 'right_alt': ''
-"    \ }
-
-let g:promptline_symbols = {
-    \ 'left'       : '',
-    \ 'left_alt'   : '',
-    \ 'right'      : '',
-    \ 'right_alt'  : '',
-    \ 'dir_sep'    : '',
-    \ 'truncation' : ' ',
-    \ 'vcs_branch' : '',
-    \ 'battery'    : ' ',
-    \ 'space'      : ' '}
+    "\ 'dir_sep'    : '/',
+    "\ 'dir_sep'    : '',
+    "\ 'truncation' : ' ',
 
 "                 
 "
@@ -292,13 +311,6 @@ let g:promptline_symbols = {
 " 
 " 
 
-"let g:promptline_symbols = {
-"    \ 'left'       : '',
-"    \ 'left_alt'   : '>',
-"    \ 'dir_sep'    : ' / ',
-"    \ 'truncation' : '...',
-"    \ 'vcs_branch' : '',
-"    \ 'space'      : ' '}
 
 if !exists('g:airline_symbols')
   let g:airline_symbols = {}
@@ -327,19 +339,19 @@ endif
 ""
 
 "let g:airline_left_sep = '▶'
-let g:airline_left_sep = ''
+"let g:airline_left_sep = ''
 "let g:airline_left_sep = ''
 
 "let g:airline_right_sep = '◀'
-let g:airline_right_sep = ''
+"let g:airline_right_sep = ''
 "let g:airline_right_sep = ''
 
-"let g:airline_left_sep = ''
+let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
+let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-let g:airline_symbols.branch = ''
+let g:airline_symbols.branch = ''
+"let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
 let g:airline_symbols.crypt = ''

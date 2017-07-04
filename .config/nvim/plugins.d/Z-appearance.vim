@@ -1,7 +1,7 @@
 Plug 'Yggdroot/indentLine'
 
 " Generate shell prompts from airline
-Plug 'edkolev/promptline.vim', {'on': ['EnablePromptline']}
+Plug 'edkolev/promptline.vim'  ", {'on': ['EnablePromptline']}
 
 " Generate tmux status themes from airline
 Plug 'edkolev/tmuxline.vim', {'on': ['EnableTmuxline']}

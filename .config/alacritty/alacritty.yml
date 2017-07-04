@@ -12,8 +12,8 @@ env:
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.#TERM: xterm-256color
   #TERM: alacritty
-  #TERM: xterm-256color
-  TERM: alacritty-256color
+  #TERM: alacritty-256color
+  TERM: xterm-256color
   MUX_AUTOSTART: true
 
 # Window dimensions in character columns and lines
@@ -36,7 +36,7 @@ dpi:
   y: 96.0
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 4
+tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -45,20 +45,17 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: 'PragmataPro Nerd Font' # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
+    family: PragmataPro Nerd Font
     style: Regular
 
   # The bold font face
   bold:
-    family: 'PragmataPro Nerd Font' # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
+    family: PragmataPro Nerd Font
     style: Bold
 
   # The italic font face
   italic:
-    family: 'PragmataPro Nerd Font' # should be "Menlo" or something on macOS.
-    # Style can be specified to pick a specific face.
+    family: PragmataPro Nerd Font
     style: Italic
 
   # Point size of the font
@@ -66,16 +63,15 @@ font:
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    #x: 0
     x: -12.0
     y: 0.0
 
   ## Glyph offset determines the locations of the glyphs within their cells with
   ## the default being at the bottom. Increase the x offset to move the glyph to
   ## the right, increase the y offset to move the glyph upward.
-  glyph_offset:
-    x: 0.0
-    y: 0.0
+  #glyph_offset:
+  #  x: -12.0
+  #  y: 0.0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
@@ -110,7 +106,7 @@ custom_cursor_colors: false
 #    blue:    '0x7aa6da'
 #    magenta: '0xc397d8'
 #    cyan:    '0x70c0ba'
-#    white:   '0x424242'
+#    white:   '0xffffff'
 #
 #  # Bright colors
 #  bright:
@@ -121,8 +117,19 @@ custom_cursor_colors: false
 #    blue:    '0x7aa6da'
 #    magenta: '0xb77ee0'
 #    cyan:    '0x54ced6'
-#    white:   '0x2a2a2a'
-
+#    white:   '0xffffff'
+#
+## Dim colors (Optional)
+#dim:
+#  black:   '0x333333'
+#  red:     '0xf2777a'
+#  green:   '0x99cc99'
+#  yellow:  '0xffcc66'
+#  blue:    '0x6699cc'
+#  magenta: '0xcc99cc'
+#  cyan:    '0x66cccc'
+#  white:   '0xdddddd'
+#
 # Colors (Solarized Dark)
 # colors:
 #   # Default colors
@@ -182,34 +189,39 @@ visual_bell:
   animation: EaseOutExpo
   duration: 0
 
-## Key bindings
-##
-## Each binding is defined as an object with some properties. Most of the
-## properties are optional. All of the alphabetical keys should have a letter for
-## the `key` value such as `V`. Function keys are probably what you would expect
-## as well (F1, F2, ..). The number keys above the main keyboard are encoded as
-## `Key1`, `Key2`, etc. Keys on the number pad are encoded `Number1`, `Number2`,
-## etc.  These all match the glutin::VirtualKeyCode variants.
-##
-## Possible values for `mods`
-## `Command`, `Super` refer to the super/command/windows key
-## `Control` for the control key
-## `Shift` for the Shift key
-## `Alt` and `Option` refer to alt/option
-##
-## mods may be combined with a `|`. For example, requiring control and shift
-## looks like:
-##
-## mods: Control|Shift
-##
-## The parser is currently quite sensitive to whitespace and capitalization -
-## capitalization must match exactly, and piped items must not have whitespace
-## around them.
-##
-## Either an `action` or `chars` field must be present. `chars` writes the
-## specified string every time that binding is activated. These should generally
-## be escape sequences, but they can be configured to send arbitrary strings of
-## bytes. Possible values of `action` include `Paste` and `PasteSelection`.
+# Key bindings
+#
+# Each binding is defined as an object with some properties. Most of the
+# properties are optional. All of the alphabetical keys should have a letter for
+# the `key` value such as `V`. Function keys are probably what you would expect
+# as well (F1, F2, ..). The number keys above the main keyboard are encoded as
+# `Key1`, `Key2`, etc. Keys on the number pad are encoded `Number1`, `Number2`,
+# etc.  These all match the glutin::VirtualKeyCode variants.
+#
+# Possible values for `mods`
+# `Command`, `Super` refer to the super/command/windows key
+# `Control` for the control key
+# `Shift` for the Shift key
+# `Alt` and `Option` refer to alt/option
+#
+# mods may be combined with a `|`. For example, requiring control and shift
+# looks like:
+#
+# mods: Control|Shift
+#
+# The parser is currently quite sensitive to whitespace and capitalization -
+# capitalization must match exactly, and piped items must not have whitespace
+# around them.
+#
+# Either an `action`, `chars`, or `command` field must be present.
+#   `action` must be one of `Paste`, `PasteSelection`, `Copy`, or `Quit`.
+#   `chars` writes the specified string every time that binding is activated.
+#     These should generally be escape sequences, but they can be configured to
+#     send arbitrary strings of bytes.
+#   `command` must be a map containing a `program` string, and `args` array of
+#     strings. For example:
+#     - { ... , command: { program: "alacritty", args: ["-e", "vttest"] } }
+#
 #key_bindings:
 #  - { key: V,        mods: Command, action: Paste                        }
 #  - { key: C,        mods: Command, action: Copy                         }
@@ -293,61 +305,61 @@ visual_bell:
 # then run `showkey -a` to get the sequence associated to a key combination.
 
 key_bindings:
-  - { key: V,        mods: Control|Shift,    action: Paste               }
-  - { key: C,        mods: Control|Shift,    action: Copy                }
-  - { key: Q,        mods: Command, action: Quit                         }
-  - { key: W,        mods: Command, action: Quit                         }
-  - { key: Insert,   mods: Shift,   action: PasteSelection               }
-  - { key: V,        mods: Control, action: PasteSelection               }
-  - { key: Home,                    chars: "\x1bOH",   mode: AppCursor   }
-  - { key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor  }
-  - { key: End,                     chars: "\x1bOF",   mode: AppCursor   }
-  - { key: End,                     chars: "\x1b[4~",  mode: ~AppCursor  }
-  - { key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"                   }
-  - { key: PageUp,   mods: Control, chars: "\x1b[5;5~"                   }
-  - { key: PageUp,                  chars: "\x1b[5~"                     }
-  - { key: PageDown, mods: Shift,   chars: "\x1b[6;2~"                   }
-  - { key: PageDown, mods: Control, chars: "\x1b[6;5~"                   }
-  - { key: PageDown,                chars: "\x1b[6~"                     }
-  - { key: Left,     mods: Shift,   chars: "\x1b[1;2D"                   }
-  - { key: Left,     mods: Control, chars: "\x1b[1;5D"                   }
-  - { key: Left,     mods: Alt,     chars: "\x1b[1;3D"                   }
-  - { key: Left,                    chars: "\x1b[D",   mode: ~AppCursor  }
-  - { key: Left,                    chars: "\x1bOD",   mode: AppCursor   }
-  - { key: Right,    mods: Shift,   chars: "\x1b[1;2C"                   }
-  - { key: Right,    mods: Control, chars: "\x1b[1;5C"                   }
-  - { key: Right,    mods: Alt,     chars: "\x1b[1;3C"                   }
-  - { key: Right,                   chars: "\x1b[C",   mode: ~AppCursor  }
-  - { key: Right,                   chars: "\x1bOC",   mode: AppCursor   }
-  - { key: Up,       mods: Shift,   chars: "\x1b[1;2A"                   }
-  - { key: Up,       mods: Control, chars: "\x1b[1;5A"                   }
-  - { key: Up,       mods: Alt,     chars: "\x1b[1;3A"                   }
-  - { key: Up,                      chars: "\x1b[A",   mode: ~AppCursor  }
-  - { key: Up,                      chars: "\x1bOA",   mode: AppCursor   }
-  - { key: Down,     mods: Shift,   chars: "\x1b[1;2B"                   }
-  - { key: Down,     mods: Control, chars: "\x1b[1;5B"                   }
-  - { key: Down,     mods: Alt,     chars: "\x1b[1;3B"                   }
-  - { key: Down,                    chars: "\x1b[B",   mode: ~AppCursor  }
-  - { key: Down,                    chars: "\x1bOB",   mode: AppCursor   }
-  - { key: Tab,      mods: Shift,   chars: "\x1b[Z"                      }
-  - { key: F1,                      chars: "\x1bOP"                      }
-  - { key: F2,                      chars: "\x1bOQ"                      }
-  - { key: F3,                      chars: "\x1bOR"                      }
-  - { key: F4,                      chars: "\x1bOS"                      }
-  - { key: F5,                      chars: "\x1b[15~"                    }
-  - { key: F6,                      chars: "\x1b[17~"                    }
-  - { key: F7,                      chars: "\x1b[18~"                    }
-  - { key: F8,                      chars: "\x1b[19~"                    }
-  - { key: F9,                      chars: "\x1b[20~"                    }
-  - { key: F10,                     chars: "\x1b[21~"                    }
-  - { key: F11,                     chars: "\x1b[23~"                    }
-  - { key: F12,                     chars: "\x1b[24~"                    }
-  - { key: Back,                    chars: "\x7f"                        }
-  - { key: Back,     mods: Alt,     chars: "\x1b\x7f"                    }
-  - { key: Insert,                  chars: "\x1b[2~"                     }
-#- { key: Delete,                  chars: "\x1b[3~",  mode: AppKeypad   }
-#- { key: Delete,                  chars: "\x1b[P",   mode: ~AppKeypad  }
-  - { key: Delete,                  chars: "\x1b[3~"   }
+  - {key: V,        mods: Control|Shift,    action: Paste}
+  - {key: C,        mods: Control|Shift,    action: Copy}
+  - {key: Q,        mods: Command, action: Quit}
+  - {key: W,        mods: Command, action: Quit}
+  - {key: Insert,   mods: Shift,   action: PasteSelection}
+  #- {key: V,        mods: Control, action: PasteSelection}
+  - {key: Home,                    chars: "\x1bOH",   mode: AppCursor}
+  - {key: Home,                    chars: "\x1b[1~",  mode: ~AppCursor}
+  - {key: End,                     chars: "\x1bOF",   mode: AppCursor}
+  - {key: End,                     chars: "\x1b[4~",  mode: ~AppCursor}
+  - {key: PageUp,   mods: Shift,   chars: "\x1b[5;2~"}
+  - {key: PageUp,   mods: Control, chars: "\x1b[5;5~"}
+  - {key: PageUp,                  chars: "\x1b[5~"}
+  - {key: PageDown, mods: Shift,   chars: "\x1b[6;2~"}
+  - {key: PageDown, mods: Control, chars: "\x1b[6;5~"}
+  - {key: PageDown,                chars: "\x1b[6~"}
+  - {key: Left,     mods: Shift,   chars: "\x1b[1;2D"}
+  - {key: Left,     mods: Control, chars: "\x1b[1;5D"}
+  - {key: Left,     mods: Alt,     chars: "\x1b[1;3D"}
+  - {key: Left,                    chars: "\x1b[D",   mode: ~AppCursor}
+  - {key: Left,                    chars: "\x1bOD",   mode: AppCursor}
+  - {key: Right,    mods: Shift,   chars: "\x1b[1;2C"}
+  - {key: Right,    mods: Control, chars: "\x1b[1;5C"}
+  - {key: Right,    mods: Alt,     chars: "\x1b[1;3C"}
+  - {key: Right,                   chars: "\x1b[C",   mode: ~AppCursor}
+  - {key: Right,                   chars: "\x1bOC",   mode: AppCursor}
+  - {key: Up,       mods: Shift,   chars: "\x1b[1;2A"}
+  - {key: Up,       mods: Control, chars: "\x1b[1;5A"}
+  - {key: Up,       mods: Alt,     chars: "\x1b[1;3A"}
+  - {key: Up,                      chars: "\x1b[A",   mode: ~AppCursor}
+  - {key: Up,                      chars: "\x1bOA",   mode: AppCursor}
+  - {key: Down,     mods: Shift,   chars: "\x1b[1;2B"}
+  - {key: Down,     mods: Control, chars: "\x1b[1;5B"}
+  - {key: Down,     mods: Alt,     chars: "\x1b[1;3B"}
+  - {key: Down,                    chars: "\x1b[B",   mode: ~AppCursor}
+  - {key: Down,                    chars: "\x1bOB",   mode: AppCursor}
+  - {key: Tab,      mods: Shift,   chars: "\x1b[Z"}
+  - {key: F1,                      chars: "\x1bOP"}
+  - {key: F2,                      chars: "\x1bOQ"}
+  - {key: F3,                      chars: "\x1bOR"}
+  - {key: F4,                      chars: "\x1bOS"}
+  - {key: F5,                      chars: "\x1b[15~"}
+  - {key: F6,                      chars: "\x1b[17~"}
+  - {key: F7,                      chars: "\x1b[18~"}
+  - {key: F8,                      chars: "\x1b[19~"}
+  - {key: F9,                      chars: "\x1b[20~"}
+  - {key: F10,                     chars: "\x1b[21~"}
+  - {key: F11,                     chars: "\x1b[23~"}
+  - {key: F12,                     chars: "\x1b[24~"}
+  - {key: Back,                    chars: "\x7f"}
+  - {key: Back,     mods: Alt,     chars: "\x1b\x7f"}
+  - {key: Insert,                  chars: "\x1b[2~"}
+#- {key: Delete,                  chars: "\x1b[3~",  mode: AppKeypad}
+#- {key: Delete,                  chars: "\x1b[P",   mode: ~AppKeypad}
+  - {key: Delete,                  chars: "\x1b[3~"}
 
 # Mouse bindings
 #
@@ -365,16 +377,16 @@ key_bindings:
 # - PasteSelection
 # - Copy (TODO)
 mouse_bindings:
-  - { mouse: Middle, action: PasteSelection }
+  - {mouse: Middle, action: PasteSelection}
 
 mouse:
-  double_click: { threshold: 300 }
-  triple_click: { threshold: 300 }
+  double_click: {threshold: 300}
+  triple_click: {threshold: 300}
 
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
-hide_cursor_when_typing: true
+hide_cursor_when_typing: false
 
 # Shell
 #

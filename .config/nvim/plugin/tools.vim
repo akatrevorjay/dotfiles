@@ -49,7 +49,7 @@ let g:echodoc_enable_at_startup = 1
 
 "let rst_syntax_code_list = ['vim', 'python']
 let g:riv_python_rst_hl = 1
-let g:riv_highlight_code = ['python', 'cpp', 'javascript', 'json', 'vim', 'sh', 'zsh']
+let g:riv_highlight_code = 'lua,python,cpp,javascript,vim,sh,zsh'
 
 " bind ^L reset search selection map
 nnoremap <expr><leader><esc> clever_f#reset() | nohlsearch

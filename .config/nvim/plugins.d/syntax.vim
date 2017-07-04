@@ -261,6 +261,12 @@ Plug 'hashivim/vim-vagrant', {'for': ['vagrantfile']}
 "Plug 'hashivim/vim-ottoproject'
 
 
+" Rust:
+" vim-racer: "racer" source for Rust
+Plug 'racer-rust/vim-racer', {'for': ['rust']}
+Plug 'rust-lang/rust.vim', {'for': ['rust']}
+
+
 ""
 "" Comp
 ""
@@ -291,9 +297,6 @@ if has('nvim')
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
-
-    " vim-racer: "racer" source for Rust
-    Plug 'racer-rust/vim-racer', {'for': ['rust']}
 
     " deoplete-github: "github" source for "gitcommit" filetype
     "Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
@@ -357,8 +360,6 @@ else
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     " rust
-    Plug 'rust-lang/rust.vim'
-    Plug 'racer-rust/vim-racer'
     Plug 'roxma/nvim-cm-racer'
 
     " (optional) php completion via LanguageClient-neovim
@@ -384,6 +385,6 @@ endif
 
 Plug 'tenfyzhong/CompleteParameter.vim'
 
-let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
+"let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+"inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 

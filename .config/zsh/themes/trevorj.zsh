@@ -1,1 +1,1 @@
-airline-orage.zsh
+airline-thepurps.zsh

@@ -6,9 +6,6 @@ let g:WebDevIconsOS = g:OS
 " loading the plugin
 let g:webdevicons_enable = 1
 
-" adding the flags to NERDTree
-let g:webdevicons_enable_nerdtree = 1
-
 " adding the custom source to unite
 let g:webdevicons_enable_unite = 1
 
@@ -34,14 +31,19 @@ let g:WebDevIconsUnicodeDecorateFileNodes = 1
 " only manipulates padding, has no effect on terminal or set(guifont) font
 "let g:WebDevIconsUnicodeGlyphDoubleWidth = 1
 
-" whether or not to show the nerdtree brackets around flags
-let g:webdevicons_conceal_nerdtree_brackets = 1
+if exists('g:loaded_nerdtree')
+  " adding the flags to NERDTree
+  let g:webdevicons_enable_nerdtree = 1
 
-" the amount of space to use after the glyph character (default ' ')
-"let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
+  " the amount of space to use after the glyph character (default ' ')
+  "let g:WebDevIconsNerdTreeAfterGlyphPadding = '  '
 
-" Force extra padding in NERDTree so that the filetype icons line up vertically
-let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+  " whether or not to show the nerdtree brackets around flags
+  let g:webdevicons_conceal_nerdtree_brackets = 1
+
+  " Force extra padding in NERDTree so that the filetype icons line up vertically
+  let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
+endif
 
 
 "let g:DevIconsEnableFoldersOpenClose = 1

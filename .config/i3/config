@@ -10,9 +10,9 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term tilix
-set $term2 terminololgy
-set $term3 alacritty
+set $term alacritty
+set $term2 tilix
+set $term3 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
@@ -24,6 +24,8 @@ set $menu dmenu_run
 for_window [class="tilix"] border none
 for_window [class="Alacritty"] border none
 for_window [class="cancer"] border none
+for_window [class="urxvtr"] border none
+for_window [class="terminal"] border none
 
 for_window [class="google-chrome"] border none
 for_window [class="google-chrome-unstable"] border none

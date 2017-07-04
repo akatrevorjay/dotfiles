@@ -1,4 +1,35 @@
-" Keys: {{{
+"" Yank/Paste: {{{
+" Pastes then visually selects and reindents
+nnoremap <leader>p p`[v`]=
+
+" z = "X11-Clipboard"
+" x = "X11 Primary Selection"
+" m (v on workman) = "X11 Secondary Selection"
+
+command -range Cz :silent :<line1>,<line2>w !xsel -i -b
+command -range Cx :silent :<line1>,<line2>w !xsel -i -p
+command -range Cm :silent :<line1>,<line2>w !xsel -i -s
+cabbrev cz Cz
+cabbrev cx Cx
+cabbrev cm Cm
+
+command -range Pz :silent :r !xsel -o -b
+command -range Px :silent :r !xsel -o -p
+command -range Pm :silent :r !xsel -o -s
+
+cabbrev pz Pz
+cabbrev px Px
+cabbrev pm Pm
+" }}}
+
+"noremap <F3> :Autoformat<CR>
+""au BufWrite * :Autoformat
+
+"nmap ; :
+
+vmap [% [%m'gv``
+vmap ]% ]%m'gv``
+vmap a% [%v]%
 
 " Quick vim commands
 nnoremap ; :
@@ -195,17 +226,3 @@ cnoremap <c-e> <end>
 "nnoremap <silent> {Up-Mapping} :TmuxNavigateUp<cr>
 "nnoremap <silent> {Right-Mapping} :TmuxNavigateRight<cr>
 "nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
-" }}}
-
-
-"noremap <F3> :Autoformat<CR>
-""au BufWrite * :Autoformat
-
-nmap ; :
-
-vmap [% [%m'gv``
-vmap ]% ]%m'gv``
-vmap a% [%v]%
-
-" Pastes then visually selects and reindents
-nnoremap <leader>p p`[v`]=
