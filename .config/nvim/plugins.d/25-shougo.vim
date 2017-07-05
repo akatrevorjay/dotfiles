@@ -19,7 +19,12 @@ Plug 'rafi/vim-unite-issue'
 Plug 'Shougo/vimproc', { 'do' : 'make' }
 
 Plug 'Shougo/neopairs.vim'
+
+"Plug 'tenfyzhong/CompleteParameter.vim'
 "Plug 'jiangmiao/auto-pairs'
+
+"let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
+"inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
 
 Plug 'Shougo/echodoc.vim'
 Plug 'Shougo/context_filetype.vim'

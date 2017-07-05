@@ -384,8 +384,3 @@ else
     "Plug 'Valloric/YouCompleteMe', { 'do': function('BuildYCM'), 'on': 'YCM' }
 endif
 
-Plug 'tenfyzhong/CompleteParameter.vim'
-
-"let g:AutoPairs = {'[':']', '{':'}',"'":"'",'"':'"', '`':'`'}
-"inoremap <buffer><silent> ) <C-R>=AutoPairsInsert(')')<CR>
-
