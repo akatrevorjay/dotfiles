@@ -39,7 +39,7 @@ Plug 'tpope/vim-repeat'
 " Faster folding
 Plug 'Konfekt/FastFold'
 
-Plug 'junegunn/vim-emoji'
+"Plug 'junegunn/vim-emoji'
 
 if has('nvim')
   " NeoTerm: nice wrapper around :term

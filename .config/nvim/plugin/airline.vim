@@ -145,7 +145,7 @@ nmap <leader>+ <Plug>AirlineSelectNextTab
 
 "let g:airline#extensions#tabline#formatter = 'default'
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#buffer_nr_show = 0
+let g:airline#extensions#tabline#buffer_nr_show = 1
 
 let g:airline#extensions#tabline#show_splits = 1
 
@@ -169,15 +169,15 @@ let g:CtrlSpaceStatuslineFunction = 'airline#extensions#ctrlspace#statusline()'
 "let airline#extensions#tmuxline#color_template = 'replace'
 
 " TODO Are these automatically enabled or not?
-let g:airline#extensions#hunks#non_zero_only = 1
-let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
+"let g:airline#extensions#hunks#non_zero_only = 1
+"let g:airline#extensions#hunks#hunk_symbols = ['+', '~', '-']
 
 "let g:airline#extensions#ycm#error_symbol = 'E:'
 "let g:airline#extensions#ycm#warning_symbol = 'W:'
 
 "let g:airline#extensions#promptline#snapshot_file = expand('~/.zsh/themes/airline-snapshot.sh')
 
-let airline#extensions#promptline#color_template = 'normal'  " (default)
+"let airline#extensions#promptline#color_template = 'normal'  " (default)
 "let airline#extensions#promptline#color_template = 'insert'
 "let airline#extensions#promptline#color_template = 'visual'
 "let airline#extensions#promptline#color_template = 'replace'

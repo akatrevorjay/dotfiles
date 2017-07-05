@@ -217,6 +217,7 @@ Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml']}
 
 "Plug 'hdima/python-syntax', {'for': ['python']}
 "Plug 'okcompute/vim-python-motions', {'for': ['python']}
+Plug 'vim-python/python-syntax', {'for': ['python']}
 
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': ['python']}

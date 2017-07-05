@@ -65,23 +65,27 @@ let g:indentLine_setConceal = 0
 ""let g:indentLine_color_dark = 1 " (default: 2)
 ""let g:indentLine_setColors = 0
 
-map <silent><C-Space> :CtrlSpace<CR>
+if exists('g:loaded_ctrlspace')
+  map <silent><C-Space> :CtrlSpace<CR>
 
-let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
-let g:CtrlSpaceSetDefaultMapping = 0
-" Fuck emacs
-nnoremap <C-space> :CtrlSpace a<CR>
-let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-let g:CtrlSpaceSaveWorkspaceOnExit = 1
-let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:CtrlSpaceIgnoredFiles = '\v((tmp|temp)[\/]|\.pyc$|\.pyo$|\.git$|__pycache__[\/])'
-let g:CtrlSpaceFileEngine = "auto"
+  let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
+  let g:CtrlSpaceSetDefaultMapping = 0
+  " Fuck emacs
+  nnoremap <C-space> :CtrlSpace a<CR>
+  let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
+  let g:CtrlSpaceSaveWorkspaceOnExit = 1
+  let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
+  let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+  let g:CtrlSpaceIgnoredFiles = '\v((tmp|temp)[\/]|\.pyc$|\.pyo$|\.git$|__pycache__[\/])'
+  let g:CtrlSpaceFileEngine = "auto"
 
-nnoremap <leader>b :Buffers<CR>
+  nnoremap <leader>b :Buffers<CR>
 
-if executable("ag")
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+  if executable("ag")
+      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+  endif
+else
+  map <silent><C-Space> :Buffers<CR>
 endif
 
 function! s:RemoveLastPathComponent()

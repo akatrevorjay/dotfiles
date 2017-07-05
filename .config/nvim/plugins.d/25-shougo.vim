@@ -31,4 +31,3 @@ Plug 'Shougo/neoyank.vim'
 
 " neoinclude: "include" and "file/include" sources
 Plug 'Shougo/neoinclude.vim'
-"Plug 'akatrevorjay/neoinclude.vim'

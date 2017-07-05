@@ -6,7 +6,7 @@
 
 " ALE: Async Lint Engine
 Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
-let g:ale_emit_conflict_warnings = 0
+"let g:ale_emit_conflict_warnings = 0
 
 " GitGutter: Show git status in the gutter
 Plug 'airblade/vim-gitgutter'
@@ -20,5 +20,5 @@ Plug 'Chiel92/vim-autoformat'
 " Google code formatting
 Plug 'google/vim-codefmt'
 
-" Google code coverage viewing
-Plug 'google/vim-coverage'
+"" Google code coverage viewing
+"Plug 'google/vim-coverage'

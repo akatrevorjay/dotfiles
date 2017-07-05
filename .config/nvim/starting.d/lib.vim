@@ -39,19 +39,6 @@ endfunction
 "" <C-u>: http://d.hatena.ne.jp/e_v_e/20150101/1420067539
 "Gautocmdft vim nnoremap <silent> K :<C-u>SmartHelp<Space><C-r><C-w><CR>
 
-" I really dislike that GitHub only gives you the full URL. Most of the time, in VIM, I don't want that.
-function! SimplifyGitHubURLs()
-  "Get current line...
-  let curr_line   = getline('.')
-
-  "Replace raw ampersands...
-  let replacement = substitute(curr_line,'(git@|https?://)github.com[:/](.*)(\.git)?', '\1', 'g')
-
-  "Update current line...
-  call setline('.', replacement)
-endfunction
-command! SimplifyGitHubURLs call SimplifyGitHubURLs()
-
 " Json Format
 command! -nargs=0 -bang -complete=command FormatJSON %!python -m json.tool
 

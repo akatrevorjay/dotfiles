@@ -45,17 +45,17 @@ draw_bold_text_with_bright_colors: true
 font:
   # The normal (roman) font face to use.
   normal:
-    family: PragmataPro Nerd Font
+    family: PragmataProForPowerline Nerd Font
     style: Regular
 
   # The bold font face
   bold:
-    family: PragmataPro Nerd Font
+    family: PragmataProForPowerline Nerd Font
     style: Bold
 
   # The italic font face
   italic:
-    family: PragmataPro Nerd Font
+    family: PragmataProForPowerline Nerd Font
     style: Italic
 
   # Point size of the font

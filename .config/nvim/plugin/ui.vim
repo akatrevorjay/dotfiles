@@ -7,30 +7,6 @@
 if has('gui_running') || has('nvim')
     set guioptions=acMh
     set mousefocus " focus follows mouse in gvim
-
-    ""
-    "" Font: GUI font selection is different per OS, this is highly annoying.
-    "" TODO Function to set this that pays attention to OS, just give it a name and a size, done.
-    ""
-
-    if has('nvim')
-        "if exists('neovim_dot_app')
-        "    Guifont PragmataPro\ Nerd\ Font:h11
-        "endif
-    else
-        set guifont=PragmataPro\ Nerd\ Font\ 12
-        set guifontwide=&guifont
-
-        if has('gui_macvim')
-            " YEAH BABY LIGATURE SUPPORT
-            set macligatures
-            set macthinstrokes
-            set macmeta
-
-            "set fullscreen
-            "set transparency=10
-        endif
-    endif
 else
     " 256 color mode for term
     set t_Co=256

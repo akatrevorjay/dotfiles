@@ -79,7 +79,7 @@ if has('nvim')
     "" Interactive ft-aware REPL
     "Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 
-    Plug 'benekastah/neomake', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'benekastah/neomake', { 'do': ':UpdateRemotePlugins' }
     "" Run Neomake on every write
     "autocmd! BufWritePost * Neomake
 
