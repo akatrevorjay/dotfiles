@@ -29,22 +29,40 @@ zslice() {
 }
 
 usage() {
-	echo "Usage: ${0:t} [-p PATH] [QUERY...]"
+	cat <<EOF
+${ZSH_ARGZERO:t}: filter through locate results with FZF.
+Use on it's own on the cli, or bind to a key.
+
+ZSH:
+	# ALT-L - Paste the selected entry from loc output into the command line
+	fzf-loc-widget() {
+		local selected
+		if selected=\$(loc "\$LBUFFER"); then
+			LBUFFER=\$selected
+		fi
+		zle redisplay
+	}
+	zle     -N    fzf-loc-widget
+	bindkey '\eL' fzf-loc-widget
+
+CLI:
+	Usage: ${ZSH_ARGZERO:t} [-p PATH] [QUERY...]
+EOF
 }
 
 main() {
-	local o_path=() o_height=()
-	zparseopts -D -K -E p:=o_path h:=o_height
+	local o_path=() o_height=() o_help=()
+	zparseopts -D -K -E p:=o_path H:=o_height h=o_help -help=o_help
+
+	if [[ $# -eq 0 ]] || !empty $o_help; then
+		usage >&2
+		return 1
+	fi
 
 	if ! empty $o_path; then
 		# Notice we start at `1` here.
 		zslice '2::2' "${(@)o_path}"
 		argv+=('\'${(@)^ret:a}\*)
-	fi
-
-	if [[ $# -eq 0 ]]; then
-		usage >&2
-		return 1
 	fi
 
 	local cmd=(

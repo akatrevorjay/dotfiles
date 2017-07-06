@@ -38,8 +38,8 @@ unset fzf_path
 ##
 
 fzf-history-widget-accept() {
-  fzf-history-widget
-  zle accept-line
+    fzf-history-widget
+    zle accept-line
 }
 
 zle     -N     fzf-history-widget-accept
@@ -49,39 +49,38 @@ bindkey '^X^R' fzf-history-widget-accept
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
 fe() {
-  local files
-  IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
-  [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    local files
+    IFS=$'\n' files=($(fzf-tmux --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 }
 
 # Modified version where you can press
 #   - CTRL-O to open with `open` command,
 #   - CTRL-E or Enter key to open with the $EDITOR
 fo() {
-  local out file key
-  IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
-  key=$(head -1 <<< "$out")
-  file=$(head -2 <<< "$out" | tail -1)
-  if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
-  fi
+    local out file key
+    IFS=$'\n' out=($(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e))
+    key=$(head -1 <<< "$out")
+    file=$(head -2 <<< "$out" | tail -1)
+    if [ -n "$file" ]; then
+        [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+    fi
 }
+
 
 # vf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
 vf() {
-  local files
+    local files
 
-  files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
+    files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
 
-  if [[ -n $files ]]
-  then
-     vim -- $files
-     print -l $files[1]
-  fi
+    if [[ -n $files ]]; then
+        vim -- $files
+        print -l $files[1]
+    fi
 }
-
 
 
 # fd - cd to selected directory
@@ -110,6 +109,7 @@ fdr() {
   local DIR=$(get_parent_dirs $(realpath "${1:-$PWD}") | fzf-tmux --tac)
   cd "$DIR"
 }
+
 # cf - fuzzy cd from anywhere
 # ex: cf word1 word2 ... (even part of a file name)
 # zsh autoload function
@@ -139,7 +139,7 @@ cdf() {
 
 # Grep all contents
 greplines() {
-	ag --nobreak --nonumbers --noheading . | fzf
+        ag --nobreak --nonumbers --noheading . | fzf
 }
 
 # fkill - kill process
@@ -153,14 +153,12 @@ fkill() {
 }
 
 
-
 ##
 ## Git
 ##
 
-
 # fbr - checkout git branch
-fbr() {
+git-fbrl() {
   local branches branch
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
@@ -168,7 +166,7 @@ fbr() {
 }
 
 # fbr - checkout git branch (including remote branches)
-fbr() {
+git-fbr() {
   local branches branch
   branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
@@ -177,7 +175,7 @@ fbr() {
 }
 
 # fco - checkout git branch/tag
-fco() {
+git-fco() {
   local tags branches target
   tags=$(
     git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || return
@@ -190,40 +188,30 @@ fco() {
     fzf-tmux -l30 -- --no-hscroll --ansi +m -d "\t" -n 2) || return
   git checkout $(echo "$target" | awk '{print $2}')
 }
-# fcoc - checkout git commit
-fcoc() {
+
+# fco-commit - checkout git commit
+git-fco-commit() {
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
-# fshow - git commit browser
-fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
-                (grep -o '[a-f0-9]\{7\}' | head -1 |
-                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
-                {}
-FZF-EOF"
-}
 
-
-# fcs - get git commit sha
+# fc - get git commit sha
 # example usage: git rebase -i `fcs`
-fcs() {
+git-fcommit() {
   local commits commit
   commits=$(git log --color=always --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e --ansi --reverse) &&
   echo -n $(echo "$commit" | sed "s/ .*//")
 }
+
 # fstash - easier way to deal with stashes
 # type fstash to get a list of your stashes
 # enter shows you the contents of the stash
 # ctrl-d shows a diff of the stash against your current HEAD
 # ctrl-b checks the stash out as a branch, for easier merging
-fstash() {
+git-fstash() {
   local out q k sha
   while out=$(
     git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
@@ -248,7 +236,7 @@ fstash() {
 }
 
 # ftags - search ctags
-ftags() {
+git-ftags() {
   local line
   [ -e tags ] &&
   line=$(
@@ -267,15 +255,15 @@ ftags() {
 # fs [FUZZY PATTERN] - Select selected tmux session
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
-fs() {
+tmux-fs() {
   local session
   session=$(tmux list-sessions -F "#{session_name}" | \
     fzf --query="$1" --select-1 --exit-0) &&
   tmux switch-client -t "$session"
 }
 
-# ftpane - switch pane (@george-b)
-ftpane() {
+# switch pane (@george-b)
+tmux-fpane() {
   if [[ -z $TMUX ]]; then
     echo "Not in tmux?" >&2
     return 1
@@ -301,7 +289,6 @@ ftpane() {
 
 # In tmux.conf
 
-
 # v - open files in ~/.viminfo
 v() {
   local files
@@ -316,12 +303,10 @@ vfasd() {
   file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && vi "${file}" || return 1
 }
 
-
 zf() {
   local dir
   dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
-
 
 # c - browse chrome history
 c() {
@@ -340,22 +325,35 @@ c() {
   fzf --ansi --multi | sed 's#.*\(https*://\)#\1#' | xargs open
 }
 
+
 # ALT-I - Paste the selected entry from locate output into the command line
 fzf-locate-widget() {
-  local selected
-  if selected=$(locate / | fzf -q "$LBUFFER"); then
-    LBUFFER=$selected
-  fi
-  zle redisplay
+    local selected
+    if selected=$(locate / | fzf -q "$LBUFFER"); then
+        LBUFFER=$selected
+    fi
+    zle redisplay
 }
 zle     -N    fzf-locate-widget
 bindkey '\ei' fzf-locate-widget
 
 
-vs(){
-  #List all vagrant boxes available in the system including its status, and try to access the selected one via ssh
-  cd $(cat ~/.vagrant.d/data/machine-index/index | jq '.machines[] | {name, vagrantfile_path, state}' | jq '.name + "," + .state  + "," + .vagrantfile_path'| sed 's/^"\(.*\)"$/\1/'| column -s, -t | sort -rk 2 | fzf | awk '{print $3}'); vagrant ssh
+# ALT-L - Paste the selected entry from loc output into the command line
+fzf-loc-widget() {
+    local selected
+    if selected=$(loc "$LBUFFER"); then
+        LBUFFER=$selected
+    fi
+    zle redisplay
 }
+zle     -N    fzf-loc-widget
+bindkey '\eL' fzf-loc-widget
+
+
+#vs(){
+#  #List all vagrant boxes available in the system including its status, and try to access the selected one via ssh
+#  cd $(cat ~/.vagrant.d/data/machine-index/index | jq '.machines[] | {name, vagrantfile_path, state}' | jq '.name + "," + .state  + "," + .vagrantfile_path'| sed 's/^"\(.*\)"$/\1/'| column -s, -t | sort -rk 2 | fzf | awk '{print $3}'); vagrant ssh
+#}
 
 
 # Copy selected path to clipboard
