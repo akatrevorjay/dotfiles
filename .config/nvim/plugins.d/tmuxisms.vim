@@ -21,7 +21,7 @@ if empty($TMUX)
   endif
 else
   " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
-  Plug 'wellle/tmux-complete.vim'
+  "Plug 'wellle/tmux-complete.vim'
 
   " tmux integration
   Plug 'christoomey/vim-tmux-navigator'

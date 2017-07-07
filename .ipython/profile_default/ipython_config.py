@@ -61,6 +61,7 @@ exts = [
 if not sys.version_info < (3, ):
     exts.extend([
         # asyncio
+        'asynciomagic',
         'print_future',
         'yf',
     ])
