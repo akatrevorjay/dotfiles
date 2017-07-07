@@ -276,7 +276,7 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " deoplete-jedi: "jedi" source for Python
-    Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    "Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
     " deoplete-docker
     Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
@@ -285,7 +285,7 @@ if has('nvim')
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
 
     " deoplete-go: "go" source for Go
-    Plug 'zchee/deoplete-go', {'for': ['go']}
+    Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': ['ruby']}
@@ -349,7 +349,11 @@ if has('nvim')
     " webcomplete.vim: "webcomplete" source for browser opened pages
     "Plug 'thalesmello/webcomplete.vim'
 
+    " numerous
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+
+    "" rust
+    "Plug 'roxma/nvim-cm-racer', {'for': ['rust'], 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1
@@ -360,8 +364,8 @@ else
     " (optional) language server protocol framework
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
-    " rust
-    Plug 'roxma/nvim-cm-racer'
+    "" rust
+    "Plug 'roxma/nvim-cm-racer', {'for': ['rust'], 'do': ':UpdateRemotePlugins' }
 
     " (optional) php completion via LanguageClient-neovim
     "Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}

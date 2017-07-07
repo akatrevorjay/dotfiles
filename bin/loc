@@ -54,7 +54,7 @@ main() {
 	local o_path=() o_height=() o_help=()
 	zparseopts -D -K -E p:=o_path H:=o_height h=o_help -help=o_help
 
-	if [[ $# -eq 0 ]] || !empty $o_help; then
+	if [[ $# -eq 0 ]] || ! empty $o_help; then
 		usage >&2
 		return 1
 	fi
