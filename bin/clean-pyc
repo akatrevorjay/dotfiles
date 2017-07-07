@@ -1,0 +1,4 @@
+#!/bin/sh
+exec find "$PWD" \
+    '(' -name '*.pyc' -or -name '*.pyo' -or -name '__pycache__' ')' \
+    -delete
