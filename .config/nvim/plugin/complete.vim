@@ -48,10 +48,11 @@ if has('nvim')
     "inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
 
     let g:deoplete#auto_complete_start_length = 1
-    "let g:deoplete#file#enable_buffer_path = 1
     "let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#auto_complete_delay = 100
     let g:deoplete#file#enable_buffer_path = 1
+
+    "let g:deoplete#auto_complete_delay = 100
+    let g:deoplete#auto_complete_delay = 50
 
     " Use smartcase.
     let g:deoplete#enable_smart_case = 1
@@ -94,6 +95,7 @@ if has('nvim')
     "call deoplete#custom#set('buffer', 'rank', 9999)
     " Enable buffer source in C/C++ files only.
     "call deoplete#custom#set('buffer', 'filetypes', ['c', 'cpp'])
+    "call deoplete#custom#set('member', 'filetypes', ['c', 'cpp'])
     " Disable the candidates in Comment/String syntaxes.
     "call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
 
@@ -106,6 +108,7 @@ if has('nvim')
 
     "let g:deoplete#sources#_ = ['buffer', 'jedi', 'neosnippets']
     "let g:deoplete#sources#python = ['buffer', 'jedi', 'neosnippets']
+    let g:deoplete#sources#python = ['jedi', 'file', 'neosnippets', 'ultisnips']
     "let g:deoplete#sources#vim = ['necovim', 'neco', 'vim', 'neosnippets']
 
     "let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
@@ -114,7 +117,8 @@ if has('nvim')
     "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
     "let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
-    let g:deoplete#max_menu_width = 80
+    "let g:deoplete#max_menu_width = 80
+    let g:deoplete#max_menu_width = 120
     let g:deoplete#sources#use_cache = 1
 
     "let g:deoplete#sources#go = 'vim-go'
@@ -155,8 +159,9 @@ if has('nvim')
     " Auto close preview window post completion
     "autocmd CompleteDone * pclose!
 
-    "let g:deoplete#ignore_sources = {}
-    "let g:deoplete#ignore_sources._ = ['buffer']
+    let g:deoplete#ignore_sources = {}
+    let g:deoplete#ignore_sources._ = ['buffer']
+    let g:deoplete#ignore_sources.python = ['buffer', 'member', 'tag']
 
     " Insert <TAB> or select next match
     "inoremap <silent> <expr> <Tab> utils#tabComplete()
@@ -175,16 +180,19 @@ if has('nvim')
     "" Completion: Jedi
 
     let g:deoplete#sources#jedi#show_docstring = 1
-    "let g:deoplete#sources#jedi#statement_length = 100
+    let g:deoplete#sources#jedi#statement_length = 250
     "let g:deoplete#sources#jedi#short_types = 1
     let g:deoplete#sources#jedi#enable_cache = 1
+    let g:deoplete#sources#jedi#show_docstring = 1
+    let g:deoplete#sources#jedi#worker_threads = 4
+    let g:deoplete#sources#jedi#server_timeout = 20
     "let g:jedi#show_call_signatures = 1 " show in cmdline
     "let g:jedi#show_call_signatures_delay = 250 " ms (500)
 
-    " FakeGIR cache for completion
-    let g:deoplete#sources#jedi#extra_path = [
-        \ expand('~/.cache/fakegir'),
-        \ ]
+    "" FakeGIR cache for completion
+    "let g:deoplete#sources#jedi#extra_path = [
+    "    \ expand('~/.cache/fakegir'),
+    "    \ ]
 
     " Remove jedi doc buffer automagically
     "autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
@@ -199,7 +207,7 @@ if has('nvim')
       let g:jedi#completions_enabled = 0
       "let g:jedi#force_py_version = 3
       "let g:jedi#smart_auto_mappings = 0
-      "let g:jedi#max_doc_height = 100
+      let g:jedi#max_doc_height = 100
 
       "if !exists('g:deoplete#force_omni_input_patterns')
       " let g:deoplete#force_omni_input_patterns = {}

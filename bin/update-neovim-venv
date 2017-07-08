@@ -64,15 +64,15 @@ function pips() {
 	wait
 }
 
-pips install -U neovim \
+pips install --pre -U neovim \
 	jedi \
 	rope ropevim \
 	mistune psutil setproctitle \
 	greenlet gevent
 
-pip2 install -U neovim-gui
+pip2 install --pre -U neovim-gui
 
-pip3 install -U -e 'git+https://github.com/palantir/python-language-server@develop#egg=pyls'
+pip3 install --pre -U -e 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
 
 # fuck you ipython/pip, what the fuck is this shit?
 () {
@@ -85,7 +85,7 @@ pip3 install -U -e 'git+https://github.com/palantir/python-language-server@devel
 			pip2*) pkg="$pkg<6" ;;
 		esac
 
-		cmd=($pip install -U $pkg)
+		cmd=($pip install --pre -U $pkg)
 		echo "-- $cmd"
 		$cmd
 	done

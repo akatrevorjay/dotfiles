@@ -276,10 +276,10 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " deoplete-jedi: "jedi" source for Python
-    "Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    Plug 'zchee/deoplete-jedi', {'for': ['python']}
 
     " deoplete-docker
-    Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
+    "Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
@@ -294,7 +294,7 @@ if has('nvim')
     Plug 'Shougo/neco-syntax', {'for': ['vim']}
 
     " vimshell: "vimshell" source for vimshell
-    Plug 'Shougo/vimshell.vim'
+    "Plug 'Shougo/vimshell.vim'
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
