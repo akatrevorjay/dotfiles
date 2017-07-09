@@ -10,3 +10,7 @@ endif
 if has('termguicolors') && empty($TERMINOLOGY)
   set termguicolors
 endif
+
+if has('title')
+  set title
+endif

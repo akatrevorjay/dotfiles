@@ -1,0 +1,228 @@
+!Xft.dpi: 192
+Xft.dpi: 96
+
+! Fonts
+Xft.antialias:          1
+Xft.hinting:            1
+Xft.rgba:               rgb
+Xft.hintstyle:          hintslight
+Emacs.FontBackend: xft
+!Emacs.pane.menubar.font: PragmataPro Nerd Font 12
+!Emacs.font: PragmataPro Nerd Font 12
+
+
+!*VT100.colorBDMode:     true
+!*colorBDMode: true
+!!*VT100.colorBD:         red
+!*VT100.colorULMode:     true
+!*colorULMode: true
+!!*VT100.colorUL:         cyan
+!!*VT100.veryBoldColors: 6
+!*highlightColorMode: true
+
+URxvt*termName: rxvt-unicode-256color
+!URxvt*iconFile: /usr/share/icons/Papirus-Dark/64x64/apps/Terminal.svg
+URxvt*iconName: Terminal
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! disable scrollback buffer for secondary screens (eg pagers)
+URxvt*secondaryScreen: 1
+URxvt*secondaryScroll: 0
+! ^ also for mousewheel
+URxvt*secondaryWheel: 1
+! fonts
+!URxvt*font:                 xft:OperatorMono Nerd Font:pixelsize=13:antialias=true:hinting=true:minspace=true:style=Medium
+URxvt*italicFont:           xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
+!URxvt*boldFont:             xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Bold
+URxvt*boldItalicFont:       xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
+URxvt*font:              xft:PragmataProForPowerline Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
+!URxvt*font:              xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
+!URxvt*italicFont:        xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=italic
+!URxvt*boldFont:          xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=bold
+!URxvt*boldItalicFont:    xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=bold:style=italic
+!URxvt*italicFont:        xft:PragmataPro Nerd Font:italic:pixelsize=14:antialias=true
+!URxvt*boldItalicFont:    xft:PragmataPro Nerd Font:bold:italic:pixelsize=14:antialias=true
+! Defaults are a bit too wide (see http://lists.schmorp.de/pipermail/rxvt-unicode/2007q4/000512.html)
+!URxvt*letterSpace: -1
+!URxvt*letterSpace: 1
+!URxvt*letterSpace: 2
+
+!URxvt*reverseVideo: true
+!URxvt*saveLines: 10240
+! use tmux LaB
+URxvt*saveLines: 0
+
+!! Keycode fixes for Ctrl+direction in Vim
+!URxvt*keysym.C-Up:     \033[1;5A
+!URxvt*keysym.C-Down:   \033[1;5B
+!URxvt*keysym.C-Right:  \033[1;5C
+!URxvt*keysym.C-Left:   \033[1;5D
+!URxvt*keysym.C-Prior:  \033[5;5~
+!URxvt*keysym.C-Next:   \033[6;5~
+!URxvt*keysym.C-Home:   \033[7;5~
+!URxvt*keysym.C-End:    \033[8;5~
+
+!Disables the insanely annoying Ctrl+Shift shortcut that enters ISO14755 mode
+URxvt*iso14755: false
+URxvt*iso14755_52: false
+
+! Scollbar
+!URxvt*scrollstyle: plain
+!URxvt*borderColor: #000030
+!URxvt*internalBorder: 1
+URxvt*scrollstyle: plain
+URxvt*thickness: 1
+URxvt*scrollBar: false
+URxvt*scrollBar_floating: true
+URxvt*scrollBar_right: true
+
+!URxvt*jumpScroll: true
+!URxvt*skipScroll: false
+
+XTerm*decTerminalID: vt340
+XTerm*numColorRegisters: 256
+
+!*decTerminalID: vt340
+!*numColorRegisters: 256
+
+! perl exts
+!URxvt*perl-ext-common: extension_name_1,extension_name_2,...
+
+!URxvt*perl-ext-common: default,tabbed,matcher,resize-font,fullscreen
+URxvt*perl-ext-common: default,matcher,bell-command,keyboard-select,tabbedex,autocomplete-ALL-the-things
+!URxvt*perl-ext-common: default,tabbed,matcher,bell-command
+!URxvt*perl-ext: default,url-select
+
+! keyboard-select
+URxvt.keysym.M-s: perl:keyboard-select:activate
+URxvt.keysym.M-r: perl:keyboard-select:search
+
+! clipboard
+! update clipboard whenever primary gets updated
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: perl:clipboard:copy
+URxvt.keysym.M-v: perl:clipboard:paste
+URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+
+! Autocomplete from visible text
+URxvt*keysym.M-C-slash:   perl:aAtt:word-complete
+URxvt*keysym.M-question:  perl:aAtt:fuzzy-complete
+URxvt*keysym.M-quotedbl:  perl:aAtt:undo
+
+URxvt*resize-font.smaller: C-Down
+URxvt*resize-font.bigger: C-Up
+
+URxvt*keysym.F11: perl:fullscreen:switch
+
+!URxvt*tintColor:
+!URxvt*inheritPixmap:
+
+URxvt*skipBuiltinGlyphs: true
+
+! percentage to fade when focus is lost
+!URxvt*fade: 10
+!!URxvt*fadeColor: black
+
+! tabs
+URxvt*tabbed.tabbar-fg: 2
+URxvt*tabbed.tabbar-bg: 0
+URxvt*tabbed.tab-fg: 3
+URxvt*tabbed.tab-bg: 0
+!! tabbedex
+!URxvt*tabbed.new-button: false
+!URxvt*tabbed.autohide: true
+!URxvt*keysym.Control-t: perl:tabbedex:new_tab
+!URxvt*keysym.Control-Tab: perl:tabbedex:next_tab
+!URxvt*keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
+!URxvt*keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
+!URxvt*keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
+!URxvt*keysym.Control-Shift-R: perl:tabbedex:rename_tab
+!URxvt*tabbed.no-tabbedex-keys: true
+
+! Clickable URIs
+URxvt*url-launcher: /usr/bin/xdg-open
+URxvt*matcher.button: 1
+! Open and list recent URIs
+URxvt*keysym.C-Delete: perl:matcher:last
+URxvt*keysym.M-Delete: perl:matcher:list
+! Link style
+!URxvt*matcher.rend.0: Uline Bold fg5
+
+! Select with kbd
+URxvt*keysym.M-u: perl:url-select:select_next
+URxvt*url-select.launcher: /usr/bin/xdg-open
+URxvt*url-select.underline: true
+
+! Search
+URxvt*keysym.M-s: searchable-scrollback:start
+
+URxvt*bell-command: notify-send "rxvt-unicode: bell!"
+URxvt*urgentOnBell: true
+
+!Xterm escapes, word by word movement
+URxvt*keysym.Control-Left:    \033[1;5D
+URxvt*keysym.Control-Right:    \033[1;5C
+
+
+URxvt*depth: 32
+!URxvt*background: rgba:1111/1111/1111/dddd
+URxvt*background: rgba:0000/0000/0200/c800
+!URxvt*tr: true
+!URxvt*tintColor: red
+
+!URxvt*inheritPixmap: true
+!URxvt*transparent: true
+!! URxvt*shading: 0 to 99 darkens, 101 to 200 lightens
+!URxvt*shading: 110
+
+
+!URxvt*colorBD:  white
+!URxvt*colorIT:  green
+
+!URxvt*colorIT:      #87af5f
+!URxvt*colorBD:      #d7d7d7
+!URxvt*colorUL:      #87afd7
+
+!URxvt*cursorColor:  #dc74d1
+!URxvt*pointerColor: #dc74d1
+!URxvt*background:   #0e0e0e
+!URxvt*foreground:   #4ad5e1
+
+
+
+
+! X Resources: Generated with Hodler (http://github.com/matttproud/hodler)
+URxvt*color0: #121212
+URxvt*color1: #fa2573
+URxvt*color2: #97e123
+URxvt*color3: #dfd460
+URxvt*color4: #0f7fcf
+URxvt*color5: #8700ff
+URxvt*color6: #42a7cf
+URxvt*color7: #bbbbbb
+URxvt*color8: #555555
+URxvt*color9: #f5669c
+URxvt*color10: #b0e05e
+URxvt*color11: #fef26c
+URxvt*color12: #00afff
+URxvt*color13: #af87ff
+URxvt*color14: #50cdfe
+URxvt*color15: #ffffff
+!URxvt*background: #121212
+URxvt*foreground: #bbbbbb
+URxvt*cursorColor: #bbbbbb
+! See "highlightColorMode" and "hm" options in XTerm manual page.
+URxvt*highlightTextColor: #000000
+URxvt*highlightColor: #b4d5ff
+! No support for cursor text coloring; would be #ffffff.
+! No support for bold coloring; would be #ffffff.
+!
+
+! from Xdefaults:
+Xcursor*theme: Obsidian
+

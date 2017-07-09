@@ -10,9 +10,10 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
-set $term2 tilix
-set $term3 terminololgy
+set $term urxvt
+set $term2 alacritty
+set $term3 tilix
+#set $term4 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
@@ -22,15 +23,20 @@ set $menu dmenu_run
 #for_window [class="nautilus"] border none
 
 for_window [class="mpv"] floating enable border none move absolute position 0px 0px resize set 160 320
+for_window [class="ledbot"] floating enable border none move absolute position 0px 0px resize set 160 320
 
 for_window [class="tilix"] border none
 for_window [class="Alacritty"] border none
 for_window [class="cancer"] border none
-for_window [class="urxvtr"] border none
+for_window [class="urxvt"] border none
+for_window [class="URxvt"] border none
 for_window [class="terminal"] border none
 
+for_window [class="Google-chrome"] border none
 for_window [class="google-chrome"] border none
+for_window [class="Google-chrome-unstable"] border none
 for_window [class="google-chrome-unstable"] border none
+
 for_window [class="vivaldi"] border none
 for_window [class="vivaldi-snapshot"] border none
 

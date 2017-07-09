@@ -267,6 +267,8 @@ Plug 'hashivim/vim-vagrant', {'for': ['vagrantfile']}
 Plug 'racer-rust/vim-racer', {'for': ['rust']}
 Plug 'rust-lang/rust.vim', {'for': ['rust']}
 
+" Monte:
+Plug 'monte-language/monte-vim', {'for': ['monte']}
 
 ""
 "" Comp
