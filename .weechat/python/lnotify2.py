@@ -68,7 +68,7 @@ class config(object):
     def init_config(self):
         for opt, value in self.opts.items():
             temp = weechat.config_get_plugin(opt)
-            if not len(temp):
+            if temp is None:
                 weechat.config_set_plugin(opt, value)
 
     def check_config(self):
