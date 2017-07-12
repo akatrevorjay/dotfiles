@@ -26,3 +26,7 @@
 #[*module-init-tools*/tests/*]
 #	   distcc disable
 
+[*openwrt*]
+    cc = /usr/bin/gcc-5
+    c++ = /usr/bin/g++-5
+    no-parallel = *

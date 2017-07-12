@@ -44,7 +44,7 @@ case $OSTYPE:l in
 esac
 
 if [[ -n $vim ]]; then
-	$vim -c 'Update'
+	$vim -c 'PlugUpdate'
 fi
 
 if (( ${+commands[gcloud]} )); then

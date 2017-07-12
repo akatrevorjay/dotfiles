@@ -37,9 +37,9 @@ URxvt*secondaryScroll: 0
 URxvt*secondaryWheel: 1
 ! fonts
 !URxvt*font:                 xft:OperatorMono Nerd Font:pixelsize=13:antialias=true:hinting=true:minspace=true:style=Medium
-URxvt*italicFont:           xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
+!URxvt*italicFont:           xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
 !URxvt*boldFont:             xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Bold
-URxvt*boldItalicFont:       xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
+!URxvt*boldItalicFont:       xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
 URxvt*font:              xft:PragmataProForPowerline Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
 !URxvt*font:              xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
 !URxvt*italicFont:        xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=italic
@@ -99,25 +99,31 @@ URxvt*perl-ext-common: default,matcher,bell-command,keyboard-select,tabbedex,aut
 !URxvt*perl-ext: default,url-select
 
 ! keyboard-select
-URxvt.keysym.M-s: perl:keyboard-select:activate
-URxvt.keysym.M-r: perl:keyboard-select:search
+URxvt*keysym.M-s: perl:keyboard-select:activate
+URxvt*keysym.M-r: perl:keyboard-select:search
 
 ! clipboard
 ! update clipboard whenever primary gets updated
-URxvt.clipboard.autocopy: true
-URxvt.keysym.M-c: perl:clipboard:copy
-URxvt.keysym.M-v: perl:clipboard:paste
-URxvt.keysym.M-C-v: perl:clipboard:paste_escaped
+URxvt*clipboard.autocopy: true
+URxvt*clipboard.copycmd:  xclip -i -selection clipboard
+URxvt*clipboard.pastecmd: xclip -o -selection clipboard
+
+!URxvt*keysym.C-S-c: perl:clipboard:copy
+!URxvt*keysym.M-C-S-v: perl:clipboard:paste
+!URxvt*keysym.C-S-v: perl:clipboard:paste_escaped
 
 ! Autocomplete from visible text
 URxvt*keysym.M-C-slash:   perl:aAtt:word-complete
 URxvt*keysym.M-question:  perl:aAtt:fuzzy-complete
 URxvt*keysym.M-quotedbl:  perl:aAtt:undo
 
-URxvt*resize-font.smaller: C-Down
-URxvt*resize-font.bigger: C-Up
+!URxvt.keysym.M-C-Up:     perl:font-size:increase
+!URxvt.keysym.M-C-Down:   perl:font-size:decrease
+!URxvt.keysym.M-C-S-Up:   perl:font-size:incglobal
+!URxvt.keysym.M-C-S-Down: perl:font-size:decglobal
+!URxvt.font-size.step: 4
 
-URxvt*keysym.F11: perl:fullscreen:switch
+!URxvt*keysym.F11: perl:fullscreen:switch
 
 !URxvt*tintColor:
 !URxvt*inheritPixmap:
@@ -128,25 +134,47 @@ URxvt*skipBuiltinGlyphs: true
 !URxvt*fade: 10
 !!URxvt*fadeColor: black
 
-! tabs
-URxvt*tabbed.tabbar-fg: 2
-URxvt*tabbed.tabbar-bg: 0
-URxvt*tabbed.tab-fg: 3
-URxvt*tabbed.tab-bg: 0
-!! tabbedex
-!URxvt*tabbed.new-button: false
-!URxvt*tabbed.autohide: true
-!URxvt*keysym.Control-t: perl:tabbedex:new_tab
-!URxvt*keysym.Control-Tab: perl:tabbedex:next_tab
-!URxvt*keysym.Control-Shift-Tab: perl:tabbedex:prev_tab
-!URxvt*keysym.Control-Shift-Left: perl:tabbedex:move_tab_left
-!URxvt*keysym.Control-Shift-Right: perl:tabbedex:move_tab_right
-!URxvt*keysym.Control-Shift-R: perl:tabbedex:rename_tab
-!URxvt*tabbed.no-tabbedex-keys: true
+! Tabbedex features
+URxvt*tabbed.new-button:       no
+URxvt*tabbed.autohide:         yes
+URxvt*tabbed.no-tabbedex-keys: yes
+
+! Tabbedex colors
+URxvt*tabbed.tabbar-fg:   244
+URxvt*tabbed.tabbar-bg:   16
+!URxvt*tabbed.tabbar-fg: 2
+!URxvt*tabbed.tabbar-bg: 0
+URxvt*tabbed.tab-fg:      255
+URxvt*tabbed.tab-bg:      52
+!URxvt*tabbed.tab-fg: 3
+!URxvt*tabbed.tab-bg: 0
+URxvt*tabbed.bell-tab-fg: 255
+URxvt*tabbed.bell-tab-bg: 160
+URxvt*tabbed.bell-fg:     244
+URxvt*tabbed.bell-bg:     17
+URxvt*tabbed.title-fg:    28
+URxvt*tabbed.title-bg:    16
+
+!! Tabbedex keybindings (4-1: Super + Alt)
+!URxvt*keysym.4-1-Down:    perl:tabbedex:new_tab
+!URxvt*keysym.4-1-Left:    perl:tabbedex:prev_tab
+!URxvt*keysym.4-1-Right:   perl:tabbedex:next_tab
+!URxvt*keysym.4-1-Up:      perl:tabbedex:rename_tab
+!URxvt*keysym.4-1-C-Left:  perl:tabbedex:move_tab_left
+!URxvt*keysym.4-1-C-Right: perl:tabbedex:move_tab_right
+
+URxvt*keysym.M-t: perl:tabbedex:new_tab
+URxvt*keysym.M-Right: perl:tabbedex:next_tab
+URxvt*keysym.M-Left: perl:tabbedex:prev_tab
+URxvt*keysym.M-S-Left: perl:tabbedex:move_tab_left
+URxvt*keysym.M-S-Right: perl:tabbedex:move_tab_right
+URxvt*keysym.M-S-R: perl:tabbedex:rename_tab
+
+! tabbedex
 
 ! Clickable URIs
 URxvt*url-launcher: /usr/bin/xdg-open
-URxvt*matcher.button: 1
+URxvt*matcher.button: 2
 ! Open and list recent URIs
 URxvt*keysym.C-Delete: perl:matcher:last
 URxvt*keysym.M-Delete: perl:matcher:list

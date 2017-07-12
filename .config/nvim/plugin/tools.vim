@@ -44,13 +44,19 @@ if !exists(':DiffOrig')
         \ | wincmd p | diffthis
 endif
 
-" Show docstrings in cmdline
-let g:echodoc_enable_at_startup = 1
+if exists('g:loaded_echodoc')
+  " Show docstrings in cmdline
+  let g:echodoc_enable_at_startup = 1
+endif
 
-"let rst_syntax_code_list = ['vim', 'python']
-let g:riv_python_rst_hl = 1
-let g:riv_highlight_code = 'lua,python,cpp,javascript,vim,sh,zsh'
+if exists('g:loaded_riv')
+  "let rst_syntax_code_list = ['vim', 'python']
+  let g:riv_python_rst_hl = 1
+  let g:riv_highlight_code = 'lua,python,cpp,javascript,vim,sh,zsh'
+endif
 
-" bind ^L reset search selection map
-nnoremap <expr><leader><esc> clever_f#reset() | nohlsearch
+if exists('g:loaded_clever_f')
+  " bind ^L reset search selection map
+  nnoremap <expr><leader><esc> clever_f#reset() | nohlsearch
+endif
 

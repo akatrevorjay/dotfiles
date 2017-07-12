@@ -11,7 +11,7 @@ zplugins.load "mafredri/zsh-async"
 
 #zplugins.load "akatrevorjay/composure"
 #zplugins.load "psprint/zsnapshot"
-#zplugins.load "mollifier/zload"
+zplugins.load "mollifier/zload"
 #zplugins.load "Tarrasch/zsh-functional"
 #zplugins.load "Tarrasch/zsh-bd" --lazy true
 #zplugins.load "Tarrasch/zsh-colors" --lazy true
@@ -19,8 +19,8 @@ zplugins.load "mafredri/zsh-async"
 #zplugins.load 'LockonS/terminal-workload-report' --lazy true
 #zplugins.load "molovo/revolver"
 
-#GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-#zplugins.load "RobSis/zsh-completion-generator"
+GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+zplugins.load "RobSis/zsh-completion-generator"
 
 #zplugins.load "jamesob/desk" --dir "shell_plugins/zsh"
 

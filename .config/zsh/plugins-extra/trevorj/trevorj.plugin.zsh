@@ -197,6 +197,12 @@ case $OSTYPE:l in
 		;;
 esac
 
+gpg-ssh-agent
+
+alias lolbar='seq 1 $(tput cols) | sort -R | spark | lolcat; echo; echo' # Coloured
+
+alias clear='clear; echo; echo; seq 1 $(tput cols) | sort -R | spark | lolcat; echo; echo' # Coloured
+
 if (( ${+commands[git-tip]} )); then
 	git-tip || :
 	echo
@@ -207,4 +213,5 @@ if (( ${+commands[random-quote]} )); then
 	echo
 fi
 
-gpg-ssh-agent
+lolbar
+
