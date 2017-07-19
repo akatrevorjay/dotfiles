@@ -185,3 +185,5 @@ let g:tmuxline_theme = 'airline_visual'
 let g:moonflySpellReversed = 1
 colorscheme moonfly
 
+highlight Comment cterm=italic gui=italic
+

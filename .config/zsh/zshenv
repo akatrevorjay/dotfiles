@@ -48,7 +48,9 @@ declare -xm 'ZSH_*'
 : ${BROWSER:=google-chrome}
 : ${EDITOR:=nvim}
 : ${PAGER:=less -RWX}
-declare -xm DE BROWSER EDITOR PAGER
+: ${S_COLORS:=auto}
+declare -xm DE BROWSER EDITOR PAGER S_COLORS
+
 
 case $TERM:l in
 	xterm|screen)

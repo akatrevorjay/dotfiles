@@ -2,7 +2,7 @@
 	path = config.os
 
 	path = config.alias
-	;path = config.diff-so-fancy
+	path = config.diff-so-fancy
 	path = config.color
 
 	;path = config.unleakify

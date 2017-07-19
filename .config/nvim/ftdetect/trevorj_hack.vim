@@ -9,8 +9,11 @@
 "au BufRead,BufNewFile *.sh set filetype=sh
 
 " DKMS
-au BufRead,BufNewFile *.dkms set filetype=sh
-au BufRead,BufNewFile dkms.conf set filetype=sh
+au BufRead,BufNewFile *.dkms setf sh
+au BufRead,BufNewFile dkms.conf setf sh
+au BufRead,BufNewFile *.dox setf doxygen
+" Notice no extension, catches kops edit
+au BufRead,BufNewFile *yaml setf yaml
 
 "" Readmes
 "au BufRead,BufNewFile readme* set filetype=markdown
@@ -29,6 +32,10 @@ elseif getline(1) =~ '^#!/usr/bin/env sh'
     setfiletype sh
 elseif getline(1) =~ '^#!/usr/bin/env bash'
     setfiletype sh
+elseif getline(1) =~ '^#!/usr/bin/env zsh'
+    setfiletype zsh
+elseif getline(1) =~ '^['
+    setfiletype dosini
 "elseif getline(1) =~ '^<html'
 "    setfiletype jinja
 "elseif getline(1) =~ '^<doctype'

@@ -104,7 +104,7 @@ let g:polyglot_disabled = [
     "\ 'dart',
     "\ 'typescript',
 
-"Plug 'spacewander/openresty-vim', {'for': ['nginx']}
+"Plug 'spacewander/openresty-vim', {'for': 'nginx'}
 
 " GPG
 Plug 'jamessan/vim-gnupg'
@@ -117,7 +117,7 @@ Plug 'ap/vim-css-color'
 Plug 'Rykka/riv.vim'  ", {'for': ['markdown', 'python', 'rst']}
 
 "" BATS test runner and syntax
-Plug 'markcornick/vim-bats', {'for': ['bats']}
+Plug 'markcornick/vim-bats', {'for': 'bats'}
 
 " Better json
 "Plug 'elzr/vim-json'
@@ -129,14 +129,35 @@ Plug 'google/vim-jsonnet'
 " Go
 if has('nvim')
     " Replacement for nvim
-    Plug 'zchee/nvim-go', { 'for': ['go'], 'do': 'make'}
+    Plug 'zchee/nvim-go', { 'for': 'go', 'do': 'make'}
 else
-    Plug 'fatih/vim-go', {'for': ['go']}
+    Plug 'fatih/vim-go', {'for': 'go'}
 endif
 
 "" Clang
 "Plug 'Rip-Rip/clang_complete'
 "Plug 'osyo-manga/vim-marching'
+
+Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+let g:cpp_class_scope_highlight = 1
+" Highlighting of member variables is disabled by default. To enable set
+let g:cpp_member_variable_highlight = 1
+" Highlighting of class names in declarations is disabled by default. To enable set
+let g:cpp_class_decl_highlight = 1
+" There are two ways to hightlight template functions. Either
+let g:cpp_experimental_simple_template_highlight = 1
+" which works in most cases, but can be a little slow on large files. Alternatively set
+let g:cpp_experimental_template_highlight = 1
+" which is a faster implementation but has some corner cases where it doesn't work.
+" Note: C++ template syntax is notoriously difficult to parse, so don't expect this feature to be perfect.
+" Highlighting of library concepts is enabled by
+let g:cpp_concepts_highlight = 1
+" This will highlight the keywords concept and requires as well as all named requirements (like DefaultConstructible) in the standard library.
+" Highlighting of user defined functions can be disabled by
+let g:cpp_no_function_highlight = 1
+
+" wtf https://github.com/vim-jp/vim-cpp/issues/16
+let c_no_curly_error=1
 
 "" Ruby
 "Plug 'osyo-manga/vim-monster'
@@ -144,8 +165,8 @@ endif
 "" Javascript
 ""Plug 'moll/vim-node'  "
 "Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
-""Plug 'kchmck/vim-coffee-script, {'for': ['coffee']}
-"Plug 'dart-lang/dart-vim-plugin', {'for': ['dart']}
+""Plug 'kchmck/vim-coffee-script, {'for': 'coffee'}
+"Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 "" syntax
 ""Plug 'othree/yajs.vim', {for': ['json', 'javascript']}
 ""Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
@@ -162,15 +183,15 @@ endif
 "Plug 'othree/svg-properties-syntax.vim'
 "Plug 'othree/html5.vim'
 "" Update the bult-in CSS complete function to latest CSS standard.
-"Plug 'othree/csscomplete.vim', {'for': ['css']}
+"Plug 'othree/csscomplete.vim', {'for': 'css'}
 "autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 "" Yet Another Typescript Syntax
-"Plug 'HerringtonDarkholme/yats.vim'  ", {'for': ['typescript']}
+"Plug 'HerringtonDarkholme/yats.vim'  ", {'for': 'typescript'}
 
 "" nim
-"Plug 'baabelfish/nvim-nim', {'for': ['nim']}
-""Plug 'zah/nim.vim', {'for': ['nim']}
+"Plug 'baabelfish/nvim-nim', {'for': 'nim'}
+""Plug 'zah/nim.vim', {'for': 'nim'}
 
 " Hex
 Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd']}
@@ -183,7 +204,7 @@ Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
 "Plug 'tpope/vim-scriptease'
 
 " Salt
-Plug 'saltstack/salt-vim', {'for': ['sls']}
+Plug 'saltstack/salt-vim', {'for': 'sls'}
 
 " Jinja2
 Plug 'Glench/Vim-Jinja2-Syntax'  ", {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
@@ -202,37 +223,43 @@ Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 " Webdev syntax/helpers
 Plug 'mattn/emmet-vim'
-"autocmd BufNewFile,BufRead *.md setf markdown
+
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
-Plug 'tpope/vim-markdown', {'for': ['markdown']}
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
 
-Plug 'aouelete/sway-vim-syntax', {'for': ['sway']}
+Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
-Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml']}
+Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
+
+Plug 'dzeban/vim-log-syntax'
 
 ""
 "" Language: Python
 ""
 
-"Plug 'hdima/python-syntax', {'for': ['python']}
-"Plug 'okcompute/vim-python-motions', {'for': ['python']}
-Plug 'vim-python/python-syntax', {'for': ['python']}
+"Plug 'hdima/python-syntax', {'for': 'python'}
+"Plug 'okcompute/vim-python-motions', {'for': 'python'}
+Plug 'vim-python/python-syntax', {'for': 'python'}
 
 " Jedi:
-Plug 'davidhalter/jedi-vim', {'for': ['python']}
-"Plug 'python-rope/ropevim', {'for': ['python']}
+Plug 'davidhalter/jedi-vim', {'for': 'python'}
+"Plug 'python-rope/ropevim', {'for': 'python'}
 
-"" Indenting:
+" Indenting:
 "Plug 'hynek/vim-python-pep8-indent'
 "Plug 'michaeljsmith/vim-indent-object'
+Plug 'fisadev/vim-isort', {'for': 'python'}
 
-"" Folding:
-Plug 'tmhedberg/SimpylFold', {'for': ['python']}
+" Folding:
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 let g:SimpylFold_docstring_preview = 1
 
 " Testing:
-Plug 'alfredodeza/pytest.vim', {'for': ['python']}
+Plug 'alfredodeza/pytest.vim', {'for': 'python'}
+
+" Docs
+Plug 'fs111/pydoc.vim', {'for': 'python'}
 
 " Formatting: Better formatter (yapf > autopep8)
 "
@@ -256,7 +283,7 @@ Plug 'alfredodeza/pytest.vim', {'for': ['python']}
 Plug 'hashivim/vim-terraform', {'for': ['tf', 'terraform']}
 "Plug 'hashivim/vim-packer'
 "Plug 'hashivim/vim-consul'
-Plug 'hashivim/vim-vagrant', {'for': ['vagrantfile']}
+Plug 'hashivim/vim-vagrant', {'for': 'vagrantfile'}
 "Plug 'hashivim/vim-vaultproject'
 "Plug 'hashivim/vim-nomadproject'
 "Plug 'hashivim/vim-ottoproject'
@@ -264,11 +291,11 @@ Plug 'hashivim/vim-vagrant', {'for': ['vagrantfile']}
 
 " Rust:
 " vim-racer: "racer" source for Rust
-Plug 'racer-rust/vim-racer', {'for': ['rust']}
-Plug 'rust-lang/rust.vim', {'for': ['rust']}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Monte:
-Plug 'monte-language/monte-vim', {'for': ['monte']}
+Plug 'monte-language/monte-vim', {'for': 'monte'}
 
 ""
 "" Comp
@@ -278,10 +305,10 @@ if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " deoplete-jedi: "jedi" source for Python
-    Plug 'zchee/deoplete-jedi', {'for': ['python']}
+    Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
     " deoplete-docker
-    "Plug 'zchee/deoplete-docker', {'for': ['dockerfile']}
+    "Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
@@ -290,19 +317,19 @@ if has('nvim')
     Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
     "" deoplete-ruby: "ruby" source for Ruby language
-    "Plug 'fishbullet/deoplete-ruby', {'for': ['ruby']}
+    "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 
     " neco-syntax: "syntax" source
-    Plug 'Shougo/neco-syntax', {'for': ['vim']}
+    Plug 'Shougo/neco-syntax', {'for': 'vim'}
 
     " vimshell: "vimshell" source for vimshell
     "Plug 'Shougo/vimshell.vim'
 
     "" neco-ghc: "ghc" source for Haskell
-    "Plug 'eagletmt/neco-ghc', {'for': ['haskell']}
+    "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
 
     " deoplete-github: "github" source for "gitcommit" filetype
-    "Plug 'SevereOverfl0w/deoplete-github', {'for': ['gitcommit']}
+    "Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
 
     " deoplete-clang: "clang" source for C/C++
     Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
@@ -311,17 +338,17 @@ if has('nvim')
     "Plug 'LuXuryPro/deoplete-rtags'
 
     " deoplete-d: "d" source for D language
-    "Plug 'landaire/deoplete-d', {'for': ['d']}
+    "Plug 'landaire/deoplete-d', {'for': 'd'}
 
     "" elixir.nvim: "elixir" source for Elixir
-    ""Plug 'awetzel/elixir.nvim', {'for': ['elixir']}
-    "Plug 'slashmili/alchemist.vim', {'for': ['elixir']}
+    ""Plug 'awetzel/elixir.nvim', {'for': 'elixir'}
+    "Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
     "" deoplete-ternjs: "ternjs" source for JavaScript
     "Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json']}
 
     """ deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
-    "Plug 'steelsojka/deoplete-flow', {'for': ['flow']}
+    "Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
 
     """ deoplete-typescript: "typescript" source for typescript
     ""Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
@@ -337,7 +364,7 @@ if has('nvim')
     "Plug 'villainy/deoplete-dart', { 'for': 'dart' }
 
     """ perlomni.vim: "perlomni" source for Perl
-    "Plug 'c9s/perlomni.vim', {'for': ['perl']}
+    "Plug 'c9s/perlomni.vim', {'for': 'perl'}
 
     "" deoplete-swift: "swift" source for Swift
     "Plug 'landaire/deoplete-swift'
@@ -355,7 +382,7 @@ if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     "" rust
-    "Plug 'roxma/nvim-cm-racer', {'for': ['rust'], 'do': ':UpdateRemotePlugins' }
+    "Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1
@@ -367,7 +394,7 @@ else
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     "" rust
-    "Plug 'roxma/nvim-cm-racer', {'for': ['rust'], 'do': ':UpdateRemotePlugins' }
+    "Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 
     " (optional) php completion via LanguageClient-neovim
     "Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}

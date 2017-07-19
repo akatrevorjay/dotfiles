@@ -1,6 +1,6 @@
 " Commenting:
 Plug 'tpope/vim-commentary'
-Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdcommenter'
 
 " Gundo: Undo browser
 Plug 'sjl/gundo.vim'
@@ -15,9 +15,7 @@ let g:fzf_mru_file_list_size = 10 " default value
 " set path pattens that should be ignored
 let g:fzf_mru_ignore_patterns = '\.pyc\|fugitive\|\.git/\|\_^/tmp/' " default value
 
-" File Tree:
-" turned off autoloading as other plugins interface with it
-", { 'on':  'NERDTreeToggle' }
-"Plug 'scrooloose/nerdtree'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
+" Visual subst
+Plug 'osyo-manga/vim-over'
 
+Plug 'chrisbra/Recover.vim'

@@ -67,12 +67,14 @@ function pips() {
 pips install --pre -U neovim \
 	jedi \
 	rope ropevim \
+	typing \
+	isort yapf pyflakes flake8 mccabe bandit \
 	mistune psutil setproctitle \
 	greenlet gevent
 
 pip2 install --pre -U neovim-gui
 
-pip3 install --pre -U -e 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
+pips install --pre -U 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
 
 # fuck you ipython/pip, what the fuck is this shit?
 () {

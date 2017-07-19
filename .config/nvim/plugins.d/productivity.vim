@@ -81,7 +81,41 @@ endif
 
 "Plug 'cohama/lexima.vim'
 
-"Plug 'hakimel/reveal.js'
+let g:reveal_config = {
+    \ 'filename': 'reveal',
+    \ 'path': '~/build/reveal.js',
+    \ }
+
+Plug 'blindFS/vim-reveal', {'for': 'markdown'}
 
 " chdir to project/vcs root on open
 Plug 'airblade/vim-rooter'
+let g:rooter_resolve_links = 1
+
+" Clean sessions
+Plug 'tpope/vim-obsession'
+Plug 'dhruvasagar/vim-prosession'
+"let g:prosession_dir = expand('~/.vim/session/')
+let g:prosession_default_session = 1
+let g:prosession_per_branch = 1
+let g:prosession_tmux_title = 1
+
+" Plug 'unblevable/quick-scope'
+
+" " Trigger a highlight in the appropriate direction when pressing these keys:
+" let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+" " Trigger a highlight only when pressing f and F.
+" let g:qs_highlight_on_keys = ['f', 'F']
+
+" " let g:qs_first_occurrence_highlight_color = '#afff5f' " gui vim
+" " let g:qs_first_occurrence_highlight_color = 155       " terminal vim
+
+" " let g:qs_second_occurrence_highlight_color = '#5fffff'  " gui vim
+" " let g:qs_second_occurrence_highlight_color = 81         " terminal vim
+
+" " " Map the leader key + q to toggle quick-scope's highlighting in normal/visual mode.
+" " " Note that you must use nmap/vmap instead of their non-recursive versions (nnoremap/vnoremap).
+" " nmap <leader>q <plug>(QuickScopeToggle)
+" " vmap <leader>q <plug>(QuickScopeToggle)
+

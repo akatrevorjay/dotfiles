@@ -25,14 +25,9 @@ cabbrev pm Pm
 "noremap <F3> :Autoformat<CR>
 ""au BufWrite * :Autoformat
 
-"nmap ; :
-
 vmap [% [%m'gv``
 vmap ]% ]%m'gv``
 vmap a% [%v]%
-
-" Quick vim commands
-nnoremap ; :
 
 " Quickly edit/reload the vimrc file
 augroup reload_vimrc
@@ -68,7 +63,7 @@ noremap <silent> <M-w> :bd<CR>
 noremap <silent> <M-W> :bd!<CR>
 
 " Make cmdline editing better
-"cmap <tab> <c-n>
+" cmap <tab> <c-n>
 
 " Fix arrows in screen
 "map ^[OC <Right>

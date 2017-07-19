@@ -7,7 +7,7 @@ if empty($TMUX)
     let g:nvimux_quickterm_provider = 'Ttoggle'
     let g:nvimux_quickterm_direction = 'botright'
     let g:nvimux_quickterm_orientation = 'vertical'
-    let g:nvimux_quickterm_size = ''
+    let g:nvimux_quickterm_size = '20'
 
     "let g:nvimux_term = ':term<CR>'
     "let g:nvimux_quickterm_provider = 'Tnew'
@@ -18,6 +18,8 @@ if empty($TMUX)
     let g:nvimux_open_term_by_default=1
 
     "let g:nvimux_override_t=":term<CR>"
+
+    nmap <leader>t execute ':Ttoggle'
   endif
 else
   " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)

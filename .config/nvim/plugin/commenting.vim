@@ -1,6 +1,2 @@
-" NERDCommenter: {{{
-let g:NERDCustomDelimiters = {
-      \ 'yaml': { 'left': '#'},
-      \}
-" }}}
-
+nmap <leader>cb gcc
+nmap <leader>cu gcc

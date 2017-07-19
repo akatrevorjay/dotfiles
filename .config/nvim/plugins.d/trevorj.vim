@@ -50,7 +50,7 @@ Plug 'rhysd/clever-f.vim'
 
 " RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
-Gautocmdft lisp,clojure,scheme :RainbowParentheses
+Gautocmdft python,lisp,clojure,scheme :RainbowParentheses
 
 "Plug 'vim-scripts/restore_view.vim'
 
@@ -97,10 +97,10 @@ if has('nvim')
     omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
     "function! BuildComposer(info)
-    "    if a:info.status != 'unchanged' || a:info.force
-    "        !cargo build --release
-    "        exec ':UpdateRemotePlugins'
-    "    endif
+    "	 if a:info.status != 'unchanged' || a:info.force
+    "	     !cargo build --release
+    "	     exec ':UpdateRemotePlugins'
+    "	 endif
     "endfunction
     "Plug 'euclio/vim-markdown-composer', { 'do': function('BuildComposer'), 'on': 'MarkdownComposer' }
 
@@ -139,14 +139,15 @@ Plug 'FooSoft/vim-argwrap'
 
 "Plug 'Zuckonit/vim-airline-tomato'
 
-Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'mkd', 'md', 'python'] }
+Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'python'] }
 
 "Plug 'sunaku/vim-shortcut'
 
 Plug 'KabbAmine/zeavim.vim', {'on': [
-			\	'Zeavim', 'Docset',
-			\	'<Plug>Zeavim',
-			\	'<Plug>ZVVisSelection',
-			\	'<Plug>ZVKeyDocset',
-			\	'<Plug>ZVMotion'
-			\ ]}
+				\	'Zeavim', 'Docset',
+				\	'<Plug>Zeavim',
+				\	'<Plug>ZVVisSelection',
+				\	'<Plug>ZVKeyDocset',
+				\	'<Plug>ZVMotion'
+				\ ]}
+

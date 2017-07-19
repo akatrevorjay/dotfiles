@@ -8,8 +8,14 @@
 Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
 "let g:ale_emit_conflict_warnings = 0
 
+" Other async lint engine
+"Plug 'osyo-manga/vim-watchdogs'
+
 " GitGutter: Show git status in the gutter
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
+
+" Quickfix-signs
+Plug 'tomtom/quickfixsigns_vim'
 
 " Fix trailing whitespace:
 Plug 'vim-scripts/trailing-whitespace'
