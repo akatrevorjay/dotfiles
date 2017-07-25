@@ -1,0 +1,13 @@
+#!/bin/zsh
+set -eo pipefail
+
+local tmp=$HOME/scrot.png
+
+on_exit() {
+    rm -f $tmp
+}
+
+trap 'on_exit' EXIT
+
+scrot "$@" $tmp
+xclip -selection clipboard -t image/png $tmp
