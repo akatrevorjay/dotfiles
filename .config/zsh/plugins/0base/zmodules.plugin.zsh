@@ -34,5 +34,5 @@
         zsh/zselect
     )
 
-    zmodload "${zmodules[@]}"
+    zmodload "${zmodules[@]}" || :
 }
