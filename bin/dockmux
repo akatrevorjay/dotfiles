@@ -1,0 +1,31 @@
+#!/bin/zsh
+set -eo pipefail
+
+config_dir=$HOME/.config/dockmux
+
+containers=("$@")
+session_name="dockmux"
+
+if [[ $# -eq 0 ]]; then
+	raw=$(docker ps -q)
+    containers=(${(f)raw})
+elif [[ $# -eq 1 && -e $config_dir/$1 ]]; then
+    local raw=$(< $config_dir/$1)
+	containers=(${(Z+Cn+))raw})
+    session_name+="-$1"
+fi
+
+tmux new-session -d -s $session_name
+
+tmux new-window -n sen "sen"
+
+local cont
+for cont in $containers; do
+	local cont_name=$(docker inspect -f '{{.Config.Hostname}}' $cont)
+	[[ $cont == $cont_name ]] || cont_name+="-$cont"
+
+	tmux new-window -n $cont_name "docker exec -it $cont /bin/bash || docker exec -it $cont /bin/sh"
+done
+
+tmux select-window -t 1
+tmux attach -t $session_name
