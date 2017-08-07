@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eo pipefail
+[[ $UID -eq 0 ]] || exec sudo "$0" "$@"
+set -xv
+
+echo 1 | tee /sys/kernel/mm/ksm/run
+echo 1000 | tee /sys/kernel/mm/ksm/sleep_millisecs

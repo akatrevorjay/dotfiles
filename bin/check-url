@@ -1,0 +1,14 @@
+#!/bin/bash
+set -eo pipefail
+
+reset="\e[0m"
+red="\033[0;31m"
+green="\033[0;32m"
+
+for url in "$@"; do
+    if curl -sSLfo /dev/null "$url" >/dev/null 2>&1; then
+        echo -e "${green}GOOD" "$url" "${reset}"
+    else
+        echo -e "${red}FAIL:$?" "$url" "${reset}" >&2
+    fi
+done

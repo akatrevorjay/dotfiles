@@ -131,17 +131,27 @@
     contributors = shortlog --summary --numbered
     scores = shortlog --summary --numbered
 
-    # Merge GitHub pull request on top of the `master` branch
-    mpr = "!f() { \
-        if [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ]; then \
+    pr-fetch = "!f() { \
+        [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ] || return; \
         git fetch origin refs/pull/$1/head:pr/$1 && \
         git rebase master pr/$1 && \
         git checkout master && \
         git merge pr/$1 && \
         git branch -D pr/$1 && \
         git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-        fi \
         }; f"
+
+    # Merge GitHub pull request on top of the `master` branch
+    merge-pull-request = "!f() { \
+        [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ] || return; \
+        git fetch origin refs/pull/$1/head:pr/$1 && \
+        git rebase master pr/$1 && \
+        git checkout master && \
+        git merge pr/$1 && \
+        git branch -D pr/$1 && \
+        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
+        }; f"
+    mpr = merge-pull-request
 
     # legit aliases
     branches = !legit branches
@@ -154,16 +164,34 @@
     switch = !legit switch
     resync = !legit resync
 
+    # List aliases
+    #ls-aliases = "!git config --get-regexp '^alias\.' | sed -e 's@^alias\.@@' -e 's@ @ =@ /'"
+
     root = rev-parse --show-toplevel
 
     conflicts = diff --name-only --diff-filter=U --relative
-    edit-conflicts = "!$EDITOR $(git conflicts)"
-    add-conflicts = "!git add $(git conflicts)"
+    edit-conflicts = "!$EDITOR -- $(git conflicts)"
+    add-conflicts = "!git add -- $(git conflicts)"
+    edit-add-conflicts = "!f() { git edit-conflicts && git add-conflicts; }; f"
 
     merge-to = "!f() { git push $(git rev-parse --show-toplevel) $(git rev-parse --abbrev-ref HEAD):${1:?No dest branch given}; }; f"
 
     modified = ls-files -m
-    edit-modified = "!$EDITOR $(git modified)"
+    edit-modified = "!$EDITOR -- $(git modified)"
     unstage = reset HEAD --
+
+    fl = l --first-parent
+    flog = log --first-parent
+
+    ; # github/hub (best to wrap the command, so do that)
+    ; pull-request = !hub pull-request
+    ; pr = !hub pr
+    ; fork = !hub fork
+    ; create = !hub create
+    ; browse = !hub browse
+    ; compare = !hub compare
+    ; release = !hub release
+    ; issue = !hub issue
+    ; ci-status = !hub ci-status
 
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

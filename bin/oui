@@ -1,0 +1,14 @@
+#!/bin/zsh
+set -eo pipefail
+
+lookup_fn=$HOME/.local/oui.txt
+
+oui=$(echo ${1//[:.- ]/} | tr "[a-f]" "[A-F]" | egrep -o "^[0-9A-F]{6}")
+
+if [[ ! -e $lookup_fn ]]; then
+	curl -sSLfo $lookup_fn.new \
+		'http://standards.ieee.org/regauth/oui/oui.txt'
+	mv -f $lookup_fn.new $lookup_fn
+fi
+
+grep ${oui:?} ${lookup_fn:?}

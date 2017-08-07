@@ -1,0 +1,43 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+start() {
+    local cmd=(
+        pactl load-module
+        module-simple-protocol-tcp
+
+        rate=48000
+        #rate=44100
+        format=s16le
+        channels=2
+
+        source=${2:-combined.monitor}
+        #alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_8717016009X-00.iec958-stereo.monito
+        record=true
+
+        port=${1:-4069}
+    )
+
+    "${cmd[@]}"
+}
+
+stop() {
+    local cmd=(
+        pactl unload-module
+        $(pactl list | grep tcp -B1 | grep M | sed 's/[^0-9]//g')
+    )
+
+    "${cmd[@]}"
+}
+
+case $1 in
+  stop)     stop "${@:2}" ;;
+  start)    start "${@:2}" ;;
+  restart)
+    stop || :
+    start "${@:2}"
+    ;;
+  *)
+    echo "Usage: $0 start|stop|restart" >&2
+    ;;
+esac

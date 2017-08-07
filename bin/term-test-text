@@ -1,0 +1,19 @@
+#!/bin/sh
+
+ansi()          { echo -e "\e[${1}m${*:2}\e[0m"; }
+
+bold()          { ansi 1 "$@"; }
+italic()        { ansi 3 "$@"; }
+underline()     { ansi 4 "$@"; }
+strikethrough() { ansi 9 "$@"; }
+red()           { ansi 31 "$@"; }
+
+bold "This should be bold"
+italic "Look at me I'm italic"
+underline "Underline smunderline"
+strikethrough "Scratch that forget everything"
+red "Red alert"
+
+echo -e "\x1B[31mExtended red alert\e[0m"
+
+printf "\e[3;4;33mI am yellow, bold, and underlined\n\e[0m"
