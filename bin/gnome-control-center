@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+export XDG_CURRENT_DESKTOP=GNOME
+
+exec /usr/bin/$0:t "$@"

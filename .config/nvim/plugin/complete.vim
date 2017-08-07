@@ -129,7 +129,7 @@ if has('nvim')
     let g:deoplete#sources#go#cgo#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
     let g:deoplete#sources#go#auto_goos = 1
     let g:deoplete#sources#go#json_directory = expand('~/.cache/deoplete/go/$GOOS_$GOARCH')
-
+    let g:deoplete#sources#go#use_cache = 1
     if !empty('$GOPATH')
       let g:deoplete#sources#go#gocode_binary = expand($GOPATH.'/bin/gocode')
     endif

@@ -1,0 +1,2 @@
+#!/bin/zsh
+exec gdb -p ${1:?} --batch -ex "call exit(0)" -ex "quit"

@@ -1,0 +1,49 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+usbsel() {
+    local fzf=(
+	fzf
+	--ansi
+	--reverse
+	--tiebreak=index
+	--no-sort
+    )
+
+    local choice=()
+    choice=($(lsusb "$@" | $fzf))
+
+    local keys=(busk bus devicek device idk id desc)
+    local -A parts=(${keys:^choice})
+    parts[desc]="${choice:6}"
+    parts[device]=${parts[device]%:}
+    print -l -r -- ${(kv)parts}
+
+    local devpath=/sys/bus/usb/devices/usb1/
+    echo $devpath
+}
+
+usboff() {
+    [[ $# -gt 0 ]] || set -- "$(usbsel | to-dev)"
+    local devpath=$1
+    [[ -e $devpath ]] || return 1
+
+    (
+    	echo disabled | sudo tee $devpath/power/wakeup
+    	echo suspend | sudo tee $devpath/power/level
+    )
+}
+
+usbon() {
+    [[ $# -gt 0 ]] || set -- "$(usbsel | to-dev)"
+    local devpath=$1
+    [[ -e $devpath ]] || return 1
+
+    (
+    	echo enabled | sudo tee $devpath/power/wakeup
+    	echo on | sudo tee $devpath/power/level
+    )
+}
+
+set -xv
+${0:t} "$@"

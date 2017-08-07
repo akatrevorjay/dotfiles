@@ -112,6 +112,7 @@ let g:markdown_fenced_languages = [
   \ 'json',
   \ 'go', 'golang=go',
   \ 'jinja2',
+  \ 'yaml',
   \ 'html', 'xhtml',
   \ 'vim', 'viml=vim',
   \ 'ruby', 'erb=eruby',

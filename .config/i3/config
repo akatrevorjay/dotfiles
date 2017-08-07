@@ -22,7 +22,7 @@ set $menu dmenu_run
 
 #for_window [class="nautilus"] border none
 
-for_window [class="mpv"] floating enable border none move absolute position 0px 0px resize set 160 320
+# for_window [class="mpv"] floating enable border none move absolute position 0px 0px resize set 160 320
 for_window [class="ledbot"] floating enable border none move absolute position 0px 0px resize set 160 320
 
 for_window [class="tilix"] border none
