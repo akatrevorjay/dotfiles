@@ -56,6 +56,9 @@ case $TERM:l in
 	xterm|screen)
 		if [[ $(echotc Co) -ge 256 ]]; then
 			TERM=$TERM-256color
+
+			# There isn't really a way to test for this :/
+			COLORTERM=truecolor
 		fi
 		;;
 esac
