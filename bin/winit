@@ -45,7 +45,7 @@ pasystray &
 #gpomme &
 parcellite &
 #winswitch_applet &
-indicator-kdeconnect &
+# indicator-kdeconnect &
 notify-proxy &
 
 #fcitx-autostart &
@@ -56,7 +56,7 @@ yubioath gui -t &
 #kupfer &
 
 variety &
-solaar &
+# solaar &
 #(( ! ${+commands[wal]} )) \
 #  || wal -i $(< $HOME/.cache/wal/wal)
 

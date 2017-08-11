@@ -31,11 +31,12 @@
     cl = clone
     co = checkout
     st = status -sb
-    br = branch
-    ci = commit --verbose
+    br = branch -vv --sort=committerdate
+    ci = commit -v
+
     di = diff
-    ds = diff --staged
-    dt = difftool --no-prompt
+    di-staged = diff --staged
+    di-tool = difftool --no-prompt
 
     co = checkout
 
@@ -45,36 +46,59 @@
     pom = push origin master
     pod = push origin develop
 
-    rb = rebase -i HEAD~10
+    ; rb = rebase -i HEAD~10
 
-    log = log --follow
-    lo = log --oneline -n 15
-    lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
-    ls = log --stat -n 5
+    ; Log (l)
+    ; lo = log --oneline -n 15
+    ; lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
+    ; ls = log --stat -n 5
+    l = log --decorate --branches --graph
+    l2 = log --graph --pretty=format:'[%C(magenta)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
+    ll = log --topo-order --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+
+    lm = log --topo-order --stat --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    ld = log --topo-order --stat --patch --full-diff --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    lo = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+    lg = log --topo-order --all --graph --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+    lb = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n'
+    lc = shortlog --summary --numbered
+    lS = log --show-signature
+
+    log = log --decorate --branches --graph
+
+    lp = l -p
+    llp = ll -p
+    logp = log -p
+
+    fl = l --first-parent --decorate --branches --graph
+    flog = log --first-parent --decorate --branches --graph
     lol = log --oneline --graph --all --decorate
-    g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold yellow)%d%C(reset)' --abbrev-commit --date=relative
-    g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold yellow)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
 
-    wc = whatchanged -p --abbrev-commit --pretty=medium
+    g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold magenta)%d%C(reset)' --abbrev-commit --date=relative
+    g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold magenta)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
+    hist = log --pretty=format:'%C(bold green)%h%C(reset) | %C(bold blue)%ad%C(reset) | %C(white)%s%d | %C(green)by %C(bold)%an%C(reset)' --graph --date=relative
 
-    c = checkout
-    b = branch
-
-    # Clone a repository including all submodules
-    clone = clone --recursive
-    ll = log --decorate --branches --graph
-    log = log --decorate --graph
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    l = log --graph --pretty=format:'[%C(yellow)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
 
     wu = log --stat origin..@{0}
     upbase = rebase '@{u}'
 
-    type = cat-file -t
-    dump = cat-file -p
-
     # View abbreviated SHA, description, and history graph of the latest 20 commits
     short = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+    # List contributors with number of commits
+    contributors = shortlog --summary --numbered
+    scores = shortlog --summary --numbered
+
+    wc = whatchanged -p --abbrev-commit --pretty=medium
+
+    c = checkout
+    b = br
+
+    # Clone a repository including all submodules
+    clone = clone --recursive
+
+    type = cat-file -t
+    dump = cat-file -p
 
     # View the current working tree status using the short format
     s = status -s
@@ -99,6 +123,22 @@
     branches = branch -a
     remotes = remote -v
 
+    # List aliases
+    #ls-aliases = "!git config --get-regexp '^alias\.' | sed -e 's@^alias\.@@' -e 's@ @ =@ /'"
+
+    root = rev-parse --show-toplevel
+
+    merge-to = "!f() { git push $(git rev-parse --show-toplevel) $(git rev-parse --abbrev-ref HEAD):${1:?No dest branch given}; }; f"
+
+    conflicts = diff --name-only --diff-filter=U --relative
+    edit-conflicts = "!$EDITOR -- $(git conflicts)"
+    add-conflicts = "!git add -- $(git conflicts)"
+    edit-add-conflicts = "!f() { git edit-conflicts && git add-conflicts; }; f"
+
+    modified = ls-files -m
+    edit-modified = "!$EDITOR -- $(git modified)"
+    unstage = reset HEAD --
+
     # Amend the currently staged files to the latest commit
     amend = commit --amend --reuse-message=HEAD --verbose
 
@@ -112,86 +152,182 @@
     retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
 
     # Find branches containing commit
-    fb = "!f() { git branch -a --contains $1; }; f"
+    fb = "!f() { git branch -a --sort=commit--contains $1; }; f"
 
     # Find tags containing commit
     ft = "!f() { git describe --always --contains $1; }; f"
 
     # Find commits by source code
-    fc = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
+    fc = "!f() { git log --pretty=format:'%C(magenta)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short -S$1; }; f"
 
     # Find commits by commit message
-    fm = "!f() { git log --pretty=format:'%C(yellow)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+    fm = "!f() { git log --pretty=format:'%C(magenta)%h  %Cblue%ad  %Creset%s%Cgreen  [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
 
     # Remove branches that have already been merged with master
     # a.k.a. ‘delete merged’
     dm = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 
-    # List contributors with number of commits
-    contributors = shortlog --summary --numbered
-    scores = shortlog --summary --numbered
+    ; Branch (b)
+	; b = branch
+    ; bc = checkout -b
+    ; bl = branch -v
+    ; bL = branch -av
+    ; bx = branch -d
+    ; bX = branch -D
+    ; bm = branch -m
+    ; bM = branch -M
+    ; bs = show-branch
+    ; bS = show-branch -a
 
-    pr-fetch = "!f() { \
-        [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ] || return; \
-        git fetch origin refs/pull/$1/head:pr/$1 && \
-        git rebase master pr/$1 && \
-        git checkout master && \
-        git merge pr/$1 && \
-        git branch -D pr/$1 && \
-        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-        }; f"
+    ; Commit (c)
+    ; c = commit --verbose
+    ; ca = commit --verbose --all
+    ; cm = commit --message
+    ; co = checkout
+    ; cO = checkout --patch
+    ; cf = commit --amend --reuse-message HEAD
+    ; cF = commit --verbose --amend
+    ; cp = cherry-pick --ff
+    ; cP = cherry-pick --no-commit
+    ; cr = revert
+    ; cR = reset "HEAD^"
+    ; cs = show
+    ; cl = 'git-commit-lost'
+    ; cS = commit -S
+    ; pS = show --pretty=short --show-signature
 
-    # Merge GitHub pull request on top of the `master` branch
-    merge-pull-request = "!f() { \
-        [ $(printf \"%s\" \"$1\" | grep '^[0-9]\\+$' > /dev/null; printf $?) -eq 0 ] || return; \
-        git fetch origin refs/pull/$1/head:pr/$1 && \
-        git rebase master pr/$1 && \
-        git checkout master && \
-        git merge pr/$1 && \
-        git branch -D pr/$1 && \
-        git commit --amend -m \"$(git log -1 --pretty=%B)\n\nCloses #$1.\"; \
-        }; f"
-    mpr = merge-pull-request
+    ; Conflict (C)
+    Cl = status | sed -n "s/^.*both [a-z]*ed: *//p"
+    Ca = add $(gCl)
+    Ce = mergetool $(gCl)
+    Co = checkout --ours --
+    CO = 'gCo $(gCl)'
+    Ct = checkout --theirs --
+    CT = 'gCt $(gCl)'
 
-    # legit aliases
-    branches = !legit branches
-    graft = !legit graft
-    harvest = !legit harvest
-    publish = !legit publish
-    unpublish = !legit unpublish
-    sprout = !legit sprout
-    sync = !legit sync
-    switch = !legit switch
-    resync = !legit resync
+    ; Data (D)
+    D = ls-files
+    Dc = ls-files --cached
+    Dx = ls-files --deleted
+    Dm = ls-files --modified
+    Du = ls-files --other --exclude-standard
+    Dk = ls-files --killed
+    Di = status --porcelain --short --ignored | sed -n "s/^!! //p"
 
-    # List aliases
-    #ls-aliases = "!git config --get-regexp '^alias\.' | sed -e 's@^alias\.@@' -e 's@ @ =@ /'"
+    ; Fetch (f)
+    f = fetch
+    fc = clone
+    fm = pull
+    fr = pull --rebase
+    fu = remote update -p; git merge --ff-only @\{u\}
 
-    root = rev-parse --show-toplevel
+    ; Grep (g)
+    g = grep
+    gi = grep --ignore-case
+    gl = grep --files-with-matches
+    gL = grep --files-without-matches
+    gv = grep --invert-match
+    gw = grep --word-regexp
 
-    conflicts = diff --name-only --diff-filter=U --relative
-    edit-conflicts = "!$EDITOR -- $(git conflicts)"
-    add-conflicts = "!git add -- $(git conflicts)"
-    edit-add-conflicts = "!f() { git edit-conflicts && git add-conflicts; }; f"
+    ; Index (i)
+    a = add
+    ap = add --patch
+    au = add --update
+    ia = add
+    ip = add --patch
+    iu = add --update
+    id = diff --no-ext-diff --cached
+    iD = diff --no-ext-diff --cached --word-diff
+    ir = reset
+    iR = reset --patch
+    ix = rm -r --cached
+    iX = rm -rf --cached
 
-    merge-to = "!f() { git push $(git rev-parse --show-toplevel) $(git rev-parse --abbrev-ref HEAD):${1:?No dest branch given}; }; f"
+    ; Merge (m)
+    m = merge
+    mC = merge --no-commit
+    mF = merge --no-ff
+    ma = merge --abort
+    mt = mergetool
 
-    modified = ls-files -m
-    edit-modified = "!$EDITOR -- $(git modified)"
-    unstage = reset HEAD --
+    ; Push (p)
+    p = push
+    pf = push --force
+    pa = push --all
+    pA = push --all && git push --tags
+    pt = push --tags
+    pc = push --set-upstream origin "$(git-branch-current)"
+    pp = pull origin "$(git-branch-current)" && git push origin "$(git-branch-current)"
 
-    fl = l --first-parent
-    flog = log --first-parent
+    ; Rebase (R)
+    R = rebase
+    Ra = rebase --abort
+    Rc = rebase --continue
+    Ri = rebase --interactive
+    Rs = rebase --skip
 
-    ; # github/hub (best to wrap the command, so do that)
-    ; pull-request = !hub pull-request
-    ; pr = !hub pr
-    ; fork = !hub fork
-    ; create = !hub create
-    ; browse = !hub browse
-    ; compare = !hub compare
-    ; release = !hub release
-    ; issue = !hub issue
-    ; ci-status = !hub ci-status
+    ; Remote (r)
+    r = remote -v
+    rl = remote --verbose
+    ra = remote add
+    rx = remote rm
+    rm = remote rename
+    ru = remote update
+    rp = remote prune
+    rs = remote show
+    rb = 'git-hub-browse'
 
-# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
+    ; Stash (s)
+    s = stash
+    sa = stash apply
+    sx = stash drop
+    sX = 'git-stash-clear-interactive'
+    sl = stash list
+    sL = 'git-stash-dropped'
+    sd = stash show --patch --stat
+    sp = stash pop
+    sr = 'git-stash-recover'
+    ss = stash save --include-untracked
+    sS = stash save --patch --no-keep-index
+    sw = stash save --include-untracked --keep-index
+
+    ; Submodule (S)
+    sub = submodule
+    sub-add = submodule add
+    sub-foreach = submodule foreach
+    sub-init = submodule init
+    sub-up = submodule update --init --recursive
+    sub-st = submodule status
+    sub-mv = 'git-submodule-move'
+    sub-sync = submodule sync
+    sub-pull = submodule foreach git pull origin master
+    sub-pullmaster = submodule foreach git pull origin master
+    sub-rm = 'git-submodule-remove'
+
+    ; Tag (t)
+    tag-sig = tag -s
+    tag-verify = verify-tag
+
+    ; ; Working Copy (w)
+    ; ws = status --short
+    ; wS = status
+    ; wd = diff --no-ext-diff
+    ; wD = diff --no-ext-diff --word-diff
+    ; wr = reset --soft
+    ; wR = reset --hard
+    ; wc = clean -n
+    ; wC = clean -df
+    ; wx = rm -r
+    ; wX = rm -rf
+
+    ; $ wow
+    ; $ such commit
+    ; $ very push
+    much = git
+    such = git
+    very = git
+    so = git
+    wow = st
+
+
+; vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
