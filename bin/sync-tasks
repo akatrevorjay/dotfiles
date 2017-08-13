@@ -3,6 +3,7 @@ set -eo pipefail
 
 source ~/.zsh/secrets
 
-bugwarrior-pull
+bugwarrior-pull "$@"
+
 task sync
 
