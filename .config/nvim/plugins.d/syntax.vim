@@ -126,6 +126,9 @@ Plug 'google/vim-jsonnet'
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
+" ROS
+Plug 'taketwo/vim-ros'
+
 " Go
 if has('nvim')
     " Replacement for nvim
