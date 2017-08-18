@@ -38,8 +38,6 @@
     di-staged = diff --staged
     di-tool = difftool --no-prompt
 
-    co = checkout
-
     pl = pull
 
     ps = push
@@ -197,13 +195,13 @@
     ; pS = show --pretty=short --show-signature
 
     ; Conflict (C)
-    Cl = status | sed -n "s/^.*both [a-z]*ed: *//p"
-    Ca = add $(gCl)
-    Ce = mergetool $(gCl)
-    Co = checkout --ours --
-    CO = 'gCo $(gCl)'
-    Ct = checkout --theirs --
-    CT = 'gCt $(gCl)'
+    #Cl = status | sed -n "s/^.*both [a-z]*ed: *//p"
+    #Ca = add $(gCl)
+    #Ce = mergetool $(gCl)
+    #Co = checkout --ours --
+    #CO = !git co "$(gCl)"
+    #Ct = checkout --theirs --
+    #CT = !git Ct $(gCl)'
 
     ; Data (D)
     D = ls-files
