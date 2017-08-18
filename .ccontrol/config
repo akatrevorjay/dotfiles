@@ -3,16 +3,21 @@
 	c++ = /usr/lib/ccache/../../bin
 	ld = /usr/bin
 	make = /usr/bin
-	cpus = 4
+	cpus = 8
 	ccache = /usr/bin
 # Comment this back in for debugging
 #       verbose
 # distcc
-#	   distcc = /usr/bin/distcc
-#	   distcc-hosts = snab swarm1 swarm3 swarm4 swarm5 fandango2 mingo
-#	   distc++-hosts = snab mingo
-	   # make check should not generally be run in parallel
-	   no-parallel = check docs doc tests test
+#	distcc = /usr/bin/distcc
+
+#	 distcc-hosts = +zeroconf
+#	 distc++-hosts = +zeroconf
+
+#	 distcc-hosts = snab swarm1 swarm3 swarm4 swarm5 fandango2 mingo
+#	 distc++-hosts = snab mingo
+
+	# make check should not generally be run in parallel
+	no-parallel = check docs doc tests test
 
 # Wesnoth doesn't compile with g++ 4.0
 #[*wesnoth*]
@@ -30,3 +35,5 @@
     cc = /usr/bin/gcc-5
     c++ = /usr/bin/g++-5
     no-parallel = *
+
+# vim: set ts=4 sw=4 tw=120 et ft=dosini :

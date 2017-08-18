@@ -3,6 +3,11 @@ set -eo pipefail
 
 : ${NEOVIM_VENV:=~/.virtualenvs/neovim}
 
+pre=()
+if (( ${+commands[prefixout]} )); then
+	pre+=(prefixout -dtc --)
+fi
+
 path=(
 	$NEOVIM_VENV/bin
 	$path
@@ -18,13 +23,13 @@ if [[ ! -d $NEOVIM_VENV ]]; then
 	def_py=${pythons[-1]}
 	#pythons[-1]=()
 
-	virtualenv \
+	$pre virtualenv \
 		-p $def_py \
 		--system-site-packages \
 		$NEOVIM_VENV
 
 	echo "-- Installing virtualenv-multiver in venv"
-	pip install -U virtualenv-multiver
+	$pre pip install -U virtualenv-multiver
 
 	for py in $pythons; do
 		ver=${py#python}
@@ -32,13 +37,13 @@ if [[ ! -d $NEOVIM_VENV ]]; then
 		echo "-- Setting up alt python=$py ver=$ver ver_major=$ver_major in venv"
 
 		# Hack because virtualenv-multiver is not good at it's job
-		rm -fv $NEOVIM_VENV/bin/{python,python${ver:0:1},python$ver}
+		$pre rm -fv $NEOVIM_VENV/bin/{python,python${ver:0:1},python$ver}
 
-		virtualenv-multiver $NEOVIM_VENV $ver
+		$pre virtualenv-multiver $NEOVIM_VENV $ver
 	done
 
 	echo "-- Enabling global site packages"
-	rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
+	$pre rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
 fi
 
 hash -r
@@ -59,7 +64,7 @@ done
 function pips() {
 	local pip
 	for pip in $pips; do
-		command $pip "$@" &
+		command $pre $pip "$@" &
 	done
 	wait
 }
@@ -72,7 +77,7 @@ pips install --pre -U neovim \
 	mistune psutil setproctitle \
 	greenlet gevent
 
-pip2 install --pre -U neovim-gui
+$pre pip2 install --pre -U neovim-gui
 
 pips install --pre -U 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
 
@@ -87,7 +92,7 @@ pips install --pre -U 'git+https://github.com/palantir/python-language-server@de
 			pip2*) pkg="$pkg<6" ;;
 		esac
 
-		cmd=($pip install --pre -U $pkg)
+		cmd=($pre $pip install --pre -U $pkg)
 		echo "-- $cmd"
 		$cmd
 	done

@@ -28,4 +28,5 @@ _mux_autostart() {
     fi
 }
 
-precmd_functions+=(_mux_autostart)
+# precmd_functions+=(_mux_autostart)
+_mux_autostart

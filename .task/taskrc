@@ -17,8 +17,8 @@ data.location=~/.task
 #defaultwidth=0
 #defaultheight=0
 
-verbose=on
-verbose=blank,header,footnote,label,new-id,affected,edit,special,project,sync,filter,unwait
+#verbose=on
+#verbose=blank,header,footnote,label,new-id,affected,edit,special,project,sync,filter,unwait
 
 # rm is the better option.
 alias.rm=delete
@@ -35,16 +35,16 @@ default.due=today
 
 #urgency.blocked.coefficient=0.0
 #urgency.blocking.coefficient=0.0
-#urgency.inherit=on
+urgency.inherit=on
 
 # Color theme (uncomment one to use)
 #include ~/.task/themes/light-16.theme
 #include ~/.task/themes/light-256.theme
 #include ~/.task/themes/dark-16.theme
-#include ~/.task/themes/dark-256.theme
+include ~/.task/themes/dark-256.theme
 #include ~/.task/themes/dark-red-256.theme
 #include ~/.task/themes/dark-green-256.theme
-include ~/.task/themes/dark-blue-256.theme
+#include ~/.task/themes/dark-blue-256.theme
 #include ~/.task/themes/dark-violets-256.theme
 #include ~/.task/themes/dark-yellow-green.theme
 #include ~/.task/themes/dark-gray-256.theme
@@ -54,5 +54,7 @@ include ~/.task/themes/dark-blue-256.theme
 #include ~/.task/themes/no-color.theme
 
 include ~/.task/secrets.conf
+include ~/.task/bugwarriorudas.conf
+include ~/.task/intheamudas.conf
 include ~/.task/local.conf
 

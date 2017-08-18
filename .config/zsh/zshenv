@@ -45,7 +45,7 @@ declare -xm 'ZSH_*'
 : ${SHORT_HOSTNAME:=unknown}
 
 #: ${DE:=generic}
-: ${BROWSER:=google-chrome}
+: ${BROWSER:=x-www-browser}
 : ${EDITOR:=nvim}
 : ${PAGER:=less -RWX}
 : ${S_COLORS:=auto}
@@ -56,6 +56,9 @@ case $TERM:l in
 	xterm|screen)
 		if [[ $(echotc Co) -ge 256 ]]; then
 			TERM=$TERM-256color
+
+			# There isn't really a way to test for this :/
+			COLORTERM=truecolor
 		fi
 		;;
 esac

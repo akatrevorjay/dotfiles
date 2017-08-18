@@ -1,3 +1,7 @@
+if !exists('g:loaded_ctrlspace')
+  finish
+end
+
 " Ctrl-P vimulation
 nnoremap <silent><C-p> :CtrlSpace O<CR>
 

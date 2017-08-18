@@ -70,24 +70,25 @@ else
     # BSD
 
     # colors for ls and completion
-    IMG_COLORS="*.png=00;35:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.ppm=00;35:*.tga=00;35:*.xbm=00;35:*.xpm=00;35:*.tif=00;35:*.pdf=00;35"
-    SOUND_COLORS='*.mp3=00;35:*.mod=00;35:*.wav=00;35:*.mid=00;35:*.xm=00;35:*.s3m=00;35'
-    MOVIE_COLORS='*.mpg=00;35:*.avi=00;35:*.mov=00;35'
-    ARCHIVE_COLORS='*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.bz2=00;31:*.rpm=00;31:*.deb=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31'
-    EXE_COLORS='*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32'
-    CODE_COLORS='*.c=00;33:*.h=00;95:*.gl=00;33:*.cc=00;33:*.cpp=00;33:*.ino=00;33:*.m=00;33:*.php=00;33:*.tex=00;33'
+    IMG_COLORS=$'*.png=00;35:*.jpg=00;35:*.gif=00;35:*.bmp=00;35:*.ppm=00;35:*.tga=00;35:*.xbm=00;35:*.xpm=00;35:*.tif=00;35:*.pdf=00;35'
+    SOUND_COLORS=$'*.mp3=00;35:*.mod=00;35:*.wav=00;35:*.mid=00;35:*.xm=00;35:*.s3m=00;35'
+    MOVIE_COLORS=$'*.mpg=00;35:*.avi=00;35:*.mov=00;35'
+    ARCHIVE_COLORS=$'*.tar=00;31:*.tgz=00;31:*.arj=00;31:*.taz=00;31:*.lzh=00;31:*.zip=00;31:*.bz2=00;31:*.rpm=00;31:*.deb=00;31:*.z=00;31:*.Z=00;31:*.gz=00;31'
+    EXE_COLORS=$'*.cmd=00;32:*.exe=00;32:*.com=00;32:*.btm=00;32:*.bat=00;32'
+    CODE_COLORS=$'*.c=00;33:*.h=00;95:*.gl=00;33:*.cc=00;33:*.cpp=00;33:*.ino=00;33:*.m=00;33:*.php=00;33:*.tex=00;33'
 
     # Understood by GNU ls and used for completion
-    LS_COLORS="no=00:fi=00:di=00;36:ln=00;35:pi=47;33:so=00;35:bd=47;33;00:cd=47;33;00:or=47;31;00:ex=00;32:${IMG_COLORS}:${SOUND_COLORS}:${MOVIE_COLORS}:${ARCHIVE_COLORS}:${EXE_COLORS}:${CODE_COLORS}";
+    LS_COLORS=$'no=00:fi=00:di=00;36:ln=00;35:pi=47;33:so=00;35:bd=47;33;00:cd=47;33;00:or=47;31;00:ex=00;32:'"${IMG_COLORS}:${SOUND_COLORS}:${MOVIE_COLORS}:${ARCHIVE_COLORS}:${EXE_COLORS}:${CODE_COLORS}"
 fi
 
 # Set ls colors to completion engine
 # ZLS_COLORS is overwritten by the list-colors style
-#ZLS_COLORS=${LS_COLORS}
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# WARNING Some ZSH versions really don't like some of these sometimes. Always busy so far when it happens however.
+ZLS_COLORS=${LS_COLORS}
+# zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # Need to export all these guys 
-#export LS_COLORS LSCOLORS ZLS_COLORS
+# export LS_COLORS LSCOLORS ZLS_COLORS
 
 # Find the best ls and set the options
 case $OSTYPE:l in
@@ -123,15 +124,15 @@ alias egrep="egrep $GREP_OPTIONS"
 unset GREP_OPTIONS
 unset VCS_FOLDERS
 
-# diff
-(( ! ${+commands[colordiff]} )) \
-    || alias diff='colordiff'
+# # diff
+# (( ! ${+commands[colordiff]} )) \
+#     || alias diff='colordiff'
 
-# make
-(( ! ${+commands[colormake]} )) \
-    || alias make='colormake'
+# # make
+# (( ! ${+commands[colormake]} )) \
+#     || alias make='colormake'
 
-# tail
-(( ! ${+commands[colortail]} )) \
-    || alias tail='colortail'
+# # tail
+# (( ! ${+commands[colortail]} )) \
+#     || alias tail='colortail'
 
