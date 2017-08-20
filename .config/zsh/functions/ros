@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+ros() {
+    [ $#  -gt 0 ] || set -- kinetic
+    local distros=($argv)
+
+    local try=({,/opt/ros/}${^distros}{/install,/installed,/devel,}/{{,local_}setup.zsh,share/ros2cli/environment/ros2-argcomplete.zsh}(N))
+
+    echo $try
+
+    [ $#try -gt 0 ] || return 1
+
+    # local i; for i in $try; do
+    #     case $i in
+    #         *setup.zsh) setup=$i ;;
+    #         *argcomplete.zsh) comp=$i ;;
+    #     esac
+    #
+    # done
+
+    source-with-force $try
+    cd ${try[-1]}
+}
+
+ros "$@"
