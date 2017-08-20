@@ -39,7 +39,7 @@ dpi:
 tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
-draw_bold_text_with_bright_colors: true
+#draw_bold_text_with_bright_colors: true
 
 # Font configuration (changes require restart)
 font:
@@ -187,7 +187,12 @@ custom_cursor_colors: false
 #
 visual_bell:
   animation: EaseOutExpo
+  # duration: 20
   duration: 0
+
+# Background opacity
+#background_opacity: 1.0
+background_opacity: 0.8
 
 # Key bindings
 #
@@ -386,7 +391,7 @@ mouse:
 selection:
   semantic_escape_chars: ",│`|:\"' ()[]{}<>"
 
-hide_cursor_when_typing: false
+hide_cursor_when_typing: true
 
 # Shell
 #
