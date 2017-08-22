@@ -8,11 +8,6 @@ if (( ${+commands[prefixout]} )); then
 	pre+=(prefixout -dtc --)
 fi
 
-path=(
-	$NEOVIM_VENV/bin
-	$path
-)
-
 if [[ ! -d $NEOVIM_VENV ]]; then
 	echo "-- Creating neovim venv: $NEOVIM_VENV"
 
@@ -29,7 +24,7 @@ if [[ ! -d $NEOVIM_VENV ]]; then
 		$NEOVIM_VENV
 
 	echo "-- Installing virtualenv-multiver in venv"
-	$pre pip install -U virtualenv-multiver
+	$pre sudo pip install -U virtualenv-multiver
 
 	for py in $pythons; do
 		ver=${py#python}
@@ -45,6 +40,11 @@ if [[ ! -d $NEOVIM_VENV ]]; then
 	echo "-- Enabling global site packages"
 	$pre rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
 fi
+
+path=(
+	$NEOVIM_VENV/bin
+	$path
+)
 
 hash -r
 pythons=(${commands[(I)python[2-3].[0-9]]})
