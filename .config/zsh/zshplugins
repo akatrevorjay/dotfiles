@@ -4,7 +4,6 @@
 zplugins.load-all-in plugins
 
 zplugins.load "zsh-users/zsh-history-substring-search"
-zplugins.load "akatrevorjay/fasd"
 
 zplugins.load "willghatch/zsh-hooks"
 zplugins.load "mafredri/zsh-async"
