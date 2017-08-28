@@ -129,6 +129,9 @@ Plug 'google/vim-jsonnet'
 " ROS
 Plug 'taketwo/vim-ros'
 
+" Arduino
+Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
+
 " Go
 if has('nvim')
     " Replacement for nvim

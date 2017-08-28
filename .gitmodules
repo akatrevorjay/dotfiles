@@ -13,6 +13,6 @@
 [submodule ".config/zsh/plugins-wip/dasht/src"]
 	path = .config/zsh/plugins-wip/dasht/src
 	url = https://github.com/sunaku/dasht.git
-[submodule "/home/trevorj/.config/zsh/plugins/fasd/lib"]
-	path = /home/trevorj/.config/zsh/plugins/fasd/lib
+[submodule ".config/zsh/plugins/fasd/lib"]
+	path = .config/zsh/plugins/fasd/lib
 	url = https://github.com/akatrevorjay/fasd
