@@ -1,17 +1,5 @@
 #!/bin/zsh
 
-if [[ $#_FASD_INIT_OPTS -eq 0 ]]; then
-    _FASD_INIT_OPTS=(
-        zsh-hook
-        zsh-ccomp
-        zsh-ccomp-install
-        zsh-wcomp
-        zsh-wcomp-install
-    )
-fi
-
-source-with-force ${0:h}/lib/fasd.plugin.zsh
-
 # Handy aliases:
 #alias vf="f -e $EDITOR"
 #alias vm='f -t -e vim -b viminfo'
