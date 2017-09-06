@@ -126,8 +126,9 @@ Plug 'google/vim-jsonnet'
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
-" ROS
+"" ROS
 " Plug 'taketwo/vim-ros'
+" au BufRead,BufNewFile *.launch setf roslaunch
 au BufRead,BufNewFile *.launch setf xml
 
 " Arduino
