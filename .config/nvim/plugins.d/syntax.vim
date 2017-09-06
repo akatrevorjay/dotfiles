@@ -127,7 +127,8 @@ Plug 'google/vim-jsonnet'
 "Plug 'm-kat/aws-vim'
 
 " ROS
-Plug 'taketwo/vim-ros'
+" Plug 'taketwo/vim-ros'
+au BufRead,BufNewFile *.launch setf xml
 
 " Arduino
 Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
