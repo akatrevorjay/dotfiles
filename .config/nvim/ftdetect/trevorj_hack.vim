@@ -14,6 +14,7 @@ au BufRead,BufNewFile dkms.conf setf sh
 au BufRead,BufNewFile *.dox setf doxygen
 " Notice no extension, catches kops edit
 au BufRead,BufNewFile *yaml setf yaml
+au BufRead,BufNewFile Jenkinsfile setf groovy
 
 "" Readmes
 "au BufRead,BufNewFile readme* set filetype=markdown

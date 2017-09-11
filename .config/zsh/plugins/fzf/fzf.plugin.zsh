@@ -67,11 +67,10 @@ fo() {
     fi
 }
 
-
-# vf - fuzzy open with vim from anywhere
+# vimf - fuzzy open with vim from anywhere
 # ex: vf word1 word2 ... (even part of a file name)
 # zsh autoload function
-vf() {
+vimf() {
     local files
 
     files=(${(f)"$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1 -m)"})
@@ -82,7 +81,6 @@ vf() {
     fi
 }
 
-
 # fd - cd to selected directory
 fd() {
   local dir
@@ -90,11 +88,13 @@ fd() {
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
+
 # fda - including hidden directories
 fda() {
   local dir
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
+
 # fdr - cd to selected parent directory
 fdr() {
   local declare dirs=()
@@ -358,5 +358,4 @@ bindkey '\eL' fzf-loc-widget
 
 # Copy selected path to clipboard
 alias -g XCB='| pe | fzf | read filename; [ ! -z $filename ] && echo -n $filename | xclip -selection c'
-
 

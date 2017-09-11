@@ -1,4 +1,4 @@
-#!/vin/zsh
+#!/bin/zsh
 
 if [ -z "${TMUX}" ] && which tmux >/dev/null; then
     TMUX_FIRST_UNATTACHED=$(tmux ls 2>/dev/null | grep -v "(attached)" | cut -d: -f1)

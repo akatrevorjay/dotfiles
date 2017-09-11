@@ -126,8 +126,13 @@ Plug 'google/vim-jsonnet'
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
-" ROS
-Plug 'taketwo/vim-ros'
+"" ROS
+" Plug 'taketwo/vim-ros'
+" au BufRead,BufNewFile *.launch setf roslaunch
+au BufRead,BufNewFile *.launch setf xml
+
+" Arduino
+Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
 
 " Go
 if has('nvim')
