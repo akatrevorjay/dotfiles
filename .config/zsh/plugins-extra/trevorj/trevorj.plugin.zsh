@@ -1,13 +1,11 @@
 #!/bin/zsh
 
 export \
-	GPGKEY="C9871F640"
-export \
 	DEBEMAIL="debian@trevor.joynson.io" \
-	DEBFULLNAME="Trevor Joynson (Debian)"
-export \
-	DEBSIGN_KEYID="$GPGKEY"
+	DEBFULLNAME="Trevor Joynson (Debian)" \
+	GPGKEY="C9871F640" \
 	DEB_BUILD_OPTIONS="parallel=9"
+export DEBSIGN_KEYID="$GPGKEY"
 
 PROJECTS_ROOT=$HOME/git
 CODE_ROOT=$HOME/code
@@ -73,10 +71,6 @@ alias hl='fc -l -L -100'
 #					builtin or function
 # nocorrect			No spelling correction made on any word
 # noglob			File name generation is not performed on any of the words
-alias ng=noglob
-alias nc=nocorrect
-alias ng=noglob
-
 
 alias k='k -h'
 alias fk='k --no-vcs'
@@ -154,6 +148,17 @@ alias bc='bc -q -l'
 alias gdb='gdb -q'
 alias tf='tail -f'
 
+pretty() {
+	if [[ $# -gt 0 ]]; then
+		"$@" | ccze -A
+	else
+		# we're likely in a pipe
+		ccze -A
+	fi
+}
+
+alias -g PP='| pretty'
+
 alias cp='nocorrect cp -piv'
 alias mkdir='nocorrect mkdir'
 alias mv='nocorrect mv -iv'
@@ -164,6 +169,7 @@ alias po='popd'
 case $OSTYPE:l in
 	linux*)
 		alias sctl='systemctl'
+		alias journalctl='pretty journalctl --no-pager'
 		alias jf='journalctl -f'
 		alias jxe='journalctl -fxe'
 
@@ -197,11 +203,26 @@ case $OSTYPE:l in
 		;;
 esac
 
-gpg-ssh-agent
+lolbar() {
+	(( ${+commands[spark]} )) || return
 
-alias lolbar='seq 1 $(tput cols) | sort -R | spark | lolcat; echo; echo' # Coloured
+	local cols=$(tput cols)
+	local bar=$(seq 1 $cols | sort -R | spark)
 
-alias clear='clear; echo; echo; seq 1 $(tput cols) | sort -R | spark | lolcat; echo; echo' # Coloured
+	if (( ${+commands[lolcat]} )); then
+		lolcat <<< $bar
+	else
+		echo $bar
+	fi
+
+	echo; echo
+}
+
+clear() {
+	command clear
+	echo; echo
+	lolbar
+}
 
 if (( ${+commands[git-tip]} )); then
 	git-tip || :
