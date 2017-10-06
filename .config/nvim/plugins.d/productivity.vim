@@ -94,11 +94,13 @@ let g:rooter_resolve_links = 1
 
 " Clean sessions
 Plug 'tpope/vim-obsession'
-Plug 'dhruvasagar/vim-prosession'
-"let g:prosession_dir = expand('~/.vim/session/')
-let g:prosession_default_session = 1
+
+" let g:prosession_dir = expand('~/.vim/session/')
+" let g:prosession_default_session = 1
 let g:prosession_per_branch = 1
 let g:prosession_tmux_title = 1
+
+Plug 'dhruvasagar/vim-prosession'
 
 " Plug 'unblevable/quick-scope'
 
