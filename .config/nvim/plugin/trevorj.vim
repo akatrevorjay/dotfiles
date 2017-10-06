@@ -120,6 +120,8 @@ let g:markdown_fenced_languages = [
   \ 'zsh',
   \ 'rst',
   \ 'sql',
+  \ 'config', 'conf=config',
+  \ 'dosini', 'ini=dosini',
   \ ]
 
 "let g:tmuxline_theme = 'airline_visual'
