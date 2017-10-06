@@ -182,3 +182,22 @@ To know the thing I am forbid to know
 “There are worse things than looking stupid. Sleeping through life is one of them.”
 -- Laura Preble
 %
+“Object-oriented programming is an exceptionally bad idea which could only have originated in California.”
+-- Edsger Dijkstra
+%
+“The old believe everything; the middle aged suspect everything: the young know everything.”
+-- Oscar Wilde
+%
+“We can aspire to anything, but we don't get it just 'cause we want it. I would rather spend my life close to the birds than waste it wishing I had wings.”
+-- Eli Attie
+%
+“This isn't right, this isn't even wrong.”
+-- Wolfgang Pauli (1900-1958), upon reading a young physicist's 
+    paper
+%
+“Millions of deaths would not have happened if it weren’t for the consumption of alcohol. The same can be said about millions of births.”
+-- Mokokoma Mokhonoana
+%
+“Discovery consists of seeing what everybody has seen and thinking what nobody has thought.”
+-- Albert Szent-Gyorgyi
+%
