@@ -1,0 +1,8 @@
+#!/bin/zsh
+set -eo pipefail
+set -xv
+
+for pid in $(pgrep tmux); do
+    kill -10 $pid || :
+done
+
