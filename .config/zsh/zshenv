@@ -15,7 +15,7 @@
 
 [[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
 
-setopt sourcetrace
+# setopt sourcetrace
 
 # XDG defaults
 if (( ${+commands[xdg-user-dirs-update]} )); then

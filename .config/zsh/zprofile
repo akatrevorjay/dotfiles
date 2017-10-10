@@ -3,6 +3,7 @@ source-with-force ${^ZDOTDIRS}/.profile(.-N)
 
 case $OSTYPE in
     linux*)
-        systemctl --user import-environment PATH
+        (( ! ${+commands[systemctl]} )) \
+           ||  systemctl --user import-environment PATH
         ;;
 esac
