@@ -1,0 +1,68 @@
+#!/bin/zsh
+set -eo pipefail
+
+zslice() {
+    local args=("${(@s.:.)1}"); shift
+    local start=${args[1]:-1} stop=${args[2]:-$#} stride=${args[3]:-1}
+
+    ret=()
+    local i
+    for (( i=$start; i <= $stop; i+=$stride )) ; do
+            ret+=("${argv[$i]}")
+    done
+}
+
+get-iface-to() {
+    local host ips=() ip
+
+    host=${1:?}
+
+    ips=($(getent ahosts "$host" | awk '{print $1}'))
+    ip=${ips[RANDOM % $#ips + 1]}
+
+    local raw=$(ip route get $ip)
+
+    local iface=$(echo $raw | sed -ne 's@^.*dev \([^ ]\+\) .*@\1@p')
+
+    [[ -n $iface ]] || exit 1
+    echo $iface
+}
+
+get-iface-cidrs() {
+    local ipcmd=(ip -o addr ${=1:+show dev $1})
+    local raw=$($ipcmd | awk '!/^[0-9]*: ?lo|link\/ether/ {print $2" "$4}')
+
+    local -A ifaces=()
+
+    local line iface
+    for line in ${(f)raw}; do
+            set -- $=line
+            iface=$1; shift
+            ifaces[$iface]+="$* "
+    done
+
+    local k v
+    for k in ${(k)ifaces}; do
+            v=${ifaces[$k]}
+            echo "$k ${v% }"
+    done
+}
+
+get-iface-ips() {
+    local raw
+    raw=$(get-iface-cidrs "$@")
+
+    local line iface cidrs ips
+    for line in ${(f)raw}; do
+        iface=${line%% *}
+        cidrs=(${=line#* })
+        ips=(${cidrs%/*})
+        echo $iface $ips
+    done
+}
+
+subcmd=${0:t}
+(( ${+functions[$subcmd]} )) || exit 127
+
+$subcmd "$@"
+
