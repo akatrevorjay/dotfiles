@@ -6,7 +6,10 @@ umask 022
 if [[ ${TERM} == 'dumb' ]]; then
 	return
 fi
-[[ $- =~ i ]] || return
+
+if [[ -n ${modules[zsh/regex]} ]] || zmodload zsh/regex; then
+    [[ $- =~ i ]] || return
+fi
 
 if [[ -z $ZSH_CACHE_DIR ]]; then
 	echo "- ZSH_CACHE_DIR is not set?" >&2
