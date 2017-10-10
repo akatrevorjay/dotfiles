@@ -1,17 +1,6 @@
 #!/bin/zsh
 set -eo pipefail
 
-zslice() {
-    local args=("${(@s.:.)1}"); shift
-    local start=${args[1]:-1} stop=${args[2]:-$#} stride=${args[3]:-1}
-
-    ret=()
-    local i
-    for (( i=$start; i <= $stop; i+=$stride )) ; do
-            ret+=("${argv[$i]}")
-    done
-}
-
 get-iface-to() {
     local host ips=() ip
 
