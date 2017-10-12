@@ -26,9 +26,18 @@ try:
 except ImportError:
     pass
 
+try:
+    import pytutils
+except ImportError:
+    pass
+
+try:
+    import pysanity
+except ImportError:
+    pass
+
 
 log = logging.getLogger(__name__)
-
 
 IS_IPYTHON = os.path.basename(sys.argv[0]).startswith('ipython')
 IS_PYTHON = os.path.basename(sys.argv[0]).startswith('python')
@@ -282,8 +291,6 @@ def burp(filename, contents, mode='w', allow_stdout=True):
             fh.write(contents)
 
 
-
-
 def __pyrc__():
     """Python shell init"""
 
@@ -352,4 +359,3 @@ if __name__ == '__main__':
         __ipyrc__()
     elif IS_PYTHON:
         __pyrc__()
-
