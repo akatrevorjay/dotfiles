@@ -249,7 +249,7 @@ def ensure_encoded_bytes(s, encoding='utf-8', errors='strict', allowed_types=(by
         return s.encode(encoding=encoding, errors=errors)
 
 
-def ensure_decoded_text(s, encoding='utf-8', errors='strict', allowed_types=(PYNFO.text_type,)):
+def ensure_decoded_text(s, encoding='utf-8', errors='strict', allowed_types=(six.text_type,)):
     """
     Ensure string is decoded (eg unicode); convert using specified parameters if we have to.
 
