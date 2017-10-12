@@ -333,12 +333,12 @@ def format_dict_recursively(
     return ret
 
 
-__PYGMENTS_STYLE = pygments.styles.get_style_by_name('monokai')
-__PYGMENTS_FORMATTER = pygments.formatters.get_formatter_by_name('console16m', style=__PYGMENTS_STYLE)
-__PYGMENTS_LEXER_PYTHON = pygments.lexers.get_lexer_by_name('python{}'.format(six.PY3 and '3' or ''))
+__PP_STYLE = pygments.styles.get_style_by_name('monokai')
+__PP_FORMATTER = pygments.formatters.get_formatter_by_name('console16m', style=__PP_STYLE)
+__PP_LEXER_PYTHON = pygments.lexers.get_lexer_by_name('python{}'.format(six.PY3 and '3' or ''))
 
 
-def pf(arg, lexer=__PYGMENTS_LEXER_PYTHON, formatter=__PYGMENTS_FORMATTER):
+def pf(arg, lexer=__PP_LEXER_PYTHON, formatter=__PP_FORMATTER):
     """Pretty formats with coloring.
 
     Works in iPython, but not bpython as it does not write directly to term
@@ -347,12 +347,14 @@ def pf(arg, lexer=__PYGMENTS_LEXER_PYTHON, formatter=__PYGMENTS_FORMATTER):
     return pygments.highlight(arg, lexer, formatter)
 
 
-def pp(arg, lexer=__PYGMENTS_LEXER_PYTHON, formatter=__PYGMENTS_FORMATTER, outfile='/dev/stdout'):
+def pp(arg, lexer=__PP_LEXER_PYTHON, formatter=__PP_FORMATTER, outfile=sys.stdout):
     """Pretty prints with coloring.
 
     Works in iPython, but not bpython as it does not write directly to term
     and decodes it instead."""
     arg = pformat(arg)
+
+    close = False
     try:
         if isinstance(outfile, six.string_types):
             close = True
