@@ -9,6 +9,10 @@ import pprint
 import collections
 import functools
 import operator
+import json
+import yaml
+import csv
+import re
 
 from pprint import pprint as pp
 from pprint import pformat as pf
@@ -36,6 +40,8 @@ try:
 except ImportError:
     pass
 
+if six.PY3:
+    import asyncio
 
 log = logging.getLogger(__name__)
 
@@ -43,58 +49,82 @@ IS_IPYTHON = os.path.basename(sys.argv[0]).startswith('ipython')
 IS_PYTHON = os.path.basename(sys.argv[0]).startswith('python')
 
 
-class PYINFOMinimal(object):
-    PY2 = sys.version_info[0] == 2
-    PY3 = sys.version_info[0] == 3
+def format_dict_recursively(
+    mapping, raise_unresolvable=True, strip_unresolvable=False, conversions={'True': True,
+                                                                             'False': False}
+):
+    """Format each string value of dictionary using values contained within
+    itself, keeping track of dependencies as required.
 
-    if PY3:
-        string_types = str,
-        text_type = str
-        binary_type = bytes
-    else:
-        string_types = basestring,
-        text_type = unicode
-        binary_type = str
+    Also converts any formatted values according to conversions dict.
 
+    Example:
 
-class PYINFO(object):
-    PY2 = sys.version_info[0] == 2
-    PY3 = sys.version_info[0] == 3
+    >>> c = dict(wat='wat{omg}', omg=True)
+    >>> format_dict_recursively(c)
+    {'omg': True, 'wat': 'watTrue'}
 
-    if PY3:
-        string_types = str,
-        text_type = str
-        binary_type = bytes
-        integer_types = int,
-        class_types = type,
+    Dealing with missing (unresolvable) keys in format strings:
 
-        maxsize = sys.maxsize
-    else:  # PY2
-        string_types = basestring,
-        text_type = unicode
-        binary_type = str
-        integer_types = (int, long)
-        class_types = (type, types.ClassType)
+    >>> c = dict(wat='wat{omg}', omg=True, fail='no{whale}')
+    >>> format_dict_recursively(c)
+    Traceback (most recent call last):
+        ...
+    ValueError: Impossible to format dict due to missing elements: {'fail': ['whale']}
+    >>> format_dict_recursively(c, raise_unresolvable=False)
+    {'fail': 'no{whale}', 'omg': True, 'wat': 'watTrue'}
+    >>> format_dict_recursively(c, raise_unresolvable=False, strip_unresolvable=True)
+    {'omg': True, 'wat': 'watTrue'}
 
-        if sys.platform.startswith("java"):
-            # Jython always uses 32 bits.
-            maxsize = int((1 << 31) - 1)
+    :param dict mapping: Dict.
+    :param bool raise_unresolvable: Upon True, raises ValueError upon an unresolvable key.
+    :param bool strip_unresolvable: Upon True, strips unresolvable keys.
+    :param dict conversions: Mapping of {from: to}.
+    """
+    if conversions is None:
+        conversions = {}
+
+    ret = {}
+
+    # Create dependency mapping
+    deps = {}
+    for k, v in mapping.items():
+        # Do not include multiline values in this to avoid KeyErrors on actual
+        # .format below
+        if isinstance(v, six.string_types) and '\n' not in v:
+            # Map key -> [*deps]
+            # This is a bit naive, but it works well.
+            deps[k] = re.findall(r'\{(\w+)\}', v)
         else:
-            # It's possible to have sizeof(long) != sizeof(Py_ssize_t).
-            class X(object):
+            ret[k] = v
 
-                def __len__(self):
-                    return 1 << 31
+    while len(ret) != len(mapping):
+        ret_key_count_at_start = len(ret)
+        sret = set(ret)
+        keys = set(mapping) - sret
 
-            try:
-                len(X())
-            except OverflowError:
-                # 32-bit
-                maxsize = int((1 << 31) - 1)
-            else:
-                # 64-bit
-                maxsize = int((1 << 63) - 1)
-            del X
+        for k in keys:
+            needed = (x not in ret for x in deps[k])
+            if any(needed):
+                continue
+
+            ret[k] = mapping[k].format(**ret)
+
+            if ret[k] in conversions:
+                ret[k] = conversions[ret[k]]
+
+        # We have done all that we can here.
+        if ret_key_count_at_start == len(ret):
+            if not raise_unresolvable:
+                if not strip_unresolvable:
+                    # backfill
+                    ret.update({k: mapping[k] for k in keys})
+                break
+
+            missing = {k: [x for x in deps[k] if x not in ret]}
+            raise ValueError('Impossible to format dict due to missing elements: %r' % missing)
+
+    return ret
 
 
 class ProxyMutableMapping(collections.MutableMapping):
@@ -219,7 +249,7 @@ def ensure_encoded_bytes(s, encoding='utf-8', errors='strict', allowed_types=(by
         return s.encode(encoding=encoding, errors=errors)
 
 
-def ensure_decoded_text(s, encoding='utf-8', errors='strict', allowed_types=(PYINFO.text_type,)):
+def ensure_decoded_text(s, encoding='utf-8', errors='strict', allowed_types=(PYNFO.text_type,)):
     """
     Ensure string is decoded (eg unicode); convert using specified parameters if we have to.
 

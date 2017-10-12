@@ -1,0 +1,85 @@
+#!/usr/bin/env python
+from __future__ import print_function, absolute_import
+
+import itertools
+import logging
+import logging.config
+import sys
+import argparse
+import io
+
+try:
+    from configparser import SafeConfigParser as ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+
+# This is not __name__ as this is a script and we want %(name)s to be worth something.
+log = logging.getLogger(__name__)
+
+LOGGING = {
+    'version': 1,
+    'formatters': {
+        'standard': {
+            'format':
+                '%(asctime)s| %(name)s/%(processName)s[%(process)d]-%(threadName)s[%(thread)d]: '
+                '%(message)s @%(funcName)s:%(lineno)d #%(levelname)s',
+        },
+    },
+    'handlers': {
+        'console': {
+            'formatter': 'standard',
+            'class': 'logging.StreamHandler',
+        },
+        'syslog': {
+            'class': 'logging.handlers.SysLogHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console', 'syslog'],
+        'level': 'DEBUG',
+    },
+    'loggers': {
+        __name__: dict(level='DEBUG'),
+    }
+}
+
+parser = argparse.ArgumentParser()
+
+parser.add_argument('-P', '--env-prefix', default='AIRFLOW', help='Env prefix')
+parser.add_argument('-i', '--infile', nargs='?', type=argparse.FileType('r'), default=sys.stdin, help='Input file')
+
+
+def flatten_to_env(cfgparser, prefix=None):
+    for section in cfgparser:
+        for k, v, in cfgparser.items(section):
+            parts = filter(None, [prefix, section, k])
+            name = '__'.join(parts).upper()
+
+            line = '%s=%s' % (name, v)
+            yield line
+
+
+def main(argv=sys.argv[1:]):
+    cli_args = parser.parse_args(argv)
+
+    cp = ConfigParser()
+
+    log.info('Reading from file: %r', cli_args.infile)
+
+    try:
+        cp.read_file(cli_args.infile)
+    except AttributeError:
+        ini_contents = cli_args.infile.read()
+        fp = io.BytesIO(ini_contents)
+        cp.readfp(fp)
+
+    log.debug('Rewriting as env vars and printing to stdout.')
+
+    for line in flatten_to_env(cp, prefix=cli_args.env_prefix):
+        print(line)
+
+
+if __name__ == '__main__':
+    logging.config.dictConfig(LOGGING)
+
+    main()
