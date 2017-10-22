@@ -45,18 +45,18 @@ pasystray &
 #gpomme &
 parcellite &
 #winswitch_applet &
-# indicator-kdeconnect &
+indicator-kdeconnect &
 notify-proxy &
 
 #fcitx-autostart &
 #/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately &
 
 yubioath gui -t &
-#easystroke &
+easystroke &
 #kupfer &
 
 variety &
-# solaar &
+solaar &
 #(( ! ${+commands[wal]} )) \
 #  || wal -i $(< $HOME/.cache/wal/wal)
 

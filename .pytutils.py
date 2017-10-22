@@ -7,18 +7,18 @@ import pygments
 from pprint import pformat, pprint
 
 
-class PyInfoMinimal(object):
-    PY2 = sys.version_info[0] == 2
-    PY3 = sys.version_info[0] == 3
+# class PyInfoMinimal(object):
+#     PY2 = sys.version_info[0] == 2
+#     PY3 = sys.version_info[0] == 3
 
-    if PY3:
-        string_types = str,
-        text_type = str
-        binary_type = bytes
-    else:
-        string_types = basestring,
-        text_type = unicode
-        binary_type = str
+#     if PY3:
+#         string_types = str,
+#         text_type = str
+#         binary_type = bytes
+#     else:
+#         string_types = basestring,
+#         text_type = unicode
+#         binary_type = str
 
 
 class PyInfo(object):

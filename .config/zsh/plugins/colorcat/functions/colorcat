@@ -12,9 +12,11 @@ then
         case $file in
             *.gz)   filter=(zcat) ;;
             *.bz2)  filter=(bzcat) ;;
+            *.xz)   filter=(xzcat) ;;
         esac
 
-        local cmd=(pygmentize -O style=monokai -f terminal16m -g)
+        # local cmd=(pygmentize -O style=monokai -f terminal16m -g)
+        local cmd=(chroma --unbuffered -s monokai -f terminal16m)
 
         [ $# -eq 1 ] || echo "[${0:t}] $file ${filter:+filter=$filter }" >&2
 

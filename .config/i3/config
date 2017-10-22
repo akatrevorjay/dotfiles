@@ -11,8 +11,8 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term2 urxvt
-set $term alacritty
-set $term3 tilix
+set $term3 alacritty
+set $term tilix
 #set $term4 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run

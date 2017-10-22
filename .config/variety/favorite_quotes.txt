@@ -201,3 +201,6 @@ To know the thing I am forbid to know
 “Discovery consists of seeing what everybody has seen and thinking what nobody has thought.”
 -- Albert Szent-Gyorgyi
 %
+“Politeness, n. The most acceptable hypocrisy.”
+-- Ambrose Bierce
+%
