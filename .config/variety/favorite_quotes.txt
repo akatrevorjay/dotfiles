@@ -204,3 +204,9 @@ To know the thing I am forbid to know
 “Politeness, n. The most acceptable hypocrisy.”
 -- Ambrose Bierce
 %
+“And I hope she does not live in a dark world. Because even the most terrible loss doesn't have to make you darker; it can make you deeper.”
+-- Augusten Burroughs
+%
+“I invented the term Object-Oriented, and I can tell you I did not have C++ in mind.”
+-- Alan Kay
+%
