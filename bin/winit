@@ -1,14 +1,14 @@
 #!/usr/bin/env zsh
 
 #xrandr-auto || :
-xrandr-auto2 || :
+# xrandr-auto2 || :
 #wm || :
 
 function gnome-settings-daemon {
 	if (( ${+commands[gnome-settings-daemon]} )); then
 		command gnome-settings-daemon &
 	else
-		for i in /usr/lib/gnome-settings-daemon/gsd*; do
+		for i in /usr/lib/gnome-settings-daemon/gsd*(*); do
 			killall -u $USER ${i:?}
 			$i &
 		done
@@ -21,7 +21,7 @@ imwheel -b '4 5 6 7' -k -p -r -d &
 tkbd &
 ckb --background &
 
-compton &
+# compton &
 
 #xsettingsd &
 gnome-settings-daemon
@@ -29,13 +29,13 @@ gnome-settings-daemon
 gnome-keyring-daemon &
 seahorse-daemon &
 
-/usr/lib/gcr/gcr-prompter &
+# /usr/lib/gcr/gcr-prompter &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 
 #sleep 1
 
-tint2 &
+# tint2 &
 
 sleep 1
 
@@ -56,7 +56,7 @@ easystroke &
 #kupfer &
 
 variety &
-solaar &
+sleep 5 && solaar &
 #(( ! ${+commands[wal]} )) \
 #  || wal -i $(< $HOME/.cache/wal/wal)
 

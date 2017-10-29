@@ -210,3 +210,6 @@ To know the thing I am forbid to know
 “I invented the term Object-Oriented, and I can tell you I did not have C++ in mind.”
 -- Alan Kay
 %
+“Copy from one, it's plagiarism; copy from two, it's research.”
+-- Wilson Mizner (1876-1933)
+%

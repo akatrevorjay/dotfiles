@@ -338,9 +338,10 @@ bindsym $mod+i exec ibus-toggle
 
 #  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
+exec --no-startup-id ~/bin/xrandr-auto2
 exec --no-startup-id ~/bin/winit
-
-#exec winit
+exec --no-startup-id tint2
+exec --no-startup-id compton
 
 #exec xsettingsd
 #exec gnome-settings-daemon

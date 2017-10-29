@@ -40,11 +40,11 @@ for_window [title="Preferences$"] floating enable
 
 #for_window [class="panel"] border none floating enable sticky enable
 #for_window [class="trayer"] border none floating enable sticky enable
-for_window [class="stalonetray"] border none floating enable sticky enable resize set 100 24
+# for_window [class="stalonetray"] border none floating enable sticky enable resize set 100 24
 #for_window [class="tint2"] border none floating enable sticky enable
 
-#default_border pixel 1
-default_border normal
+default_border pixel 1
+# default_border normal
 #default_floating_border none
 default_floating_border pixel 1
 floating_minimum_size 10 x 10
@@ -53,9 +53,13 @@ floating_minimum_size 10 x 10
 #output DP-2 disable
 #output eDP-1 res 2880x1800 scale 2 pos 3440,0
 
-output DP-1 res 3840x2160 scale 2 pos 0,0
-output DP-2 res 2560x1440 scale 1 pos 3840,0
-output eDP-1 res 2880x1800 scale 2 pos 6400,0
+# output DP-1 res 3840x2160 scale 2 pos 0,0
+# output DP-2 res 2560x1440 scale 1 pos 3840,0
+# output eDP-1 res 2880x1800 scale 2 pos 6400,0
+
+output DP-1 res 3840x1440 rate 100 scale 1 pos 0,0
+# output DP-2 res 2560x1440 scale 1 pos 3840,0
+output eDP-1 res 2880x1800 scale 2 pos 3840,0
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
@@ -369,15 +373,16 @@ exec --no-startup-id ~/bin/winit
 #}
 
 bar {
-    #id bar0
+    id bar0
 
-    status_command i3blocks
+    # status_command i3blocks
     #swaybar_command ~/bin/bar
     #status_command swaystatus
     #status_command ~/bin/swaystatus -c ~/.config/sway/bars/top.py
     #status_command ~/.local/bin/swaypystatus -c ~/.config/sway/bars/top.py
 
-    tray_output primary
+    tray_output all
+    icon_theme Papirus
 
     position top
     #position bottom
@@ -399,7 +404,7 @@ bar {
     }
 }
 
-include /usr/local/etc/sway/config.d/*
-include /usr/local/etc/sway/security.d/*
+include /etc/sway/config.d/*
+#include /etc/sway/security.d/*
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
