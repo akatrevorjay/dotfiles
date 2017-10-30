@@ -16,6 +16,9 @@ REPO_ROOTS=($PROJECTS_ROOT $CODE_ROOT $BUILD_ROOT)
 setopt check_jobs hup  # posix_jobs
 setopt auto_resume multios
 
+setopt nullglob
+unsetopt nomatch
+
 alias -s git='git-cdclone'
 
 (( ${+commands[nvim]} )) && : ${EDITOR:=nvim}

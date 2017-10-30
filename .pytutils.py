@@ -4,6 +4,9 @@ import sys
 import types
 import re
 import pygments
+import pygments.styles
+import pygments.formatters
+import pygments.lexers
 from pprint import pformat, pprint
 
 

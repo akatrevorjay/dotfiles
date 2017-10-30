@@ -1,19 +1,22 @@
 #!/bin/zsh
 
-usage() {
-    echo "Usage: $0 [FILES+]" >&2
+source-with-force() {
+    usage() {
+    }
+
+    zparseopts -D -- h=help -help=help
+
+    if [[ -n "$help" ]]; then
+        usage
+        return
+    fi
+
+    # Source N files if accessible
+    local file
+    for file in "$@"; do
+        [[ ! -r "$file" ]] || source $file
+    done
 }
 
-zparseopts -D -- h=help -help=help
-
-if [ -n "$help" ]; then
-    usage
-    return
-fi
-
-# Source N files if accessible
-local file
-for file in "$@"; do
-    [[ ! -r "$file" ]] || source "$file"
-done
+source-with-force "$@"
 

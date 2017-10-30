@@ -124,7 +124,14 @@ bindkey -e
 source-with-force ${^ZDOTDIRS}/secrets(-.N)
 
 # Collect plugin list
-source-with-force ${^ZDOTDIRS}/zshplugins(-.N)
+() {
+    local fns=(zshplugins)
+    [[ $# -eq 0 ]] \
+      || fns+=(zshplugins-${^argv})
+    fns=(${^ZDOTDIRS}/${^fns}(-.N))
+
+    source-with-force $fns
+} $OSTYPE $USER
 
 # Local
 source-with-force $LOCAL_ZDOTDIR/zshrc

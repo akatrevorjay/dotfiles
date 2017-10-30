@@ -63,7 +63,7 @@ Plug 'ryanoasis/vim-devicons'
 "Plug 'freeo/vim-kalisi'
 "Plug 'morhetz/gruvbox'
 
-"Plug 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 
 "Plug expand('~/.vim/bundles/colors')
 "Plug expand('~/.vim/bundles/colors-trevorj')
