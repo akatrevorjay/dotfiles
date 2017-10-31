@@ -1,0 +1,25 @@
+zplugins.load-all-in plugins-extra
+
+#zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
+#zstyle ':notify:*' error-title "wow such #fail"
+#zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
+#zstyle ':notify:*' success-title "very #success. wow"
+
+#zplugins.load "marzocchi/zsh-notify" --if:"test -n $DISPLAY"
+
+# zplugins.load "zdharma/zgdbm"
+# zplugins.load "zdharma/zredis"
+
+# zplugins.load "zdharma/zui"
+
+# zplugins.load "zdharma/zconvey"
+
+#zstyle ":plugin:zgdbm" cppflags "-I/usr/local/include"  # Additional include directory
+#zstyle ":plugin:zgdbm" cflags "-Wall -O2 -g"            # Additional CFLAGS
+#zstyle ":plugin:zgdbm" ldflags "-L/usr/local/lib"       # Additional library directory
+
+# zplugins.load 'zdharma/history-search-multi-word'
+
+#zstyle ":history-search-multi-word" page-size "LINES/4"
+
+# zplugins.load "zdharma/zbrowse"
