@@ -1,37 +1,3 @@
 #!/bin/zsh
 
-# Finally
 zplugins.load-all-in plugins
-
-zplugins.load "zsh-users/zsh-history-substring-search"
-zplugins.load "akatrevorjay/fasd"
-
-zplugins.load "willghatch/zsh-hooks"
-zplugins.load "mafredri/zsh-async"
-
-#zplugins.load "akatrevorjay/composure"
-#zplugins.load "psprint/zsnapshot"
-zplugins.load "mollifier/zload"
-#zplugins.load "Tarrasch/zsh-functional"
-#zplugins.load "Tarrasch/zsh-bd" --lazy true
-#zplugins.load "Tarrasch/zsh-colors" --lazy true
-#zplugins.load "b4b4r07/emoji-cli" --lazy true
-#zplugins.load 'LockonS/terminal-workload-report' --lazy true
-#zplugins.load "molovo/revolver"
-
-GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-zplugins.load "RobSis/zsh-completion-generator"
-
-#zplugins.load "jamesob/desk" --dir "shell_plugins/zsh"
-
-zplugins.load "zsh-users/zsh-completions"
-
-#zplugins.load 'thewtex/tmux-mem-cpu-load' --post-update 'make'
-#zplugins.load "uvaes/fzf-marks"
-
-zplugins.load-all-in zplugins-compinit
-
-# zplugins.load "hlissner/zsh-autopair"
-zplugins.load "akatrevorjay/zsh-autopair"
-# zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
-zplugins.load "zdharma/fast-syntax-highlighting"

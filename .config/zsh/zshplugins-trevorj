@@ -1,25 +1,38 @@
+#!/bin/zsh
+
+zplugins.load "zsh-users/zsh-history-substring-search"
+zplugins.load "akatrevorjay/fasd"
+
+zplugins.load "willghatch/zsh-hooks"
+zplugins.load "mafredri/zsh-async"
+
+#zplugins.load "akatrevorjay/composure"
+zplugins.load "psprint/zsnapshot"
+zplugins.load "mollifier/zload"
+
+## ~~~~~~~~~~~
+## completions
+## ~~~~~~~~~~~
+GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
+zplugins.load "RobSis/zsh-completion-generator"
+
+zplugins.load "zsh-users/zsh-completions"
+
+#zplugins.load 'thewtex/tmux-mem-cpu-load' --post-update 'make'
+#zplugins.load "uvaes/fzf-marks"
 zplugins.load-all-in plugins-extra
+zplugins.load-all-in plugins-trevorj
 
-#zstyle ':notify:*' error-icon "https://media3.giphy.com/media/10ECejNtM1GyRy/200_s.gif"
-#zstyle ':notify:*' error-title "wow such #fail"
-#zstyle ':notify:*' success-icon "https://s-media-cache-ak0.pinimg.com/564x/b5/5a/18/b55a1805f5650495a74202279036ecd2.jpg"
-#zstyle ':notify:*' success-title "very #success. wow"
+## ~~~~~~~~
+## compinit
+## ~~~~~~~~
+zplugins.load-all-in zplugins-compinit
 
-#zplugins.load "marzocchi/zsh-notify" --if:"test -n $DISPLAY"
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+## plugins that must load past compinit
+## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# zplugins.load "hlissner/zsh-autopair"
+zplugins.load "akatrevorjay/zsh-autopair"
+# zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
+zplugins.load "zdharma/fast-syntax-highlighting"
 
-# zplugins.load "zdharma/zgdbm"
-# zplugins.load "zdharma/zredis"
-
-# zplugins.load "zdharma/zui"
-
-# zplugins.load "zdharma/zconvey"
-
-#zstyle ":plugin:zgdbm" cppflags "-I/usr/local/include"  # Additional include directory
-#zstyle ":plugin:zgdbm" cflags "-Wall -O2 -g"            # Additional CFLAGS
-#zstyle ":plugin:zgdbm" ldflags "-L/usr/local/lib"       # Additional library directory
-
-# zplugins.load 'zdharma/history-search-multi-word'
-
-#zstyle ":history-search-multi-word" page-size "LINES/4"
-
-# zplugins.load "zdharma/zbrowse"

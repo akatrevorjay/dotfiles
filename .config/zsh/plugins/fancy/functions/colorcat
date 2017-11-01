@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+colorcat() {
+    # Do a normal cat if we aren't interactive or are say, piping.
+    # I can't think of a reason why stdin would be a gotcha off the top of my head,
+    # but I'm playing it safe here.
+    if tty -s && test -t 0 && test -t 1
+    then
+        local file
+        for file in "$@"; do
+            local filter=()
+            case $file in
+                *.gz)   filter=(zcat) ;;
+                *.bz2)  filter=(bzcat) ;;
+                *.xz)   filter=(xzcat) ;;
+            esac
+
+            # local cmd=(pygmentize -O style=monokai -f terminal16m -g)
+            local cmd=(chroma --unbuffered -s monokai -f terminal16m)
+
+            [ $# -eq 1 ] || echo "[${0:t}] $file ${filter:+filter=$filter }" >&2
+
+            if [[ $#filter -gt 0 ]]; then
+                $filter $file | $cmd
+            else
+                $cmd $file
+            fi
+        done
+    else
+        \cat "$@"
+    fi
+}
+
+colorcat "$@"
