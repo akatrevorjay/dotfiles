@@ -23,3 +23,6 @@ REPO_ROOTS=($PROJECTS_ROOT $CODE_ROOT $BUILD_ROOT)
 (( ${+commands[vim]} )) && : ${EDITOR:=vim}
 (( ${+commands[vi]} )) && : ${EDITOR:=vi}
 export EDITOR
+
+gpg-ssh-agent || :
+

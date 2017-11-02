@@ -1,4 +1,7 @@
 import logging
+
+log = logging.getLogger(__name__)
+
 import collections
 import six
 import sys
@@ -47,10 +50,11 @@ except ImportError:
 __PYTUTILS_PATH = os.path.expanduser('~/.pytutils.py')
 
 if os.path.exists(__PYTUTILS_PATH):
-    with open(__PYTUTILS_PATH, 'r') as f:
-        exec (f.read())
-
-log = logging.getLogger(__name__)
+    try:
+        with open(__PYTUTILS_PATH, 'r') as f:
+            exec (f.read())
+    except Exception:
+        log.exception("Could not open pytutils at %r" % __PYTUTILS_PATH)
 
 IS_IPYTHON = os.path.basename(sys.argv[0]).startswith('ipython')
 IS_PYTHON = os.path.basename(sys.argv[0]).startswith('python')

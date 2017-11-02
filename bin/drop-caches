@@ -1,2 +1,3 @@
 #!/bin/sh
-echo 2 | sudo tee /proc/sys/vm/drop_caches
+val=${1:-2}
+echo ${val:?} | sudo tee /proc/sys/vm/drop_caches
