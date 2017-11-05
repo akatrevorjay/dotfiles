@@ -21,8 +21,6 @@ imwheel -b '4 5 6 7' -k -p -r -d &
 tkbd &
 ckb --background &
 
-# compton &
-
 #xsettingsd &
 gnome-settings-daemon
 
@@ -51,12 +49,12 @@ notify-proxy &
 #fcitx-autostart &
 #/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately &
 
-yubioath gui -t &
+# yubioath gui -t &
 easystroke &
 #kupfer &
 
 variety &
-sleep 5 && solaar &
+# sleep 5 && solaar &
 #(( ! ${+commands[wal]} )) \
 #  || wal -i $(< $HOME/.cache/wal/wal)
 

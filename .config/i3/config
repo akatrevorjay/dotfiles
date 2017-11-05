@@ -18,19 +18,22 @@ set $term tilix
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
-
-#for_window [class="nautilus"] border none
+for_window [class="nautilus"] border none
 
 # for_window [class="mpv"] floating enable border none move absolute position 0px 0px resize set 160 320
 for_window [class="ledbot"] floating enable border none move absolute position 0px 0px resize set 160 320
+for_window [class="xev"] floating enable border none
 
 for_window [class="tilix"] border none
+for_window [class="Tilix"] border none
 for_window [class="Alacritty"] border none
 for_window [class="cancer"] border none
 for_window [class="urxvt"] border none
 for_window [class="URxvt"] border none
 for_window [class="terminal"] border none
+
+for_window [class="firefox"] border none
+for_window [class="firefox-trunk"] border none
 
 for_window [class="Google-chrome"] border none
 for_window [class="google-chrome"] border none
@@ -54,8 +57,6 @@ for_window [class="panel"] border none floating enable sticky enable
 for_window [class="trayer"] border none floating enable sticky enable
 for_window [class="stalonetray"] border none floating enable sticky enable
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
-
 #
 # Status Bar:
 #
@@ -73,8 +74,6 @@ client.focused_inactive $bgu    $bgu        $fgu      $bgu        $bgu
 client.focused          $bg    $bgu        $fg       $bg        $bg
 
 #new_window normal 4
-
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
 
 #font pango:Input Sans Compressed 10
 font pango:PragmataPro Nerd Font 10
@@ -319,8 +318,6 @@ bindsym $mod+Pause exec lock-system
 
 bindsym $mod+i exec ibus-toggle
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
-
 ### Input configuration
 #
 # Example configuration:
@@ -336,9 +333,7 @@ bindsym $mod+i exec ibus-toggle
 # The escape symbol "\" has to be removed.
 # Read `man 5 i3-input` for more information about this section.
 
-#  vim: set ts=4 sw=4 tw=120 et ft=i3 :
-
-exec --no-startup-id ~/bin/xrandr-auto2
+exec --no-startup-id ~/bin/xrandr-auto
 exec --no-startup-id ~/bin/winit
 exec --no-startup-id tint2
 exec --no-startup-id compton
@@ -396,4 +391,6 @@ exec --no-startup-id compton
 #    }
 #}
 
+#  nopevim: set ts=4 sw=4 tw=120 et ft=i3 :
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :
+

@@ -86,18 +86,24 @@ done
 
 args=()
 
-edp_display=$(match_name 2880x1800)
+edp_display=$(match_mode 2880x1800 || match_name eDP)
 texas_display=$(match_mode 3440x1440)
 fourk_display=$(match_mode 3840x2160)
 tbolt_display=$(match_mode 2560x1440)
 
 if [[ -n $edp_display ]]; then
+	echo "Found eDP via $edp_display"
+
 	edp=(--output $edp_display)
 	edp+=(
-		--mode 2880x1800
-		#--scale 0.6x0.6
-		--scale 0.7x0.7
+		# --mode 2880x1800
+		# --scale 0.6x0.6
+		# --scale 0.7x0.7
+
+		--mode 1920x1080
+
 		--rotate normal
+
 		#--right-of DisplayPort-1
 		#--gamma 1.6:1.6:1.6
 	)
