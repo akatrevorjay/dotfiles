@@ -1,0 +1,36 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+hash -r
+pythons=(${commands[(I)python[2-3].[0-9]]})
+python_vers=(${pythons#python})
+pips=(pip${^python_vers})
+
+echo "-- pythons=$pythons"
+echo "-- python_vers=$python_vers"
+echo "-- pips=$pips"
+
+for cmd in $pythons $pips; do
+	[[ ${commands[$cmd]} != $NEOVIM_VENV/* ]] || continue
+	echo "-- Command \"$cmd\" not found in $NEOVIM_VENV" >&2
+	exit 1
+done
+
+function pips() {
+	local pip
+	for pip in $pips; do
+		command $pre $pip "$@" &
+	done
+	wait
+}
+
+function pythons() {
+	local python
+	for python in $pythons; do
+		command $pre $python "$@" &
+	done
+	wait
+}
+
+$0:t "$@"
+
