@@ -53,7 +53,6 @@ declare -xm 'ZSH_*'
 : ${S_COLORS:=auto}
 declare -xm DE BROWSER EDITOR PAGER S_COLORS
 
-
 case $TERM:l in
 	xterm|screen)
 		if [[ $(echotc Co) -ge 256 ]]; then
