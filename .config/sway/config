@@ -1,3 +1,6 @@
+include /etc/sway/security.d/*
+include /etc/sway/config.d/*
+
 output * bg ~/Pictures/Wallpapers/bg.jpg fill
 
 ### Variables
@@ -16,8 +19,6 @@ set $term3 alacritty
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
-
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 #for_window [class="nautilus"] border none
 
@@ -61,8 +62,6 @@ output DP-1 res 3840x1440 rate 100 scale 1 pos 0,0
 # output DP-2 res 2560x1440 scale 1 pos 3840,0
 output eDP-1 res 2880x1800 scale 2 pos 3840,0
 
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
-
 #
 # Status Bar:
 #
@@ -80,8 +79,6 @@ client.focused_inactive $bgu    $bgu        $fgu      $bgu        $bgu
 client.focused          $bg    $bgu        $fg       $bg        $bg
 
 #new_window normal 4
-
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
 
 #font pango:Input Sans Compressed 10
 font pango:PragmataPro Nerd Font 10
@@ -328,8 +325,6 @@ bindsym $mod+Pause exec lock-system
 
 bindsym $mod+i exec ibus-toggle
 
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
-
 ### Input configuration
 #
 # Example configuration:
@@ -345,17 +340,10 @@ bindsym $mod+i exec ibus-toggle
 # The escape symbol "\" has to be removed.
 # Read `man 5 sway-input` for more information about this section.
 
-#  vim: set ts=4 sw=4 tw=120 et ft=sway :
-
+# exec --no-startup-id ~/bin/xrandr-auto
 exec --no-startup-id ~/bin/winit
-
-#exec winit
-
-#exec xsettingsd
-#exec gnome-settings-daemon
-#exec kdeinit5
-#exec slack
-#exec google-chrome
+# exec --no-startup-id tint2
+# exec --no-startup-id compton
 
 
 #
@@ -373,7 +361,7 @@ exec --no-startup-id ~/bin/winit
 #}
 
 bar {
-    id bar0
+    # id bar0
 
     # status_command i3blocks
     #swaybar_command ~/bin/bar
@@ -404,7 +392,6 @@ bar {
     }
 }
 
-include /etc/sway/config.d/*
-#include /etc/sway/security.d/*
+include ~/.config/sway/config.d/*
 
 #  vim: set ts=4 sw=4 tw=120 et ft=sway :

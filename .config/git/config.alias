@@ -295,6 +295,7 @@
     sub-foreach = submodule foreach
     sub-init = submodule init
     sub-up = submodule update --init --recursive
+    su = sub-up
     sub-st = submodule status
     sub-mv = 'git-submodule-move'
     sub-sync = submodule sync

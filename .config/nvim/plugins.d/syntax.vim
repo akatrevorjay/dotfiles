@@ -390,7 +390,7 @@ if has('nvim')
     Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     "" rust
-    "Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
+    Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1

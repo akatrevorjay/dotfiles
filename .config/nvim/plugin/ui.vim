@@ -180,10 +180,17 @@ let g:badwolf_tabline = 0
 
 "colorscheme magellan
 
-let g:airline_theme = 'kolor'
+" let g:airline_theme = 'kolor'
 let g:tmuxline_theme = 'airline_visual'
 let g:moonflySpellReversed = 1
-colorscheme moonfly
+" colorscheme moonfly
+
+" let g:airline_theme = 'nordisk'
+" let g:airline_theme = 'angr'
+let g:airline_theme = 'serene'
+
+" let g:airline_theme = 'breezy'
+colorscheme colorsbox-stbright
 
 highlight Comment cterm=italic gui=italic
 

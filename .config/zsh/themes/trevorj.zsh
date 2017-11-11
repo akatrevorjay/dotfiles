@@ -1,1 +1,1 @@
-airline-thepurps.zsh
+airline-serenity.zsh

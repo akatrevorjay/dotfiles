@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 ## Set GPG TTY
-#export GPG_TTY=$(tty)
+export GPG_TTY=$(tty)
 
 gpg-refresh-agent() {
     ## Refresh gpg-agent tty in case user switches into an X session

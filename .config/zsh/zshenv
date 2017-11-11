@@ -53,6 +53,13 @@ declare -xm 'ZSH_*'
 : ${S_COLORS:=auto}
 declare -xm DE BROWSER EDITOR PAGER S_COLORS
 
+case ${XDG_CURRENT_DESKTOP:-$DE} in
+	KDE|GNOME) ;;
+	*)  : ${QT_QPA_PLATFORMTHEME:=qt5ct}
+		export QT_QPA_PLATFORMTHEME
+		;;
+esac
+
 case $TERM:l in
 	xterm|screen)
 		if [[ $(echotc Co) -ge 256 ]]; then
