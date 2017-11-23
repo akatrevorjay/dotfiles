@@ -2,9 +2,7 @@
 set -eo pipefail
 set -xv
 
-dir=${1:-$PWD}
-
-hashfile=$HOME/.local/share/dupremove.hashes
+hashfile=$HOME/.local/share/duperemove.hashes
 # bs=128k
 bs=8k
 
@@ -23,7 +21,8 @@ cmd=(
 	# -b $bs  # blocksize
 	# dedupe in same file
 	--dedupe-options=same
-	-h $dir
+	-h  # human readable
+	"$@"
 )
 
 sudo $cmd

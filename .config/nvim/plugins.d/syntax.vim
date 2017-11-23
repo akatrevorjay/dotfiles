@@ -115,6 +115,7 @@ Plug 'ap/vim-css-color'
 " Allows for python rst docstring support
 " A bit problematic as it's slow as balls
 Plug 'Rykka/riv.vim'  ", {'for': ['markdown', 'python', 'rst']}
+Plug 'kannokanno/previm'  ", {'for': ['markdown']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': 'bats'}

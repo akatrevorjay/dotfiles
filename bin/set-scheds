@@ -1,0 +1,25 @@
+#!/bin/zsh
+set -eo pipefail
+
+set-scheds() {
+    [ $# -gt 0 ] || set -- cfq mq-deadline
+	local qprio=("$@")
+
+	local d
+	for d in /sys/block/*; do
+		local s=$d/queue/scheduler
+
+		echo "- $d: current=$(<$s)"
+
+		local q
+		for q in $qprio; do
+			grep $q $s > /dev/null || continue
+			echo $q | sudo tee $s >/dev/null
+			echo "now: $(<$s)"
+			break
+		done
+	done
+}
+
+set-scheds "$@"
+

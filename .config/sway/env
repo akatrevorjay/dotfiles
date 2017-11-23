@@ -1,12 +1,24 @@
 
+
+#
+# Whether to not preload libgtk3-nocsd.so.0 even if GTK_CSD=0
+#
+# If this setting is set to 1, LD_PRELOAD and GTK_CSD will not be
+# touched upon session startup.
+#
 # Tons of things break with gdk atm
 #GDK_BACKEND=wayland
 
+# Disable client side deco
+export GTK_CSD=0
+export GTK3_NOCSD_IGNORE=0
+
 # Sigh, this one too.
 #QT_QPA_PLATFORM=wayland-egl
+QT_QPA_PLATFORM=wayland
 
-#CLUTTER_BACKEND=wayland
-#SDL_VIDEODRIVER=wayland
+CLUTTER_BACKEND=wayland
+SDL_VIDEODRIVER=wayland
 
 # or say wayland_shm
 #ECORE_EVAS_ENGINE=wayland_egl
