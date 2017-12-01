@@ -1,0 +1,20 @@
+#!/bin/zsh
+set -eo pipefail
+
+self=${0:t}
+self_bin=${self%-*}
+
+gover=${self##*-}
+case $gover in
+    $self) gover=1.9 ;;
+esac
+
+export GOROOT=/usr/lib/go-$gover
+export path=($GOROOT/bin $path)
+
+if [[ ! -d $GOROOT ]]; then
+    printf 'GOROOT=%s not found?\n' "$GOROOT" >&2
+    exit 127
+fi
+
+exec $GOROOT/bin/$self_bin "$@"

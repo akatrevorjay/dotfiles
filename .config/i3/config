@@ -33,7 +33,7 @@ for_window [class="URxvt"] border none
 for_window [class="terminal"] border none
 
 for_window [class="firefox"] border none
-for_window [class="firefox-trunk"] border none
+for_window [class="Nightly"] border none
 
 for_window [class="Google-chrome"] border none
 for_window [class="google-chrome"] border none
@@ -47,6 +47,7 @@ for_window [class="Uzbl-core"] focus child, layout stacking, focus
 #for_window [class="Uzbl-core"] focus child, layout tabbed, focus
 
 for_window [class="(?i)mplayer"] floating enable
+for_window [class="vlc"] floating enable
 
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable

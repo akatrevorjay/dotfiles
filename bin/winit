@@ -9,7 +9,7 @@ function gnome-settings-daemon {
 		command gnome-settings-daemon &
 	else
 		for i in /usr/lib/gnome-settings-daemon/gsd*(*); do
-			killall -u $USER ${i:?}
+			killall -u $USER ${i:?} || :
 			$i &
 		done
 	fi
@@ -17,18 +17,16 @@ function gnome-settings-daemon {
 
 inputplug -d -0 -c $HOME/.config/inputplug/hook &
 imwheel -b '4 5 6 7' -k -p -r -d &
-
 tkbd &
-ckb --background &
 
 #xsettingsd &
 gnome-settings-daemon
 
 gnome-keyring-daemon &
-seahorse-daemon &
+# seahorse-daemon &
 
 # /usr/lib/gcr/gcr-prompter &
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
 
 #sleep 1
@@ -37,20 +35,21 @@ seahorse-daemon &
 
 sleep 1
 
+ckb --background &
 nm-applet &
 usbguard-applet-qt &
 pasystray &
 #gpomme &
 parcellite &
 #winswitch_applet &
-indicator-kdeconnect &
-notify-proxy &
+# indicator-kdeconnect &
+# notify-proxy &
 
 #fcitx-autostart &
 #/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately &
 
 # yubioath gui -t &
-easystroke &
+# easystroke &
 #kupfer &
 
 variety &

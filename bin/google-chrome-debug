@@ -1,0 +1,10 @@
+#!/bin/zsh
+set -eo pipefail
+set -xv
+
+cmd=(
+	google-chrome
+	--remote-debugging-port=9222
+)
+
+exec $cmd "$@"

@@ -14,8 +14,7 @@
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
 [[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
-
-# setopt sourcetrace
+[[ -z $ZSH_SOURCETRACE ]] || setopt sourcetrace
 
 # XDG defaults
 if (( ${+commands[xdg-user-dirs-update]} )); then

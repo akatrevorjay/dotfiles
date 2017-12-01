@@ -2,6 +2,8 @@
 
 (( ${+commands[helm]} )) || return
 
+autoload -Uz zcachefile
+
 () {
 	local cache=$(zcachefile helm)
 

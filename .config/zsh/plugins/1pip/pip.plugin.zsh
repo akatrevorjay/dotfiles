@@ -7,8 +7,9 @@
 		pip_cache=$(zcachefile $pip_cmd)
 
 		if [ ${commands[$pip_cmd]} -nt $pip_cache -o ! -s $pip_cache ]; then
-    		pip completion --zsh \
-      		>| $pip_cache
+			pip completion --zsh \
+			| sed -e 's@pip@'"$pip_cmd"'@g' \
+			>| $pip_cache
 		fi
 		source $pip_cache
 	done

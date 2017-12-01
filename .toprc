@@ -7,7 +7,7 @@ Job	fieldscur=¥¦¹·:(³´Ä»½@<§Å)*+,-./012568>?ABCFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdef
 	winflags=194980, sortindx=21, maxtasks=0, graph_cpus=0, graph_mems=1
 	summclr=5, msgsclr=5, headclr=5, taskclr=5
 Mem	fieldscur=»¼½¾¿À¦AÌÍBNÃD34Å·ºÆ¥'()*+,-./0125689GHIJKOPQRSTUVWXYZ[\]^_`abcdefghij
-	winflags=4880788, sortindx=21, maxtasks=0, graph_cpus=2, graph_mems=0
+	winflags=719252, sortindx=21, maxtasks=0, graph_cpus=0, graph_mems=0
 	summclr=3, msgsclr=3, headclr=3, taskclr=3
 Usr	fieldscur=0´'(*µ¦¹ÄÅ·ºÆ¥)+,-./12368;<=>?@ABCGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghij
 	winflags=195476, sortindx=18, maxtasks=0, graph_cpus=2, graph_mems=1
