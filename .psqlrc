@@ -17,3 +17,7 @@
 
 -- complete keywords (like SELECT) in upper-case
 \set COMP_KEYWORD_CASE upper
+
+-- Disable nasty paging
+\pset pager off
+

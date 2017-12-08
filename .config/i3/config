@@ -337,7 +337,7 @@ bindsym $mod+i exec ibus-toggle
 exec --no-startup-id ~/bin/xrandr-auto
 exec --no-startup-id ~/bin/winit
 exec --no-startup-id tint2
-exec --no-startup-id compton
+# exec --no-startup-id compton
 
 #exec xsettingsd
 #exec gnome-settings-daemon

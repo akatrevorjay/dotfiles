@@ -9,11 +9,11 @@ function githubize() {
 
 	local r ret=()
 	for r in "$@"; do
-		if [[ $r -pcre-match ^([^/]+)$ ]] && [[ -n $hub_username ]]; then
+		if [[ $r -pcre-match ^([^/\.]+)$ ]] && [[ -n $hub_username ]]; then
 			r="$hub_username/$r"
 		fi
 
-		if [[ $r -pcre-match ^([^/]+)/([^/]+)$ ]]; then
+		if [[ $r -pcre-match ^([^/\.]+)/([^/]+)$ ]]; then
 			r="$hub_prefix$r"
 		fi
 
