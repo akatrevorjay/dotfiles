@@ -1,0 +1,131 @@
+#!/usr/bin/env python3
+"""
+json2yaml -- what it says.
+
+Symlink it to `j2y`, `y2j`, 'yaml2json` and it'll do what you expect.
+
+https://gist.github.com/akatrevorjay/918755c8eb2c66a48566d77fb578630c
+"""
+
+import os
+import sys
+import argparse
+
+import json
+import yaml
+
+import collections
+
+
+class OrderedYAML(object):
+
+    def dump(self, data, stream=None, Dumper=yaml.Dumper, object_pairs_hook=collections.OrderedDict, **kwds):
+
+        class OrderedDumper(Dumper):
+            pass
+
+        def _dict_representer(dumper, data):
+            return dumper.represent_mapping(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, data.items())
+
+        OrderedDumper.add_representer(object_pairs_hook, _dict_representer)
+
+        return yaml.dump(data, stream, OrderedDumper, **kwds)
+
+    def load(self, stream, Loader=yaml.Loader, object_pairs_hook=collections.OrderedDict, **kwds):
+
+        class OrderedLoader(yaml.Loader):
+            pass
+
+        def construct_mapping(loader, node):
+            loader.flatten_mapping(node)
+            return object_pairs_hook(loader.construct_pairs(node))
+
+        OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
+
+        return yaml.load(stream, OrderedLoader, **kwds)
+
+
+oyaml = OrderedYAML()
+
+
+class OrderedJSON(object):
+    __kwargs = dict(object_pairs_hook=collections.OrderedDict)
+
+    def dump(self, data, stream=None, **kwargs):
+        # kw = self.__kwargs.copy()
+        kw = dict(
+            indent=2,
+        )
+        kw.update(kwargs)
+
+        if not stream:
+            return json.dumps(data, **kw)
+        else:
+            return json.dump(data, stream, **kw)
+
+    def load(self, fp, **kwargs):
+        kw = self.__kwargs.copy()
+        kw.update(kwargs)
+
+        return json.load(fp, **kw)
+
+
+ojson = OrderedJSON()
+
+
+def json2yaml(args, stream=sys.stdout):
+    """Convert json to yaml."""
+    data = ojson.load(args.infile)
+    ret = oyaml.dump(data, stream=stream)
+    return ret
+
+
+json2yaml.aliases = ['j2y']
+
+
+def yaml2json(args, stream=sys.stdout):
+    """Convert yaml to json."""
+    data = oyaml.load(args.infile)
+    ret = ojson.dump(data, stream=stream)
+    return ret
+
+
+yaml2json.aliases = ['y2j']
+
+_COMMANDS = [json2yaml, yaml2json]
+
+
+def _arg_parser_factory():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        'infile', nargs='?', type=argparse.FileType('r'), default=sys.stdin, help='Input file to parse (default: standard input)'
+    )
+
+    return parser
+
+
+def _parse_args(parser=_arg_parser_factory):
+    if callable(parser):
+        parser = parser()
+
+    args = parser.parse_args()
+
+    return args
+
+
+def main(_commands=_COMMANDS):
+    cmd = os.path.basename(sys.argv[0])
+
+    args = _parse_args()
+
+    for meth in _commands:
+        names = [meth.__name__] + getattr(meth, 'aliases', [])
+        if cmd in names:
+            return meth(args)
+
+    raise ValueError("I don't know what I'm supposed to do for '%s'." % cmd)
+
+
+if __name__ == '__main__':
+    main()
