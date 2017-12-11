@@ -334,6 +334,9 @@ bindsym $mod+i exec ibus-toggle
 # The escape symbol "\" has to be removed.
 # Read `man 5 i3-input` for more information about this section.
 
+# load recent bg
+exec --no-startup-id ~/.fehbg
+
 exec --no-startup-id ~/bin/xrandr-auto
 exec --no-startup-id ~/bin/winit
 exec --no-startup-id tint2

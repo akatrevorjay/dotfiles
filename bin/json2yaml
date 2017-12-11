@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """
 json2yaml -- what it says.
 
@@ -19,7 +19,7 @@ import collections
 
 class OrderedYAML(object):
 
-    def dump(self, data, stream=None, Dumper=yaml.Dumper, object_pairs_hook=collections.OrderedDict, **kwds):
+    def dump(self, data, stream=None, Dumper=yaml.Dumper, object_pairs_hook=collections.OrderedDict, **kwargs):
 
         class OrderedDumper(Dumper):
             pass
@@ -29,9 +29,9 @@ class OrderedYAML(object):
 
         OrderedDumper.add_representer(object_pairs_hook, _dict_representer)
 
-        return yaml.dump(data, stream, OrderedDumper, **kwds)
+        return yaml.dump(data, stream, OrderedDumper, **kwargs)
 
-    def load(self, stream, Loader=yaml.Loader, object_pairs_hook=collections.OrderedDict, **kwds):
+    def load(self, stream, Loader=yaml.Loader, object_pairs_hook=collections.OrderedDict, **kwargs):
 
         class OrderedLoader(yaml.Loader):
             pass
@@ -42,7 +42,7 @@ class OrderedYAML(object):
 
         OrderedLoader.add_constructor(yaml.resolver.BaseResolver.DEFAULT_MAPPING_TAG, construct_mapping)
 
-        return yaml.load(stream, OrderedLoader, **kwds)
+        return yaml.load(stream, OrderedLoader, **kwargs)
 
 
 oyaml = OrderedYAML()

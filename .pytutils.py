@@ -259,8 +259,10 @@ def burp(filename, contents, mode='w', allow_stdout=True):
 
 
 def format_dict_recursively(
-    mapping, raise_unresolvable=True, strip_unresolvable=False, conversions={'True': True,
-                                                                             'False': False}
+    mapping, raise_unresolvable=True, strip_unresolvable=False, conversions={
+        'True': True,
+        'False': False
+    }
 ):
     """Format each string value of dictionary using values contained within
     itself, keeping track of dependencies as required.
