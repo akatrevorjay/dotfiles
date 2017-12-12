@@ -25,7 +25,8 @@ This is being done on pure best effort, and PRs are welcome for just about anyth
 Goals
 -----
 
-* [OSX] or [Linux].
+* Primarily `Linux`, but `OSX` is also targetted, ie nothing should _break_.
+  - This is true even in the case of osx's insane `PATH` order enforcement; which this works around in `zshenv`.
 * Relatively easy to understand, with bells and whistles galore.
 * Attempts to adhere to [XDG] spec (for the important tidbits at least).
 * Everything should be a plugin (batteries included, but removable).
@@ -35,7 +36,8 @@ Goals
 Features
 --------
 
-* Vigorous [Zsh] setup [dotfiles-zsh]
+### Vigorous [Zsh] setup [dotfiles-zsh]
+
   * `SSH`: If you're remote, prefix prompt with `$HOSTNAME` and auto-spawn `tmux`.
   * `Linux`: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
   * `colorcat` is a `cat` drop-in wrapper that automatically applies highlighting to the output without breaking usage.
@@ -65,25 +67,28 @@ Features
 
     Shame list includes `pip*` and nearly every app written in golang.
 
-  Paths to browse:
-    - `bin/`
-      - `bin/3p`: Mostly automagic source code compilation and installation.
-      - `bin/up`: Update everything, yo.
-    - `.config/zsh/{zprofile,zshenv,zshrc}`: Primary entrypoints. Sets up environment and loads plugins.
-    - `.config/zsh/zshplugins`: States what plugins should load.
-    - `.config/zsh/plugins*/`: Isolated zsh plugin bundles.
+Paths to browse:
+  - `bin/`
+    - `bin/3p`: Mostly automagic source code compilation and installation.
+    - `bin/up`: Update everything, yo.
+  - `.config/zsh/{zprofile,zshenv,zshrc}`: Primary entrypoints. Sets up environment and loads plugins.
+  - `.config/zsh/zshplugins`: States what plugins should load.
+  - `.config/zsh/plugins*/`: Isolated zsh plugin bundles.
 
-* Semi-organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
+### Semi-organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
+
   * [vim-plug] for plugin management; check `.config/nvim/plugins.d/`
 
-  Paths to browse:
-    - `.config/nvim/`: Neovim configuration, but also is used in vim8.
+Paths to browse:
+  - `.config/nvim/`: Neovim configuration, but also is used in vim8.
 
-* [tmux] (with plugins via `tpm`) [dotfiles-tmux]
+### [tmux] (with plugins via `tpm`) [dotfiles-tmux]
+
   * [tpm] for plugins
 
-  Paths to browse:
-    - `.config/tmux/`: Tmux configuration
+Paths to browse:
+  - `.config/tmux/`: Tmux configuration
+
 
 Usage
 -----
@@ -104,20 +109,15 @@ yadm clone git@github.com:akatrevorjay/dotfiles.git
 yadm submodule update --init
 ```
 
-Original repos
---------------
-
-Old repos that this will be split back into once better support for submodules are built into yadm:
-
-  * [https://github.com/akatrevorjay/dotfiles-shell.git|dotfiles-shell]
-  * [https://github.com/akatrevorjay/dotfiles-vim.git|dotfiles-vim]
-  * [https://github.com/akatrevorjay/dotfiles-tmux.git|dotfiles-tmux]
-
 Related
 -------
 
 [yadm]: https://github.com/TheLocehiliosan/yadm
-[dotfiles-zsh]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/zsh
-[dotfiles-vim]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/nvim
-[dotfiles-tmux]: https://github.com/akatrevorjay/dotfiles/tree/develop/.config/tmux
+[libtrash]: https://github.com/akatrevorjay/libtrash
+[antibody]: https://github.com/akatrevorjay/antibody
+[vim-plug]: https://github.com/junegunn/vim-plug
+[tmux]: http://github.com/tmux/tmux
+[XDG]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
+[airline]: https://github.com/vim-airline/vim-airline
+[promptline]: https://github.com/edkolev/promptline.vim
 
