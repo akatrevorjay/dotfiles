@@ -3,7 +3,7 @@ dotfiles
 
 Opinionated garbage for my dotfiles setup. Uses [yadm] to manage them in your home.
 
-Used daily by a few people at this point.
+Used daily by a few people at this point. Zulu help them.
 
 News
 ----
@@ -27,15 +27,18 @@ Features
 --------
 
 * Vigorous [Zsh] setup [dotfiles-zsh]
-  * [zgen] for plugins
+  * [antibody] for plugins (I currently use my fork because I have breaking changes that still haven't integrated)
   * [airline]/[promptline] based prompt
-  * Prefixes prompt with `$HOSTNAME` if you're in through SSH
+  * If you're logging in from SSH, prefix prompt with `$HOSTNAME` and auto-spawn `tmux`
   * Linux: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
-* Organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
+  * `colorcat` is a `cat` drop-in wrapper that automatically applies highlighting to the output for interactive use
+    cases. If used on multiple files, it will even (to stderr only) prefix each file with it's name.
+
+* Semi-organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
   * [vim-plug] for plugins
+
 * [tmux] (with plugins via `tpm`) [dotfiles-tmux]
   * [tpm] for plugins
-  * Starts tmux automagically if you're in through SSH
 
 Usage
 -----
