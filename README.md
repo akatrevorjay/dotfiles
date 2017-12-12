@@ -38,7 +38,7 @@ Features
 
 ### Vigorous [Zsh] setup [dotfiles-zsh]
 
-  * `SSH`: If you're remote, prefix prompt with `$HOSTNAME` and auto-spawn `tmux`.
+  * `SSH`: If you're remote, prefix prompt with `$HOSTNAME`.
   * `Linux`: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
   * `colorcat` is a `cat` drop-in wrapper that automatically applies highlighting to the output without breaking usage.
     - Breakage is avoided by paying attention to if you have a tty, have stdin, are interactive, etc etc
@@ -75,15 +75,16 @@ Paths to browse:
   - `.config/zsh/zshplugins`: States what plugins should load.
   - `.config/zsh/plugins*/`: Isolated zsh plugin bundles.
 
-### Semi-organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
+### Semi-organized vim configuration
 
   * [vim-plug] for plugin management; check `.config/nvim/plugins.d/`
 
 Paths to browse:
   - `.config/nvim/`: Neovim configuration, but also is used in vim8.
 
-### [tmux] (with plugins via `tpm`) [dotfiles-tmux]
+### [tmux]
 
+  * `SSH`: If you're remote; auto-spawns tmux session.
   * [tpm] for plugins
 
 Paths to browse:
@@ -93,21 +94,23 @@ Paths to browse:
 Usage
 -----
 
-Install [yadm]:
+1. Install (using [yadm], which is effectively just a dope wrapper around git):
 
 ```sh
-# Linux
-sudo apt install yadm
-# OSX
-brew install yadm
+case "${OSTYPE:?}" in
+  linux*)   sudo apt install -y yadm ;;
+  darwin*)  brew install yadm ;;
+esac
 ```
 
-Clone via [yadm]:
+2. Clone:
 
 ```sh
 yadm clone git@github.com:akatrevorjay/dotfiles.git
 yadm submodule update --init
 ```
+
+3. Yolo swag
 
 Related
 -------
@@ -120,4 +123,5 @@ Related
 [XDG]: https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 [airline]: https://github.com/vim-airline/vim-airline
 [promptline]: https://github.com/edkolev/promptline.vim
+[tpm]: https://github.com/tmux-plugins/tpm
 
