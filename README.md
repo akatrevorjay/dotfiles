@@ -118,9 +118,6 @@ yadm clone --bootstrap 'git@github.com:akatrevorjay/dotfiles.git'
 sweg sweg sweg sweg
 
 
-Related
--------
-
 [yadm]: https://github.com/TheLocehiliosan/yadm
 [libtrash]: https://github.com/akatrevorjay/libtrash
 [antibody]: https://github.com/akatrevorjay/antibody
