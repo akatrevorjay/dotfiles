@@ -3,7 +3,14 @@ dotfiles
 
 Opinionated garbage for my dotfiles setup. Uses [yadm] to manage them in your home.
 
-Used daily by a few people at this point. Zulu help them.
+Used daily by a few people at this point. Lord Zulu help them.
+
+A lot of this are quick hacks, a lot took some time too.
+Due to this, I don't promise that everything is exactly documented, but I do promise good things to those who can read.
+If something sucks, tell me why! I don't mind strong opinions; especially so if they have backing data.
+
+Yolo swag.
+
 
 News
 ----
@@ -11,7 +18,6 @@ News
 We've been doing a mass non-opinionation as others have started to utilize these as well.
 This is being done on pure best effort, and PRs are welcome for just about anything.
 
-In order to properly separate everything and maintain separate local forks, [yadm] will most likely need to be extended in order to be able to better manage per-user disparity, especially in regards to gpg encrypted files, which should most likely be stored in a separate repo. This honestly needs some work to begin with (in `yadm`); a blank line for instance counts as a wildcard gone wild.
 
 Goals
 -----
@@ -27,12 +33,20 @@ Features
 --------
 
 * Vigorous [Zsh] setup [dotfiles-zsh]
-  * [antibody] for plugins (I currently use my fork because I have breaking changes that still haven't integrated)
-  * [airline]/[promptline] based prompt
-  * If you're logging in from SSH, prefix prompt with `$HOSTNAME` and auto-spawn `tmux`
-  * Linux: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
-  * `colorcat` is a `cat` drop-in wrapper that automatically applies highlighting to the output for interactive use
-    cases. If used on multiple files, it will even (to stderr only) prefix each file with it's name.
+  * `SSH`: If you're remote, prefix prompt with `$HOSTNAME` and auto-spawn `tmux`.
+  * `Linux`: [libtrash] used if available for `rm`, otherwise supports such things as [gomi], [safe-rm], etc
+  * `colorcat` is a `cat` drop-in wrapper that automatically applies highlighting to the output without breaking usage.
+    - Breakage is avoided by paying attention to if you have a tty, have stdin, are interactive, etc etc
+    - If used on multiple files, it will even prefix each file with it's name (to stderr only just in case)
+  * [antibody] as a lightweight shim for parallel plugin loads/updates.
+    - Note: I currently use my fork because I have breaking changes that still haven't integrated
+  * [airline]/[promptline] based prompts (but totally configurable to whatever you want)
+
+  * A zillion other tools, mostly that I've written, some modified. Places to browse:
+    - `bin/`
+    - `.config/zsh/plugins/`
+    - `.config/nvim/`
+    - `.config/tmux/`
 
 * Semi-organized [NeoVim]/[Vim]/[MacVim] configuration [dotfiles-vim]
   * [vim-plug] for plugins
