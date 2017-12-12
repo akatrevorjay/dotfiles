@@ -5,7 +5,7 @@ local cmd=(
 )
 
 case $UID in
-    0   # Already root, no need to elevate.
+    0)   # Already root, no need to elevate.
         ;;
     *)  # Not root; elevate.
         cmd=(sudo $cmd)

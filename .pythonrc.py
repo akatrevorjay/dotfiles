@@ -2,12 +2,12 @@ import logging
 
 log = logging.getLogger(__name__)
 
-from pytutils.lazy.lazy_import import lazy_import
-import pytutils.lazy.lazy_regex
-pytutils.lazy.lazy_regex.install_lazy_compile()
+# from pytutils.lazy.lazy_import import lazy_import
+# import pytutils.lazy.lazy_regex
+# pytutils.lazy.lazy_regex.install_lazy_compile()
 
-import demandimport
-demandimport.enable()
+# import demandimport
+# demandimport.enable()
 
 import collections
 import six

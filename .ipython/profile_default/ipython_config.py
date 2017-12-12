@@ -28,10 +28,12 @@ import warnings
 
 # List of files to run at IPython startup.
 c.InteractiveShellApp.exec_files = ['~/.ipythonrc.py']
+# c.InteractiveShellApp.exec_files = []
 
 # Run the file referenced by the PYTHONSTARTUP environment variable at IPython
 # startup.
-c.InteractiveShellApp.exec_PYTHONSTARTUP = True
+# c.InteractiveShellApp.exec_PYTHONSTARTUP = True
+c.InteractiveShellApp.exec_PYTHONSTARTUP = False
 
 # dotted module name of an IPython extension to load.
 # c.InteractiveShellApp.extra_extension = ''
