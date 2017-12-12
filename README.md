@@ -77,12 +77,16 @@ Paths to browse:
 
 ### Semi-organized vim configuration
 
+  * Primarily meant for Neovim, but also usable with vim8 for those times you may need it.
+    * With stock vim builds (including `MacVim`, `gvim`), _some_ degradation of functionality is there, but namely it shouldn't _break_.
+    * When on vim8 instead, neovim remote plugin support is _somewhat_ supported thanks to a shim from the guy who wrote `vim-completion-manager`. Better than nothing. _YMMV_.
+  * Supports most GUIs such as `nvim-qt` or `pynvim` with simple hooks for when you need them to deviate from the cli.
   * [vim-plug] for plugin management; check `.config/nvim/plugins.d/`
 
 Paths to browse:
   - `.config/nvim/`: Neovim configuration, but also is used in vim8.
 
-### [tmux]
+### [tmux] configuration:
 
   * `SSH`: If you're remote; auto-spawns tmux session.
   * [tpm] for plugins
@@ -106,11 +110,13 @@ esac
 2. Clone:
 
 ```sh
-yadm clone git@github.com:akatrevorjay/dotfiles.git
-yadm submodule update --init
+yadm clone --bootstrap 'git@github.com:akatrevorjay/dotfiles.git'
 ```
 
-3. Yolo swag
+3. Yolo
+
+sweg sweg sweg sweg
+
 
 Related
 -------
