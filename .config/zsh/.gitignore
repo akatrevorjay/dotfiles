@@ -9,3 +9,9 @@ plugins/.gitkeep
 zgen
 local
 /themes/airline-snapshot*
+/urls
+
+*wat*
+*wip*
+
+.chpwd*

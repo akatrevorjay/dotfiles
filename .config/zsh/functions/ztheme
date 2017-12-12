@@ -1,14 +1,20 @@
 #!/bin/zsh
 
-[ $# -gt 0 ] || set -- $ZSH_THEME $USER default
+ztheme() {
+    [ $# -gt 0 ] || set -- $ZSH_THEME $USER default
 
-local names=("$@")
-[[ -z $SSH_CONNECTION ]] || names+=(${^names}-ssh $names ssh)
-[[ -z $TMUX ]] || names=(${^names}-tmux $names tmux)
+    local zdotdirs=($LOCAL_ZDOTDIR $ZDOTDIRS)
 
-for fn in ${^ZDOTDIRS}/themes/${^names}{,.zsh,.sh}(-.N); do
-    source $fn
-    return
-done
+    local names=("$@")
+    [[ -z $SSH_CONNECTION ]] || names+=(${^names}-ssh $names ssh)
+    [[ -z $TMUX ]] || names=(${^names}-tmux $names tmux)
 
-return 1
+    for fn in ${^zdotdirs}/themes/${^names}{,.zsh,.sh}(-.N); do
+        source $fn
+        return
+    done
+
+    return 1
+}
+
+ztheme "$@"
