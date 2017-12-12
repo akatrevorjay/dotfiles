@@ -48,8 +48,8 @@ Features
   * A zillion other tools, mostly that I've written, some modified.
 
   * Nearly everything supports local extension via `~/.local/zsh/`; analogous to `~/.config/zsh` here,
-  but local to your machine. This of course includes plugins, functions, and completions.
-  Same idea goes for a lot of this, eg user bin (`~/.local/{s,}bin` take precedence over `~/{s,bin}`), manpath's, etc.
+    but local to your machine. This of course includes plugins, functions, and completions.
+    Same idea goes for a lot of this, eg user bin (`~/.local/{s,}bin` take precedence over `~/{s,bin}`), manpath's, etc.
 
   * Lots of development environment support.
   * Defaults aim to work for most, but all paths should be overridable to taste via env vars.
@@ -57,13 +57,13 @@ Features
 
   * Smart completion caching for slow-to-export completion functions.
 
-  This is for applications that have this _god awful_ idea that I want to **execute** them _each time_ I load my shell.
+    This is for applications that have this _god awful_ idea that I want to **execute** them _each time_ I load my shell.
 
-  If the binary has updated since the cache was created however, the cache is busted.
+    If the binary has updated since the cache was created however, the cache is busted.
 
-  By avoiding this, shell startup is lightning quick, but your bells and whistles still intact, even on extremely low powered embedded devices, which I use these on all the time ;)
+    By avoiding this, shell startup is lightning quick, but your bells and whistles still intact, even on extremely low powered embedded devices, which I use these on all the time ;)
 
-  Shame list includes `pip*` and nearly every app written in golang.
+    Shame list includes `pip*` and nearly every app written in golang.
 
   Paths to browse:
     - `bin/`
