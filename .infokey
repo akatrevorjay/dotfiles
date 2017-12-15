@@ -1,0 +1,18 @@
+#info
+
+#var
+# vi-keys=on
+mouse=on
+nodeline=print
+show-index-match=On
+visible-bell=On
+
+scroll-behavior=Continuous
+# cursor-movement-scrolls=Off
+
+highlight-searches=bgyellow,black
+link-style=yellow
+active-link-style=yellow,bold,bgblack
+match-style=underline,bold,blue
+
+automatic-footnotes=on
