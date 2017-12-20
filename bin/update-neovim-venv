@@ -1,7 +1,18 @@
 #!/usr/bin/env zsh
 set -eo pipefail
 
-: ${NEOVIM_VENV:=~/.virtualenvs/neovim}
+find_pythons() {
+	hash -r
+	pythons=(${commands[(I)python[2-3].[0-9]]})
+	python_vers=(${pythons#python})
+	pips=(pip${^python_vers})
+
+	echo "-- pythons=$pythons"
+	echo "-- python_vers=$python_vers"
+	echo "-- pips=$pips"
+}
+
+: ${NEOVIM_VENV:=$HOME/.virtualenvs/neovim}
 
 pre=()
 if (( ${+commands[prefixout]} )); then
@@ -11,8 +22,7 @@ fi
 if [[ ! -d $NEOVIM_VENV ]]; then
 	echo "-- Creating neovim venv: $NEOVIM_VENV"
 
-	hash -r
-	pythons=(${commands[(I)python[2-3].[0-9]]})
+	find_pythons
 
 	# default to the highest python baby
 	def_py=${pythons[-1]}
@@ -41,19 +51,17 @@ if [[ ! -d $NEOVIM_VENV ]]; then
 	$pre rm -fv $NEOVIM_VENV/**/no-global-site-packages.txt
 fi
 
-path=(
-	$NEOVIM_VENV/bin
-	$path
-)
+use-venv() {
+	local venv=${1:?}
+	path=(
+		$venv/bin
+		$path
+	)
 
-hash -r
-pythons=(${commands[(I)python[2-3].[0-9]]})
-python_vers=(${pythons#python})
-pips=(pip${^python_vers})
+	find_pythons
+}
 
-echo "-- pythons=$pythons"
-echo "-- python_vers=$python_vers"
-echo "-- pips=$pips"
+use-venv $NEOVIM_VENV
 
 for cmd in $pythons $pips; do
 	[[ ${commands[$cmd]} != $NEOVIM_VENV/* ]] || continue
@@ -69,15 +77,26 @@ function pips() {
 	wait
 }
 
-pips install --pre -U neovim \
-	jedi \
-	rope ropevim \
-	typing \
-	isort yapf pyflakes flake8 mccabe bandit \
-	mistune psutil setproctitle \
-	greenlet gevent
+pips install --pre -U neovim-gui || :
 
-$pre pip2 install --pre -U neovim-gui
+tools_pkgs=(
+	isort yapf pyflakes flake8 mccabe bandit
+	mistune psutil setproctitle
+)
+pips install --pre -U $tools_pkgs || :
+
+deps_pkgs=(
+	greenlet gevent
+)
+pips install --pre -U $deps_pkgs || :
+
+nvim_pkgs=(
+	neovim
+	jedi
+	rope ropevim
+	typing
+)
+pips install --pre -U $nvim_pkgs
 
 pips install --pre -U 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
 
