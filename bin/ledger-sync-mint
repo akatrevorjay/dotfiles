@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+
+import collections
+import datetime
+import itertools
+import json
+import logging
+import os
+import pickle
+import threading
+
+import docopt
+import numpy as np
+import pandas as pd
+
+import meinconf
+import mintapi
+from pytutils.files import burp, islurp, slurp
+from pytutils.pretty import pf, pp
+
+log = logging.getLogger(__name__)
+
+_JSON_HANDLERS = {
+    (datetime.datetime, datetime.date): lambda obj: obj.isoformat(),
+}
+
+
+def _json_default_handler(obj: object, _handlers=_JSON_HANDLERS):
+    for kind_or_kinds, meth in _handlers.items():
+        if isinstance(obj, kind_or_kinds):
+            return meth(obj)
+
+
+def take_jdumps(*args, **kwargs):
+    kwargs['default'] = _json_default_handler
+    return json.dumps(*args, **kwargs)
+
+
+def _mint_factory(email, passwd=None):
+    if passwd is None:
+        import keyring
+        passwd = keyring.get_password('mintapi', email)
+
+    # ius_session and thx_guid are optional, and will be automatically extracted if possible (see above for installing selenium/chromedriver)
+    mint = mintapi.Mint(email, passwd)
+
+    return mint
+
+
+def main(write_files=True, refresh_after=True):
+    email = 'mint@trevor.joynson.io'
+
+    mint = _mint_factory(email)
+
+    # Get basic account information
+    accounts = mint.get_accounts()
+
+    # Get extended account detail at the expense of speed - requires an
+    # additional API call for each account
+    accountsx = mint.get_accounts(True)
+
+    # Get budget information
+    budgets = mint.get_budgets()
+
+    # Get transactions
+    xact_kw = dict(
+        # start_date='01/01/2000',
+        include_investment=True,
+        remove_pending=False,
+        skip_duplicates=True,
+    )
+
+    xactx = mint.get_detailed_transactions(**xact_kw)
+
+    xact_kw.pop('remove_pending')
+    xact_kw.pop('skip_duplicates')
+
+    # xact_pd = mint.get_transactions(**xact_kw)  # as pandas dataframe
+    xact_csv = mint.get_transactions_csv(**xact_kw)  # as raw csv data
+    xact_json = mint.get_transactions_json(**xact_kw)
+
+    net_worth = mint.get_net_worth()  # Get net worth
+
+    if refresh_after:
+        # Initiate an account refresh
+        mint.initiate_account_refresh()
+
+    if write_files:
+        out = {
+            'accounts.json': lambda: take_jdumps(accounts),
+            'accountsx.json': lambda: take_jdumps(accountsx),
+            'budgets.json': lambda: take_jdumps(budgets),
+            'net_worth.json': lambda: take_jdumps(net_worth),
+            'xact.json': lambda: ''.join(xact_json),
+            'xact.csv': lambda: xact_csv.decode(),
+            # 'xact.pd': lambda: pickle.dumps(xact_pd),
+        }
+
+        for fn, meth in out.items():
+            burp(fn, meth())
+
+    return accountsx, budgets, net_worth, xactx
+
+
+if __name__ == '__main__':
+    logging.basicConfig(
+        level=logging.DEBUG,
+        # level=logging.INFO,
+        # Match squid log output
+        format='%(asctime)s| %(name)s/%(process)d: %(message)s '
+        '@%(funcName)s:%(lineno)d #%(levelname)s',
+        datefmt='%Y/%m/%d %H:%M:%S'
+    )
+
+    # args = docopt.docopt(__doc__)
+    main()

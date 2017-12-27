@@ -4,10 +4,17 @@ setopt err_exit err_return pipe_fail
 setopt verbose xtrace
 setopt extended_glob null_glob
 
-match_dev=(ata-SDLF1CRM)
-dev_backup=dpool-ssd.sgdisk.bin
-
 function e() { echo "[$0]" "$@" >&2; }
+
+function usage() {
+	echo "Usage: $0:t MATCH_DEV_BY_ID BACKUP_BIN" >&2
+	exit 1
+}
+
+[[ $# -eq 2 ]] || (usage ; exit 1)
+
+match_dev=${1:?}
+dev_backup=${2:?}
 
 devs=(/dev/disk/by-id/$match_dev^*-part*)
 

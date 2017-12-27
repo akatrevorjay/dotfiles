@@ -1,0 +1,59 @@
+#!/usr/bin/env python3
+
+import collections
+import glob
+import logging
+import os
+import pathlib
+import re
+import sys
+import typing
+
+import lz4.block  # bug in firefox_tabs requires this, it only imports bare `lz4`
+import path
+from prettyprinter import cpprint, pformat, pprint
+
+import firefox_tabs
+from pytutils.mappings import AttrDict
+from pytutils.pretty import pf, pp
+
+FF_SS_REC_PATH = os.path.expanduser('~/.mozilla/firefox/qfs7tr6x.def/sessionstore-backups/recovery.jsonlz4')
+
+
+def _load_firefox_data(path=FF_SS_REC_PATH) -> dict:
+    path = os.path.expanduser(path)
+    session_data = firefox_tabs.load_data(path)
+    return session_data
+
+
+def _iter_firefox_tabs(session_data=_load_firefox_data, container_factory=AttrDict):
+    if callable(session_data):
+        session_data = session_data()
+
+    for window_idx, window in enumerate(session_data['windows']):
+        for tab in window['tabs']:
+            current_tab = tab['entries'][-1]
+
+            tab = container_factory(
+                url=current_tab['url'],
+                title=current_tab['title'],
+                window=window_idx,
+            )
+
+            yield tab
+
+
+tabs = list(_iter_firefox_tabs())
+
+RE_GITHUB_REPO = re.compile(r'(?P<scheme>https?)://(www\.|)github.com/(?P<user>\w+)/(?P<repo>\w+)/?$', re.IGNORECASE)
+
+for tab in tabs:
+    m = RE_GITHUB_REPO.match(tab.url)
+    if not m:
+        continue
+
+    md = AttrDict(m.groupdict())
+
+    # so hacky
+    print('# %s' % tab.url)
+    print('git clone https://github.com/%s/%s.git' % (md.user, md.repo))

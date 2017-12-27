@@ -51,26 +51,55 @@ if six.PY3:
 
 try:
     import pytutils
+    from pytutils.files import *
+    from pytutils.iters import *
+    from pytutils.lazy import *
+    from pytutils.mappings import *
+    from pytutils.pretty import *
+    from pytutils.memo import *
+    from pytutils.meth import *
+    from pytutils.props import *
+    from pytutils.python import *
+    from pytutils.rand import *
+    from pytutils.sets import *
+    from pytutils.sys import *
+    from pytutils.urls import *
+    from pytutils.trees import *
+
+    from pytutils.pythree import *
 except ImportError:
     pass
 
-__PYTUTILS_PATH = os.path.expanduser('~/.pytutils.py')
+def is_ipython():
+    base = os.path.basename(sys.argv[0])
+    print(base)
 
-if os.path.exists(__PYTUTILS_PATH):
-    try:
-        with open(__PYTUTILS_PATH, 'r') as f:
-            exec (f.read())
-    except Exception:
-        log.exception("Could not open pytutils at %r" % __PYTUTILS_PATH)
+    ret = any([
+        base.startswith(prefix)
+        for prefix in ['ipython', 'jupyter', 'ipy', 'jupy']
+    ])
 
-IS_IPYTHON = os.path.basename(sys.argv[0]).startswith('ipython')
-IS_PYTHON = os.path.basename(sys.argv[0]).startswith('python')
+    return ret
+
+
+def is_python():
+    base = os.path.basename(sys.argv[0])
+
+    ret = any([
+        base.startswith(prefix)
+        for prefix in ['python']
+    ])
+
+    return ret
+
+IS_PYTHON = is_python()
+IS_IPYTHON = not IS_PYTHON
 
 
 def __pyrc__():
     """Python shell init"""
 
-    logging.basicConfig(level=logging.DEBUG)
+    # logging.basicConfig(level=logging.DEBUG)
 
     def enable_history(history_file='~/.python_history'):
         """History."""

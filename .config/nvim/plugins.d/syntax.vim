@@ -388,7 +388,8 @@ if has('nvim')
     "Plug 'thalesmello/webcomplete.vim'
 
     " numerous
-    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     "" rust
     Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
@@ -400,7 +401,8 @@ else
     Plug 'roxma/nvim-cm-tern',  {'do': 'npm install'}
 
     " (optional) language server protocol framework
-    Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
 
     "" rust
     "Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }

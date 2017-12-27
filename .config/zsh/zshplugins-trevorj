@@ -9,6 +9,7 @@ zplugins.load "mafredri/zsh-async"
 #zplugins.load "akatrevorjay/composure"
 zplugins.load "psprint/zsnapshot"
 zplugins.load "mollifier/zload"
+zplugins.load "akatrevorjay/speedread"
 
 ## ~~~~~~~~~~~
 ## completions
