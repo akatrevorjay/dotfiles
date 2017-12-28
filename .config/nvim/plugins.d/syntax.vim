@@ -389,7 +389,7 @@ if has('nvim')
 
     " numerous
     " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ['make release', ':UpdateRemotePlugins'], 'branch': 'next' }
 
     "" rust
     Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
@@ -402,7 +402,7 @@ else
 
     " (optional) language server protocol framework
     " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ['make release', ':UpdateRemotePlugins'], 'branch': 'next' }
 
     "" rust
     "Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
