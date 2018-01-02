@@ -24,7 +24,12 @@
 
 # vimdiff 3-pane
 [merge]
-  tool = vimdiff3
+  tool = vimdiff
+  ; tool = gvimdiff
+  conflictstyle = diff3
+
+[mergetool]
+  prompt = false
 
 [mergetool "vimdiff3"]
   cmd = vim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
