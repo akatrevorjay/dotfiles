@@ -3,7 +3,7 @@
 	c++ = /usr/lib/ccache/../../bin
 	ld = /usr/bin
 	make = /usr/bin
-	#cpus = 4
+	cpus = 8
 	ccache = /usr/bin
 # Comment this back in for debugging
 #       verbose

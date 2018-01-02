@@ -22,4 +22,11 @@
 #[init]
 #  templatedir = template
 
+# vimdiff 3-pane
+[merge]
+  tool = vimdiff3
+
+[mergetool "vimdiff3"]
+  cmd = vim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
