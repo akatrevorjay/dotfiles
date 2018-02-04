@@ -187,10 +187,13 @@ let g:moonflySpellReversed = 1
 
 " let g:airline_theme = 'nordisk'
 " let g:airline_theme = 'angr'
-let g:airline_theme = 'serene'
+" let g:airline_theme = 'serene'
 
 " let g:airline_theme = 'breezy'
-colorscheme colorsbox-stbright
+" colorscheme colorsbox-stbright
+
+let g:airline_theme = 'vorange'
+colorscheme chroma
 
 highlight Comment cterm=italic gui=italic
 

@@ -83,10 +83,10 @@ def main(write_files=True, refresh_after=True):
     if write_files:
         out = {
             'accounts.json': lambda: take_jdumps(accounts),
-            'accountsx.json': lambda: take_jdumps(accountsx),
+            # 'accountsx.json': lambda: take_jdumps(accountsx),
             'budgets.json': lambda: take_jdumps(budgets),
             'net_worth.json': lambda: take_jdumps(net_worth),
-            'xact.json': lambda: ''.join(xact_json),
+            # 'xact.json': lambda: ''.join(xact_json),
             'xact.csv': lambda: xact_csv.decode(),
             # 'xact.pd': lambda: pickle.dumps(xact_pd),
         }

@@ -60,3 +60,40 @@ if exists('g:loaded_clever_f')
   nnoremap <expr><leader><esc> clever_f#reset() | nohlsearch
 endif
 
+if exists('g:loaded_conflicted')
+  " Use `gl` and `gu` rather than the default conflicted diffget mappings
+  let g:diffget_local_map = 'gl'
+  let g:diffget_upstream_map = 'gu'
+  set stl+=%{ConflictedVersion()}
+endif
+
+" Disable one diff window during a three-way diff allowing you to cut out the
+" noise of a three-way diff and focus on just the changes between two versions
+" at a time. Inspired by Steve Losh's Splice
+function! DiffToggle(window)
+  " Save the cursor position and turn on diff for all windows
+  let l:save_cursor = getpos('.')
+  windo :diffthis
+  " Turn off diff for the specified window (but keep scrollbind) and move
+  " the cursor to the left-most diff window
+  exe a:window . "wincmd w"
+  diffoff
+  set scrollbind
+  set cursorbind
+  exe a:window . "wincmd " . (a:window == 1 ? "l" : "h")
+  " Update the diff and restore the cursor position
+  diffupdate
+  call setpos('.', l:save_cursor)
+endfunction
+" Toggle diff view on the left, center, or right windows
+nmap <silent> <leader>dl :call DiffToggle(1)<cr>
+nmap <silent> <leader>dc :call DiffToggle(2)<cr>
+nmap <silent> <leader>dr :call DiffToggle(3)<cr>
+
+function! s:setup_auto_git_diff() abort
+    nmap <buffer><C-l> <Plug>(auto_git_diff_scroll_manual_update)
+    nmap <buffer><C-n> <Plug>(auto_git_diff_scroll_down_half)
+    nmap <buffer><C-p> <Plug>(auto_git_diff_scroll_up_half)
+endfunction
+autocmd FileType gitrebase call <SID>setup_auto_git_diff()
+

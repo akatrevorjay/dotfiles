@@ -100,7 +100,7 @@ Plug 'tpope/vim-obsession'
 let g:prosession_per_branch = 1
 let g:prosession_tmux_title = 1
 
-Plug 'dhruvasagar/vim-prosession'
+Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 " Plug 'unblevable/quick-scope'
 

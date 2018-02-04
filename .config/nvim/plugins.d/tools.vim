@@ -1,4 +1,3 @@
-" Commenting:
 Plug 'tpope/vim-commentary'
 " Plug 'scrooloose/nerdcommenter'
 
@@ -19,3 +18,10 @@ let g:fzf_mru_ignore_patterns = '\.pyc\|fugitive\|\.git/\|\_^/tmp/' " default va
 Plug 'osyo-manga/vim-over'
 
 Plug 'chrisbra/Recover.vim'
+
+" vimdiff kind of leaves a bit to be desired when it comes to what it can interrogate from git.
+Plug 'christoomey/vim-conflicted'
+
+" Show git diff for interactive rebase
+Plug 'hotwatermorning/auto-git-diff'
+

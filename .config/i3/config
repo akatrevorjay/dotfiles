@@ -11,9 +11,9 @@ set $up k
 set $right l
 # Your preferred terminal emulator
 set $term2 urxvt
-set $term3 alacritty
-set $term tilix
-#set $term4 terminololgy
+set $term alacritty
+set $term3 tilix
+set $term4 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
 #set $menu rofi -modi "window,run,ssh" -show run
@@ -340,6 +340,7 @@ exec --no-startup-id ~/.fehbg
 exec --no-startup-id ~/bin/xrandr-auto
 exec --no-startup-id ~/bin/winit
 exec --no-startup-id tint2
+# exec_always --no-startup-id $HOME/.config/polybar/launch
 # exec --no-startup-id compton
 
 #exec xsettingsd

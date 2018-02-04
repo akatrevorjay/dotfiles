@@ -31,9 +31,9 @@
 #[*module-init-tools*/tests/*]
 #	   distcc disable
 
-[*openwrt*]
-    cc = /usr/bin/gcc-5
-    c++ = /usr/bin/g++-5
-    no-parallel = *
+#[*openwrt*]
+#    cc = /usr/bin/gcc-5
+#    c++ = /usr/bin/g++-5
+#    no-parallel = *
 
 # vim: set ts=4 sw=4 tw=120 et ft=dosini :

@@ -99,6 +99,7 @@ let g:polyglot_disabled = [
     \ 'markdown',
     \ 'css',
     \ 'rust',
+    \ 'json',
     \ ]
     "\ 'nim',
     "\ 'dart',
@@ -114,16 +115,16 @@ Plug 'ap/vim-css-color'
 
 " Allows for python rst docstring support
 " A bit problematic as it's slow as balls
-Plug 'Rykka/riv.vim'  ", {'for': ['markdown', 'python', 'rst']}
-Plug 'kannokanno/previm'  ", {'for': ['markdown']}
+Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
+Plug 'kannokanno/previm', {'for': ['markdown']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': 'bats'}
 
 " Better json
-"Plug 'elzr/vim-json'
+Plug 'elzr/vim-json', {'for': ['json']}
 " JSONnet
-Plug 'google/vim-jsonnet'
+Plug 'google/vim-jsonnet', {'for': ['jsonnet']}
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
@@ -138,7 +139,10 @@ Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
 " Go
 if has('nvim')
     " Replacement for nvim
-    Plug 'zchee/nvim-go', { 'for': 'go', 'do': 'make'}
+    " Plug 'zchee/nvim-go',
+    "             \{ 'for': 'go', 'do': 'make' }
+    " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
+    "             \{ 'for': 'go', 'do': 'make' }
 else
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
@@ -209,7 +213,7 @@ Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd']}
 Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
 
 " VimL color improvements
-"Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
+Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
 "Plug 'tpope/vim-scriptease'
 
 " Salt
@@ -300,8 +304,8 @@ Plug 'hashivim/vim-vagrant', {'for': 'vagrantfile'}
 
 " Rust:
 " vim-racer: "racer" source for Rust
-Plug 'racer-rust/vim-racer', {'for': 'rust'}
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+" Plug 'racer-rust/vim-racer', {'for': 'rust'}
+" Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Monte:
 Plug 'monte-language/monte-vim', {'for': 'monte'}
@@ -317,13 +321,13 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
     " deoplete-docker
-    "Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
+    Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
 
     " deoplete-go: "go" source for Go
-    Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
+    " Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
@@ -332,7 +336,7 @@ if has('nvim')
     Plug 'Shougo/neco-syntax', {'for': 'vim'}
 
     " vimshell: "vimshell" source for vimshell
-    "Plug 'Shougo/vimshell.vim'
+    Plug 'Shougo/vimshell.vim'
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -341,7 +345,7 @@ if has('nvim')
     "Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
 
     " deoplete-clang: "clang" source for C/C++
-    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+    " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 "
     "" deoplete-rtags: "rtags" source for "c", "cpp", "objc" and "objcpp" filetypes
     "Plug 'LuXuryPro/deoplete-rtags'
@@ -388,11 +392,19 @@ if has('nvim')
     "Plug 'thalesmello/webcomplete.vim'
 
     " numerous
-    " Plug 'autozimu/LanguageClient-neovim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'akatrevorjay/LanguageClient-neovim', { 'do': ['make release', ':UpdateRemotePlugins'], 'branch': 'next' }
+    if executable('make') && executable('cargo')
+        " Plug 'akatrevorjay/LanguageClient-neovim', \
+        Plug 'autozimu/LanguageClient-neovim',
+                    \{ 'do': 'make release'
+                    \, 'branch': 'next' }
+    else
+        Plug 'autozimu/LanguageClient-neovim',
+                    \{ 'do' ':UpdateRemotePlugins'
+                    \, 'branch': 'master' }
+    endif
 
     "" rust
-    Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
+    " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1

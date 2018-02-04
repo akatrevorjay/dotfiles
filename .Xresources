@@ -187,7 +187,7 @@ URxvt*url-select.launcher: /usr/bin/xdg-open
 URxvt*url-select.underline: true
 
 ! Search
-URxvt*keysym.M-s: searchable-scrollback:start
+URxvt*keysym.M-/: searchable-scrollback:start
 
 URxvt*bell-command: notify-send "rxvt-unicode: bell!"
 URxvt*urgentOnBell: true
