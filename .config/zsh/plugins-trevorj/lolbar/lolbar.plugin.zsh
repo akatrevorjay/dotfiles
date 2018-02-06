@@ -33,7 +33,7 @@ lollinit-random-quote() {
 	echo
 }
 
-lollinit-random-git-tip
+# lollinit-random-git-tip
 lollinit-random-quote
-lolbar
+# lolbar
 
