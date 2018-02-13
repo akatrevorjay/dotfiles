@@ -61,39 +61,49 @@ draw_bold_text_with_bright_colors: true
 #
 # * https://wiki.archlinux.org/index.php/font_configuration#Fontconfig_configuration
 # * file:///usr/share/doc/fontconfig/fontconfig-user.html
-# font:
-#   # The normal (roman) font face to use.
-#   normal:
-#     family: PragmataProForPowerline Nerd Font
-#     style: Regular
-#   bold:
-#     family: PragmataProForPowerline Nerd Font
-#     style: Bold
-#   italic:
-#     family: PragmataProForPowerline Nerd Font
-#     style: Italic
+font:
+  # The normal (roman) font face to use.
+  normal:
+    family: PragmataProForPowerline Nerd Font
+    style: Regular
+  bold:
+    family: PragmataProForPowerline Nerd Font
+    style: Bold
+  italic:
+    family: PragmataProForPowerline Nerd Font
+    style: Italic
 
-#   # Point size of the font
-#   size: 11.0
+  # normal:
+  #   family: Inconsolata
+  #   style: Regular
+  # bold:
+  #   family: Inconsolata
+  #   style: Bold
+  # italic:
+  #   family: Inconsolata
+  #   style: Italic
 
-#   # Offset is the extra space around each character. offset.y can be thought of
-#   # as modifying the linespacing, and offset.x as modifying the letter spacing.
-#   offset:
-#     x: -11.0
-#     # x: 0.0
-#     y: 0.0
+  # Point size of the font
+  size: 8.0
 
-  # # Glyph offset determines the locations of the glyphs within their cells with
-  # # the default being at the bottom. Increase the x offset to move the glyph to
-  # # the right, increase the y offset to move the glyph upward.
-  # glyph_offset:
-  #   x: 0.0  # -12.0
-  #   y: 0.0
+  # Offset is the extra space around each character. offset.y can be thought of
+  # as modifying the linespacing, and offset.x as modifying the letter spacing.
+  offset:
+    # x: -11.0
+    x: 0.0
+    y: 0.0
 
-  # # OS X only: use thin stroke font rendering. Thin strokes are suitable
-  # # for retina displays, but for non-retina you probably want this set to
-  # # false.
-  # use_thin_strokes: true
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increase the x offset to move the glyph to
+  # the right, increase the y offset to move the glyph upward.
+  glyph_offset:
+    x: 0.0  # -12.0
+    y: 0.0
+
+  # OS X only: use thin stroke font rendering. Thin strokes are suitable
+  # for retina displays, but for non-retina you probably want this set to
+  # false.
+  use_thin_strokes: true
 
 # Should display the render timer
 render_timer: false
@@ -171,7 +181,8 @@ custom_cursor_colors: false
 #
 visual_bell:
   animation: EaseOutExpo
-  duration: 0  # 20
+  # duration: 0  # 20
+  duration: 1  # 20
 
 # Background opacity
 background_opacity: 0.8  # 1.0

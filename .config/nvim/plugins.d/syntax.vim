@@ -399,7 +399,7 @@ if has('nvim')
                     \, 'branch': 'next' }
     else
         Plug 'autozimu/LanguageClient-neovim',
-                    \{ 'do' ':UpdateRemotePlugins'
+                    \{ 'do': ':UpdateRemotePlugins'
                     \, 'branch': 'master' }
     endif
 

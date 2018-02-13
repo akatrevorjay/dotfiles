@@ -7,3 +7,4 @@ case $OSTYPE in
            ||  systemctl --user import-environment PATH
         ;;
 esac
+

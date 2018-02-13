@@ -282,3 +282,14 @@ It is all about proving your capabilities to yourself and stretching your own bo
 “To his credit, he's the first statewide official to say the pay raise was passed in an unconstitutional way.”
 -- Gene Stilp
 %
+“Good horror offers a sense of an upended, lawless world and that’s appealing to anyone who grew up feeling like an outsider.”
+-- Christopher  Rice
+%
+“A non-virtual function says, you have to do this and you must do it this way. A virtual function says you have to do this, but you don't have to do it this way. That's their fundamental difference.”
+-- Scott Meyers
+%
+“Worrying helps you some—it seems as if you were doing something when you're worrying.”
+-- L. M. Montgomery
+%
+“Radioactive cats have 18 half-lives.”
+%
