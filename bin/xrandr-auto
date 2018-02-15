@@ -86,10 +86,11 @@ done
 
 args=()
 
-edp_display=$(match_mode 2880x1800 || match_name eDP)
 texas_display=$(match_mode 3440x1440)
 fourk_display=$(match_mode 3840x2160)
-tbolt_display=$(match_mode 2560x1440)
+# tbolt_display=$(match_mode 2560x1440)
+
+edp_display=$(match_mode 2880x1800 || match_name eDP || match_name 2560x1440 || match_name DP-0)
 
 if [[ -n $edp_display ]]; then
 	echo "Found eDP via $edp_display"
@@ -99,8 +100,10 @@ if [[ -n $edp_display ]]; then
 		# --mode 2880x1800
 		# --scale 0.6x0.6
 		# --scale 0.7x0.7
+		# --mode 1920x1080
 
-		--mode 1920x1080
+		# aw 17 r4
+		--mode 2560x1440 --rate 120
 
 		--rotate normal
 
@@ -110,7 +113,7 @@ if [[ -n $edp_display ]]; then
 fi
 
 if [[ -n $texas_display ]]; then
-	edp+=(--right-of $texas_display)
+	edp+=(--left-of $texas_display)
 
 	texas=(
 		--output $texas_display 
@@ -161,23 +164,23 @@ else
 	)
 fi
 
-if [[ -n $tbolt_display ]]; then
-	#edp+=(--right-of $tbolt_display)
+#if [[ -n $tbolt_display ]]; then
+#	#edp+=(--right-of $tbolt_display)
 
-	tbolt=(
-		--output $tbolt_display
-		--mode 2560x1440
-		--rotate left
-		#--right-of DisplayPort-0
-		#--gamma 1.6:1.6:1.6
-		#--gamma 0.8:0.8:0.8
-		#--gamma 1.0:1.0:1.0
-	)
+#	tbolt=(
+#		--output $tbolt_display
+#		--mode 2560x1440
+#		--rotate left
+#		#--right-of DisplayPort-0
+#		#--gamma 1.6:1.6:1.6
+#		#--gamma 0.8:0.8:0.8
+#		#--gamma 1.0:1.0:1.0
+#	)
 
-	args+=(
-		$tbolt
-	)
-fi
+#	args+=(
+#		$tbolt
+#	)
+#fi
 
 if is_connected XWAYLAND0; then
 	dry=echo

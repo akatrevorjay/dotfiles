@@ -293,3 +293,7 @@ It is all about proving your capabilities to yourself and stretching your own bo
 %
 “Radioactive cats have 18 half-lives.”
 %
+“His book is much harder to read than it must have been to write.”
+-- Christopher Hitchens about Bob Woodwars's new 
+            book, 'State of Denial'
+%

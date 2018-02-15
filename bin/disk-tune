@@ -9,7 +9,7 @@ tune-sys() {
     echo 5 | tee /proc/sys/vm/dirty_background_ratio
     echo 20 | tee /proc/sys/vm/dirty_ratio
     echo 50 | tee /proc/sys/vm/vfs_cache_pressure
-    echo 262144 | tee /proc/sys/vm/min_free_kbytes
+    echo $(( 256 * 1024 )) | tee /proc/sys/vm/min_free_kbytes
     echo 1 | tee /proc/sys/vm/zone_reclaim_mode
 
     echo always | tee /sys/kernel/mm/transparent_hugepage/enabled
@@ -17,9 +17,10 @@ tune-sys() {
 }
 
 tune-zfs() {
-    echo 4194304 | tee /sys/module/zfs/parameters/zfs_max_recordsize
-    echo 1310720 | tee /sys/module/zfs/parameters/zfs_read_chunk_size
-    echo 262144 | tee /sys/module/zfs/parameters/zfs_vdev_aggregation_limit
+    echo $(( 4 * 1024 * 1024 )) | tee /sys/module/zfs/parameters/zfs_max_recordsize
+    # echo $(( 1024 * 1024 )) | tee /sys/module/zfs/parameters/zfs_read_chunk_size
+    echo $(( 1280 * 1024 )) | tee /sys/module/zfs/parameters/zfs_read_chunk_size
+    echo $(( 256 * 1024 )) | tee /sys/module/zfs/parameters/zfs_vdev_aggregation_limit
 }
 
 tune-zfs-ssd() {
@@ -30,12 +31,12 @@ tune-disk() {
     local d=${1:?}
     echo "- [$d] "
 
-    set-disk-iosched $d cfq noop
+    set-disk-iosched $d
 
     echo 4096 | tee $d/queue/nr_requests || :
     echo 4096 | tee $d/queue/read_ahead_kb || :
-    echo 256 | tee $d/queue/max_sectors_kb || :
 
+    # echo 256 | tee $d/queue/max_sectors_kb || :
     # hw raid: look ag sg_tablesize too, set high.
     echo 1024 | tee $d/queue/max_sectors_kb || :
 }
@@ -46,7 +47,8 @@ set-disk-iosched() {
     local s=$q/scheduler
     local is_rot=$d/is_rotational
 
-    [ $# -gt 0 ] || set -- cfq mq-deadline noop deadline
+    # bfq low latency is pretty rad but I don't have it everywhere.
+    [ $# -gt 0 ] || set -- kyber bfq cfq noop mq-deadline deadline
     local qprio=("$@")
 
     echo -n "[iosched] current=$(<$s) now="

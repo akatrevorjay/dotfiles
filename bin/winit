@@ -1,64 +1,66 @@
 #!/usr/bin/env zsh
 
-#xrandr-auto || :
-# xrandr-auto2 || :
-#wm || :
-nvidia-settings -l &
+##
+## monitors
+##
 
-function gnome-settings-daemon {
-	if (( ${+commands[gnome-settings-daemon]} )); then
-		command gnome-settings-daemon &
-	else
-		for i in /usr/lib/gnome-settings-daemon/gsd*(*); do
-			case $i in
-				*-locate-pointer) continue ;;
-			esac
+~/bin/xrandr-auto &
+# nvidia-settings -l &
 
-			killall -u $USER ${i:?} || :
-			$i &
-		done
-	fi
-}
+# load recent bg
+[[ ! -e $HOME/.fehbg ]] || $HOME/.fehbg &
 
+##
+## input
+##
+
+#wm &
 inputplug -d -0 -c $HOME/.config/inputplug/hook &
 #imwheel -b '4 5 6 7' -k -p -r -d &
 #tkbd &
 
-#xsettingsd &
-gnome-settings-daemon
+##
+## base
+##
 
-gnome-keyring-daemon &
+#xsettingsd &
+gsd-launch &
+
+# gnome-keyring-daemon &
 # seahorse-daemon &
 
-# /usr/lib/gcr/gcr-prompter &
-# /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+/usr/lib/gcr/gcr-prompter &
+/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
-
-#sleep 1
-
-# tint2 &
 
 sleep 1
 
-ckb --background &
-nm-applet &
-usbguard-applet-qt &
-pasystray &
-#gpomme &
-parcellite &
-#winswitch_applet &
-# indicator-kdeconnect &
-# notify-proxy &
+polybar example &
 
-#fcitx-autostart &
-#/usr/lib/at-spi2-core/at-spi-bus-launcher --launch-immediately &
+sleep 1
+
+case $HOST in
+	fatbookho*)
+		usbguard-applet-qt &
+		nm-applet &
+		ckb --background &
+		solaar &
+		pasystray &
+
+		parcellite &
+		#indicator-kdeconnect &
+		#notify-proxy &
+		variety &
+		;;
+	notsofatbookho*)
+		gpomme &
+		;;
+esac
 
 # yubioath gui -t &
 # easystroke &
 #kupfer &
 
-variety &
-# sleep 5 && solaar &
 #(( ! ${+commands[wal]} )) \
 #  || wal -i $(< $HOME/.cache/wal/wal)
 
