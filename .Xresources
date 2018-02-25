@@ -1,11 +1,15 @@
 !Xft.dpi: 192
-Xft.dpi: 96
+Xft.dpi: 75
+!Xft.dpi: 120
 
 ! Fonts
-Xft.antialias:          1
-Xft.hinting:            1
-Xft.rgba:               rgb
-Xft.hintstyle:          hintslight
+!Xft.autohint:           1
+!Xft.antialias:          1
+!Xft.hinting:            1
+!Xft.rgba:               rgb
+!Xft.hintstyle:          hintslight
+!Xft.hintstyle:          hintfull
+
 Emacs.FontBackend: xft
 !Emacs.pane.menubar.font: PragmataPro Nerd Font 12
 !Emacs.font: PragmataPro Nerd Font 12
@@ -225,25 +229,25 @@ URxvt*background: rgba:0000/0000/0200/c800
 
 
 ! X Resources: Generated with Hodler (http://github.com/matttproud/hodler)
-URxvt*color0: #121212
-URxvt*color1: #fa2573
-URxvt*color2: #97e123
-URxvt*color3: #dfd460
-URxvt*color4: #0f7fcf
-URxvt*color5: #8700ff
-URxvt*color6: #42a7cf
-URxvt*color7: #bbbbbb
-URxvt*color8: #555555
-URxvt*color9: #f5669c
-URxvt*color10: #b0e05e
-URxvt*color11: #fef26c
-URxvt*color12: #00afff
-URxvt*color13: #af87ff
-URxvt*color14: #50cdfe
-URxvt*color15: #ffffff
-!URxvt*background: #121212
-URxvt*foreground: #bbbbbb
-URxvt*cursorColor: #bbbbbb
+/* URxvt*color0: #121212 */
+/* URxvt*color1: #fa2573 */
+/* URxvt*color2: #97e123 */
+/* URxvt*color3: #dfd460 */
+/* URxvt*color4: #0f7fcf */
+/* URxvt*color5: #8700ff */
+/* URxvt*color6: #42a7cf */
+/* URxvt*color7: #bbbbbb */
+/* URxvt*color8: #555555 */
+/* URxvt*color9: #f5669c */
+/* URxvt*color10: #b0e05e */
+/* URxvt*color11: #fef26c */
+/* URxvt*color12: #00afff */
+/* URxvt*color13: #af87ff */
+/* URxvt*color14: #50cdfe */
+/* URxvt*color15: #ffffff */
+/* !URxvt*background: #121212 */
+/* URxvt*foreground: #bbbbbb */
+/* URxvt*cursorColor: #bbbbbb */
 ! See "highlightColorMode" and "hm" options in XTerm manual page.
 URxvt*highlightTextColor: #000000
 URxvt*highlightColor: #b4d5ff
@@ -252,5 +256,33 @@ URxvt*highlightColor: #b4d5ff
 !
 
 ! from Xdefaults:
-Xcursor*theme: Obsidian
+!Xcursor*theme: Obsidian
+
+
+
+
+!*background:  #272f30
+!*colorUL:  #cbffff
+!*cursorColor:  #7a9aff
+!*foreground:  #dcdcdc
+!*underlineColor:  #cbffff
+!*xtermbackground:  #001944
+!*color0:  #192f0f
+!*color1:  #972e9b
+!*color2:  #5ae438
+!*color3:  #97b338
+!*color4:  #3b2eee
+!*color5:  #972eec
+!*color6:  #00cdee
+!*color7:  #a8aaa5
+!*color8:  #5f8366
+!*color9:  #a877a9
+!*color10:  #6af583
+!*color11:  #a8cf81
+!*color12:  #4a77ff
+!*color13:  #8377ff
+!*color14:  #2af5d7
+!*color15:  #ffffff
+!
+
 

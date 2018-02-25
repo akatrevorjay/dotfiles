@@ -1,4 +1,9 @@
 #!/usr/bin/env zsh
+set -eo pipefail
+
+gitcfg() {
+	git config --global --includes "$@"
+}
 
 name=$PWD:t
 
@@ -8,13 +13,38 @@ case $name in
 		;;
 esac
 
-cmd=(
-	sudo checkinstall
-	--pkgname=$name
-	--gzman=yes
-	--exclude=/home
-	-y
-	#--backup=no
+maint=$(
+	printf '%s <%s>' \
+	$(gitcfg --get user.name) \
+	$(gitcfg --get user.email)
 )
 
-exec $cmd
+cmd=(
+	sudo checkinstall
+	# --type=debian
+	--fstrans
+	# --install=no
+	--gzman=yes
+	--exclude=/home
+	--backup=no
+	--bk
+	--showinstall
+	--inspect
+	--review-control
+	--reset-uids
+	--addso
+	--strip
+	--stripso
+
+	--maintainer="$(gitcfg user.name) <$(gitcfg user.email)>"
+
+	# --requires=blah,blah2
+	# --provides=blah,blah2
+
+	-y
+
+	--pkgname=$name
+
+)
+
+exec $cmd "$@"

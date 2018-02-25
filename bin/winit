@@ -5,7 +5,7 @@
 ##
 
 ~/bin/xrandr-auto &
-# nvidia-settings -l &
+sleep 1 && nvidia-settings -l &
 
 # load recent bg
 [[ ! -e $HOME/.fehbg ]] || $HOME/.fehbg &
@@ -23,8 +23,12 @@ inputplug -d -0 -c $HOME/.config/inputplug/hook &
 ## base
 ##
 
+compton &
+
 #xsettingsd &
 gsd-launch &
+
+sleep 1
 
 # gnome-keyring-daemon &
 # seahorse-daemon &
@@ -32,10 +36,10 @@ gsd-launch &
 /usr/lib/gcr/gcr-prompter &
 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
 #/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
-
-sleep 1
+/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
 
 polybar example &
+polybar mybar &
 
 sleep 1
 
@@ -48,7 +52,7 @@ case $HOST in
 		pasystray &
 
 		parcellite &
-		#indicator-kdeconnect &
+		indicator-kdeconnect &
 		#notify-proxy &
 		variety &
 		;;

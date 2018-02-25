@@ -57,6 +57,7 @@ for_window [title="Preferences$"] floating enable
 for_window [class="panel"] border none floating enable sticky enable
 for_window [class="trayer"] border none floating enable sticky enable
 for_window [class="stalonetray"] border none floating enable sticky enable
+for_window [class="(?i)gnome-pie"] border none floating enable sticky enable
 
 #
 # Status Bar:
@@ -77,7 +78,9 @@ client.focused          $bg    $bgu        $fg       $bg        $bg
 #new_window normal 4
 
 #font pango:Input Sans Compressed 10
-font pango:PragmataPro Nerd Font 10
+#font pango:PragmataPro Nerd Font 10
+# font pango:Noto Sans 10
+font pango:nu 10
 
 #
 # Basics:

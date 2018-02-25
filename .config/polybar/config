@@ -18,13 +18,233 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
-;monitor = ${env:MONITOR:HDMI-1}
+
+[bar/mybar]
+; Use the following command to list available outputs:
+; If unspecified, the application will pick the first one it finds.
+; $ xrandr -q | grep " connected" | cut -d ' ' -f1
+monitor = ${env:SEC_MONITOR:DP-1}
+
+; Use the specified monitor as a fallback if the main one is not found.
+monitor-fallback =
+
+; Require the monitor to be in connected state
+; XRandR sometimes report my monitor as being disconnected (when in use)
+monitor-strict = false
+
+; Tell the Window Manager not to configure the window.
+; Use this to detach the bar if your WM is locking its size/position.
+override-redirect = false
+
+; Put the bar at the bottom of the screen
+bottom = false
+
+; Prefer fixed center position for the `modules-center` block
+; When false, the center position will be based on the size of the other blocks.
+fixed-center = true
+
+; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 width = 100%
 height = 27
+; height = 18
+; height = 20
+
+; Offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+
+
+; Background argb color (e.g. #f00, #ff992a, #ddff1023)
+; background = #fff
+background = ${colors.background}
+
+
+; Foreground argb color (e.g. #f00, #ff992a, #ddff1023)
+; foreground = #000
+foreground = ${colors.foreground}
+
+; Background gradient (vertical steps)
+;   background-[0-9]+ = #aarrggbb
+; background-0 = 
+
+; Value used for drawing rounded corners
+; Individual top/bottom values can be defined using:
+;   radius-{top,bottom}
+radius = 0.0
+; radius = 6.0
+
+; Under-/overline pixel size and argb color
+; Individual values can be defined using:
+;   {overline,underline}-size
+;   {overline,underline}-color
+; line-size = 1
+; line-color = #f00
+
+line-size = 3
+line-color = #f00
+
+; Values applied to all borders
+; Individual side values can be defined using:
+;   border-{left,top,right,bottom}-size
+;   border-{left,top,right,bottom}-color
+border-size = 4
+border-color = #00000000
+
+
+; Number of spaces to add at the beginning/end of the bar
+; Individual side values can be defined using:
+;   padding-{left,right}
+; padding = 0
+padding-left = 0
+padding-right = 2
+
+; Number of spaces to add before/after each module
+; Individual side values can be defined using:
+;   module-margin-{left,right}
+; module-margin = 0
+module-margin-left = 1
+module-margin-right = 2
+
+; Fonts are defined using <font-name>;<vertical-offset>
+; Font names are specified using a fontconfig pattern.
+#font-0 = NotoSans-Regular:size=8;2
+font-1 = MaterialIcons:size=10
+font-2 = Termsynu:size=8;-1
+font-3 = FontAwesome:size=10
+; See the Fonts wiki page for more details
+#font-0 = fixed:pixelsize=12;1
+font-0 = nu:pixelsize=10;antialias=false
+#font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+#font-2 = siji:pixelsize=12;1
+; font-0 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
+; font-1 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=8:antialias=true;0
+; font-2 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
+
+; Modules are added to one of the available blocks
+;   modules-left = cpu ram
+;   modules-center = xwindow xbacklight
+;   modules-right = ipc clock
+;
+; modules-left = bspwm i3
+; #modules-center = mpd
+; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+modules-left = i3
+; modules-left = xworkspaces
+#modules-center = mpd
+modules-center = xwindow
+; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+
+; The separator will be inserted between the output of each module
+; separator =
+
+; This value is used to add extra spacing between elements
+; @deprecated: This parameter will be removed in an upcoming version
+spacing = 0
+
+; Opacity value between 0.0 and 1.0 used on fade in/out
+dim-value = 1.0
+
+; Value to be used to set the WM_NAME atom
+; If the value is empty or undefined, the atom value
+; will be created from the following template: polybar-[BAR]_[MONITOR]
+; NOTE: The placeholders are not available for custom values
+; wm-name =
+
+; Locale used to localize various module data (e.g. date)
+; Expects a valid libc locale, for example: sv_SE.UTF-8
+; locale = 
+
+; Position of the system tray window
+; If empty or undefined, tray support will be disabled
+; NOTE: A center aligned tray will cover center aligned modules
+;
+; Available positions:
+;   left
+;   center
+;   right
+;tray-position =
+; tray-position = right
+
+;; If true, the bar will not shift its
+;; contents when the tray changes
+;tray-detached = false
+
+;; Tray icon max size
+;tray-maxsize = 16
+
+;; Enable pseudo transparency
+;; Will automatically be enabled if a fully transparent
+;; background color is defined using `tray-background`
+;tray-transparent = false
+;;tray-transparent = true
+;;tray-background = #0063ff
+
+;; Background color for the tray container
+;; By default the tray container will use the bar
+;; background color.
+;; Note: 32 bit alpha blending is not supported.
+;tray-background = ${root.background}
+
+;; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+;tray-offset-x = 0
+;tray-offset-y = 0
+
+;; Pad the sides of each tray icon
+;tray-padding = 0
+;; tray-padding = 2
+
+;; Scale factor for tray clients
+;tray-scale = 1.0
+
+;; Restack the bar window and put it above the
+;; selected window manager's root
+;;
+;; Fixes the issue where the bar is being drawn
+;; on top of fullscreen window's
+;;
+;; Currently supported WM's:
+;;   bspwm
+;;   i3 (requires: `override-redirect = true`)
+;wm-restack =
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+; Fallback click handlers that will be called if
+; there's no matching module handler found.
+;
+click-left = 
+click-middle = 
+click-right =
+
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+
+double-click-left =
+double-click-middle =
+double-click-right =
+
+; Requires polybar to be built with xcursor support (xcb-util-cursor)
+; Possible values are:
+; - default   : The default pointer as before, can also be an empty string (default)
+; - pointer   : Typically in the form of a hand
+; - ns-resize : Up and down arrows, can be used to indicate scrolling
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/example]
+monitor = ${env:PRI_MONITOR:DP-0}
+width = 100%
+; height = 27
+; height = 18
+height = 20
+;offset-x = 1%
+;offset-y = 1%
+; radius = 6.0
+radius = 0.0
 fixed-center = false
 
 background = ${colors.background}
@@ -42,18 +262,62 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+; Fonts are defined using <font-name>;<vertical-offset>
+; Font names are specified using a fontconfig pattern.
+#font-0 = NotoSans-Regular:size=8;2
+font-1 = MaterialIcons:size=10
+font-2 = Termsynu:size=8;-1
+font-3 = FontAwesome:size=10
+; See the Fonts wiki page for more details
+#font-0 = fixed:pixelsize=12;1
+font-0 = nu:pixelsize=10;antialias=false
+#font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+#font-2 = siji:pixelsize=12;1
+; font-0 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
+; font-1 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=8:antialias=true;0
+; font-2 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
 
-modules-left = bspwm i3
-modules-center = mpd
-modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-left = i3
+; modules-left = xworkspaces
+#modules-center = mpd
+modules-center = xwindow
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
 
 tray-position = right
+
+;; If true, the bar will not shift its
+;; contents when the tray changes
+tray-detached = false
+
+;; Tray icon max size
+tray-maxsize = 24
+; tray-maxsize = 12
+
+;; Enable pseudo transparency
+;; Will automatically be enabled if a fully transparent
+;; background color is defined using `tray-background`
+tray-transparent = false
+;;tray-transparent = true
+;;tray-background = #0063ff
+
+;; Background color for the tray container
+;; By default the tray container will use the bar
+;; background color.
+;; Note: 32 bit alpha blending is not supported.
+;tray-background = ${root.background}
+
+;; Tray offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
+;tray-offset-x = 0
+;tray-offset-y = 0
+
+;; Pad the sides of each tray icon
+;tray-padding = 0
 tray-padding = 2
-;tray-transparent = true
-;tray-background = #0063ff
+
+;; Scale factor for tray clients
+tray-scale = 1.0
+
 
 ;wm-restack = bspwm
 ;wm-restack = i3
@@ -63,15 +327,142 @@ tray-padding = 2
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
 
+enable-ipc = true
+
+
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:30:...%
+; label = %title:0:30:...%
+label = %title:0:50:...%
+
+; ; Available tags:
+; ;   <label> (default)
+; format-background = #f00
+; format-foreground = #000
+format-padding = 4
+
+; ; Available tokens:
+; ;   %title%
+; ; Default: %title%
+; label = Window: %title%
+; label-maxlen = 50
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+; pin-workspaces = true
+
+; Create click handler used to focus desktop
+; Default: true
+; enable-click = false
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+; enable-scroll = false
+
+; icon-[0-9]+ = <desktop-name>;<icon>
+; NOTE: The desktop name needs to match the name configured by the WM
+; You can get a list of the defined desktops using:
+; $ xprop -root _NET_DESKTOP_NAMES
+icon-0 = code;♚
+icon-1 = office;♛
+icon-2 = graphics;♜
+icon-3 = mail;♝
+icon-4 = web;♞
+icon-default = ♟
+
+; Available tags:
+;   <label-monitor>
+;   <label-state> - gets replaced with <label-(active|urgent|occupied|empty)>
+; Default: <label-state>
+format =  <label-monitor> <label-state>
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; Available tokens:
+;   %name%
+; Default: %name%
+; label-monitor = %name%
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+
+; label-active = %icon% %name%
+; label-active-foreground = #ffffff
+; label-active-background = #3f3f3f
+; label-active-underline = #fba922
+
+;; focused = Active workspace on focused monitor
+; label-active = %index%
+label-active-background = ${module/bspwm.label-focused-background}
+label-active-underline = ${module/bspwm.label-focused-underline}
+label-active-padding = ${module/bspwm.label-focused-padding}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; label-occupied = %icon%
+; label-occupied-underline = #555555
+
+;; unfocused = Inactive workspace on any monitor
+; label-occupied = %index%
+; label-occupied-background = ${module/bspwm.label-occupied-background}
+; label-occupied-underline = ${module/bspwm.label-occupied-underline}
+label-occupied-padding = ${module/bspwm.label-occupied-padding}
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; label-urgent = %icon%
+; label-urgent-foreground = #000000
+; label-urgent-background = #bd2c40
+; label-urgent-underline = #9b0a20
+
+; label-urgent = %index%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+
+; Available tokens:
+;   %name%
+;   %icon%
+;   %index%
+; Default: %icon%  %name%
+; label-empty = %icon%
+; label-empty-foreground = #55
+
+; ; visible = Active workspace on unfocused monitor
+; label-empty = %index%
+label-empty-background = ${self.label-active-background}
+label-empty-underline = ${self.label-active-underline}
+label-empty-padding = ${self.label-active-padding}
+
+; ; urgent = Workspace with urgency hint set
+; Separator in between workspaces
+; label-separator = |
+
+
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -215,15 +606,15 @@ type = internal/network
 interface = wlp61s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+; format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+; label-connected = %essid%
 
-format-disconnected =
+; format-disconnected =
 ;format-disconnected = <label-disconnected>
-;format-disconnected-underline = ${self.format-connected-underline}
+format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected-foreground = ${colors.foreground-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -232,9 +623,70 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <ramp-signal> <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = %essid% %downspeed:9%
+; label-connected-foreground = #eefafafa
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+; Default: (none)
+label-disconnected = not connected
+; label-disconnected-foreground = #66ffffff
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %linkspeed% [wired]
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; ; Only applies if <ramp-signal> is used
+; ramp-signal-0 = 😱
+; ramp-signal-1 = 😠
+; ramp-signal-2 = 😒
+; ramp-signal-3 = 😊
+; ramp-signal-4 = 😃
+; ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
 [module/eth]
 type = internal/network
-interface = virbr0-nic
+; interface = virbr0-nic
+interface = enp60s0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -292,6 +744,38 @@ bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`)
+; If not, uses default sink
+; sink = alsa_output.pci-0000_12_00.3.analog-stereo
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+label-muted = 🔇 muted
+label-muted-foreground = #66
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 🔈
+ramp-volume-1 = 🔉
+ramp-volume-2 = 🔊
+
 [module/battery]
 type = internal/battery
 battery = BAT1
@@ -338,6 +822,45 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+[module/temperature_smm_cpu]
+type = internal/temperature
+hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp1_input
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/temperature_smm_gpu]
+type = internal/temperature
+hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp2_input
+warn-temperature = 60
+
+format = <ramp> <label>
+format-underline = #f50a4d
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${self.format-underline}
+
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+
 [module/powermenu]
 type = custom/menu
 
@@ -368,14 +891,58 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 [settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
+; The throttle settings lets the eventloop swallow up til X events
+; if they happen within Y millisecond after first event was received.
+; This is done to prevent flood of update event.
+;
+; For example if 5 modules emit an update event at the same time, we really
+; just care about the last one. But if we wait too long for events to swallow
+; the bar would appear sluggish so we continue if timeout
+; expires or limit is reached.
+throttle-output = 5
+throttle-output-for = 10
+
+; Time in milliseconds that the input handler will wait between processing events
+throttle-input-for = 30
+
+; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
+screenchange-reload = false
+
+; Compositing operators
+; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
+; compositing-background = over
+; compositing-foreground = over
+compositing-overline = over
+compositing-underline = over
+; compositing-border = over
+
+compositing-background = xor
+; compositing-background = screen
+compositing-foreground = source
+compositing-border = over
+
+
+; Define fallback values used by all module formats
+format-foreground = 
+format-background = 
+format-underline =
+format-overline =
+format-spacing =
+format-padding =
+format-margin =
+format-offset =
+
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+; margin-top = 5
+; margin-bottom = 5
+
+; Adjust the _NET_WM_STRUT_PARTIAL top value
+;   Used for top aligned bars
+margin-bottom = 0
+
+; Adjust the _NET_WM_STRUT_PARTIAL bottom value
+;   Used for bottom aligned bars
+margin-top = 0
 
 ; vim:ft=dosini

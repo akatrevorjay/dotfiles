@@ -101,6 +101,12 @@ compile() {
 		fi
 	fi
 
+	if [[ -f meson.build ]]; then
+		if ! is-newer-than build/build.ninja -- meson.build; then
+			verbose-call meson build
+		fi
+	fi
+
 	if [[ -f Cargo.toml ]]; then
 		verbose-call cargo install
 		verbose-call cargo build --release -vv
@@ -110,6 +116,10 @@ compile() {
 		verbose-call colormake
 	elif [[ -f makefile ]]; then
 		verbose-call colormake -f makefile
+	fi
+
+	if [[ -f build.ninja ]]; then
+		verbose-call ninja
 	fi
 }
 

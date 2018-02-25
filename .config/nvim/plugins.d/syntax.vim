@@ -108,15 +108,10 @@ let g:polyglot_disabled = [
 "Plug 'spacewander/openresty-vim', {'for': 'nginx'}
 
 " GPG
-Plug 'jamessan/vim-gnupg'
+Plug 'jamessan/vim-gnupg', {'for': 'gpg'}
 
 " Show CSS colors as what they truely are.
 Plug 'ap/vim-css-color'
-
-" Allows for python rst docstring support
-" A bit problematic as it's slow as balls
-Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
-Plug 'kannokanno/previm', {'for': ['markdown']}
 
 "" BATS test runner and syntax
 Plug 'markcornick/vim-bats', {'for': 'bats'}
@@ -139,17 +134,18 @@ Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
 " Go
 if has('nvim')
     " Replacement for nvim
-    " Plug 'zchee/nvim-go',
-    "             \{ 'for': 'go', 'do': 'make' }
-    " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
-    "             \{ 'for': 'go', 'do': 'make' }
+    Plug 'zchee/nvim-go',
+                \{ 'for': 'go', 'do': 'make' }
+    Plug $GOPATH.'/src/github.com/zchee/nvim-go',
+                \{ 'for': 'go', 'do': 'make' }
 else
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
 
 "" Clang
-"Plug 'Rip-Rip/clang_complete'
-"Plug 'osyo-manga/vim-marching'
+"Plug 'Rip-Rip/clang_complete', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+"Plug 'osyo-manga/vim-marching', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+
 
 Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 let g:cpp_class_scope_highlight = 1
@@ -207,7 +203,7 @@ let c_no_curly_error=1
 ""Plug 'zah/nim.vim', {'for': 'nim'}
 
 " Hex
-Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd']}
+Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd', 'bin']}
 
 " ZSH "official" vim syntax, definitely more up to date.
 Plug 'chrisbra/vim-zsh', {'for': ['zsh', 'sh']}
@@ -220,10 +216,10 @@ Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
 Plug 'saltstack/salt-vim', {'for': 'sls'}
 
 " Jinja2
-Plug 'Glench/Vim-Jinja2-Syntax'  ", {'for': ['html', 'j2', 'htm', 'jinja2', 'sls']}
+Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'jinja', 'sls']}
 
 " Ello poppet
-"Plug 'rodjek/vim-puppet'
+Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 
 " TOML
 "Plug 'cespare/vim-toml', {'for': 'toml'}
@@ -235,17 +231,22 @@ Plug 'Glench/Vim-Jinja2-Syntax'  ", {'for': ['html', 'j2', 'htm', 'jinja2', 'sls
 Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 " Webdev syntax/helpers
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2', 'sls', 'css', 'less', 'sass']}
 
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
-Plug 'tpope/vim-markdown', {'for': 'markdown'}
+" Plug 'tpope/vim-markdown', {'for': 'markdown'}
+
+" Allows for python rst docstring support as well
+" A bit problematic as it's slow as balls
+" Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
+" Plug 'kannokanno/previm', {'for': ['markdown']}
 
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
 Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
 
-Plug 'dzeban/vim-log-syntax'
+Plug 'dzeban/vim-log-syntax', {'for': 'log'}
 
 ""
 "" Language: Python
@@ -304,8 +305,8 @@ Plug 'hashivim/vim-vagrant', {'for': 'vagrantfile'}
 
 " Rust:
 " vim-racer: "racer" source for Rust
-" Plug 'racer-rust/vim-racer', {'for': 'rust'}
-" Plug 'rust-lang/rust.vim', {'for': 'rust'}
+Plug 'racer-rust/vim-racer', {'for': 'rust'}
+Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
 " Monte:
 Plug 'monte-language/monte-vim', {'for': 'monte'}
@@ -327,7 +328,7 @@ if has('nvim')
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
 
     " deoplete-go: "go" source for Go
-    " Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
+    Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
@@ -336,7 +337,7 @@ if has('nvim')
     Plug 'Shougo/neco-syntax', {'for': 'vim'}
 
     " vimshell: "vimshell" source for vimshell
-    Plug 'Shougo/vimshell.vim'
+    Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -403,8 +404,8 @@ if has('nvim')
                     \, 'branch': 'master' }
     endif
 
-    "" rust
-    " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
+    " rust
+    Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1

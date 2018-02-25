@@ -59,13 +59,16 @@ tools_pkgs=(
 	yapf autopep8
 
 	pyflakes flake8 mccabe bandit
+	pydocstyle pycodestyle
 
 	mistune
 
 	six psutil setproctitle
 
-	# 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
-	'python-language-server'
+	'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
+	'pyls-mypy'
+	'pyls-isort'
+	#'python-language-server'
 )
 pip3 install --pre -U $tools_pkgs || :
 

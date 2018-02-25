@@ -62,6 +62,8 @@ set-disk-iosched() {
 }
 
 main() {
+    modprobe -a mq-deadline kyber-iosched bfq || :
+
     local d
     for d in /sys/block/*; do
     	tune-disk $d
