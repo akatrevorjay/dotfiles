@@ -8,12 +8,13 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
-background = #222
+background = ${xrdb:color0:#222}
+; background = #222
 background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
+; foreground = ${xrdb:color7:#222}
+; foreground = #dfdfdf
+foreground = #eee
+foreground-alt = #999
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
@@ -26,7 +27,7 @@ alert = #bd2c40
 monitor = ${env:SEC_MONITOR:DP-1}
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback =
+monitor-fallback = HDMI-0
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes report my monitor as being disconnected (when in use)
@@ -45,7 +46,7 @@ fixed-center = true
 
 ; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 width = 100%
-height = 27
+height = 24
 ; height = 18
 ; height = 20
 
@@ -80,14 +81,15 @@ radius = 0.0
 ; line-size = 1
 ; line-color = #f00
 
-line-size = 3
+line-size = 1
 line-color = #f00
 
 ; Values applied to all borders
 ; Individual side values can be defined using:
 ;   border-{left,top,right,bottom}-size
 ;   border-{left,top,right,bottom}-color
-border-size = 4
+border-size = 0
+; border-size = 4
 border-color = #00000000
 
 
@@ -145,6 +147,7 @@ spacing = 0
 
 ; Opacity value between 0.0 and 1.0 used on fade in/out
 dim-value = 1.0
+; dim-value = 0.5
 
 ; Value to be used to set the WM_NAME atom
 ; If the value is empty or undefined, the atom value
@@ -240,7 +243,7 @@ monitor = ${env:PRI_MONITOR:DP-0}
 width = 100%
 ; height = 27
 ; height = 18
-height = 20
+height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 ; radius = 6.0
@@ -250,10 +253,10 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 1
 line-color = #f00
 
-border-size = 4
+border-size = 0
 border-color = #00000000
 
 padding-left = 0
@@ -291,13 +294,13 @@ tray-position = right
 tray-detached = false
 
 ;; Tray icon max size
-tray-maxsize = 24
-; tray-maxsize = 12
+; tray-maxsize = 24
+tray-maxsize = 16
 
 ;; Enable pseudo transparency
 ;; Will automatically be enabled if a fully transparent
 ;; background color is defined using `tray-background`
-tray-transparent = false
+; tray-transparent = false
 ;;tray-transparent = true
 ;;tray-background = #0063ff
 
@@ -317,6 +320,7 @@ tray-padding = 2
 
 ;; Scale factor for tray clients
 tray-scale = 1.0
+; tray-scale = 0.7
 
 
 ;wm-restack = bspwm
@@ -516,7 +520,7 @@ label-empty-padding = 2
 type = internal/i3
 format = <label-state> <label-mode>
 index-sort = true
-wrapping-scroll = false
+wrapping-scroll = true
 
 ; Only show workspaces on the same output as the bar
 ;pin-workspaces = true
