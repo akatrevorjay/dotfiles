@@ -1,0 +1,166 @@
+
+* {
+    text-color:  #eeeeeeee;
+    background-color:  rgba(0, 0, 0, 0.0);
+    /* background-color:  rgba(0,0,0,0.1); */
+
+    dark: black;
+    main-bg: rgba(0, 0, 0, 0.9);
+
+    // Black
+    /* black:       #3d352a; */
+    black:       black;
+    lightblack:  black;
+
+    // Red
+    red:         #cd5c5c;
+    lightred:    #cc5533;
+
+    // Green
+    green:       #86af80;
+    /* lightgreen:  #88cc22; */
+    grey:  gray;
+
+    // Yellow
+    yellow:      #e8ae5b;
+    lightyellow:     #ffa75d;
+
+    // Blue
+    /* blue:      #6495ed; */
+    /* lightblue:     #87ceeb; */
+    blue:      darkblue;
+    lightblue: gray;
+
+    // Magenta
+    magenta:      #deb887;
+    lightmagenta:     #996600;
+
+    // Cyan
+    cyan:      #b0c4de;
+    lightcyan:     #b0c4de;
+
+    // White
+    white:      #bbaa99;
+    lightwhite:     #ddccbb;
+
+    // Bold, Italic, Underline
+    highlight:     bold #ffffff;
+}
+
+#window {
+    fullscreen: true;
+    location: west;
+    anchor:   west;
+    /* border:  0px 2px 0px 0px; */
+    border:  2px;
+    text-color: @lightwhite;
+
+    orientation: horizontal;
+    children: [mainbox, dummy];
+}
+
+#dummy {
+    expand: true;
+}
+
+#sidebar {
+    /* border: 2px 0px 0px 0px; */
+    /* border: 1px; */
+    /* background-color: @black; */
+    /* padding: 10px; */
+}
+
+#button {
+    /* background-color: @black; */
+    text-color: gray;
+    padding: 5px;
+    /* padding: 2px 5px 2px 5px; */
+}
+
+#button selected {
+    /* border: 1px; */
+    /* border-color: @grey; */
+
+    background-color: @blue;
+    text-color: white;
+    /* font-weight: bold; */
+}
+
+#entry {
+    width: 30em;
+}
+
+#inputbar {
+    background-color: @lightblack;
+    text-color: @grey;
+    /* padding: 4px; */
+    padding: 5px;
+    /* border: 0px 0px 2px 0px; */
+    /* border: 0px 10px 2px 22px; */
+}
+
+#mainbox {
+    expand: false;
+    background-color: @main-bg;
+    /* spacing: 0em; */
+}
+
+#listview {
+    /* padding: 0.1em 0em 0.1em 0em; */
+    /* dynamic: false; */
+    /* dynamic: true; */
+    lines: 0;
+}
+
+#element selected  normal {
+    background-color: @blue;
+}
+
+#element normal active {
+    text-color: @lightblue;
+}
+
+#element normal urgent {
+    text-color: @lightred;
+}
+
+#element alternate normal {
+    /* border-left: 1px; */
+    /* background-color: rgba(50, 50, 50, 0.3); */
+}
+
+#element alternate active {
+    text-color: @lightblue;
+}
+
+#element alternate urgent {
+    text-color: @lightred;
+}
+
+#element selected active {
+    background-color: @lightblue;
+    text-color: @dark;
+}
+
+#element selected urgent {
+    background-color: @lightred;
+    text-color: @dark;
+}
+
+#inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+#textbox-prompt-colon {
+    expand:     false;
+    /* str:        " "; */
+    str:        "% ";
+    margin:     0px 0.3em 0em 0em ;
+    /* margin: 0px; */
+    /* text-color: @normal-foreground; */
+    text-color: gray;
+    /* text-shadow: rgba(200, 200, 200, 255); */
+}
+
+/* vim: set ts=4 sw=4 tw=120 et ft=css :*/
+

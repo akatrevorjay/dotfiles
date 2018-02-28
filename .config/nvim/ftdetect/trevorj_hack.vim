@@ -27,6 +27,7 @@ au BufRead,BufNewFile *.conf setf config.jinja2
  
 au BufRead,BufNewFile *.log setf log
 au BufRead,BufNewFile *.out setf log
+au BufRead,BufNewFile *.rasi setf css
 
 au BufRead,BufNewFile Jenkinsfile setf groovy
 

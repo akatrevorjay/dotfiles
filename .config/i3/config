@@ -10,13 +10,13 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term2 urxvt
-set $term alacritty
-set $term3 tilix
+set $term3 urxvt
+set $term2 alacritty
+set $term tilix
 set $term4 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
-#set $menu rofi -modi "window,run,ssh" -show run
+set $menu2 rofi -modi 'window\,windowcd\,drun\,combi\,keys\,run\,ssh' -show combi
 
 for_window [class="nautilus"] border none
 
@@ -291,8 +291,9 @@ bindsym $mod+Shift+p exec srht -p
 #bindsym $mod+Print exec sleep 0.1 && srht
 
 # dmenu for arbituary programs
-bindsym $mod+x exec --no-startup-id $menu
-bindsym $mod+Shift+x exec --no-startup-id dmenu_run -p "Run:" -l 10
+bindsym $mod+z exec --no-startup-id rofi -show combi
+bindsym $mod+Shift+x exec --no-startup-id $menu
+bindsym $mod+x exec --no-startup-id dmenu_run -p "Run:" -l 10
 bindsym $mod+d exec j4-dmenu-desktop
 bindsym $mod+Shift+d exec --no-startup-id dmenu | xargs swaymsg
 

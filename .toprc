@@ -1,7 +1,7 @@
 top's Config File (Linux processes with windows)
 Id:i, Mode_altscr=0, Mode_irixps=0, Delay_time=2.0, Curwin=0
 Def	fieldscur=¨°¦3´¹µ;=@Ä·º¶Æ')*+,-./12¥Å8<>?ABC]GHIJKLMNOPQRSTUVWXYZ[\^_`abcdefghij
-	winflags=194996, sortindx=18, maxtasks=0, graph_cpus=2, graph_mems=1
+	winflags=194996, sortindx=18, maxtasks=0, graph_cpus=0, graph_mems=0
 	summclr=6, msgsclr=6, headclr=7, taskclr=6
 Job	fieldscur=¥¦¹·:(³´Ä»½@<§Å)*+,-./012568>?ABCFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghij
 	winflags=194980, sortindx=21, maxtasks=0, graph_cpus=2, graph_mems=1
