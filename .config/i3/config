@@ -16,7 +16,11 @@ set $term tilix
 set $term4 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
-set $menu2 rofi -modi 'window\,windowcd\,drun\,combi\,keys\,run\,ssh' -show combi
+set $menu2 rofi -theme ~/.config/rofi/themes/trevorj-sidebar.rasi -show combi
+set $menu_apps rofi -theme ~/.config/rofi/themes/trevorj-dmenu.rasi -show drun
+set $menu_apps2 j4-dmenu-desktop
+set $menu_run2 rofi -theme ~/.config/rofi/themes/trevorj-dmenu.rasi -show run
+set $menu_run dmenu_run -p "Run:" -l 10
 
 for_window [class="nautilus"] border none
 
@@ -292,9 +296,13 @@ bindsym $mod+Shift+p exec srht -p
 
 # dmenu for arbituary programs
 bindsym $mod+z exec --no-startup-id rofi -show combi
-bindsym $mod+Shift+x exec --no-startup-id $menu
-bindsym $mod+x exec --no-startup-id dmenu_run -p "Run:" -l 10
-bindsym $mod+d exec j4-dmenu-desktop
+
+bindsym $mod+x exec --no-startup-id $menu_run
+bindsym $mod+Shift+x exec --no-startup-id $menu_run2
+
+bindsym $mod+d exec --no-startup-id $menu_apps
+# bindsym $mod+Shift+d exec --no-startup-id $menu_apps2
+
 bindsym $mod+Shift+d exec --no-startup-id dmenu | xargs swaymsg
 
 # passwords
