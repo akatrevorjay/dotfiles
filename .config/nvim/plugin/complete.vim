@@ -189,10 +189,10 @@ if has('nvim')
     "let g:jedi#show_call_signatures = 1 " show in cmdline
     "let g:jedi#show_call_signatures_delay = 250 " ms (500)
 
-    "" FakeGIR cache for completion
-    "let g:deoplete#sources#jedi#extra_path = [
-    "    \ expand('~/.cache/fakegir'),
-    "    \ ]
+    " FakeGIR cache for completion
+    " let g:deoplete#sources#jedi#extra_path = [
+    "     \ expand('~/.cache/fakegir'),
+    "     \ ]
 
     " Remove jedi doc buffer automagically
     "autocmd BufWinEnter '__doc__' setlocal bufhidden=delete

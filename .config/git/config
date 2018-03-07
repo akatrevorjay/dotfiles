@@ -16,5 +16,3 @@
 	path = config.trevorj
 
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
-[user]
-	name = user.email
