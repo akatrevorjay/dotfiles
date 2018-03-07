@@ -1,0 +1,32 @@
+#!/bin/bash
+
+function user_xsession_d() {
+	: ${USRSESSIONDIR:=$HOME/.xsession.d}
+
+	# use run-parts to source every file in the session directory; we source
+	# instead of executing so that the variables and functions defined above
+	# are available to the scripts, and so that they can pass variables to each
+	# other
+	if [[ -d $USRSESSIONDIR ]]; then
+		SESSIONFILES=$(run-parts --list $USRSESSIONDIR)
+
+		if [ -n "$SESSIONFILES" ]; then
+			set +e
+
+			for SESSIONFILE in $SESSIONFILES; do
+				. $SESSIONFILE
+			done
+
+			set -e
+		fi
+	fi
+}
+
+main() {
+	user_xsession_d
+
+	:
+}
+
+main "$@"
+

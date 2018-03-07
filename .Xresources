@@ -1,19 +1,64 @@
+!! from Xdefaults:
+!Xcursor*theme: Obsidian
+
+!! colorscheme
+!*background:  #272f30
+!*colorUL:  #cbffff
+!*cursorColor:  #7a9aff
+!*foreground:  #dcdcdc
+!*underlineColor:  #cbffff
+!*xtermbackground:  #001944
+!*color0:  #192f0f
+!*color1:  #972e9b
+!*color2:  #5ae438
+!*color3:  #97b338
+!*color4:  #3b2eee
+!*color5:  #972eec
+!*color6:  #00cdee
+!*color7:  #a8aaa5
+!*color8:  #5f8366
+!*color9:  #a877a9
+!*color10:  #6af583
+!*color11:  #a8cf81
+!*color12:  #4a77ff
+!*color13:  #8377ff
+!*color14:  #2af5d7
+!*color15:  #ffffff
+
+!!
+!! Fonts
+!!
+
 !Xft.dpi: 192
 Xft.dpi: 75
 !Xft.dpi: 120
 
-! Fonts
-!Xft.autohint:           1
-!Xft.antialias:          1
-!Xft.hinting:            1
-!Xft.rgba:               rgb
+Xft.autohint:           1
+Xft.antialias:          1
+Xft.hinting:            1
+Xft.rgba:               rgb
+
 !Xft.hintstyle:          hintslight
+Xft.hintstyle:          hintmedium
 !Xft.hintstyle:          hintfull
+
+!!
+!! emax
+!!
 
 Emacs.FontBackend: xft
 !Emacs.pane.menubar.font: PragmataPro Nerd Font 12
 !Emacs.font: PragmataPro Nerd Font 12
 
+!!
+!! xterm
+!!
+
+XTerm*decTerminalID: vt340
+XTerm*numColorRegisters: 256
+
+!*decTerminalID: vt340
+!*numColorRegisters: 256
 
 !*VT100.colorBDMode:     true
 !*colorBDMode: true
@@ -23,6 +68,10 @@ Emacs.FontBackend: xft
 !!*VT100.colorUL:         cyan
 !!*VT100.veryBoldColors: 6
 !*highlightColorMode: true
+
+!!
+!! urxvt
+!!
 
 URxvt*termName: rxvt-unicode-256color
 !URxvt*iconFile: /usr/share/icons/Papirus-Dark/64x64/apps/Terminal.svg
@@ -39,12 +88,13 @@ URxvt*secondaryScreen: 1
 URxvt*secondaryScroll: 0
 ! ^ also for mousewheel
 URxvt*secondaryWheel: 1
+
 ! fonts
 !URxvt*font:                 xft:OperatorMono Nerd Font:pixelsize=13:antialias=true:hinting=true:minspace=true:style=Medium
 !URxvt*italicFont:           xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
 !URxvt*boldFont:             xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Bold
 !URxvt*boldItalicFont:       xft:OperatorMono Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true:style=Italic
-URxvt*font:              xft:PragmataProForPowerline Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
+URxvt*font:              xft:PragmataProForPowerline Nerd Font:pixelsize=12:antialias=true:hinting=true:minspace=true
 !URxvt*font:              xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:minspace=true
 !URxvt*italicFont:        xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=italic
 !URxvt*boldFont:          xft:PragmataPro Nerd Font:pixelsize=14:antialias=true:hinting=true:style=bold
@@ -57,9 +107,9 @@ URxvt*font:              xft:PragmataProForPowerline Nerd Font:pixelsize=14:anti
 !URxvt*letterSpace: 2
 
 !URxvt*reverseVideo: true
-!URxvt*saveLines: 10240
+URxvt*saveLines: 10240
 ! use tmux LaB
-URxvt*saveLines: 0
+!URxvt*saveLines: 0
 
 !! Keycode fixes for Ctrl+direction in Vim
 !URxvt*keysym.C-Up:     \033[1;5A
@@ -87,12 +137,6 @@ URxvt*scrollBar_right: true
 
 !URxvt*jumpScroll: true
 !URxvt*skipScroll: false
-
-XTerm*decTerminalID: vt340
-XTerm*numColorRegisters: 256
-
-!*decTerminalID: vt340
-!*numColorRegisters: 256
 
 ! perl exts
 !URxvt*perl-ext-common: extension_name_1,extension_name_2,...
@@ -253,36 +297,6 @@ URxvt*highlightTextColor: #000000
 URxvt*highlightColor: #b4d5ff
 ! No support for cursor text coloring; would be #ffffff.
 ! No support for bold coloring; would be #ffffff.
-!
-
-! from Xdefaults:
-!Xcursor*theme: Obsidian
-
-
-
-
-!*background:  #272f30
-!*colorUL:  #cbffff
-!*cursorColor:  #7a9aff
-!*foreground:  #dcdcdc
-!*underlineColor:  #cbffff
-!*xtermbackground:  #001944
-!*color0:  #192f0f
-!*color1:  #972e9b
-!*color2:  #5ae438
-!*color3:  #97b338
-!*color4:  #3b2eee
-!*color5:  #972eec
-!*color6:  #00cdee
-!*color7:  #a8aaa5
-!*color8:  #5f8366
-!*color9:  #a877a9
-!*color10:  #6af583
-!*color11:  #a8cf81
-!*color12:  #4a77ff
-!*color13:  #8377ff
-!*color14:  #2af5d7
-!*color15:  #ffffff
 !
 
 

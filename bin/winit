@@ -1,49 +1,44 @@
 #!/usr/bin/env zsh
 
-##
-## monitors
-##
+case "${1:-$DE}" in
+	i3*|sway*)
+		## monitors
+		xrandr-auto
 
-~/bin/xrandr-auto &
-sleep 1 && nvidia-settings -l &
+		## bg
+		[[ ! -e $HOME/.fehbg ]] || $HOME/.fehbg &
 
-# load recent bg
-[[ ! -e $HOME/.fehbg ]] || $HOME/.fehbg &
+		## xsettings and related
+		# xsettingsd &
+		gsd-launch &
+		#kdeinit5 &
 
-##
-## input
-##
+		# because gkd is not started with all components as you'd expect...
+		gnome-keyring-daemon -r --components=pkcs11,secrets,ssh &
 
-#wm &
-inputplug -d -0 -c $HOME/.config/inputplug/hook &
-#imwheel -b '4 5 6 7' -k -p -r -d &
-#tkbd &
+		/usr/lib/gcr/gcr-prompter &
+		/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+		#/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
+		/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
 
-##
-## base
-##
+		## input
+		#wm &
+		inputplug -d -0 -c $HOME/.config/inputplug/hook &
+		#imwheel -b '4 5 6 7' -k -p -r -d &
+		#tkbd &
 
-compton &
+		## weee
+		compton &
+		polybar example &
+		polybar mybar &
 
-#xsettingsd &
-gsd-launch &
+		;;
+esac
 
-sleep 1
-
-# gnome-keyring-daemon &
-# seahorse-daemon &
-
-/usr/lib/gcr/gcr-prompter &
-/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
-#/usr/lib/x86_64-linux-gnu/libexec/kdeconnectd &
-/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
-
-polybar example &
-polybar mybar &
-
-sleep 1
-
-case $HOST in
+# HOST should always be short already, but I've seen misconfigurations where it is not.
+# (sometimes someone does not understand how /etc/hostname works}
+# have no fear though, systemd has since bastardized all of this anyway! for reasons
+case ${HOST%%.*} in
 	fatbookho*)
 		usbguard-applet-qt &
 		nm-applet &
@@ -55,19 +50,22 @@ case $HOST in
 		indicator-kdeconnect &
 		#notify-proxy &
 		variety &
+
+		# yubioath gui -t &
+		# easystroke &
+		#kupfer &
+
+		#(( ! ${+commands[wal]} )) \
+		#  || wal -i $(< $HOME/.cache/wal/wal)
+
+		#xdg-autostart &
 		;;
+
 	notsofatbookho*)
 		gpomme &
 		;;
 esac
 
-# yubioath gui -t &
-# easystroke &
-#kupfer &
-
-#(( ! ${+commands[wal]} )) \
-#  || wal -i $(< $HOME/.cache/wal/wal)
-
-#xdg-autostart &
-
+## weee
 wait
+

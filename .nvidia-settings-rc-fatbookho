@@ -1,0 +1,49 @@
+# ConfigProperties:
+RcFileLocale = C
+DisplayStatusBar = Yes
+SliderTextEntries = Yes
+IncludeDisplayNameInConfigFile = Yes
+ShowQuitDialog = No
+UpdateRulesOnProfileNameChange = Yes
+Timer = PowerMizer_Monitor_(GPU_0),Yes,1000
+Timer = Thermal_Monitor_(GPU_0),Yes,1000
+Timer = Memory_Used_(GPU_0),Yes,3000
+
+# Attributes:
+AllowFlipping=1
+AllowGSYNC=1
+FSAA=1
+FSAAAppControlled=1
+FSAAAppEnhanced=1
+FXAA=1
+LogAniso=0
+LogAnisoAppControlled=1
+OpenGLImageSettings=1
+ShowGSYNCVisualIndicator=1
+SyncToVBlank=1
+SynchronousPaletteUpdates=1
+TextureClamping=1
+
+DigitalVibrance[DP-0]=300
+DigitalVibrance[DP-1]=300
+
+XVideoSyncToDisplayID=DP-1
+# XVideoSyncToDisplay=DP-1
+
+# BlueBrightness=0.000000
+# BlueContrast=0.000000
+# BlueGamma=1.000000
+# ColorRange=0
+# ColorSpace=0
+# Dithering=0
+# DitheringDepth=0
+# DitheringMode=0
+# GreenBrightness=0.000000
+# GreenContrast=0.000000
+# GreenGamma=1.000000
+# RedBrightness=0.000000
+# RedContrast=0.000000
+# RedGamma=1.000000
+
+# vim: set ts=4 sw=4 tw=120 noet ft=config :
+

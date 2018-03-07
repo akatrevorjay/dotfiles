@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function std() {
+	: ${DE:=generic}
+	: ${BROWSER:=x-www-browser}
+	: ${EDITOR:=nvim}
+
+	dbus_env_add DE BROWSER EDITOR
+}
+
+std

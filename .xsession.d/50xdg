@@ -1,0 +1,19 @@
+#!/bin/bash
+
+function xdg_defaults() {
+	# XDG defaults
+	: ${XDG_CONFIG_HOME:=$HOME/.config}
+	: ${XDG_CACHE_HOME:=$HOME/.cache}
+	: ${XDG_DATA_HOME:=$HOME/.local/share}
+	: ${XDG_RUNTIME_HOME:=$HOME/.tmp}
+
+	if [[ -x /usr/bin/xdg-user-dirs-update ]]; then
+		xdg-user-dirs-update
+		source "${XDG_CONFIG_DIR:-${XDG_CONFIG_HOME:-$HOME/.config}}/user-dirs.dirs"
+	fi
+
+	# declare -xm 'XDG_*' || :
+	dbus_env_add ${!XDG_*}
+}
+
+xdg_defaults

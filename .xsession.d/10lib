@@ -1,0 +1,51 @@
+#!/bin/bash
+
+ret=()
+
+doc() { :; }
+usage() { :; }
+
+function bsplit() {
+	usage 'bsplit($by, $str)'
+	doc   'If $by is empty, split by $IFS into array $ret'
+
+	ret=()
+	local IFS=${1:$IFS} i=; for i in ${@:2}; do
+		ret+=("$i")
+	done
+}
+
+function dbus_env_add() {
+	# declare -xm "$@"
+	declare -x "$@"
+
+	! which dbus-update-activation-environment > /dev/null 2>&1 || \
+		dbus-update-activation-environment --verbose --systemd "$@"
+}
+
+function remove_from_colon_sep_val() {
+	local given="$1"; shift
+	local remove=("$@")
+
+	bsplit ':' "$GIT_MODULES"
+	local givens=("${ret[@]}")
+
+	local cleaned=""
+
+	local mod rem skip
+	for mod in "${givens[@]}"; do
+		skip=""
+		for rem in "${remove[@]}"; do
+			case "$mod" in
+				$rem) skip=true ;;
+			esac
+		done
+		[[ -z "$skip" ]] || continue
+
+		[[ -z "$cleaned" ]] || cleaned+=":"
+		cleaned+="$mod"
+	done
+
+	ret=("$cleaned")
+}
+

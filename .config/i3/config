@@ -346,18 +346,10 @@ bindsym $mod+i exec ibus-toggle
 # The escape symbol "\" has to be removed.
 # Read `man 5 i3-input` for more information about this section.
 
-exec --no-startup-id ~/bin/winit
-
+# ex:
 # exec --no-startup-id tint2
 # exec_always --no-startup-id $HOME/.config/polybar/launch
-# exec --no-startup-id compton
-
-#exec xsettingsd
-#exec gnome-settings-daemon
-#exec kdeinit5
-#exec slack
-#exec google-chrome
-
+exec --no-startup-id ~/bin/winit i3
 
 #
 # Status Bar:
