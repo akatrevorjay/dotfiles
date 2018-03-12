@@ -2,12 +2,6 @@
 
 case "${1:-$DE}" in
 	i3*|sway*)
-		## monitors
-		xrandr-auto
-
-		## bg
-		[[ ! -e $HOME/.fehbg ]] || $HOME/.fehbg &
-
 		## xsettings and related
 		# xsettingsd &
 		gsd-launch &
@@ -32,37 +26,37 @@ case "${1:-$DE}" in
 		polybar example &
 		polybar mybar &
 
-		;;
-esac
+		# HOST should always be short already, but I've seen misconfigurations where it is not.
+		# (sometimes someone does not understand how /etc/hostname works}
+		# have no fear though, systemd has since bastardized all of this anyway! for reasons
+		case ${HOST%%.*} in
+			fatbookho*)
+				usbguard-applet-qt &
+				nm-applet &
+				ckb --background &
+				solaar &
+				pasystray &
 
-# HOST should always be short already, but I've seen misconfigurations where it is not.
-# (sometimes someone does not understand how /etc/hostname works}
-# have no fear though, systemd has since bastardized all of this anyway! for reasons
-case ${HOST%%.*} in
-	fatbookho*)
-		usbguard-applet-qt &
-		nm-applet &
-		ckb --background &
-		solaar &
-		pasystray &
+				parcellite &
+				indicator-kdeconnect &
+				#notify-proxy &
+				variety &
 
-		parcellite &
-		indicator-kdeconnect &
-		#notify-proxy &
-		variety &
+				# yubioath gui -t &
+				# easystroke &
+				#kupfer &
 
-		# yubioath gui -t &
-		# easystroke &
-		#kupfer &
+				#(( ! ${+commands[wal]} )) \
+				#  || wal -i $(< $HOME/.cache/wal/wal)
 
-		#(( ! ${+commands[wal]} )) \
-		#  || wal -i $(< $HOME/.cache/wal/wal)
+				#xdg-autostart &
+				;;
 
-		#xdg-autostart &
-		;;
+			notsofatbookho*)
+				gpomme &
+				;;
+		esac
 
-	notsofatbookho*)
-		gpomme &
 		;;
 esac
 

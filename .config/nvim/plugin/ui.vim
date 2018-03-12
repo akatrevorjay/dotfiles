@@ -181,7 +181,6 @@ let g:badwolf_tabline = 0
 "colorscheme magellan
 
 " let g:airline_theme = 'kolor'
-let g:tmuxline_theme = 'airline_visual'
 let g:moonflySpellReversed = 1
 " colorscheme moonfly
 
@@ -192,8 +191,66 @@ let g:moonflySpellReversed = 1
 " let g:airline_theme = 'breezy'
 " colorscheme colorsbox-stbright
 
-let g:airline_theme = 'vorange'
-colorscheme chroma
+" let g:airline_theme = 'vorange'
+" let g:airline_theme = 'ayu_mirage'
+" colorscheme chroma
 
+let g:airline_theme = 'ayu_mirage'
+colorscheme ayu
+
+" ALWAYS
 highlight Comment cterm=italic gui=italic
 
+
+
+
+
+" configure which stock theme should be used by |:Tmuxline| >
+" let g:tmuxline_preset = 'nightly_fox'
+
+" let g:tmuxline_preset = 'airline_visual'
+" let g:tmuxline_preset = 'zenburn'
+" let g:tmuxline_preset = 'nightly_fox'  " stock
+
+" " custom preset with left-justified window list
+" let g:tmuxline_preset = {
+"     \'a'       : '#S',
+"     \'b'       : '#W',
+"     \'c'       : '#H',
+"     \'win'     : '#I #W',
+"     \'cwin'    : '#I #W',
+"     \'x'       : '%a',
+"     \'y'       : '#W %R',
+"     \'z'       : '#H',
+"     \'options' : {'status-justify' : 'left'}}
+
+" " custom preset with shell commands
+" let g:tmuxline_preset = {
+"     \'a'    : '#S',
+"     \'c'    : ['#(whoami)', '#(uptime  | cut -d " " -f 1,2,3)'],
+"     \'win'  : ['#I', '#W'],
+"     \'cwin' : ['#I', '#W', '#F'],
+"     \'x'    : '#(date)',
+"     \'y'    : ['%R', '%a', '%Y'],
+"     \'z'    : '#H'}
+
+" * fine-tune the separators >
+" let g:tmuxline_powerline_separators = 0
+" let g:tmuxline_separators = {
+"     \ 'left' : '',
+"     \ 'left_alt': '>',
+"     \ 'right' : '',
+"     \ 'right_alt' : '<',
+"     \ 'space' : ' '}
+
+" configure the alignment of the tmux window list; maps to the tmux command
+" set -g status-justify'. Values are 'left', 'centre', or 'right'
+" Default is 'centre' >
+let g:tmuxline_status_justify = 'left'
+
+
+" create a snapshot file of the last set statusline, overwriting the file if it exists >
+" call tmuxline#api#snapshot(path)
+
+" * create a tmuxline theme from airline's pallette for a mode >
+" tmuxline#api#create_theme_from_airline(mode_palette)

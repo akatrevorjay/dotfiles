@@ -259,6 +259,7 @@ Plug 'vim-python/python-syntax', {'for': 'python'}
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
 "Plug 'python-rope/ropevim', {'for': 'python'}
+Plug 'wilywampa/vim-ipython', {'for': 'python'}
 
 " Indenting:
 "Plug 'hynek/vim-python-pep8-indent'

@@ -37,3 +37,5 @@ zplugins.load "akatrevorjay/zsh-autopair"
 # zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
 zplugins.load "zdharma/fast-syntax-highlighting"
 
+zplugins.load "b4b4r07/zsh-vimode-visual"
+

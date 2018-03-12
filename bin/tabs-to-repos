@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
 _____________
-tabs-to-repos -- Download all github repos that you have open in firefox tabs (quick hack)
+tabs-to-repos -- Quickly clone all of the github repos that you have open in firefox tabs.
+
+Pipe the output to your shell to actually clone them, otherwise it just prints the commands and some comments ;)
 
 @trevorj 12/2017
 https://gist.github.com/akatrevorjay/3fb5bc753edd42b2abd0accb4dde4cdc
@@ -13,13 +15,14 @@ import os
 import re
 import sys
 
-import lz4.block  # bug in firefox_tabs requires this, it only imports bare `lz4`
-
+# bug in firefox_tabs requires this, it only imports bare `lz4`
+import lz4.block  # noqa
 import firefox_tabs
 
-log = logging.getLogger(__name__)
+log = logging.getLogger(__name__)  # noqa
 
-FF_SS_REC_GLOB = os.path.expanduser('~/.mozilla/firefox/*/sessionstore-backups/recovery.jsonlz4')
+FF_PROF_GLOB = '~/.mozilla/firefox*/*.*/'
+FF_PROF_SESS_REC_GLOB = '%s/sessionstore-backups/recovery.jsonlz4' % FF_PROF_GLOB
 
 RE_GITHUB_REPO = re.compile(
     r'(?P<scheme>https?)://(www\.|)github.com/(?P<user>[-_0-9a-zA-Z]+)/(?P<repo>[-_0-9a-zA-Z]+)/?$',
@@ -37,13 +40,17 @@ class AttrDict(dict):
         self.__dict__ = self
 
 
-def _latest_file_in_glob(glob_match):
-    mtime = lambda p: os.stat(p).st_mtime
-    paths = glob.glob(glob_match)
-    sorted_paths = sorted(paths, key=mtime)
+def _glob_me_prof(pat=FF_PROF_GLOB, sort_by=lambda x: -os.stat(x).st_mtime):
+    pat = os.path.expanduser(pat)
+
+    paths = glob.glob(pat)
+    sorted_paths = sorted(paths, key=sort_by)
+
     if not sorted_paths:
-        raise ValueError('Could not find Firefox session store backup. What OS are you on? Check the glob.')
-    return sorted_paths[0]
+        log.warn('Could not glob %r. What OS are you on?', glob)
+
+    for p in sorted_paths:
+        yield p
 
 
 def _load_firefox_data(path):
@@ -67,7 +74,7 @@ def _iter_firefox_tabs(session_data, container_factory=AttrDict):
 
 
 def main(re_url=RE_GITHUB_REPO):
-    path = _latest_file_in_glob(FF_SS_REC_GLOB)
+    path = next(_glob_me_prof(FF_PROF_SESS_REC_GLOB))
 
     log.info('Loading from firefox session store backup: %r', path)
     session_data = _load_firefox_data(path)
@@ -84,7 +91,6 @@ def main(re_url=RE_GITHUB_REPO):
 
         md = AttrDict(m.groupdict())
 
-        # so hacky
         print('# %s' % tab.url)
         print('git clone https://github.com/%s/%s.git' % (md.user, md.repo))
 
