@@ -70,3 +70,7 @@ define printframe
         frame
     end
 end
+
+# GEF is pretty rad yo
+source /home/trevorj/.gdb/gdbinit-gef.py
+

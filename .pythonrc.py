@@ -9,6 +9,17 @@ log = logging.getLogger(__name__)
 # import demandimport
 # demandimport.enable()
 
+try:
+    import phi.api
+    from phi.api import *
+except ImportError:
+    pass
+
+try:
+    import pout
+except ImportError:
+    pass
+
 import collections
 import six
 import sys
@@ -25,6 +36,11 @@ import csv
 import re
 
 from pprint import pprint, pformat
+try:
+    import prettyprinter
+    from prettyprinter import pprint, register_pretty, pretty_call
+except ImportError:
+    pass
 pp2 = pprint
 pf2 = pformat
 
