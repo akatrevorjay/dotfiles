@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #[[ "$UID" -gt 0 ]] || return
-case "${OSTYPE:l}" in
+case ${OSTYPE:l} in
 	# No condoms for you, you sly devil.
 	# (osx just doesn't support these opts reliably.)
 	darwin*)
