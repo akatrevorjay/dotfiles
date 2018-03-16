@@ -2,13 +2,15 @@
 
 case "${1:-$DE}" in
 	i3*|sway*)
+		autorandr || :
+
 		## xsettings and related
 		# xsettingsd &
 		gsd-launch &
 		#kdeinit5 &
 
 		# because gkd is not started with all components as you'd expect...
-		gnome-keyring-daemon -r --components=pkcs11,secrets,ssh &
+		gnome-keyring-daemon -r --components=pkcs11,secrets &
 
 		/usr/lib/gcr/gcr-prompter &
 		/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
@@ -23,6 +25,9 @@ case "${1:-$DE}" in
 
 		## weee
 		compton &
+
+		# lame.
+		sleep 1
 		polybar example &
 		polybar mybar &
 

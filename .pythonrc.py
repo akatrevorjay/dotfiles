@@ -20,6 +20,12 @@ try:
 except ImportError:
     pass
 
+try:
+    import icecream
+    from icecream import ic
+except ImportError:
+    pass
+
 import collections
 import six
 import sys
