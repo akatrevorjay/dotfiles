@@ -349,3 +349,6 @@ I just loved you because you’re you.”
 “You ought to pause and enjoy the peace in the moment.”
 -- Lailah Gifty Akita
 %
+“If you lie to the compiler, it will get its revenge.”
+-- Henry Spencer
+%
