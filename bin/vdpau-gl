@@ -1,0 +1,23 @@
+#!/bin/zsh
+set -eo pipefail
+
+prep() {
+	[ ! -f /usr/lib/$(arch)-$(uname -s | tr '[A-Z]' '[a-z]')-gnu/vdpau/libvdpau_va_gl.so.1 ] || \
+	export VDPAU_DRIVER=va_gl
+}
+
+usage() {
+    echo "Usage: ${0:t} COMMAND [ARG..]"
+}
+
+main() {
+	[ $# -gt 0 ] || (usage >&2; return 1)
+
+	[[ $1 != '--' ]] || shift
+
+	prep
+
+	exec "$@"
+}
+
+main "$@"

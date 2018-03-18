@@ -1,0 +1,21 @@
+#!/bin/zsh
+set -eo pipefail
+
+function gnome-settings-daemon {
+	if (( ${+commands[gnome-settings-daemon]} )); then
+		command gnome-settings-daemon &
+	else
+		for i in /usr/lib/gnome-settings-daemon/gsd*(*); do
+			case $i in
+				*-locate-pointer) continue ;;
+			esac
+
+			killall -u $USER ${i:?} || :
+			$i &
+		done
+	fi
+}
+
+gnome-settings-daemon
+wait
+
