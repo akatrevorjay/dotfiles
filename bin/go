@@ -6,7 +6,7 @@ self_bin=${self%-*}
 
 gover=${self##*-}
 case $gover in
-    $self) gover=1.9 ;;
+    $self) gover=1.10 ;;
 esac
 
 export GOROOT=/usr/lib/go-$gover

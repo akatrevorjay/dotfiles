@@ -11,20 +11,18 @@
 " DKMS
 au BufRead,BufNewFile *.dkms setf sh
 au BufRead,BufNewFile dkms.conf setf sh
+
 au BufRead,BufNewFile *.dox setf doxygen
 " Notice no extension, catches kops edit
-" au BufRead,BufNewFile *yaml setf yaml
 au BufRead,BufNewFile *yaml setf yaml.jinja2
 au BufRead,BufNewFile *json setf json.jinja2
-au BufRead,BufNewFile *.yaml setf yaml.jinja2
-au BufRead,BufNewFile *.json setf json.jinja2
- 
-" au BufRead,BufNewFile */.home-assistant/*.yaml setf yaml.jinja2
- 
+" au BufRead,BufNewFile *.yaml setf yaml.jinja2
+" au BufRead,BufNewFile *.json setf json.jinja2
+
 au BufRead,BufNewFile *.ini setf dosini.jinja2
 au BufRead,BufNewFile *.cfg setf config.jinja2
 au BufRead,BufNewFile *.conf setf config.jinja2
- 
+
 au BufRead,BufNewFile *.log setf log
 au BufRead,BufNewFile *.out setf log
 au BufRead,BufNewFile *.rasi setf css

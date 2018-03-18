@@ -1,5 +1,6 @@
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
 " Plug 'scrooloose/nerdcommenter'
+Plug 'tomtom/tcomment_vim'
 
 " Gundo: Undo browser
 Plug 'sjl/gundo.vim'
