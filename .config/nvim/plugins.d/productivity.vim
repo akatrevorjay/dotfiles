@@ -44,7 +44,7 @@ Plug 'valloric/matchtagalways', {'for': keys(g:mta_filetypes)}
 "" Tasks
 ""
 
-Plug 'vimwiki/vimwiki'
+Plug 'vimwiki/vimwiki', {'branch': 'dev'}
 
 " Taskwarrior: Fucking sick ftw
 if executable('task')

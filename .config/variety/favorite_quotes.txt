@@ -352,3 +352,6 @@ I just loved you because you’re you.”
 “If you lie to the compiler, it will get its revenge.”
 -- Henry Spencer
 %
+“The defense policy of the United States is based on a simple premise: The United States does not start fights. We will never be an aggressor.”
+-- Ronald Reagan
+%

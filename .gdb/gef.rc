@@ -1,0 +1,125 @@
+[context]
+clear_screen = False
+enable = True
+grow_stack_down = False
+ignore_registers = 
+layout = regs stack code source memory threads trace extra
+nb_lines_backtrace = 10
+nb_lines_code = 6
+nb_lines_code_prev = 3
+nb_lines_stack = 8
+nb_lines_threads = -1
+peek_calls = True
+redirect = 
+show_registers_raw = False
+show_stack_raw = False
+use_capstone = True
+
+[dereference]
+max_recursion = 7
+
+[entry-break]
+entrypoint_symbols = main _main __libc_start_main __uClibc_main start _start
+
+[gef-remote]
+clean_on_exit = False
+
+[gef]
+autosave_breakpoints_file = ~/.gdb/breakpoints
+debug = False
+disable_color = False
+extra_plugins_dir = ~/.gdb/scripts;~/.gdb/gef-extras/scripts
+follow_child = True
+readline_compat = False
+
+[heap-analysis-helper]
+check_double_free = True
+check_free_null = False
+check_heap_overlap = True
+check_uaf = True
+check_weird_free = True
+
+[ida-interact]
+host = 127.0.0.1
+port = 1337
+sync_cursor = False
+
+[pattern]
+length = 1024
+
+[pcustom]
+struct_path = /tmp/user/1000/gef/structs;~/.gdb/gef-extras/structs;~/.gdb/structs
+
+[process-search]
+ps_command = /bin/ps auxww
+
+[retdec]
+key = 
+path = /tmp/user/1000/gef
+
+[theme]
+address_code = red
+address_heap = yellow
+address_stack = pink
+context_title_line = green bold
+context_title_message = red bold
+default_title_line = green bold
+default_title_message = red bold
+dereference_base_address = bold green
+dereference_code = red
+dereference_register_value = bold green
+dereference_string = green
+registers_register_name = bold red
+xinfo_title_message = blue bold
+
+[trace-run]
+max_tracing_recursion = 1
+tracefile_prefix = ./gef-trace-
+
+[unicorn-emulate]
+show_disassembly = True
+verbose = False
+
+[aliases]
+status = process-status
+dt = pcustom
+decompile = retdec
+binaryninja-interact = ida-interact
+bn = ida-interact
+binja = ida-interact
+grep = search-pattern
+xref = search-pattern
+flags = edit-flags
+emulate = unicorn-emulate
+cs-dis = capstone-disassemble
+sc-search = shellcode search
+sc-get = shellcode get
+ps = process-search
+start = entry-break
+ctx = context
+dq = hexdump qword
+dd = hexdump dword
+dw = hexdump word
+db = hexdump byte
+eq = patch qword
+ed = patch dword
+ew = patch word
+eb = patch byte
+ea = patch string
+dps = dereference
+telescope = dereference
+pattern offset = pattern search
+fmtstr-helper = format-string-helper
+screen-setup = tmux-setup
+bl = info breakpoints
+bc = delete breakpoints
+bp = break
+bd = disable breakpoints
+be = enable breakpoints
+da = x/s
+tbp = tbreak
+pa = advance
+ptc = finish
+uf = disassemble
+kp = info stack
+

@@ -12,13 +12,21 @@ Timer = Memory_Used_(GPU_0),Yes,3000
 # Attributes:
 AllowFlipping=1
 AllowGSYNC=1
-FSAA=1
+
+FXAA=0
+FSAA=0
+# FXAA=1
+# FSAA=1
 FSAAAppControlled=1
 FSAAAppEnhanced=1
-FXAA=1
+
 LogAniso=0
 LogAnisoAppControlled=1
-OpenGLImageSettings=1
+
+# hq --> quality ---> perf ---> hp
+# OpenGLImageSettings=1
+OpenGLImageSettings=2
+
 ShowGSYNCVisualIndicator=1
 SyncToVBlank=1
 SynchronousPaletteUpdates=1

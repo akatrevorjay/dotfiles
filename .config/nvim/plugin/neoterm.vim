@@ -3,7 +3,7 @@ if ! has('nvim')
   finish
 endif
 
-let g:neoterm_position = 'horizontal'
+let g:neoterm_default_mods = ':horizontal'
 let g:neoterm_automap_keys = ',tt'
 let g:neoterm_shell = $SHELL
 let g:neoterm_autoinsert = 1
@@ -13,23 +13,19 @@ nnoremap <silent> <f9> :TREPLSend<cr>
 vnoremap <silent> <f9> :TREPLSend<cr>
 
 " run set test lib
-nnoremap <silent> ,rt :call neoterm#test#run('all')<cr>
-nnoremap <silent> ,rf :call neoterm#test#run('file')<cr>
-nnoremap <silent> ,rn :call neoterm#test#run('current')<cr>
-nnoremap <silent> ,rr :call neoterm#test#rerun()<cr>
+nnoremap <silent> <leader>rt :call neoterm#test#run('all')<cr>
+nnoremap <silent> <leader>rf :call neoterm#test#run('file')<cr>
+nnoremap <silent> <leader>rn :call neoterm#test#run('current')<cr>
+nnoremap <silent> <leader>rr :call neoterm#test#rerun()<cr>
 
 " Useful maps
-" hide/close terminal
-nnoremap <silent> ,th :call neoterm#close()<cr>
-" clear terminal
-nnoremap <silent> ,tl :call neoterm#clear()<cr>
+nnoremap <silent> <leader>tT :call neoterm#toggleAll()<cr>
+nnoremap <silent> <leader>tt :call neoterm#toggle({})<cr>
+nnoremap <silent> <leader>to :call neoterm#open({})<cr>
+nnoremap <silent> <leader>tq :call neoterm#close({})<cr>
+nnoremap <silent> <leader>tc :call neoterm#clear({})<cr>
 " kills the current job (send a <c-c>)
-nnoremap <silent> ,tc :call neoterm#kill()<cr>
-
-" Rails commands
-command! Troutes :T rake routes
-command! -nargs=+ Troute :T rake routes | grep <args>
-command! Tmigrate :T rake db:migrate
+nnoremap <silent> <leader>tk :call neoterm#kill({})<cr>
 
 " Git commands
 command! -nargs=+ Tg :T git <args>

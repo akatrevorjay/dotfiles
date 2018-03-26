@@ -27,9 +27,10 @@ case "${1:-$DE}" in
 		compton &
 
 		# lame.
-		sleep 1
-		polybar example &
-		polybar mybar &
+		(sleep 5 && ( \
+			polybar example & \
+			polybar mybar & \
+		)) &
 
 		# HOST should always be short already, but I've seen misconfigurations where it is not.
 		# (sometimes someone does not understand how /etc/hostname works}

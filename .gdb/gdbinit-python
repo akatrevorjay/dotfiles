@@ -56,11 +56,25 @@ define pyframe
     lineno
     printf "): %s\n", $__n
 
-    ## Uncomment these lines when using from within Emacs/XEmacs so it will
-    ## automatically track/display the current Python source line
-    #printf "%c%c%s:", 032, 032, $__fn
-    #lineno
-    #printf ":1\n"
+    # Uncomment these lines when using from within Emacs/XEmacs so it will
+    # automatically track/display the current Python source line
+    printf "%c%c%s:", 032, 032, $__fn
+    lineno
+    printf ":1\n"
+end
+
+define pyframe-simple
+    set $__fn = (char *)((PyStringObject *)co->co_filename)->ob_sval
+    set $__n = (char *)((PyStringObject *)co->co_name)->ob_sval
+    printf "%s (", $__fn
+    lineno
+    printf "): %s\n", $__n
+
+    # # Uncomment these lines when using from within Emacs/XEmacs so it will
+    # # automatically track/display the current Python source line
+    # printf "%c%c%s:", 032, 032, $__fn
+    # lineno
+    # printf ":1\n"
 end
 
 define printframe
@@ -74,3 +88,4 @@ end
 # GEF is pretty rad yo
 source /home/trevorj/.gdb/gdbinit-gef.py
 
+# vim: set ts=4 sw=4 tw=120 et ft=gdb :

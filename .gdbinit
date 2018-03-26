@@ -1,1 +1,1 @@
-.gdb/gdbinit-python
+.gdb/gdbinit

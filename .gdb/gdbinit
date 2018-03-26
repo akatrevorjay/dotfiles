@@ -1,0 +1,7 @@
+# GEF is pretty rad yo
+source ~/.gdb/gdbinit-gef.py
+
+# So hot
+source ~/.gdb/libpython.py
+
+# vim: set ts=4 sw=4 tw=120 et ft=gdb :
