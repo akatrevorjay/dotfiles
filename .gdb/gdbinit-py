@@ -1,5 +1,5 @@
 # GEF is pretty rad yo
-source ~/.gdb/gdbinit-gef.py
+source ~/.gdb/gef.py
 
 # So hot
 source ~/.gdb/libpython.py

@@ -1,1 +1,7 @@
 /breakpoints*
+
+__pycache__
+*.pyc
+
+.mypy_cache/
+.rope_*

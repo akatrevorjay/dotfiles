@@ -86,6 +86,6 @@ define printframe
 end
 
 # GEF is pretty rad yo
-source /home/trevorj/.gdb/gdbinit-gef.py
+source ~/.gdb/gef.py
 
 # vim: set ts=4 sw=4 tw=120 et ft=gdb :

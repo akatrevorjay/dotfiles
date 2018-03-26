@@ -1,3 +1,6 @@
+# GEF is pretty rad yo
+source ~/.gdb/gef.py
+
 set target-async on
 set confirm off
 set mem inaccessible-by-default off
