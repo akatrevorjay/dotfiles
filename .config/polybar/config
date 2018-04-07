@@ -607,7 +607,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp61s0
+; interface = wlp61s0
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
@@ -690,7 +690,7 @@ animation-packetloss-framerate = 500
 [module/eth]
 type = internal/network
 ; interface = virbr0-nic
-interface = enp60s0
+; interface = enp60s0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -817,8 +817,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
@@ -836,8 +836,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 
@@ -855,8 +855,8 @@ format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
-label = %temperature%
-label-warn = %temperature%
+label = %temperature-c%
+label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
 ramp-0 = 

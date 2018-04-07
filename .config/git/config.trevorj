@@ -43,7 +43,7 @@
 # WHY THE FUCK IS THIS NOT IN MERGE ugh
 [rebase]
     autoStash = True
-[pull]
-    rebase = True
+# [pull]
+#     rebase = True
 
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
