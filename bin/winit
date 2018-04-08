@@ -2,7 +2,7 @@
 
 case "${1:-$DE}" in
 	i3*|sway*)
-		autorandr || :
+		autorandr -c || :
 
 		## xsettings and related
 		# xsettingsd &

@@ -30,17 +30,17 @@
 !!
 
 !Xft.dpi: 192
-Xft.dpi: 75
+! Xft.dpi: 75
 !Xft.dpi: 120
 
-Xft.autohint:           1
-Xft.antialias:          1
-Xft.hinting:            1
-Xft.rgba:               rgb
-
-!Xft.hintstyle:          hintslight
-Xft.hintstyle:          hintmedium
-!Xft.hintstyle:          hintfull
+! Xft.autohint:           1
+! Xft.antialias:          1
+! Xft.hinting:            1
+! Xft.rgba:               rgb
+!
+! !Xft.hintstyle:          hintslight
+! Xft.hintstyle:          hintmedium
+! !Xft.hintstyle:          hintfull
 
 !!
 !! emax

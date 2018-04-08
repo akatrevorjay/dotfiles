@@ -61,15 +61,15 @@ if has('nvim')
     let g:deoplete#enable_auto_pairs = 'true'
 
     " Snippets rank
-    call deoplete#custom#set('ultisnips', 'rank', 1000)
-    call deoplete#custom#set('clang', 'rank', 900)
-    call deoplete#custom#set('buffer', 'rank', 0)
+    call deoplete#custom#source('ultisnips', 'rank', 1000)
+    call deoplete#custom#source('clang', 'rank', 900)
+    call deoplete#custom#source('buffer', 'rank', 0)
 
     " Use head matcher instead of fuzzy matcher
-    "call deoplete#custom#set('_', 'matchers', ['matcher_head'])
-    "call deoplete#custom#set('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
+    "call deoplete#custom#source('_', 'matchers', ['matcher_head'])
+    "call deoplete#custom#source('_', 'matchers', ['matcher_head', 'matcher_full_fuzzy'])
     " Use auto delimiter feature
-    call deoplete#custom#set('_', 'converters', [
+    call deoplete#custom#source('_', 'converters', [
       \ 'converter_remove_overlap', 'converter_truncate_abbr', 'converter_truncate_menu',
       \ 'converter_auto_delimiter', 'converter_remove_overlap', 'converter_auto_paren',
       \ 'converter_remove_paren', 'converter_truncate_abbr',
@@ -90,14 +90,14 @@ if has('nvim')
     "let g:deoplete#omni#input_patterns.php =
     "  \ '\w+|[^. \t]->\w*|\w+::\w*'
 
-    "call deoplete#custom#set('buffer', 'min_pattern_length', 9999)
+    "call deoplete#custom#source('buffer', 'min_pattern_length', 9999)
     " Change the source rank
-    "call deoplete#custom#set('buffer', 'rank', 9999)
+    "call deoplete#custom#source('buffer', 'rank', 9999)
     " Enable buffer source in C/C++ files only.
-    "call deoplete#custom#set('buffer', 'filetypes', ['c', 'cpp'])
-    "call deoplete#custom#set('member', 'filetypes', ['c', 'cpp'])
+    "call deoplete#custom#source('buffer', 'filetypes', ['c', 'cpp'])
+    "call deoplete#custom#source('member', 'filetypes', ['c', 'cpp'])
     " Disable the candidates in Comment/String syntaxes.
-    "call deoplete#custom#set('_', 'disabled_syntaxes', ['Comment', 'String'])
+    "call deoplete#custom#source('_', 'disabled_syntaxes', ['Comment', 'String'])
 
     "" Sources
     "let g:deoplete#sources = {}
