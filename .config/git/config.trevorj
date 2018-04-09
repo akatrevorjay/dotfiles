@@ -6,15 +6,15 @@
   signingkey = 2160F8F8
 
 [github]
-    user = akatrevorjay
+  user = akatrevorjay
 
 [hub]
-    #protocol = ssh
-    user = akatrevorjay
+  protocol = ssh
+  user = akatrevorjay
 
 [commit]
-    # sign all commits (yes torvalds, I know)
-    gpgsign = false
+  # sign all commits (yes torvalds, I know)
+  gpgsign = false
 
 [gpg]
   program = gpg2
@@ -42,8 +42,8 @@
 
 # WHY THE FUCK IS THIS NOT IN MERGE ugh
 [rebase]
-    autoStash = True
-[pull]
-    rebase = True
+  autoStash = True
+#[pull]
+#    rebase = True
 
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

@@ -63,15 +63,26 @@ draw_bold_text_with_bright_colors: true
 # * file:///usr/share/doc/fontconfig/fontconfig-user.html
 font:
   # The normal (roman) font face to use.
+  # normal:
+  #   family: PragmataProForPowerline Nerd Font
+  #   style: Regular
+  # bold:
+  #   family: PragmataProForPowerline Nerd Font
+  #   style: Bold
+  # italic:
+  #   family: PragmataProForPowerline Nerd Font
+  #   style: Italic
+
   normal:
-    family: PragmataProForPowerline Nerd Font
+    family: Hack Nerd Font
     style: Regular
   bold:
-    family: PragmataProForPowerline Nerd Font
+    family: Hack Nerd Font
     style: Bold
   italic:
-    family: PragmataProForPowerline Nerd Font
+    family: Hack Nerd Font
     style: Italic
+
 
   # normal:
   #   family: Inconsolata
@@ -84,7 +95,7 @@ font:
   #   style: Italic
 
   # Point size of the font
-  size: 8.0
+  size: 12.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
@@ -103,7 +114,7 @@ font:
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
 # Should display the render timer
 render_timer: false
