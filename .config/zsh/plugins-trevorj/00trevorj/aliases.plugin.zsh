@@ -183,3 +183,9 @@ case $OSTYPE:l in
 		;;
 esac
 
+# $ go get -u github.com/tomnomnom/gron
+if (( ${+commands[gron]} )); then
+	alias norg="gron --ungron"
+	alias ungron="gron --ungron"
+fi
+
