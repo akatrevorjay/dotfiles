@@ -24,7 +24,7 @@ alert = #bd2c40
 ; Use the following command to list available outputs:
 ; If unspecified, the application will pick the first one it finds.
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = ${env:SEC_MONITOR:DisplayPort-4}
+monitor = ${env:SEC_MONITOR:DisplayPort-0}
 
 ; Use the specified monitor as a fallback if the main one is not found.
 monitor-fallback = HDMI-0
