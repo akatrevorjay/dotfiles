@@ -25,7 +25,7 @@ cmd+=(
 
   --exclude-from $HOME/.config/borg/exclude
   --exclude-caches
-  --keep-tag-files
+  --keep-exclude-tags
 
   "$BORG_REPO::{hostname}-{user}-${name}-{now}"
   "$@" $root

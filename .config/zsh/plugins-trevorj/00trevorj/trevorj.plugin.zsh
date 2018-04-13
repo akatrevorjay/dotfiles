@@ -26,3 +26,9 @@ export EDITOR
 
 gpg-ssh-agent || :
 
+# report timing stats if max res set size is greater than this (mB)
+REPORTMEMORY=512
+
+# report timing stats if command takes longer than this (secs)
+REPORTTIME=10
+

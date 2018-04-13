@@ -369,3 +369,6 @@ Lady Astor: "Mr. Churchill, you're drunk!" Winston Churchill: "Yes, and you, Mad
 “To iterate is human, to recurse divine.”
 -- L. Peter Deutsch
 %
+“A recent survey or North American males found 42% were overweight, 34% were critically obese and 8% ate the survey.”
+-- Banksy
+%

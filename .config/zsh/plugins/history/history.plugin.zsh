@@ -12,15 +12,20 @@ setopt hist_verify
 # off reading the file after it gets re-written).
 setopt share_history
 
-#setopt hist_ignore_all_dups
 setopt hist_lex_words
 setopt hist_reduce_blanks
 setopt hist_ignore_space
-setopt hist_expire_dups_first hist_save_no_dups hist_find_no_dups
 
+setopt hist_expire_dups_first
+#setopt hist_ignore_all_dups
+# hist_save_no_dups
+# hist_find_no_dups
 
 # Keep many lines of history within the shell and save it to $ZDOTDIR/.zsh_history:
 HISTSIZE=75000
-SAVEHIST=$HISTSIZE
+# This should be slightly less than HISTSIZE to give some room for hist_expire_dups_first for the duplicated events,
+# otherwise the option will act like hist_ignore_all_dups instead.
+declare -i SAVEHIST=$(( $HISTSIZE * 0.9 ))
+
 HISTFILE=$LOCAL_ZDOTDIR/history/history.$SHORT_HOSTNAME
 mkdir -pv ${HISTFILE:h}

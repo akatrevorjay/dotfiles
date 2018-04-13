@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-zplugins.load "zsh-users/zsh-history-substring-search"
+# zplugins.load "zsh-users/zsh-history-substring-search"
 zplugins.load "akatrevorjay/fasd"
 
 zplugins.load "willghatch/zsh-hooks"
@@ -10,6 +10,7 @@ zplugins.load "mafredri/zsh-async"
 zplugins.load "psprint/zsnapshot"
 zplugins.load "mollifier/zload"
 zplugins.load "akatrevorjay/speedread"
+zplugins.load 'akatrevorjay/zsh-histdb'
 
 ## ~~~~~~~~~~~
 ## completions
@@ -34,8 +35,10 @@ zplugins.load-all-in zplugins-compinit
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # zplugins.load "hlissner/zsh-autopair"
 zplugins.load "akatrevorjay/zsh-autopair"
-# zplugins.load "zsh-users/zsh-syntax-highlighting" --defer 2
-zplugins.load "zdharma/fast-syntax-highlighting"
+zplugins.load "zsh-users/zsh-syntax-highlighting"
+#--defer 2
+# zplugins.load "zdharma/fast-syntax-highlighting"
 
 zplugins.load "b4b4r07/zsh-vimode-visual"
+
 

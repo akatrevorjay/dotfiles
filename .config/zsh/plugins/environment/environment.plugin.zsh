@@ -81,8 +81,6 @@ setopt rc_expand_param
 #setopt nomatch
 setopt no_null_glob
 
-setopt mark_dirs
-
 setopt complete_in_word
 
 setopt hash_list_all
