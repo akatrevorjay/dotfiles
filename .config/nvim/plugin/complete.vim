@@ -63,6 +63,7 @@ if has('nvim')
     " Snippets rank
     call deoplete#custom#source('ultisnips', 'rank', 1000)
     call deoplete#custom#source('clang', 'rank', 900)
+    call deoplete#custom#source('tag', 'rank', 10)
     call deoplete#custom#source('buffer', 'rank', 0)
 
     " Use head matcher instead of fuzzy matcher

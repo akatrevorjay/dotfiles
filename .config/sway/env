@@ -1,33 +1,67 @@
+#!/bin/zsh
+set -eo pipefail
 
-
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_DRM_DEVICE``    | Device to use in DRM mode. (card0 default)          |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_BUFFER_API``    | Force buffer API to ``GBM`` or ``EGL``.             |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_SHM``           | Set 1 to force EGL clients to use shared memory.    |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_OUTPUTS``       | Number of fake outputs in X11/Wayland mode.         |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_XWAYLAND``      | Set 0 to disable Xwayland.                          |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_LIBINPUT``      | Set 1 to force libinput. (Even on X11/Wayland)      |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_REPEAT_DELAY``  | Keyboard repeat delay.                              |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_REPEAT_RATE``   | Keyboard repeat rate.                               |
+# +-----------------------+-----------------------------------------------------+
+# | ``WLC_DEBUG``         | Enable debug channels (comma separated)             |
+# +-----------------------+-----------------------------------------------------+
 #
-# Whether to not preload libgtk3-nocsd.so.0 even if GTK_CSD=0
+
+#: ${WLC_DRM_DEVICE:=card1}
+# : ${WLC_BUFFER_API:=GBM}
+: ${WLC_BUFFER_API:=EGL}
+: ${WLC_OUTPUTS:=2}
+: ${WLC_SHM:=1}
+
+export WLC_DRM_DEVICE WLC_BUFFER_API WLC_OUTPUTS WLC_SHM
+
+# #
+# # Whether to not preload libgtk3-nocsd.so.0 even if GTK_CSD=0
+# #
+# # If this setting is set to 1, LD_PRELOAD and GTK_CSD will not be
+# # touched upon session startup.
+# #
+# # Tons of things break with gdk atm
+# GDK_BACKEND=wayland
 #
-# If this setting is set to 1, LD_PRELOAD and GTK_CSD will not be
-# touched upon session startup.
+# ## Disable client side deco
+# #export GTK_CSD=0
+# #export GTK3_NOCSD_IGNORE=0
 #
-# Tons of things break with gdk atm
-#GDK_BACKEND=wayland
-
-# Disable client side deco
-export GTK_CSD=0
-export GTK3_NOCSD_IGNORE=0
-
-# Sigh, this one too.
-#QT_QPA_PLATFORM=wayland-egl
-QT_QPA_PLATFORM=wayland
-
-CLUTTER_BACKEND=wayland
-SDL_VIDEODRIVER=wayland
-
-# or say wayland_shm
-#ECORE_EVAS_ENGINE=wayland_egl
-#ELM_ENGINE=wayland
-
+# # Sigh, this one too.
+# QT_QPA_PLATFORM=wayland-egl
+# #QT_QPA_PLATFORM=wayland
+# CLUTTER_BACKEND=wayland
+# SDL_VIDEODRIVER=wayland
+#
+# # or say wayland_shm
+# ECORE_EVAS_ENGINE=wayland_egl
+# ELM_ENGINE=wayland
+#
 # export GDK_BACKEND QT_QPA_PLATFORM CLUTTER_BACKEND SDL_VIDEODRIVER ECORE_EVAS_ENGINE ELM_ENGINE
 
-# SWAY_CURSOR_THEME=Obsidian
-# SWAY_CURSOR_SIZE=48
+# KWIN_TRIPLE_BUFFER=1
+# OR, NOT AND
+# __GL_YIELD="USLEEP"
+# export KWIN_TRIPLE_BUFFER __GL_YIELD
+
+SWAY_CURSOR_THEME=Obsidian
+SWAY_CURSOR_SIZE=48
 
 # export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
 

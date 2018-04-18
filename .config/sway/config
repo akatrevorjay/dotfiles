@@ -49,6 +49,9 @@ default_border pixel 1
 #default_floating_border none
 default_floating_border pixel 1
 floating_minimum_size 10 x 10
+focus_follows_mouse yes
+seamless_mouse on
+mouse_warping output
 
 #output DP-1 res 3440x1400 scale 1 pos 0,0
 #output DP-2 disable
@@ -58,9 +61,9 @@ floating_minimum_size 10 x 10
 # output DP-2 res 2560x1440 scale 1 pos 3840,0
 # output eDP-1 res 2880x1800 scale 2 pos 6400,0
 
-output DP-1 res 3840x1440 rate 100 scale 1 pos 0,0
-# output DP-2 res 2560x1440 scale 1 pos 3840,0
-output eDP-1 res 2880x1800 scale 2 pos 3840,0
+output DP-3 res 3840x1440 rate 100 scale 1 pos 0,0
+output eDP-1 res 2560x1440 rate 120 scale 2 pos 3840,0
+# output eDP-1 res 2880x1800 scale 2 pos 3840,0
 
 #
 # Status Bar:
@@ -79,6 +82,7 @@ client.focused_inactive $bgu    $bgu        $fgu      $bgu        $bgu
 client.focused          $bg    $bgu        $fg       $bg        $bg
 
 #new_window normal 4
+
 
 #font pango:Input Sans Compressed 10
 font pango:PragmataPro Nerd Font 10
@@ -370,17 +374,17 @@ bar {
     #status_command ~/.local/bin/swaypystatus -c ~/.config/sway/bars/top.py
 
     tray_output all
-    icon_theme Papirus
+    icon_theme Numix
 
     position top
     #position bottom
 
-    #pango_markup enabled
-    #wrap_scroll yes
+    pango_markup enabled
+    wrap_scroll yes
 
     #fint pango:Input Sans Compressed 10
     #font pango:PragmataPro Nerd Font 12
-    #separator_symbol |
+    separator_symbol |
 
     colors {
         background #000000dd

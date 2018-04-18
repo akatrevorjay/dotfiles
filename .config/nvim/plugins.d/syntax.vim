@@ -317,13 +317,14 @@ Plug 'monte-language/monte-vim', {'for': 'monte'}
 ""
 
 if has('nvim')
+    " Plug 'roxma/nvim-completion-manager'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " deoplete-jedi: "jedi" source for Python
     Plug 'zchee/deoplete-jedi', {'for': 'python'}
 
     " deoplete-docker
-    Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
+    " Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
@@ -397,7 +398,7 @@ if has('nvim')
     if executable('make') && executable('cargo')
         " Plug 'akatrevorjay/LanguageClient-neovim', \
         Plug 'autozimu/LanguageClient-neovim',
-                    \{ 'do': 'make release'
+                    \{ 'do': 'bash install.sh'
                     \, 'branch': 'next' }
     else
         Plug 'autozimu/LanguageClient-neovim',

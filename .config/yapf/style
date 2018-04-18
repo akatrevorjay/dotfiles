@@ -26,7 +26,7 @@ align_closing_bracket_with_visual_indent=False
 #        'this is the second element of a tuple'):
 #            value,
 #   }
-;allow_multiline_dictionary_keys=False
+allow_multiline_dictionary_keys=True
 
 # Allow lambdas to be formatted on more than one line.
 ;allow_multiline_lambdas=False
@@ -34,6 +34,7 @@ allow_multiline_lambdas=True
 
 # Allow splits before the dictionary value.
 ;allow_split_before_dict_value=True
+allow_split_before_dict_value=False
 
 # Insert a blank line before a class-level docstring.
 ;blank_line_before_class_docstring=False
@@ -45,7 +46,7 @@ allow_multiline_lambdas=True
 #                      # <------ this blank line
 #     def method():
 #       ...
-blank_line_before_nested_class_or_def=False
+blank_line_before_nested_class_or_def=True
 
 # Do not split consecutive brackets. Only relevant when
 # dedent_closing_brackets is set. For example:
@@ -91,7 +92,7 @@ coalesce_brackets=True
 dedent_closing_brackets=True
 
 # Place each dictionary entry onto its own line.
-;each_dict_entry_on_separate_line=True
+each_dict_entry_on_separate_line=True
 
 # The regex for an i18n comment. The presence of this comment stops
 # reformatting of that line, because the comments are required to be
@@ -128,24 +129,25 @@ join_multiple_lines=False
 #
 #   1 + 2*3 - 4/5
 #
-;no_spaces_around_selected_binary_operators=set()
+no_spaces_around_selected_binary_operators="*,/"
 
 # Use spaces around default or named assigns.
 ;spaces_around_default_or_named_assign=False
 
 # Use spaces around the power operator.
-;spaces_around_power_operator=False
+spaces_around_power_operator=True
 
 # The number of spaces required before a trailing comment.
 ;spaces_before_comment=2
 
 # Insert a space between the ending comma and closing bracket of a list,
 # etc.
-;space_between_ending_comma_and_closing_bracket=False
+space_between_ending_comma_and_closing_bracket=True
 
 # Split before arguments if the argument list is terminated by a
 # comma.
 ;split_arguments_when_comma_terminated=False
+split_arguments_when_comma_terminated=True
 
 # Set to True to prefer splitting before '&', '|' or '^' rather than
 # after.
@@ -158,7 +160,7 @@ join_multiple_lines=False
 #       variable: 'Hello world, have a nice day!'
 #       for variable in bar if variable != 42
 #   }
-;split_before_dict_set_generator=True
+split_before_dict_set_generator=True
 
 # Split after the opening paren which surrounds an expression if it doesn't
 # fit on a single line.
@@ -167,6 +169,7 @@ join_multiple_lines=False
 # If an argument / parameter list is going to be split, then split before
 # the first argument.
 ;split_before_first_argument=False
+split_before_first_argument=True
 
 # Set to True to prefer splitting before 'and' or 'or' rather than
 # after.
@@ -189,7 +192,7 @@ join_multiple_lines=False
 #       a_long_var + 100
 #       for a_long_var in xrange(1000)
 #       if a_long_var % 10]
-;split_complex_comprehension=True
+split_complex_comprehension=True
 
 # The penalty for splitting right after the opening bracket.
 ;split_penalty_after_opening_bracket=30
