@@ -46,4 +46,18 @@
 # [pull]
 #     rebase = True
 
+[codesmell]
+    py = set_trace\\(
+    py = ^\\+\\s*print\\b
+
+    js = ^\\+\\s*debugger;
+
+    all-files = ^(>>>>>>>|<<<<<<<)
+
+[hooks "confirm"]
+	match = TODO
+	match = FIXME
+	match = FUCK
+	match = WTF
+
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
