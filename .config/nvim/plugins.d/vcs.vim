@@ -1,6 +1,7 @@
 
 Plug 'tpope/vim-fugitive'
 Plug 'jreybert/vimagit'
+Plug 'tpope/vim-rhubarb'  " github ext for fugitive
 
 " Three way merging
 Plug 'idanarye/vim-merginal'
@@ -17,12 +18,12 @@ Plug 'rhysd/committia.vim'
 
 " Appraise:
 Plug 'google/vim-codereview'
-"Plug 'mattn/vim-git-appraise'
+Plug 'mattn/vim-git-appraise'
 
 " Nice export of highlighted code for copy/paste
 "Plug 'google/vim-syncopate'
 
-"Plug 'junkblocker/patchreview-vim'
+" Plug 'junkblocker/patchreview-vim'
 "" This requires patchreview-vim
-"Plug 'codegram/vim-codereview'
+" Plug 'codegram/vim-codereview'
 

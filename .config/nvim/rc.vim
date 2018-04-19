@@ -12,6 +12,12 @@ if has('vim_starting')
     let g:is_win = has('win32') || has('win64')
     let g:is_nvim = has('nvim') && exists('*jobwait') && !g:is_win
     let g:is_vim8 = has('patch-8.0.0039') && exists('*job_start')
+    let g:is_gnvim_gtk = exists('g:GtkGuiLoaded')
+
+    " FIXME any gui that may not load this
+    if g:is_gnvim_gtk
+        call source#any('ginit')
+    endif
 
     call source#any('starting')
 endif

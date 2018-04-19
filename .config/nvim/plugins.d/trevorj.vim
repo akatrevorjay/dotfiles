@@ -7,11 +7,11 @@
 "let g:workman_normal_qwerty = 1
 "let g:workman_insert_qwerty = 0
 
-"Plug 'nicwest/vim-http'
-"Plug 'nicwest/bnext.vim'
+Plug 'nicwest/vim-http'
+Plug 'nicwest/bnext.vim'
 
 " Format any txt file
-"Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter'
+Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter'
 
 "if v:version >= 704
 "  Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -19,7 +19,7 @@
 
 "Plug 'henrik/vim-indexed-search'
 
-"Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-eunuch'
 
 " Superb motion controls
 Plug 'easymotion/vim-easymotion'
@@ -28,7 +28,7 @@ Plug 'junegunn/vim-pseudocl'
 Plug 'junegunn/vim-oblique'
 
 " Find-N-Replace
-"Plug 'junegunn/vim-fnr'
+Plug 'junegunn/vim-fnr'
 
 Plug 'junegunn/vim-peekaboo'
 
@@ -50,15 +50,15 @@ Plug 'rhysd/clever-f.vim'
 
 " RainbowParantheses
 Plug 'junegunn/rainbow_parentheses.vim'
-Gautocmdft python,lisp,clojure,scheme :RainbowParentheses
+Gautocmdft python,lisp,clojure,scheme,markdown,rst,cpp,c,objc,objcpp,js :RainbowParentheses
 
-"Plug 'vim-scripts/restore_view.vim'
+Plug 'vim-scripts/restore_view.vim'
 
 "" Dynamic SQL completion via opening a db connection
-"Plug 'vim-scripts/dbext.vim'
+Plug 'vim-scripts/dbext.vim'
 
 " Marks
-"Plug 'kshenoy/vim-signature'
+Plug 'kshenoy/vim-signature'
 
 "" Lots of script helpers at s:_.blah
 "Plug 'vim-jp/vital.vim'
@@ -69,15 +69,15 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 
-"Plug 'eugen0329/vim-esearch'
+Plug 'eugen0329/vim-esearch'
 
 if has('nvim')
-    "Plug 'bfredl/nvim-ipy', { 'do': ':UpdateRemotePlugins' }
+    Plug 'bfredl/nvim-ipy', { 'do': ':UpdateRemotePlugins' }
 
-    "Plug 'tek/proteome.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'tek/proteome.nvim', { 'do': ':UpdateRemotePlugins' }
 
     "" Interactive ft-aware REPL
-    "Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'hkupty/iron.nvim', { 'do': ':UpdateRemotePlugins' }
 
     "Plug 'benekastah/neomake', { 'do': ':UpdateRemotePlugins' }
     "" Run Neomake on every write
@@ -119,21 +119,21 @@ let g:grepper = {
     \ }
 
 "Plug 'tpope/vim-dotenv'
-"Plug 'tpope/vim-rsi'
-"Plug 'tpope/git-bump'
-"Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/git-bump'
+Plug 'tpope/vim-projectionist'
 
-"Plug 'vim-scripts/autoproto.vim'
-"Plug 'vim-scripts/searchfold.vim'
-"Plug 'vim-scripts/grep.vim'
-"Plug 'vim-scripts/Mark--Karkat'
-"Plug 'vim-scripts/a.vim'
-"Plug 'vim-scripts/netrw.vim'
-"Plug 'vim-scripts/SearchComplete'
+Plug 'vim-scripts/autoproto.vim'
+Plug 'vim-scripts/searchfold.vim'
+Plug 'vim-scripts/grep.vim'
+" Plug 'vim-scripts/Mark--Karkat'
+Plug 'vim-scripts/a.vim'
+Plug 'vim-scripts/netrw.vim'
+Plug 'vim-scripts/SearchComplete'
 
-"Plug 'pi314/pi314.asciiart.vim'
-"Plug 'quafzi/vim-flow-diagram'
-"Plug 'xavierchow/vim-sequence-diagram'
+Plug 'pi314/pi314.asciiart.vim'
+Plug 'quafzi/vim-flow-diagram'
+Plug 'xavierchow/vim-sequence-diagram'
 
 Plug 'FooSoft/vim-argwrap'
 
@@ -141,7 +141,7 @@ Plug 'FooSoft/vim-argwrap'
 
 Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'python'] }
 
-"Plug 'sunaku/vim-shortcut'
+Plug 'sunaku/vim-shortcut'
 
 Plug 'KabbAmine/zeavim.vim', {'on': [
 				\	'Zeavim', 'Docset',

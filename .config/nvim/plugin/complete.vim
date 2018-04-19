@@ -7,7 +7,7 @@ set wildmenu
 "set wildmode=longest,list
 "set wildmode=longest:full,list:longest,list:full
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*,__pycache__,sdist,bdist,dist,build,*.egg-info
+set wildignore+=*.o,*.obj,.git,*.pyc,*.swp,*.swo,*.bak,*.pyo,*.pyc,*.svn,*/tmp/*,__pycache__,sdist*,bdist*,dist,build,*.egg-info
 set wildoptions=tagfile
 
 " Code complete
@@ -117,6 +117,20 @@ if has('nvim')
     "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
     "let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
+    " Add it as a deoplete source:
+    "
+    " let g:deoplete#sources = {}
+    " let g:deoplete#sources.gitcommit=['github']
+    "
+    " Deoplete also needs a little configuration:
+    "
+    " let g:deoplete#keyword_patterns = {}
+    " let g:deoplete#keyword_patterns.gitcommit = '.+'
+    "
+    " call deoplete#util#set_pattern(
+    "   \ g:deoplete#omni#input_patterns,
+    "   \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
+    "
     "let g:deoplete#max_menu_width = 80
     let g:deoplete#max_menu_width = 120
     let g:deoplete#sources#use_cache = 1
@@ -125,24 +139,26 @@ if has('nvim')
     let g:deoplete#sources#go#package_dot = 1
     let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
     let g:deoplete#sources#go#pointer = 1
-    let g:deoplete#sources#go#cgo = 1
-    let g:deoplete#sources#go#cgo#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
+    let g:deoplete#sources#go#cgo = 1  " See below for libclang config
     let g:deoplete#sources#go#auto_goos = 1
     let g:deoplete#sources#go#json_directory = expand('~/.cache/deoplete/go/$GOOS_$GOARCH')
     let g:deoplete#sources#go#use_cache = 1
     if !empty('$GOPATH')
       let g:deoplete#sources#go#gocode_binary = expand($GOPATH.'/bin/gocode')
     endif
-
+ 
     " clang
-    "let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-3.8/lib/libclang.so.1'
-    "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/3.8.1'
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0'
-    "let g:deoplete#sources#clang#std#c = 'c11'
-    "let g:deoplete#sources#clang#std#cpp = 'c++1z'
-    "let g:deoplete#sources#clang#sort_algo = 'priority'
+    "let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
+    "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0'
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-7/lib/libclang.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/7'
+    let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
+
     let g:deoplete#sources#clang#clang_complete_database = '.'
+    let g:deoplete#sources#clang#std#c = 'c11'
+    let g:deoplete#sources#clang#std#cpp = 'c++1z'
+    let g:deoplete#sources#clang#sort_algo = 'priority'
+
 
     " Keys
 

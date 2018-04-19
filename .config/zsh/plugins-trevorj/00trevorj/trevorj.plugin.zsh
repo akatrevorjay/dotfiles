@@ -32,3 +32,6 @@ REPORTMEMORY=512
 # report timing stats if command takes longer than this (secs)
 REPORTTIME=10
 
+# This is used by deoplete-zsh
+zmodload zsh/zpty
+

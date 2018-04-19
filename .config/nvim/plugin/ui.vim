@@ -195,8 +195,11 @@ let g:moonflySpellReversed = 1
 " let g:airline_theme = 'ayu_mirage'
 " colorscheme chroma
 
-let g:airline_theme = 'ayu_mirage'
-colorscheme ayu
+" let g:airline_theme = 'ayu_mirage'
+" colorscheme ayu
+
+let g:airline_theme = 'badcat'
+colorscheme badcat3
 
 " ALWAYS
 highlight Comment cterm=italic gui=italic
@@ -246,7 +249,8 @@ highlight Comment cterm=italic gui=italic
 " configure the alignment of the tmux window list; maps to the tmux command
 " set -g status-justify'. Values are 'left', 'centre', or 'right'
 " Default is 'centre' >
-let g:tmuxline_status_justify = 'left'
+" let g:tmuxline_status_justify = 'left'
+let g:tmuxline_status_justify = 'centre'
 
 
 " create a snapshot file of the last set statusline, overwriting the file if it exists >
