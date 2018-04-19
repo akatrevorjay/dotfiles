@@ -2,7 +2,7 @@
 
 case "${1:-$DE}" in
 	i3*|sway*)
-		autorandr -c || :
+		# autorandr -c || :
 
 		## xsettings and related
 		# xsettingsd &
@@ -25,12 +25,6 @@ case "${1:-$DE}" in
 
 		## weee
 		compton &
-
-		# lame.
-		(sleep 5 && ( \
-			polybar example & \
-			polybar mybar & \
-		)) &
 
 		# HOST should always be short already, but I've seen misconfigurations where it is not.
 		# (sometimes someone does not understand how /etc/hostname works}
@@ -62,6 +56,10 @@ case "${1:-$DE}" in
 				gpomme &
 				;;
 		esac
+
+		# lame.
+		polybar example &
+		polybar mybar &
 
 		;;
 esac

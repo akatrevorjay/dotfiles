@@ -38,6 +38,41 @@ fi
 
 use-venv $NEOVIM_VENV
 
+tools_pkgs=(
+	six
+	psutil setproctitle
+
+	mistune
+
+	isort importmagic
+	pydocstyle pycodestyle
+	pyflakes mccabe bandit
+
+	flake8 flake8-mypy flake8-isort
+	mypy
+
+	yapf autopep8 black
+	sixer
+
+	pyls-mypy
+	pyls-isort
+
+	python-language-server
+
+	# 'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
+)
+
+pip3 install --pre -U $tools_pkgs || :
+# for tool in $tools_pkgs; do
+# 	pip3 install --pre -U $t || :
+# done
+
+nvim3_pkgs+=(
+	$nvim_pkgs
+	neovim-gui
+)
+pip3 install --pre -U $nvim3_pkgs
+
 nvim_pkgs=(
 	neovim
 
@@ -46,46 +81,5 @@ nvim_pkgs=(
 	typing
 )
 pip2 install --pre -U $nvim_pkgs
+pip3 install --pre -U $nvim_pkgs
 
-nvim3_pkgs+=(
-	$nvim_pkgs
-	neovim-gui
-)
-pip3 install --pre -U $nvim3_pkgs
-
-tools_pkgs=(
-	isort importmagic
-
-	yapf autopep8
-
-	pyflakes flake8 mccabe bandit
-	pydocstyle pycodestyle
-
-	mistune
-
-	six psutil setproctitle
-
-	'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
-	'pyls-mypy'
-	'pyls-isort'
-	#'python-language-server'
-)
-pip3 install --pre -U $tools_pkgs || :
-
-
-# # fuck you ipython/pip, what the fuck is this shit?
-# () {
-# 	echo "-- Installing ipython according to pyver"
-
-# 	local pip
-# 	for pip in $pips; do
-# 		pkg='ipython[notebook]'
-# 		case $pip in
-# 			pip2*) pkg="$pkg<6" ;;
-# 		esac
-
-# 		cmd=($pre $pip install --pre -U $pkg)
-# 		echo "-- $cmd"
-# 		$cmd
-# 	done
-# }

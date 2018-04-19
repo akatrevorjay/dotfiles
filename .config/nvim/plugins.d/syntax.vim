@@ -97,11 +97,10 @@ let g:polyglot_disabled = [
     \ 'javascript',
     \ 'markdown',
     \ 'css',
-    \ 'rust',
     \ 'json',
     \ ]
+    " \ 'rust',
     "\ 'c++11',
-    "\ 'c/c++',
     "\ 'nim',
     "\ 'dart',
     "\ 'typescript',
@@ -119,8 +118,10 @@ Plug 'markcornick/vim-bats', {'for': 'bats'}
 
 " Better json
 Plug 'elzr/vim-json', {'for': ['json']}
+
 " JSONnet
 Plug 'google/vim-jsonnet', {'for': ['jsonnet']}
+
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
 
@@ -134,11 +135,11 @@ Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
 
 " Go
 if has('nvim')
-    " Replacement for nvim
-    Plug 'zchee/nvim-go',
-                \{ 'for': 'go', 'do': 'make' }
-    Plug $GOPATH.'/src/github.com/zchee/nvim-go',
-                \{ 'for': 'go', 'do': 'make' }
+    " " Replacement for nvim
+    " Plug 'zchee/nvim-go',
+    "             \{ 'for': 'go', 'do': 'make' }
+    " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
+    "             \{ 'for': 'go', 'do': 'make' }
 else
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
@@ -213,7 +214,7 @@ Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 
 
 " TOML
-"Plug 'cespare/vim-toml', {'for': 'toml'}
+Plug 'cespare/vim-toml', {'for': 'toml'}
 
 
 " Tmux.conf syntax
@@ -232,13 +233,6 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2'
 "Plug 'plasticboy/vim-markdown'
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
 
-
-" Allows for python rst docstring support as well
-" A bit problematic as it's slow as balls
-" Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
-" Plug 'kannokanno/previm', {'for': ['markdown']}
-
-
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
 Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
@@ -250,13 +244,18 @@ Plug 'dzeban/vim-log-syntax', {'for': 'log'}
 "" Language: Python
 ""
 
+" Allows for python rst docstring support as well
+" A bit problematic as it's slow as balls
+Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
+Plug 'kannokanno/previm', {'for': ['markdown']}
+Plug 'okcompute/vim-python-motions', {'for': 'python'}
+
 "Plug 'hdima/python-syntax', {'for': 'python'}
-"Plug 'okcompute/vim-python-motions', {'for': 'python'}
 Plug 'vim-python/python-syntax', {'for': 'python'}
 
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-"Plug 'python-rope/ropevim', {'for': 'python'}
+Plug 'python-rope/ropevim', {'for': 'python'}
 Plug 'wilywampa/vim-ipython', {'for': 'python'}
 
 " Indenting:
@@ -286,6 +285,18 @@ Plug 'fs111/pydoc.vim', {'for': 'python'}
 "let g:yapf_format_style = 'google'
 ""let g:yapf_format_yapf_location = '/path/to/f'
 
+" Argumentative aids with manipulating and moving between function arguments.
+Plug 'PeterRincker/vim-argumentative'
+nmap [; <Plug>Argumentative_Prev
+nmap ]; <Plug>Argumentative_Next
+xmap [; <Plug>Argumentative_XPrev
+xmap ]; <Plug>Argumentative_XNext
+nmap <; <Plug>Argumentative_MoveLeft
+nmap >; <Plug>Argumentative_MoveRight
+xmap i; <Plug>Argumentative_InnerTextObject
+xmap a; <Plug>Argumentative_OuterTextObject
+omap i; <Plug>Argumentative_OpPendingInnerTextObject
+omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
 ""
 "" Hashivim
@@ -300,6 +311,9 @@ Plug 'hashivim/vim-terraform', {'for': ['tf', 'tfvars']}
 "Plug 'hashivim/vim-vaultproject'
 "Plug 'hashivim/vim-nomadproject'
 "Plug 'hashivim/vim-ottoproject'
+
+"" TidalCycles
+" Plug 'munshkr/vim-tidal', {'for': 'tidal'}
 
 
 " cpp
@@ -413,7 +427,9 @@ autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
 
 " Rust:
 " vim-racer: "racer" source for Rust
-Plug 'rust-lang/rust.vim', {'for': 'rust'}
+" Plug 'racer-rust/vim-racer', {'for': 'rust'}
+" Plug 'rust-lang/rust.vim', {'for': 'rust'}
+
 
 if has('nvim')
     Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
@@ -426,21 +442,101 @@ endif
 Plug 'monte-language/monte-vim', {'for': 'monte'}
 
 
-" LSP (numerous) -- Also not just for neovim at this point (see compat wrapper below).
-if executable('make') && executable('cargo')
-    " Plug 'akatrevorjay/LanguageClient-neovim', \
-    Plug 'autozimu/LanguageClient-neovim',
-                \{ 'do': 'make release'
-                \, 'branch': 'next' }
-endif
-
-
+" " alt
+" Plug 'prabirshrestha/vim-lsp'
+" Plug 'prabirshrestha/async.vim'
+" Plug 'prabirshrestha/asyncomplete.vim'
+" Plug 'prabirshrestha/asyncomplete-gocode.vim'
+" Plug 'prabirshrestha/asyncomplete-racer.vim'
+" Plug 'prabirshrestha/asyncomplete-tags.vim'
+" Plug 'prabirshrestha/asyncomplete-omni.vim'
+" Plug 'prabirshrestha/asyncomplete-file.vim'
+" Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+" Plug 'prabirshrestha/asyncomplete-lsp.vim'
+"
+" if executable('pyls')
+"     " pip install python-language-server
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'pyls',
+"         \ 'cmd': {server_info->['pyls']},
+"         \ 'whitelist': ['python'],
+"         \ })
+" endif
+"
+"if executable('clangd')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'clangd',
+"         \ 'cmd': {server_info->['clangd']},
+"         \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+"         \ })
+" endif
+"
+" if executable('docker-langserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'docker-langserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'docker-langserver --stdio']},
+"         \ 'whitelist': ['dockerfile'],
+"         \ })
+" endif
+"
+" if executable('rls')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'rls',
+"         \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+"         \ 'whitelist': ['rust'],
+"         \ })
+" endif
+"
+" if executable('css-languageserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'css-languageserver',
+"         \ 'cmd': {server_info->[&shell, &shellcmdflag, 'css-languageserver --stdio']},
+"         \ 'whitelist': ['css', 'less', 'sass'],
+"         \ })
+" endif
+"
+" if executable('go-langserver')
+"     au User lsp_setup call lsp#register_server({
+"         \ 'name': 'go-langserver',
+"         \ 'cmd': {server_info->['go-langserver', '-mode', 'stdio']},
+"         \ 'whitelist': ['go'],
+"         \ })
+" endif
 
 ""
 "" Comp
 ""
 
 if has('nvim')
+    " numerous
+    if executable('make') && executable('cargo')
+        Plug 'autozimu/LanguageClient-neovim',
+                    \{ 'do': 'make build && ln -sfvr target/debug/languageclient bin/languageclient'
+                    \, 'branch': 'next' }
+    " else
+    "     Plug 'autozimu/LanguageClient-neovim',
+    "                 \{ 'do': ':UpdateRemotePlugins'
+    "                 \, 'branch': 'master' }
+    endif
+
+    " Required for operations modifying multiple buffers like rename.
+    set hidden
+
+    let g:LanguageClient_serverCommands = {
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'python': ['pyls'],
+        \ 'javascript': ['javascript-typescript-stdio'],
+        \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        \ }
+
+    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+    " vimshell: "vimshell" source for vimshell
+    Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
+
+    " Plug 'roxma/nvim-completion-manager'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
     " neco-syntax: "syntax" source (This is now for N syntaxes)
@@ -468,45 +564,20 @@ if has('nvim')
     " deoplete-go: "go" source for Go
     Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
 
-    " rust
-    Plug 'sebastianmarkow/deoplete-rust', {'for': 'rust'}
-    let g:deoplete#sources#rust#documentation_max_height=20
-    " Usage
-    " Default key mappings
-    "
-    " These are the default key mappings
-    "
-    " nmap <buffer> gd <plug>DeopleteRustGoToDefinitionDefault
-    " nmap <buffer> K  <plug>DeopleteRustShowDocumentation
-    "
-    " Additional methods to bind
-    " Method 	Action
-    " DeopleteRustGoToDefinitionSplit 	Open definition in horizontal split
-    " DeopleteRustGoToDefinitionVSplit 	Open definition in vertical split
-    " DeopleteRustGoToDefinitionTab 	Open definition in new tab
-    " gd Go to definition
-    "
-    " Jump to definition of the current element under the cursor.
-    " K Show documentation
-    "
-    " Show brief description of the current element under the cursor. To close press either q, cr or esc.
-    " Show help
-    "
-    " You don't have to remember it all. Run :help deoplete-rust.
+    "" deoplete-ruby: "ruby" source for Ruby language
+    "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
+
+    " neco-syntax: "syntax" source (for more than just viml now)
+    Plug 'Shougo/neco-syntax'
+
+    " viml
+    Plug 'Shougo/neco-vim', {'for': 'vim'}
 
     " deoplete-d: "d" source for D language
     "Plug 'landaire/deoplete-d', {'for': 'd'}
 
     " deoplete-github: "github" source for "gitcommit" filetype
     Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
-    "
-    " Usage
-    "
-    " In your git commit message:
-    "
-    "     The prefix "#" will find issue numbers for auto-completion.
-    "     You can also auto-complete github issue titles.
-    "
 
     " deoplete-clang: "clang" source for C/C++
     " Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
@@ -558,8 +629,13 @@ if has('nvim')
     " webcomplete.vim: "webcomplete" source for browser opened pages
     Plug 'thalesmello/webcomplete.vim'
 
-    " complete emojis
-    Plug 'fszymanski/deoplete-emoji', {'for': ['markdown', 'rst', 'txt']}
+    if !empty($TMUX)
+        " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
+        Plug 'wellle/tmux-complete.vim'
+    endif
+
+    " rust
+    " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}

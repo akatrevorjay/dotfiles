@@ -1,11 +1,9 @@
 if empty($TMUX)
   if has('nvim')
-    Plug 'BurningEther/nvimux'
+    " broken
+    " Plug 'BurningEther/nvimux'
   endif
 else
-  " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
-  "Plug 'wellle/tmux-complete.vim'
-
   " tmux integration
   Plug 'christoomey/vim-tmux-navigator'
   " Activate autoupdate on exit

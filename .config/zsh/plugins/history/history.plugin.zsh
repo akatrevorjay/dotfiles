@@ -25,7 +25,7 @@ setopt hist_expire_dups_first
 HISTSIZE=100000
 # This should be slightly less than HISTSIZE to give some room for hist_expire_dups_first for the duplicated events,
 # otherwise the option will act like hist_ignore_all_dups instead.
-SAVEHIST=$(( $HISTSIZE * 1.2 ))
+SAVEHIST=$(( $HISTSIZE - 10000 ))
 
 HISTFILE=$LOCAL_ZDOTDIR/history/history.$SHORT_HOSTNAME
 mkdir -pv ${HISTFILE:h}

@@ -3,29 +3,27 @@
 if exists('g:loaded_ultisnips')
   " Trigger configuration. Do not use <tab> if you use
   " https://github.com/Valloric/YouCompleteMe.
-  "let g:UltiSnipsExpandTrigger='<tab>'
-  "let g:UltiSnipsJumpForwardTrigger='<c-b>'
-  "let g:UltiSnipsJumpBackwardTrigger='<c-z>'
-  "let g:UltiSnipsJumpForwardTrigger='<tab>'
-  "let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+  let g:UltiSnipsExpandTrigger='<leader>s'
+  let g:UltiSnipsJumpForwardTrigger='<c-j>'
+  let g:UltiSnipsJumpBackwardTrigger='<c-k>'
 
   " If you want :UltiSnipsEdit to split your window.
   "let g:UltiSnipsEditSplit="vertical"
 
   " Python docstring style
-  "let g:ultisnips_python_style = 'sphinx'
-  let g:ultisnips_python_style = 'google'
+  let g:ultisnips_python_style = 'sphinx'
+  " let g:ultisnips_python_style = 'google'
 
-  if exists('g:loaded_cm')
-    let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
-    inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
-  else
-    let g:UltiSnipsExpandTrigger="<c-j>"
-  endif
-
-  let g:UltiSnipsJumpForwardTrigger="<c-j>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-  let g:UltiSnipsListSnippets="<c-u>"
+  " if exists('g:loaded_cm')
+  "   let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+  "   inoremap <silent> <c-u> <c-r>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<cr>
+  " else
+  "   let g:UltiSnipsExpandTrigger="<c-j>"
+  " endif
+  "
+  " let g:UltiSnipsJumpForwardTrigger="<c-j>"
+  " let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+  " let g:UltiSnipsListSnippets="<c-u>"
 
 endif
 " }}}
