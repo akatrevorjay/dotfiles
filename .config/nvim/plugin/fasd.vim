@@ -1,4 +1,4 @@
-" Z - cd to recent / frequent directories
+"" Z -- cd to recent / frequent directories
 command! -nargs=* Z :call Z(<f-args>)
 function! Z(...)
   let cmd = 'fasd -d -e printf'
@@ -8,11 +8,12 @@ function! Z(...)
   let path = system(cmd)
   if isdirectory(path)
     echo path
-    exec 'cd ' . "\"${path}\""
+    exec 'cd' fnameescape(path)
   endif
 endfunction
 
-"" Z - cd to recent / frequent directories
+"" Z -- cd to recent / frequent directories
+"" - From amiorin/vim-fasd
 "command! -nargs=* Z :call Z(<f-args>)
 "function! Z(...)
 "  if a:0 == 0

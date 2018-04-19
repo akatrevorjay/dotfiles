@@ -26,7 +26,7 @@ Plug 'vim-scripts/utl.vim'
 Plug 'kana/vim-operator-user'
 
 " Tagbar: ctags, syntax, etc
-"Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 
 "Plug 'vim-scripts/taglist.vim'
 
@@ -50,4 +50,6 @@ if has('nvim')
 else
   Plug 'wincent/terminus'
 endif
+
+Plug 'tomtom/tlib_vim'
 

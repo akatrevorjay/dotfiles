@@ -26,5 +26,17 @@ Plug 'Chiel92/vim-autoformat'
 " Google code formatting
 Plug 'google/vim-codefmt'
 
-"" Google code coverage viewing
-"Plug 'google/vim-coverage'
+""
+"" Coverage
+""
+
+" Google code coverage viewing
+Plug 'google/vim-coverage'
+
+" Plug 'mgedmin/coverage-highlight.vim'
+" inoremap [C :<C-U>PrevUncovered<CR>
+" noremap ]C :<C-U>NextUncovered<CR>
+
+Plug 'alfredodeza/coveragepy.vim'
+" let g:coveragepy_uncovered_sign = '-'
+

@@ -72,3 +72,4 @@ Plug 'flazz/vim-colorschemes'
 
 " Broken af
 "Plug 'dylanaraps/wal.vim'
+

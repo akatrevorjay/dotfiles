@@ -22,24 +22,16 @@ set helplang=en
 "set window=55
 
 " Commands that shell out tend to assume a bourne shell
-set shell=sh
+if executable('dash')
+  set shell=dash
+else
+  set shell=sh
+endif
 
 set emoji
 
 " Add templates upon new file
-"au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-
-"augroup Shebang
-"    autocmd BufNewFile *.py 0put =\"#!/usr/bin/env python\<nl># -*- coding: utf8 -*-\<nl>\"|$
-
-"    autocmd BufNewFile *.sh 0put =\"#!/usr/bin/env bash\<nl># -*- coding: utf8 -*-\<nl>set -eo pipefail\<nl>\"|$
-"    autocmd BufNewFile *.zsh 0put =\"#!/usr/bin/env zsh\<nl># -*- coding: utf8 -*-\<nl>set -eo pipefail\<nl>\"|$
-
-"    autocmd BufNewFile *.rb 0put =\"#!/usr/bin/env ruby\<nl># -*- coding: utf8 -*-\<nl>\"|$
-
-"    autocmd BufNewFile *.tex 0put =\"%&plain\<nl>\"|$
-"    autocmd BufNewFile *.\(cc\|hh\) 0put =\"//\<nl>// \".expand(\"<afile>:t\").\" -- \<nl>//\<nl>\"|2|start!
-"augroup END
+au BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
 let g:rustfmt_autosave = 1
 let g:racer_experimental_completer = 1
@@ -49,6 +41,9 @@ nnoremap <silent> <leader>a :ArgWrap<CR>
 " For conceal markers.
 set conceallevel=1
 set concealcursor=nc
+
+" Always draw sign column. Prevent buffer moving when adding/deleting sign.
+set signcolumn=yes
 
 let g:indentLine_setConceal = 0
 "let g:indentLine_char = 'c'

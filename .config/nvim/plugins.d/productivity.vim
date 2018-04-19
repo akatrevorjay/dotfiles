@@ -15,11 +15,6 @@ Plug 'tpope/vim-speeddating'
 "Plug 'wakatime/vim-wakatime'
 "let g:wakatime_PythonBinary = '/usr/bin/python'
 
-"" Vim Space Controller
-"if ! exists('g:vimpager.enabled')
-"    Plug 'vim-ctrlspace/vim-ctrlspace'
-"endif
-
 Plug 'bagrat/vim-workspace'
 
 " Nice start screen
@@ -89,8 +84,8 @@ let g:reveal_config = {
 Plug 'blindFS/vim-reveal', {'for': 'markdown'}
 
 " chdir to project/vcs root on open
-Plug 'airblade/vim-rooter'
-let g:rooter_resolve_links = 1
+" Plug 'airblade/vim-rooter'
+" let g:rooter_resolve_links = 0
 
 " Clean sessions
 Plug 'tpope/vim-obsession'
