@@ -44,9 +44,6 @@ tools_pkgs=(
 
 	mistune
 
-	pyls-mypy
-	pyls-isort
-
 	isort importmagic
 	pydocstyle pycodestyle
 	pyflakes mccabe bandit
@@ -54,8 +51,11 @@ tools_pkgs=(
 	flake8 flake8-mypy flake8-isort
 	mypy
 
-	yapf autopep8
+	yapf autopep8 black
 	sixer
+
+	pyls-mypy
+	pyls-isort
 
 	python-language-server
 

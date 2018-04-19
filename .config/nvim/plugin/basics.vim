@@ -278,7 +278,8 @@ set foldminlines=2
 "set foldlevelstart=0
 
 " all
-"set foldlevelstart=99
+set foldlevelstart=4
+set foldlevel=4
 
 "" Use space to toggle folding
 " nnoremap <space> za

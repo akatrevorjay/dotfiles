@@ -51,7 +51,8 @@ Plug 'rhysd/clever-f.vim'
 Plug 'junegunn/rainbow_parentheses.vim'
 Gautocmdft python,lisp,clojure,scheme,c,cpp,objc,objcpp,json,jsonnet,javascript,automake,sh,zsh :RainbowParentheses
 
-Plug 'vim-scripts/restore_view.vim'
+"" Breaks folds when switching buffers I think
+" Plug 'vim-scripts/restore_view.vim'
 
 "" Dynamic SQL completion via opening a db connection
 " Plug 'vim-scripts/dbext.vim'
@@ -185,4 +186,7 @@ Plug 'KabbAmine/zeavim.vim', {'on': [
 				\	'<Plug>ZVKeyDocset',
 				\	'<Plug>ZVMotion'
 				\ ]}
+
+Plug 'kopischke/vim-stay'
+set viewoptions=cursor,folds,slash,unix
 

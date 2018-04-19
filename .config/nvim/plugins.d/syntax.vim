@@ -413,7 +413,7 @@ if has('nvim')
 
     let g:LanguageClient_serverCommands = {
         \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'python': [expand('~/.virtualenvs/neovim/bin/pyls')],
+        \ 'python': ['pyls'],
         \ 'javascript': ['javascript-typescript-stdio'],
         \ 'javascript.jsx': ['javascript-typescript-stdio'],
         \ }
@@ -443,7 +443,7 @@ if has('nvim')
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 
-    " neco-syntax: "syntax" source (for more than just viml now(
+    " neco-syntax: "syntax" source (for more than just viml now)
     Plug 'Shougo/neco-syntax'
 
     " viml
@@ -508,7 +508,7 @@ if has('nvim')
     endif
 
     " rust
-    Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
+    " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}

@@ -1,6 +1,7 @@
 if empty($TMUX)
   if has('nvim')
-    Plug 'BurningEther/nvimux'
+    " broken
+    " Plug 'BurningEther/nvimux'
   endif
 else
   " tmux integration
