@@ -16,3 +16,5 @@
 	path = config.trevorj
 
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
+[github]
+	oauth-token = bfa255f8c3a3077f0b0974c97db7230536d879d7
