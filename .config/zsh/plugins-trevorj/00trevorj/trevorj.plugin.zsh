@@ -35,3 +35,7 @@ REPORTTIME=10
 # This is used by deoplete-zsh
 zmodload zsh/zpty
 
+bindkey -r '^B'
+bindkey '^V' zbrowse
+
+
