@@ -1,3 +1,4 @@
+---
 # Configuration for Alacritty, the GPU enhanced terminal emulator
 
 # Any items in the `env` entry below will be added as
@@ -12,8 +13,8 @@ env:
   # You can verify this by checking for the presence of `smso` and `sitm` in
   # `infocmp xterm-256color`.
   TERM: xterm-256color
-  #TERM: alacritty
-  #TERM: alacritty-256color
+  # TERM: alacritty
+  # TERM: alacritty-256color
   MUX_AUTOSTART: true
 
 window:
@@ -33,14 +34,15 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: true
+  decorations: false
 
 # Display tabs using this many cells (changes require restart)
 tabspaces: 8
 
 # When true, bold text is drawn using the bright variant of colors.
 # draw_bold_text_with_bright_colors: true
-draw_bold_text_with_bright_colors: true
+# draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: false
 
 # Font configuration (changes require restart)
 #
@@ -76,12 +78,20 @@ font:
   normal:
     family: Hack Nerd Font
     style: Regular
+    render_mode: Max
+    lcd_filter: true
+
   bold:
     family: Hack Nerd Font
     style: Bold
+    render_mode: Max
+    lcd_filter: true
+
   italic:
     family: Hack Nerd Font
     style: Italic
+    render_mode: Max
+    lcd_filter: true
 
 
   # normal:
@@ -95,26 +105,26 @@ font:
   #   style: Italic
 
   # Point size of the font
-  size: 12.0
+  size: 6.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.
   offset:
-    # x: -11.0
-    x: 0.0
-    y: 0.0
+    # x: -11
+    x: 0
+    y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increase the x offset to move the glyph to
   # the right, increase the y offset to move the glyph upward.
   glyph_offset:
-    x: 0.0  # -12.0
-    y: 0.0
+    x: 0  # -12
+    y: 0
 
   # OS X only: use thin stroke font rendering. Thin strokes are suitable
   # for retina displays, but for non-retina you probably want this set to
   # false.
-  # use_thin_strokes: true
+  use_thin_strokes: true
 
 # Should display the render timer
 render_timer: false
@@ -241,7 +251,7 @@ selection:
 
 dynamic_title: true
 
-hide_cursor_when_typing: false
+hide_cursor_when_typing: true
 
 # Style of the cursor
 #
@@ -249,7 +259,7 @@ hide_cursor_when_typing: false
 # - Block
 # - Underline
 # - Beam
-cursor_style: Block
+cursor_style: Beam
 
 # Live config reload (changes require restart)
 live_config_reload: true

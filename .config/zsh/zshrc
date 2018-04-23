@@ -8,7 +8,7 @@ if [[ ${TERM} == 'dumb' ]]; then
 fi
 
 if [[ -n ${modules[zsh/regex]} ]] || zmodload zsh/regex; then
-    [[ $- =~ i ]] || return
+	[[ $- =~ i ]] || return
 fi
 
 if [[ -z $ZSH_CACHE_DIR ]]; then
@@ -19,12 +19,23 @@ elif [[ ! -e $ZSH_CACHE_DIR ]]; then
 	mkdir -pv $ZSH_CACHE_DIR
 fi
 
+
+autoload -Uz debug e warn error death
+
+# aliases are used to defer calls to compinit, complete, compdef.
+# technically it's the default anyway, but this is justin case
+# funcar
+setopt aliases
+setopt functionargzero
+
+
 ##
 ## Vars
 ##
 
 # enable all of the highlighters
 typeset -Ua ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+
 
 ##
 ## Zplugins API
@@ -34,7 +45,7 @@ typeset -Ua ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 typeset -a ZPLUGINS=()
 typeset -a ZPLUGINS_Q=()
 
-function zplugins.init() {
+function zplugins.init {
 	if ! (( ${+commands[antibody]} )) && (( ${+commands[go]} )); then
 		echo "- Antibody not found in path. Attempting install.." >&2
 		go get -u -v github.com/akatrevorjay/antibody/cmd/antibody
@@ -49,7 +60,7 @@ function zplugins.init() {
 	source <(command antibody init)
 }
 
-function zplugins.is-initialized() {
+function zplugins.is-initialized {
 	[[ -z $ZPLUGINS_IS_APPLYING ]] && (( ${+functions[antibody]} ))
 }
 
@@ -57,15 +68,15 @@ function zplugins.is-initialized() {
 # We'll run them once we have the full list if necessary.
 # Avoids races and dependency woes since now we can order accordingly.
 
-function zplugins.q.add() {
+function zplugins.q.add {
 	ZPLUGINS_Q+=(${(q)argv}$'\0')
 }
 
-function zplugins.q.dry-run() {
+function zplugins.q.dry-run {
 	command antibody bundle "${(0)ZPLUGINS_Q}"
 }
 
-function zplugins.q.apply() {
+function zplugins.q.apply {
 	zplugins.is-initialized || zplugins.init
 
 	local ZPLUGINS_IS_APPLYING=1
@@ -75,11 +86,11 @@ function zplugins.q.apply() {
 	ZPLUGINS_Q=()
 }
 
-function zplugins.q.show() {
+function zplugins.q.show {
 	command antibody bundle "${(0)ZPLUGINS}"
 }
 
-function zplugins.load() {
+function zplugins.load {
 	local p="$1"
 
 	local defer=${${${p:t}%%[^0-9]*}:-0}
@@ -91,7 +102,7 @@ function zplugins.load() {
 	! zplugins.is-initialized || zplugins.q.apply
 }
 
-function zplugins.load-all-in() {
+function zplugins.load-all-in {
 	local p
 
 	local plugins=()
@@ -113,6 +124,78 @@ function zplugins.load-all-in() {
 	done
 }
 
+
+#
+# defer -- protection against things like the google cloud sdk that
+#			continue to /execute/ compini in their completion setup.
+#
+# Pretty simple, it just defers commands until later,
+# ~ that is, except for compinit calls, which are left to die.
+#
+
+function zplugins.defer.add {
+	local bin=${1%%:*}
+	aliases[$bin]="${(q)0/add/exec} ${(q)1}"
+}
+
+function zplugins.defer.rm {
+	local bin=${1%%:*}
+	unset "aliases[$bin]"
+}
+
+typeset -a ZPLUGINS_DEFER_Q=()
+autoload -Uz in-arr
+
+function zplugins.defer.exec {
+	: ${1:?}
+
+	# allow for flags like `compinit:ignore`
+	local bin=${1%%:*}
+	local raw_flags="" f
+	[[ $1 != *:* ]] || raw_flags=${1#*:}
+	local -A flags=(); for f in ${(s:,:)raw_flags}; flags+=($f 1)
+
+	local action="   Deferring" ignore=""
+	if (( ${+flags[ignore]} )); then
+		# ignore these attempts to slow our roll.
+		action='   Ignoring'
+		ignore=true
+	fi
+
+	e '%s: %s' $action "${(qqq)argv}"
+
+	[[ -z $ignore ]] || return 0
+
+	ZPLUGINS_DEFER_Q+=("${(q)argv}"$'\0')
+}
+
+function zplugins.defer.apply {
+	local a
+
+	for a in ${(0)ZPLUGINS_DEFER_Q}; do
+		local cmd=(${(z)a})
+		e 'executing defered: %s' "${(qqq)cmd}"
+		$cmd
+	done
+
+	ZPLUGINS_DEFER_Q=()
+}
+
+
+function zplugins.compinit {
+	[[ $ZPLUGINS_HAS_COMPINIT -ne 1 ]] || return 0
+
+	cmd=(compinit -d ${ZSH_CACHE_DIR:?})
+
+	$cmd && ZPLUGINS_HAS_COMPINIT=1
+}
+
+
+# Insert aliases
+zplugins.defer.add compdef
+zplugins.defer.add complete
+zplugins.defer.add compinit:ignore
+
 ##
 ## Meat
 ##
@@ -125,12 +208,12 @@ source-with-force ${^ZDOTDIRS}/secrets(-.N)
 
 # Collect plugin list
 () {
-    local fns=(zshplugins)
-    [[ $# -eq 0 ]] \
-      || fns+=(zshplugins-${^argv})
-    fns=(${^ZDOTDIRS}/${^fns}(-.N))
+	local fns=(zshplugins)
+	[[ $# -eq 0 ]] \
+	  || fns+=(zshplugins-${^argv})
+	fns=(${^ZDOTDIRS}/${^fns}(-.N))
 
-    source-with-force $fns
+	source-with-force $fns
 } $OSTYPE $USER
 
 # Local
@@ -139,6 +222,9 @@ source-with-force $LOCAL_ZDOTDIR/zshrc
 # Now we can apply them as necessary upon first call transparently.
 # Avoids races and dependency woes since now we can order accordingly.
 zplugins.q.apply
+
+zplugins.compinit
+zplugins.defer.apply
 
 autoload -Uz fix-{f,}path-order
 fix-path-order

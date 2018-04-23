@@ -1,0 +1,127 @@
+#!/bin/zsh
+
+function newset {
+	setopt local_options no_ksh_arrays
+	local name="$1"; shift
+	typeset -gUa $name
+	set -A $name "$@"
+}
+
+function copyset_tofrom {
+	setopt local_options no_ksh_arrays
+	local new="$1" old="$2"
+	typeset -gUa $new
+	set -A $new "${(P@)old}"
+}
+function copyset_fromto { copyset_tofrom "$2" "$1" }
+
+function set_add_new {
+	setopt local_options no_ksh_arrays
+	local new="$1" a="$2" b="$3"
+	typeset -gUa $new
+	set -A $new "${(P@)a}" "${(P@)b}"
+}
+
+function set_add_in {
+	setopt local_options no_ksh_arrays
+	local name="$1" b="$2"
+	set -A $name "${(P@)name}" "${(P@)b}"
+}
+
+function set_add_print {
+	setopt local_options no_ksh_arrays
+	local a="$1" b="$2"
+	typeset -Ua tmp
+	tmp=("${(P@)a}" "${(P@)b}")
+	print -r -- ${(q)tmp}
+}
+
+function set_subtract_new {
+	setopt local_options no_ksh_arrays
+	local new="$1" a="$2" b="$3"
+	typeset -gUa $new
+	set -A $new "${(P@)a:#${(P~j,|,)b}}"
+}
+
+function set_subtract_in {
+	setopt local_options no_ksh_arrays
+	local name="$1" b="$2"
+	set -A $name "${(P@)name:#${(P~j,|,)b}}"
+}
+
+function set_subtract_print {
+	setopt local_options no_ksh_arrays
+	local a="$1" b="$2"
+	typeset -Ua tmp
+	tmp=("${(P@)a:#${(P~j,|,)b}}")
+	print -r -- ${(q)tmp}
+}
+
+function set_intersection_new {
+	setopt local_options no_ksh_arrays
+	local new="$1" a="$2" b="$3"
+	typeset -gUa $new
+	set -A $new "${(@PM)a:#${(P~j,|,)b}}"
+}
+
+function set_intersection_in {
+	setopt local_options no_ksh_arrays
+	local name="$1" b="$2"
+	set -A $name "${(@PM)name:#${(P~j,|,)b}}"
+}
+
+function set_intersection_print {
+	setopt local_options no_ksh_arrays
+	local a="$1" b="$2"
+	typeset -Ua tmp
+	tmp=("${(@PM)a:#${(P~j,|,)b}}")
+	print -r -- ${(q)tmp}
+}
+
+function set_union_new { set_add_new "$@" }
+function set_union_in { set_add_in "$@" }
+function set_union_print { set_add_print "$@" }
+
+function set_difference_new { set_subtract_new "$@" }
+function set_difference_in { set_subtract_in "$@" }
+function set_difference_print { set_subtract_print "$@" }
+
+function set_symmetric_difference_new {
+	setopt local_options no_ksh_arrays
+	local new="$1" a="$2" b="$3"
+	typeset -gUa $new
+	set -A $new "${(P@)a:#${(P~j,|,)b}}" "${(P@)b:#${(P~j,|,)a}}"
+}
+
+function set_symmetric_difference_in {
+	setopt local_options no_ksh_arrays
+	local name="$1" b="$2"
+	set -A $name "${(P@)name:#${(P~j,|,)b}}" "${(P@)b:#${(P~j,|,)name}}"
+}
+
+function set_symmetric_difference_print {
+	setopt local_options no_ksh_arrays
+	local a="$1" b="$2"
+	typeset -Ua tmp
+	tmp=("${(P@)a:#${(P~j,|,)b}}" "${(P@)b:#${(P~j,|,)a}}")
+	print -r -- ${(q)tmp}
+}
+
+function set_insert_list {
+	setopt local_options no_ksh_arrays
+	local name="$1"; shift
+	set -A $name "${(P@)name}" "$@"
+}
+
+function set_remove_list {
+	setopt local_options no_ksh_arrays
+	local name="$1"; shift
+	set -A $name "${(P@)name:#${(~j,|,)@}}"
+}
+
+function set_equal {
+	setopt local_options no_ksh_arrays
+	local a="$1" b="$2"
+	[[ "${${(P@oq)a}}" == "${${(P@oq)b}}" ]]
+}
+

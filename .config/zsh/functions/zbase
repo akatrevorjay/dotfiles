@@ -1,0 +1,85 @@
+#!/bin/zsh
+# set -eo pipefail
+# shopt -s nullglob
+
+function zlog.echo   {
+	local level="$1" fmt="$2" date=$(print -P -- '%w %*') 
+
+	local -i zlog_stack_offset=${zlog_stack_offset:-0}
+
+	# local caller=${funcfiletrace[2+${zlog_stack_offset:-0}]}
+	local caller=${functrace[2+$zlog_stack_offset]}
+	# caller=${caller/$ZSH_ARGZERO/__main__}
+	caller=${caller/$HOME/\~}
+
+	printf "%s %s @%s $fmt #$level\n" "$date" "${ZSH_ARGZERO}[$$]" "$caller" "${@:3}" >&2;
+}
+
+function debug          { [[ -z "$DEBUG" ]] || zlog.echo DEBUG "$@"; }
+function e              { [[ -n "$QUIET" ]] || zlog.echo INFO "$@"; }
+function info           { zlog.offsetpp e "$@"; }
+function warn           { [[ -n "$QUIET" ]] || zlog.echo WARNING "$@"; }
+function warning        { warn "$@"; }
+function error          { zlog.echo ERROR "$@" >&2; }
+function death          { error "$@"; exit 1; }
+function nullify        { "$@" >/dev/null 2>&1; }
+function errnullify     { "$@" 2>/dev/null; }
+function abspath()		{ (cd "$1" && pwd); }
+
+function zlog.offsetpp {
+	local -i zlog_stack_offset=${zlog_stack_offset:-0}
+	let 'zlog_stack_offset+=2'
+
+	"$@"
+}
+
+function assert()		{
+	if ! "$@"; then
+		local rv=$?
+		error "Assertion failed (bad retval: $rv) for command: %s"
+		return $rv
+	fi
+}
+
+first-in() {
+	local predicate="$1"
+	shift 1
+
+	local item
+	for item in "$@"; do
+		$predicate "$item" || continue
+
+		echo "$item"
+		return
+	done
+
+	return 1
+}
+
+is-newer-than() {
+	local stamp="$1"
+	local compare_to=("${@:2}")
+
+	predicate() {
+		# exists and is newer than $stamp
+		[[ -e "$fn" ]]
+		[[ "$1" -nt "$stamp" ]]
+	}
+
+	nullify first-in predicate "${compare_to[@]}"
+}
+
+function prefixout() {
+	if (( ${+commands[prefixout]} )); then
+		command prefixout -dc -- "$@"
+	else
+		"$@"
+	fi
+}
+
+case ${funcstack[1]} in
+	zbase) return 0 ;;
+esac
+
+zlog.offsetpp "${funcstack[1]}" "$@"
+

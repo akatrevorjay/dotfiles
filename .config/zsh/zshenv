@@ -13,6 +13,9 @@
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
+: ${ZSH_PROFILE:=1}
+: ${ZSH_SOURCETRACE:=1}
+
 [[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
 [[ -z $ZSH_SOURCETRACE ]] || setopt sourcetrace
 

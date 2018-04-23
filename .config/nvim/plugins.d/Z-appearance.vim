@@ -24,6 +24,10 @@ Plug 'ryanoasis/vim-devicons'
 
 "Plug 'thinca/vim-prettyprint'
 
+if $TERM == 'cancer-256color' || $TERM == 'cancer'
+    Plug 'mattn/vim-nyancat'
+endif
+
 """"""""" colors """""""""""
 
 " No longer needed as of vim8 with termguicolors

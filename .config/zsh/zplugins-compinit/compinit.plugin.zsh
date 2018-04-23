@@ -1,2 +1,3 @@
 #!/bin/zsh
-compinit
+
+

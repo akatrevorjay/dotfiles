@@ -1,14 +1,18 @@
 [*]
+    #cc = /usr/bin/gcc-6
+    #c++ = /usr/bin/g++-6
+	#no-parallel = *
 	cc = /usr/bin
 	c++ = /usr/bin
+    
 	ld = /usr/bin
 	make = /usr/bin
-
+    
 	cpus = 8
-
+    
 	# make check should not generally be run in parallel
 	no-parallel = check docs doc tests test
-
+    
 	ccache = /usr/bin
 
 # Comment this back in for debugging
@@ -37,6 +41,16 @@
 
 [*themes*]
 	no-parallel = *
+
+# [*bazel*]
+#     cc = /usr/bin/gcc-6
+#     c++ = /usr/bin/g++-6
+# 	no-parallel = *
+#
+# [*tensorflow*]
+#     cc = /usr/bin/gcc-6
+#     c++ = /usr/bin/g++-6
+# 	no-parallel = *
 
 #[*openwrt*]
 #    cc = /usr/bin/gcc-5
