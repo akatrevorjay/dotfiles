@@ -133,18 +133,7 @@ function zplugins.load-all-in {
 # ~ that is, except for compinit calls, which are left to die.
 #
 
-function zplugins.defer.add {
-	local bin=${1%%:*}
-	aliases[$bin]="${(q)0/add/exec} ${(q)1}"
-}
-
-function zplugins.defer.rm {
-	local bin=${1%%:*}
-	unset "aliases[$bin]"
-}
-
 typeset -a ZPLUGINS_DEFER_Q=()
-autoload -Uz in-arr
 
 function zplugins.defer.exec {
 	: ${1:?}
@@ -155,46 +144,74 @@ function zplugins.defer.exec {
 	[[ $1 != *:* ]] || raw_flags=${1#*:}
 	local -A flags=(); for f in ${(s:,:)raw_flags}; flags+=($f 1)
 
-	local action="   Deferring" ignore=""
+	local action="   Deferring"
+	local ignore=""
 	if (( ${+flags[ignore]} )); then
 		# ignore these attempts to slow our roll.
-		action='   Ignoring'
+		# action='   Ignoring'
 		ignore=true
 	fi
 
-	e '%s: %s' $action "${(qqq)argv}"
+	# e '%s: %s' $action "${(qqq)argv}"
 
 	[[ -z $ignore ]] || return 0
 
-	ZPLUGINS_DEFER_Q+=("${(q)argv}"$'\0')
+	ZPLUGINS_DEFER_Q+=(
+		"${(j: :)${(q@)argv}}"
+	)
 }
 
 function zplugins.defer.apply {
 	local a
 
-	for a in ${(0)ZPLUGINS_DEFER_Q}; do
-		local cmd=(${(z)a})
-		e 'executing defered: %s' "${(qqq)cmd}"
+	for a in $ZPLUGINS_DEFER_Q; do
+		local cmd=("${(Q@)${(z@)a}}")
+		# e 'executing defered: %s' "$cmd"
 		$cmd
 	done
 
-	ZPLUGINS_DEFER_Q=()
+	# ZPLUGINS_DEFER_Q=()
+}
+
+function zplugins.defer.add {
+	local bin=${1%%:*}
+	aliases[$bin]="${(q)0/add/exec} ${(q)1}"
+}
+
+function zplugins.defer.rm {
+	local bin=${1%%:*}
+	unset "aliases[$bin]"
 }
 
 
-function zplugins.compinit {
-	[[ $ZPLUGINS_HAS_COMPINIT -ne 1 ]] || return 0
-
-	cmd=(compinit -d ${ZSH_CACHE_DIR:?})
-
-	$cmd && ZPLUGINS_HAS_COMPINIT=1
-}
-
+typeset -a zplugins_compinit_funcs=(compdef complete compinit:ignore compaudit:ignore compdump:ignore)
 
 # Insert aliases
-zplugins.defer.add compdef
-zplugins.defer.add complete
-zplugins.defer.add compinit:ignore
+function zplugins.defer.enable_compinit() {
+	local meth
+	for meth in $zplugins_compinit_funcs
+		zplugins.defer.add $meth
+}
+
+function zplugins.defer.disable_compinit() {
+	local meth
+	for meth in $zplugins_compinit_funcs
+		zplugins.defer.rm $meth
+}
+
+
+zplugins_compinit_done=''
+
+function zplugins.compinit {
+	[[ -z $zplugins_compinit_done ]] || return 0
+
+	zplugins.defer.disable_compinit
+
+	compinit -d ${ZSH_CACHE_DIR:?}
+
+	zplugins_compinit_done=true
+}
+
 
 ##
 ## Meat
@@ -202,6 +219,8 @@ zplugins.defer.add compinit:ignore
 
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
+
+zplugins.defer.enable_compinit
 
 # Secrets
 source-with-force ${^ZDOTDIRS}/secrets(-.N)

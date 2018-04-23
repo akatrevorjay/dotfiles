@@ -1,12 +1,14 @@
 #!/bin/zsh
 
 function in-arr() {
-	local var=${1:?}
+	local var=${1:?}; shift
+
+	local count=${(P)#var}
 
 	local needle
 	for needle in "$@"; do
-		local idx=${(P)var[(i)$needle]}
-		[[ $idx -gt ${(@P)#var} ]] || return 0
+		local idx=${${(P)var}[(i)$needle]}
+		[[ $idx -gt $count ]] || return 0
 	done
 
 	return 1
