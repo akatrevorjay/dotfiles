@@ -187,13 +187,13 @@ function zplugins.defer.rm {
 typeset -a zplugins_compinit_funcs=(compdef complete compinit:ignore compaudit:ignore compdump:ignore)
 
 # Insert aliases
-function zplugins.defer.enable_compinit() {
+function zplugins.compinit.defer() {
 	local meth
 	for meth in $zplugins_compinit_funcs
 		zplugins.defer.add $meth
 }
 
-function zplugins.defer.disable_compinit() {
+function zplugins.compinit.undefer() {
 	local meth
 	for meth in $zplugins_compinit_funcs
 		zplugins.defer.rm $meth
@@ -205,9 +205,12 @@ zplugins_compinit_done=''
 function zplugins.compinit {
 	[[ -z $zplugins_compinit_done ]] || return 0
 
-	zplugins.defer.disable_compinit
+	zplugins.compinit.undefer
 
+	autoload -Uz compinit
 	compinit -d ${ZSH_CACHE_DIR:?}
+
+	zplugins.defer.apply
 
 	zplugins_compinit_done=true
 }
@@ -220,7 +223,7 @@ function zplugins.compinit {
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-zplugins.defer.enable_compinit
+zplugins.compinit.defer
 
 # Secrets
 source-with-force ${^ZDOTDIRS}/secrets(-.N)
@@ -241,9 +244,7 @@ source-with-force $LOCAL_ZDOTDIR/zshrc
 # Now we can apply them as necessary upon first call transparently.
 # Avoids races and dependency woes since now we can order accordingly.
 zplugins.q.apply
-
 zplugins.compinit
-zplugins.defer.apply
 
 autoload -Uz fix-{f,}path-order
 fix-path-order

@@ -34,7 +34,7 @@ zplugins.load-all-in plugins-trevorj
 ## ~~~~~~~~
 ## compinit
 ## ~~~~~~~~
-zplugins.compinit
+zplugins.load-all-in zcompinit
 
 zplugins.load 'zdharma/zconvey'
 
