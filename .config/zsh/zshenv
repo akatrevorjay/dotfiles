@@ -13,11 +13,11 @@
 #
 # Global Order: zshenv, zprofile, zshrc, zlogin
 
-: ${ZSH_PROFILE:=1}
-: ${ZSH_SOURCETRACE:=1}
+#: ${ZSH_PROFILE:=1}
+#: ${ZSH_SOURCETRACE:=1}
 
-[[ -z $ZSH_PROFILE ]] || zmodload zsh/zprof
-[[ -z $ZSH_SOURCETRACE ]] || setopt sourcetrace
+[[ $ZSH_PROFILE != 1 ]] || zmodload zsh/zprof
+[[ $ZSH_SOURCETRACE != 1 ]] || setopt sourcetrace
 
 # XDG defaults
 if (( ${+commands[xdg-user-dirs-update]} )); then

