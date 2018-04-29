@@ -60,4 +60,3 @@ zplugins.load 'zdharma/fast-syntax-highlighting'
 
 zplugins.load 'b4b4r07/zsh-vimode-visual'
 
-
