@@ -51,6 +51,8 @@ tools_pkgs=(
 	flake8
 	# flake8-mypy
 	flake8-isort
+	flake8-future
+	flake8-docstrings
 	mypy
 
 	yapf autopep8 black
