@@ -251,7 +251,8 @@ Plug 'kannokanno/previm', {'for': ['markdown']}
 Plug 'okcompute/vim-python-motions', {'for': 'python'}
 
 "Plug 'hdima/python-syntax', {'for': 'python'}
-Plug 'vim-python/python-syntax', {'for': 'python'}
+Plug 'achimnol/python-syntax', {'for': 'python'}
+" Plug 'vim-python/python-syntax', {'for': 'python'}
 
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
@@ -629,10 +630,10 @@ if has('nvim')
     " webcomplete.vim: "webcomplete" source for browser opened pages
     Plug 'thalesmello/webcomplete.vim'
 
-    if !empty($TMUX)
-        " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
-        Plug 'wellle/tmux-complete.vim'
-    endif
+    " if !empty($TMUX)
+    "     " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
+    "     Plug 'wellle/tmux-complete.vim'
+    " endif
 
     " rust
     " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
