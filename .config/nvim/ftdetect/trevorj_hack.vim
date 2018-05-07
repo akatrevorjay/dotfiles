@@ -15,6 +15,7 @@ au BufRead,BufNewFile dkms.conf setf sh
 au BufRead,BufNewFile *.dox setf doxygen
 " Notice no extension, catches kops edit
 au BufRead,BufNewFile *yaml setf yaml.jinja2
+au BufRead,BufNewFile *html setf html.jinja2
 au BufRead,BufNewFile *json setf json.jinja2
 " au BufRead,BufNewFile *.yaml setf yaml.jinja2
 " au BufRead,BufNewFile *.json setf json.jinja2

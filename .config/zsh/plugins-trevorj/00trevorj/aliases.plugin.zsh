@@ -189,3 +189,7 @@ if (( ${+commands[gron]} )); then
 	alias ungron="gron --ungron"
 fi
 
+if (( ${+commands[systemctl]} )); then
+	alias -g sctl='ensure-root systemctl'
+fi
+

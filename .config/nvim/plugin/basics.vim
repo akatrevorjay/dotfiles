@@ -235,9 +235,9 @@ set smarttab " Handle tabs more intelligently"
 set expandtab " Use spaces, not tabs, for autoindent/tab key."
 
 set autoindent " always set autoindenting on"
-set smartindent " use smart indent if there is no indent file"
+" set smartindent " use smart indent if there is no indent file"
 set copyindent  " copy whitespace for indenting from previous line
-"set cindent  " indenting for C code
+set cindent  " indenting for C code
 "set preserveindent " Don't fuck with existing spacing unless we have to.
 
 "" Only set indent when no other was loaded.
