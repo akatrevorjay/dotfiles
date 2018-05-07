@@ -7,9 +7,9 @@ setopt nullglob
 unsetopt nomatch
 
 export \
-	DEBEMAIL="debian@trevor.joynson.io" \
 	DEBFULLNAME="Trevor Joynson (Debian)" \
-	GPGKEY="C9871F640" \
+	DEBEMAIL="debian@trevor.joynson.io" \
+	GPGKEY="9871F640" \
 	DEB_BUILD_OPTIONS="parallel=9" \
 	LAUNCHPAD_ID="trevorjay"
 export DEBSIGN_KEYID="$GPGKEY"
