@@ -1,0 +1,25 @@
+#!/bin/zsh
+set -eo pipefail
+
+: ${MAX_AGE:='1 month ago'}
+
+branches=$(git branch | sed -e '/^\* /d')
+branches=(${(Z:Cn:)branches})
+
+for b in $branches; do
+  since=$(git log -1 --since="$MAX_AGE" -s $b)
+
+  if [[ -n $since ]]; then
+  	printf '# Cleaning stale branch=%s.\n' $b >&2
+
+	() {
+	  set -v
+
+	  # delete locally
+	  echo git branch -d ${(q)b}
+	  # remove from remote
+	  echo git push origin ":${(q)b}"
+	}
+  fi
+done
+
