@@ -9,7 +9,7 @@ name=$PWD:t
 
 case $name in
 	build)
-		name=$PWD:h:t
+		name=${PWD:h:t}
 		;;
 esac
 
@@ -44,7 +44,17 @@ cmd=(
 	-y
 
 	--pkgname=$name
-
 )
+
+
+if [[ $# -eq 0 ]]; then
+	inst_cmd=()
+
+	if test -e build.ninja; then
+		inst_cmd=(ninja install)
+	fi
+
+	set -- "${inst_cmd[@]}"
+fi
 
 exec $cmd "$@"
