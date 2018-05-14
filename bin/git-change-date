@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/zsh
+set -eo pipefail
 
 #
 # Change the commit and/or author date of git commits.
@@ -14,8 +15,12 @@
 
 # Based on http://stackoverflow.com/questions/3042437/change-commit-author-at-one-specific-commit
 
+git=(
+    command git --work-tree="$HOME" --git-dir="$HOME/.yadm/repo.git"
+    )
+
 force=''
-if test "x$1" = "x-f"; then
+if [[ $1 == "-f" ]]; then
     force='-f'
     shift
 fi
@@ -24,7 +29,7 @@ die() {
     printf '%s\n' "$@"
     exit 128
 }
-targ="$(git rev-parse --verify "$1" 2>/dev/null)" || die "$1 is not a commit"
+targ="$($git rev-parse --verify "$1" 2>/dev/null)" || die "$1 is not a commit"
 br="${2:-HEAD}"
 
 TARG_COMMIT="$targ"
@@ -53,4 +58,4 @@ filt='
 
 '
 
-git filter-branch $force --env-filter "$filt" -- $br
+$git filter-branch $force --env-filter "$filt" -- $br
