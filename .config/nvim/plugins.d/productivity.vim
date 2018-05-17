@@ -116,3 +116,5 @@ Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 " " nmap <leader>q <plug>(QuickScopeToggle)
 " " vmap <leader>q <plug>(QuickScopeToggle)
 
+Plug 'git-time-metric/gtm-vim-plugin'
+
