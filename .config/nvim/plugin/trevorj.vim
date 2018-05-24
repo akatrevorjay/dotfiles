@@ -130,4 +130,6 @@ set lazyredraw redrawtime=1000
 "endfunction
 
 "autocmd! FocusLost * call timer_start(5000, function('s:redraw'))
-"
+
+let g:vimwiki_autowriteall = 0
+

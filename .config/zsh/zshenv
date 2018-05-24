@@ -78,8 +78,8 @@ esac
 export GOPATH
 
 # Nim(rod)
-: ${NIM_HOME:=$HOME/build/Nim}
-export NIM_HOME
+# : ${NIM_HOME:=$HOME/build/Nim}
+# export NIM_HOME
 
 # Dart
 : ${DART_HOME:=/usr/lib/dart}
@@ -112,16 +112,16 @@ prefix_path=(
 	$HOME{,/crypt}/bin
 	${^ZDOTDIRS}/bin
 
-	$GOPATH/bin
+	${GOPATH:+$GOPATH/bin}
 
-	$NIM_HOME/bin
 	$HOME/.nimble/bin
+	${NIM_HOME:+$NIM_HOME/bin}
 
 	$HOME/.cargo/bin
 
 	$HOME/.gem/ruby/*/bin(N-/)
 
-	$DART_HOME/bin
+	${DART_HOME:+$DART_HOME/bin}
 )
 
 prefix_fpath=(

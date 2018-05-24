@@ -25,3 +25,5 @@ Plug 'chrisbra/Recover.vim'
 
 " Plug 'brooth/far.vim'
 
+Plug 'embear/vim-localvimrc'
+Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
