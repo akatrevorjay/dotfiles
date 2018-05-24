@@ -156,27 +156,27 @@ endif
 "" Javascript
 ""Plug 'moll/vim-node'  "
 "Plug 'ternjs/tern_for_vim', {'for': ['json', 'javascript']}
-""Plug 'kchmck/vim-coffee-script, {'for': 'coffee'}
+" Plug 'kchmck/vim-coffee-script', {'for': 'coffee'}
 "Plug 'dart-lang/dart-vim-plugin', {'for': 'dart'}
 "" syntax
 ""Plug 'othree/yajs.vim', {for': ['json', 'javascript']}
 ""Plug 'othree/es.next.syntax.vim', {'for': ['json', 'javascript']}
 "" JavaScript Parameter Complete(JSPC): cemp for func params, such as event names, crypto algorithms, and common locales
-""Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
-""Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
+" Plug 'othree/jspc.vim', {'for': ['json', 'javascript']}
+" Plug 'othree/javascript-libraries-syntax.vim', {'for': ['json', 'javascript']}
 
-"Gautocmdft javascript let b:javascript_lib_use_jquery = 1
-"Gautocmdft javascript let b:javascript_lib_use_underscore = 0
-"Gautocmdft javascript let b:javascript_lib_use_backbone = 0
-"Gautocmdft javascript let b:javascript_lib_use_prelude = 0
-"Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
+" Gautocmdft javascript let b:javascript_lib_use_jquery = 1
+" Gautocmdft javascript let b:javascript_lib_use_underscore = 0
+" Gautocmdft javascript let b:javascript_lib_use_backbone = 0
+" Gautocmdft javascript let b:javascript_lib_use_prelude = 0
+" Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 
 
-"Plug 'othree/svg-properties-syntax.vim'
-"Plug 'othree/html5.vim'
+" Plug 'othree/svg-properties-syntax.vim'
+Plug 'othree/html5.vim', {'for': 'html'}
 "" Update the bult-in CSS complete function to latest CSS standard.
-"Plug 'othree/csscomplete.vim', {'for': 'css'}
-"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+Plug 'othree/csscomplete.vim', {'for': 'css'}
+" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 
 "" Yet Another Typescript Syntax
@@ -524,11 +524,41 @@ if has('nvim')
     set hidden
 
     let g:LanguageClient_serverCommands = {
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
         \ 'python': ['pyls'],
-        \ 'javascript': ['javascript-typescript-stdio'],
-        \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+        \ 'sh': ['bash-language-server', 'start'],
+        \ 'css': ['css-languageserver', '--stdio'],
+        \ 'glsl': ['glslls', '--stdin'],
+        \ 'yaml': ['yamlls', '--stdio'],
+        \ 'javascript': ['flow-language-server', '--stdio'],
+        \ 'javascript.jsx': ['flow-language-server', '--stdio'],
+        \ 'vue': ['vls']
         \ }
+
+        " \ 'jsx': ['flow-language-server', '--stdio'],
+        " \ 'javascript': ['nodels'],
+        " \ 'javascript.jsx': ['nodels'],
+        " \ 'javascript': ['javascript-typescript-stdio'],
+        " \ 'javascript.jsx': ['javascript-typescript-stdio'],
+        " \ 'javascript': ['tcp://127.0.0.1:2089'],
+
+    " let g:LanguageClient_changeThrottle = 0.1
+    " let g:LanguageClient_selectionUI = 'fzf'
+    " let g:LanguageClient_selectionUI = 'location-list'
+
+    let g:LanguageClient_rootMarkers = {
+        \ 'python': ['setup.py', 'setup.cfg'],
+        \ 'rust': ['Cargo.toml'],
+        \ 'javascript': ['project.json', 'manifest.json', 'package.json'],
+        \ }
+
+    " let g:LanguageClient_waitOutputTimeout = 20
+
+    augroup LanguageClient_config
+        autocmd!
+        autocmd User LanguageClientStarted setlocal signcolumn=yes
+        autocmd User LanguageClientStopped setlocal signcolumn=auto
+    augroup END
 
     nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
@@ -596,21 +626,23 @@ if has('nvim')
     ""Plug 'awetzel/elixir.nvim', {'for': 'elixir'}
     "Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
-    "" deoplete-ternjs: "ternjs" source for JavaScript
-    "Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json']}
+    " deoplete-ternjs: "ternjs" source for JavaScript
+    Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json', 'javascript.jsx']}
 
     """ deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
-    "Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
+    Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
 
     """ deoplete-typescript: "typescript" source for typescript
-    ""Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
-    ""let g:deoplete#sources#tss#javascript_support = 1
+    " Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
+    " let g:deoplete#sources#tss#javascript_support = 1
 
-    "Plug 'mhartington/nvim-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
-    "let g:nvim_typescript#javascript_support = 1  " 0
-    "let g:nvim_typescript#max_completion_detail = 50  " 25
-    "let g:nvim_typescript#type_info_on_hold = 1  " 0
-    "let g:nvim_typescript#signature_complete = 1  " 0
+    " Plug 'mhartington/nvim-typescript'  ", {'for': ['javascript', 'json', 'typescript']}
+    " let g:nvim_typescript#javascript_support = 1  " 0
+    " let g:nvim_typescript#vue_support = 1  " 0
+    " let g:nvim_typescript#max_completion_detail = 50  " 25
+    " let g:nvim_typescript#type_info_on_hold = 1  " 0
+    " let g:nvim_typescript#signature_complete = 1  " 0
+    " let g:nvim_typescript#default_mappings = 1
 
     "" Dart
     "Plug 'villainy/deoplete-dart', { 'for': 'dart' }

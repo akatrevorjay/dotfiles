@@ -21,4 +21,7 @@ Plug 'osyo-manga/vim-over'
 
 Plug 'chrisbra/Recover.vim'
 
-Plug 'lambdalisue/lista.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'lambdalisue/lista.nvim', { 'do': ':UpdateRemotePlugins' }
+
+" Plug 'brooth/far.vim'
+
