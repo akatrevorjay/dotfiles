@@ -25,10 +25,10 @@ entrypoint_symbols = main _main __libc_start_main __uClibc_main start _start
 clean_on_exit = False
 
 [gef]
-autosave_breakpoints_file = ~/.gdb/breakpoints
+autosave_breakpoints_file = /home/trevorj/.gdb/breakpoints
 debug = False
 disable_color = False
-extra_plugins_dir = ~/.gdb/scripts;~/.gdb/gef-extras/scripts
+extra_plugins_dir = /home/trevorj/.gdb/scripts;/home/trevorj/.gdb/gef-extras/scripts
 follow_child = True
 readline_compat = False
 
@@ -48,7 +48,7 @@ sync_cursor = False
 length = 1024
 
 [pcustom]
-struct_path = /tmp/user/1000/gef/structs;~/.gdb/gef-extras/structs;~/.gdb/structs
+struct_path = /tmp/user/1000/gef/structs;/home/trevorj/.gdb/gef-extras/structs;/home/trevorj/.gdb/structs
 
 [process-search]
 ps_command = /bin/ps auxww
