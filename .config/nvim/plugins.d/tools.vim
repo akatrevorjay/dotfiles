@@ -24,4 +24,6 @@ Plug 'chrisbra/Recover.vim'
 Plug 'lambdalisue/lista.nvim', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'embear/vim-localvimrc'
-Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
+
+" Plug 'neomake/neomake', { 'do': ':UpdateRemotePlugins' }
+" Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
