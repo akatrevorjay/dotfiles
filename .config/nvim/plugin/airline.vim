@@ -84,7 +84,11 @@ let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#virtualenv#enabled = 1
 "let g:airline#extensions#capslock#enabled = 1
 let g:airline#extensions#ycm#enabled = 1
-let g:airline#extensions#promptline#enabled = 1
+
+if exists('g:loaded_promptline')
+  let g:airline#extensions#promptline#enabled = 1
+endif
+
 "" enable/disable fugitive/lawrencium integration >
 let g:airline#extensions#branch#enabled = 1
 

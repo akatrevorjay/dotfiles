@@ -14,8 +14,8 @@ zplugins.load 'mollifier/zload'
 
 # zplugins.load 'zdharma/zredis'  # actually gdbm + redis now and called zdharma/db
 # zplugins.load 'zdharma/ztrace'
-zplugins.load 'zdharma/zui'
-zplugins.load 'zdharma/zbrowse'
+# zplugins.load 'zdharma/zui'
+# zplugins.load 'zdharma/zbrowse'
 # zplugins.load 'zdharma/git-url'
 
 ## ~~~~~~~~~~~
@@ -31,7 +31,7 @@ zplugins.load 'zsh-users/zsh-completions'
 zplugins.load-all-in plugins-extra
 zplugins.load-all-in plugins-trevorj
 
-zplugins.load 'zdharma/zconvey'
+# zplugins.load 'zdharma/zconvey'
 zstyle ":plugin:zconvey" check_interval "2"         # How often to check if there are new commands (in seconds)
 zstyle ":plugin:zconvey" expire_seconds "22"        # If shell is busy for 22 seconds, the received command will expire and not run
 zstyle ":plugin:zconvey" greeting "logo"            # Display logo at Zsh start ("text" – display text, "none" – no greeting)

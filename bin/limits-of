@@ -1,0 +1,24 @@
+#!/bin/zsh
+set -eo pipefail
+
+return-limits(){
+    local process process_pids
+
+    for process in "$@"; do
+        process_pids=($(ps -C "$process" -o pid --no-headers | cut -d " " -f 2))
+
+        if [[ ${#process_pids} -eq 0 ]]; then
+            echo "[$process: not running]" >&2
+        else
+            local pid
+            for pid in $process_pids; do
+                echo "[$process #$pid]"
+                cat "/proc/$pid/limits"
+            done
+        fi
+
+    done
+}
+
+return-limits "$@"
+

@@ -1,0 +1,53 @@
+#! /usr/bin/env ruby
+#
+# git-merge-pr(1)
+#
+# Summary:
+#   Merge a pull request on github.com
+#
+# Usage:
+#   git-merge-pr 1776
+#
+# Author:
+#   Parker Moore (@parkr)
+#
+
+require 'octokit'
+require 'netrc'
+require 'rugged'
+
+abort "Provide a PR number (no '#' tho)" if ARGV.empty?
+
+pr_num = ARGV.first
+
+remote_name = ENV.fetch("REMOTE_NAME", "origin")
+remotes = Rugged::Repository.discover(Dir.pwd).remotes
+remote = remotes.find{ |r| r.name.eql?(remote_name) }.url
+remote.sub!("git@github.com:", "https://github.com/")
+remote.sub!(/\.git$/, "")
+
+client = Octokit::Client.new(netrc: true)
+repo   = Octokit::Repository.from_url(remote)
+
+unless client.pull_merged?(repo, pr_num)
+  begin
+    client.merge_pull_request(repo, pr_num)
+  rescue Octokit::NotFound => e
+    abort "Got a 404 -- looks like #{repo}##{pr_num} doesn't exist."
+  end
+
+  # delete branch if it's on the repo
+  merged_branch = client.pull_request(repo, pr_num).head.ref
+  begin
+    if client.ref(repo, "heads/#{merged_branch}")
+      unless %w[master gh-pages].include?(merged_branch)
+        client.delete_branch(repo, merged_branch)
+      end
+    end
+  rescue Octokit::NotFound
+  end
+else
+  puts "Pull request #{repo}##{pr_num} has already been merged."
+  print "Continue anyway? (y/n) "
+  abort unless STDIN.gets.chomp == "y"
+end

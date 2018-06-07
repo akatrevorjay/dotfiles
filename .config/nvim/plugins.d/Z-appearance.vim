@@ -1,14 +1,14 @@
 Plug 'Yggdroot/indentLine'
 
 " Generate shell prompts from airline
-Plug 'edkolev/promptline.vim'  ", {'on': ['EnablePromptline']}
+" Plug 'edkolev/promptline.vim'  ", {'on': ['EnablePromptline']}
 
 " Generate tmux status themes from airline
 " Plug 'edkolev/tmuxline.vim' ", {'on': ['Tmuxline', 'EnableTmuxline']}
 " command! -nargs=* TmuxlineSnapshot echo 'Run Tmuxline first'
 
 " Prettify tabs in terminal vim
-" Plug 'mkitt/tabline.vim'
+Plug 'mkitt/tabline.vim'
 
 " Airline
 Plug 'vim-airline/vim-airline'

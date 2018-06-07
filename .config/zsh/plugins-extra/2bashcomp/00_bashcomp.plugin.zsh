@@ -24,10 +24,14 @@ bash-source() {
 # mines  what  is completed: `!', command names; `$', environment variables; `@', host names; `/', file names; `~' user names.  In bash, the binding preceded by `\e' gives completion, and preceded
 # by `^X' lists options.  As some of these bindings clash with standard zsh bindings, only `\e~' and `^X~' are bound by default.  To add the rest, the following should be  added  to  .zshrc  after
 # compinit has been run:
-for key in '!' '$' '@' '/' '~'; do
+
+if (( ${+functions[_bash_complete-word]} )); then
+    for key in '!' '$' '@' '/' '~'; do
 	bindkey "\e$key" _bash_complete-word
 	bindkey "^X$key" _bash_list-choices
-done
+    done
+fi
+
 # This includes the bindings for `~' in case they were already bound to something else; the completion code does not override user bindings.
 #
 ## zshall(1) _bash_completions$

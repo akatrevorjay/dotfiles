@@ -1,0 +1,33 @@
+#!/bin/zsh
+set -eo pipefail
+
+if ! (( ${+commands[v]} )); then
+	pip3 install -U --force --user v
+fi
+
+[[ -n ${commands[v]} ]]
+
+git-root() {
+	git rev-parse --show-toplevel
+}
+
+find-vnv-name() {
+	local try=(
+		$PWD
+		$(git-root)
+	)
+
+	[[ ! -e setup.py ]] || try+=($PWD)
+
+	# walk parents up to git root boundary perhaps
+	# look for setup.py or even requirements.txt
+
+	echo ${#try[-1]}
+}
+
+
+[[ -n $1 ]] || set -- $(find-vnv-name) "${@:2}"
+[[ -n $2 ]] || [[ -z $1 ]] || set -- $1 python3 "${@:3}"
+
+command v "$@"
+
