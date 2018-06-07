@@ -1,3 +1,6 @@
+import os
+import sys
+
 # Configuration file for ipython.
 
 #------------------------------------------------------------------------------
@@ -26,13 +29,18 @@
 c.InteractiveShellApp.exec_PYTHONSTARTUP = True
 
 ## List of files to run at IPython startup.
-#c.InteractiveShellApp.exec_files = []
+c.InteractiveShellApp.exec_files = [
+    os.path.expandvars('$HOME/.ipythonrc.py'),
+]
 
 ## lines of code to run at IPython startup.
 #c.InteractiveShellApp.exec_lines = []
 
 ## A list of dotted module names of IPython extensions to load.
-#c.InteractiveShellApp.extensions = []
+# c.InteractiveShellApp.extensions = [
+#     'pytutils',
+#
+# ] + ['pytutils.%s' % x for x in 'pretty'.split()]
 
 ## dotted module name of an IPython extension to load.
 #c.InteractiveShellApp.extra_extension = ''
@@ -66,7 +74,7 @@ c.InteractiveShellApp.exec_PYTHONSTARTUP = True
 
 ## Reraise exceptions encountered loading IPython extensions?
 #c.InteractiveShellApp.reraise_ipython_extension_failures = False
-#c.InteractiveShellApp.reraise_ipython_extension_failures = True
+c.InteractiveShellApp.reraise_ipython_extension_failures = True
 
 #------------------------------------------------------------------------------
 # Application(SingletonConfigurable) configuration
@@ -82,8 +90,8 @@ c.InteractiveShellApp.exec_PYTHONSTARTUP = True
 c.Application.log_format = '[%(name)s]%(highlevel)s %(message)s'
 
 ## Set the log level by value or name.
-c.Application.log_level = 30
-# c.Application.log_level = 10
+# c.Application.log_level = 30
+c.Application.log_level = 10
 
 #------------------------------------------------------------------------------
 # BaseIPythonApplication(Application) configuration

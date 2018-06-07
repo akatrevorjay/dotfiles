@@ -14,6 +14,7 @@
 # Files
 data.location=~/.task
 
+nag=You have more important tasks.
 #defaultwidth=0
 #defaultheight=0
 
@@ -22,6 +23,8 @@ data.location=~/.task
 
 # rm is the better option.
 alias.rm=delete
+worktag=osaro
+alias.work=+osaro
 
 # Annotate every stop/start
 journal.time=yes
@@ -29,29 +32,29 @@ journal.time=yes
 journal.info=off
 
 default.due=today
-#default.project=foo
+default.project=to-org
 
-#default.command=project:foo list
+default.command=+osaro list
 
 #urgency.blocked.coefficient=0.0
 #urgency.blocking.coefficient=0.0
 urgency.inherit=on
 
 # Color theme (uncomment one to use)
-#include ~/.task/themes/light-16.theme
-#include ~/.task/themes/light-256.theme
-#include ~/.task/themes/dark-16.theme
-include ~/.task/themes/dark-256.theme
-#include ~/.task/themes/dark-red-256.theme
-#include ~/.task/themes/dark-green-256.theme
-#include ~/.task/themes/dark-blue-256.theme
-#include ~/.task/themes/dark-violets-256.theme
-#include ~/.task/themes/dark-yellow-green.theme
-#include ~/.task/themes/dark-gray-256.theme
-#include ~/.task/themes/dark-gray-blue-256.theme
-#include ~/.task/themes/solarized-dark-256.theme
-#include ~/.task/themes/solarized-light-256.theme
-#include ~/.task/themes/no-color.theme
+# include ~/.task/themes/light-16.theme
+# include ~/.task/themes/light-256.theme
+# include ~/.task/themes/dark-16.theme
+# include ~/.task/themes/dark-256.theme
+# include ~/.task/themes/dark-red-256.theme
+# include ~/.task/themes/dark-green-256.theme
+# include ~/.task/themes/dark-blue-256.theme
+# include ~/.task/themes/dark-violets-256.theme
+include ~/.task/themes/dark-yellow-green.theme
+# include ~/.task/themes/dark-gray-256.theme
+# include ~/.task/themes/dark-gray-blue-256.theme
+# include ~/.task/themes/solarized-dark-256.theme
+# include ~/.task/themes/solarized-light-256.theme
+# include ~/.task/themes/no-color.theme
 
 include ~/.task/secrets.conf
 include ~/.task/bugwarriorudas.conf
