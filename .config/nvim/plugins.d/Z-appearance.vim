@@ -4,11 +4,11 @@ Plug 'Yggdroot/indentLine'
 Plug 'edkolev/promptline.vim'  ", {'on': ['EnablePromptline']}
 
 " Generate tmux status themes from airline
-Plug 'edkolev/tmuxline.vim' ", {'on': ['Tmuxline', 'EnableTmuxline']}
+" Plug 'edkolev/tmuxline.vim' ", {'on': ['Tmuxline', 'EnableTmuxline']}
 " command! -nargs=* TmuxlineSnapshot echo 'Run Tmuxline first'
 
 " Prettify tabs in terminal vim
-Plug 'mkitt/tabline.vim'
+" Plug 'mkitt/tabline.vim'
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -21,8 +21,6 @@ endif
 
 " Awesome font icon toolkit for cui and gui including filetypes
 Plug 'ryanoasis/vim-devicons'
-
-"Plug 'thinca/vim-prettyprint'
 
 if $TERM == 'cancer-256color' || $TERM == 'cancer'
     Plug 'mattn/vim-nyancat'
