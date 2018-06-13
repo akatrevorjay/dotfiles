@@ -1,0 +1,101 @@
+#!/usr/bin/env python
+
+import argparse
+import functools
+import os
+import sys
+
+import jinja2
+
+LINEMODE = 0
+
+
+def islurp(
+        filename,
+        mode='r',
+        iter_by=LINEMODE,
+        allow_stdin=True,
+        expanduser=True,
+        expandvars=True
+):
+    """
+    Read [expanded] `filename` and yield each (line | chunk).
+
+    :param str filename: File path
+    :param str mode: Use this mode to open `filename`, ala `r` for text (default), `rb` for binary, etc.
+    :param int iter_by: Iterate by this many bytes at a time. Default is by line.
+    :param bool allow_stdin: If Truthy and filename is `-`, read from `sys.stdin`.
+    :param bool expanduser: If Truthy, expand `~` in `filename`
+    :param bool expandvars: If Truthy, expand env vars in `filename`
+    """
+    if iter_by == 'LINEMODE':
+        iter_by = LINEMODE
+
+    fh = None
+    try:
+        if filename == '-' and allow_stdin:
+            fh = sys.stdin
+        else:
+            if expanduser:
+                filename = os.path.expanduser(filename)
+            if expandvars:
+                filename = os.path.expandvars(filename)
+
+            fh = open(filename, mode)
+            fh_next = fh.readline if iter_by == LINEMODE else functools.partial(
+                fh.read, iter_by
+            )
+
+        while True:
+            buf = fh_next()
+            if buf == '':  # EOF
+                break
+            yield buf
+    finally:
+        if fh and fh != sys.stdin:
+            fh.close()
+
+
+# convenience
+islurp.LINEMODE = LINEMODE
+
+# alias
+slurp = islurp
+
+
+def render(args, stream=sys.stdout):
+    raw = '\n'.join(islurp(args.infile))
+    tmpl = jinja2.Template(raw)
+    stream.write(tmpl.render())
+
+
+def _arg_parser_factory():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        'infile',
+        nargs='?',
+        type=argparse.FileType('r'),
+        default=sys.stdin,
+        help='Input file to parse (default: standard input)'
+    )
+
+    return parser
+
+
+def _parse_args(parser=_arg_parser_factory):
+    if callable(parser):
+        parser = parser()
+
+    args = parser.parse_args()
+
+    return args
+
+
+def main():
+    args = _parse_args()
+    return render(args)
+
+
+if __name__ == '__main__':
+    main()

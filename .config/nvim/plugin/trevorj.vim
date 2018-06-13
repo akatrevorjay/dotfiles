@@ -60,28 +60,7 @@ let g:indentLine_setConceal = 0
 ""let g:indentLine_color_dark = 1 " (default: 2)
 ""let g:indentLine_setColors = 0
 
-if exists('g:loaded_ctrlspace')
-  map <silent><C-Space> :CtrlSpace<CR>
-
-  let g:CtrlSpaceDefaultMappingKey = "<C-Space>"
-  let g:CtrlSpaceSetDefaultMapping = 0
-  " Fuck emacs
-  nnoremap <C-space> :CtrlSpace a<CR>
-  let g:CtrlSpaceUseMouseAndArrowsInTerm = 1
-  let g:CtrlSpaceSaveWorkspaceOnExit = 1
-  let g:CtrlSpaceSaveWorkspaceOnSwitch = 1
-  let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-  let g:CtrlSpaceIgnoredFiles = '\v((tmp|temp)[\/]|\.pyc$|\.pyo$|\.git$|__pycache__[\/])'
-  let g:CtrlSpaceFileEngine = "auto"
-
-  nnoremap <leader>b :Buffers<CR>
-
-  if executable("ag")
-      let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-  endif
-else
-  map <silent><C-Space> :Buffers<CR>
-endif
+map <silent><C-Space> :Buffers<CR>
 
 function! s:RemoveLastPathComponent()
   let l:cmdlineBeforeCursor = strpart(getcmdline(), 0, getcmdpos() - 1)
@@ -120,16 +99,6 @@ let g:markdown_fenced_languages = [
   \ ]
 
 "let g:tmuxline_theme = 'airline_visual'
-
-set lazyredraw redrawtime=1000
-
-"" Fucking nvim redraw bugs: https://github.com/neovim/neovim/issues/4884
-"function! s:redraw() abort
-"  redraw
-"  echomsg 'redrawing'
-"endfunction
-
-"autocmd! FocusLost * call timer_start(5000, function('s:redraw'))
 
 let g:vimwiki_autowriteall = 0
 

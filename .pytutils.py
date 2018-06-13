@@ -9,7 +9,6 @@ import pygments.formatters
 import pygments.lexers
 from pprint import pformat, pprint
 
-
 # class PyInfoMinimal(object):
 #     PY2 = sys.version_info[0] == 2
 #     PY3 = sys.version_info[0] == 3

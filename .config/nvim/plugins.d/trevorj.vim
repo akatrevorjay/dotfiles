@@ -69,7 +69,7 @@ Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-surround'
 
-Plug 'eugen0329/vim-esearch'
+" Plug 'eugen0329/vim-esearch'
 
 if has('nvim')
     " Forever broken
@@ -146,13 +146,13 @@ if has('nvim')
     "let g:chromatica#responsive_mode=1
 endif
 
-Plug 'mhinz/vim-grepper'
-" Mimic :grep and make ag the default tool.
-let g:grepper = {
-    \ 'tools': ['rg', 'ag', 'pt', 'git', 'grep'],
-    \ 'open':  1,
-    \ 'jump':  1,
-    \ }
+" Plug 'mhinz/vim-grepper'
+" " Mimic :grep and make ag the default tool.
+" let g:grepper = {
+"     \ 'tools': ['rg', 'ag', 'pt', 'git', 'grep'],
+"     \ 'open':  1,
+"     \ 'jump':  1,
+"     \ }
 
 " Plug 'tpope/vim-dotenv'
 " Plug 'tpope/vim-rsi'
@@ -179,14 +179,14 @@ Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'python'] }
 
 " Plug 'sunaku/vim-shortcut'
 
-Plug 'KabbAmine/zeavim.vim', {'on': [
-				\	'Zeavim', 'Docset',
-				\	'<Plug>Zeavim',
-				\	'<Plug>ZVVisSelection',
-				\	'<Plug>ZVKeyDocset',
-				\	'<Plug>ZVMotion'
-				\ ]}
-
-Plug 'kopischke/vim-stay'
-set viewoptions=cursor,folds,slash,unix
+" Plug 'KabbAmine/zeavim.vim', {'on': [
+" 				\	'Zeavim', 'Docset',
+" 				\	'<Plug>Zeavim',
+" 				\	'<Plug>ZVVisSelection',
+" 				\	'<Plug>ZVKeyDocset',
+" 				\	'<Plug>ZVMotion'
+" 				\ ]}
+"
+" Plug 'kopischke/vim-stay'
+" set viewoptions=cursor,folds,slash,unix
 

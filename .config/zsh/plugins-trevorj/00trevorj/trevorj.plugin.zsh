@@ -36,6 +36,8 @@ REPORTTIME=10
 zmodload zsh/zpty
 
 bindkey -r '^B'
-bindkey '^V' zbrowse
+
+(( ! ${+functions[zbrowse]} )) || \
+	bindkey '^V' zbrowse
 
 

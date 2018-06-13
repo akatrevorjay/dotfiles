@@ -15,7 +15,7 @@ nice_exit_code() {
 	[[ -z $exit_status || $exit_status == 0 ]] && return;
 
 	local sig_name;
-	
+
 	# is this a signal name (error code = signal + 128) ?
 	case $exit_status in
 		129)  sig_name=HUP ;;

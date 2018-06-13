@@ -568,7 +568,7 @@ if has('nvim')
     let g:localvimrc_sandbox = 0
 
     " vimshell: "vimshell" source for vimshell
-    Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
+    " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 
     " Plug 'roxma/nvim-completion-manager'
     Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -580,17 +580,14 @@ if has('nvim')
     let g:deoplete#sources#jedi#show_docstring = 1
     let g:deoplete#sources#use_cache = 1
 
-    " vim
-    Plug 'Shougo/neco-vim', {'for': 'vim'}
-
     " vimshell: "vimshell" source for vimshell
-    Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
+    " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 
     " deoplete-jedi: "jedi" source for Python
     Plug 'zchee/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
 
     " deoplete-docker
-    " Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
+    Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
@@ -633,7 +630,7 @@ if has('nvim')
     Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json', 'javascript.jsx']}
 
     """ deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
-    Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
+    " Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
 
     """ deoplete-typescript: "typescript" source for typescript
     " Plug 'mhartington/deoplete-typescript', {'for': ['javascript', 'json', 'typescript']}
@@ -663,7 +660,7 @@ if has('nvim')
     "Plug 'vhakulinen/neovim-intellij-complete-deoplete'
 
     " webcomplete.vim: "webcomplete" source for browser opened pages
-    Plug 'thalesmello/webcomplete.vim'
+    " Plug 'thalesmello/webcomplete.vim'
 
     " if !empty($TMUX)
     "     " tmux-complete: "tmuxcomplete" source for tmux panes (deoplete)
