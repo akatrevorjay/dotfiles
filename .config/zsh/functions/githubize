@@ -1,22 +1,45 @@
 #!/bin/zsh
 
+: ${GITHUB_REPO_PREFIX:="https://github.com/"}
+: ${GITHUB_USERNAME:=""}
+
+function -githubize-single() {
+	emulate -L zsh
+	setopt err_return rematch_pcre
+
+	local hub_prefix=$GITHUB_REPO_PREFIX
+	local hub_user=$GITHUB_USERNAME
+
+	local r=$1
+	set -- ${(s:/:)r}
+
+	local try=()
+
+	if [[ $1 != *\.* ]]; then
+		# prepend own username if simple target
+		if [[ $# -eq 1 ]] && [[ -n $hub_user ]]; then
+			r=$hub_user/$r
+			set -- ${(s:/:)r}
+		fi
+
+		if [[ $# -gt 1 ]]; then
+			r="$hub_prefix$r"
+			set -- ${(s:/:)r}
+		fi
+	fi
+
+	try+=("$r")
+
+	echo ${(F)try}
+}
+
 function githubize() {
 	emulate -L zsh
-	setopt err_return
-
-	local hub_prefix=${GITHUB_REPO_PREFIX:-"https://github.com/"}
-	local hub_username=${GITHUB_USERNAME}
+	setopt err_return rematch_pcre
 
 	local r ret=()
 	for r in "$@"; do
-		if [[ $r -pcre-match ^([^/\.]+)$ ]] && [[ -n $hub_username ]]; then
-			r="$hub_username/$r"
-		fi
-
-		if [[ $r -pcre-match ^([^/\.]+)/([^/]+)$ ]]; then
-			r="$hub_prefix$r"
-		fi
-
+		[[ -e $r ]] || r=$(-githubize-single $r)
 		ret+=("$r")
 	done
 

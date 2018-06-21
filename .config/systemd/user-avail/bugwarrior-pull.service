@@ -1,0 +1,11 @@
+[Unit]
+Description=bugwarrior-pull
+
+[Service]
+Environment="DISPLAY=:0"
+;ExecStart=/home/trevorj/bin/bugwarrior-pull
+ExecStart=/home/trevorj/bin/sync-tasks
+Type=oneshot
+
+[Install]
+WantedBy=default.target

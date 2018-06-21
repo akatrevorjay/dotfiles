@@ -1,0 +1,8 @@
+[Unit]
+Description=Docker garbage collection
+
+[Service]
+ExecStart=/home/trevorj/go/bin/docker-gc
+
+[Install]
+WantedBy=default.target
