@@ -584,7 +584,7 @@ if has('nvim')
     Plug 'zchee/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
 
     " deoplete-docker
-    Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
+    " Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
     Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
