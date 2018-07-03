@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 set -exv
 
-yadm pull
+yadm pull || :
 
 (( ! ${+commands[antibody]} ]] )) || \
 	command antibody update &

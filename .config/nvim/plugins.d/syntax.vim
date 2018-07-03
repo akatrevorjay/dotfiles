@@ -564,6 +564,9 @@ if has('nvim')
     nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
     nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
+    Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
+    let g:localvimrc_sandbox = 0
+
     " vimshell: "vimshell" source for vimshell
     " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 

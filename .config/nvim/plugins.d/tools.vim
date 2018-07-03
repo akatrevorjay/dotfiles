@@ -22,8 +22,9 @@ Plug 'chrisbra/Recover.vim'
 " Plug 'brooth/far.vim'
 
 Plug 'embear/vim-localvimrc'
+
+" Plug 'neomake/neomake', { 'do': ':UpdateRemotePlugins' }
 " Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
 
 Plug 'thinca/vim-prettyprint'
-
 
