@@ -6,13 +6,13 @@ start() {
         pactl load-module
         module-simple-protocol-tcp
 
-        rate=48000
-        #rate=44100
+        # rate=48000
+        rate=44100
         format=s16le
         channels=2
 
         source=${2:-combined.monitor}
-        #alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_8717016009X-00.iec958-stereo.monito
+        # source=${2:-alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_8717016009X-00.iec958-stereo.monitor}
         record=true
 
         port=${1:-4069}
