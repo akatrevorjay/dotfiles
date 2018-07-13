@@ -12,6 +12,7 @@
 
 " Format any txt file
 Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter', {'for': ['txt', 'txtfmt']}
+Plug 'vim-scripts/txt.vim'
 
 "if v:version >= 704
 "  Plug 'vim-pandoc/vim-pandoc-syntax'
@@ -179,14 +180,59 @@ Plug 'Rykka/doctest.vim', { 'for': ['rst', 'markdown', 'python'] }
 
 " Plug 'sunaku/vim-shortcut'
 
-" Plug 'KabbAmine/zeavim.vim', {'on': [
-" 				\	'Zeavim', 'Docset',
-" 				\	'<Plug>Zeavim',
-" 				\	'<Plug>ZVVisSelection',
-" 				\	'<Plug>ZVKeyDocset',
-" 				\	'<Plug>ZVMotion'
-" 				\ ]}
-"
+Plug 'KabbAmine/zeavim.vim', {'on': [
+				\	'Zeavim', 'Docset',
+				\	'<Plug>Zeavim',
+				\	'<Plug>ZVVisSelection',
+				\	'<Plug>ZVKeyDocset',
+				\	'<Plug>ZVMotion'
+				\ ]}
+
 " Plug 'kopischke/vim-stay'
 " set viewoptions=cursor,folds,slash,unix
+
+"  Plug 'jceb/vim-orgmode'
+" Plug 'mattn/calendar-vim'
+" Plug 'vim-scripts/deb.vim'
+" Plug 'vim-scripts/auto_autoread.vim'
+" " Plug 'vim-scripts/refactor'
+" Plug 'vim-scripts/ZoomWin'
+" Plug 'vim-scripts/dante.vim'
+" Plug 'vim-scripts/gtk-vim-syntax'
+" Plug 'vim-scripts/utl.vim'
+" " Plug 'vim-scripts/JumpToVerticalOccurrence'
+" " Plug 'vim-scripts/kwbdi.vim'
+" Plug 'vim-scripts/YankRing.vim'
+" Plug 'vim-scripts/makeprgs'
+" Plug 'vim-scripts/marvim'
+" Plug 'vim-scripts/Drawit'
+" Plug 'vim-scripts/asu1dark.vim'
+" Plug 'vim-scripts/a.vim'
+" Plug 'vim-scripts/EnhancedJumps'
+" Plug 'vim-scripts/sessionman.vim'
+" Plug 'vim-scripts/regreplop.vim'
+" Plug 'vim-scripts/Cpp11-Syntax-Support'
+" " Plug 'vim-scripts/LustyExplorer'
+" Plug 'vim-scripts/python.vim'
+" Plug 'vim-scripts/gitignore'
+" " Plug 'vim-scripts/Vimplate-Enhanced'
+" Plug 'vim-scripts/c.vim'
+" Plug 'vim-scripts/utl.vim'
+" Plug 'vim-scripts/searchfold.vim'
+" " Plug 'vim-scripts/autoresize.vim'
+" Plug 'vim-scripts/VCard-syntax'
+Plug 'vim-scripts/unite-gitlog'
+" " Plug 'vim-scripts/NotableFt'
+Plug 'vim-scripts/httplog'
+" Plug 'vim-scripts/Loupe'
+" Plug 'vim-scripts/taglist.vim'
+" " Plug 'tpope/repeat.vim'
+" " Plug 'vim-scripts/tagbar.vim'
+" " Plug 'tpope/speeddating.vim'
+" " Plug 'vim-scripts/NrrwRgn.vim'
+" " Plug 'vim-scripts/SyntaxRange.vim'
+" Plug 'inkarkat/vim-SyntaxRange'
+" Plug 'vim-scripts/ingo-library'
+
+Plug 'ivanov/vim-ipython'
 
