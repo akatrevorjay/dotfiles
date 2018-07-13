@@ -138,8 +138,8 @@ if has('nvim')
     " " Replacement for nvim
     " Plug 'zchee/nvim-go',
     "             \{ 'for': 'go', 'do': 'make' }
-    " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
-    "             \{ 'for': 'go', 'do': 'make' }
+    Plug $GOPATH.'/src/github.com/zchee/nvim-go',
+                \{ 'for': 'go', 'do': 'make' }
 else
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
