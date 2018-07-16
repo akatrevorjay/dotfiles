@@ -11,5 +11,5 @@ esac
 if (( ${+commands[$name]} )); then
     exec $name "$@"
 else
-    exec cat
+    exec cat "$@"
 fi
