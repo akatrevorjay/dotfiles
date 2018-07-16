@@ -48,3 +48,27 @@ exit
 EOF
 fi
 
+# Check if we need to kill the existing pids, then kill them if need be
+if [[ "$kill" == "" ]]
+then echo
+$ROOT/$ADB << EOF
+am force-stop projekt.substratum
+appops set projekt.andromeda RUN_IN_BACKGROUND allow
+appops set projekt.substratum RUN_IN_BACKGROUND allow
+CLASSPATH=$pkg app_process /system/bin --nice-name=andromeda projekt.andromeda.Andromeda &
+echo "You can now remove your device from the computer!"
+disown
+exit
+EOF
+else echo
+$ROOT/$ADB << EOF
+am force-stop projekt.substratum
+kill -9 $kill
+appops set projekt.andromeda RUN_IN_BACKGROUND allow
+appops set projekt.substratum RUN_IN_BACKGROUND allow
+CLASSPATH=$pkg app_process /system/bin --nice-name=andromeda projekt.andromeda.Andromeda &
+echo "You can now remove your device from the computer!"
+disown
+exit
+EOF
+fi

@@ -24,8 +24,8 @@ LogAniso=0
 LogAnisoAppControlled=1
 
 # hq --> quality ---> perf ---> hp
-# OpenGLImageSettings=1
-OpenGLImageSettings=2
+OpenGLImageSettings=1
+# OpenGLImageSettings=2
 
 ShowGSYNCVisualIndicator=1
 SyncToVBlank=1

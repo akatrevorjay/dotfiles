@@ -1,0 +1,15 @@
+#!/bin/zsh
+set -eo pipefail
+
+name=${0:t}
+name=${name#maybe-}
+
+case $name in
+    ${0:t}) echo "Cannot determine who I should be today: ${0:t}==$name ?" >&2 && exit 127 ;;
+esac
+
+if (( ${+commands[$name]} )); then
+    exec $name "$@"
+else
+    exec cat
+fi

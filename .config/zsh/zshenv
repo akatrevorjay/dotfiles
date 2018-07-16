@@ -156,8 +156,8 @@ case ${OSTYPE:l} in
 
 		prefix_path+=(
 			# ccache
-			/usr/lib/ccontrol
-			#/usr/lib/ccache
+			# /usr/lib/ccontrol
+			/usr/lib/ccache
 
 			/snap/bin
 		)
