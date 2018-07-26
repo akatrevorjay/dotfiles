@@ -138,8 +138,8 @@ if has('nvim')
     " " Replacement for nvim
     " Plug 'zchee/nvim-go',
     "             \{ 'for': 'go', 'do': 'make' }
-    Plug $GOPATH.'/src/github.com/zchee/nvim-go',
-                \{ 'for': 'go', 'do': 'make' }
+    " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
+    "             \{ 'for': 'go', 'do': 'make' }
 else
     Plug 'fatih/vim-go', {'for': 'go'}
 endif
@@ -576,7 +576,7 @@ if has('nvim')
     " neco-syntax: "syntax" source (This is now for N syntaxes)
     Plug 'Shougo/neco-syntax'
 
-    let g:deoplete#sources#go#auto_goos = 1
+    " let g:deoplete#sources#go#auto_goos = 1
     let g:deoplete#sources#jedi#show_docstring = 1
     let g:deoplete#sources#use_cache = 1
 

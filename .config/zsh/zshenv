@@ -161,6 +161,13 @@ case ${OSTYPE:l} in
 
 			/snap/bin
 		)
+
+		path=(
+			${(@)path}
+
+			/usr/{local/,}share/bcc/tools
+		)
+
 		;;
 	darwin*)
 		add-prefix-paths /usr/local
