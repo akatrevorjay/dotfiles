@@ -122,3 +122,5 @@ Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 Plug 'git-time-metric/gtm-vim-plugin'
 
+Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+

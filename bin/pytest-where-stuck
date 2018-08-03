@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+import psutil
+
+for pid in psutil.pids():
+    environ = psutil.Process(pid).environ()
+    if "PYTEST_CURRENT_TEST" in environ:
+        print(f'pytest process {pid} running: {environ["PYTEST_CURRENT_TEST"]}')

@@ -173,6 +173,7 @@ endif
 " Plug 'xavierchow/vim-sequence-diagram'
 
 Plug 'FooSoft/vim-argwrap'
+nnoremap <silent> <leader>a :ArgWrap<CR>
 
 "Plug 'Zuckonit/vim-airline-tomato'
 
@@ -187,6 +188,9 @@ Plug 'KabbAmine/zeavim.vim', {'on': [
 				\	'<Plug>ZVKeyDocset',
 				\	'<Plug>ZVMotion'
 				\ ]}
+nnoremap <silent> <leader>? <Plug>:Zeavim<CR>
+nnoremap <silent> <leader>Z <Plug>:ZVKeyDocset<CR>
+nnoremap <silent> <leader>zm <Plug>:ZVMotiont<CR>
 
 " Plug 'kopischke/vim-stay'
 " set viewoptions=cursor,folds,slash,unix
