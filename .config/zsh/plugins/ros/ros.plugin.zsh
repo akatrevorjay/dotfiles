@@ -16,7 +16,7 @@ ros-rel-latest() {
 	echo $release
 }
 
-() {
+ros-use-latest() {
 	local release=$(ros-rel-latest)
 	local setup=$release/setup.zsh
 	[[ -e $setup ]] || return

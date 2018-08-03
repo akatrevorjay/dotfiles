@@ -57,9 +57,7 @@ case "${1:-$DE}" in
 				;;
 		esac
 
-		# lame.
-		polybar example &
-		polybar mybar &
+		(sleep 2 &&	for i in primary secondary; do polybar $i &; done)
 
 		;;
 esac

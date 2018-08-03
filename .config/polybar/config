@@ -20,18 +20,19 @@ secondary = #e60053
 alert = #bd2c40
 
 
-[bar/mybar]
+[bar/secondary]
 ; Use the following command to list available outputs:
 ; If unspecified, the application will pick the first one it finds.
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = ${env:SEC_MONITOR:DisplayPort-0}
+; monitor = ${env:SEC_MONITOR:DP-0}
+monitor = DP-0
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = HDMI-0
+; monitor-fallback = DP-0
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes report my monitor as being disconnected (when in use)
-monitor-strict = false
+monitor-strict = true
 
 ; Tell the Window Manager not to configure the window.
 ; Use this to detach the bar if your WM is locking its size/position.
@@ -115,7 +116,9 @@ font-2 = Termsynu:size=12;-1
 font-3 = FontAwesome:size=14
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
-font-0 = nu:pixelsize=14;antialias=false
+font-0 = nu:pixelsize=14;antialias=true
+; font-0 = nu:pixelsize=10;antialias=false
+; font-0 = hack nerd font:pixelsize=14;antialias=true
 #font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 #font-2 = siji:pixelsize=12;1
 ; font-0 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
@@ -136,7 +139,7 @@ modules-left = i3
 #modules-center = mpd
 modules-center = xwindow
 ; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlp62s0 wlp61s0 enp60s0 enp61s0 battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
 
 ; The separator will be inserted between the output of each module
 ; separator =
@@ -153,7 +156,7 @@ dim-value = 1.0
 ; If the value is empty or undefined, the atom value
 ; will be created from the following template: polybar-[BAR]_[MONITOR]
 ; NOTE: The placeholders are not available for custom values
-; wm-name =
+; wm-name = polybar-secondary
 
 ; Locale used to localize various module data (e.g. date)
 ; Expects a valid libc locale, for example: sv_SE.UTF-8
@@ -238,8 +241,26 @@ double-click-right =
 cursor-click = pointer
 cursor-scroll = ns-resize
 
-[bar/example]
-monitor = ${env:PRI_MONITOR:eDP}
+[bar/primary]
+; Use the following command to list available outputs:
+; If unspecified, the application will pick the first one it finds.
+; $ xrandr -q | grep " connected" | cut -d ' ' -f1
+; monitor = ${env:PRI_MONITOR:DP-1-1-2}
+monitor = DP-1-1-2
+
+; Use the specified monitor as a fallback if the main one is not found.
+monitor-fallback = DP-0
+
+; Require the monitor to be in connected state
+; XRandR sometimes report my monitor as being disconnected (when in use)
+monitor-strict = true
+
+; Value to be used to set the WM_NAME atom
+; If the value is empty or undefined, the atom value
+; will be created from the following template: polybar-[BAR]_[MONITOR]
+; NOTE: The placeholders are not available for custom values
+; wm-name = polybar-primary
+
 width = 100%
 ; height = 27
 ; height = 18
@@ -284,7 +305,8 @@ modules-left = i3
 ; modules-left = xworkspaces
 #modules-center = mpd
 modules-center = xwindow
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+; modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlp62s0 wlp61s0 enp60s0 enp61s0 battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
 ; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
 
 tray-position = right
@@ -301,7 +323,7 @@ tray-maxsize = 16
 ;; Will automatically be enabled if a fully transparent
 ;; background color is defined using `tray-background`
 ; tray-transparent = false
-;;tray-transparent = true
+;tray-transparent = true
 ;;tray-background = #0063ff
 
 ;; Background color for the tray container
@@ -324,7 +346,7 @@ tray-scale = 1.0
 
 
 ;wm-restack = bspwm
-;wm-restack = i3
+wm-restack = i3
 
 ;override-redirect = true
 
@@ -605,9 +627,9 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
 
-[module/wlan]
+[module/wlp61s0]
 type = internal/network
-; interface = wlp61s0
+interface = wlp61s0
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
@@ -687,10 +709,109 @@ animation-packetloss-1-foreground = #000000
 animation-packetloss-framerate = 500
 
 
-[module/eth]
+[module/wlp62s0]
+type = internal/network
+interface = wlp62s0
+interval = 3.0
+
+; format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+; label-connected = %essid%
+
+; format-disconnected =
+;format-disconnected = <label-disconnected>
+format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+; Available tags:
+;   <label-connected> (default)
+;   <ramp-signal>
+format-connected = <ramp-signal> <label-connected>
+
+; Available tags:
+;   <label-disconnected> (default)
+format-disconnected = <label-disconnected>
+
+; Available tags:
+;   <label-connected> (default)
+;   <label-packetloss>
+;   <animation-packetloss>
+format-packetloss = <animation-packetloss> <label-connected>
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %upspeed%   [wireless+wired]
+;   %downspeed% [wireless+wired]
+;   %linkspeed% [wired]
+; Default: %ifname% %local_ip%
+label-connected = %essid% %downspeed:9%
+; label-connected-foreground = #eefafafa
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+; Default: (none)
+label-disconnected = not connected
+; label-disconnected-foreground = #66ffffff
+
+; Available tokens:
+;   %ifname%    [wireless+wired]
+;   %local_ip%  [wireless+wired]
+;   %essid%     [wireless]
+;   %signal%    [wireless]
+;   %linkspeed% [wired]
+; Default: (none)
+;label-packetloss = %essid%
+;label-packetloss-foreground = #eefafafa
+
+; ; Only applies if <ramp-signal> is used
+; ramp-signal-0 = 😱
+; ramp-signal-1 = 😠
+; ramp-signal-2 = 😒
+; ramp-signal-3 = 😊
+; ramp-signal-4 = 😃
+; ramp-signal-5 = 😈
+
+; Only applies if <animation-packetloss> is used
+animation-packetloss-0 = ⚠
+animation-packetloss-0-foreground = #ffa64c
+animation-packetloss-1 = 📶
+animation-packetloss-1-foreground = #000000
+; Framerate in milliseconds
+animation-packetloss-framerate = 500
+
+
+[module/enp60s0]
+type = internal/network
+interface = enp60s0
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+
+[module/enp61s0]
 type = internal/network
 ; interface = virbr0-nic
-; interface = enp60s0
+ interface = enp61s0
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -911,7 +1032,7 @@ throttle-output-for = 10
 throttle-input-for = 30
 
 ; Reload upon receiving XCB_RANDR_SCREEN_CHANGE_NOTIFY events
-screenchange-reload = false
+screenchange-reload = true
 
 ; Compositing operators
 ; @see: https://www.cairographics.org/manual/cairo-cairo-t.html#cairo-operator-t
