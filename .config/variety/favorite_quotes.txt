@@ -435,6 +435,9 @@ What are deep? the ocean and truth.”
 “Why don't they make the whole plane out of that black box stuff.”
 -- Steven Wright.
 %
+“Unformed people delight in the gaudy and in novelty. Cooked people delight in the ordinary.”
+-- Erik Naggum
+%
 “Lohr's Law: The future is merely the past with a twist - and better tools.”
 -- Steve Lohr
 %

@@ -256,4 +256,3 @@ autoload -Uz ztheme; ztheme
 # This is annoying to have earlier.
 #setopt warncreateglobal
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

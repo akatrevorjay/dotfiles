@@ -5,6 +5,20 @@ set -eo pipefail
 autoload -Uz colors
 colors
 
+
+make() {
+	try=(colormake make)
+
+	local c
+	for c in $try; do
+		(( ${+commands[$c]} )) || continue
+		command $c "$@"
+		return $?
+	done
+
+	return 127
+}
+
 usage() {
 	echo "Usage:" >&2
 	echo "	$0		Compile (autotools/make/cmake)" >&2
@@ -113,9 +127,9 @@ compile() {
 	fi
 
 	if [[ -f Makefile ]]; then
-		verbose-call colormake
+		verbose-call make
 	elif [[ -f makefile ]]; then
-		verbose-call colormake -f makefile
+		verbose-call make -f makefile
 	fi
 
 	if [[ -f build.ninja ]]; then
