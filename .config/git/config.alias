@@ -40,9 +40,9 @@
 
     pl = pull
 
-    ps = push
-    pom = push origin master
-    pod = push origin develop
+    pu = push
+    # puom = push origin master
+    # puod = push origin develop
 
     ; rb = rebase -i HEAD~10
 
@@ -254,8 +254,8 @@
     pa = push --all
     pA = push --all && git push --tags
     pt = push --tags
-    pc = push --set-upstream origin "$(git-branch-current)"
-    pp = pull origin "$(git-branch-current)" && git push origin "$(git-branch-current)"
+    pc = push --set-upstream origin "$(git cur)"
+    pp = pull origin "$(git cur)" && git push origin "$(git cur)"
 
     ; Rebase (R)
     R = rebase
@@ -328,5 +328,8 @@
     so = git
     wow = st
 
+    cur = rev-parse --abbrev-ref HEAD
+
+    fom = "!f() { git fetch origin && git merge --ff origin \"$(git cur)\"; }; f"
 
 ; vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

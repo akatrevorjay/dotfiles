@@ -23,7 +23,7 @@ zplugins.load 'psprint/zsnapshot'
 GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
 # zplugins.load 'RobSis/zsh-completion-generator'
 
-# zplugins.load 'zsh-users/zsh-completions'
+zplugins.load 'zsh-users/zsh-completions'
 
 #zplugins.load 'thewtex/tmux-mem-cpu-load' --post-update 'make'
 #zplugins.load 'uvaes/fzf-marks'
