@@ -56,6 +56,7 @@ for_window [class="vlc"] floating enable
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 
+for_window [title="GNOME Tweaks$"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
 

@@ -1,0 +1,14 @@
+#!/bin/zsh
+set -eo pipefail
+
+cmd=(
+    scrot
+    # -u
+    # -s
+    -m
+
+    -e 'zbarimg $f'
+)
+
+set -xv
+exec $cmd

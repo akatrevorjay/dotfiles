@@ -245,11 +245,11 @@ cursor-scroll = ns-resize
 ; Use the following command to list available outputs:
 ; If unspecified, the application will pick the first one it finds.
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-; monitor = ${env:PRI_MONITOR:DP-1-1-2}
-monitor = DP-1-1-2
+monitor = ${env:PRI_MONITOR:DP-1-1-2}
+; monitor = DP-1-1-2
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-0
+monitor-fallback = DP-1
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes report my monitor as being disconnected (when in use)

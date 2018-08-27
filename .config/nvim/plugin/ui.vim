@@ -196,7 +196,11 @@ let g:moonflySpellReversed = 1
 " colorscheme chroma
 
 let g:airline_theme = 'ayu_mirage'
-colorscheme ayu
+" colorscheme ayu
+
+let g:airline_theme = 'jet'
+colorscheme distill
+let g:colors_name = 'distill'
 
 " let g:airline_theme = 'badcat'
 " colorscheme badcat3

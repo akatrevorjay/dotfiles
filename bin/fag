@@ -1,0 +1,87 @@
+#!/usr/bin/env zsh
+#
+# fag: ag + fzf integration
+#
+# gist url
+# asciinema url
+#
+# ~ trevorj <github@trevor.joynson.io>
+#
+setopt pipe_fail err_return err_exit
+
+autoload -Uz colors; colors
+
+ret=()
+
+empty() {
+	return $#
+}
+
+usage() {
+	echo "Usage: ${0:t} [QUERY...]"
+}
+
+main() {
+	local o_height=()
+	zparseopts -D -K -E h:=o_height
+
+	if [[ $# -eq 0 ]]; then
+		usage >&2
+		return 1
+	fi
+
+	local cmd=(
+		ag
+		-0	# null-char delim
+		"$@"
+	)
+
+	local fzf=(
+		fzf
+		--header="$cmd"
+		--inline-info
+		--tabstop=4
+		--read0  # null-char delim
+
+		--ansi
+
+		--preview
+			'
+			autoload -Uz colors; colors
+			text() { pygmentize -O style=monokai -f console256 -g "$1" || cat "$1"; };
+			bin() { hexdump -C "$1"; }
+			f() { if file -bi "$1" | grep "charset=binary" >/dev/null; then bin "$1"; else text "$1"; fi; }
+			d() { ls -ldI "$1" ; tree -C "$1"; };
+			p() {
+				echo "${fg_bold[blue]}base:${reset_color} ${1##*/}";
+				echo "${fg_bold[blue]}path${reset_color} ${1%/*}";
+				echo -n "${fg_bold[blue]}type${reset_color} "; file -b "$1";
+				echo "---";
+				if [[ -d "$1" ]]; then
+					d "$1";
+				else
+					f "$1";
+				fi;
+			};
+			p {} | head -n 100
+			'
+
+		--bind 'ctrl-x:execute:$EDITOR {}'
+		--bind 'ctrl-p:execute:$PAGER {}'
+		--bind 'ctrl-h:execute:hexdump -C {}; read'
+		--bind 'ctrl-b:execute:binwalk {}; read'
+		--bind 'ctrl-u:execute:du -hsc {}; read'
+		--bind 'ctrl-t:execute:sha1sum {}; read'
+		--bind 'ctrl-g:execute:md5sum {}; read'
+	)
+
+	empty $o_height || fzf+=(--height ${o_height[-1]})
+
+	if tty -s && test -t 0 && test -t 1; then
+		$cmd | $fzf
+	else
+		$cmd
+	fi
+}
+
+main "$@"
