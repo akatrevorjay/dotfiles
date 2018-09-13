@@ -40,3 +40,4 @@ Plug 'google/vim-coverage'
 Plug 'alfredodeza/coveragepy.vim'
 " let g:coveragepy_uncovered_sign = '-'
 
+Plug 'coala/coala-vim.git'

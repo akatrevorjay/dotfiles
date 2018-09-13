@@ -151,8 +151,8 @@ if has('nvim')
     " clang
     "let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
     "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0'
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-7/lib/libclang.so.1'
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/7'
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/6.0'
     let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
 
     let g:deoplete#sources#clang#clang_complete_database = '.'
