@@ -160,7 +160,7 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 "     colorscheme harlequin
 "endif
 
-"colorscheme argonaut
+colorscheme argonaut
 
 let g:deepspace_italics = 1
 let g:badwolf_css_props_highlight = 1
@@ -168,8 +168,8 @@ let g:badwolf_darkgutter = 1
 let g:badwolf_tabline = 0
 "colorscheme badwolf
 "colorscheme base
-"let g:airline_theme = 'deep_space'
-"colorscheme hilal
+let g:airline_theme = 'deep_space'
+" colorscheme hilal
 
 "colorscheme codedark
 "let g:airline_theme = 'badcat'
@@ -180,9 +180,9 @@ let g:badwolf_tabline = 0
 
 "colorscheme magellan
 
-" let g:airline_theme = 'kolor'
+let g:airline_theme = 'kolor'
 let g:moonflySpellReversed = 1
-" colorscheme moonfly
+colorscheme moonfly
 
 " let g:airline_theme = 'nordisk'
 " let g:airline_theme = 'angr'
@@ -195,9 +195,9 @@ let g:moonflySpellReversed = 1
 " let g:airline_theme = 'ayu_mirage'
 " colorscheme chroma
 
-let g:airline_theme = 'ayu_mirage'
+" let g:airline_theme = 'ayu_mirage'
 " colorscheme ayu
-
+"
 let g:airline_theme = 'jet'
 colorscheme distill
 let g:colors_name = 'distill'
