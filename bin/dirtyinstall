@@ -26,7 +26,7 @@ cmd=(
 	# --install=no
 	--gzman=yes
 	--exclude=/home
-	--backup=no
+	# --backup=no
 	--bk
 	--showinstall
 	--inspect

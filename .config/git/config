@@ -19,3 +19,10 @@
 
 [http]
 	sslVerify = true
+[bulkworkspaces]
+	build = /home/trevorj/build
+	code = /home/trevorj/code
+	git = /home/trevorj/git
+	themes = /home/trevorj/build/_themes
+	pwd = .
+	onlykey = .

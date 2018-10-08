@@ -28,6 +28,7 @@
   ; tool = gvimdiff
   ; conflictstyle = diff3
   tool = diffconflicts
+  renameLimit = 100000
 
 [mergetool]
   prompt = false

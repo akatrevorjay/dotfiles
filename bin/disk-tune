@@ -48,7 +48,8 @@ set-disk-iosched() {
     local is_rot=$d/is_rotational
 
     # bfq low latency is pretty rad but I don't have it everywhere.
-    [ $# -gt 0 ] || set -- kyber bfq cfq noop mq-deadline deadline
+    # kyber bfq
+    [ $# -gt 0 ] || set -- cfq noop mq-deadline deadline
     local qprio=("$@")
 
     echo -n "[iosched] current=$(<$s) now="

@@ -7,12 +7,13 @@ colors
 
 
 make() {
-	try=(colormake make)
+	local try=(colormake make)
+	local opts=(-j $(nproc))
 
 	local c
 	for c in $try; do
 		(( ${+commands[$c]} )) || continue
-		command $c "$@"
+		command $c $opts "$@"
 		return $?
 	done
 
