@@ -441,5 +441,17 @@ What are deep? the ocean and truth.”
 “Lohr's Law: The future is merely the past with a twist - and better tools.”
 -- Steve Lohr
 %
+<<<<<<< HEAD
 "For every programmer that decreases the average entropy of code on github there's is programmer with an equal but opposite effect"
 -- Eddie Groshev
+=======
+"Courage: Two cannibals having oral sex."
+
+%
+“I care not whether a man is Good or Evil; all that I care 
+Is whether he is a Wise man or a Fool. Go! put off Holiness, 
+And put on Intellect; or my thund’rous hammer shall drive thee 
+To wrath, which thou condemnest, till thou obey my voice.”
+-- William Blake
+%
+>>>>>>> f36407034284cbde43e7aa998b92eda7b4570315

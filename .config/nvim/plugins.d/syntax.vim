@@ -504,6 +504,9 @@ Plug 'monte-language/monte-vim', {'for': 'monte'}
 "         \ })
 " endif
 
+Plug 'sirtaj/vim-openscad'
+
+
 ""
 "" Comp
 ""
@@ -550,6 +553,7 @@ if has('nvim')
         \ 'python': ['setup.py', 'setup.cfg'],
         \ 'rust': ['Cargo.toml'],
         \ 'javascript': ['project.json', 'manifest.json', 'package.json'],
+        \ 'cpp': ['CMakeLists.txt'],
         \ }
 
     " let g:LanguageClient_waitOutputTimeout = 20

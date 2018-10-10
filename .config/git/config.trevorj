@@ -28,6 +28,7 @@
   ; tool = gvimdiff
   ; conflictstyle = diff3
   tool = diffconflicts
+  renameLimit = 100000
 
 [mergetool]
   prompt = false
@@ -63,4 +64,18 @@
 [push]
     default = upstream
 
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[bulkworkspaces]
+	build = /home/trevorj/build
+	code = /home/trevorj/code
+	git = /home/trevorj/git
+	themes = /home/trevorj/build/_themes
+	pwd = .
+
 # vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
+

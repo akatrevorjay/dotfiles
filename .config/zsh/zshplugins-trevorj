@@ -10,7 +10,7 @@ zplugins.load 'mafredri/zsh-async'
 zplugins.load 'psprint/zsnapshot'
 # zplugins.load 'mollifier/zload'
 # zplugins.load 'akatrevorjay/speedread'
-# zplugins.load 'akatrevorjay/zsh-histdb'
+zplugins.load 'akatrevorjay/zsh-histdb'
 
 # zplugins.load 'zdharma/zredis'  # actually gdbm + redis now and called zdharma/db
 # zplugins.load 'zdharma/zui'
