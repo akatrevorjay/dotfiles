@@ -1,0 +1,49 @@
+# user specific
+[user]
+  name = Trevor Joynson (trevorj)
+  email = github@skywww.net
+  #signingkey = 9871F640
+  signingkey = 2160F8F8
+
+[github]
+  user = akatrevorjay
+
+[hub]
+  protocol = ssh
+  user = akatrevorjay
+
+[commit]
+  # sign all commits (yes torvalds, I know)
+  gpgsign = false
+
+[gpg]
+  program = gpg2
+
+#[init]
+#  templatedir = template
+
+# vimdiff 3-pane
+[merge]
+  ; tool = vimdiff
+  ; tool = gvimdiff
+  ; conflictstyle = diff3
+  tool = diffconflicts
+
+[mergetool]
+  prompt = false
+
+[mergetool "vimdiff3"]
+  cmd = vim -f -d \"$LOCAL\" \"$MERGED\" \"$REMOTE\"
+
+[mergetool "diffconflicts"]
+  cmd = diffconflicts nvim \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+  trustExitCode = true
+  keepBackup = false
+
+# WHY THE FUCK IS THIS NOT IN MERGE ugh
+[rebase]
+    autoStash = True
+# [pull]
+#     rebase = True
+
+# vim: set ts=4 sw=4 tw=120 et ft=gitconfig :
