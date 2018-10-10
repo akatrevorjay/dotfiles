@@ -441,7 +441,7 @@ What are deep? the ocean and truth.”
 “Lohr's Law: The future is merely the past with a twist - and better tools.”
 -- Steve Lohr
 %
-"For every programmer that decreases the average entropy of code on github there is programmer with an equal but opposite effect"
+"For every programmer that decreases the average entropy of code on github there is a programmer with an equal but opposite effect"
 -- Eddie Groshev
 %
 "Courage: Two cannibals having oral sex."
