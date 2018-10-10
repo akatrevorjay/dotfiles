@@ -48,11 +48,38 @@ tools_pkgs=(
 	'pycodestyle<2.4' pydocstyle
 	pyflakes mccabe bandit
 
+	pylint
+	metrics
+	fluff
+	pylint2junit
+	plpylint
+	autopylint
+	setuptools-lint
+	pylint-protobuf
+	pylint-patcher
+	pylint-topology
+	pylint-mccabe
+	pylint-enums
+	pylint-exit
+	pylint-werkzeug
+	pylint-common
+	pylint-venv
+	pylint-celery
+	pylint-flask
+	pylint-peewee
+	pylint-django
+	pylint-json2html
+
+	pytest
+	pytest-pylint
+	pytest-cov
+	coveralls
+
 	flake8
 	# flake8-mypy
 	flake8-imports
 	flake8-isort
-	flake8-future
+	# flake8-future
 	flake8-docstrings
 	mypy
 	pyre-check
@@ -60,8 +87,13 @@ tools_pkgs=(
 	yapf autopep8 black
 	sixer
 
-	# pyls-mypy
-	# pyls-isort
+	sux
+
+	pyls-mypy
+	pyls-isort
+	pyls-black
+
+	notedown
 )
 
 pyls_pkgs=(

@@ -133,27 +133,28 @@ if has('nvim')
     "   \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
     "
     "let g:deoplete#max_menu_width = 80
-    let g:deoplete#max_menu_width = 120
+    let g:deoplete#max_menu_width = 180
     let g:deoplete#sources#use_cache = 1
 
-    "let g:deoplete#sources#go = 'vim-go'
+    let g:deoplete#sources#go = 'vim-go'
     let g:deoplete#sources#go#package_dot = 1
     let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
     let g:deoplete#sources#go#pointer = 1
     let g:deoplete#sources#go#cgo = 1  " See below for libclang config
     let g:deoplete#sources#go#auto_goos = 1
-    let g:deoplete#sources#go#json_directory = expand('~/.cache/deoplete/go/$GOOS_$GOARCH')
+    let g:deoplete#sources#go#json_directory = expand("~/.cache/deoplete/go/$GOOS_$GOARCH")
     let g:deoplete#sources#go#use_cache = 1
+    let g:deoplete#sources#go#source_importer = 1
+    let g:deoplete#sources#go#builtin_objects = 1
+
     if !empty('$GOPATH')
       let g:deoplete#sources#go#gocode_binary = expand($GOPATH.'/bin/gocode')
     endif
  
     " clang
-    "let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-4.0/lib/libclang.so.1'
-    "let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/4.0'
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
     let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/6.0'
-    let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
+    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
+    " let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
 
     let g:deoplete#sources#clang#clang_complete_database = '.'
     let g:deoplete#sources#clang#std#c = 'c11'
@@ -201,7 +202,7 @@ if has('nvim')
     "let g:deoplete#sources#jedi#short_types = 1
     let g:deoplete#sources#jedi#enable_cache = 1
     let g:deoplete#sources#jedi#show_docstring = 1
-    let g:deoplete#sources#jedi#worker_threads = 4
+    " let g:deoplete#sources#jedi#worker_threads = 4
     let g:deoplete#sources#jedi#server_timeout = 20
     "let g:jedi#show_call_signatures = 1 " show in cmdline
     "let g:jedi#show_call_signatures_delay = 250 " ms (500)

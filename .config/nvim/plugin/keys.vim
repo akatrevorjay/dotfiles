@@ -162,7 +162,9 @@ map ZZ :suspend<cr>
 "nnoremap ZZ    ZQ
 
 " Quit
-map <silent> q :q<cr>
+map <silent> <leader>q :q<cr>
+map <silent> <leader>Q :q!<cr>
+
 map <silent> <m-Q><m-!> :q!<cr>
 "map <c-w> :bd<cr>
 map <silent> <m-w> :bd<cr>

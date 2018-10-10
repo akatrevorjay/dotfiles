@@ -12,10 +12,26 @@ let g:ale_linters = {
   \ 'javascript': ['eslint', 'jscs', 'jshint', 'flow', 'standard', 'prettier'],
   \ 'vim': ['vint'],
   \ 'sql': ['sqlint'],
+  \ 'sh': ['shellcheck', 'shfmt'],
 \ }
 
 " Alias jsx to linters
 "let g:ale_linter_aliases = {'jsx': 'css'}
+
+" let g:ale_fixers = {
+" \   'javascript': [
+" \       'DoSomething',
+" \       'eslint',
+" \       {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
+" \   ],
+" \}
+
+let g:ale_fixers = {
+  \ 'python': ['yapf', 'remove_trailing_lines', 'trim_whitespace' ],
+  \ 'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
+  \ 'sh': ['shfmt', 'remove_trailing_lines', 'trim_whitespace'],
+  \}
+
 
 " Set this. Airline will handle the rest.
 let g:airline#extensions#ale#enabled = 1
@@ -27,6 +43,9 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
+" Bind F8 to fixing problems with ALE
+nmap <F8> <Plug>(ale_fix)
+
 " Write this in your vimrc file
 let g:ale_lint_on_text_changed = 'never'
 
@@ -36,6 +55,9 @@ let g:ale_lint_on_text_changed = 'never'
 
 " The default is freaking 200ms?!?
 let g:ale_lint_delay = 5000
+
+" Prefix all commands with nice.
+let g:ale_command_wrapper = 'nice -n5'
 
 let g:ale_python_mypy_executable = 'nice -n19 ionice -c3 mypy'
 
