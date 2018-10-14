@@ -1,6 +1,11 @@
 #!/bin/zsh
 
 colorcat() {
+    if (( ! ${+commands[chroma]} )); then
+        \cat "$@"
+        return
+    fi
+
     # Do a normal cat if we aren't interactive or are say, piping.
     # I can't think of a reason why stdin would be a gotcha off the top of my head,
     # but I'm playing it safe here.

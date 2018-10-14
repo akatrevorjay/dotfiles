@@ -5,6 +5,6 @@ autoload -Uz colorcat
 alias ccat=colorcat
 alias -g C='| colorcat'
 
-[[ ! ${+commands[chroma]} ]] \
+(( ! ${+commands[chroma]}  \
     || alias cat='colorcat'
 
