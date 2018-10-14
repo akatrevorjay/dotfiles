@@ -25,4 +25,5 @@
 	git = /home/trevorj/git
 	themes = /home/trevorj/build/_themes
 	pwd = .
-	onlykey = .
+	antibody = /home/trevorj/.cache/antibody
+	vim-plug = /home/trevorj/.cache/vim/plugged

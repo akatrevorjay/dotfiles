@@ -212,8 +212,10 @@ Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'jinja'
 " Ello poppet
 Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 
-
+"
 " TOML
+" Hey kids, don't name software after yourself, you can do better.
+"
 Plug 'cespare/vim-toml', {'for': 'toml'}
 
 
@@ -238,7 +240,7 @@ Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
 
 Plug 'dzeban/vim-log-syntax', {'for': 'log'}
-
+Plug 'vim-scripts/httplog', {'for': ['log']}
 
 ""
 "" Language: Python

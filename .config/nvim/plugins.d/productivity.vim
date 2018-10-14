@@ -155,7 +155,7 @@ Plug 'tpope/vim-obsession'
 let g:prosession_per_branch = 1
 let g:prosession_tmux_title = 1
 
-Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
+" Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 "" Fucks up till
 " Plug 'unblevable/quick-scope'
@@ -179,4 +179,5 @@ Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 
 Plug 'git-time-metric/gtm-vim-plugin'
 
-Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
+Plug 'raghur/vim-ghost', {'on': 'GhostStart', 'do': ':GhostInstall'}
+

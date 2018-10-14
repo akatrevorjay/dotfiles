@@ -175,7 +175,6 @@ Plug 'chemzqm/vim-easygit'
 Plug 'vim-scripts/unite-gitlog'
 
 " " Plug 'vim-scripts/NotableFt'
-Plug 'vim-scripts/httplog'
 " Plug 'vim-scripts/Loupe'
 " Plug 'vim-scripts/taglist.vim'
 " " Plug 'tpope/repeat.vim'
@@ -186,5 +185,7 @@ Plug 'vim-scripts/httplog'
 " Plug 'inkarkat/vim-SyntaxRange'
 " Plug 'vim-scripts/ingo-library'
 
-Plug 'ivanov/vim-ipython'
+" Plug 'ivanov/vim-ipython'
+
+Plug 'aacunningham/vim-fuzzy-stash'
 

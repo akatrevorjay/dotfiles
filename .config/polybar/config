@@ -117,9 +117,13 @@ font-1 = MaterialIcons:size=14
 ;font-3 = FontAwesome:size=14
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
-font-0 = nu:pixelsize=14;antialias=true
+; font-0 = nu:pixelsize=14;antialias=true
 ; font-0 = nu:pixelsize=10;antialias=false
+font-0 = nu:size=14;antialias=false
 ; font-0 = hack nerd font:pixelsize=14;antialias=true
+; font-0 = hasklug nerd font:pixelsize=14;antialias=true
+; font-0 = fura code nerd font:pixelsize=14;antialias=true
+; font-0 = monoid nerd font:pixelsize=14;antialias=true
 #font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 #font-2 = siji:pixelsize=12;1
 ; font-0 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
@@ -291,12 +295,19 @@ module-margin-right = 2
 ; Fonts are defined using <font-name>;<vertical-offset>
 ; Font names are specified using a fontconfig pattern.
 #font-0 = NotoSans-Regular:size=8;2
-font-1 = MaterialIcons:size=10
+; font-1 = MaterialIcons:size=14
+font-1 = hasklug nerd font:size=12:antialisa=true
 ;font-2 = Termsynu:size=8;-1
 ;font-3 = FontAwesome:size=10
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
-font-0 = nu:pixelsize=10;antialias=false
+; font-0 = nu:pixelsize=10;antialias=false
+font-0 = nu:size=14;antialias=false
+; font-0 = nu:pixelsize=10;antialias=false
+; font-0 = hack nerd font:pixelsize=14;antialias=true
+; font-0 = hasklug nerd font:pixelsize=14;antialias=true
+; font-0 = fura code nerd font:pixelsize=14;antialias=true
+; font-0 = monoid nerd font:pixelsize=10;antialias=true
 #font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 #font-2 = siji:pixelsize=12;1
 ; font-0 = PragmataProForPowerline Nerd Font:fontformat=truetype:size=10:antialias=true;0
