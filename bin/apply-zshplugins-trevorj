@@ -1,0 +1,18 @@
+#!/bin/zsh
+set -eo pipefail
+set -xv
+
+main() {
+	cd $ZDOTDIR
+
+	src=zshplugins-trevorj
+	dst=zshplugins-$USER
+
+	[[ ! -e $dst ]] && [[ -e $src ]] && [[ $src != $dst ]] \
+		|| return 1
+
+	ln -sfvr $src $dst
+}
+
+main "$@"
+

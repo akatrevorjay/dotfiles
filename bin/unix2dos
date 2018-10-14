@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#tr -d '\r' < input.file > output.file
+#sed 's/$'"/`echo \\\r`/" input.txt > output.txt
+
+exec perl -pi -e 's/\r\n/\n/g' "$@"
+
