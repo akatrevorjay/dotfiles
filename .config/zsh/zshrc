@@ -208,7 +208,7 @@ function zplugins.compinit {
 	zplugins.compinit.undefer
 
 	autoload -Uz compinit
-	compinit -d ${ZSH_CACHE_DIR:?}
+	compinit -d ${ZSH_CACHE_DIR:?}/compinit
 
 	zplugins.defer.apply
 

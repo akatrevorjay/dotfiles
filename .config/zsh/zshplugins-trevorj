@@ -1,47 +1,29 @@
 #!/bin/zsh
 
-# zplugins.load 'zsh-users/zsh-history-substring-search'
-zplugins.load 'akatrevorjay/fasd'
-
 zplugins.load 'willghatch/zsh-hooks'
 zplugins.load 'mafredri/zsh-async'
-
-#zplugins.load 'akatrevorjay/composure'
-zplugins.load 'psprint/zsnapshot'
-# zplugins.load 'mollifier/zload'
-# zplugins.load 'akatrevorjay/speedread'
-zplugins.load 'akatrevorjay/zsh-histdb'
-
-# zplugins.load 'zdharma/zredis'  # actually gdbm + redis now and called zdharma/db
 # zplugins.load 'zdharma/zui'
+
+# zplugins.load 'zdharma/zredis'  # actually gdbm + redis now, module == zdharma/db
+
+zplugins.load 'akatrevorjay/fasd'
+# zplugins.load 'psprint/zsnapshot'
+
 # zplugins.load 'zdharma/zbrowse'
 # zplugins.load 'zdharma/git-url'
 
 ## ~~~~~~~~~~~
 ## completions
 ## ~~~~~~~~~~~
-GENCOMPL_FPATH=$LOCAL_ZDOTDIR/completions
-# zplugins.load 'RobSis/zsh-completion-generator'
 
 zplugins.load 'zsh-users/zsh-completions'
 
-#zplugins.load 'thewtex/tmux-mem-cpu-load' --post-update 'make'
-#zplugins.load 'uvaes/fzf-marks'
+## ----------
+## middle out
+## ----------
+
 zplugins.load-all-in plugins-extra
 zplugins.load-all-in plugins-trevorj
-
-# zplugins.load 'zdharma/zconvey'
-zstyle ":plugin:zconvey" check_interval "2"         # How often to check if there are new commands (in seconds)
-zstyle ":plugin:zconvey" expire_seconds "22"        # If shell is busy for 22 seconds, the received command will expire and not run
-zstyle ":plugin:zconvey" greeting "text"            # Display logo at Zsh start ("text" – display text, "none" – no greeting)
-zstyle ":plugin:zconvey" ask "0"                    # zc won't ask for missing data ("1" has the same effect as always using -a option)
-zstyle ":plugin:zconvey" ls_after_rename "1"        # Don't execute zc-ls after doing rename (with zc-rename or zc-take)
-zstyle ":plugin:zconvey" use_zsystem_flock "1"      # Should use faster zsystem's flock when it's possible?
-                                                    # (default true on Zsh >= 5.3, will revert to mixed zsystem/flock on older Zshells)
-zstyle ":plugin:zconvey" output_method "feeder"     # To put commands on command line, Zconvey can use small program "feeder". Or "zsh"
-                                                    # method, which currently doesn't automatically run the command – to use when e.g.
-                                                    # feeder doesn't build (unlikely) or when occurring any problems with it
-zstyle ":plugin:zconvey" timestamp_from "datetime"  # Use zsh/datetime module for obtaining timestamp. "date" – use date command (fork)
 
 ## ~~~~~~~~
 ## compinit
@@ -51,11 +33,8 @@ zplugins.load-all-in zcompinit
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ## plugins that must load past compinit
 ## ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# zplugins.load 'hlissner/zsh-autopair'
 zplugins.load 'akatrevorjay/zsh-autopair'
-# zplugins.load 'zsh-users/zsh-syntax-highlighting'
-#--defer 2
-zplugins.load 'zdharma/fast-syntax-highlighting'
 
-zplugins.load 'b4b4r07/zsh-vimode-visual'
+# zplugins.load 'zsh-users/zsh-syntax-highlighting'
+zplugins.load 'zdharma/fast-syntax-highlighting'
 

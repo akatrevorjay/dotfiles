@@ -34,7 +34,7 @@ window:
 
   # Window decorations
   # Setting this to false will result in window without borders and title bar.
-  decorations: false
+  decorations: full
 
 scrolling:
   # How many lines of scrollback to keep,
@@ -60,7 +60,7 @@ scrolling:
   auto_scroll: false
 
 # Display tabs using this many cells (changes require restart)
-tabspaces: 8
+tabspaces: 4
 
 # When true, bold text is drawn using the bright variant of colors.
 draw_bold_text_with_bright_colors: true
@@ -98,22 +98,25 @@ font:
   #   style: Italic
 
   normal:
-    family: Hack Nerd Font
+    family: Hasklug Nerd Font
     style: Regular
     render_mode: Max
     lcd_filter: true
+    antialias: true
 
   bold:
-    family: Hack Nerd Font
+    family: Hasklug Nerd Font
     style: Bold
     render_mode: Max
     lcd_filter: true
+    antialias: true
 
   italic:
-    family: Hack Nerd Font
+    family: Hasklug Nerd Font
     style: Italic
     render_mode: Max
     lcd_filter: true
+    antialias: true
 
 
   # normal:
@@ -127,7 +130,7 @@ font:
   #   style: Italic
 
   # Point size of the font
-  size: 8.0
+  size: 10.0
 
   # Offset is the extra space around each character. offset.y can be thought of
   # as modifying the linespacing, and offset.x as modifying the letter spacing.

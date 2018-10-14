@@ -35,8 +35,8 @@ declare -xm 'XDG_*'
 # TODO hooks for plugins to register env-time changes.
 
 # zsh
-: ${ZDOTDIR:=$HOME/.zsh}
-: ${LOCAL_ZDOTDIR:=$HOME/.local/zsh}
+: ${ZDOTDIR:=$XDG_CONFIG_HOME/zsh}
+: ${LOCAL_ZDOTDIR:=$ZDOTDIR/local}
 : ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
 ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 declare -x 'ZDOTDIR'

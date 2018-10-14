@@ -1,3 +1,58 @@
+Plug 'tpope/vim-eunuch'
+
+" Superb motion controls
+Plug 'easymotion/vim-easymotion'
+
+Plug 'junegunn/vim-pseudocl'
+Plug 'junegunn/vim-oblique'
+
+" Find-N-Replace
+Plug 'junegunn/vim-fnr'
+
+Plug 'junegunn/vim-peekaboo'
+
+Plug 'junegunn/vim-easy-align'
+
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+    vmap <Enter> <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+
+" Make f usable and more powerful
+", {'on': '<Plug>'}
+Plug 'rhysd/clever-f.vim'
+
+"" multiple cursors
+"Plug 'terryma/vim-multiple-cursors'
+"function g:Multiple_cursors_before()
+"    let g:deoplete#disable_auto_complete = 1
+"endfunction
+"function g:Multiple_cursors_after()
+"    let g:deoplete#disable_auto_complete = 0
+"endfunction
+
+" RainbowParantheses
+Plug 'junegunn/rainbow_parentheses.vim'
+Gautocmdft python,lisp,clojure,scheme,c,cpp,objc,objcpp,json,jsonnet,javascript,automake,sh,zsh :RainbowParentheses
+
+"" Breaks folds when switching buffers I think
+" Plug 'vim-scripts/restore_view.vim'
+
+"" Dynamic SQL completion via opening a db connection
+" Plug 'vim-scripts/dbext.vim'
+
+" Marks
+" Plug 'kshenoy/vim-signature'
+
+"" Lots of script helpers at s:_.blah
+Plug 'vim-jp/vital.vim'
+Plug 'haya14busa/underscore.vim'
+
+" Abolish: Helpers for searching, substituting, and abbreviating multiple variants at once through {} expansion
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-surround'
 
 " Great bindings for switching buffers and more
 Plug 'tpope/vim-unimpaired'
@@ -12,8 +67,10 @@ Plug 'tpope/vim-surround'
 "" Quick date changes
 Plug 'tpope/vim-speeddating'
 
-"Plug 'wakatime/vim-wakatime'
-"let g:wakatime_PythonBinary = '/usr/bin/python'
+" Plug 'tpope/vim-dotenv'
+" Plug 'tpope/vim-rsi'
+" Plug 'tpope/git-bump'
+" Plug 'tpope/vim-projectionist'
 
 Plug 'bagrat/vim-workspace'
 
@@ -123,4 +180,3 @@ Plug 'dhruvasagar/vim-prosession', {'on': 'Prosession'}
 Plug 'git-time-metric/gtm-vim-plugin'
 
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-

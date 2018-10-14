@@ -2,10 +2,9 @@
 
 import collections
 import logging
-import shutil
-import json
-import sys
 import os
+import shutil
+import sys
 
 import yaml
 
@@ -29,8 +28,11 @@ class AttrDict(dict):
 
 def slurp_yaml(fn):
     with open(fn, 'r') as fh:
-        # JSON is a subset of YAML.
-        contents = yaml.load(fh)
+        raw = fh.read()
+
+    # JSON is a subset of YAML.
+    contents = yaml.load(raw)
+
     return contents
 
 
@@ -48,14 +50,18 @@ def convert(tilix_scheme):
     pal_bold = Palette(*palette[8:])
 
     colors = {
-        'primary': dict(zip(
-            ['background', 'foreground'],
-            fixup_hex_color(j['background-color'], j['foreground-color']),
-        )),
-        'cursor': dict(zip(
-            ['text', 'cursor'],
-            fixup_hex_color(j['cursor-background-color'], j['cursor-foreground-color']),
-        )),
+        'primary':
+            dict(zip(
+                ['background', 'foreground'],
+                fixup_hex_color(j['background-color'], j['foreground-color']),
+            )),
+        'cursor':
+            dict(
+                zip(
+                    ['text', 'cursor'],
+                    fixup_hex_color(j['cursor-background-color'], j['cursor-foreground-color']),
+                )
+            ),
         'normal': dict(pal_normal._asdict()),
         'bright': dict(pal_bold._asdict()),
     }

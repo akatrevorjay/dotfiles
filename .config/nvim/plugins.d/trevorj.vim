@@ -11,65 +11,14 @@
 " Plug 'nicwest/bnext.vim'
 
 " Format any txt file
-Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter', {'for': ['txt', 'txtfmt']}
-Plug 'vim-scripts/txt.vim'
+" Plug 'vim-scripts/Txtfmt-The-Vim-Highlighter', {'for': ['txt', 'txtfmt']}
+" Plug 'vim-scripts/txt.vim'
 
 "if v:version >= 704
 "  Plug 'vim-pandoc/vim-pandoc-syntax'
 "endif
 
 "Plug 'henrik/vim-indexed-search'
-
-Plug 'tpope/vim-eunuch'
-
-" Superb motion controls
-Plug 'easymotion/vim-easymotion'
-
-Plug 'junegunn/vim-pseudocl'
-Plug 'junegunn/vim-oblique'
-
-" Find-N-Replace
-Plug 'junegunn/vim-fnr'
-
-Plug 'junegunn/vim-peekaboo'
-
-Plug 'junegunn/vim-easy-align'
-
-" Make f usable and more powerful
-", {'on': '<Plug>'}
-Plug 'rhysd/clever-f.vim'
-
-"" multiple cursors
-"Plug 'terryma/vim-multiple-cursors'
-"function g:Multiple_cursors_before()
-"    let g:deoplete#disable_auto_complete = 1
-"endfunction
-"function g:Multiple_cursors_after()
-"    let g:deoplete#disable_auto_complete = 0
-"endfunction
-
-" RainbowParantheses
-Plug 'junegunn/rainbow_parentheses.vim'
-Gautocmdft python,lisp,clojure,scheme,c,cpp,objc,objcpp,json,jsonnet,javascript,automake,sh,zsh :RainbowParentheses
-
-"" Breaks folds when switching buffers I think
-" Plug 'vim-scripts/restore_view.vim'
-
-"" Dynamic SQL completion via opening a db connection
-" Plug 'vim-scripts/dbext.vim'
-
-" Marks
-" Plug 'kshenoy/vim-signature'
-
-"" Lots of script helpers at s:_.blah
-Plug 'vim-jp/vital.vim'
-Plug 'haya14busa/underscore.vim'
-
-" Abolish: Helpers for searching, substituting, and abbreviating multiple variants at once through {} expansion
-Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-surround'
-
 " Plug 'eugen0329/vim-esearch'
 
 if has('nvim')
@@ -155,11 +104,6 @@ endif
 "     \ 'jump':  1,
 "     \ }
 
-" Plug 'tpope/vim-dotenv'
-" Plug 'tpope/vim-rsi'
-" Plug 'tpope/git-bump'
-" Plug 'tpope/vim-projectionist'
-
 " " Plug 'vim-scripts/autoproto.vim'
 " Plug 'vim-scripts/searchfold.vim'
 " Plug 'vim-scripts/grep.vim'
@@ -172,6 +116,7 @@ endif
 " Plug 'quafzi/vim-flow-diagram'
 " Plug 'xavierchow/vim-sequence-diagram'
 
+" argument adjustments
 Plug 'FooSoft/vim-argwrap'
 nnoremap <silent> <leader>a :ArgWrap<CR>
 
@@ -225,7 +170,10 @@ nnoremap <silent> <leader>zm <Plug>:ZVMotiont<CR>
 " Plug 'vim-scripts/searchfold.vim'
 " " Plug 'vim-scripts/autoresize.vim'
 " Plug 'vim-scripts/VCard-syntax'
+
+Plug 'chemzqm/vim-easygit'
 Plug 'vim-scripts/unite-gitlog'
+
 " " Plug 'vim-scripts/NotableFt'
 Plug 'vim-scripts/httplog'
 " Plug 'vim-scripts/Loupe'

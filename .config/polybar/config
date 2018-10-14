@@ -99,8 +99,8 @@ border-color = #00000000
 ; Individual side values can be defined using:
 ;   padding-{left,right}
 ; padding = 0
-padding-left = 0
-padding-right = 2
+padding-left = 1
+padding-right = 1
 
 ; Number of spaces to add before/after each module
 ; Individual side values can be defined using:
@@ -113,8 +113,8 @@ module-margin-right = 2
 ; Font names are specified using a fontconfig pattern.
 #font-0 = NotoSans-Regular:size=8;2
 font-1 = MaterialIcons:size=14
-font-2 = Termsynu:size=12;-1
-font-3 = FontAwesome:size=14
+;font-2 = Termsynu:size=12;-1
+;font-3 = FontAwesome:size=14
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
 font-0 = nu:pixelsize=14;antialias=true
@@ -292,8 +292,8 @@ module-margin-right = 2
 ; Font names are specified using a fontconfig pattern.
 #font-0 = NotoSans-Regular:size=8;2
 font-1 = MaterialIcons:size=10
-font-2 = Termsynu:size=8;-1
-font-3 = FontAwesome:size=10
+;font-2 = Termsynu:size=8;-1
+;font-3 = FontAwesome:size=10
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
 font-0 = nu:pixelsize=10;antialias=false
@@ -318,8 +318,8 @@ tray-position = right
 tray-detached = false
 
 ;; Tray icon max size
-; tray-maxsize = 24
-tray-maxsize = 16
+tray-maxsize = 24
+;tray-maxsize = 16
 
 ;; Enable pseudo transparency
 ;; Will automatically be enabled if a fully transparent
@@ -896,13 +896,13 @@ format-volume = <ramp-volume> <label-volume>
 
 ; Available tokens:
 ;   %percentage% (default)
-label-muted = 🔇 muted
+label-muted = "🔇 muted"
 label-muted-foreground = #66
 
 ; Only applies if <ramp-volume> is used
-ramp-volume-0 = 🔈
-ramp-volume-1 = 🔉
-ramp-volume-2 = 🔊
+ramp-volume-0 = "🔈"
+ramp-volume-1 = "🔉"
+ramp-volume-2 = "🔊"
 
 [module/battery]
 type = internal/battery
@@ -920,14 +920,14 @@ format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
 ramp-capacity-foreground = ${colors.foreground-alt}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
@@ -945,9 +945,9 @@ label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
 ramp-foreground = ${colors.foreground-alt}
 
 [module/temperature_smm_cpu]
