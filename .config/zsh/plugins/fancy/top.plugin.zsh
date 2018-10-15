@@ -1,7 +1,5 @@
 #!/bin/zsh
 
-set -xv
-
 () {
 	local fn=$HOME/.toprc
 	[[ ! -e $fn ]] || return
@@ -30,4 +28,3 @@ set -xv
 	fi
 }
 
-set +xv
