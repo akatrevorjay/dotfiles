@@ -1,1 +1,1 @@
-airline-serenity.zsh
+pure/pure.zsh

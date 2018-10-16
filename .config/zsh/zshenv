@@ -36,7 +36,7 @@ declare -xm 'XDG_*'
 
 # zsh
 : ${ZDOTDIR:=$XDG_CONFIG_HOME/zsh}
-: ${LOCAL_ZDOTDIR:=$ZDOTDIR/local}
+: ${LOCAL_ZDOTDIR:=$HOME/.local/zsh}
 : ${ZSH_CACHE_DIR:=$XDG_CACHE_HOME/zsh}
 ZDOTDIRS=({$ZDOTDIR,$LOCAL_ZDOTDIR}(-/N))
 declare -x 'ZDOTDIR'
