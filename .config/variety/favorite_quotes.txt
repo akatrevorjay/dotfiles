@@ -48,7 +48,6 @@ Franklin's Rule: Blessed is the end user who expects nothing, for he/she will no
 -- Lucille S. Harper
 %
 “She shook her head, her smile fading a little. “I forget you’re a rock star now. To me, you’re just Logan.”
-
 I took her hand. “That’s all I want to be.”
 -- Lisa Kessler
 %
@@ -445,11 +444,14 @@ What are deep? the ocean and truth.”
 -- Eddie Groshev
 %
 "Courage: Two cannibals having oral sex."
-
+-- Unknown
 %
-“I care not whether a man is Good or Evil; all that I care 
-Is whether he is a Wise man or a Fool. Go! put off Holiness, 
-And put on Intellect; or my thund’rous hammer shall drive thee 
-To wrath, which thou condemnest, till thou obey my voice.”
+“I care not whether a man is Good or Evil; all that I care is whether he is a Wise man or a Fool. Go! put off Holiness, 
+and put on Intellect; or my thund’rous hammer shall drive thee To wrath, which thou condemnest, till thou obey my voice.”
 -- William Blake
 %
+"Programming today is a race between software engineers striving to build bigger and better idiot-proof programs,
+and the universe trying to produce bigger and better idiots. So far, the universe is winning."
+-- Rich Cook
+%
+
