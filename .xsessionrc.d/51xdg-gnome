@@ -1,0 +1,6 @@
+#!/bin/bash
+
+XDG_DATA_DIRS="/usr/share/gnome:${XDG_DATA_DIRS:-/usr/local/share/:/usr/share/}"
+
+dbus_env_add XDG_DATA_DIRS
+

@@ -1,0 +1,135 @@
+#!/bin/zsh
+set -eo pipefail
+set -xv
+
+self=$0
+
+typeset -U display_prefixes=(XWAYLAND eDP DP DisplayPort HDMI VIRTUAL)
+
+typeset -U displays=()
+typeset -A d_mode=() d_connected=() d_type=()
+typeset d_primary=""
+
+parse-displays() {
+	local xrandr=$(xrandr | egrep -v '^ ')
+	xrandr=(${(f)xrandr})
+
+	displays=()
+	d_mode=() d_connected=() d_type=()
+	d_primary=""
+
+	local line
+	for line in $xrandr; do
+		local parts=($=line)
+
+		local is_display=''
+		local prefix=''
+		for prefix in $display_prefixes; do
+			[[ ${parts:0:1} =~ ^${prefix} ]] || continue
+			is_display=$prefix
+			break
+		done
+
+		[[ -n $is_display ]] || continue
+
+		local name=${parts:0:1}
+
+		d_type[$name]=$is_display
+
+		local part=''
+		for part in $parts; do
+			case $part in
+				primary) d_primary=$name ;;
+				*x*+*+*) d_mode[$name]=$part ;;
+				*connected) d_connected[$name]=$part ;;
+			esac
+		done
+		displays+=($name)
+	done
+
+	(
+		setopt local_options
+		setopt no_verbose no_xtrace
+
+		local disp
+		echo
+		echo "- primary disp: $d_primary"
+		for disp in $displays; do
+			echo "- $disp:" ${d_connected[$disp]}
+			[[ $d_connected[$disp] == connected ]] || continue
+			echo "  mode:" $d_mode[$disp]
+		done
+		echo
+	) >&2
+}
+
+is-connected() {
+	local name=$1
+	[[ ${d_connected[$name]} == connected ]]
+}
+
+is_display() {
+	local name=$1
+	[[ -n ${d_mode[$name]} ]]
+}
+
+match-mode() {
+	local needle=$1
+	local name=""
+	for name in $displays; do
+		[[ $d_mode[$name] =~ ^$needle ]] || continue
+		echo $name
+		return 0
+	done
+	return 1
+}
+
+match-name() {
+	local needle=$1
+	local name=""
+	for name in $displays; do
+		[[ $name =~ ^$needle ]] || continue
+		echo $name
+		return 0
+	done
+	return 1
+}
+
+first-in() {
+	local predicate="$1"
+	shift 1
+
+	local item
+	for item in "$@"; do
+		$predicate "$item" || continue
+
+		echo "$item"
+		return
+	done
+
+	return 1
+}
+
+nvidia-main() {
+	# The X server does not automatically enable displays attached to the non-NVIDIA graphics device in this configuration. To do that, use the xrandr command line tool:
+
+	xrandr --setprovideroutputsource modesetting NVIDIA-0 \
+		|| xrandr --setprovideroutputsource Intel NVIDIA-0 \
+		|| :
+
+	xrandr --auto || :
+
+	autorandr -c || :
+
+	parse-displays
+
+	local edp=$(match-mode 1920x1080 || first-in match-name eDP-1-1 eDP-1 || match-mode 2880x1800 || first-in match-name eDP || match-name 2560x1440 || match-name DP-0)
+	local texas=$(match-mode 3440x1440 || match-name DP-0 || match-name DP-1 || match-name DP-1-1-2)
+
+	# When running against X.Org X server with video driver ABI 23 or higher, synchronization is supported with compatible drivers. At the time of writing, synchronization is compatible with the “modesetting” driver with Intel devices on Linux version 4.5 or newer. If all requirements are met, synchronization will be used automatically.
+	# xrandr --output $edp --set "PRIME Synchronization" 1 || :
+	# xrandr --output $texas --set "PRIME Synchronization" 1 || :
+}
+
+nvidia-main "$@"
+

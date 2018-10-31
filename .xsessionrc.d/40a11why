@@ -1,0 +1,24 @@
+#!/bin/bash
+
+function disable_accessibility() {
+	# As most people *do not* require such things, I have no idea why the defaults are so... interesting.
+
+	QT_ACCESSIBILITY=0
+
+	GTK_MODULES="null:$GTK_MODULES:null"
+
+	GTK_MODULES="${GTK_MODULES//:gail:/:}"
+	GTK_MODULES="${GTK_MODULES//:atk-bridge:/:}"
+
+	GTK_MODULES="${GTK_MODULES#null:}"
+	GTK_MODULES="${GTK_MODULES%:null}"
+
+	# xim is the xorg builtin one that doesn't do anything
+	GTK_IM_MODULE=xim
+
+	dbus_env_add \
+		QT_ACCESSIBILITY QT_LINUX_ACCESSIBILITY_ALWAYS_ON \
+		GTK_MODULES GTK_IM_MODULE
+}
+
+disable_accessibility

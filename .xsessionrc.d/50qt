@@ -1,0 +1,12 @@
+#!/bin/bash
+
+function qt_theme() {
+	# case "$QT_QPA_PLATFORMTHEME" in
+	# 	qt5ct) unset QT_QPA_PLATFORMTHEME ;;
+	# esac
+	export QT_QPA_PLATFORMTHEME=qt5ct
+
+	dbus_env_add QT_QPA_PLATFORMTHEME
+}
+
+qt_theme
