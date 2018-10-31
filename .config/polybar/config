@@ -24,12 +24,10 @@ alert = #bd2c40
 ; Use the following command to list available outputs:
 ; If unspecified, the application will pick the first one it finds.
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = ${env:SEC_MONITOR:DP-0}
-; monitor = DP-0
-; monitor = DP-1
+monitor = ${env:SEC_MONITOR:eDP-1-1}
 
 ; Use the specified monitor as a fallback if the main one is not found.
-; monitor-fallback = DP-0
+monitor-fallback = eDP-1
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes report my monitor as being disconnected (when in use)
@@ -40,7 +38,7 @@ monitor-strict = true
 override-redirect = false
 
 ; Put the bar at the bottom of the screen
-bottom = false
+bottom = true
 
 ; Prefer fixed center position for the `modules-center` block
 ; When false, the center position will be based on the size of the other blocks.
@@ -48,9 +46,9 @@ fixed-center = true
 
 ; Dimension defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 width = 100%
-height = 24
+; height = 24
 ; height = 18
-; height = 20
+height = 20
 
 ; Offset defined as pixel value (e.g. 35) or percentage (e.g. 50%)
 ;offset-x = 1%
@@ -112,14 +110,15 @@ module-margin-right = 2
 ; Fonts are defined using <font-name>;<vertical-offset>
 ; Font names are specified using a fontconfig pattern.
 #font-0 = NotoSans-Regular:size=8;2
-font-1 = MaterialIcons:size=14
+; font-1 = MaterialIcons:size=14
+font-1 = hasklug nerd font:size=10:antialias=true
 ;font-2 = Termsynu:size=12;-1
 ;font-3 = FontAwesome:size=14
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
 ; font-0 = nu:pixelsize=14;antialias=true
 ; font-0 = nu:pixelsize=10;antialias=false
-font-0 = nu:size=14;antialias=false
+font-0 = nu:size=10;antialias=true
 ; font-0 = hack nerd font:pixelsize=14;antialias=true
 ; font-0 = hasklug nerd font:pixelsize=14;antialias=true
 ; font-0 = fura code nerd font:pixelsize=14;antialias=true
@@ -143,8 +142,8 @@ modules-left = i3
 ; modules-left = xworkspaces
 #modules-center = mpd
 modules-center = xwindow
-; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlp62s0 wlp61s0 enp60s0 enp61s0 battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+; modules-right = filesystem volume xkeyboard memory cpu wlan eth battery temperature temperature_pch temperature_acpitz date powermenu
+modules-right = filesystem pulseaudio xkeyboard memory cpu wlo1 p16p1 enx000ec6cad60f battery temperature temperature_pch temperature_acpitz date powermenu
 
 ; The separator will be inserted between the output of each module
 ; separator =
@@ -250,12 +249,12 @@ cursor-scroll = ns-resize
 ; Use the following command to list available outputs:
 ; If unspecified, the application will pick the first one it finds.
 ; $ xrandr -q | grep " connected" | cut -d ' ' -f1
-monitor = ${env:PRI_MONITOR:DP-1}
+monitor = ${env:PRI_MONITOR:eDP-1-1}
 ; monitor = DP-1-1-2
 ; monitor = DP-1
 
 ; Use the specified monitor as a fallback if the main one is not found.
-monitor-fallback = DP-0
+; monitor-fallback = eDP-1-1
 
 ; Require the monitor to be in connected state
 ; XRandR sometimes report my monitor as being disconnected (when in use)
@@ -267,10 +266,13 @@ monitor-strict = true
 ; NOTE: The placeholders are not available for custom values
 ; wm-name = polybar-primary
 
+bottom = true
+
 width = 100%
 ; height = 27
 ; height = 18
-height = 24
+height = 20
+; height = 24
 ;offset-x = 1%
 ;offset-y = 1%
 ; radius = 6.0
@@ -282,9 +284,11 @@ foreground = ${colors.foreground}
 
 line-size = 1
 line-color = #f00
+; line-color = #70ffffff
 
-border-size = 0
-border-color = #00000000
+border-size = 1
+; border-color = #00000000
+border-color = #70ffffff
 
 padding-left = 0
 padding-right = 2
@@ -296,13 +300,13 @@ module-margin-right = 2
 ; Font names are specified using a fontconfig pattern.
 #font-0 = NotoSans-Regular:size=8;2
 ; font-1 = MaterialIcons:size=14
-font-1 = hasklug nerd font:size=12:antialisa=true
+font-1 = hasklug nerd font:size=10:antialias=true
 ;font-2 = Termsynu:size=8;-1
 ;font-3 = FontAwesome:size=10
 ; See the Fonts wiki page for more details
 #font-0 = fixed:pixelsize=12;1
 ; font-0 = nu:pixelsize=10;antialias=false
-font-0 = nu:size=14;antialias=false
+font-0 = nu:size=10;antialias=true
 ; font-0 = nu:pixelsize=10;antialias=false
 ; font-0 = hack nerd font:pixelsize=14;antialias=true
 ; font-0 = hasklug nerd font:pixelsize=14;antialias=true
@@ -318,9 +322,10 @@ modules-left = i3
 ; modules-left = xworkspaces
 #modules-center = mpd
 modules-center = xwindow
-; modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
-modules-right = filesystem xbacklight pulseaudio xkeyboard memory cpu wlp62s0 wlp61s0 enp60s0 enp61s0 battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
-; modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature temperature_smm_cpu temperature_smm_gpu date powermenu
+; modules-right = filesystem pulseaudio xkeyboard memory cpu wlan eth battery temperature temperature_pch temperature_acpitz date powermenu
+; modules-right = filesystem pulseaudio xkeyboard memory cpu p16p1 enx000ec6cad60f battery temperature temperature_pch temperature_acpitz date powermenu
+modules-right = filesystem pulseaudio xkeyboard memory cpu battery temperature temperature_acpitz date powermenu
+; modules-right = filesystem volume xkeyboard memory cpu wlan eth battery temperature temperature_pch temperature_acpitz date powermenu
 
 tray-position = right
 
@@ -640,9 +645,9 @@ format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
 
-[module/wlp61s0]
+[module/wlo1]
 type = internal/network
-interface = wlp61s0
+interface = wlo1
 interval = 3.0
 
 ; format-connected = <ramp-signal> <label-connected>
@@ -721,92 +726,9 @@ animation-packetloss-1-foreground = #000000
 ; Framerate in milliseconds
 animation-packetloss-framerate = 500
 
-
-[module/wlp62s0]
+[module/p16p1]
 type = internal/network
-interface = wlp62s0
-interval = 3.0
-
-; format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
-; label-connected = %essid%
-
-; format-disconnected =
-;format-disconnected = <label-disconnected>
-format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
-format-connected = <ramp-signal> <label-connected>
-
-; Available tags:
-;   <label-disconnected> (default)
-format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
-format-packetloss = <animation-packetloss> <label-connected>
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-; Default: %ifname% %local_ip%
-label-connected = %essid% %downspeed:9%
-; label-connected-foreground = #eefafafa
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-; Default: (none)
-label-disconnected = not connected
-; label-disconnected-foreground = #66ffffff
-
-; Available tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %linkspeed% [wired]
-; Default: (none)
-;label-packetloss = %essid%
-;label-packetloss-foreground = #eefafafa
-
-; ; Only applies if <ramp-signal> is used
-; ramp-signal-0 = 😱
-; ramp-signal-1 = 😠
-; ramp-signal-2 = 😒
-; ramp-signal-3 = 😊
-; ramp-signal-4 = 😃
-; ramp-signal-5 = 😈
-
-; Only applies if <animation-packetloss> is used
-animation-packetloss-0 = ⚠
-animation-packetloss-0-foreground = #ffa64c
-animation-packetloss-1 = 📶
-animation-packetloss-1-foreground = #000000
-; Framerate in milliseconds
-animation-packetloss-framerate = 500
-
-
-[module/enp60s0]
-type = internal/network
-interface = enp60s0
+interface = p16p1
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -821,10 +743,10 @@ format-disconnected =
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
 
-[module/enp61s0]
+[module/enx000ec6cad60f]
 type = internal/network
 ; interface = virbr0-nic
- interface = enp61s0
+ interface = enx000ec6cad60f
 interval = 3.0
 
 format-connected-underline = #55aa55
@@ -940,12 +862,12 @@ animation-charging-0 = ""
 animation-charging-1 = ""
 animation-charging-2 = ""
 animation-charging-foreground = ${colors.foreground-alt}
-animation-charging-framerate = 750
+animation-charging-framerate = 75
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
-warn-temperature = 60
+; thermal-zone = 70
+warn-temperature = 90
 
 format = <ramp> <label>
 format-underline = #f50a4d
@@ -961,9 +883,9 @@ ramp-1 = ""
 ramp-2 = ""
 ramp-foreground = ${colors.foreground-alt}
 
-[module/temperature_smm_cpu]
+[module/temperature_pch]
 type = internal/temperature
-hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp1_input
+hwmon-path = /sys/devices/virtual/hwmon/hwmon1/temp1_input
 warn-temperature = 60
 
 format = <ramp> <label>
@@ -980,9 +902,10 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
-[module/temperature_smm_gpu]
+[module/temperature_acpitz]
 type = internal/temperature
-hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp2_input
+; hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp2_input
+hwmon-path = /sys/devices/virtual/hwmon/hwmon0/temp1_input
 warn-temperature = 60
 
 format = <ramp> <label>

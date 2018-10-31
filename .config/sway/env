@@ -1,34 +1,13 @@
 #!/bin/zsh
-set -eo pipefail
+# set -eo pipefail
 
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_DRM_DEVICE``    | Device to use in DRM mode. (card0 default)          |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_BUFFER_API``    | Force buffer API to ``GBM`` or ``EGL``.             |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_SHM``           | Set 1 to force EGL clients to use shared memory.    |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_OUTPUTS``       | Number of fake outputs in X11/Wayland mode.         |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_XWAYLAND``      | Set 0 to disable Xwayland.                          |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_LIBINPUT``      | Set 1 to force libinput. (Even on X11/Wayland)      |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_REPEAT_DELAY``  | Keyboard repeat delay.                              |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_REPEAT_RATE``   | Keyboard repeat rate.                               |
-# +-----------------------+-----------------------------------------------------+
-# | ``WLC_DEBUG``         | Enable debug channels (comma separated)             |
-# +-----------------------+-----------------------------------------------------+
-#
+# val=$(udevadm info -a -n /dev/dri/card1 | grep boot_vga | rev | cut -c 2)
+# cmd="WLR_DRM_DEVICES=card$val sway"
 
-#: ${WLC_DRM_DEVICE:=card1}
-# : ${WLC_BUFFER_API:=GBM}
-: ${WLC_BUFFER_API:=EGL}
-: ${WLC_OUTPUTS:=2}
-: ${WLC_SHM:=1}
+# first card is for rendering, second gets buffers copied to it for it's monitors.
+export WLR_DRM_DEVICES=card1:card0
+# export WLR_DRM_DEVICE=card1
 
-export WLC_DRM_DEVICE WLC_BUFFER_API WLC_OUTPUTS WLC_SHM
 
 # #
 # # Whether to not preload libgtk3-nocsd.so.0 even if GTK_CSD=0
@@ -48,6 +27,11 @@ export WLC_DRM_DEVICE WLC_BUFFER_API WLC_OUTPUTS WLC_SHM
 # #QT_QPA_PLATFORM=wayland
 # CLUTTER_BACKEND=wayland
 # SDL_VIDEODRIVER=wayland
+
+export QT_QPA_PLATFORM=wayland
+# Qt will also draw client-side decorations for all windows, disable that:
+export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+
 #
 # # or say wayland_shm
 # ECORE_EVAS_ENGINE=wayland_egl
@@ -63,11 +47,12 @@ export WLC_DRM_DEVICE WLC_BUFFER_API WLC_OUTPUTS WLC_SHM
 SWAY_CURSOR_THEME=Obsidian
 SWAY_CURSOR_SIZE=48
 
-# export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
+export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
 
 #XKB_DEFAULT_RULES=evdev
 #XKB_DEFAULT_MODEL=apple
-XKB_DEFAULT_MODEL=pc101
+# XKB_DEFAULT_MODEL=pc101
+XKB_DEFAULT_MODEL=pc104
 XKB_DEFAULT_LAYOUT=us
 XKB_DEFAULT_VARIANT=workman
 #XKB_DEFAULT_OPTIONS='lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle'
@@ -82,3 +67,4 @@ export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTION
 
 
 # vim: set ts=4 sw=4 tw=120 et ft=sh :
+

@@ -198,7 +198,8 @@ colorscheme moonfly
 " let g:airline_theme = 'ayu_mirage'
 " colorscheme ayu
 "
-let g:airline_theme = 'jet'
+" let g:airline_theme = 'jet'
+let g:airline_theme = 'atomic'
 colorscheme distill
 let g:colors_name = 'distill'
 

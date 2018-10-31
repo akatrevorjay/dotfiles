@@ -1,32 +1,29 @@
-#!/bin/bash
+#!/bin/zsh
+set -o nullglob
+
 
 function user_xsession_d() {
-	: ${USRSESSIONDIR:=$HOME/.xsession.d}
+	local dir=$HOME/.xsessionrc.d
+	[[ -d $dir ]] || return 0
 
 	# use run-parts to source every file in the session directory; we source
 	# instead of executing so that the variables and functions defined above
 	# are available to the scripts, and so that they can pass variables to each
 	# other
-	if [[ -d $USRSESSIONDIR ]]; then
-		SESSIONFILES=$(run-parts --list $USRSESSIONDIR)
+	local raw=$(run-parts --list $dir)
+	local fns=(${(f)raw})
 
-		if [ -n "$SESSIONFILES" ]; then
-			set +e
+	local fn
+	for fn in $fns; do
+		local rv=0
+		. $fn || rv=$?
 
-			for SESSIONFILE in $SESSIONFILES; do
-				. $SESSIONFILE
-			done
-
-			set -e
+		if [[ ! $? ]]; then
+			echo "Failed to source fn=$fn" >&2
+			return 1
 		fi
-	fi
+	done
 }
 
-main() {
-	user_xsession_d
-
-	:
-}
-
-main "$@"
+user_xsession_d
 

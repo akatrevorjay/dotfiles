@@ -4,10 +4,16 @@ set -eo pipefail
 source ~/.config/sway/env
 
 cmd=(
-	#dbus-launch --exit-with-session
+	# ck-launch-session
+
+	# dbus-launch --sh-syntax --exit-with-session
+
 	sway
+	--my-next-gpu-wont-be-nvidia
+
 	#-d
-	#-V
+	-V
+
 	"$@"
 )
 

@@ -1,5 +1,5 @@
-include /etc/sway/security.d/*
-include /etc/sway/config.d/*
+include /usr/local/etc/sway/security.d/*
+include /usr/local/etc/sway/config.d/*
 
 output * bg ~/Pictures/Wallpaper/bg.jpg fill
 
@@ -52,6 +52,12 @@ default_border pixel 1
 focus_follows_mouse yes
 # seamless_mouse on
 mouse_warping output
+
+output DP-0 res 3440x1440 scale 1 pos 0,0
+output eDP-1 res 1920x1080 scale 1 pos 3440,0
+
+# output DP-0 res 3840x1440 rate 100 scale 1 pos 0,0
+# output eDP-1-1 res 1920x1080 rate 144 scale 1 pos 3440,0
 
 #output DP-1 res 3440x1400 scale 1 pos 0,0
 #output DP-2 disable

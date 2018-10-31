@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+cmd=(
+    i3lock-fancy
+    -f Edit-Undo-BRK
+    -d
+    -g
+    # -p
+    -n
+    -- scrot -z
+)
+
+$cmd
