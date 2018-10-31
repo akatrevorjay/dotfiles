@@ -164,6 +164,7 @@ map ZZ :suspend<cr>
 " Quit
 map <silent> <leader>q :q<cr>
 map <silent> <leader>Q :q!<cr>
+map <silent> Q :q<cr>
 
 map <silent> <m-Q><m-!> :q!<cr>
 "map <c-w> :bd<cr>
