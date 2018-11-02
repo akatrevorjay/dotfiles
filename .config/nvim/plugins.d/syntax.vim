@@ -508,6 +508,7 @@ Plug 'monte-language/monte-vim', {'for': 'monte'}
 
 Plug 'sirtaj/vim-openscad'
 
+Plug 'vhdirk/vim-cmake', {'for': ['cmake']}
 
 ""
 "" Comp

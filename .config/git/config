@@ -27,3 +27,8 @@
 	pwd = .
 	antibody = /home/trevorj/.cache/antibody
 	vim-plug = /home/trevorj/.cache/vim/plugged
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

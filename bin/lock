@@ -3,11 +3,14 @@
 cmd=(
     i3lock-fancy
     -f Edit-Undo-BRK
-    -d
-    -g
+    # -d
+    # -g
     # -p
-    -n
-    -- scrot -z
+    # -n
 )
 
-$cmd
+(( ! ${+commands[scrot]} )) \
+	|| cmd+=(-- scrot -z)
+
+exec $cmd "$@"
+
