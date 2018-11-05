@@ -39,7 +39,8 @@ case "${1:-$DE}" in
 				pasystray &
 
 				parcellite &
-				indicator-kdeconnect &
+				# indicator-kdeconnect &
+				kdeconnect-indicator &
 				#notify-proxy &
 				variety &
 

@@ -59,6 +59,7 @@ for_window [window_role="task_dialog"] floating enable
 for_window [title="GNOME Tweaks$"] floating enable
 for_window [title="Preferences$"] floating enable
 for_window [class="(?i)pavucontrol"] floating enable
+for_window [title="(?i)xpra"] floating enable
 
 for_window [class="panel"] border none floating enable sticky enable
 for_window [class="trayer"] border none floating enable sticky enable
@@ -311,7 +312,7 @@ bindsym $mod+d exec --no-startup-id $menu_apps
 bindsym $mod+Shift+d exec --no-startup-id dmenu | xargs swaymsg
 
 # passwords
-bindsym $mod+p exec pass-dmenu
+bindsym $mod+p exec passmenu
 
 # # volume controls (special keys on keyboard)
 # bindsym XF86AudioMute exec pa-adjust mute
