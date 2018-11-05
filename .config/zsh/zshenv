@@ -186,6 +186,8 @@ case ${OSTYPE:l} in
 			/usr/local/opt/coreutils/libexec/gnubin
 
 			${(@)path}
+
+			/usr/share/bcc/tools
 		)
 
 		manpath=(
