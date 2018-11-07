@@ -10,8 +10,6 @@
     font:            "Encode Sans 10";
 }
 
-configuration {
-}
 
 #window {
     anchor:     north;

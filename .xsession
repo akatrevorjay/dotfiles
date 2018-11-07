@@ -23,7 +23,7 @@ function user_xsession_d() {
 
 		if [[ ! $? ]]; then
 			echo "Failed to source fn=$fn" >&2
-			return 1
+			#return 1
 		fi
 	done
 }
