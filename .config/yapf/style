@@ -1,12 +1,12 @@
 [style]
 
-based_on_style=google
+based_on_style=pep8
 
 # yo my custom editor on my pdp-2 doesn't support line wrapping so can you make your like less optimal? sure bro
 ; default
-column_limit=80
+;column_limit=80
 ; trevorj
-;column_limit=120
+column_limit=120
 ;; disqus
 ;column_limit=130
 
@@ -40,7 +40,7 @@ allow_multiline_lambdas=True
 allow_split_before_dict_value=False
 
 # Insert a blank line before a class-level docstring.
-;blank_line_before_class_docstring=False
+blank_line_before_class_docstring=False
 
 # Insert a blank line before a 'def' or 'class' immediately nested
 # within another 'def' or 'class'. For example:
@@ -49,7 +49,7 @@ allow_split_before_dict_value=False
 #                      # <------ this blank line
 #     def method():
 #       ...
-blank_line_before_nested_class_or_def=True
+blank_line_before_nested_class_or_def=False
 
 # Do not split consecutive brackets. Only relevant when
 # dedent_closing_brackets is set. For example:
@@ -176,7 +176,7 @@ split_before_first_argument=True
 split_before_logical_operator=True
 
 # Split named assignments onto individual lines.
-;split_before_named_assigns=True
+split_before_named_assigns=True
 
 # Set to True to split list comprehensions and generators that have
 # non-trivial expressions and multiple clauses before each of these
