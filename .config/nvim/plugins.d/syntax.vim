@@ -210,7 +210,7 @@ Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'jinja'
 
 
 " Ello poppet
-Plug 'rodjek/vim-puppet', {'for': 'puppet'}
+" Plug 'rodjek/vim-puppet', {'for': 'puppet'}
 
 "
 " TOML
@@ -234,6 +234,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2'
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
+" Plug 'kannokanno/previm', {'for': ['markdown']}
 
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
@@ -249,11 +250,13 @@ Plug 'vim-scripts/httplog', {'for': ['log']}
 " Allows for python rst docstring support as well
 " A bit problematic as it's slow as balls
 Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
-Plug 'kannokanno/previm', {'for': ['markdown']}
-Plug 'okcompute/vim-python-motions', {'for': 'python'}
+" Plug 'okcompute/vim-python-motions', {'for': 'python'}
+
+" python text objects and motions
+Plug 'jeetsukumaran/vim-pythonsense', {'for': ['python']}
 
 "Plug 'hdima/python-syntax', {'for': 'python'}
-Plug 'achimnol/python-syntax', {'for': 'python'}
+" Plug 'achimnol/python-syntax', {'for': 'python'}
 " Plug 'vim-python/python-syntax', {'for': 'python'}
 
 " Jedi:
