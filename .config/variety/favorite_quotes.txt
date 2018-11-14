@@ -464,3 +464,6 @@ This person must be fired.
 "Why yes
 -- a bulletproof vest."
 %
+“A lifetime is more than sufficiently long for people to get what there is of it wrong.”
+-- Piet Hein
+%
