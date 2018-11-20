@@ -12,7 +12,7 @@ Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
 "Plug 'osyo-manga/vim-watchdogs'
 
 " GitGutter: Show git status in the gutter
-"Plug 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 
 " Quickfix-signs
 Plug 'tomtom/quickfixsigns_vim'
