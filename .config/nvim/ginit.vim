@@ -16,5 +16,7 @@ if exists('g:GtkGuiLoaded')
     call rpcnotify(1, 'Gui', 'Option', 'Cmdline', 1)
     call rpcnotify(1, 'Gui', 'FontFeatures', 'PURS, cv17')
     let g:GuiInternalClipboard = 1
+
+    " exec ':NGTransparency .5 .5'
 endif
 
