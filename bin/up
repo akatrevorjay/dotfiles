@@ -55,7 +55,7 @@ fi
 #	 :
 #fi
 
-#if [[ -n "$GOPATH" ]]; then
-#	 go get -u -v all || :
-#fi
+if (( ${+commands[go]} )) && [[ -n "$GOPATH" ]]; then
+	 go get -u -v junegunn/fzf alecthomas/chroma masterminds/glide || :
+fi
 

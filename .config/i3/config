@@ -66,6 +66,9 @@ for_window [class="trayer"] border none floating enable sticky enable
 for_window [class="stalonetray"] border none floating enable sticky enable
 for_window [class="(?i)gnome-pie"] border none floating enable sticky enable
 
+for_window [class="(?i)lighthouse"] floating enable border none sticky enable
+
+
 #
 # Status Bar:
 #

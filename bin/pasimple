@@ -13,6 +13,8 @@ start() {
 
         source=${2:-combined.monitor}
         # source=${2:-alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_8717016009X-00.iec958-stereo.monitor}
+        # source=alsa_output.usb-Creative_Technology_Ltd_Sound_Blaster_E5_8717016009X-00.iec958-stereo
+        # source=${2:-iec958:CARD=E5,DEV=0.monitor}
         record=true
 
         port=${1:-4069}

@@ -127,7 +127,7 @@ function zplugins.load-all-in {
 
 #
 # defer -- protection against things like the google cloud sdk that
-#			continue to /execute/ compini in their completion setup.
+#          continue to /execute/ compinit in their completion setup.
 #
 # Pretty simple, it just defers commands until later,
 # ~ that is, except for compinit calls, which are left to die.
@@ -148,7 +148,7 @@ function zplugins.defer.exec {
 	local ignore=""
 	if (( ${+flags[ignore]} )); then
 		# ignore these attempts to slow our roll.
-		# action='   Ignoring'
+		action='   Ignoring'
 		ignore=true
 	fi
 

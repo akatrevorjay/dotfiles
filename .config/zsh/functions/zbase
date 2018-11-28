@@ -12,7 +12,8 @@ function zlog.echo   {
 	# caller=${caller/$ZSH_ARGZERO/__main__}
 	caller=${caller/$HOME/\~}
 
-	printf "%s %s @%s $fmt #$level\n" "$date" "${ZSH_ARGZERO}[$$]" "$caller" "${@:3}" >&2;
+	printf "%s %s @%s $fmt #$level\n" "$date" "${ZSH_ARGZERO}[$$]" "$caller" "${@:3}" >&2 \
+		|| printf "%s %s @%s Bad logging fmt: %s [%s] #$level\n" "$date" "${ZSH_ARGZERO}[$$]" "$caller" "$fmt" "${*:3}"
 }
 
 function debug          { [[ -z "$DEBUG" ]] || zlog.echo DEBUG "$@"; }
