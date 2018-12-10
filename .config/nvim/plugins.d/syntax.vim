@@ -234,7 +234,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2'
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
-" Plug 'kannokanno/previm', {'for': ['markdown']}
+Plug 'kannokanno/previm', {'for': ['markdown']}
 
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 

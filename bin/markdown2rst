@@ -1,0 +1,14 @@
+#!/bin/zsh
+set -eo pipefail
+
+usage() {
+}
+
+case $# in
+    0) usage >&2; exit 1 ;;
+    2) set -- --output=$2 $1 ;;
+esac
+
+set -xv
+pandoc --from=markdown --to=rst "$@"
+
