@@ -139,7 +139,7 @@ compile() {
 }
 
 main() {
-	zparseopts -D -- h=o_help -o_help=o_help i=o_install
+	zparseopts -D -- h=o_help -help=o_help i=o_install
 
 	if [ -n "$o_help" ]; then
 		usage

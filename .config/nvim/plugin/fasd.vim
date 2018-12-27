@@ -1,10 +1,14 @@
 "" Z -- cd to recent / frequent directories
 command! -nargs=* Z :call Z(<f-args>)
 function! Z(...)
-  let cmd = 'fasd -d -e printf'
+  let cmd_args = ''
   for arg in a:000
-    let cmd = cmd . ' ' . arg
+    let cmd_args = cmd_args . ' ' . shellescape(arg)
   endfor
+
+  let cmd = 'zsh -i -c "setopt nointeractive; fasd -d -e printf' . cmd_args . '"'
+  echo cmd
+
   let path = system(cmd)
   if isdirectory(path)
     echo path
@@ -12,23 +16,3 @@ function! Z(...)
   endif
 endfunction
 
-"" Z -- cd to recent / frequent directories
-"" - From amiorin/vim-fasd
-"command! -nargs=* Z :call Z(<f-args>)
-"function! Z(...)
-"  if a:0 == 0
-"    let list = split(system('fasd -dlR'), '\n')
-"    let path = tlib#input#List('s', 'Select one', list)
-"  else
-"    let cmd = 'fasd -d -e printf'
-"    for arg in a:000
-"      let cmd = cmd . ' ' . arg
-"    endfor
-"    let path = system(cmd)
-"  endif
-"  if isdirectory(path)
-"    echo path
-"    exec 'cd ' . path
-"    exec 'NERDTree .'
-"  endif
-"endfunction

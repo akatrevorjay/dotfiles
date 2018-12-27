@@ -40,4 +40,6 @@ bindkey -r '^B'
 (( ! ${+functions[zbrowse]} )) || \
 	bindkey '^V' zbrowse
 
+: ${BAT_THEME:="Monokai Extended"}
+export BAT_THEME
 
