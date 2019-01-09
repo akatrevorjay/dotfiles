@@ -6,7 +6,7 @@ yapf() {
 
     local yapf
     for yapf in $try; do
-        if (( ${+commands[$yapf]} )); then
+        if [[ ! ${+commands[$yapf]} ]]; then
             $yapf "$@"
             return
         fi
