@@ -30,6 +30,9 @@ au BufRead,BufNewFile *.rasi setf css
 
 au BufRead,BufNewFile Jenkinsfile setf groovy
 
+au BufRead,BufNewFile *ledger.journal setf ledger
+au BufRead,BufNewFile *.ledger setf ledger
+
 "" Readmes
 "au BufRead,BufNewFile readme* set filetype=markdown
 "au BufRead,BufNewFile install* set filetype=markdown

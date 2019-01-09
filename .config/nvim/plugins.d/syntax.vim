@@ -107,6 +107,9 @@ let g:polyglot_disabled = [
 
 "Plug 'spacewander/openresty-vim', {'for': 'nginx'}
 
+" Ledger
+Plug 'ledger/vim-ledger', {'for': 'ledger'}
+
 " GPG
 Plug 'jamessan/vim-gnupg', {'for': 'gpg'}
 

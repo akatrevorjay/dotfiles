@@ -11,10 +11,12 @@ let g:loaded_ginit = 1
 
 " nvim-gtk
 if exists('g:GtkGuiLoaded')
-    call rpcnotify(1, 'Gui', 'Font', 'FuraMono Nerd Font Regular 10')
+    " call rpcnotify(1, 'Gui', 'Font', 'FuraMono Nerd Font Regular 10')
+    " call rpcnotify(1, 'Gui', 'Font', 'FuraMono Nerd Font 10')
+    call rpcnotify(1, 'Gui', 'Font', 'Iosevka 11')
     " Anonymice Nerd Font 10
     call rpcnotify(1, 'Gui', 'Option', 'Cmdline', 1)
-    call rpcnotify(1, 'Gui', 'FontFeatures', 'PURS, cv17')
+    call rpcnotify(1, 'Gui', 'FontFeatures', 'XV00, cv17, ss08, cv23, cv37, cv49, cv39, cv28, cv14')
     let g:GuiInternalClipboard = 1
 
     " exec ':NGTransparency .5 .5'

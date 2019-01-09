@@ -11,5 +11,5 @@ for where in ./ ../ ../../ ../../../ ../../../../ ../../../../../; do
         export QUILT_PATCHES=debian/patches
         break
     fi
-done<Paste>
+done
 

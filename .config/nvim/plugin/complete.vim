@@ -79,9 +79,9 @@ if has('nvim')
     "let g:deoplete#omni#functions = {}
     "let g:deoplete#omni#functions.ruby = 'rubycomplete#Complete'
     "let g:deoplete#omni#functions.javascript = [
-    "    \ 'tern#Complete',
-    "    \ 'jspc#omni'
-    "    \]
+    "	 \ 'tern#Complete',
+    "	 \ 'jspc#omni'
+    "	 \]
     "let g:deoplete#omni#functions.nim = 'omni#nim'
 "
     "let g:deoplete#omni#input_patterns = {}
@@ -112,7 +112,7 @@ if has('nvim')
     let g:deoplete#sources#python = ['jedi', 'file', 'neosnippets', 'ultisnips']
     "let g:deoplete#sources#vim = ['necovim', 'neco', 'vim', 'neosnippets']
 
-    "let g:deoplete#sources._    = ['buffer', 'file', 'ultisnips']
+    "let g:deoplete#sources._	 = ['buffer', 'file', 'ultisnips']
     "let g:deoplete#sources.ruby = ['buffer', 'member', 'file', 'ultisnips']
     "let g:deoplete#sources.vim  = ['buffer', 'member', 'file', 'ultisnips']
     "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
@@ -129,8 +129,8 @@ if has('nvim')
     " let g:deoplete#keyword_patterns.gitcommit = '.+'
     "
     " call deoplete#util#set_pattern(
-    "   \ g:deoplete#omni#input_patterns,
-    "   \ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
+    "	\ g:deoplete#omni#input_patterns,
+    "	\ 'gitcommit', [g:deoplete#keyword_patterns.gitcommit])
     "
     "let g:deoplete#max_menu_width = 80
     let g:deoplete#max_menu_width = 180
@@ -152,9 +152,26 @@ if has('nvim')
     endif
  
     " clang
-    let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/6.0'
-    let g:deoplete#sources#clang#libclang_path = '/usr/lib/llvm-6.0/lib/libclang.so.1'
-    " let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
+    for s:llvm_version in ['7', '7.0', '6', '6.0', '5', '5.0', '8', '8.0']
+      let s:clang_dir = '/usr/lib/clang/'.s:llvm_version
+      let s:llvm_dir = '/usr/lib/llvm-'.s:llvm_version
+
+      if isdirectory(s:clang_dir) && isdirectory(s:llvm_dir)
+        echomsg 'Found llvm @ ' . s:llvm_dir . ' and clang @ ' . s:clang_dir . ' with version=' . s:llvm_version
+
+        let g:llvm_version = s:llvm_version
+        let g:llvm_dir = s:llvm_dir
+        let g:clang_dir = s:clang_dir
+
+        break
+      endif
+    endfor
+
+    if !empty(g:llvm_dir)
+      let g:deoplete#sources#clang#clang_header = g:clang_dir
+      let g:deoplete#sources#clang#libclang_path = g:llvm_dir . '/lib/libclang.so.1'
+      " let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path
+    endif
 
     let g:deoplete#sources#clang#clang_complete_database = '.'
     let g:deoplete#sources#clang#std#c = 'c11'
@@ -209,8 +226,8 @@ if has('nvim')
 
     " FakeGIR cache for completion
     " let g:deoplete#sources#jedi#extra_path = [
-    "     \ expand('~/.cache/fakegir'),
-    "     \ ]
+    "	  \ expand('~/.cache/fakegir'),
+    "	  \ ]
 
     " Remove jedi doc buffer automagically
     "autocmd BufWinEnter '__doc__' setlocal bufhidden=delete
@@ -303,19 +320,19 @@ elseif exists('g:loaded_ycm')
     let g:ycm_goto_buffer_command = 'horizontal-split'
 
     "let g:ycm_semantic_triggers =  {
-    "      \   'python': ['.', ',', '(', ')'],
-    "      \   'c' : ['->', '.'],
-    "      \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
-    "      \             're!\[.*\]\s'],
-    "      \   'ocaml' : ['.', '#'],
-    "      \   'cpp,objcpp' : ['->', '.', '::'],
-    "      \   'perl' : ['->'],
-    "      \   'php' : ['->', '::'],
-    "      \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
-    "      \   'ruby' : ['.', '::'],
-    "      \   'lua' : ['.', ':'],
-    "      \   'erlang' : [':'],
-    "      \ }
+    "	   \   'python': ['.', ',', '(', ')'],
+    "	   \   'c' : ['->', '.'],
+    "	   \   'objc' : ['->', '.', 're!\[[_a-zA-Z]+\w*\s', 're!^\s*[^\W\d]\w*\s',
+    "	   \		 're!\[.*\]\s'],
+    "	   \   'ocaml' : ['.', '#'],
+    "	   \   'cpp,objcpp' : ['->', '.', '::'],
+    "	   \   'perl' : ['->'],
+    "	   \   'php' : ['->', '::'],
+    "	   \   'cs,java,javascript,typescript,d,perl6,scala,vb,elixir,go' : ['.'],
+    "	   \   'ruby' : ['.', '::'],
+    "	   \   'lua' : ['.', ':'],
+    "	   \   'erlang' : [':'],
+    "	   \ }
 
     "YCM comes with support for UltiSnips (snippet suggestions in the popup menu),
     "but you'll have to change the UltiSnips mappings. See ':h UltiSnips-triggers'
@@ -378,13 +395,13 @@ if !exists('g:loaded_deoplete')
     " Reload Jedi when pyenv changes
     if exists('g:loaded_jedi') && jedi#init_python()
       function! s:jedi_auto_force_py_version() abort
-        let major_version = pyenv#python#get_internal_major_version()
-        call jedi#force_py_version(major_version)
+	let major_version = pyenv#python#get_internal_major_version()
+	call jedi#force_py_version(major_version)
       endfunction
       augroup vim-pyenv-custom-augroup
-        autocmd! *
-        autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
-        autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
+	autocmd! *
+	autocmd User vim-pyenv-activate-post   call s:jedi_auto_force_py_version()
+	autocmd User vim-pyenv-deactivate-post call s:jedi_auto_force_py_version()
       augroup END
   endif
     " }}}
