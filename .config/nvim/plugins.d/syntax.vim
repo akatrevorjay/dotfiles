@@ -237,7 +237,7 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2'
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
 " Plug 'tpope/vim-markdown', {'for': 'markdown'}
-" Plug 'kannokanno/previm', {'for': ['markdown']}
+Plug 'kannokanno/previm', {'for': ['markdown']}
 
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
@@ -349,7 +349,7 @@ let c_no_curly_error=1
 
 
 " Plug 'JBakamovic/cxxd-vim', {'for': ['c', 'cpp', 'objc', 'objcpp']}
-Plug 'Chilledheart/vim-clangd', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+" Plug 'Chilledheart/vim-clangd', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 " Default searches PATH
 " let g:clangd#clangd_executable = '/usr/bin/clangd'
 let g:clangd#codecomplete_timeout = 10  " def 100ms

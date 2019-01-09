@@ -1,47 +1,43 @@
 #!/usr/bin/env zsh
 
 if [[ -n "$NAME" ]]; then
-    NAME="$(git config --get user.name)"
+	NAME="$(git config --get user.name)"
 fi
 
 if [[ -n "$EMAIL" ]]; then
-    EMAIL="$(git config --get user.email)"
+	EMAIL="$(git config --get user.email)"
 fi
 
-if [ $# -ne 2 ]; then
-    cat <<-EOF
-    Replaces found authors with an oldism (email or name match) with what it should be.
+if [ $# -gt 2 ] || [ $# -lt 1 ]; then
+	cat <<-EOF
+	Replaces found authors with an oldism (email or name match) with what it should be.
 
-    Use NAME and EMAIL env vars to specify what it should be set to.
-    Defaults to 'user.email' and 'user.name' from git config.
-      Currently: $NAME $EMAIL
+	Use NAME and EMAIL env vars to specify what it should be set to.
+	Defaults to 'user.email' and 'user.name' from git config.
+	  Currently: $NAME $EMAIL
 
-    Usage:
-      $0 OLDISM [NEW_EMAIL_AND_NAME]
-      eg:
-        # Reset author with Email match
-        $0 'oldemail@old.com'
-        # Reset author with name match
-        $0 'Old Name'
-    EOF
-    exit 1
+	Usage:
+	  $0 OLDISM [NEW_EMAIL_AND_NAME]
+	  eg:
+		# Reset author with Email match
+		$0 'oldemail@old.com'
+		# Reset author with name match
+		$0 'Old Name'
+	EOF
+	exit 1
 fi
 
-for oldism in "$@"; do
-    export oldism
+for OLDISM in "$@"; do
+	git filter-branch --env-filter '
+		if [ "$GIT_COMMITTER_NAME" = "$OLDISM" ] || [ "$GIT_COMMITTER_EMAIL" = "$OLDISM" ]; then
+			export GIT_COMMITTER_NAME="$CORRECT_NAME"
+			export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+		fi
 
-    git filter-branch --env-filter '
-        if [ "$GIT_COMMITTER_NAME" = "$OLDISM" ] || \
-           [ "$GIT_COMMITTER_EMAIL" = "$OLDISM" ]
-        then
-            export GIT_COMMITTER_NAME="$CORRECT_NAME"
-            export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
-        fi
-        if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-        then
-            export GIT_AUTHOR_NAME="$CORRECT_NAME"
-            export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-        fi
-        ' --tag-name-filter cat -- --branches --tags
+		if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]; then
+			export GIT_AUTHOR_NAME="$CORRECT_NAME"
+			export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+		fi
+		' --tag-name-filter cat -- --branches --tags
 done
 

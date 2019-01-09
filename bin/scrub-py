@@ -1,0 +1,45 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+yapf() {
+    local try=(yapf3 yapf)
+
+    local yapf
+    for yapf in $try; do
+        if (( ${+commands[$yapf]} )); then
+            $yapf "$@"
+            return
+        fi
+    done
+}
+
+main() {
+    local ok=()
+    local failed=()
+    local -A rvs=()
+
+    rec-rv() {
+        local key=$1; shift
+        [[ $1 != -- ]] || shift
+
+        local rv=0
+        "$@" || rv=$?
+
+        rvs+=("$key" $rv)
+
+        return $rv
+    }
+
+    local fn
+    for fn in "$@"; do
+        rvs=()
+
+        rec-rv yapf -- yapf -i $fn
+        rec-rv isort -- isort $fn
+
+        declare -p rvs
+    done
+}
+
+main "$@"
+

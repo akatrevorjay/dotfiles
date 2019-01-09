@@ -177,7 +177,7 @@ let g:prosession_tmux_title = 1
 " nmap <leader>q <plug>(QuickScopeToggle)
 " vmap <leader>q <plug>(QuickScopeToggle)
 
-Plug 'git-time-metric/gtm-vim-plugin'
+Plug 'git-time-metric/gtm-vim-plugin', {'if': executable('gtm')}
 
 Plug 'raghur/vim-ghost', {'on': 'GhostStart', 'do': ':GhostInstall'}
 
