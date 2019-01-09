@@ -6,8 +6,8 @@ yapf() {
 
     local yapf
     for yapf in $try; do
-        if [[ ! ${+commands[$yapf]} ]]; then
-            $yapf "$@"
+        if (( ${+commands[$yapf]} )); then
+            command $yapf "$@"
             return
         fi
     done
@@ -34,6 +34,7 @@ main() {
     for fn in "$@"; do
         rvs=()
 
+        setopt -L verbose xtrace
         rec-rv yapf -- yapf -i $fn
         rec-rv isort -- isort $fn
 
