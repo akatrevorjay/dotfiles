@@ -346,7 +346,7 @@ let c_no_curly_error=1
 
 
 " Plug 'JBakamovic/cxxd-vim', {'for': ['c', 'cpp', 'objc', 'objcpp']}
-Plug 'Chilledheart/vim-clangd', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+" Plug 'Chilledheart/vim-clangd', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 " Default searches PATH
 " let g:clangd#clangd_executable = '/usr/bin/clangd'
 let g:clangd#codecomplete_timeout = 10  " def 100ms

@@ -28,3 +28,5 @@ Plug 'embear/vim-localvimrc'
 
 Plug 'thinca/vim-prettyprint'
 
+Plug 'gyim/vim-boxdraw'
+
