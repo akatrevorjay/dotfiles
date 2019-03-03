@@ -336,4 +336,6 @@
 
     gtm = "!f() { gtm init; }; f"
 
+    fetch-prs = fetch origin +refs/heads/*:refs/remotes/upstream/* +refs/pull/*/head:refs/remotes/origin/pr/*
+
 ; vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

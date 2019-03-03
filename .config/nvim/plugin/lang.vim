@@ -104,7 +104,7 @@ let g:is_bash = 1
 let readline_has_bash = 1
 
 " Dockerfile:
-Gautocmd BufRead,BufNewFile *.dockerfile,Dockerfile.* set filetype=dockerfile
+" Gautocmd BufRead,BufNewFile *.dockerfile,Dockerfile.* set filetype=dockerfile
 "Gautocmdft dockerfile setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4 nocindent
 Gautocmdft dockerfile setlocal tabstop=4 softtabstop=4 shiftwidth=4 nocindent
 

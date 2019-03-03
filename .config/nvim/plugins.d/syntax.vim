@@ -92,6 +92,7 @@
 " yard (syntax)
 Plug 'sheerun/vim-polyglot'
 let g:polyglot_disabled = [
+    \ 'dockerfile',
     \ 'python',
     \ 'go',
     \ 'javascript',
