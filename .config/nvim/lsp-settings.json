@@ -1,0 +1,9 @@
+{
+    "pyls": {
+        "plugins": {
+            "jedi_completion": {
+                "include_params": false
+            }
+        }
+    }
+}

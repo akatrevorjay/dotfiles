@@ -4,9 +4,9 @@
 "" viml linting
 "Plug 'todesking/vint-syntastic'
 
-" ALE: Async Lint Engine
-Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
-"let g:ale_emit_conflict_warnings = 0
+" " ALE: Async Lint Engine
+" Plug 'w0rp/ale', {'do': ':UpdateRemotePlugins'}
+" "let g:ale_emit_conflict_warnings = 0
 
 " Other async lint engine
 "Plug 'osyo-manga/vim-watchdogs'
