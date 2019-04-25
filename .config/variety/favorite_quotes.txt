@@ -506,3 +506,12 @@ This person must be fired.
 “Except as its clown and jester, society does not encourage individuality, and the State abhors it.”
 -- Bernard Berenson
 %
+“Any inaccuracies in this index may be explained by the fact that it has been sorted with the help of a computer.”
+-- Donald Knuth Sorting and Searching
+%
+“In the end, everything is a gag.”
+-- Charlie Chaplin (1889-1977)
+%
+“I did not know how to say goodbye. It was harder still, when I refused to say it.”
+-- Native American saying
+%
