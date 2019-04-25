@@ -191,17 +191,21 @@ colorscheme moonfly
 " let g:airline_theme = 'breezy'
 " colorscheme colorsbox-stbright
 
-let g:airline_theme = 'vorange'
-let g:airline_theme = 'ayu_mirage'
-colorscheme chroma
+" let g:airline_theme = 'vorange'
+" let g:airline_theme = 'ayu_mirage'
+" colorscheme chroma
 
+<<<<<<< HEAD
+let g:airline_theme = 'ayu_mirage'
+" colorscheme ayu
+
+let g:airline_theme = 'jet'
+colorscheme distill
+let g:colors_name = 'distill'
+=======
 " let g:airline_theme = 'ayu_mirage'
 " colorscheme ayu
-"
-" let g:airline_theme = 'jet'
-" let g:airline_theme = 'atomic'
-" colorscheme distill
-" let g:colors_name = 'distill'
+>>>>>>> 5a98d962ea851e4653e185683bd4b5e2be145c1e
 
 " let g:airline_theme = 'badcat'
 " colorscheme badcat3

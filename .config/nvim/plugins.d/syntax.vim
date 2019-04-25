@@ -237,8 +237,9 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2'
 
 "" Markdown
 "Plug 'plasticboy/vim-markdown'
-" Plug 'tpope/vim-markdown', {'for': 'markdown'}
-Plug 'kannokanno/previm', {'for': ['markdown']}
+Plug 'tpope/vim-markdown', {'for': 'markdown'}
+" Plug 'kannokanno/previm', {'for': ['markdown']}
+let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript', 'py=python', 'python', 'sh', 'zsh', 'vim', 'viml=vim', 'html', 'yaml', 'json']
 
 Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
@@ -527,56 +528,14 @@ if has('nvim')
         Plug 'autozimu/LanguageClient-neovim',
                     \{ 'do': 'make build && ln -sfvr target/debug/languageclient bin/languageclient'
                     \, 'branch': 'next' }
-    " else
-    "     Plug 'autozimu/LanguageClient-neovim',
-    "                 \{ 'do': ':UpdateRemotePlugins'
-    "                 \, 'branch': 'master' }
     endif
 
-    " Required for operations modifying multiple buffers like rename.
-    set hidden
+    " viml
+    Plug 'Shougo/neco-vim', {'for': 'vim'}
+    Plug 'Shougo/neco-vim'
 
-    let g:LanguageClient_serverCommands = {
-        \ 'python': ['pyls'],
-        \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
-        \ 'sh': ['bash-language-server', 'start'],
-        \ 'css': ['css-languageserver', '--stdio'],
-        \ 'glsl': ['glslls', '--stdin'],
-        \ 'yaml': ['yamlls', '--stdio'],
-        \ 'javascript': ['flow-language-server', '--stdio'],
-        \ 'javascript.jsx': ['flow-language-server', '--stdio'],
-        \ 'vue': ['vls']
-        \ }
-
-        " \ 'jsx': ['flow-language-server', '--stdio'],
-        " \ 'javascript': ['nodels'],
-        " \ 'javascript.jsx': ['nodels'],
-        " \ 'javascript': ['javascript-typescript-stdio'],
-        " \ 'javascript.jsx': ['javascript-typescript-stdio'],
-        " \ 'javascript': ['tcp://127.0.0.1:2089'],
-
-    " let g:LanguageClient_changeThrottle = 0.1
-    " let g:LanguageClient_selectionUI = 'fzf'
-    " let g:LanguageClient_selectionUI = 'location-list'
-
-    let g:LanguageClient_rootMarkers = {
-        \ 'python': ['setup.py', 'setup.cfg'],
-        \ 'rust': ['Cargo.toml'],
-        \ 'javascript': ['project.json', 'manifest.json', 'package.json'],
-        \ 'cpp': ['CMakeLists.txt'],
-        \ }
-
-    " let g:LanguageClient_waitOutputTimeout = 20
-
-    augroup LanguageClient_config
-        autocmd!
-        autocmd User LanguageClientStarted setlocal signcolumn=yes
-        autocmd User LanguageClientStopped setlocal signcolumn=auto
-    augroup END
-
-    nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-    nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-    nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+    " Plug 'neoclide/coc-neco'
+    " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
     Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
     let g:localvimrc_sandbox = 0
@@ -612,12 +571,6 @@ if has('nvim')
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 
-    " neco-syntax: "syntax" source (for more than just viml now)
-    Plug 'Shougo/neco-syntax'
-
-    " viml
-    Plug 'Shougo/neco-vim', {'for': 'vim'}
-
     " deoplete-d: "d" source for D language
     "Plug 'landaire/deoplete-d', {'for': 'd'}
 
@@ -629,7 +582,7 @@ if has('nvim')
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
-"
+
     "" deoplete-ruby: "ruby" source for Ruby language
     "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 

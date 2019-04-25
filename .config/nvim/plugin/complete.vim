@@ -1,3 +1,7 @@
+" if !exists('g:lsohtneshote')
+"   finish
+" endif
+
 " Completion:
 
 " Wild: completion options

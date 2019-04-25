@@ -1,6 +1,6 @@
 "" neosnippet
-"Plug 'Shougo/neosnippet.vim'
-"Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
 
 Plug 'SirVer/ultisnips'
 

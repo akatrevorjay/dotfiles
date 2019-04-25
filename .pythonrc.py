@@ -1,4 +1,19 @@
+import collections
+import csv
+import functools
+import json
 import logging
+import operator
+import os
+import pprint
+import re
+import sys
+import types
+import warnings
+from pprint import pformat, pprint
+
+import six
+import yaml
 
 log = logging.getLogger(__name__)
 
@@ -26,22 +41,7 @@ try:
 except ImportError:
     pass
 
-import collections
-import six
-import sys
-import types
-import os
-import warnings
-import pprint
-import collections
-import functools
-import operator
-import json
-import yaml
-import csv
-import re
 
-from pprint import pprint, pformat
 try:
     import prettyprinter
     from prettyprinter import pprint, register_pretty, pretty_call
@@ -73,6 +73,9 @@ if six.PY3:
 
 try:
     import pytutils
+
+    import pytutils.log
+
     from pytutils.files import *
     from pytutils.iters import *
     from pytutils.lazy import *
@@ -92,14 +95,12 @@ try:
 except ImportError:
     pass
 
+
 def is_ipython():
     base = os.path.basename(sys.argv[0])
     print(base)
 
-    ret = any([
-        base.startswith(prefix)
-        for prefix in ['ipython', 'jupyter', 'ipy', 'jupy']
-    ])
+    ret = any([base.startswith(prefix) for prefix in ['ipython', 'jupyter', 'ipy', 'jupy']])
 
     return ret
 
@@ -107,21 +108,22 @@ def is_ipython():
 def is_python():
     base = os.path.basename(sys.argv[0])
 
-    ret = any([
-        base.startswith(prefix)
-        for prefix in ['python']
-    ])
+    ret = any([base.startswith(prefix) for prefix in ['python']])
 
     return ret
+
 
 IS_PYTHON = is_python()
 IS_IPYTHON = not IS_PYTHON
 
 
+def __anyrc__():
+    # logging.basicConfig(level=logging.DEBUG)
+    pytutils.log.configure()
+
+
 def __pyrc__():
     """Python shell init"""
-
-    # logging.basicConfig(level=logging.DEBUG)
 
     def enable_history(history_file='~/.python_history'):
         """History."""
@@ -139,10 +141,9 @@ def __pyrc__():
             except IOError:
                 log.exception("Failed to read %r: %s" % history)
 
-        readline.set_history_length(1024 * 9)
+        readline.set_history_length(1024*9)
 
         def write_history(history):
-
             def wrapped():
                 import readline
                 readline.write_history_file(history)
