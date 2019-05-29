@@ -48,7 +48,7 @@ if [[ -n $vim ]]; then
 fi
 
 if (( ${+commands[gcloud]} )); then
-	gcloud components update
+	gcloud components update || :  # This can fail if it's apt installed
 fi
 
 #if [[ ${+commands[tmux]} ]]; then
