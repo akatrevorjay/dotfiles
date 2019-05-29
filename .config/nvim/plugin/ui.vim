@@ -160,7 +160,7 @@ let g:PaperColor_Dark_Override = { 'background' : '#000000', 'cursorline' : '#ab
 "     colorscheme harlequin
 "endif
 
-colorscheme argonaut
+" colorscheme argonaut
 
 let g:deepspace_italics = 1
 let g:badwolf_css_props_highlight = 1
@@ -191,9 +191,9 @@ colorscheme moonfly
 " let g:airline_theme = 'breezy'
 " colorscheme colorsbox-stbright
 
-let g:airline_theme = 'vorange'
-let g:airline_theme = 'ayu_mirage'
-colorscheme chroma
+" let g:airline_theme = 'vorange'
+" let g:airline_theme = 'ayu_mirage'
+" colorscheme chroma
 
 " let g:airline_theme = 'ayu_mirage'
 " colorscheme ayu

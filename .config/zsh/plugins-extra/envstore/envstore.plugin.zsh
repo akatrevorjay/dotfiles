@@ -1,4 +1,7 @@
-(( ${+commands[envstore]} )) || return
+if ! (( ${+commands[envstore]} )); then
+    echo "[envstore] not found in path." >&2
+    return
+fi
 
 : ${ENVSTORE_FILE:=$HOME/.envstorerc}
 export ENVSTORE_FILE

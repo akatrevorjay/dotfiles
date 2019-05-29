@@ -5,8 +5,8 @@
 # cmd="WLR_DRM_DEVICES=card$val sway"
 
 # first card is for rendering, second gets buffers copied to it for it's monitors.
-export WLR_DRM_DEVICES=card1:card0
-# export WLR_DRM_DEVICE=card1
+# export WLR_DRM_DEVICES=card1:card0
+export WLR_DRM_DEVICE=card1
 
 
 # #
@@ -28,9 +28,9 @@ export WLR_DRM_DEVICES=card1:card0
 # CLUTTER_BACKEND=wayland
 # SDL_VIDEODRIVER=wayland
 
-export QT_QPA_PLATFORM=wayland
-# Qt will also draw client-side decorations for all windows, disable that:
-export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+# export QT_QPA_PLATFORM=wayland
+# # Qt will also draw client-side decorations for all windows, disable that:
+# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
 
 #
 # # or say wayland_shm
@@ -49,16 +49,16 @@ SWAY_CURSOR_SIZE=48
 
 export SWAY_CURSOR_THEME SWAY_CURSOR_SIZE
 
-#XKB_DEFAULT_RULES=evdev
-#XKB_DEFAULT_MODEL=apple
-# XKB_DEFAULT_MODEL=pc101
-XKB_DEFAULT_MODEL=pc104
-XKB_DEFAULT_LAYOUT=us
-XKB_DEFAULT_VARIANT=workman
-#XKB_DEFAULT_OPTIONS='lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle'
-XKB_DEFAULT_OPTIONS='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,grp_led:caps,compose:menu,terminate:ctrl_alt_bksp'
+# #XKB_DEFAULT_RULES=evdev
+# #XKB_DEFAULT_MODEL=apple
+# # XKB_DEFAULT_MODEL=pc101
+# XKB_DEFAULT_MODEL=pc104
+# XKB_DEFAULT_LAYOUT=us
+# XKB_DEFAULT_VARIANT=workman
+# #XKB_DEFAULT_OPTIONS='lv5:caps,switch lock.misc:extend,compose:menu,grp:shifts_toggle'
+# XKB_DEFAULT_OPTIONS='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,grp_led:caps,compose:menu,terminate:ctrl_alt_bksp'
 
-export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTIONS XKB_DEFAULT_VARIANT
+# export XKB_DEFAULT_RULES XKB_DEFAULT_MODEL XKB_DEFAULT_LAYOUT XKB_DEFAULT_OPTIONS XKB_DEFAULT_VARIANT
 
 
 # https://wiki.archlinux.org/index.php/ATI#Dynamic_power_management

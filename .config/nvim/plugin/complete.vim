@@ -122,9 +122,13 @@ if has('nvim')
     "let g:deoplete#sources.css  = ['buffer', 'member', 'file', 'omni', 'ultisnips']
     "let g:deoplete#sources.scss = ['buffer', 'member', 'file', 'omni', 'ultisnips']
 
+    " lsp
+    " call deoplete#custom#source('LanguageClient',
+    "       \ 'min_pattern_length',
+    "       \ 2)
+
     " Add it as a deoplete source:
     "
-    " let g:deoplete#sources = {}
     " let g:deoplete#sources.gitcommit=['github']
     "
     " Deoplete also needs a little configuration:

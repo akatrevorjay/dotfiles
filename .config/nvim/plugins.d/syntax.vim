@@ -96,6 +96,7 @@ let g:polyglot_disabled = [
     \ 'python',
     \ 'go',
     \ 'javascript',
+    \ 'latex',
     \ 'markdown',
     \ 'css',
     \ 'json',
@@ -105,6 +106,15 @@ let g:polyglot_disabled = [
     "\ 'nim',
     "\ 'dart',
     "\ 'typescript',
+
+" LaTeX
+Plug 'lervag/vimtex'
+
+let g:tex_flavor = 'latex'
+
+if has('nvim')
+    let g:vimtex_compiler_progname = 'nvr'
+endif
 
 "Plug 'spacewander/openresty-vim', {'for': 'nginx'}
 
@@ -557,19 +567,22 @@ if has('nvim')
     " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 
     " deoplete-jedi: "jedi" source for Python
-    Plug 'zchee/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
+    Plug 'deoplete-plugins/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
 
     " deoplete-docker
-    " Plug 'zchee/deoplete-docker', {'for': 'dockerfile'}
+    " Plug 'deoplete-plugins/deoplete-docker', {'for': 'dockerfile'}
 
     " Zsh completion
-    Plug 'zchee/deoplete-zsh', {'for': ['zsh', 'sh']}
+    Plug 'deoplete-plugins/deoplete-zsh', {'for': ['zsh', 'sh']}
 
     " deoplete-go: "go" source for Go
-    Plug 'zchee/deoplete-go', {'for': ['go', 'gotexttmpl', 'gohtmltmpl']}
+    " Plug 'deoplete-plugins/deoplete-go', {
+    "             \ 'for': ['go', 'gotexttmpl', 'gohtmltmpl'],
+    "             \ 'do': 'make'
+    "             \ }
 
     "" deoplete-ruby: "ruby" source for Ruby language
-    "Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
+    Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 
     " deoplete-d: "d" source for D language
     "Plug 'landaire/deoplete-d', {'for': 'd'}
@@ -578,7 +591,11 @@ if has('nvim')
     Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
 
     " deoplete-clang: "clang" source for C/C++
-    Plug 'zchee/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+    Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+
+    Plug 'deoplete-plugins/deoplete-tag'
+    Plug 'deoplete-plugins/deoplete-asm'
+    Plug 'deoplete-plugins/deoplete-dictionary'
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}

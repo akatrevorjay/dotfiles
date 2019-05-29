@@ -7,7 +7,8 @@ function gnome-settings-daemon {
 	else
 		for i in /usr/lib/gnome-settings-daemon/gsd*(*); do
 			case $i in
-				*-locate-pointer) continue ;;
+				*-locate-pointer|*-xsettings)
+					continue ;;
 			esac
 
 			killall -u $USER ${i:?} || :

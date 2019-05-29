@@ -30,3 +30,5 @@ Plug 'thinca/vim-prettyprint'
 
 Plug 'gyim/vim-boxdraw'
 
+Plug 'floobits/floobits-neovim'
+

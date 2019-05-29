@@ -8,7 +8,8 @@ case "${1:-$DE}" in
 
 		## xsettings and related
 		# xsettingsd &
-		gsd-launch &
+		xfsettingsd &
+		# gsd-launch &
 		#kdeinit5 &
 
 		# because gkd is not started with all components as you'd expect...

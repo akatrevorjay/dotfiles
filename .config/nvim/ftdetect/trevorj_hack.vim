@@ -33,6 +33,9 @@ au BufRead,BufNewFile Jenkinsfile setf groovy
 au BufRead,BufNewFile *ledger.journal setf ledger
 au BufRead,BufNewFile *.ledger setf ledger
 
+au BufRead,BufNewFile *.env* setf sh
+
+
 "" Readmes
 "au BufRead,BufNewFile readme* set filetype=markdown
 "au BufRead,BufNewFile install* set filetype=markdown
