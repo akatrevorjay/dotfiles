@@ -4,12 +4,19 @@ set -eo pipefail
 self=${0:t}
 self_bin=${self%-*}
 
+: ${GOROOT_ROOT:=/usr/lib}
+
+goroots=($GOROOT_ROOT/go-*(/))
+latest_goroot=${goroots[-1]}
+latest_gover=${${latest_goroot:t}#go-}
+
 gover=${self##*-}
 case $gover in
-    $self) gover=1.12 ;;
+    $self) gover=$latest_gover ;;
 esac
 
-export GOROOT=/usr/lib/go-$gover
+export GOROOT=$GOROOT_ROOT/go-$gover
+
 export path=($GOROOT/bin $path)
 
 if [[ ! -d $GOROOT ]]; then
