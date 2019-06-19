@@ -155,7 +155,7 @@ if has('nvim')
     " Plug $GOPATH.'/src/github.com/zchee/nvim-go',
     "             \{ 'for': 'go', 'do': 'make' }
 else
-    Plug 'fatih/vim-go', {'for': 'go'}
+    " Plug 'fatih/vim-go', {'for': 'go'}
 endif
 
 "" Clang

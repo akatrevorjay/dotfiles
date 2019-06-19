@@ -547,3 +547,6 @@ Jenkinson's Law: It won't work.
 “Early to rise, Early to bed, Makes a man healthy but socially dead.”
 -- The Warner Brothers (Animaniacs)
 %
+“Part of the inhumanity of the computer is that, once it is competently programmed and working smoothly, it is completely honest.”
+-- Isaac Asimov
+%

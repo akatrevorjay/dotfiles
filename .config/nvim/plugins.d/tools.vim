@@ -32,3 +32,5 @@ Plug 'gyim/vim-boxdraw'
 
 Plug 'floobits/floobits-neovim'
 
+" Plug 'powerman/vim-plugin-AnsiEsc'
+

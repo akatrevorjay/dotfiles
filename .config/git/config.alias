@@ -303,6 +303,8 @@
     sub-pullmaster = submodule foreach git pull origin master
     sub-rm = 'git-submodule-remove'
 
+    praise = blame
+
     ; Tag (t)
     tag-sig = tag -s
     tag-verify = verify-tag

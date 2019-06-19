@@ -12,7 +12,7 @@ with-flock() {
     fi
 
     [[ -z "$lockfile" ]] \
-        && echo "Usage: with-flock [-1|-l FILE] -- CMD" >&2 && return 1
+        && echo "Usage: with-flock [-1|-f FILE] -- CMD" >&2 && return 1
 
     (
     if ! flock -n 8; then

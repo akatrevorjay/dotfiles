@@ -15,10 +15,10 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript': ['flow-language-server', '--stdio'],
     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
     \ 'vue': ['vls'],
-    \ 'go': ['gopls'],
     \ 'ruby': ['solargraph', 'stdio'],
     \ }
 
+    " \ 'go': ['gopls'],
     " \ 'go': ['go-langserver', '-format-tool', 'goimports', '-lint-tool', 'golint', '-maxparallelism', '8', '-gocodecompletion'],
     " \ 'jsx': ['flow-language-server', '--stdio'],
     " \ 'javascript': ['nodels'],

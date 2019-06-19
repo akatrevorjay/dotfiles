@@ -17,6 +17,7 @@ Plug 'google/vim-glaive'
 Plug 'xolox/vim-misc'
 
 " vim-taskwiki
+
 Plug 'powerman/vim-plugin-AnsiEsc'
 
 " Ultimate Text Linker
