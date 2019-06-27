@@ -98,20 +98,20 @@ tools_pkgs=(
 
 pyls_pkgs=(
 	# python-language-server
-	'git+https://github.com/palantir/python-language-server@develop#egg=python-language-server'
+	'git+https://github.com/palantir/python-language-server@develop#egg=pyls'
 )
 
-pip3 install --pre -U $tools_pkgs || :
-pip3 install --pre -U $pyls_pkgs || :
+pip3 install -U $tools_pkgs || :
+pip3 install -U $pyls_pkgs || :
 
 
 nvim_pkgs=(
 	neovim
 
-	jedi
+	# jedi
 	rope ropevim
 	typing
 )
-pip2 install --pre -U $nvim_pkgs
-pip3 install --pre -U $nvim_pkgs
+pip2 install -U $nvim_pkgs
+pip3 install -U $nvim_pkgs
 

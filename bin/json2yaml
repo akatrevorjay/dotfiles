@@ -2,7 +2,9 @@
 """
 json2yaml -- what it says.
 
-Symlink it to `j2y`, `y2j`, 'yaml2json` and it'll do what you expect.
+Features:
+- Preserves order of original document, which makes diffing much easier.
+- Symlink it to `j2y`, `y2j`, 'yaml2json` and it'll do what you expect.
 
 https://gist.github.com/akatrevorjay/918755c8eb2c66a48566d77fb578630c
 """
@@ -19,7 +21,7 @@ import collections
 
 class OrderedYAML(object):
 
-    def dump(self, data, stream=None, Dumper=yaml.Dumper, object_pairs_hook=collections.OrderedDict, **kwargs):
+    def dump(self, data, stream=None, Dumper=yaml.SafeDumper, object_pairs_hook=collections.OrderedDict, **kwargs):
 
         class OrderedDumper(Dumper):
             pass

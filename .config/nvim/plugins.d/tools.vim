@@ -34,3 +34,5 @@ Plug 'floobits/floobits-neovim'
 
 " Plug 'powerman/vim-plugin-AnsiEsc'
 
+Plug 'direnv/direnv.vim'
+
