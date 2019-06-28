@@ -73,4 +73,4 @@ def cli(ctx, infile, context):
 main = cli
 
 if __name__ == '__main__':
-    main(prog_name='jinja2-render', auto_envvar_prefix='ODIN', obj={})
+    main(prog_name='jinja2-render', auto_envvar_prefix='JINJA2_RENDER', obj={})
