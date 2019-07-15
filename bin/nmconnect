@@ -12,11 +12,9 @@ function e              { echo "$@"; }
 function debug          { [[ -n "$DEBUG" ]] && e "$@"; }
 function error		{ e "$@" >&2; }
 function death		{ error "$@"; exit 1; }
-##
 function nullout        { "$@" >/dev/null; }
 function nullouterr     { "$@" >&/dev/null; }
 function prefixout      { "${@:2}" |& sed -e "s/^/$1/"; }
-##
 function varopt         { for i in "${@:2}"; do eval $i=\"\${!i$1}\"; done; }
 
 ## Get opts
@@ -35,7 +33,7 @@ for i in "$@"; do
 done
 
 ## Can be symlinked to names for ease
-self="`basename $0`"
+self=$(basename "$0")
 ## Name fixups
 case "$self" in
 	wired|ethernet|lan)	self="802-3-ethernet" ;;
