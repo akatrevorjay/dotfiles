@@ -654,6 +654,11 @@ if has('nvim')
     " rust
     " Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 
+    " lisp
+    Plug 'eraserhd/parinfer-rust', {'for': ['lisp'],
+            \ 'do': 'cargo build --release'
+            \ }
+
 else
     Plug 'roxma/nvim-completion-manager', {'do': ':UpdateRemotePlugins'}
     let g:loaded_ncm = 1
