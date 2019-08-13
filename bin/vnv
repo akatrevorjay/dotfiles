@@ -2,7 +2,7 @@
 set -eo pipefail
 
 if ! (( ${+commands[v]} )); then
-	pip3 install -U --force --user v
+	pip3 install -U --force --user -e 'git+https://github.com/akatrevorjay/v.git#egg=v'
 fi
 
 [[ -n ${commands[v]} ]]

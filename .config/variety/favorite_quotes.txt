@@ -550,3 +550,6 @@ Jenkinson's Law: It won't work.
 “Part of the inhumanity of the computer is that, once it is competently programmed and working smoothly, it is completely honest.”
 -- Isaac Asimov
 %
+“It seems to me that people have vast potential. Most people can do extraordinary things if they have the confidence or take the risks. Yet most people don't. They sit in front of the telly and treat life as if it goes on forever.”
+-- Philip Adams
+%
