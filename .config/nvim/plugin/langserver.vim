@@ -31,9 +31,9 @@ let g:LanguageClient_serverCommands = {
 autocmd BufWritePre *.go :call LanguageClient#textDocument_formatting_sync()
 
 let g:LanguageClient_rootMarkers = {
-    \ 'python': ['setup.py', 'setup.cfg'],
+    \ 'python': ['setup.py', 'setup.cfg', 'pyproject.toml', 'requirements.txt'],
     \ 'rust': ['Cargo.toml'],
-    \ 'javascript': ['project.json', 'manifest.json', 'package.json'],
+    \ 'javascript': ['project.json', 'manifest.json', 'package.json', 'yarn.lock'],
     \ 'cpp': ['CMakeLists.txt'],
     \ }
 
@@ -54,20 +54,17 @@ augroup LanguageClient_config
 augroup END
 
 
-call LanguageClient#textDocument_definition({'gotoCmd': 'split'})
-
-
 function SetLSPShortcuts()
     nnoremap <silent> <leader>d :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> <leader>g :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> <leader>g :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
     nnoremap <silent> <leader>r :call LanguageClient_textDocument_rename()<CR>
 
     nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-    nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+    nnoremap <silent> gd :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
     nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
 
     " recommended settings
-    nnoremap <leader>ld :call LanguageClient#textDocument_definition()<CR>
+    nnoremap <leader>ld :call LanguageClient#textDocument_definition({'gotoCmd': 'split'})<CR>
     nnoremap <leader>lr :call LanguageClient#textDocument_rename()<CR>
     nnoremap <leader>lf :call LanguageClient#textDocument_formatting()<CR>
     nnoremap <leader>lt :call LanguageClient#textDocument_typeDefinition()<CR>
@@ -83,5 +80,6 @@ endfunction()
 "   autocmd!
 "   autocmd FileType cpp,c call SetLSPShortcuts()
 " augroup END
+
 call SetLSPShortcuts()
 

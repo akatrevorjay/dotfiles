@@ -175,14 +175,15 @@ let g:airline_theme = 'deep_space'
 "let g:airline_theme = 'badcat'
 "colorscheme badcat2
 
-"let ayucolor="dark"
-"colorscheme ayu
+let ayucolor="dark"
+colorscheme ayu
 
 "colorscheme magellan
 
 let g:airline_theme = 'kolor'
 let g:moonflySpellReversed = 1
-colorscheme moonfly
+" colorscheme moonfly
+" colorscheme monokai-phoenix
 
 " let g:airline_theme = 'nordisk'
 " let g:airline_theme = 'angr'

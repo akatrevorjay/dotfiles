@@ -566,8 +566,8 @@ if has('nvim')
     " vimshell: "vimshell" source for vimshell
     " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
 
-    " deoplete-jedi: "jedi" source for Python
-    Plug 'deoplete-plugins/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
+    " " deoplete-jedi: "jedi" source for Python
+    " Plug 'deoplete-plugins/deoplete-jedi', {'for': ['python', 'pyrex', 'cython']}
 
     " deoplete-docker
     " Plug 'deoplete-plugins/deoplete-docker', {'for': 'dockerfile'}

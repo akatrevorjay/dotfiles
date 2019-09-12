@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ansi()          { echo -e "\e[${1}m${*:2}\e[0m"; }
 
