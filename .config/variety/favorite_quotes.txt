@@ -559,3 +559,9 @@ Jenkinson's Law: It won't work.
 “Make yourself necessary to somebody. Do not make life hard to any.”
 -- Ralph Waldo Emerson
 %
+"Trying to outsmart a compiler defeats much of the purpose of using one."
+-- Kernighan and Plauger, The Elements of Programming Style
+%
+"Happiness is an imaginary condition, formerly attributed by the living to the dead, now usually attributed by adults to children, and by children to adults."
+-- Thomas Szasz
+%
