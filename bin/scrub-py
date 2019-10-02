@@ -37,6 +37,7 @@ main() {
         setopt -L verbose xtrace
         rec-rv yapf -- yapf -i $fn
         rec-rv isort -- isort $fn
+        # rec-rv autoflake -- autoflake --in-place --remove-unused-variables $fn
 
         declare -p rvs
     done

@@ -3,7 +3,10 @@
         "plugins": {
             "jedi_completion": {
                 "include_params": false
+            },
+            "pydocstyle": {
+                "enabled": true
             }
         }
-    },
+    }
 }

@@ -49,31 +49,35 @@ tools_pkgs=(
 	pyflakes mccabe bandit
 
 	pylint
-	metrics
-	fluff
+	# metrics
+	# fluff
 	pylint2junit
-	plpylint
-	autopylint
-	setuptools-lint
-	pylint-protobuf
-	pylint-patcher
-	pylint-topology
-	pylint-mccabe
-	pylint-enums
-	pylint-exit
-	pylint-werkzeug
-	pylint-common
-	pylint-venv
-	pylint-celery
-	pylint-flask
-	pylint-peewee
-	pylint-django
-	pylint-json2html
+	# plpylint
+	# autopylint
+	# setuptools-lint
+	# pylint-protobuf
+	# pylint-patcher
+	# pylint-topology
+	# pylint-mccabe
+	# pylint-enums
+	# pylint-exit
+	# pylint-werkzeug
+	# pylint-common
+	# pylint-venv
+	# pylint-celery
+	# pylint-flask
+	# pylint-peewee
+	# pylint-django
+	# pylint-json2html
 
 	pytest
 	pytest-pylint
 	pytest-cov
 	coveralls
+
+	# can autoremove unused imports and vars:
+	# $ autoflake --in-place --remove-unused-variables example.py
+	autoflake
 
 	flake8
 	# flake8-mypy
@@ -84,26 +88,25 @@ tools_pkgs=(
 	mypy
 	pyre-check
 
-	yapf autopep8 black
+	yapf autopep8
 	sixer
 
 	sux
 
 	pyls-mypy
 	pyls-isort
+
+	black
 	pyls-black
 
-	notedown
+	# notedown
 )
 
 pyls_pkgs=(
 	# python-language-server
-	'git+https://github.com/palantir/python-language-server@develop#egg=pyls'
+	# 'git+https://github.com/palantir/python-language-server@develop#egg=pyls'
+	'python-language-server[all]'
 )
-
-pip3 install -U $tools_pkgs || :
-pip3 install -U $pyls_pkgs || :
-
 
 nvim_pkgs=(
 	neovim
@@ -112,6 +115,7 @@ nvim_pkgs=(
 	rope ropevim
 	typing
 )
+
 pip2 install -U $nvim_pkgs
-pip3 install -U $nvim_pkgs
+pip3 install -U $nvim_pkgs $tools_pkgs $pyls_pkgs
 
