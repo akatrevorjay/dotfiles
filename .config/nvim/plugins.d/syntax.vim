@@ -591,7 +591,24 @@ if has('nvim')
     Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
 
     " deoplete-clang: "clang" source for C/C++
-    Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+    for s:llvm_version in ['7', '7.0', '6', '6.0', '5', '5.0', '8', '8.0']
+      let s:clang_dir = '/usr/lib/clang/'.s:llvm_version
+      let s:llvm_dir = '/usr/lib/llvm-'.s:llvm_version
+
+      if isdirectory(s:clang_dir) && isdirectory(s:llvm_dir)
+        echomsg 'Found llvm @ ' . s:llvm_dir . ' and clang @ ' . s:clang_dir . ' with version=' . s:llvm_version
+
+        let g:llvm_version = s:llvm_version
+        let g:llvm_dir = s:llvm_dir
+        let g:clang_dir = s:clang_dir
+
+        break
+      endif
+    endfor
+
+    if !empty(g:llvm_dir) &&  !empty(g:clang_dir)
+        Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+    endif
 
     Plug 'deoplete-plugins/deoplete-tag'
     Plug 'deoplete-plugins/deoplete-asm'

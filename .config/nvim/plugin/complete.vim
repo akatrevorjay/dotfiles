@@ -160,21 +160,7 @@ if has('nvim')
     endif
  
     " clang
-    for s:llvm_version in ['7', '7.0', '6', '6.0', '5', '5.0', '8', '8.0']
-      let s:clang_dir = '/usr/lib/clang/'.s:llvm_version
-      let s:llvm_dir = '/usr/lib/llvm-'.s:llvm_version
-
-      if isdirectory(s:clang_dir) && isdirectory(s:llvm_dir)
-        echomsg 'Found llvm @ ' . s:llvm_dir . ' and clang @ ' . s:clang_dir . ' with version=' . s:llvm_version
-
-        let g:llvm_version = s:llvm_version
-        let g:llvm_dir = s:llvm_dir
-        let g:clang_dir = s:clang_dir
-
-        break
-      endif
-    endfor
-
+    " g:llvm_dir and g:clang_dir is set in `plugins.d/syntax.vim`
     if !empty(g:llvm_dir)
       let g:deoplete#sources#clang#clang_header = g:clang_dir
       let g:deoplete#sources#clang#libclang_path = g:llvm_dir . '/lib/libclang.so.1'
