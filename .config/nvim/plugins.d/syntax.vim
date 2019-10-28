@@ -541,7 +541,7 @@ if has('nvim')
     endif
 
     " viml
-    Plug 'Shougo/neco-vim', {'for': 'vim'}
+    " Plug 'Shougo/neco-vim', {'for': 'vim'}
     Plug 'Shougo/neco-vim'
 
     " Plug 'neoclide/coc-neco'

@@ -113,13 +113,59 @@ def is_python():
     return ret
 
 
+LOGGING_CONFIG = dict(
+    version=1,
+    disable_existing_loggers=False,
+    formatters={
+        'colored': {
+            '()': 'colorlog.ColoredFormatter',
+            'format':
+                '%(bg_black)s%(log_color)s'
+                '[%(asctime)s] '
+                '[%(name)s/%(process)d] '
+                '%(message)s '
+                '%(blue)s@%(funcName)s:%(lineno)d '
+                '#%(levelname)s'
+                '%(reset)s',
+            'datefmt': '%H:%M:%S',
+        },
+        'simple': {
+            # format=' '.join(
+            #     [
+            #         '%(asctime)s|',
+            #         '%(name)s/%(processName)s[%(process)d]-%(threadName)s[%(thread)d]:'
+            #         '%(message)s @%(funcName)s:%(lineno)d #%(levelname)s',
+            #     ]
+            # ),
+            'format':
+                '%(asctime)s| %(name)s/%(processName)s[%(process)d]-%(threadName)s[%(thread)d]: '
+                '%(message)s @%(funcName)s:%(lineno)d #%(levelname)s',
+            'datefmt': '%Y-%m-%d %H:%M:%S',
+        },
+    },
+    handlers={
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'colored',
+            'level': logging.DEBUG,
+        },
+    },
+    root=dict(handlers=['console'], level=logging.DEBUG),
+    loggers={
+        'requests': dict(level=logging.INFO),
+
+        # ipython completion
+        'parso': dict(level=logging.INFO),
+    },
+)
+
 IS_PYTHON = is_python()
 IS_IPYTHON = not IS_PYTHON
 
 
 def __anyrc__():
     # logging.basicConfig(level=logging.DEBUG)
-    pytutils.log.configure()
+    pytutils.log.configure(LOGGING_CONFIG)
 
 
 def __pyrc__():

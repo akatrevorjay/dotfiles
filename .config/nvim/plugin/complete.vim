@@ -113,7 +113,7 @@ if has('nvim')
 
     "let g:deoplete#sources#_ = ['buffer', 'jedi', 'neosnippets']
     "let g:deoplete#sources#python = ['buffer', 'jedi', 'neosnippets']
-    let g:deoplete#sources#python = ['jedi', 'file', 'neosnippets', 'ultisnips']
+    " let g:deoplete#sources#python = ['jedi', 'file', 'neosnippets', 'ultisnips']
     "let g:deoplete#sources#vim = ['necovim', 'neco', 'vim', 'neosnippets']
 
     "let g:deoplete#sources._	 = ['buffer', 'file', 'ultisnips']
