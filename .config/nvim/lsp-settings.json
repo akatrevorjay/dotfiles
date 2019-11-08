@@ -8,5 +8,6 @@
                 "enabled": true
             }
         }
-    }
+    },
+    "rust.clippy_preference": "on"
 }
