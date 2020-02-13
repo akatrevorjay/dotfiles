@@ -11,6 +11,7 @@ import sys
 import types
 import warnings
 from pprint import pformat, pprint
+from pathlib import Path
 
 import six
 import yaml

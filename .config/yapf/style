@@ -152,7 +152,6 @@ split_arguments_when_comma_terminated=True
 # Set to True to prefer splitting before '&', '|' or '^' rather than
 # after.
 ;split_before_bitwise_operator=False
-split_before_bitwise_operator=True
 
 # Split before a dictionary or set generator (comp_for). For example, note
 # the split before the 'for':
@@ -211,7 +210,6 @@ split_complex_comprehension=True
 # The penalty for splitting a list comprehension or generator
 # expression.
 ;split_penalty_comprehension=2100
-split_penalty_comprehension=1000
 
 # The penalty for characters over the column limit.
 ;split_penalty_excess_character=4500

@@ -6,7 +6,6 @@
 set hidden
 
 let g:LanguageClient_serverCommands = {
-    \ 'python': ['pyls'],
     \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
     \ 'sh': ['bash-language-server', 'start'],
     \ 'css': ['css-languageserver', '--stdio'],
@@ -16,6 +15,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['flow-language-server', '--stdio'],
     \ 'vue': ['vls'],
     \ 'ruby': ['solargraph', 'stdio'],
+    \ 'python': ['pyls'],
     \ }
 
     " \ 'go': ['gopls'],

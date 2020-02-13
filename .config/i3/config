@@ -10,10 +10,11 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term3 urxvt
-set $term2 alacritty
+set $term2 kitty
 set $term tilix
-set $term4 terminololgy
+set $term3 alacritty
+set $term4 urxvt
+set $term5 terminololgy
 # Your preferred application launcher
 set $menu dmenu_run
 set $menu2 rofi -theme ~/.config/rofi/themes/trevorj-sidebar.rasi -show combi
@@ -37,6 +38,7 @@ for_window [class="cancer"] border none
 for_window [class="urxvt"] border none
 for_window [class="URxvt"] border none
 for_window [class="terminal"] border none
+for_window [class="kitty"] border none
 
 for_window [class="firefox"] border none
 for_window [class="Nightly"] border none

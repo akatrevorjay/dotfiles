@@ -47,6 +47,8 @@ endif
 if exists('g:loaded_echodoc')
   " Show docstrings in cmdline
   let g:echodoc_enable_at_startup = 1
+
+  let g:echodoc#type = 'signature'
 endif
 
 if exists('g:loaded_riv')

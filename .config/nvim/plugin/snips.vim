@@ -1,11 +1,17 @@
 
 " UltiSnips: {{{
 if exists('g:loaded_ultisnips')
-  " Trigger configuration. Do not use <tab> if you use
-  " https://github.com/Valloric/YouCompleteMe.
-  let g:UltiSnipsExpandTrigger='<leader>s'
-  let g:UltiSnipsJumpForwardTrigger='<c-j>'
-  let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+  " " Trigger configuration. Do not use <tab> if you use
+  " " https://github.com/Valloric/YouCompleteMe.
+  " let g:UltiSnipsExpandTrigger='<leader>s'
+  " let g:UltiSnipsJumpForwardTrigger='<c-j>'
+  " let g:UltiSnipsJumpBackwardTrigger='<c-k>'
+
+  " From: https://github.com/autozimu/LanguageClient-neovim/wiki/UltiSnips-Integration
+  let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+  inoremap <silent> <C-U> <C-R>=cm#sources#ultisnips#trigger_or_popup("\<Plug>(ultisnips_expand)")<CR>
+  let g:UltiSnipsJumpForwardTrigger = "<C-J>"
+  let g:UltiSnipsJumpBackwardTrigger = "<C-K>"
 
   " If you want :UltiSnipsEdit to split your window.
   "let g:UltiSnipsEditSplit="vertical"

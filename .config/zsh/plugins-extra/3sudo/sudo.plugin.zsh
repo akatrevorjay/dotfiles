@@ -25,6 +25,6 @@ smart_sudo () {
     fi
 }
 
-# the trailing space causes the next word to be checked for alias expansion
-alias s='smart_sudo ' 
-compdef _sudo smart_sudo
+# # the trailing space causes the next word to be checked for alias expansion
+# alias s='smart_sudo ' 
+# compdef _sudo smart_sudo

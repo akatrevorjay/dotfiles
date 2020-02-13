@@ -34,9 +34,9 @@
     br = branch -vv --sort=committerdate
     ci = commit -v
 
-    di = diff
-    di-staged = diff --staged
-    di-tool = difftool --no-prompt
+    # di = diff
+    # di-staged = diff --staged
+    # di-tool = difftool --no-prompt
 
     pl = pull
 
@@ -51,29 +51,29 @@
     ; lg = log --pretty=format:'%h | %cd | %an | %s' -n 15
     ; ls = log --stat -n 5
     l = log --decorate --branches --graph
-    l2 = log --graph --pretty=format:'[%C(magenta)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
-    ll = log --topo-order --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    lol = log --graph --pretty=format:'[%C(magenta)%h%Creset]%C(cyan)%d%Creset %s %C(white dim)by %cn%Creset'
+    # ll = log --topo-order --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
 
-    lm = log --topo-order --stat --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
-    ld = log --topo-order --stat --patch --full-diff --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
-    lo = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
-    lg = log --topo-order --all --graph --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
-    lb = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n'
-    lc = shortlog --summary --numbered
-    lS = log --show-signature
+    lm = log --graph --topo-order --stat --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    # ld = log --topo-order --stat --patch --full-diff --pretty --format='%C(bold)Commit:%C(reset) %C(green)%H%C(red)%d%n%C(bold)Author:%C(reset) %C(cyan)%an <%ae>%n%C(bold)Date:%C(reset)   %C(blue)%ai (%ar)%C(reset)%n%+B'
+    # lo = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+    # lg = log --topo-order --all --graph --pretty --format='%C(green)%h%C(reset) %s%C(red)%d%C(reset)%n'
+    # lb = log --topo-order --pretty --format='%C(green)%h%C(reset) %s%n%C(blue)(%ar by %an)%C(red)%d%C(reset)%n'
+    # lc = shortlog --summary --numbered
+    # lS = log --show-signature
 
     log = log --decorate --branches --graph
 
     lp = l -p
     llp = ll -p
-    logp = log -p
+    # logp = log -p
 
     fl = l --first-parent --decorate --branches --graph
-    flog = log --first-parent --decorate --branches --graph
+    # flog = log --first-parent --decorate --branches --graph
     lol = log --oneline --graph --all --decorate
 
-    g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold magenta)%d%C(reset)' --abbrev-commit --date=relative
-    g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold magenta)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
+    # g1 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%cr)%C(reset) %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)%C(bold magenta)%d%C(reset)' --abbrev-commit --date=relative
+    # g2 = log --graph --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%cD%C(reset) %C(bold green)(%cr)%C(reset)%C(bold magenta)%d%C(reset)%n'' %C(white)%s%C(reset) %C(bold white)— %cn%C(reset)' --abbrev-commit
     hist = log --pretty=format:'%C(bold green)%h%C(reset) | %C(bold blue)%ad%C(reset) | %C(white)%s%d | %C(green)by %C(bold)%an%C(reset)' --graph --date=relative
 
 
@@ -85,7 +85,7 @@
 
     # List contributors with number of commits
     contributors = shortlog --summary --numbered
-    scores = shortlog --summary --numbered
+    # scores = contributors
 
     wc = whatchanged -p --abbrev-commit --pretty=medium
 
@@ -95,8 +95,8 @@
     # Clone a repository including all submodules
     clone = clone --recursive
 
-    type = cat-file -t
-    dump = cat-file -p
+    # type = cat-file -t
+    # dump = cat-file -p
 
     # View the current working tree status using the short format
     s = status -s
@@ -144,7 +144,7 @@
     credit = "!f() { git commit --amend --author \"$1 <$2>\" -C HEAD; }; f"
 
     # Interactive rebase with the given number of latest commits
-    reb = "!r() { git rebase -i HEAD~$1; }; r"
+    # reb = "!r() { git rebase -i HEAD~$1; }; r"
 
     # Remove the old tag with this name and tag the latest commit with it.
     retag = "!r() { git tag -d $1 && git push origin :refs/tags/$1 && git tag $1; }; r"
@@ -204,20 +204,20 @@
     #CT = !git Ct $(gCl)'
 
     ; Data (D)
-    D = ls-files
-    Dc = ls-files --cached
-    Dx = ls-files --deleted
-    Dm = ls-files --modified
-    Du = ls-files --other --exclude-standard
-    Dk = ls-files --killed
-    Di = status --porcelain --short --ignored | sed -n "s/^!! //p"
+    # D = ls-files
+    # Dc = ls-files --cached
+    # Dx = ls-files --deleted
+    # Dm = ls-files --modified
+    # Du = ls-files --other --exclude-standard
+    # Dk = ls-files --killed
+    # Di = status --porcelain --short --ignored | sed -n "s/^!! //p"
 
     ; Fetch (f)
     f = fetch
-    fc = clone
-    fm = pull
-    fr = pull --rebase
-    fu = remote update -p; git merge --ff-only @\{u\}
+    # fc = clone
+    # fm = pull
+    # fr = pull --rebase
+    # fu = remote update -p; git merge --ff-only @\{u\}
 
     ; Grep (g)
     g = grep
@@ -229,28 +229,31 @@
 
     ; Index (i)
     a = add
-    ap = add --patch
-    au = add --update
-    ia = add
-    ip = add --patch
-    iu = add --update
-    id = diff --no-ext-diff --cached
-    iD = diff --no-ext-diff --cached --word-diff
-    ir = reset
-    iR = reset --patch
-    ix = rm -r --cached
-    iX = rm -rf --cached
+    # ap = add --patch
+    # au = add --update
+    # ia = add
+    # ip = add --patch
+    # iu = add --update
+    # id = diff --no-ext-diff --cached
+    # iD = diff --no-ext-diff --cached --word-diff
+    # ir = reset
+    # iR = reset --patch
+    # ix = rm -r --cached
+    # iX = rm -rf --cached
 
     ; Merge (m)
     m = merge
     mC = merge --no-commit
+    mf = merge --ff
     mF = merge --no-ff
     ma = merge --abort
     mt = mergetool
 
     ; Push (p)
     p = push
-    pf = push --force
+    pF = push --force
+    # force pushes unless someone has already pushed work there. fuck rebase + squash.
+    pf = push --force-with-lease
     pa = push --all
     pA = push --all && git push --tags
     pt = push --tags
@@ -273,18 +276,18 @@
     ru = remote update
     rp = remote prune
     rs = remote show
-    rb = 'git-hub-browse'
+    # rb = 'git-hub-browse'
 
     ; Stash (s)
     s = stash
     sa = stash apply
     sx = stash drop
-    sX = 'git-stash-clear-interactive'
+    # sX = 'git-stash-clear-interactive'
     sl = stash list
-    sL = 'git-stash-dropped'
+    # sL = 'git-stash-dropped'
     sd = stash show --patch --stat
     sp = stash pop
-    sr = 'git-stash-recover'
+    # sr = 'git-stash-recover'
     ss = stash save --include-untracked
     sS = stash save --patch --no-keep-index
     sw = stash save --include-untracked --keep-index
@@ -324,10 +327,6 @@
     ; $ wow
     ; $ such commit
     ; $ very push
-    much = git
-    such = git
-    very = git
-    so = git
     wow = st
 
     cur = rev-parse --abbrev-ref HEAD
@@ -339,5 +338,7 @@
     gtm = "!f() { gtm init; }; f"
 
     fetch-prs = fetch origin +refs/heads/*:refs/remotes/upstream/* +refs/pull/*/head:refs/remotes/origin/pr/*
+
+    breflog = log --walk-reflogs
 
 ; vim: set ts=4 sw=4 tw=120 et ft=gitconfig :

@@ -577,3 +577,21 @@ Jenkinson's Law: It won't work.
 "Peter's Principle: In every hierarchy, each employee tends to rise to the level of his incompetence."
 %
 
+"Finagle's Law of Dynamic Negatives: Anything that can go wrong, will
+-- at the worst possible moment."
+%
+“If you ever drop your keys into a river of molten lava, let 'em go, because, man, they're gone.”
+-- Jack Handey
+%
+"Men are like steel. When they lose their temper, they lose their worth."
+-- Chuck Norris
+%
+“Tell the innocent visitor from another world that two people were killed at Sarajevo, and that the best that Europe could do about it was to kill eleven million more.”
+-- A.A. Milne
+%
+“It's my experience that people are a lot more sympathetic if they can see you hurting, and for the millionth time in my life I wish for measles or smallpox or some other easily understood disease just to make it easier on me and also on them.”
+-- Jennifer Niven
+%
+“Debugging a Direct3D application can be challenging.”
+-- Microsoft's Direct3D Immediate Mode overview.
+%
