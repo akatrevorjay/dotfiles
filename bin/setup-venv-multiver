@@ -1,0 +1,150 @@
+#!/usr/bin/env zsh
+set -eo pipefail
+
+get-pyver()	{ ${1:-python} -c "import sys; print('%d.%d' % sys.version_info[:2])"; }
+
+pre=()
+if (( ${+commands[prefixout]} )); then
+	pre+=(prefixout -dtc --)
+fi
+
+use-venv() {
+	local venv=${1:?}
+
+	export path=(
+		$venv/bin
+		$path
+	)
+	hash -r
+}
+
+enable-global-site-packages() {
+	local venv=${1:?}
+
+	echo "-- Enabling global site packages for all vers"
+	$pre rm -fv $venv/**/no-global-site-packages.txt
+}
+
+setup-venv() {
+	local o_global_site o_def_python
+	zparseopts -D -- \
+		S=o_global_site -system-site-packages=o_global_site \
+		p:=o_def_python -python:=o_def_python
+
+	echo "-- Setting up virtualenv"
+
+	local venv=${1:?}; shift
+	local pyvers=(${(o)argv})  # (sort asc)
+
+	local pyver
+	if (( $#o_def_python )); then
+		pyver=${${${o_def_python[-1]}:t}#python}
+
+		printf '-- Adding def_python=%s (pyver=%s) to pyvers\n' ${(q)o_def_python[-1]} ${(q)pyver}
+		pyvers+=($pyver)
+	fi
+
+	if (( ! $#pyvers )); then
+		echo "No python versions were given as positional arguments (or could be inferred from a default python option)." >&2
+		return 1
+	fi
+
+	declare -p venv pyvers
+
+	local -A ver2py_map=()
+	local pyver pybin
+	for pyver in $pyvers; do
+		pybin=python${pyver:?}
+		pyver=$(get-pyver $pybin)
+
+		ver2py_map+=($pyver $pybin)
+	done
+
+	declare -p ver2py_map
+
+	local pyver pyxybin
+	for pyver in ${(k)ver2py_map}; do
+		pyxybin=${ver2py_map[$pyver]}
+		pyxbin=python${pyver:0:1}
+
+		printf '-- pyver=%s pyxybin=%s\n' ${(q)pyver} ${(q)pyxybin}
+
+		# virtualenv seems to either create the binary as pythonX.Y or as simply python.
+		# We can't trust that it won't overwrite something we care about, so delete these links.
+		# They'll be rebuilt by virtualenv.
+		$pre rm -vf $venv/bin/{python,$pyxbin,$pyxybin}
+
+		$pre virtualenv -p $pyxybin $venv
+
+		(
+			cd $venv/bin
+
+			# if pythonX.Y is a symlink, we'll need to turn it into a proper executable.
+			if [[ -h $pyxybin ]]; then
+				$pre mv -v python $pyxybin
+				$pre ln -sv $pyxybin python
+			fi
+		)
+	done
+
+	local def_python=(${(v)ver2py_map[-1]})
+	(( ! $#o_def_python )) || def_python+=(${${o_def_python[-1]}:t})
+
+	local i
+	for i in $def_python; do
+		def_python+=(${ver2py_map[$i]})
+	done
+
+	def_python=${def_python[-1]}
+
+	printf '-- def_python=%s\n' ${(q)def_python}
+
+	set-venv-default-pybin $venv $def_python
+
+	(( ! $#o_global_site )) || enable-global-site-packages $venv
+}
+
+set-venv-default-pybin() {
+	local venv=${1:?}
+	local pybin=${2:t}
+
+	(
+		cd $venv/bin
+
+		$pre ln -sfv ${pybin:?} python
+	)
+}
+
+clear-active-venvs() {
+	if [[ -n $VIRTUAL_ENV ]]; then
+		path=(${path#$VIRTUAL_ENV/*})
+		unset VIRTUAL_ENV
+	fi
+}
+
+usage() {
+	local out=(
+		"Usage:"
+		"  ${0:t} [-S | --system-site-packages] [-p PYBIN | --python PYBIN] [PYVER [PYVER ...]]"
+	)
+
+	printf "%s\n" "${(F)out}"
+}
+
+main() {
+	local o_help=()
+	zparseopts -D -E -- \
+		h=o_help -help=o_help
+
+	if (( $#o_help )); then
+		usage; exit 0
+	fi
+
+	local venv=${1:?}; shift
+
+	clear-active-venvs
+	setup-venv $venv $o_python "$@"
+}
+
+main "$@"
+
