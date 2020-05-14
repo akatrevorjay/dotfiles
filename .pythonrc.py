@@ -157,6 +157,7 @@ LOGGING_CONFIG = dict(
 
         # ipython completion
         'parso': dict(level=logging.INFO),
+        'importmagic': dict(level=logging.INFO),
     },
 )
 

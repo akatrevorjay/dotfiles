@@ -64,6 +64,8 @@ set norunexec
 
 " Selected color scheme
 
+" colorscheme dmilith
+" colorscheme dmilith-user
 colorscheme Default
 
 " Format for displaying time in file list. For example:
