@@ -8,5 +8,3 @@ case $OSTYPE in
         ;;
 esac
 
-
-export PATH="$HOME/.cargo/bin:$PATH"
