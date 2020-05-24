@@ -51,15 +51,39 @@ if has('nvim')
     "" Allow <CR> to select
     "inoremap <expr><CR> pumvisible()? "\<C-y>" : "\<CR>"
 
-    let g:deoplete#auto_complete_start_length = 1
+  call deoplete#custom#option({
+	\ 'auto_complete_start_length': 1,
+	\ 'smart_case': v:true,
+	\ 'auto_complete_delay': 50,
+	\ })
+
+          " " 'enable_refresh_always': 1,
+          " 'file#enable_buffer_path': 1,
+          "
+	  " " 'auto_complete_delay': 100,
+          " 'auto_complete_delay': 50,
+          "
+	  " " Use smartcase.
+          " " 'enable_smart_case': 1,
+	  " 'smart_case': v:true,
+          "
+          " " Integrate with neopairs
+          " 'enable_auto_pairs': 'true',
+	  " \ })
+
+    " let g:deoplete#auto_complete_start_length = 1
     "let g:deoplete#enable_refresh_always = 1
-    let g:deoplete#file#enable_buffer_path = 1
+    " let g:deoplete#file#enable_buffer_path = 1
+
+    call deoplete#custom#var('file', {
+	  \ 'enable_buffer_path': v:true,
+	  \ })
 
     "let g:deoplete#auto_complete_delay = 100
     let g:deoplete#auto_complete_delay = 50
 
     " Use smartcase.
-    let g:deoplete#enable_smart_case = 1
+    " let g:deoplete#enable_smart_case = 1
 
     " Integrate with neopairs
     let g:deoplete#enable_auto_pairs = 'true'

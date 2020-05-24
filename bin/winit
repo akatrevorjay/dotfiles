@@ -27,8 +27,9 @@ case "${1:-$DE}" in
 		tkbd &
 
 		## weee
-		__GL_YIELD=NOTHING compton &
+		# __GL_YIELD=NOTHING compton &
 		# __GL_YIELD=USLEEP compton &
+		compton &
 
 		# HOST should always be short already, but I've seen misconfigurations where it is not.
 		# (sometimes someone does not understand how /etc/hostname works}

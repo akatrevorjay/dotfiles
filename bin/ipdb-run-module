@@ -1,0 +1,21 @@
+#!/usr/bin/env python3
+"""
+Usage: $0 myapp.modulewithmain [ARGV..]
+"""
+
+import ipdb
+import runpy
+import sys
+
+
+def main():
+    mod_name = sys.argv.pop(1)
+    print(mod_name)
+
+    with ipdb.launch_ipdb_on_exception():
+        ret = runpy.run_module(mod_name, {}, "__main__")
+        return ret
+
+
+if __name__ == "__main__":
+    main()

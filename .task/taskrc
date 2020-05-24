@@ -23,8 +23,8 @@ nag=You have more important tasks.
 
 # rm is the better option.
 alias.rm=delete
-worktag=osaro
-alias.work=+osaro
+worktag=whistle
+alias.work=+whistle
 
 # Annotate every stop/start
 journal.time=yes
@@ -34,7 +34,7 @@ journal.info=off
 default.due=today
 default.project=to-org
 
-default.command=+osaro list
+default.command=+whistle list
 
 #urgency.blocked.coefficient=0.0
 #urgency.blocking.coefficient=0.0

@@ -16,10 +16,11 @@ let g:LanguageClient_serverCommands = {
     \ 'vue': ['vls'],
     \ 'ruby': ['solargraph', 'stdio'],
     \ 'python': ['pyls'],
+    \ 'go': ['go-langserver', '-format-tool', 'goimports', '-lint-tool', 'golint', '-gocodecompletion'],
     \ }
 
     " \ 'go': ['gopls'],
-    " \ 'go': ['go-langserver', '-format-tool', 'goimports', '-lint-tool', 'golint', '-maxparallelism', '8', '-gocodecompletion'],
+    " \ 'go': ['go-langserver', '-format-tool', 'goimports', '-lint-tool', 'golint', '-maxparallelism', '4', '-gocodecompletion'],
     " \ 'jsx': ['flow-language-server', '--stdio'],
     " \ 'javascript': ['nodels'],
     " \ 'javascript.jsx': ['nodels'],

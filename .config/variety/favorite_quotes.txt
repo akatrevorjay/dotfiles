@@ -595,3 +595,66 @@ Jenkinson's Law: It won't work.
 “Debugging a Direct3D application can be challenging.”
 -- Microsoft's Direct3D Immediate Mode overview.
 %
+“Ever notice that anyone going slower than you is an idiot, but anyone going faster is a maniac?”
+-- George Carlin
+%
+“To many managers, getting rid of the arrogant, undisciplined, over-paid, technology-obsessed, improperly-dressed etc. programmers would appear to be a significant added benefit.”
+-- Bjarne Stroustrup The C++ Programming Language 3e, 
+    section 24.2.4
+%
+Thyme's Law: Everything goes wrong at once.
+%
+“Try not to become a man of success but rather to become a man of value.”
+-- Albert Einstein
+%
+“Just because you love someone doesn't mean you have to be involved with them. Love is not a bandage to cover wounds.”
+-- Hugh Elliott
+%
+“Eliminate something superfluous from your life. Break a habit. Do something that makes you feel insecure.”
+-- Piero Ferrucci
+%
+“There would be no cloud-nine days without rock-bottom moments left below.”
+-- Richelle E. Goodrich
+%
+“I hate when people say 'I see'. It doesn't mean anything and I think it's hostile. Whenever anyone tells me 'I see' I think they're really saying 'Fuck you'.”
+-- Peter Cameron
+%
+"If you would be wealthy, think of saving as well as getting."
+-- Benjamin Franklin
+%
+“The public is wonderfully tolerant. It forgives everything except genius.”
+-- Oscar Wilde
+%
+“Potential has a shelf life.”
+-- Margaret Atwood
+%
+“When greed is enthroned, be it in a community or nation, ungodliness is celebrated at the altar of human pleasure.”
+-- Sunday Adelaja
+%
+"Humanity has advanced, when it has advanced, not because it has been sober, responsible, and cautious, but because it has been playful, rebellious, and immature."
+-- Tom Robbins
+%
+“Never pretend to a love which you do not actually feel, for love is not ours to command.”
+-- Alan Watts
+%
+“None are more hopelessly enslaved than those who falsely believe they are free.”
+-- Johann Wolfgang von Goethe
+%
+“If you would persuade, you must appeal to interest rather than intellect.”
+-- Benjamin Franklin
+%
+“There is no reason for any individual to have a computer in his home.”
+-- Ken Olsen
+%
+“We all agree that your theory is crazy, but is it crazy enough?”
+-- Niels Bohr (1885-1962)
+%
+“There's a fine line between genius and insanity. I have erased this line.”
+-- Oscar Levant
+%
+People with a growth mindset believe that they can improve with effort. They outperform those with a fixed mindset, even when they have a lower IQ, because they embrace challenges, treating them as opportunities to learn something new.
+-- Travis Bradberry
+%
+“We have seen that intellect and achievement are far from perfectly correlated.”
+-- Lewis Terman
+%
