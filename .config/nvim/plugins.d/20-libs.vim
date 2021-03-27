@@ -1,9 +1,3 @@
-" Requires vim8 with has('python') or has('python3')
-" Requires the installation of msgpack-python. (pip install msgpack-python)
-if !has('nvim') && (has('python3') || has('python'))
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
-
 Plug 'mattn/webapi-vim'
 Plug 'tyru/open-browser.vim'
 

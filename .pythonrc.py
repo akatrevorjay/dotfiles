@@ -13,7 +13,6 @@ import warnings
 from pprint import pformat, pprint
 from pathlib import Path
 
-import six
 import yaml
 
 log = logging.getLogger(__name__)
@@ -69,8 +68,13 @@ try:
 except ImportError:
     pass
 
-if six.PY3:
-    import asyncio
+try:
+    import six
+
+    if six.PY3:
+        import asyncio
+except ImportError:
+    pass
 
 try:
     import pytutils

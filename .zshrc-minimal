@@ -1,18 +1,20 @@
 # Set up the prompt
 
-autoload -Uz promptinit
-promptinit
-prompt adam1
-
-setopt histignorealldups sharehistory
-
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
-HISTSIZE=1000
-SAVEHIST=1000
+# History
+setopt appendhistory extendedhistory sharehistory
+HISTSIZE=1000000
+SAVEHIST=1000000
 HISTFILE=~/.zsh_history
+
+# Opts
+setopt autopushd correct autocontinue autoresume
+setopt extendedglob
+
+# Allow tab completion in the middle of a word.
+setopt completeinword
 
 # Use modern completion system
 autoload -Uz compinit
@@ -33,5 +35,10 @@ zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p
 zstyle ':completion:*' use-compctl false
 zstyle ':completion:*' verbose true
 
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+autoload -Uz promptinit
+promptinit
+prompt adam1
+
+# Vars
+# EDITOR=nvim
+

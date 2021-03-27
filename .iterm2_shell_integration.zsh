@@ -38,7 +38,11 @@ if [[ -o interactive ]]; then
     fi
 
     iterm2_print_state_data() {
-      printf "\033]1337;RemoteHost=%s@%s\007" "$USER" "${iterm2_hostname-}"
+      local _iterm2_hostname="${iterm2_hostname-}"
+      if [ -z "${iterm2_hostname:-}" ]; then
+        _iterm2_hostname=$(hostname -f 2>/dev/null)
+      fi
+      printf "\033]1337;RemoteHost=%s@%s\007" "$USER" "${_iterm2_hostname-}"
       printf "\033]1337;CurrentDir=%s\007" "$PWD"
       iterm2_print_user_vars
     }
@@ -139,11 +143,18 @@ if [[ -o interactive ]]; then
       iterm2_before_cmd_executes
     }
 
-    # If hostname -f is slow on your system, set iterm2_hostname prior to sourcing this script.
-    [[ -z "${iterm2_hostname-}" ]] && iterm2_hostname=`hostname -f 2>/dev/null`
-    # some flavors of BSD (i.e. NetBSD and OpenBSD) don't have the -f option
-    if [ $? -ne 0 ]; then
-      iterm2_hostname=`hostname`
+    # If hostname -f is slow on your system set iterm2_hostname prior to
+    # sourcing this script. We know it is fast on macOS so we don't cache
+    # it. That lets us handle the hostname changing like when you attach
+    # to a VPN.
+    if [ -z "${iterm2_hostname-}" ]; then
+      if [ "$(uname)" != "Darwin" ]; then
+        iterm2_hostname=`hostname -f 2>/dev/null`
+        # Some flavors of BSD (i.e. NetBSD and OpenBSD) don't have the -f option.
+        if [ $? -ne 0 ]; then
+          iterm2_hostname=`hostname`
+        fi
+      fi
     fi
 
     [[ -z ${precmd_functions-} ]] && precmd_functions=()
@@ -153,7 +164,7 @@ if [[ -o interactive ]]; then
     preexec_functions=($preexec_functions iterm2_preexec)
 
     iterm2_print_state_data
-    printf "\033]1337;ShellIntegrationVersion=10;shell=zsh\007"
+    printf "\033]1337;ShellIntegrationVersion=12;shell=zsh\007"
   fi
 fi
-alias imgcat=~/.iterm2/imgcat;alias imgls=~/.iterm2/imgls;alias it2api=~/.iterm2/it2api;alias it2attention=~/.iterm2/it2attention;alias it2check=~/.iterm2/it2check;alias it2copy=~/.iterm2/it2copy;alias it2dl=~/.iterm2/it2dl;alias it2getvar=~/.iterm2/it2getvar;alias it2git=~/.iterm2/it2git;alias it2setcolor=~/.iterm2/it2setcolor;alias it2setkeylabel=~/.iterm2/it2setkeylabel;alias it2ul=~/.iterm2/it2ul;alias it2universion=~/.iterm2/it2universion
+alias imgcat=${HOME}/.iterm2/imgcat;alias imgls=${HOME}/.iterm2/imgls;alias it2api=${HOME}/.iterm2/it2api;alias it2attention=${HOME}/.iterm2/it2attention;alias it2check=${HOME}/.iterm2/it2check;alias it2copy=${HOME}/.iterm2/it2copy;alias it2dl=${HOME}/.iterm2/it2dl;alias it2getvar=${HOME}/.iterm2/it2getvar;alias it2git=${HOME}/.iterm2/it2git;alias it2setcolor=${HOME}/.iterm2/it2setcolor;alias it2setkeylabel=${HOME}/.iterm2/it2setkeylabel;alias it2ul=${HOME}/.iterm2/it2ul;alias it2universion=${HOME}/.iterm2/it2universion

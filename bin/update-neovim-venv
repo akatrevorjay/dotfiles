@@ -23,9 +23,9 @@ use-venv() {
 }
 
 if [[ ! -d $NEOVIM_VENV ]]; then
-
-	rm -f $NEOVIM_VENV/bin/python
-	$pre virtualenv-multiver $NEOVIM_VENV $(get-pyver python2)
+	# Py2 is dead
+	# rm -f $NEOVIM_VENV/bin/python
+	# $pre virtualenv-multiver $NEOVIM_VENV $(get-pyver python2)
 
 	rm -f $NEOVIM_VENV/bin/python
 	$pre virtualenv-multiver $NEOVIM_VENV $(get-pyver python3)
@@ -41,8 +41,6 @@ use-venv $NEOVIM_VENV
 tools_pkgs=(
 	six
 	psutil setproctitle
-
-	mistune
 
 	isort importmagic
 	'pycodestyle<2.4' pydocstyle
@@ -70,10 +68,12 @@ tools_pkgs=(
 	# pylint-django
 	# pylint-json2html
 
-	pytest
-	pytest-pylint
-	pytest-cov
-	coveralls
+	# mistune
+    #
+	# pytest
+	# pytest-pylint
+	# pytest-cov
+	# coveralls
 
 	# can autoremove unused imports and vars:
 	# $ autoflake --in-place --remove-unused-variables example.py
@@ -88,8 +88,9 @@ tools_pkgs=(
 	mypy
 	pyre-check
 
-	yapf autopep8
-	sixer
+	yapf
+	autopep8
+	# sixer
 
 	sux
 
@@ -113,9 +114,9 @@ nvim_pkgs=(
 
 	# jedi
 	rope ropevim
-	typing
+	# typing
 )
 
-pip2 install -U $nvim_pkgs
+#pip2 install -U $nvim_pkgs
 pip3 install -U $nvim_pkgs $tools_pkgs $pyls_pkgs
 
