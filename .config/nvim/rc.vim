@@ -13,6 +13,7 @@ if has('vim_starting')
     let g:is_nvim = has('nvim') && exists('*jobwait') && !g:is_win
     let g:is_vim8 = has('patch-8.0.0039') && exists('*job_start')
     let g:is_gnvim_gtk = exists('g:GtkGuiLoaded')
+    let g:is_vscode = exists('g:vscode')
 
     " FIXME any gui that may not load this
     if g:is_gnvim_gtk
@@ -22,12 +23,14 @@ if has('vim_starting')
     call source#any('starting')
 endif
 
-call source#any('early')
+if !g:is_vscode
+    call source#any('early')
 
-" plug away
-call plug#begin('~/.cache/vim/plugged')
-call source#any('plugins')
-call plug#end()
+    " plug away
+    call plug#begin('~/.cache/vim/plugged')
+    call source#any('plugins')
+    call plug#end()
+endif
 
 " Required: (not on neovim however)
 if ! g:is_nvim

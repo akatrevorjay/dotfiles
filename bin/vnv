@@ -4,7 +4,7 @@ set -eo pipefail
 if ! (( ${+commands[v]} )); then
 	mkdir -pv ~/.local/src
 	git clone https://github.com/akatrevorjay/v.git ~/.local/src/v
-	pip3 install -U --force --user -e ~/.local/src/v\#egg=v
+	pip3 install -U --force --user -e ~/.local/src/v
 fi
 
 [[ -n ${commands[v]} ]]

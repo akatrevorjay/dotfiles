@@ -4,6 +4,9 @@ setopt hist_fcntl_lock
 setopt extended_history
 setopt bang_hist
 
+# save time taken to run each command in history
+setopt inc_append_history_time
+
 # Whenever the user enters a line with history expansion, don't execute the line directly; instead, perform history expansion and reload the line into the editing buffer.
 setopt hist_verify
 

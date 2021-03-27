@@ -79,9 +79,6 @@ if has('nvim')
 	  \ 'enable_buffer_path': v:true,
 	  \ })
 
-    "let g:deoplete#auto_complete_delay = 100
-    let g:deoplete#auto_complete_delay = 50
-
     " Use smartcase.
     " let g:deoplete#enable_smart_case = 1
 
@@ -179,13 +176,13 @@ if has('nvim')
     let g:deoplete#sources#go#source_importer = 1
     let g:deoplete#sources#go#builtin_objects = 1
 
-    if !empty('$GOPATH')
+    if exists('$GOPATH')
       let g:deoplete#sources#go#gocode_binary = expand($GOPATH.'/bin/gocode')
     endif
  
     " clang
     " g:llvm_dir and g:clang_dir is set in `plugins.d/syntax.vim`
-    if !empty(g:llvm_dir)
+    if exists('g:llvm_dir')
       let g:deoplete#sources#clang#clang_header = g:clang_dir
       let g:deoplete#sources#clang#libclang_path = g:llvm_dir . '/lib/libclang.so.1'
       " let g:deoplete#sources#go#cgo#libclang_path = g:deoplete#sources#clang#libclang_path

@@ -26,11 +26,14 @@ export EDITOR
 
 gpg-ssh-agent || :
 
-# report timing stats if max res set size is greater than this (mB)
-REPORTMEMORY=512
+# report timing stats if max res set size is greater than this (kB)
+REPORTMEMORY=$((512 * 1024))
 
 # report timing stats if command takes longer than this (secs)
 REPORTTIME=10
+
+# report timing memory in addition to cpu stats
+TIMEFMT='[%J]  %U user %S system %P cpu %*E max_rss %M total'
 
 # This is used by deoplete-zsh
 zmodload zsh/zpty

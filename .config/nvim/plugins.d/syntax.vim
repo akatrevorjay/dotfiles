@@ -107,34 +107,34 @@ let g:polyglot_disabled = [
     "\ 'dart',
     "\ 'typescript',
 
-" LaTeX
-Plug 'lervag/vimtex'
-
-let g:tex_flavor = 'latex'
-
-if has('nvim')
-    let g:vimtex_compiler_progname = 'nvr'
-endif
+" " LaTeX
+" Plug 'lervag/vimtex'
+"
+" let g:tex_flavor = 'latex'
+"
+" if has('nvim')
+"     let g:vimtex_compiler_progname = 'nvr'
+" endif
 
 "Plug 'spacewander/openresty-vim', {'for': 'nginx'}
 
-" Ledger
-Plug 'ledger/vim-ledger', {'for': 'ledger'}
+" " Ledger
+" Plug 'ledger/vim-ledger', {'for': 'ledger'}
 
-" GPG
-Plug 'jamessan/vim-gnupg', {'for': 'gpg'}
+" " GPG
+" Plug 'jamessan/vim-gnupg', {'for': 'gpg'}
 
 " Show CSS colors as what they truely are.
 Plug 'ap/vim-css-color'
 
-"" BATS test runner and syntax
-Plug 'markcornick/vim-bats', {'for': 'bats'}
+" "" BATS test runner and syntax
+" Plug 'markcornick/vim-bats', {'for': 'bats'}
 
 " Better json
 Plug 'elzr/vim-json', {'for': ['json']}
 
-" JSONnet
-Plug 'google/vim-jsonnet', {'for': ['jsonnet']}
+" " JSONnet
+" Plug 'google/vim-jsonnet', {'for': ['jsonnet']}
 
 " AWS CloudFormation
 "Plug 'm-kat/aws-vim'
@@ -144,8 +144,8 @@ Plug 'google/vim-jsonnet', {'for': ['jsonnet']}
 " au BufRead,BufNewFile *.launch setf roslaunch
 au BufRead,BufNewFile *.launch setf xml
 
-" Arduino
-Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
+" " Arduino
+" Plug 'jplaut/vim-arduino-ino', {'for': 'arduino'}
 
 " Go
 if has('nvim')
@@ -186,11 +186,11 @@ endif
 " Gautocmdft javascript let b:javascript_lib_use_angularjs = 1
 
 
-" Plug 'othree/svg-properties-syntax.vim'
-Plug 'othree/html5.vim', {'for': 'html'}
-"" Update the bult-in CSS complete function to latest CSS standard.
-Plug 'othree/csscomplete.vim', {'for': 'css'}
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
+" " Plug 'othree/svg-properties-syntax.vim'
+" Plug 'othree/html5.vim', {'for': 'html'}
+" " Update the bult-in CSS complete function to latest CSS standard.
+" Plug 'othree/csscomplete.vim', {'for': 'css'}
+" " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
 
 
 "" Yet Another Typescript Syntax
@@ -202,8 +202,8 @@ Plug 'othree/csscomplete.vim', {'for': 'css'}
 ""Plug 'zah/nim.vim', {'for': 'nim'}
 
 
-" Hex
-Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd', 'bin']}
+" " Hex
+" Plug 'Shougo/vinarise.vim', {'for': ['hex', 'xxd', 'bin']}
 
 
 " ZSH "official" vim syntax, definitely more up to date.
@@ -215,8 +215,8 @@ Plug 'trapd00r/vim-after-syntax-vim', {'for': 'vim'}
 "Plug 'tpope/vim-scriptease'
 
 
-" Salt
-Plug 'saltstack/salt-vim', {'for': 'sls'}
+" " Salt
+" Plug 'saltstack/salt-vim', {'for': 'sls'}
 
 
 " Jinja2
@@ -230,7 +230,7 @@ Plug 'Glench/Vim-Jinja2-Syntax', {'for': ['html', 'j2', 'htm', 'jinja2', 'jinja'
 " TOML
 " Hey kids, don't name software after yourself, you can do better.
 "
-Plug 'cespare/vim-toml', {'for': 'toml'}
+" Plug 'cespare/vim-toml', {'for': 'toml'}
 
 
 " Tmux.conf syntax
@@ -238,11 +238,11 @@ Plug 'cespare/vim-toml', {'for': 'toml'}
 
 
 " CSV
-Plug 'chrisbra/csv.vim', {'for': 'csv'}
+" Plug 'chrisbra/csv.vim', {'for': 'csv'}
 
 
 " Webdev syntax/helpers
-Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2', 'sls', 'css', 'less', 'sass']}
+" Plug 'mattn/emmet-vim', {'for': ['html', 'xhtml', 'xml', 'j2', 'jinja', 'jinja2', 'sls', 'css', 'less', 'sass']}
 
 
 "" Markdown
@@ -251,12 +251,12 @@ Plug 'tpope/vim-markdown', {'for': 'markdown'}
 " Plug 'kannokanno/previm', {'for': ['markdown']}
 let g:markdown_fenced_languages = ['css', 'javascript', 'js=javascript', 'typescript', 'py=python', 'python', 'sh', 'zsh', 'vim', 'viml=vim', 'html', 'yaml', 'json']
 
-Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
+" Plug 'aouelete/sway-vim-syntax', {'for': 'sway'}
 
-Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
+" Plug 'andrewstuart/vim-kubernetes', {'for': ['yaml', 'tpl', 'gotexttmpl', 'json', 'mustache']}
 
-Plug 'dzeban/vim-log-syntax', {'for': 'log'}
-Plug 'vim-scripts/httplog', {'for': ['log']}
+" Plug 'dzeban/vim-log-syntax', {'for': 'log'}
+" Plug 'vim-scripts/httplog', {'for': ['log']}
 
 ""
 "" Language: Python
@@ -264,7 +264,7 @@ Plug 'vim-scripts/httplog', {'for': ['log']}
 
 " Allows for python rst docstring support as well
 " A bit problematic as it's slow as balls
-Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
+" Plug 'Rykka/riv.vim', {'for': ['markdown', 'python', 'rst']}
 " Plug 'okcompute/vim-python-motions', {'for': 'python'}
 
 " python text objects and motions
@@ -276,7 +276,7 @@ Plug 'jeetsukumaran/vim-pythonsense', {'for': ['python']}
 
 " Jedi:
 Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'python-rope/ropevim', {'for': 'python'}
+" Plug 'python-rope/ropevim', {'for': 'python'}
 " Plug 'wilywampa/vim-ipython', {'for': 'python'}
 
 " Indenting:
@@ -289,10 +289,10 @@ Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 let g:SimpylFold_docstring_preview = 1
 
 " Testing:
-Plug 'alfredodeza/pytest.vim', {'for': 'python'}
+" Plug 'alfredodeza/pytest.vim', {'for': 'python'}
 
 " Docs
-Plug 'fs111/pydoc.vim', {'for': 'python'}
+" Plug 'fs111/pydoc.vim', {'for': 'python'}
 
 " Formatting: Better formatter (yapf > autopep8)
 "
@@ -325,7 +325,7 @@ omap a; <Plug>Argumentative_OpPendingOuterTextObject
 
 "" Vim plugins/syntax for hashicorp tooling
 "" Run Terraform files with tab compl
-Plug 'hashivim/vim-terraform', {'for': ['tf', 'tfvars']}
+" Plug 'hashivim/vim-terraform', {'for': ['tf', 'tfvars']}
 "Plug 'hashivim/vim-packer'
 "Plug 'hashivim/vim-consul'
 " Plug 'hashivim/vim-vagrant', {'for': 'vagrantfile'}
@@ -337,112 +337,112 @@ Plug 'hashivim/vim-terraform', {'for': ['tf', 'tfvars']}
 " Plug 'munshkr/vim-tidal', {'for': 'tidal'}
 
 
-" cpp
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp', 'objc', 'objcpp']}
-let g:cpp_class_scope_highlight = 1
-" Highlighting of member variables is disabled by default. To enable set
-let g:cpp_member_variable_highlight = 1
-" Highlighting of class names in declarations is disabled by default. To enable set
-let g:cpp_class_decl_highlight = 1
-" There are two ways to hightlight template functions. Either
-let g:cpp_experimental_simple_template_highlight = 1
-" which works in most cases, but can be a little slow on large files. Alternatively set
-let g:cpp_experimental_template_highlight = 1
-" which is a faster implementation but has some corner cases where it doesn't work.
-" Note: C++ template syntax is notoriously difficult to parse, so don't expect this feature to be perfect.
-" Highlighting of library concepts is enabled by
-let g:cpp_concepts_highlight = 1
-" This will highlight the keywords concept and requires as well as all named requirements (like DefaultConstructible) in the standard library.
-" Highlighting of user defined functions can be disabled by
-let g:cpp_no_function_highlight = 1
-
-" wtf https://github.com/vim-jp/vim-cpp/issues/16
-let c_no_curly_error=1
+" " cpp
+" Plug 'octol/vim-cpp-enhanced-highlight', {'for': ['c', 'cpp', 'objc', 'objcpp']}
+" let g:cpp_class_scope_highlight = 1
+" " Highlighting of member variables is disabled by default. To enable set
+" let g:cpp_member_variable_highlight = 1
+" " Highlighting of class names in declarations is disabled by default. To enable set
+" let g:cpp_class_decl_highlight = 1
+" " There are two ways to hightlight template functions. Either
+" let g:cpp_experimental_simple_template_highlight = 1
+" " which works in most cases, but can be a little slow on large files. Alternatively set
+" let g:cpp_experimental_template_highlight = 1
+" " which is a faster implementation but has some corner cases where it doesn't work.
+" " Note: C++ template syntax is notoriously difficult to parse, so don't expect this feature to be perfect.
+" " Highlighting of library concepts is enabled by
+" let g:cpp_concepts_highlight = 1
+" " This will highlight the keywords concept and requires as well as all named requirements (like DefaultConstructible) in the standard library.
+" " Highlighting of user defined functions can be disabled by
+" let g:cpp_no_function_highlight = 1
+"
+" " wtf https://github.com/vim-jp/vim-cpp/issues/16
+" let c_no_curly_error=1
 
 
 " Plug 'JBakamovic/cxxd-vim', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 " Plug 'Chilledheart/vim-clangd', {'for': ['c', 'cpp', 'objc', 'objcpp']}
 " Default searches PATH
-" let g:clangd#clangd_executable = '/usr/bin/clangd'
-let g:clangd#codecomplete_timeout = 10  " def 100ms
-
-Gautocmdft c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
-Gautocmdft c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>j :ClangdGotoDefinition<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>d :ClangdShowDetailedDiagnostic<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>c :ClangdShowCursorDetail<CR>
-au FileType c,cpp,objc,objcpp nnoremap <leader>h :ClangdDocumentHighlight<CR>
-
-
-" Code format the selected code
+" " let g:clangd#clangd_executable = '/usr/bin/clangd'
+" let g:clangd#codecomplete_timeout = 10  " def 100ms
 "
-" You can use :<C-u> ClangdFormat to code format the specified code
+" Gautocmdft c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
+" Gautocmdft c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
+" au FileType c,cpp,objc,objcpp nnoremap <leader>j :ClangdGotoDefinition<CR>
+" au FileType c,cpp,objc,objcpp nnoremap <leader>d :ClangdShowDetailedDiagnostic<CR>
+" au FileType c,cpp,objc,objcpp nnoremap <leader>c :ClangdShowCursorDetail<CR>
+" au FileType c,cpp,objc,objcpp nnoremap <leader>h :ClangdDocumentHighlight<CR>
 "
-" If you prefer to shortcut, here is an example:
 "
-au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
-au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
-
-" Go to Definition key binding
+" " Code format the selected code
+" "
+" " You can use :<C-u> ClangdFormat to code format the specified code
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>cf :ClangdFormat<CR>
+" au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>cf :<C-u>ClangdFormat<CR>
 "
-" You can use :ClangdGotoDefinition to jump the definition of current cursor
+" " Go to Definition key binding
+" "
+" " You can use :ClangdGotoDefinition to jump the definition of current cursor
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <leader>j :ClangdGotoDefinition<CR>
 "
-" If you prefer to shortcut, here is an example:
+" " Show diagnostic key binding
+" "
+" " You can use :ClangdShowDetailedDiagnostic to show the detailed diagnostic for current line.
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <leader>d :ClangdShowDetailedDiagnostic<CR>
 "
-au FileType c,cpp,objc,objcpp nnoremap <leader>j :ClangdGotoDefinition<CR>
-
-" Show diagnostic key binding
+" " Show cursor detail key binding
+" "
+" " You can use :ClangdShowCursorDetail to show the details about current cursor.
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <leader>c :ClangdShowCursorDetail<CR>
 "
-" You can use :ClangdShowDetailedDiagnostic to show the detailed diagnostic for current line.
+" " Document Highlight key binding
+" "
+" " You can use :ClangdDocumentHighlight to search and highlight related pieces about current cursor in the same source file.
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <leader>h :ClangdDocumentHighlight<CR>
 "
-" If you prefer to shortcut, here is an example:
+" " Fix-its key binding
+" "
+" " You can use :ClangdFixit to use Fix-its feature. It will find the possible fix solutions and prompt for your choice if any.
+" "
+" " If you prefer to shortcut, here is an example:
+" "
+" au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>f :ClangdFixit<CR>
+" au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>f :<C-u>ClangdFixit<CR>
 "
-au FileType c,cpp,objc,objcpp nnoremap <leader>d :ClangdShowDetailedDiagnostic<CR>
-
-" Show cursor detail key binding
+" " Specify python version
+" "
+" " vim-clangd will recognize your builtin python support of vim and will choose python3 as default.
+" "
+" " you might want to specify python version forcely
+" "
+" " let g:clangd#py_version = 2
 "
-" You can use :ClangdShowCursorDetail to show the details about current cursor.
-"
-" If you prefer to shortcut, here is an example:
-"
-au FileType c,cpp,objc,objcpp nnoremap <leader>c :ClangdShowCursorDetail<CR>
-
-" Document Highlight key binding
-"
-" You can use :ClangdDocumentHighlight to search and highlight related pieces about current cursor in the same source file.
-"
-" If you prefer to shortcut, here is an example:
-"
-au FileType c,cpp,objc,objcpp nnoremap <leader>h :ClangdDocumentHighlight<CR>
-
-" Fix-its key binding
-"
-" You can use :ClangdFixit to use Fix-its feature. It will find the possible fix solutions and prompt for your choice if any.
-"
-" If you prefer to shortcut, here is an example:
-"
-au FileType c,cpp,objc,objcpp nnoremap <buffer><Leader>f :ClangdFixit<CR>
-au FileType c,cpp,objc,objcpp vnoremap <buffer><Leader>f :<C-u>ClangdFixit<CR>
-
-" Specify python version
-"
-" vim-clangd will recognize your builtin python support of vim and will choose python3 as default.
-"
-" you might want to specify python version forcely
-"
-" let g:clangd#py_version = 2
-
-" Use along with neocomplete
-"
-" make sure you have neocomplete installed. you should disable vim-clangd's autocompletion and configure neocomplete correctly. below is an example:
-"
-let g:clangd#completions_enabled = 0
-if !exists('g:neocomplete#force_omni_input_patterns')
-    let g:neocomplete#force_omni_input_patterns = {}
-endif
-let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
-let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
-autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
+" " Use along with neocomplete
+" "
+" " make sure you have neocomplete installed. you should disable vim-clangd's autocompletion and configure neocomplete correctly. below is an example:
+" "
+" let g:clangd#completions_enabled = 0
+" if !exists('g:neocomplete#force_omni_input_patterns')
+"     let g:neocomplete#force_omni_input_patterns = {}
+" endif
+" let g:neocomplete#force_omni_input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)\w*'
+" let g:neocomplete#force_omni_input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
+" autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
 
 
 
@@ -451,7 +451,6 @@ autocmd FileType c,cpp,objc,objcpp setlocal omnifunc=clangd#OmniCompleteAt
 " Plug 'racer-rust/vim-racer', {'for': 'rust'}
 " Plug 'rust-lang/rust.vim', {'for': 'rust'}
 
-
 if has('nvim')
     Plug 'roxma/nvim-cm-racer', {'for': 'rust', 'do': ':UpdateRemotePlugins' }
 else
@@ -459,8 +458,8 @@ else
 endif
 
 
-" Monte:
-Plug 'monte-language/monte-vim', {'for': 'monte'}
+" " Monte:
+" Plug 'monte-language/monte-vim', {'for': 'monte'}
 
 
 " " alt
@@ -524,9 +523,9 @@ Plug 'monte-language/monte-vim', {'for': 'monte'}
 "         \ })
 " endif
 
-Plug 'sirtaj/vim-openscad'
+" Plug 'sirtaj/vim-openscad'
 
-Plug 'vhdirk/vim-cmake', {'for': ['cmake']}
+" Plug 'vhdirk/vim-cmake', {'for': ['cmake']}
 
 ""
 "" Comp
@@ -536,7 +535,7 @@ if has('nvim')
     " numerous
     if executable('make') && executable('cargo')
         Plug 'autozimu/LanguageClient-neovim',
-                    \{ 'do': 'make build && ln -sfvr target/debug/languageclient bin/languageclient'
+                    \{ 'do': 'make build && cd bin && ln -sfv ../target/debug/languageclient ./languageclient'
                     \, 'branch': 'next' }
     endif
 
@@ -547,8 +546,8 @@ if has('nvim')
     " Plug 'neoclide/coc-neco'
     " Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
 
-    Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
-    let g:localvimrc_sandbox = 0
+    " Plug 'coddingtonbear/neomake-platformio', { 'do': ':UpdateRemotePlugins' }
+    " let g:localvimrc_sandbox = 0
 
     " vimshell: "vimshell" source for vimshell
     " Plug 'Shougo/vimshell.vim', {'for': 'vimshell'}
@@ -582,13 +581,13 @@ if has('nvim')
     "             \ }
 
     "" deoplete-ruby: "ruby" source for Ruby language
-    Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
+    " Plug 'fishbullet/deoplete-ruby', {'for': 'ruby'}
 
     " deoplete-d: "d" source for D language
     "Plug 'landaire/deoplete-d', {'for': 'd'}
 
-    " deoplete-github: "github" source for "gitcommit" filetype
-    Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
+    " " deoplete-github: "github" source for "gitcommit" filetype
+    " Plug 'SevereOverfl0w/deoplete-github', {'for': 'gitcommit'}
 
     " deoplete-clang: "clang" source for C/C++
     for s:llvm_version in ['7', '7.0', '6', '6.0', '5', '5.0', '8', '8.0']
@@ -606,13 +605,13 @@ if has('nvim')
       endif
     endfor
 
-    if !empty(g:llvm_dir) &&  !empty(g:clang_dir)
+    if exists('g:llvm_dir') && exists('g:clang_dir')
         Plug 'deoplete-plugins/deoplete-clang', {'for': ['c', 'cpp', 'objc', 'objcpp']}
     endif
 
-    Plug 'deoplete-plugins/deoplete-tag'
-    Plug 'deoplete-plugins/deoplete-asm'
-    Plug 'deoplete-plugins/deoplete-dictionary'
+    " Plug 'deoplete-plugins/deoplete-tag'
+    " Plug 'deoplete-plugins/deoplete-asm'
+    " Plug 'deoplete-plugins/deoplete-dictionary'
 
     "" neco-ghc: "ghc" source for Haskell
     "Plug 'eagletmt/neco-ghc', {'for': 'haskell'}
@@ -627,8 +626,8 @@ if has('nvim')
     ""Plug 'awetzel/elixir.nvim', {'for': 'elixir'}
     "Plug 'slashmili/alchemist.vim', {'for': 'elixir'}
 
-    " deoplete-ternjs: "ternjs" source for JavaScript
-    Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json', 'javascript.jsx']}
+    " " deoplete-ternjs: "ternjs" source for JavaScript
+    " Plug 'carlitux/deoplete-ternjs', {'for': ['javascript', 'json', 'javascript.jsx']}
 
     """ deoplete-flow: "flow" source for flowscript (statically typed JavaScript)
     " Plug 'steelsojka/deoplete-flow', {'for': 'flow'}
