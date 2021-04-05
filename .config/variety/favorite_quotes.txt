@@ -658,3 +658,6 @@ People with a growth mindset believe that they can improve with effort. They out
 “We have seen that intellect and achievement are far from perfectly correlated.”
 -- Lewis Terman
 %
+"First make it work. Then make it right. Then make it fast."
+-- Kent Beck
+%

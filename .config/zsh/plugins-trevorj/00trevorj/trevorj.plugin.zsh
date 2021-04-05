@@ -33,7 +33,7 @@ REPORTMEMORY=$((512 * 1024))
 REPORTTIME=10
 
 # report timing memory in addition to cpu stats
-TIMEFMT='[%J]  %U user %S system %P cpu %*E max_rss %M total'
+TIMEFMT='[%J]  %U user %S system %P cpu %*E total max_rss %M'
 
 # This is used by deoplete-zsh
 zmodload zsh/zpty
