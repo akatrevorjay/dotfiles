@@ -116,6 +116,10 @@ let s:TYPE = {
 let s:loaded = get(s:, 'loaded', {})
 let s:triggers = get(s:, 'triggers', {})
 
+function! s:is_powershell(shell)
+  return a:shell =~# 'powershell\(\.exe\)\?$' || a:shell =~# 'pwsh\(\.exe\)\?$'
+endfunction
+
 function! s:isabsolute(dir) abort
   return a:dir =~# '^/' || (has('win32') && a:dir =~? '^\%(\\\|[A-Z]:\)')
 endfunction
@@ -263,7 +267,7 @@ function! s:define_commands()
   endif
   if has('win32')
   \ && &shellslash
-  \ && (&shell =~# 'cmd\(\.exe\)\?$' || &shell =~# 'powershell\(\.exe\)\?$')
+  \ && (&shell =~# 'cmd\(\.exe\)\?$' || s:is_powershell(&shell))
     return s:err('vim-plug does not support shell, ' . &shell . ', when shellslash is set.')
   endif
   if !has('nvim')
@@ -503,7 +507,7 @@ if s:is_win
     let batchfile = s:plug_tempname().'.bat'
     call writefile(s:wrap_cmds(a:cmd), batchfile)
     let cmd = plug#shellescape(batchfile, {'shell': &shell, 'script': 0})
-    if &shell =~# 'powershell\(\.exe\)\?$'
+    if s:is_powershell(&shell)
       let cmd = '& ' . cmd
     endif
     return [batchfile, cmd]
@@ -749,24 +753,6 @@ function! s:parse_options(arg)
         throw printf(opt_errfmt, 'do', 'string or funcref')
     endif
     call extend(opts, a:arg)
-    for opt in ['branch', 'tag', 'commit', 'rtp', 'dir', 'as']
-      if has_key(opts, opt)
-      \ && (type(opts[opt]) != s:TYPE.string || empty(opts[opt]))
-        throw printf(opt_errfmt, opt, 'string')
-      endif
-    endfor
-    for opt in ['on', 'for']
-      if has_key(opts, opt)
-      \ && type(opts[opt]) != s:TYPE.list
-      \ && (type(opts[opt]) != s:TYPE.string || empty(opts[opt]))
-        throw printf(opt_errfmt, opt, 'string or list')
-      endif
-    endfor
-    if has_key(opts, 'do')
-      \ && type(opts.do) != s:TYPE.funcref
-      \ && (type(opts.do) != s:TYPE.string || empty(opts.do))
-        throw printf(opt_errfmt, 'do', 'string or funcref')
-    endif
     if has_key(opts, 'dir')
       let opts.dir = s:dirpath(s:plug_expand(opts.dir))
     endif
@@ -953,7 +939,7 @@ function! s:prepare(...)
     call s:new_window()
   endif
 
-  nnoremap <silent> <buffer> q  :if b:plug_preview==1<bar>pc<bar>endif<bar>bd<cr>
+  nnoremap <silent> <buffer> q :call <SID>close_pane()<cr>
   if a:0 == 0
     call s:finish_bindings()
   endif
@@ -975,6 +961,15 @@ function! s:prepare(...)
   endif
 endfunction
 
+function! s:close_pane()
+  if b:plug_preview == 1
+    pc
+    let b:plug_preview = -1
+  else
+    bd
+  endif
+endfunction
+
 function! s:assign_name()
   " Assign buffer name
   let prefix = '[Plugins]'
@@ -993,7 +988,7 @@ function! s:chsh(swap)
     set shell=sh
   endif
   if a:swap
-    if &shell =~# 'powershell\(\.exe\)\?$' || &shell =~# 'pwsh$'
+    if s:is_powershell(&shell)
       let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s'
     elseif &shell =~# 'sh' || &shell =~# 'cmd\(\.exe\)\?$'
       set shellredir=>%s\ 2>&1
@@ -1550,7 +1545,7 @@ while 1 " Without TCO, Vim stack is bound to explode
     let [error, _] = s:git_validate(spec, 0)
     if empty(error)
       if pull
-        let cmd = ['git', 'fetch']
+        let cmd = s:git_version_requirement(2) ? ['git', '-c', 'credential.helper=', 'fetch'] : ['git', 'fetch']
         if has_tag && !empty(globpath(spec.dir, '.git/shallow'))
           call extend(cmd, ['--depth', '99999999'])
         endif
@@ -2234,7 +2229,7 @@ function! plug#shellescape(arg, ...)
   let script = get(opts, 'script', 1)
   if shell =~# 'cmd\(\.exe\)\?$'
     return s:shellesc_cmd(a:arg, script)
-  elseif shell =~# 'powershell\(\.exe\)\?$' || shell =~# 'pwsh$'
+  elseif s:is_powershell(shell)
     return s:shellesc_ps1(a:arg)
   endif
   return s:shellesc_sh(a:arg)
@@ -2286,7 +2281,7 @@ function! s:system(cmd, ...)
         return system(a:cmd)
       endif
       let cmd = join(map(copy(a:cmd), 'plug#shellescape(v:val, {"shell": &shell, "script": 0})'))
-      if &shell =~# 'powershell\(\.exe\)\?$'
+      if s:is_powershell(&shell)
         let cmd = '& ' . cmd
       endif
     else
