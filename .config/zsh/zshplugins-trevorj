@@ -6,7 +6,7 @@ zplugins.load 'mafredri/zsh-async'
 
 # zplugins.load 'zdharma/zredis'  # actually gdbm + redis now, module == zdharma/db
 
-zplugins.load 'akatrevorjay/zsh-histdb'
+# zplugins.load 'akatrevorjay/zsh-histdb'
 zplugins.load 'akatrevorjay/fasd'
 # zplugins.load 'psprint/zsnapshot'
 
@@ -17,7 +17,7 @@ zplugins.load 'akatrevorjay/fasd'
 ## completions
 ## ~~~~~~~~~~~
 
-zplugins.load 'zsh-users/zsh-completions'
+# zplugins.load 'zsh-users/zsh-completions'
 
 ## ----------
 ## middle out
@@ -37,5 +37,5 @@ zplugins.load-all-in zcompinit
 zplugins.load 'akatrevorjay/zsh-autopair'
 
 # zplugins.load 'zsh-users/zsh-syntax-highlighting'
-zplugins.load 'zdharma/fast-syntax-highlighting'
+zplugins.load 'zdharma-continuum/fast-syntax-highlighting'
 
