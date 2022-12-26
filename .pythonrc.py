@@ -11,9 +11,16 @@ import sys
 import types
 import warnings
 from pprint import pformat, pprint
-from pathlib import Path
 
-import yaml
+try:
+    from pathlib import Path
+except ImportError:
+    pass
+
+try:
+    import yaml
+except ImportError:
+    pass
 
 log = logging.getLogger(__name__)
 
