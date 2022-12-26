@@ -1,3 +1,4 @@
 #!/bin/zsh
 
 zplugins.load-all-in plugins
+

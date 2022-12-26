@@ -19,9 +19,6 @@
 [[ $ZSH_PROFILE != 1 ]] || zmodload zsh/zprof
 [[ $ZSH_SOURCETRACE != 1 ]] || setopt sourcetrace
 
-module_path+=( ~/.zinit/{mod-,}bin/zmodules/Src )
-zmodload zdharma/zplugin
-
 # XDG defaults
 if (( ${+commands[xdg-user-dirs-update]} )); then
 	xdg-user-dirs-update

@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 zplugins.load 'willghatch/zsh-hooks'
+
 zplugins.load 'mafredri/zsh-async'
 # zplugins.load 'zdharma/zui'
 
@@ -17,7 +18,7 @@ zplugins.load 'akatrevorjay/fasd'
 ## completions
 ## ~~~~~~~~~~~
 
-# zplugins.load 'zsh-users/zsh-completions'
+zplugins.load 'zsh-users/zsh-completions'
 
 ## ----------
 ## middle out

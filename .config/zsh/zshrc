@@ -34,7 +34,7 @@ setopt functionargzero
 ##
 
 # enable all of the highlighters
-typeset -Ua ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
+# typeset -Ua ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor root)
 
 
 ##
@@ -46,22 +46,21 @@ typeset -a ZPLUGINS=()
 typeset -a ZPLUGINS_Q=()
 
 function zplugins.init {
-	if ! (( ${+commands[antibody]} )) && (( ${+commands[go]} )); then
-		echo "- Antibody not found in path. Attempting install.." >&2
-		go get -u -v github.com/akatrevorjay/antibody/cmd/antibody
-		hash -r
+	if [[ ! -e ~/.zplug ]] && (( ${+commands[git]} )); then
+		echo "- zplug not found in path. Attempting install.." >&2
+		git clone https://github.com/zplug/zplug ~/.zplug
 	fi
 
-	if ! (( ${+commands[antibody]} )); then
-		echo "- Could not find/install antibody. Cannot/will not continue. Deal with it." >&2
+	if [[ ! -e ~/.zplug ]]; then
+		echo "- Could not find/install zplug. Cannot/will not continue. Deal with it." >&2
 		return 1
 	fi
 
-	source <(command antibody init)
+	source ~/.zplug/init.zsh
 }
 
 function zplugins.is-initialized {
-	[[ -z $ZPLUGINS_IS_APPLYING ]] && (( ${+functions[antibody]} ))
+	[[ -z $ZPLUGINS_IS_APPLYING ]] && (( ${+functions[zplug]} ))
 }
 
 # Queue loads until they are applied.
@@ -69,25 +68,32 @@ function zplugins.is-initialized {
 # Avoids races and dependency woes since now we can order accordingly.
 
 function zplugins.q.add {
-	ZPLUGINS_Q+=(${(q)argv}$'\0')
-}
-
-function zplugins.q.dry-run {
-	command antibody bundle "${(0)ZPLUGINS_Q}"
+	ZPLUGINS_Q+=("$@")
 }
 
 function zplugins.q.apply {
 	zplugins.is-initialized || zplugins.init
 
 	local ZPLUGINS_IS_APPLYING=1
-	antibody bundle "${(0)ZPLUGINS_Q}"
+
+	local zplug
+	for zplug in $ZPLUGINS_Q; do
+		if [[ -e $zplug ]]; then
+			local zplug_files=($zplug/*.plugin.zsh(N))
+			# typeset -p zplug zplug_files
+			[ $#zplug_files -gt 0 ] || continue
+			source-with-force $zplug_files
+
+			# zplug "$zplug", from:local
+		else
+			zplug "$zplug"
+		fi
+	done
+
+	zplug load
 
 	ZPLUGINS+=("${(@)ZPLUGINS_Q}")
 	ZPLUGINS_Q=()
-}
-
-function zplugins.q.show {
-	command antibody bundle "${(0)ZPLUGINS}"
 }
 
 function zplugins.load {
@@ -223,7 +229,8 @@ function zplugins.compinit {
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -e
 
-zplugins.compinit.defer
+# TODO Disabled defer for now with zplug
+# zplugins.compinit.defer
 
 # Secrets
 source-with-force ${^ZDOTDIRS}/secrets(-.N)
