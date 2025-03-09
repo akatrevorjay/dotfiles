@@ -1,0 +1,14 @@
+[Unit]
+Description=ledbot.player
+
+[Service]
+Type=simple
+Environment=DISPLAY=:0
+EnvironmentFile=%h/ledbot/.envrc
+ExecStart=%h/ledbot/bin/player
+ExecStartPost=/bin/sleep 5
+ExecStartPost=%h/ledbot/bin/play %h/ledbot/gifs/tacos-nyan.gif
+
+[Install]
+WantedBy=default.target
+
