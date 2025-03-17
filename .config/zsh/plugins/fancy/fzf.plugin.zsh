@@ -16,18 +16,19 @@
 
 export FZF_DEFAULT_OPTS FZF_CTRL_R_OPTS FZF_CTRL_T_OPTS FZF_ALT_C_OPTS
 
-local fzf_path="$GOPATH/src/github.com/junegunn/fzf"
-
-[[ -d $fzf_path ]] || return 1
+predicate() {
+	[[ -e ${1:?} ]]
+}
+local fzf_path=$(first-in predicate "${GOPATH:-$HOME/gp}/src/github.com/junegunn/fzf/shell" "/usr/share/doc/fzf/examples/")
+[[ -e $fzf_path ]] || return 1
 
 autoload -Uz add-prefix-paths source-with-force
-
-add-prefix-paths $fzf_path
+#add-prefix-paths $fzf_path
 
 # quiet down +warn_create_global
 local binding fzf_default_completion
 
-source-with-force $fzf_path/shell/*.zsh
+source-with-force $fzf_path/*.zsh
 
 unset fzf_path
 

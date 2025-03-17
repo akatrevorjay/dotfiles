@@ -22,9 +22,12 @@
 
 .DS_*
 
+log
 *.log
 *.swp
 *.swo
+*.sqlite
+*.db
 
 *secret*
 *hist*
@@ -33,6 +36,5 @@
 
 *password*
 *export*
-
 
 /.gtm/

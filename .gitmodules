@@ -1,9 +1,3 @@
 [submodule ".config/zsh/plugins-wip/dasht/src"]
 	path = .config/zsh/plugins-wip/dasht/src
 	url = https://github.com/sunaku/dasht.git
-[submodule ".gdb/gef"]
-	path = .gdb/gef
-	url = https://github.com/hugsy/gef.git
-[submodule ".gdb/gef-extras"]
-	path = .gdb/gef-extras
-	url = https://github.com/hugsy/gef-extras.git

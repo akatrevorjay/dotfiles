@@ -618,4 +618,5 @@ c.Completer.greedy = True
 
 ## If True, any %store-d variables will be automatically restored when IPython
 #  starts.
-c.StoreMagics.autorestore = True
+#c.StoreMagics.autorestore = True
+

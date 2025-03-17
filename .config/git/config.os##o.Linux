@@ -1,3 +1,3 @@
 [credential]
-   helper = /usr/local/bin/git-credential-gnome-keyring
+  #helper = /usr/local/bin/git-credential-gnome-keyring
 
